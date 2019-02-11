@@ -31,27 +31,43 @@ body {
             background-color: rgba($color: #fff, $alpha: 0.97); // vertical-align: middle;
             border: transparent;
             border-radius: 10px;
+            font-family: g2Med;
         }
         select {
             width: 25%;
-            margin-right: 5%;
+            margin: 0 10px;
             font-size: 16px;
             padding: 2px 4px 6px 4px;
+            color: $gray;
             @media only screen and (min-width: $moblie) {
                 width: 16%;
                 position: relative;
-                top: -5px;
+                top: -2px;
+                padding: 0px 4px 0px 4px;
+                margin: unset;
+                margin-right: 5%;
+                
             }
         }
         input {
             position: relative;
             font-size: 14px;
             top: -4px;
-            padding: 4px 0px 4px 6px;
+            padding: 0px 0px 0px 6px;
+            @media screen and (max-width: 768px) {
+                width: 80%;
+                font-size: 20px;
+                margin: 30px 0;
+            }
         }
         i {
-            font-size: 18px;
+            font-size: 20px;
             vertical-align: middle;
+            color: $gray;
+            @media screen and (max-width: 768px) {
+                vertical-align: unset;
+                font-size: 30px;
+            }
         }
         @media screen and (max-width:768px) {
             margin-top: 120px;
@@ -151,8 +167,13 @@ body {
                     }
                 }
                 @media screen and (min-width:768px) {
-                    .countryImg:hover .countryInfoLg {
-                        display: block;
+                    .countryImg:hover {
+                        .countryInfoLg{
+                            display: block;
+                        }
+                        &:before{
+                            display: none;
+                        }
                     }
                 }
                 >:nth-child(2) {
@@ -320,14 +341,15 @@ body {
                 display: none;
                 @media screen and (max-width: 768px) {
                     display: block;
-                    overflow: -webkit-paged-x;
+                    overflow: auto;
                 }
                 .countryInfoReel {
                     @media screen and (max-width: 768px) {
-                        width: 100%;
-                        display: flex; // overflow: -webkit-paged-x;
+                        width: 140%;
+                        display: flex;
                         margin: 40px auto;
                         padding: 0 10px;
+                        overflow: -webkit-paged-x;
                         .countryInfoSm {
                             margin: 10px 10px;
                             background-color: rgba(255, 255, 255, 0.9);
@@ -1347,6 +1369,13 @@ body {
                 }
             }
         }
+    }
+    .gameBox{
+        position: fixed;
+        bottom: 10%;
+        left: 1%;
+        width: 15%;
+        animation: float 1s linear infinite alternate;
     }
     .footer {
         #floor {
