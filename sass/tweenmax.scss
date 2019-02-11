@@ -1,0 +1,304 @@
+// //以top為準的長寬高
+// $box_i:300px; //寬 x
+// $box_j:400px; //長 y
+// $box_k:100px; //高 z
+
+@mixin box3D( $box_i:100px,$box_j:100px,$box_k:100px){
+    .camera{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        perspective:1000px;
+        // transform:perspective(500px);
+    }
+    .boxBase{
+        // margin: auto;
+        border: red 2px solid;
+        width: $box_i;
+        height: $box_k;
+        position: relative;
+        background-color: transparent;
+        transform-origin: center center;
+        transform: translateZ((-$box_j/2)) rotateX(-30deg) rotateY(-30deg);
+        transform-style: preserve-3d;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .surface{
+        background-color: #aaf;
+        border: 1px dashed #0000004b;
+        position: absolute;
+        text-align: center;
+        font-size: 60px;
+        transform-origin: center center;
+    }
+    
+    
+    .surface_top{width: $box_i;height: $box_j;transform:rotateX(90deg) translateZ(($box_k/2));line-height:  $box_j;}
+    .surface_down{width: $box_i;height: $box_j;transform:rotateX(-90deg) translateZ(($box_k/2));line-height:  $box_j;}
+    
+    .surface_font{width: $box_i;height: $box_k;transform:rotateY(0deg) translateZ(($box_j/2));line-height: $box_k;}
+    .surface_back{width: $box_i;height: $box_k;transform:rotateY(180deg) translateZ(($box_j/2));line-height: $box_k;}
+    
+    .surface_left{width: $box_j;height: $box_k;transform:rotateY(-90deg) translateZ(($box_i/2));line-height: $box_k;}
+    .surface_right{width: $box_j;height: $box_k;transform:rotateY(90deg) translateZ(($box_i/2));line-height: $box_k;}
+    
+    .surface_top{background-color: #fff;}
+    .surface_down{background-color: #fff;}
+    .surface_font{background-color: #faa;}
+    .surface_back{background-color: #aaf;}
+    .surface_left{background-color: #afa;}
+    .surface_right{background-color: #afa;}
+}
+
+
+
+
+@mixin box3D_cover( $box_i:100px,$box_j:100px,$box_k:100px){
+    .camera{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        perspective:1000px;
+        // transform:perspective(500px);
+    }
+    .boxBase{
+        // margin: auto;
+        border: red 2px solid;
+        width: $box_i;
+        height: $box_k;
+        position: relative;
+        background-color: transparent;
+        transform-origin: center center;
+        transform: translateZ((-$box_j/2)) rotateX(-90deg) rotateY(-180deg);
+        transform-style: preserve-3d;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .surface{
+        background-color: #aaf;
+        border: 1px dashed #0000004b;
+        position: absolute;
+        text-align: center;
+        font-size: 60px;
+        transform-origin: center center;
+    }
+    
+    $cover_offsetY:(($box_j) - ($box_k))/2;
+    .surface_top{width: $box_i;height: $box_j;transform-origin: top center;transform: translate3d(0,$cover_offsetY,-($box_j/2))  rotateX(90deg) ;line-height:  $box_j;} //translateY(($box_j-$box_k)/2) translateZ(-($box_j/2))
+    .surface_down{width: $box_i;height: $box_j;transform:rotateX(-90deg) translateZ(($box_k/2));line-height:  $box_j;}
+    
+    .surface_font{width: $box_i;height: $box_k;transform:rotateY(0deg) translateZ(($box_j/2));line-height: $box_k;}
+    .surface_back{width: $box_i;height: $box_k;transform:rotateY(180deg) translateZ(($box_j/2));line-height: $box_k;}
+    
+    .surface_left{width: $box_j;height: $box_k;transform:rotateY(-90deg) translateZ(($box_i/2));line-height: $box_k;}
+    .surface_right{width: $box_j;height: $box_k;transform:rotateY(90deg) translateZ(($box_i/2));line-height: $box_k;}
+    
+    // .surface_top{background-color: #fff;}
+    // .surface_down{background-color: #fff;}
+    // .surface_font{background-color: #faa;}
+    // .surface_back{background-color: #aaf;}
+    // .surface_left{background-color: #afa;}
+    // .surface_right{background-color: #afa;}
+    .surface_top{background-color: #076baf;}
+    .surface_down{background-color: #076baf;}
+    .surface_font{background-color: #fbc84a;}
+    .surface_back{background-color: #fbc84a;}
+    .surface_left{background-color: #fbc84a;}
+    .surface_right{background-color: #fbc84a;}
+
+}
+
+
+
+
+
+.header{
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    z-index: 100;
+}
+.btns{
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+}
+.btn{
+    width: 60px;
+    height: 40px;
+    background-color: #ccc;
+    border: #000 solid 1px;
+}
+
+.section{
+    width: 100vw;
+    height: 1200px;
+    background-color: #ffa;
+    border: 1px solid #000;
+}
+
+.box{
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    border: 1px solid #000;
+}
+
+
+.box_1{
+    position: relative;
+    top: 100px;
+    left: 500px;
+    background-color: #faf;
+}
+
+
+
+.section_3{
+    @include box3D(300px,200px,100px);
+}
+
+
+
+.bgimg{
+    width: 500px;
+    height: 500px;
+    background-image: url(../img/sun_color.jpg);
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-position: center center;
+    opacity: 0.3;
+}
+
+.group_sec{
+    position: relative;
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+}
+.box_4{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+    width: 200px;
+    height: 200px;
+}
+.snBox{
+    position: absolute;
+    // top: 50%;
+    // left:50%;
+    // transform: translate(-50%,-50%);
+    top:0;
+    left: 0;
+    right: 0;
+    bottom:0;
+    margin:auto;
+    z-index: 10;
+    width: 200px;
+    height: 200px;
+}
+
+
+
+.aa{
+    @include box3D(500px, 500px,500px )
+}
+
+
+
+
+.section_6{
+    overflow: hidden;
+    height:unset;
+    position: relative;
+    .setbg {
+        width: 100%;
+        height: 100vh;
+        background-image: url(https://placem.at/places);
+        background-color: #000;
+        background-size: cover;
+        transform-origin: center;
+        transform: scale(1.2);
+        transition: transform 3s ease-out;
+        will-change: transform;
+        position: relative;
+        z-index: 0;
+        &.on {
+            transform: scale(1);
+        }
+    }
+    h2{
+        font-size: 36px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin:auto;
+        z-index: 10;
+        &.on{
+            font-size: 72px;
+        }
+    }
+}
+
+
+
+.section_07{
+    height: 500px;
+}
+
+.section_08{
+    position: relative;
+    overflow:hidden;
+    .sec_08{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:0;
+        left:0;
+    }
+    .sec_0801{
+        background-color: #ffa;
+    }
+    .sec_0802{
+        background-color: #faf;
+    }
+    .sec_0803{
+        background-color: #aff;
+    }
+}
+
+
+
+
+#section_9{
+    @include box3D_cover(500px, 300px,150px );
+    //藍：#076baf
+    //黃：#fbc84a
+    // .surface_top{background-color: #076baf;}
+    // .surface_down{background-color: #076baf;}
+    // .surface_font{background-color: #fbc84a;}
+    // .surface_back{background-color: #fbc84a;}
+    // .surface_left{background-color: #fbc84a;}
+    // .surface_right{background-color: #fbc84a;}
+
+
+    .surface_top{
+        animation: cover_rotate 3s infinite;
+    }
+    @keyframes cover_rotate{
+      
+        100%{transform:translate3d(0, 75px, -150px) rotateX(210deg)};
+    }
+}

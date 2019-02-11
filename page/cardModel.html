@@ -1,0 +1,407 @@
+﻿<!DOCTYPE html>
+<html lang="zh_tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cardModel</title>
+    <link rel="stylesheet" href="../css/cardModel.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <section class="section_7 section" id="section_7">
+        <div class="cardCamera" id="cardCamera_7">
+            <div class="cardBase" id="cardBase_7">
+                <div class="cardBaseContent" id="cardBaseConten">
+                    <div class="cardSurfaceInner cardContentInner_7" id="cardContentInner_7">封底</div>
+                    <div class="cardSurface cardContent_7" id="cardContent_7">內容區
+                        <!-- <div class="textTeam">
+                            <div class="ctrlPos">點擊拖曳</div>
+                            <div class="textarea" contenteditable="true" placeholder="點擊輸入文字"></div>
+                            <div class="textResize"></div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="cardBaseCover" id="cardBaseCover">
+                    <div class="cardSurfaceInner cardCoverInner_7" id="cardCoverInner_7">封面(裡)</div>
+                    <div class="cardSurface cardCover_7" id="cardCover_7">封面</div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <div id="btns7">
+        <div class="btn7" id="btn7_add">增</div>
+        <div class="btn7" id="btn7_big">大</div>
+        <div class="btn7" id="btn7_small">小</div>
+        <div class="btn7" id="btn7_clk">順</div>
+        <div class="btn7" id="btn7_unclk">逆</div>
+        <div class="btn7" id="btn7_del">刪</div>
+    </div>
+    <script>
+
+        // window.event.cancelBubble=true;
+        const btn7s = document.querySelectorAll(".btn7");
+        const cardContent_7 = document.querySelector("#cardContent_7");
+
+        //對按鈕們做監聽
+        btn7s.forEach(elem => {
+            elem.addEventListener("click", textCtrl);
+        })
+
+        // //對卡片內容區監聽
+        // cardContent_7.addEventListener("click",function cardClick(e){
+        //     $class("textTeam").forEach(el=>{
+        //         el.classList.remove("select");
+        //     })
+        // })
+
+        // //利用mouseenter對內容區做監聽
+        // //順帶觸發文字框框監聽
+        // cardContent_7.addEventListener("mouseenter", function checkTextArea() {
+        //     var textTeam = document.getElementsByClassName("textTeam");
+        //     var len = textTeam.length;
+        //     // console.log(`textTeam len: ${len}`);
+        //     for (let i = 0; i < len; i++) {
+        //         textTeam[i].addEventListener("mouseenter", textTeamShow, false);
+        //         textTeam[i].addEventListener("mouseleave", textTeamHide,false);
+        //         textTeam[i].addEventListener("click", textTeamSelect, false);
+        //         textTeam[i].addEventListener("dragstart", cardDragStart);
+        //     }
+
+        //     var textarea = document.getElementsByClassName("textarea");
+        //     var len = textarea.length;
+        //     for (let i = 0; i < len; i++) {
+        //         textarea[i].addEventListener("focus", textareaFocus,false);
+        //         textarea[i].addEventListener("biur", textareaBlur, false);
+        //         textarea[i].addEventListener("click", textareaFocus, false);
+        //     }
+
+
+        //     var ctrlPos = document.getElementsByClassName("ctrlPos");
+        //     var len = ctrlPos.length;
+        //     for (let i = 0; i < len; i++) {
+        //         ctrlPos[i].addEventListener("mouseover", addDrag);
+        //         ctrlPos[i].addEventListener("mouseleave", removeDrag);
+        //         // ctrlPos[i].addEventListener("mousedown", callDrag);
+        //     }
+        // })
+        //
+        //textTeam目前remove select會造成異常
+        //先做拖曳功能
+        // cardContent_7.addEventListener("click",(e)=>{
+        //     var textTeam = document.getElementsByClassName("textTeam");
+        //     var len = textTeam.length;
+        //     // console.log(`textTeam len: ${len}`);
+        //     for (let i = 0; i < len; i++) {
+        //         // textTeam[i].classList.remove("select");
+        //     }
+        // })
+
+
+        //dragover解除初始設定
+        cardContent_7.addEventListener("dragover", function cardDargOver(e) {
+            e.preventDefault();
+            //允許穿透
+            $class("textTeam").forEach(el => {
+                el.style.pointerEvents = "none";
+            })
+            $class("textResize").forEach(el => {
+                el.style.pointerEvents = "none";
+            })
+            $class("ctrlPos").forEach(el => {
+                el.style.pointerEvents = "none";
+            })
+            $class("textarea").forEach(el => {
+                el.style.pointerEvents = "none";
+            })
+        })
+
+        //監聽drop事件
+        cardContent_7.addEventListener("drop", cardDropped);
+
+        //對textTeam的dragStart抓取起始滑鼠相對物件的偏移量
+        function cardDragStart(e) {
+            e.dataTransfer.setData("offsetx", e.offsetX);
+            e.dataTransfer.setData("offsety", e.offsetY);
+            srcCard = this;
+
+            console.log(`Drag Stat!!`);
+            $class(".textTeam");
+            console.log(`.textTeam.length: ${$class(".textTeam").length}`);
+
+            //允許穿透
+            $class(".textTeam").forEach(el => {
+                el.style.pointerEvents = "none";
+            })
+            $class(".textResize").forEach(el => {
+                el.style.pointerEvents = "none";
+            })
+            $class(".ctrlPos").forEach(el => {
+                el.style.pointerEvents = "none";
+            })
+            $class(".textarea").forEach(el => {
+                el.style.pointerEvents = "none";
+            })
+        }
+        //對textTeam的dragend設定
+        function cardDragEnd(e) {
+            //允許穿透
+            $class("textTeam").forEach(el => {
+                el.style.pointerEvents = "auto";
+            })
+            $class("textResize").forEach(el => {
+                el.style.pointerEvents = "auto";
+            })
+            $class("ctrlPos").forEach(el => {
+                el.style.pointerEvents = "auto";
+            })
+            $class("textarea").forEach(el => {
+                el.style.pointerEvents = "auto";
+            })
+        }
+
+
+
+        //drop設定
+        var CardDrop_count = 1;
+        function cardDropped(e) {
+            e.preventDefault();
+            CardDrop_count += 1;
+            //接收來自dragstart的座標訊息
+            let mouseOffset = { x: 0, y: 0 };
+            mouseOffset.x = e.dataTransfer.getData("offsetx");
+            mouseOffset.y = e.dataTransfer.getData("offsety");
+            //目的地位置偏移量
+            mouseNow = { x: 0, y: 0 };
+            mouseNow.x = e.offsetX;
+            mouseNow.y = e.offsetY;
+            //接收來自setData的資料，設定新座標
+            srcCard.style.zIndex = CardDrop_count + 1;
+            srcCard.style.top = parseInt(mouseNow.y - mouseOffset.y) + "px";
+            srcCard.style.left = parseInt(mouseNow.x - mouseOffset.x) + "px";
+        }
+
+        function addDrag(e) {
+            e.target.parentNode.setAttribute("draggable", true);
+        }
+        function removeDrag(e) {
+            e.target.parentNode.setAttribute("draggable", false);
+        }
+
+        //textTeam監聽事件區
+        function textTeamShow(e) {
+            e.target.classList.add("show");
+        }
+        function textTeamHide(e) {
+            e.target.classList.remove("show");
+        }
+        function textTeamSelect(e) {
+            e.target.classList.add("select");
+        }
+
+        //textarea監聽事件區
+        function textareaBlur(e) {
+            // $class("cardSurface").forEach(el => {
+            //     var clickCount = 0;
+            //     el.addEventListener("click", (e) => {
+            //         clickCount++;
+            //         if (clickCount == 2) {
+            //             $class("textTeam").forEach(el => {
+            //                 el.classList.remove("select");
+            //             })
+            //             clickCount=0;
+            //         }
+            //     })
+            // })
+            // e.target.parentNode.classList.remove("select");
+        }
+        function textareaSelect(e) {
+            $class("textTeam").forEach(el => {
+                el.classList.remove("select");
+            })
+            $class("textarea").forEach(el => {
+                el.classList.remove("select");
+            })
+            console.log(e.target.parentNode);
+            e.target.parentNode.classList.add("select");
+            e.target.classList.add("select");
+        }
+
+
+        function textCtrl(e) {
+            switch (this.id) {
+                case "btn7_add":
+                    addTextTeam();
+                    break;
+                case "btn7_big":
+                    // fontSizeBig();
+                    $class("textarea").forEach(el=>{
+                        if(el.classList.contains("select")){
+                            console.log(el.style.fontSize);
+                            let value= el.style.fontSize.replace("px","");
+                            value= parseInt(value)+3;
+                            if(value>60){value=60;}
+                            console.log(value);
+                            el.style.fontSize = value + "px";
+                        }
+                    })
+                    break;
+                case "btn7_small":
+                    $class("textarea").forEach(el => {
+                        if (el.classList.contains("select")) {
+                            console.log(el.style.fontSize);
+                            let value = el.style.fontSize.replace("px", "");
+                            value = parseInt(value) - 3;
+                            if(value<12){value=12;}
+                            console.log(value);
+                            el.style.fontSize = value + "px";
+                        }
+                    })
+                    break;
+                case "btn7_clk":
+                    $class("textTeam").forEach(el => {
+                        if (el.classList.contains("select")) {
+                            console.log(el.style.transform);
+                            let value = el.style.transform.replace("rotate(", "").replace("deg)","");
+                            value = parseInt(value) + 10;
+                            console.log(value);
+                            el.style.transform = "rotate("+ value + "deg)";
+                        }
+                    })
+                    break;
+                case "btn7_unclk":
+                    $class("textTeam").forEach(el => {
+                        if (el.classList.contains("select")) {
+                            console.log(el.style.transform);
+                            let value = el.style.transform.replace("rotate(", "").replace("deg)", "");
+                            value = parseInt(value) - 10;
+                            console.log(value);
+                            el.style.transform = "rotate(" + value + "deg)";
+                        }
+                    })
+                    break;
+                case "btn7_del":
+                    console.log(`Del start`);
+                    var textTeam = document.getElementsByClassName("textTeam");
+                    var len = textTeam.length;
+                    console.log(`len: ${len}`);
+                    for (let i = 0; i < len; i++) {
+                        if (textTeam[i].classList.contains("select")) {
+                            console.log(`Del target is : ${textTeam[i]}`);
+                            cardContent_7.removeChild(textTeam[i]);
+                            console.log(`Del Done`);
+                        } else { }
+                    }
+                    break;
+            }
+        }
+
+
+        //建立文字框框一整組
+        function addTextTeam() {
+            //建立可以輸入文字的框框
+            var textarea = document.createElement('div');
+            // var textarea = document.createElement('textarea');
+            textarea.classList.add("textarea");
+            //設定這個div可以被輸入文字
+            textarea.setAttribute("contenteditable", true);
+            //設定placholder並利用css裡的偽元素brfore顯示內容
+            textarea.setAttribute("placeholder", "點擊輸入文字");
+            //關閉拼字檢查，避免瀏覽器一直檢查提醒錯誤，破壞卡片版面
+            textarea.setAttribute("spellcheck", false);
+            //新增監聽事件
+            textarea.onblur = textareaBlur;//功能待確認
+            textarea.onclick = textareaSelect;//當textarea被點擊，textTeam要被選擇。textarea也要被選擇，方便後續字體相關操作。
+            ////當點擊area時textTeam要被選取
+            ////當 "area不是focus" 且 "卡片或section被點擊時" 解除 textTeam.select
+            //設定初始樣式
+            textarea.style.fontSize = "20px";
+            
+
+
+            //建立可以被拖曳的區域
+            var ctrlPos = document.createElement("div");
+            ctrlPos.classList.add("ctrlPos");
+            //新增監聽事件
+            ctrlPos.onmouseover = addDrag; //當滑鼠在ctrlPos區域時，整個textteam允許被拖曳
+            ctrlPos.onmouseleave = removeDrag; //當滑鼠離開ctrlPos區域時，整個textteam取消拖曳事件
+
+            //建立用來遮醜的小標籤
+            //不用偽元素是因為不知道怎麼動態生成偽元素
+            //(也很難控制吧!!!)
+            var textResize = document.createElement("div");
+            textResize.classList.add("textResize");
+
+            //建立一個打包的父層
+            //也負責被縮放，resize已經寫在css裡-----resize先關閉功能
+            var textTeam = document.createElement("div");
+            textTeam.classList.add("textTeam");
+            //新增監聽事件
+            textTeam.ondragstart = cardDragStart; //允許時，拖曳事件造成位移效果
+            textTeam.ondragend = cardDragEnd;
+            // textTeam.onmouseover = textTeamShow;
+            // textTeam.onmouseleave = textTeamHide;
+            // textTeam.setAttribute("draggable", true);
+            //設定初始樣式
+            textTeam.style.transform="rotate(0deg)"; //只先給旋轉....如果有樣式相關的功能新增，記得重寫 rotate 按鈕事件
+
+            //塞小孩，依照結構塞好
+            //不過ctrlPos 和 textResize 都有絕對定位一頭一尾
+            //所以大概沒差吧
+            textTeam.appendChild(ctrlPos);
+            textTeam.appendChild(textarea);
+            textTeam.appendChild(textResize);
+            cardContent_7.appendChild(textTeam);
+        }
+
+
+
+
+
+
+        ///////////////////懶惰通用function簡寫區
+
+        // console.log(`$id("btns7"): ${$id("btns7")}`);
+        // console.log(`$class("btn7"):　${$class("btn7")}`);
+        // console.log(`$q(".btn7"): ${$q(".btn7")}`);
+        // console.log(`$qall(".btn7"): ${$qall(".btn7")}`);
+        //終於有一天受不了了，學董董簡寫一些函式
+        //順便把array-like轉成array型態，方便操作
+        function $id(id) {//找id，動態
+            return document.getElementById(id);
+        }
+        function $class(className) {//找className並轉成陣列，動態
+            let classNames = document.getElementsByClassName(className);
+            return Array.from(classNames);
+        }
+        function $qall(qall) {//query all，靜態
+            let qalls = document.querySelectorAll(qall);
+            return Array.from(qalls);
+        }
+        function $q(q) {//query，靜態
+            return document.querySelector(q);
+        }
+
+
+        //測試用，確認點擊到的東西是誰
+        //windowClick();
+        //回傳log第一個是e.target訊息
+        //回傳log第二個是this訊息
+        function windowClick(e) {
+            window.addEventListener("click", function (e) {
+                console.log(e.target);
+                console.log(this);
+                //console.log(`$(this): ${$(this)}`); //jq
+            })
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

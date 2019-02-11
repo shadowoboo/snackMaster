@@ -1,0 +1,174 @@
+*{
+    box-sizing: border-box;
+}
+
+$yellow: #fbc84a;
+$deepyellow: #ffb600;
+$blue: #076baf;
+$deepblue: #00457b;
+$coral: #ea5a5a;
+$gray: #737374;
+$moblie: 768px;
+
+@font-face {
+  font-family: g2Font;
+  src: url(../GenJyuuGothicX-Bold.ttf);
+
+}
+@font-face {
+  font-family: g2Med;
+  src: url(../GenJyuuGothicX-Medium.ttf);
+}
+html{
+    font-size: 34px
+}
+h1,h2,h3,h4,p,span{
+    font-family: g2Font;
+    line-height: 1.6em;
+}
+h1{
+    font-size: 40px;
+}
+h2{
+    font-size: 34px;
+}
+h3{
+    font-size: 28px;
+}
+h4{
+    font-size: 22px;
+}
+p{
+    font-size: 16px;
+}
+span{
+    font-size: 14px;
+}
+input, select{
+    &:focus{
+        outline: none;
+    }
+}
+@mixin btn($btns, $width, $height, $color, $bgc, $bordercolor, $bordius, $pad, $hovColor, $hovBgc, $font) {
+    .#{$btns} {
+        width: $width;
+        height: $height;
+        color: $color;
+        background-color: $bgc;
+        border: 2px solid $bordercolor;
+        border-radius: $bordius;
+        padding: $pad;
+        font-family: g2Font;
+        text-align: center;
+        text-decoration: none;
+        font-size: $font;
+        cursor: pointer;
+        &:focus{
+            outline: none;
+        }
+        @media only screen and (min-width: $moblie) {
+            &:hover {
+                color: $hovColor;
+                background-color: $hovBgc;
+            }
+            &:focus{
+                outline: none;
+            }
+        }
+        
+    }
+}
+
+@include btn('cart', 130px, 40px, #fff, $blue, transparent, 10px, 0px, #fff, $deepblue, 20px);
+@include btn('detail', 150px, 40px, $blue, #fff, $blue, 10px, 0px, #fff, $blue, 22px);
+@include btn('step', 130px, 45px, #fff, $blue, transparent, 10px, 0px, #fff, $deepblue, 22px);
+@include btn('dimension', 50px, 50px, $yellow, #fff, $yellow, 10px, 0px, $gray, $yellow, 22px);
+@include btn('action', 120px, 40px, $gray, $yellow, transparent, 10px, 0px, #fff, $deepyellow, 22px);
+@include btn('category', 120px, 50px, $blue, #fff, transparent, 10px, 0px, #fff, $blue, 28px);
+@include btn('goToCustom', 160px, 60px, #fff, $blue, transparent, 10px, 0px, #fff, $deepblue, 28px);
+@include btn('subscribe', 210px, 60px, $gray, #fcda85, transparent, 10px, 0px, $gray, #fbc84a, 28px);
+@include btn('month', 100px, 100px, #fff, $blue, transparent, 50%, 0px, $gray, #fbc84a, 22px);
+
+.month{
+    position: relative;
+    &::after{
+        content: '';
+        display: block;
+        background-color: #00457b;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        position: absolute;
+        top:  8px;
+        left: 8px;
+        z-index: -1;
+    }
+}
+.heart, .trash {
+        width: 56px;
+        height: 45px;
+        color: $blue;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 0px;
+        text-align: center;
+        cursor: pointer;
+        @media only screen and (min-width: $moblie) {
+           &:hover {
+                background-color: $blue;
+                color: #fff;
+            }
+        }
+}
+.heart{
+    font-size: 28px;
+    border: 2px solid transparent;
+}
+.trash{
+    font-size: 22px;
+    border: 2px solid $blue;
+}
+.numInput{
+    width: 130px;
+    height: 40px;
+    background-color: #fff;
+    border: 2px solid $blue;
+    position: relative;
+    border-radius: 10px;
+    margin: 10px 0px;
+    font-family: g2Font;
+    text-align: center;
+    span{
+        width: 40px;
+        height: 40px;
+        color: #fff;
+        background-color: $blue;
+        position: absolute;
+        top: -2px;
+        line-height: 40px;
+        font-size: 30px;
+        cursor: pointer;
+    }
+    .numMinus{
+        left: 0px;
+        border-radius: 10px 0 0 10px;
+    }
+    .numPlus{
+        right: 0px;
+        border-radius: 0 10px 10px 0;
+    }
+}
+input[type=number]{
+    border: 0px solid transparent;
+    background-color: transparent;
+    font-size: 22px;
+    line-height: 40px;
+    font-family: g2Font;
+    text-align: center;
+    width: 100%;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

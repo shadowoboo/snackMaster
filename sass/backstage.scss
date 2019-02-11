@@ -1,0 +1,130 @@
+@import "reset";
+@import 'common';
+@font-face {
+  font-family: g2Regular;
+  src: url(../GenJyuuGothicX-Regular.ttf);
+}
+body{
+    background-color: #fcde91;
+}
+h1,h2,h3,h4,p,span{
+   color: $gray;
+}
+.clearfix{
+    content: "";
+    clear: both;
+}
+.backstage{
+    color: $gray;
+    font-family: g2font;
+    #menu{
+        width: 230px;
+        height: 100%;
+        border-style: solid;
+        border-width: 2px;
+        border-color: transparent $blue transparent transparent;
+        position: fixed;
+        background-color: rgba($color: #fff, $alpha: 0.9);
+        text-align: center;
+        #logo{
+            width: 70%;
+            margin: auto;
+            margin-bottom: 30px;
+        }
+        #manager{
+            color: deeppink;
+            font-size: 16px;
+            text-decoration: underline;
+        }
+        #menuUl{
+            font-size: 22px;
+            li{
+                display: block;
+                margin: 40px 0;
+                a{
+                    color: $gray;
+                    &:hover{
+                        text-decoration: underline;
+                        color: $blue;
+                    }
+                }
+            }
+        }
+    }
+    #contentWrap{
+        padding-top: 30px; 
+        #content{
+            overflow-x: auto ;
+            background-color: rgba($color: #fff, $alpha: 0.9);
+            padding: 20px;
+            margin-left: 260px;
+            margin-right: 30px;
+            button{
+                margin-top: 10px;
+            }
+            table{
+                margin-top: 20px;
+                margin-bottom: 60px;
+                font-size: 18px;
+                width: 200%;
+                text-align: center;
+                tr{
+                    &:nth-child(even){
+                        background-color: rgba($color: #737374, $alpha: 0.1) ;
+                    }
+                }
+                th, td{
+                    width: 110px;
+                    vertical-align: middle;
+                    padding: 4px;
+                }
+                td{
+                    overflow: hidden;
+                    height: 40px;
+                    font-family: g2Regular;
+                    a{
+                        color: $gray;
+                    }
+                }
+                #ingredient{
+                    width: 500px;
+                }
+            }
+            #pagination ul{
+                display: flex;
+                justify-content: center;
+                li{
+                    margin: 0 7.5px;
+                    font-size: 20px;
+                    a{
+                        color: #076baf;
+                        padding:5px 10px ; 
+                        font-family:g2font;
+                    }
+                    .nowLoc,a:hover{
+                        color: #fff;
+                        background-color: #076baf;
+                    }
+                    .fas{
+                        color: #fff;
+                    }
+                    #next,#last{
+                        background-color: #076baf;
+                        padding: 5px 10px;
+                    }
+                    #last{
+                        border-radius: 8px 0 0 8px;
+                    }
+                    #next{
+                        border-radius: 0 8px 8px 0;
+                    }
+                }
+            }
+        }
+        footer{
+            margin-left: 260px;
+            padding: 20px 0;
+            text-align: center;            
+        }
+    }
+}

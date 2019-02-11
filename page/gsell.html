@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/nnnnn.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/gsell.css" />
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+
+
+</head>
+
+<body>
+    <header>
+        <h1>大零食家</h1>
+        <div class="cloud">
+            <div class="doc doc--bg2">
+                <canvas id="canvas"></canvas>
+            </div>
+            <nav>
+                <label for="smlSearch" class="searchBtn" value="search">
+                    <img src="../images/tina/search.png" alt="" id="searchBtn">
+                </label>
+                
+                <div class="menu">
+                    <!-------- -----手機漢堡----------- -->
+
+                    <div id="ham">
+                        <span class="btnTop"></span>
+                        <span class="btnMid"></span>
+                        <span class="btnBot"></span>
+                    </div>
+                    <!----    在手機上打開此logo;桌機上關掉此logo------ -->
+                    <div class="logo">
+                        <a href="index.html"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
+
+                    </div>
+                    <div id="list_appear">
+                        <!-- ----------手機選單離開-------- -->
+                        <div id="cros">
+                            <span class="leave">X</span>
+                        </div>
+                        <ul class="list">
+                            <li><a href="rankBoard.html">零食排行榜</a></li>
+                            <li><a href="customized.html">客製零食箱</a> </li>
+                            <!-- 在手機上要關掉這個li的logo -->
+                            <li><a href="index.html"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
+                            <li id="store"> <a href="shopping.html">零食商店街</a>
+                                <ul id="Submenu" class="subMenu">
+                                    <li><a href="showItem.html">零食單品</a></li>
+                                    <li id="snBox"><a href="preOrder.html">預購零食箱</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="gsell.html">尋找販賣機</a> </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <ul class="login">
+                    <li><i class="fas fa-shopping-cart"></i></li>
+                    <li><i class="fas fa-user-circle"></i></li>
+                </ul>
+            </nav>
+    <div class="seachRegion" id="search_appear">
+            <div class="search">
+                <img src="../images/blair/pocky.png" alt="">
+                <div class="selectbar">
+                    <select name="country" id="country">
+                        <option value="">國家</option>
+                        <option value="">英國</option>
+                        <option value="">美國</option>
+                        <option value="">日本</option>
+                        <option value="">泰國</option>
+                    </select>
+                    <select name="kind" id="kind">
+                        <option value="">種類</option>
+                        <option value="">巧克力</option>
+                        <option value="">糖果</option>
+                        <option value="">餅乾</option>
+                        <option value="">洋芋片</option>
+                    </select>
+                    <select name="flavor" id="flavor">
+                        <option value="">口味</option>
+                        <option value="">酸</option>
+                        <option value="">甜</option>
+                        <option value="">辣</option>
+                    </select>                            
+                </div>
+                <div class="inputbar">
+                    <input type="text" placeholder="想找什麼零食呢？">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+                <div id="close">
+                    <span class="close">X</span>
+                </div>
+    </div>
+    </header>
+
+    <!-- map serch -->
+    <!-- <div id="google_serch">
+        <div id="serch_title">
+            <h2>尋找販賣機</h2>
+        </div>
+
+        <form action="" method="get" name="serch_list" id="serch_form">
+
+            <div id="serch_bar">
+                <select name="serch_place" class="search_select">
+                    <option value="111">桃園區</option>
+                    <option value="222">中壢區</option>
+                    <option value="333">八德區</option>
+                    <option value="444">龜山區 </option>
+                    <option value="555">大溪區 </option>
+                    <option value="666">平鎮區 </option>
+                </select>
+            </div>
+
+            <!-- <div id="serch_input">
+                <input type="text" name="serch_start" placeholder="起點" class="serch_start">
+                <input type="text" name="serch_end" placeholder="目的地" id="serch_end">
+            </div> -->
+
+            <!-- <div class="serch">
+                <a href="#" class="serch_serch">
+                    <i class="fas fa-search"></i>
+                </a>
+            </div>
+        </form>
+    </div>
+
+ -->
+
+ <!-- search_mobile -->
+    <div class="search_mobile">
+    <!-- 手機 title -->
+        <div class="search_title">
+            <h2>尋找販賣機</h2>
+        </div>
+
+    <!-- 手機選單 -->
+        <div class="search_select">
+    <form action="" method="get" name="serch_list" class="serch_form">
+        <select name="serch_place">
+            <option value="111">桃園區</option>
+            <option value="222">中壢區</option>
+            <option value="333">八德區</option>
+            <option value="444">龜山區 </option>
+            <option value="555">大溪區 </option>
+            <option value="666">平鎮區 </option>
+        </select> 
+    </form>
+     <a href="#" class="search_search">
+        <i class="fas fa-search"></i>
+    </a>
+        </div>
+    </div>
+
+
+    <!-- 整個google_search -->
+    <div class="google_search">
+        <!-- map api -->
+        <div id="mapSearch">
+            <div id="map"></div>
+            <script src="../js/gsell.js"></script>
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxP0uxcl_z9Y2bY7OkrWZg5TRhtkANEog&callback=initMap">
+            </script>        
+        </div>
+    
+        <!-- 地圖篩選 -->
+        <div class="mapSearch_resullt">
+
+            <!-- 桌機 search_desk -->
+            <div class="search_desk">
+                 <!-- 桌機 title -->
+                <div class="search_title_desk">
+                <h2>尋找販賣機</h2>
+                </div>
+                <!-- 桌機選單 -->
+                <div class="search_select_desk">
+                <form action="" method="get" name="serch_list" class="serch_form">
+                    <select name="serch_place">
+                        <option value="111">桃園區</option>
+                        <option value="222">中壢區</option>
+                        <option value="333">八德區</option>
+                        <option value="444">龜山區 </option>
+                        <option value="555">大溪區 </option>
+                        <option value="666">平鎮區 </option>
+                    </select> 
+                </form>
+                <a href="#" class="search_search_desk">
+                    <i class="fas fa-search"></i>
+                </a>
+                </div>
+            </div>
+
+            <!-- 第1個框  -->
+            <div class="map_serch_box">
+                <div class="map_serch_item">
+                    <div class="map_serch_item_pic">
+                        <img src="../images/nnnnn/s1.png" alt="sell_machine">
+                    </div>
+
+                    <div class="map_serch_item_info">
+                        <div class="map_serch_item_info_point">
+                            <span>地點:桃園市中壢區中央路</span>
+                        </div>
+                        <div class="map_serch_item_info_distance">
+                            <span>距離: 100公尺</span>
+                        </div>
+                        <div class="map_serch_info_line">
+                            <a href="#">
+                                <span>規劃路線
+                                    <i class="fas fa-location-arrow"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <!-- 第2個框 -->
+            <div class="map_serch_box">
+                <div class="map_serch_item">
+                    <div class="map_serch_item_pic">
+                        <img src="../images/nnnnn/s2.png" alt="sell_machine">
+                    </div>
+
+                    <div class="map_serch_item_info">
+                        <div class="map_serch_item_info_point">
+                            <span>地點:桃園市中壢區中央路</span>
+                        </div>
+                        <div class="map_serch_item_info_distance">
+                            <span>距離: 100公尺</span>
+                        </div>
+                        <div class="map_serch_info_line">
+                            <a href="#">
+                                <span>規劃路線
+                                    <i class="fas fa-location-arrow"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div> 
+
+            <!-- 第3個框 -->
+            <div class="map_serch_box">
+                <div class="map_serch_item">
+                    <div class="map_serch_item_pic">
+                        <img src="../images/nnnnn/s3.png" alt="sell_machine">
+                    </div>
+
+                    <div class="map_serch_item_info">
+                        <div class="map_serch_item_info_point">
+                            <span>地點:桃園市中壢區中央路</span>
+                        </div>
+                        <div class="map_serch_item_info_distance">
+                            <span>距離: 100公尺</span>
+                        </div>
+                        <div class="map_serch_info_line">
+                            <a href="#">
+                                <span>規劃路線
+                                    <i class="fas fa-location-arrow"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <!-- 第4個框 -->
+            <div class="map_serch_box">
+                <div class="map_serch_item">
+                    <div class="map_serch_item_pic">
+                        <img src="../images/nnnnn/s1.png" alt="sell_machine">
+                    </div>
+
+                    <div class="map_serch_item_info">
+                        <div class="map_serch_item_info_point">
+                            <span>地點:桃園市中壢區中央路</span>
+                        </div>
+                        <div class="map_serch_item_info_distance">
+                            <span>距離: 100公尺</span>
+                        </div>
+                        <div class="map_serch_info_line">
+                            <a href="#">
+                                <span>規劃路線
+                                    <i class="fas fa-location-arrow"></i></span>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <!-- 第5個框 -->
+            <div class="map_serch_box">
+                <div class="map_serch_item">
+                    <div class="map_serch_item_pic">
+                        <img src="../images/nnnnn/s3.png" alt="sell_machine">
+                    </div>
+
+                    <div class="map_serch_item_info">
+                        <div class="map_serch_item_info_point">
+                            <span>地點:桃園市中壢區中央路</span>
+                        </div>
+                        <div class="map_serch_item_info_distance">
+                            <span>距離: 100公尺</span>
+                        </div>
+                        <div class="map_serch_info_line">
+                            <a href="#">
+                                <span>規劃路線
+                                    <i class="fas fa-location-arrow"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <!-- <footer>
+            <div class="footer_ip">
+                <div class="ip_size">
+                    <img src="../images/nnnnn/ipc.png" alt="ipPicture" class="floating">
+                </div>
+                <div class="ip_size">
+                    <img src="../images/nnnnn/ipcho.png" alt="ipPicture" class="floatingReverse">
+                </div>
+                <div class="ip_size">
+                    <img src="../images/nnnnn/ipf.png" alt="ipPicture" class="floating">
+                </div>
+                <div class="ip_size">
+                    <img src="../images/nnnnn/ipcandy.png" alt="ipPicture" class="floatingReverse">
+                </div>
+                <div class="ip_size">
+                    <img src="../images/nnnnn/ipcho.png" alt="ipPicture" class="floating">
+                </div>
+                <div class="ip_size ip_hi">
+                        <img src="../images/nnnnn/ipf.png" alt="ipPicture" class="floatingReverse">
+                </div>
+            </div>
+            <div class="floor">
+                <img src="../images/nnnnn/floor.png" alt="floor">
+                <p id="copy">Copyright©2019 Snack Master</p>
+            </div>
+    </footer> -->
+
+    <footer class="footer">
+        <div id="floor">
+            <img src="../images/nnnnn/floor.png" alt="floor">
+            <p id="copy">Copyright©2019 Snack Master</p>
+        </div>
+    </footer> 
+
+    <script src="../js/header.js"></script>
+
+</body>
+
+</html>

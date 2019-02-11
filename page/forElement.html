@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh_tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>抽換動畫</title>
+    <!-- <link rel="stylesheet" href="../css/style.css"> -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        img {
+            vertical-align: bottom;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 60px;
+        }
+
+        .switch {
+            cursor: pointer;
+        }
+
+        section {
+            width: 90%;
+            height: 100vh;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 20px;
+        }
+
+        aside {
+            align-self: center;
+            width: 110px;
+            /* height: 100px; */
+            border-radius: 30px;
+            border: 2px solid #000;
+            overflow: hidden;
+        }
+
+        aside .switch {
+            width: 100%;
+            padding: 10px 5px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        aside .switch:hover {
+            color: azure;
+            background-color: #111;
+        }
+
+        .rank {
+            width: 400px;
+            /* height: 400px; */
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: .5s;
+        }
+
+        .rank.hide {
+            transform: scale(0);
+        }
+
+        .rank_cycle {
+            width: 400px;
+            height: 400px;
+            border: 3px solid #111;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0px 0px 10px 4px rgba(102, 102, 102, 0.5);
+        }
+
+        .ipIcon {
+            width: 60%;
+            height: 60%;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            animation: rank_ip_float 10s infinite;
+        }
+
+        @keyframes rank_ip_float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            10% {
+                transform: translateY(-20px);
+            }
+
+            20% {
+                transform: translateY(-5px);
+            }
+
+            40% {
+                transform: translateY(-22px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
+
+            80% {
+                transform: translateY(-18px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .rank_cycle .switch {
+            width: 40px;
+            height: 40px;
+            line-height: 38px;
+            text-align: center;
+            background-color: #fff;
+            color: #000;
+            border-radius: 50%;
+            font-size: 24px;
+            position: absolute;
+            border: 2px solid #fff;
+        }
+
+        .rank_cycle .switch:hover {
+            background-color: #000;
+            color: aliceblue;
+            border: 2px solid #000
+        }
+
+        #sw_1 {
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #sw_2 {
+            top: 25%;
+            right: -0%;
+            transform: translate(-15%, -52%);
+        }
+
+        #sw_3 {
+            bottom: 15%;
+            right: 0%;
+            transform: translate(-16%, -48%);
+        }
+
+        #sw_4 {
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 52%);
+        }
+
+        #sw_5 {
+            bottom: 15%;
+            left: 0%;
+            transform: translate(15%, -48%);
+        }
+
+        #sw_6 {
+            top: 25%;
+            left: 0%;
+            transform: translate(15%, -52%);
+        }
+
+        .rank_ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* background-color: #ccc; */
+            width: 400px;
+            height: 400px;
+            transition: 0.6s;
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        .rank_ring .sw_ring {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 3px solid #000;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -44%);
+        }
+
+
+
+        .comment {
+            width: 400px;
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .prod {
+            width: 400px;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            transform: translate(100%, 0%);
+            transition: .5s;
+        }
+
+        .prod.prod_show {
+            transform: translate(0%, 0%);
+        }
+
+        .prod .img {
+            width: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Element_01</h1>
+    </header>
+    <section>
+        <aside>
+            <div class="switch sw_class" id="sw_all">
+                綜合排行
+            </div>
+            <div class="switch sw_class" id="sw_cookie">
+                餅乾
+            </div>
+            <div class="switch sw_class" id="sw_candy">
+                糖果
+            </div>
+            <div class="switch sw_class" id="sw_choco">
+                巧克力
+            </div>
+            <div class="switch sw_class" id="sw_chip">
+                洋芋片
+            </div>
+        </aside>
+        <div class="rank" id="rank">
+            <div class="rank_ring" id="rank_ring">
+                <div class="switch sw_ring" id="sw_ring"></div>
+            </div>
+            <div class="rank_cycle">
+                <div class="ipIcon">
+                    <img src="ip3.png" alt="" id="rankIpImg">
+                </div>
+                <div class="switch sw_rk" id="sw_1">1</div>
+                <div class="switch sw_rk" id="sw_2">2</div>
+                <div class="switch sw_rk" id="sw_3">3</div>
+                <div class="switch sw_rk" id="sw_4">4</div>
+                <div class="switch sw_rk" id="sw_5">5</div>
+                <div class="switch sw_rk" id="sw_6">6</div>
+            </div>
+        </div>
+
+        <!-- 預留資料彈性與讀取速度，所以先寫好六格prod放 商品資料+評論
+        若 觸發排行榜按鈕 -> 更換 顯示的prod頁
+        若 觸發類別按鈕 -> sql重撈資料 塞入對應六格 顯示第一名 -->
+        <div class="comment">
+            <div class="prod prod_show" id="prod_1">
+                <div class="img">
+                    <img src="https://picsum.photos/400/300/?random=1">
+                </div>
+                <div class="h3">
+                    項目1111111
+                </div>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus quos quaerat amet maiores, fuga
+                    culpa natus aperiam itaque nobis fugiat error voluptas illo ex atque labore quam necessitatibus?
+                    Unde, alias?
+                </p>
+            </div>
+            <div class="prod" id="prod_2">
+                <div class="img">
+                    <img src="https://picsum.photos/400/300/?random=2">
+                </div>
+                <div class="h3">
+                    項目2222
+                </div>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus quos quaerat amet maiores, fuga
+                    culpa natus
+                    aperiam itaque nobis fugiat error voluptas illo ex atque labore quam necessitatibus? Unde, alias?
+                </p>
+            </div>
+            <div class="prod" id="prod_3">
+                <div class="img">
+                    <img src="https://picsum.photos/400/300/?random=3">
+                </div>
+                <div class="h3">
+                    項目3333
+                </div>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus quos quaerat amet maiores, fuga
+                    culpa natus
+                    aperiam itaque nobis fugiat error voluptas illo ex atque labore quam necessitatibus? Unde, alias?
+                </p>
+            </div>
+            <div class="prod" id="prod_4">
+                <div class="img">
+                    <img src="https://picsum.photos/400/300/?random=4">
+                </div>
+                <div class="h3">
+                    項目444444
+                </div>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus quos quaerat amet maiores, fuga
+                    culpa natus
+                    aperiam itaque nobis fugiat error voluptas illo ex atque labore quam necessitatibus? Unde, alias?
+                </p>
+            </div>
+            <div class="prod" id="prod_5">
+                <div class="img">
+                    <img src="https://picsum.photos/400/300/?random=5">
+                </div>
+                <div class="h3">
+                    555555555
+                </div>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus quos quaerat amet maiores, fuga
+                    culpa natus
+                    aperiam itaque nobis fugiat error voluptas illo ex atque labore quam necessitatibus? Unde, alias?
+                </p>
+            </div>
+            <div class="prod" id="prod_6">
+                <div class="img">
+                    <img src="https://picsum.photos/400/300/?random=6">
+                </div>
+                <div class="h3">
+                    6666666666
+                </div>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus quos quaerat amet maiores, fuga
+                    culpa natus
+                    aperiam itaque nobis fugiat error voluptas illo ex atque labore quam necessitatibus? Unde, alias?
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        //sw_6移動到sw_1會走最長路徑之問題尚未解決
+        //css定位正六角形座標尚未解決，目前手動(絕對+translate)推到定位上
+        //這次用增減class方式控制動畫
+        //p.s.還沒研究大量宣告的方法
+        const sw_class = document.querySelectorAll(".sw_class");
+        const sw_rk = document.querySelectorAll(".sw_rk");
+        const prod = document.querySelectorAll(".prod");
+        const prod_1 = document.querySelector("#prod_1");
+        const prod_2 = document.querySelector("#prod_2");
+        const prod_3 = document.querySelector("#prod_3");
+        const prod_4 = document.querySelector("#prod_4");
+        const prod_5 = document.querySelector("#prod_5");
+        const prod_6 = document.querySelector("#prod_6");
+        const rank = document.querySelector("#rank");
+        const rankIpImg = document.querySelector("#rankIpImg");
+        const rank_ring = document.querySelector("#rank_ring");
+
+        //旋轉裝飾環的初始位置為第一名
+        rank_ring.style.transform = "translate(-50%,-50%) rotate(0deg)";
+
+        //類別按鈕觸發
+        // 0. 類別按鈕觸發
+        // 1. ip收縮 + 評論隱藏
+        // 2. ip換圖 + 評論換資料(預計給php 0.5秒)
+        // 3. ip放大 + 第一名的評論出現
+        sw_class.forEach(element => {
+            element.addEventListener("click", el => {
+                switch (el.target.id) {
+                    case "sw_all":
+                        rank_ring.style.transform = "translate(-50%,-50%) rotate(0deg)";
+                        // 1. ip收縮 + 評論隱藏
+                        rank.classList.add("hide");
+                        setTimeout(() => {
+                            // 2. ip換圖 + 評論換資料(預計給php 0.5秒)
+                            rankIpImg.src = "ip3.png";
+                        }, 500);
+                        setTimeout(() => {
+                            // 3. ip放大 + 第一名的評論出現
+                            rank.classList.remove("hide");
+                        }, 600);
+
+                        // 1. ip收縮 + 評論隱藏
+                        prod.forEach(elem => {
+                            elem.classList.remove("prod_show");
+                        })
+                        // 3. ip放大 + 第一名的評論出現
+                        setTimeout(() => {
+                            prod_1.classList.add("prod_show");
+                        }, 600);
+                        break;
+                    case "sw_cookie":
+                        rank_ring.style.transform = "translate(-50%,-50%) rotate(0deg)";
+                        rank.classList.add("hide");
+                        setTimeout(() => {
+                            rankIpImg.src = "ip2.png";
+                        }, 500);
+                        setTimeout(() => {
+                            rank.classList.remove("hide");
+                        }, 600);
+
+                        prod.forEach(elem => {
+                            elem.classList.remove("prod_show");
+                        })
+                        setTimeout(() => {
+                            prod_1.classList.add("prod_show");
+                        }, 600);
+                        break;
+                    case "sw_candy":
+                        rank_ring.style.transform = "translate(-50%,-50%) rotate(0deg)";
+                        rank.classList.add("hide");
+                        setTimeout(() => {
+                            rankIpImg.src = "ip5.png";
+                        }, 500);
+                        setTimeout(() => {
+                            rank.classList.remove("hide");
+                        }, 600);
+
+                        prod.forEach(elem => {
+                            elem.classList.remove("prod_show");
+                        })
+                        setTimeout(() => {
+                            prod_1.classList.add("prod_show");
+                        }, 600);
+                        break;
+                    case "sw_choco":
+                        rank_ring.style.transform = "translate(-50%,-50%) rotate(0deg)";
+                        rank.classList.add("hide");
+                        setTimeout(() => {
+                            rankIpImg.src = "ip4.png";
+                        }, 500);
+                        setTimeout(() => {
+                            rank.classList.remove("hide");
+                        }, 600);
+
+                        prod.forEach(elem => {
+                            elem.classList.remove("prod_show");
+                        })
+                        setTimeout(() => {
+                            prod_1.classList.add("prod_show");
+                        }, 600);
+                        break;
+                    case "sw_chip":
+                        rank_ring.style.transform = "translate(-50%,-50%) rotate(0deg)";
+                        rank.classList.add("hide");
+                        setTimeout(() => {
+                            rankIpImg.src = "ip1.png";
+                        }, 500);
+                        setTimeout(() => {
+                            rank.classList.remove("hide");
+                        }, 600);
+
+                        prod.forEach(elem => {
+                            elem.classList.remove("prod_show");
+                        })
+                        setTimeout(() => {
+                            prod_1.classList.add("prod_show");
+                        }, 600);
+                        break;
+                }
+
+            })
+        })
+
+        //排行按鈕觸發
+        sw_rk.forEach(element => {
+            element.addEventListener("click", el => {
+                // console.log(`el.id: ${el.target.id}`);
+                switch (el.target.id) {
+                    case "sw_1":
+                        prod.forEach(elem => {
+                            elem.classList.remove("prod_show");
+                        })
+                        rank_ring.style.transform = "translate(-50%,-50%) rotate(0deg)";
+                        setTimeout(() => {
+                            prod_1.classList.add("prod_show");
+                        }, 600);
+
+                        break;
+                    case "sw_2":
+                        prod.forEach(elem => {
+                            elem.classList.remove("prod_show");
+                        })
+                        rank_ring.style.transform = "translate(-50%,-50%) rotate(60deg)";
+                        setTimeout(() => {
+                            prod_2.classList.add("prod_show");
+                        }, 600);
+
+                        break;
+                    case "sw_3":
+                        prod.forEach(elem => {
+                            elem.classList.remove("prod_show");
+                        })
+                        rank_ring.style.transform = "translate(-50%,-50%) rotate(120deg)";
+                        setTimeout(() => {
+                            prod_3.classList.add("prod_show");
+                        }, 600);
+
+                        break;
+                    case "sw_4":
+                        prod.forEach(elem => {
+                            elem.classList.remove("prod_show");
+                        })
+                        rank_ring.style.transform = "translate(-50%,-50%) rotate(180deg)";
+                        setTimeout(() => {
+                            prod_4.classList.add("prod_show");
+                        }, 600);
+
+                        break;
+                    case "sw_5":
+                        prod.forEach(elem => {
+                            elem.classList.remove("prod_show");
+                        })
+                        rank_ring.style.transform = "translate(-50%,-50%) rotate(240deg)";
+                        setTimeout(() => {
+                            prod_5.classList.add("prod_show");
+                        }, 600);
+
+                        break;
+                    case "sw_6":
+                        prod.forEach(elem => {
+                            elem.classList.remove("prod_show");
+                        })
+                        rank_ring.style.transform = "translate(-50%,-50%) rotate(300deg)";
+                        setTimeout(() => {
+                            prod_6.classList.add("prod_show");
+                        }, 600);
+
+                        break;
+                    default:
+                        break;
+                }
+            })
+        })
+
+
+
+        //////////////////////////////////////暫時無用////////////////////////////////
+        //抓inline style 的 當前rotate值
+        //.style.transform 的專攻版本，只適合這個檔案使用
+        //輸入一個唯一的元素
+        //回傳一個數值
+        function getRotate(elem) {
+            var str = elem.style.transform;
+            // console.log(`str:　${str}`);
+            var arr = str.split(" ");
+            // console.log(`arr:　${arr}`);
+            let angle = parseInt(arr[2].replace("rotate(", "").replace("deg)", ""));
+            return angle;
+        }
+
+        //最短路徑問題
+            //針對sw_6解
+            //缺點: 換其他sw有問題
+            //放棄此方法
+            // if(getRotate(rank_ring)==300){
+            //     rank_ring.style.transform = "translate(-50%,-50%) rotate(360deg)";
+            //     // rank_ring.style.transform = "translate(-50%,-50%) rotate(0deg)";
+            // }else{
+            //     rank_ring.style.transform = "translate(-50%,-50%) rotate(0deg)";
+            // }
+
+            //計算最短路徑再旋轉
+            //一樣有360deg、0deg產生的問題，即sw_6走視覺上最長路徑回到sw_1
+            //其他方案:可能用累加法，維持順時針旋轉之類的
+            // var ori_angle = getRotate(rank_ring);
+            //     console.log(`ori_angle: ${ori_angle}`);
+
+            //     var tar_angle = 60;
+            //     var path_1 = tar_angle - ori_angle;
+            //     var path_2 = tar_angle - ori_angle - 360;
+            //     var path_1_abs = Math.abs(tar_angle - ori_angle);
+            //     console.log(`path_1: ${path_1}`);
+
+            //     var path_2_abs = Math.abs(tar_angle - ori_angle - 360);
+            //     console.log(`path_2: ${path_2}`);
+            //     if (path_1_abs > path_2_abs) {
+            //         rank_ring.style.transform = "translate(-50%,-50%) rotate(" + parseInt(ori_angle + path_2) + "deg)";
+            //         console.log(`rank_ring.style.transform: ${rank_ring.style.transform}`);
+            //     } else {
+            //         rank_ring.style.transform = "translate(-50%,-50%) rotate(" + parseInt(ori_angle + path_1) + "deg)";
+            //         console.log(`rank_ring.style.transform: ${rank_ring.style.transform}`);
+            //     }
+    </script>
+</body>
+
+</html>

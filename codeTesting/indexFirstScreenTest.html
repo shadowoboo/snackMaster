@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh_tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>地圖召喚座標</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .section {
+            width: 100%;
+            height: 100vh;
+            background-color: #ffa;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map {
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: 0.5s;
+        }
+
+        .target {
+            position: absolute;
+            width: 50px;
+            height: 100px;
+            background-color: #faf;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .target:nth-child(1) {
+            top: 400px;
+            left: 500px;
+        }
+
+        .target:nth-child(2) {
+            top: 200px;
+            left: 100px;
+        }
+
+        .target:nth-child(3) {
+            top: 300px;
+            left: 400px;
+        }
+
+        .target:nth-child(4) {
+            top: 10px;
+            left: 10px;
+        }
+
+        .target:nth-child(5) {
+            top: 900px;
+            left: 900px;
+        }
+
+
+        .ctrlBtn {
+            width: 50%;
+            height: 60px;
+            background-color: #aaf;
+            position: absolute;
+            bottom: 20px;
+            right: 0;
+            left: 0;
+            margin: auto;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .btn {
+            width: 60px;
+            height: 40px;
+            background-color: #afa;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="section">
+        <div class="map" id="map">
+            <div class="target" id="tar_1">目標1</div>
+            <div class="target" id="tar_2">目標2</div>
+            <div class="target" id="tar_3">目標3</div>
+            <div class="target" id="tar_4">目標4</div>
+            <div class="target" id="tar_5">目標5</div>
+        </div>
+        <div class="ctrlBtn">
+            <div class="btn" id="btn_1">btn 1</div>
+            <div class="btn" id="btn_2">btn 2</div>
+            <div class="btn" id="btn_3">btn 3</div>
+            <div class="btn" id="btn_4">btn 4</div>
+            <div class="btn" id="btn_5">btn 5</div>
+            <div class="btn" id="btn_re">還原</div>
+        </div>
+    </div>
+
+    <script>
+
+        function init(e) {
+            const btn = document.querySelectorAll(".btn");
+            const target = document.querySelectorAll(".target");
+            const map = document.querySelector("#map");
+
+            btn.forEach(element => {
+                element.addEventListener("click", moveMap);
+            });
+        }
+
+        function moveMap(e) {
+            if (e.target.id == "btn_re") {
+                console.log(`e.target.id: ${e.target.id}`);
+
+                map.style.top = 0 + "%";
+                map.style.left = 0 + "%";
+            } else {
+
+                //目標物當前的定位位置
+                //目標物透過絕對定位固定，所以抓取left值與top值
+                //分別存進 targetX陣列 和 targetY陣列
+                //目標物1號的left值= targetX[0];
+                //目標物1號的top值= targetY[0];
+                //cssGet() 是自己寫的函數，用法請參考下面寫的說明
+                var targetX = cssGet(".target", "left");
+                var targetY = cssGet(".target", "top");
+                console.log("targetX: " + targetX);
+                console.log("targetY: " + targetY);
+
+                //抓目標物的寬跟高
+                var targetW = cssGet(".target", "width");
+                var targetH = cssGet(".target", "height");
+                console.log("targetW: " + targetW);
+                console.log("targetH: " + targetH);
+
+                //在按鈕點擊時抓取"當前"的視窗寬度和高度
+                var winW = document.body.clientWidth;
+                var winH = document.body.clientHeight;
+                console.log(`winW: ${winW}`);
+                console.log(`winH: ${winH}`);
+
+
+                //利用id有順序的命名，過濾出等等 陣列 要使用的 i 值
+                //ex: targetX[0] 是第一個物件，所以要 1-0=0
+                console.log(`e.target.id: ${e.target.id}`);
+                let i = parseInt(e.target.id.replace("btn_", "")) - 1;
+                console.log(`i: ${i}`);
+
+                //把px過濾掉並轉換成數字
+                targetW = parseInt(targetW[i].replace("px", ""));
+                targetH = parseInt(targetH[i].replace("px", ""));
+
+                //計算 map 要位移的 top 值 和 left值
+                let newMapX = -(parseInt(targetX[i].replace("px", "")) + (targetW / 2) - (winW / 2));
+                let newMapY = -(parseInt(targetY[i].replace("px", "")) + (targetH / 2) - (winH / 2));
+                console.log(`targetX[i]: ${targetX[i].replace("px", "")}    ,winW/2: ${winW / 2}  ,targetW/2: ${targetW / 2}`);
+                console.log(`targetY[i]: ${targetY[i].replace("px", "")}    ,winH/2: ${winH / 2}  ,targetH/2: ${targetH / 2}`);
+
+
+                map.style.top = newMapY + "px";
+                map.style.left = newMapX + "px";
+            }
+
+        }
+
+        function $id(id) {
+            return document.getElementById(id);
+        }
+
+
+        //抓css檔內樣式
+        //getPropertyValue不支援駝峰寫法=>表示不管大小寫~
+        //原句:window.getComputedStyle(element, null).getPropertyValue("float");
+        //不抓偽類 ex: var result = cssGet(".class","width");
+        //抓偽類 ex: var result = cssGet(".class","width",":after");
+        //回傳值是一個陣列!!!!
+        //transform會得到矩陣，不是 translate / rotate 之類的
+        function cssGet(element, property = "width-height", pseudo = null) {
+            let el = document.querySelectorAll(element);
+            var arrData = [];
+            el.forEach(item => {
+                let data = window.getComputedStyle(item, pseudo).getPropertyValue(property);
+                arrData.push(data);
+            })
+            return arrData;
+        }
+
+        window.addEventListener("load",init);
+    </script>
+</body>
+
+</html>

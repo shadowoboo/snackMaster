@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh_tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>boxModel</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/boxModel.css">
+</head>
+
+<body>
+
+    <!-- 基本六面體模型:搭配 box3D 相關scss使用
+<div class="camera">
+    <div class="box boxBase">
+        <div class="surface surface_top">上</div>
+        <div class="surface surface_down">下</div>
+        <div class="surface surface_back">後</div>
+        <div class="surface surface_font">前</div>
+        <div class="surface surface_left">左</div>
+        <div class="surface surface_right">右</div>
+    </div>
+</div> -->
+
+    <div id="ctrl_bar">
+        <div class="btn btn_front" id="btn_front">前</div>
+        <div class="btn btn_back" id="btn_back">後</div>
+        <div class="btn btn_top" id="btn_top">上</div>
+        <div class="btn btn_bottom" id="btn_bottom">下</div>
+        <div class="btn btn_left" id="btn_left">左</div>
+        <div class="btn btn_right" id="btn_right">右</div>
+        <div class="btn rotateX" id="rotateX">X軸轉轉</div>
+        <div class="btn rotateY" id="rotateY">Y軸轉轉</div>
+        <div class="btn rotateZ" id="rotateZ">Z軸轉轉</div>
+        <div class="btn show" id="show">Show</div>
+    </div>
+
+
+    <section class="section section_3" id="section_3">
+        <div class="camera">
+            <div class="box boxBase" id="box_3">
+                <div class="surface surface_top">上</div>
+                <div class="surface surface_down">下</div>
+                <div class="surface surface_back">後</div>
+                <div class="surface surface_font">前</div>
+                <div class="surface surface_left">左</div>
+                <div class="surface surface_right">右</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section_9" id="section_9">
+        <div class="camera">
+            <div class="box boxBase" id="box_9">
+
+                <div class="surface surface_top" id="cover_out">上</div>
+                <div class="surface surface_top_inner" id="cover_in">
+                    <div class="way">
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                    </div>
+                    <div class="way">
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                    </div>
+                </div>
+                <div class="surface surface_down">下</div>
+                <div class="surface surface_back">後</div>
+                <div class="surface surface_font">前</div>
+                <div class="surface surface_left">左</div>
+                <div class="surface surface_right">右</div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="section section_12" id="section_12">
+        <div class="camera">
+            <div class="box boxBase" id="box_12">
+
+                <div class="surface surface_top" id="cover_out_12">上</div>
+                <div class="surface surface_top_inner" id="cover_in_12">
+                    <div class="way">
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                    </div>
+                    <div class="way">
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                    </div>
+                </div>
+                <!-- <div class="surface surface_down">下</div> -->
+                <div class="surface surface_down_left" id="cover_dl_12">下左</div>
+                <div class="surface surface_down_right" id="cover_dr_12">下右</div>
+                <div class="surface surface_back">後</div>
+                <div class="surface surface_font">前</div>
+                <div class="surface surface_left">左</div>
+                <div class="surface surface_right">右</div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section section_15" id="section_15">
+        <div class="camera">
+            <div class="box boxBase" id="box_15">
+                <div class="surface surface_top" id="cover_out_15">上</div>
+                <div class="surface surface_top_inner" id="cover_in_15">
+                    <div class="way">
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                    </div>
+                    <div class="way">
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                    </div>
+                </div>
+                <div class="surface surface_down">下</div>
+                <div class="surface surface_back">後</div>
+                <div class="surface surface_font">前</div>
+                <div class="surface surface_left">左</div>
+                <div class="surface surface_right">右</div>
+            </div>
+        </div>
+        <div class="pics">
+            <div class="pic">
+                <img src="images/customized/ip1.png" alt="">
+            </div>
+            <div class="pic">
+                <img src="images/customized/ip2.png" alt="">
+            </div>
+            <div class="pic">
+                <img src="images/customized/ip3.png" alt="">
+            </div>
+            <div class="pic">
+                <img src="images/customized/ip4.png" alt="">
+            </div>
+            <div class="pic">
+                <img src="images/customized/ip5.png" alt="">
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+        const boxBases = document.querySelectorAll(".boxBase");
+        const btns = document.querySelectorAll(".btn");
+        //箱子上蓋測試
+        const cover_out = document.querySelector("#cover_out");
+        const cover_in = document.querySelector("#cover_in");
+        const lights = document.querySelectorAll(".light");
+        //箱子上蓋+下蓋收納測試
+        const cover_in_12 = document.querySelector("#cover_in_12");
+        const cover_out_12 = document.querySelector("#cover_out_12");
+        const cover_dl_12 = document.querySelector("#cover_dl_12");
+        const cover_dr_12 = document.querySelector("#cover_dr_12");
+        const box_12 = document.querySelector("#box_12");
+
+
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", boxRotate);
+        }
+
+        //轉轉箱子功能鈕
+        //缺陷:style.transform是抓 css inline style的值，所以必須給箱子inline style的初始值 
+        function boxRotate(e) {
+            console.log(`this.id: ${this.id}`);
+            switch (this.id) {
+                case "btn_front":
+                    boxBases.forEach(element => {
+                        element.style.transform = "rotateX(0deg) rotateY(0deg) rotateZ(0deg)";
+                    });
+                    break;
+                case "btn_back":
+                    boxBases.forEach(element => {
+                        element.style.transform = "rotateX(0deg) rotateY(180deg) rotateZ(0deg)";
+                    });
+                    break;
+                case "btn_top":
+                    boxBases.forEach(element => {
+                        element.style.transform = "rotateX(-90deg) rotateY(0deg) rotateZ(0deg)";
+                    });
+                    break;
+                case "btn_bottom":
+                    boxBases.forEach(element => {
+                        element.style.transform = "rotateX(90deg) rotateY(0deg) rotateZ(0deg)";
+                    });
+                    break;
+                case "btn_left":
+                    boxBases.forEach(element => {
+                        element.style.transform = "rotateX(0deg) rotateY(90deg) rotateZ(0deg)";
+                    });
+                    break;
+                case "btn_right":
+                    boxBases.forEach(element => {
+                        element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+                    });
+                    break;
+                case "rotateX":
+                    boxBases.forEach(element => {
+                        // element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+                        console.log("element.style.transform:" + element.style.transform);
+                        let arr = element.style.transform.split(" ");
+                        console.log(`arr: ${arr}`);
+                        let newAngelX = parseInt(arr[0].replace("rotateX(", "").replace("deg)", "")) + 10;
+                        arr[0] = "rotateX(" + newAngelX + "deg)";
+                        console.log(arr[0]);
+                        element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
+                    });
+                    break;
+                case "rotateY":
+                    boxBases.forEach(element => {
+                        // element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+                        console.log("element.style.transform:" + element.style.transform);
+                        let arr = element.style.transform.split(" ");
+                        console.log(`arr: ${arr}`);
+                        let newAngelY = parseInt(arr[1].replace("rotateY(", "").replace("deg)", "")) + 10;
+                        arr[1] = "rotateY(" + newAngelY + "deg)";
+                        console.log(arr[1]);
+                        element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
+                    });
+                    break;
+                case "rotateZ":
+                    boxBases.forEach(element => {
+                        // element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+                        console.log("element.style.transform:" + element.style.transform);
+                        let arr = element.style.transform.split(" ");
+                        console.log(`arr: ${arr}`);
+                        let newAngelZ = parseInt(arr[2].replace("rotateZ(", "").replace("deg)", "")) + 10;
+                        arr[2] = "rotateZ(" + newAngelZ + "deg)";
+                        console.log(arr[2]);
+                        element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
+                    });
+                    break;
+                case "show":
+                    boxBases.forEach(element => {
+                        element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(0deg)";
+                    });
+                    //先把蓋子蓋起來
+                    {
+                        let arr = cover_out.style.transform.split(" ");
+                        console.log(`arr: ${arr}`);
+                        cover_out.style.transform = "translate3d(0, 75px, -150px) rotateX(90deg)";
+                        cover_in.style.transform = "translate3d(0, 75px, -150px) rotateX(90deg) rotateY(180deg)";
+                    }
+
+                    //延遲一段時間後...TADA~蓋子打開~
+                    setTimeout(e => {
+                        cover_out.style.transform = "translate3d(0, 75px, -150px) rotateX(200deg)";
+                        cover_in.style.transform = "translate3d(0, 75px, -150px) rotateX(200deg) rotateY(180deg)";
+                    }, 1000);
+                    //再延遲一下...燈燈~電燈假發光~
+                    setTimeout(e => {
+                        console.log(lights);
+
+                        lights.forEach(element => {
+                            element.classList.add("showLight");
+                        })
+                    }, 1000)
+
+                    //上蓋收納下蓋打開測試
+                    //上蓋初始值要打開
+                    cover_out_12.style.transform = "translate3d(0, 50px, -100px) rotateX(200deg)";
+                    cover_in_12.style.transform = "translate3d(0, 50px, -100px) rotateX(200deg) rotateY(180deg)";
+                    //下蓋初始關起來
+                    cover_dl_12.style.transform = "translate3d(-200px, 150px, 0px) rotateY(-90deg) rotateX(-90deg) ";
+                    cover_dr_12.style.transform = "translate3d(200px, 150px, 0px)  rotateY(90deg) rotateX(-90deg)";
+                    //box_12姿態固定
+                    box_12.style.transform = "rotateX(-30deg) rotateY(30deg) rotateZ(0deg)";
+                    setTimeout(e => {
+                        box_12.style.transform = "rotateX(-30deg) rotateY(0deg) rotateZ(0deg)";
+                    }, 400)
+
+                    //延遲....上蓋關起來
+                    setTimeout(e => {
+                        cover_out_12.style.transform = "translate3d(0, 50px, -100px) rotateX(90deg)";
+                        cover_in_12.style.transform = "translate3d(0, 50px, -100px) rotateX(90deg) rotateY(180deg)";
+                    }, 1000);
+                    //延遲...箱子抬起來
+                    setTimeout(e => {
+                        box_12.style.transform = "rotateX(20deg) rotateY(0deg) rotateZ(0deg)";
+                    }, 1500)
+                    //延遲...下蓋兩片打開
+                    setTimeout(e => {
+                        cover_dl_12.style.transform = "translate3d(-200px, 150px, 0px) rotateY(-90deg) rotateX(30deg) ";
+                        cover_dr_12.style.transform = "translate3d(200px, 150px, 0px)  rotateY(90deg) rotateX(30deg)";
+                    }, 1700);
+
+                    break;
+            }
+        };
+
+
+        //給箱子姿態初始值
+        boxBases.forEach(el => {
+            el.style.transform = "rotateX(-30deg) rotateY(30deg) rotateZ(0deg)";
+        })
+
+
+        //驗證回傳值確實是陣列
+        console.log(`cssTest: ${cssGet("#box_12", "transform")}`); //每個.boxBase的transform屬性值，我全都要 
+        console.log(`cssTest type: ${typeof (cssGet("#box_12", "transform")[0])}`);//檢查 陣列內 值的型別為字串
+        console.log(`cssTest type arr: ${Object.prototype.toString.call(cssGet("#box_12", "transform"))}`);//檢查回傳值確實是陣列型態
+        // cssGet(".boxBase","transform");
+
+        //抓css檔內樣式
+        //getPropertyValue不支援駝峰寫法=>表示不管大小寫~
+        //原句:window.getComputedStyle(element, null).getPropertyValue("float");
+        //不抓偽類 ex: var result = cssGet(".class","width");
+        //抓偽類 ex: var result = cssGet(".class","width",":after");
+        //回傳值是一個陣列!!!!
+        //transform會得到矩陣，不是 translate / rotate 之類的
+        function cssGet(element, property = "width-height", pseudo = null) {
+            let el = document.querySelectorAll(element);
+            var arrData = [];
+            el.forEach(item => {
+                let data = window.getComputedStyle(item, pseudo).getPropertyValue(property);
+                arrData.push(data);
+            })
+            return arrData;
+        }
+    </script>
+
+    <script>
+
+    </script>
+</body>
+
+</html>

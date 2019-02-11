@@ -1,0 +1,337 @@
+
+footer {
+    overflow: hidden;
+    margin-top: 50px;
+    .footer_ip {
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-around;
+        .ip_size {
+            width: 40px;
+            @media screen and (min-width: 767px) {
+                width: 60px;
+            }
+            @media screen and (min-width: 992px) {
+                width: 120px;
+            }
+            img {
+                width: 100%;
+            }
+        }
+
+        .ip_hi {
+            display:none;
+            @media screen and (min-width: 767px) {
+                display: block;
+            }
+        }
+
+        .floating{
+            animation: floating 1.5s infinite;
+            animation-direction: alternate;
+        }
+        .floatingReverse{
+            animation: floating 1.5s infinite;
+            animation-direction: alternate-reverse;
+        }
+    }
+
+    .floor {
+        position: relative;
+        text-align: center;
+        z-index: -1;
+        img {
+            width: 160%;
+        }
+        @media screen and (min-width: 767px) {
+            margin-top: -20px;
+            img {
+                width: 120%;
+            }
+        }
+        @media screen and (min-width: 992px) {
+            margin-top: -50px;
+            img {
+                width: 100%;
+            }
+        }
+        #copy {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            font-size: 1.2vw;
+        }
+    }
+}
+
+
+@keyframes floating{
+    from{ transform: translateY(-10px);};
+    to{ transform: translateY(10px); }
+}
+
+
+
+// footer {
+//     height: 300px;
+//     margin-top: 50px;
+//     display: flex;
+//     overflow: hidden;
+//     position: relative;
+//     top: 10%;
+// }
+
+// .container {
+//     position: relative;
+//     // height: 100%;
+//     min-width: 800px;
+//     margin: 0 auto;
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-around;
+//     animation: 10s march linear infinite;
+// }
+
+// .snack {
+//     position: relative;
+//     // top: 20%;
+//     width: 180px;
+//     height: 25px;
+//     border-radius: 20px / 50px;
+//     box-sizing: border-box;
+//     animation: 1.8s bounce infinite;
+// }
+// .snack .pic {
+//     position: absolute;
+//     top: -130px;
+//     left: 7%;
+//     width: 118px;
+//     /* border-radius: 50%; */
+//     /* border: 5px solid transparent; */
+//     z-index: 2;
+
+//     @media screen and (max-width: 767px) {
+//             top: -100px;
+//             left: 0; 
+        
+//     }
+// }
+
+// .snack .shadow {
+//     position: absolute;
+//     // top: 20%;
+//     // width: 180px;
+//     width: 80px;
+//     height: 20px;
+//     border-radius: 50%;
+//     background: rgba(0, 0, 0, 0.05);
+//     animation: 1.8s shadow-shift infinite;
+// }
+
+
+// #floor {
+//     position: absolute;
+//     bottom: 0;
+//     z-index: -1;
+// }
+
+// #copy {
+//     position: absolute;
+//     bottom: 0;
+//     left: 42%;
+//     z-index: 0;
+//     line-height: 30px; 
+// }
+
+
+
+
+
+// @keyframes bounce {
+//     0% {
+//         top: 30px;
+//     }
+//     25% {
+//         top: 0;
+//         transform: rotate(-5deg);
+//     }
+//     50% {
+//         top: 30px;
+//     }
+//     75% {
+//         top: 0;
+//         transform: rotate(5deg);
+//     }
+//     100% {
+//         top: 30px;
+//     }
+
+// }
+
+// @keyframes shadow-shift {
+//     0% {
+//         top: 40px;
+//         left: 0;
+//         width: 150px;
+//     }
+//     25% {
+//         top: 70px;
+//         left: 0;
+//         transform: rotate(5deg);
+//         width: 120px;
+//         opacity: 0.5;
+//     }
+//     50% {
+//         top: 40px;
+//         left: 0;
+//         width: 150px;
+//     }
+//     75% {
+//         top: 70px;
+//         left: 30px;
+//         transform: rotate(-5deg);
+//         width: 120px;
+//         opacity: 0.5;
+//     }
+//     100% {
+//         top: 40px;
+//         left: 0;
+//         width: 150px;
+//     }
+
+   
+// }
+// @keyframes march {
+//     0% {
+//         left: 0px;
+//     }
+//     100% {
+//         left: -800px;
+//     }
+// }
+// img{
+//     width: 100%;
+// }
+
+
+// @media screen and (min-width: 578px) and (max-width: 767px) {
+//     #copy {
+//         line-height: 12px;
+//         font-size: 10px;
+//     }
+
+//     #floor {
+//         img {
+//             width:110%;
+//         }
+//     }
+
+//     @keyframes shadow-shift {
+//         0% {
+//             top: 80px;
+//             left: 0;
+//             width: 120px;
+//         }
+//         25% {
+//             top: 110px;
+//             left: 0;
+//             transform: rotate(5deg);
+//             width: 90px;
+//             opacity: 0.5;
+//         }
+//         50% {
+//             top: 80px;
+//             left: 0;
+//             width: 120px;
+//         }
+//         75% {
+//             top: 110px;
+//             left: 30px;
+//             transform: rotate(-5deg);
+//             width: 90px;
+//             opacity: 0.5;
+//         }
+//         100% {
+//             top: 80px;
+//             left: 0;
+//             width: 120px;
+//         }
+//     }
+// }
+
+
+// @media screen and (max-width: 575px){
+//     footer {
+//         height: 300px;
+//     }
+
+//     #floor {
+//         top: 45%;
+//         overflow: hidden;
+//         img {
+//             width: 200%;
+//         }
+//     }
+
+//     .pic {
+//         width: 50%;
+//     }
+
+//     .snack {
+//         height: 42px;
+//     }
+    
+//     .snack .pic {
+//         top: -95px;
+//         width: 60px;
+//         left: 0;
+//     }
+
+
+//     #copy {
+//         font-size: 8px;
+//         left: 33%;
+//         bottom: 0;
+//         line-height: 15px;
+//     }
+
+
+//     @keyframes shadow-shift {
+//         0% {
+//             top: -10px;
+//             left: 0;
+//             width: 60px;
+//         }
+//         25% {
+//             top: 20px;
+//             left: 0;
+//             transform: rotate(5deg);
+//             width: 40px;
+//             opacity: 0.5;
+//         }
+//         50% {
+//             top: -10px;
+//             left: 0;
+//             width: 60px;
+//         }
+//         75% {
+//             top: 20px;
+//             left: 30px;
+//             transform: rotate(-5deg);
+//             width: 40px;
+//             opacity: 0.5;
+//         }
+//         100% {
+//             top: -10px;
+//             left: 0;
+//             width: 60px;
+//         }
+//     }
+
+    
+// } 
+
+
+

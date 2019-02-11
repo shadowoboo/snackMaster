@@ -1,0 +1,273 @@
+$cardX:800px;
+$cardY:600px;
+@mixin card3D($cardX:800px, $cardY:600px) {
+    .cardCamera {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        perspective: 1000px;
+        .cardBase {
+            //整個卡片的動畫骨架
+            margin: auto;
+            outline: red dashed 5px;
+            position: relative;
+            background-color: transparent;
+            transform-origin: center center; //   transform: translateZ((-$boxJ/2)) rotateX(-90deg) rotateY(-180deg);
+            transform-style: preserve-3d;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } //預留樣式操作空間
+        .cardBaseCover {
+            //卡片上半部動畫骨架
+            // border: 1px dashed #0000004b;
+            transform-origin: center top;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: .5s;
+            backface-visibility: visible;
+        }
+        .cardBaseContent {
+            //卡片下半部動畫骨架
+            // border: 1px dashed #0000004b;
+            transform-origin: center top;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: .5s;
+            // backface-visibility: hidden;
+        }
+        .cardSurface,
+        .cardSurfaceInner {
+            //填充骨架的皮
+            width: 100%;
+            height: 100%;
+            background-color: #aaf;
+            text-align: center;
+            font-size: 60px;
+            transition: .5s; 
+            overflow: hidden;
+            backface-visibility: hidden;
+            position: relative;
+        }
+        // .cardSurface {
+        //     backface-visibility: hidden;
+        // }
+        // .cardSurfaceInner{
+        //     backface-visibility: hidden;
+        // } 
+        
+        .cardSurfaceInner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: rotateY(180deg); //內裡要反轉，且不可被drop
+        } 
+        //控制長寬
+        .cardBase {
+            width: $cardX;
+            height: $cardY;
+        }
+        .cardBaseCover {
+            width: $cardX;
+            height: $cardY;
+        }
+        .cardBaseContent {
+            width: $cardX;
+            height: $cardY;
+        } //控制背景色
+        .cardBaseCover {
+            .cardSurface {
+                background-color: #ffa;
+            } //封面
+            .cardSurfaceInner {
+                background-color: #aaf;
+            } //封面(裡)
+        }
+        .cardBaseContent {
+            .cardSurface {
+                background-color: #ffa;
+            } //內容
+            .cardSurfaceInner {
+                background-color: #afa;
+            } //封底
+        } //控制背景圖
+        .cardBaseCover {
+            .cardSurface {
+                // background-image: url("../code_testing/card_test_1.jpg");
+                background-image: url();
+                // background-size: contain;
+            } //封面
+            .cardSurfaceInner {
+                background-image: url();
+            } //封面(裡)
+        }
+        .cardBaseContent {
+            .cardSurface {
+                background-image: url();
+            } //內容
+            .cardSurfaceInner {
+                background-image: url();
+            } //封底
+        }
+
+        //陰影測試
+        .cardBaseContent{
+            box-shadow: 10px 10px 30px #333;
+        }
+        .cardBaseCover{
+            box-shadow: 10px 10px 50px #333;
+        }
+    }
+}
+
+//文字框框模組
+.textTeam{
+    //長，寬，最大最小長寬
+    width: 80%;
+    height: 100px;
+    max-width:350px;
+    min-width:50px;
+    max-height:200px;
+    min-height:50px;
+    //新增時出現的位置
+    //想要直接釘在正中央的話要在算一下
+    //用transform:translate 會干擾 drag的座標
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    // transform: translate(-50%,-50%);
+
+    //resize作用器
+    overflow: auto; //配合resize讓div可以改變大小
+    resize: none; //需要有overflow才有作用
+
+    //初始字體大小
+    font-size: 20px;
+    //背景顏色透明，預計讓背景圖片顯露
+    background-color: transparent;
+
+    //被選擇時效果，靠程式控制
+    //textTeam被選擇時，把文字區框起來
+    // &.select .textarea{
+    //     // box-shadow:inset #3333334b 0px 0px 0px 5px;
+    //     // outline: #3333334b inset 5px;
+    // }
+    //提示使用者文字模組範圍
+    &:hover{
+        outline: #3333334b solid 1px;
+    }
+    //提示文字框拖曳作用區
+    // &.show .ctrlPos{
+    &:hover .ctrlPos{
+        background-color: #afa;
+        color: #333;
+    }
+    //提示文字框可被改變大小
+    &:hover .textResize{
+        border-style: solid;
+        border-width: 0 0 15px 15px;
+        border-color: transparent transparent #007bff transparent;
+        cursor: se-resize;
+    }
+
+    
+    //文字框拖曳作用區的範圍與定位(在文字框頭上)
+    $areaHead:20px; //用來計算定位量　ctrlPos 的高就是 textarea要向下的高度
+    .ctrlPos{
+        position: absolute;
+        top:0;
+        left: 0%;
+        width: 100%;
+        height: $areaHead;
+        background-color: transparent;
+        color: transparent;
+        &:hover{
+            cursor: move;
+        }
+    }
+    //定義文字框
+    //目前採用置中對齊
+    .textarea {
+        position: absolute;
+        top: $areaHead;
+        left: 0;
+        height: calc(100% - #{$areaHead});
+        width: 100%;
+        overflow: hidden; //不要露出卷軸
+        // font-size: 20px;
+        // vertical-align: center;
+        //文字框被使用中的時候，提示使用者還在輸入中
+        &:focus{
+            // outline:1px solid #007bff;
+            box-shadow: #007bff 0px 0px 0px 2px inset ;
+        }
+        //當文字框沒有內容時，顯示提示字串
+        &:empty:before {
+        content: attr(placeholder);
+        color: #aaa;
+        }
+    }
+
+    //遮住原生縮放提示的小物件
+    //偽元素很難被操作，所以還是先用div遮住
+    // .textResize{
+    //     position: absolute;
+    //     bottom: 0;
+    //     right: 0;
+    //     border-style: solid;
+    //     border-width: 0 0 15px 15px;
+    //     border-color: transparent transparent #ffa transparent;
+    //     z-index: 100;
+    // }
+}
+
+
+
+
+.section {
+    width: 100%;
+    height: 100vh;
+    background-color: #ccc;
+    display: flex;
+
+    //卡片控制
+    @include card3D(400px,300px);
+    .cardBase {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(0px);
+        animation: cardCome 1.5s reverse;
+    }
+    .cardBaseCover {
+        transform: rotateX(150deg);
+        animation: cardOpen 1.5s reverse;
+    }
+
+    @keyframes cardOpen {
+        0%{transform: rotateX(150deg);}
+        100%{transform: rotateX(0deg);}
+    }
+    @keyframes cardCome{
+        //卡片工作面不是 rotateX(0deg) 時，文字框hover會壞掉 
+        0%{transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(0px);}
+        100%{transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg) translateZ(-300px);}
+    } 
+        
+}
+    //按鈕控制
+    #btns7{
+        width: 25%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        .btn7{
+            width: 40px;
+            height: 20px;
+            background-color: #ffa;
+            text-align: center;
+            cursor: pointer;
+        }
+    }

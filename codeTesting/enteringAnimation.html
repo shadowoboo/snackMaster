@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 記得引入JQ -->
+    <script src="jquery-3.3.1.min.js"></script>
+    <style>
+        .invisible{
+            opacity: 0;
+        }
+        .fade_from_left{
+            animation: fade_from_left 1s;
+        }
+        @keyframes fade_from_left{
+            from{
+                transform: translateX(-200px);
+                opacity: 0;
+            };
+            to{
+                transform: translateX(0px);
+                opacity: 1;
+            }
+        }
+        .fade_from_right{
+            animation: fade_from_right 1s;
+        }
+        @keyframes fade_from_right{
+            from{
+                transform: translateX(200px);
+                opacity: 0;
+            };
+            to{
+                transform: translateX(0px);
+                opacity: 1;
+            }
+        }
+        .fade_in{
+            animation: fade_in 1s;
+        }
+        @keyframes fade_in{
+            from{ opacity: 0; };
+            to{ opacity: 1; };
+        }
+        .fade_down{
+            animation: fade_down 1s;
+        }
+        @keyframes fade_down{
+            from{
+                transform: translateY(-100px);
+                opacity: 0;
+            };
+            to{
+                transform: translateY(0px);
+                opacity: 1;
+            };
+        }
+        .fade_up{
+            animation: fade_up 1s;
+        }
+        @keyframes fade_up{
+            from{
+                transform: translateY(100px);
+                opacity: 0;
+            };
+            to{
+                transform: translateY(0px);
+                opacity: 1;
+            };
+        }
+        .fadeout{
+            animation: fadeout 1s;
+        }
+        @keyframes fadeout{
+            from{
+                opacity: 1;
+            };
+            to{
+                opacity: 0;
+            };
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: salmon;
+            margin: 10px;
+        }
+        .bigBox{
+            width: 1100px;
+            height: 600px;
+            font-size: 0px;
+        }
+        img{
+            width: 200px;
+            float: left;
+            margin: 10px;
+        }
+        .clearfix{
+           content: "";
+           clear: both;
+        }
+        .floating{
+            animation: floating 1.5s infinite;
+            animation-direction: alternate;
+        }
+        .floatingReverse{
+            animation: floating 1.5s infinite;
+            animation-direction: alternate-reverse;
+        }
+        @keyframes floating{
+            from{ transform: translateY(-10px);};
+            to{ transform: translateY(10px); }
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="bigBox">
+        <img src="ip1.png" alt="" class="floating">
+        <img src="ip2.png" alt="" class="floatingReverse">
+        <img src="ip3.png" alt="" class="floating">
+        <img src="ip4.png" alt="" class="floatingReverse">
+        <img src="ip5.png" alt="" class="floating">
+        <div class="clearfix"></div>
+    </div>
+    <div class="box box1 invisible"></div>
+    <div class="box box2 invisible"></div>
+    <div class="box box3 invisible"></div>
+    <div class="box box4 invisible"></div>
+    <div class="box box5 invisible"></div>
+    <div class="box box6"></div>
+    <div class="bigBox"></div>
+
+    <script>
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > $('.box1').offset().top - 500) {
+                $('.box1').removeClass('invisible').addClass('fade_in');
+            }
+        });
+        $(window).scroll(function () {
+               if ($(window).scrollTop() > $('.box2').offset().top - 500) {
+                $('.box2').removeClass('invisible').addClass('fade_from_left');
+            }
+        }); 
+        $(window).scroll(function () {   
+            if ($(window).scrollTop() > $('.box3').offset().top - 500) {
+                $('.box3').removeClass('invisible').addClass('fade_from_right');
+            }
+        }); 
+        $(window).scroll(function () {
+             if ($(window).scrollTop() > $('.box4').offset().top - 500) {
+                $('.box4').removeClass('invisible').addClass('fade_down');
+            }
+        }); 
+        $(window).scroll(function () {
+             if ($(window).scrollTop() > $('.box5').offset().top - 500) {
+                $('.box5').removeClass('invisible').addClass('fade_up');
+            }
+        }); 
+        $(window).scroll(function () {
+             if ($(window).scrollTop() > $('.box6').offset().top - 500) {
+                $('.box6').addClass('fadeout').addClass('invisible');
+            }
+        }); 
+    </script>
+</body>
+</html>

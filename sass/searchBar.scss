@@ -1,0 +1,105 @@
+body{
+    background-color: #8fcfcb;
+    outline: 1px solid #f00;
+}
+
+.nav{
+    position: relative;
+    width: 100%;
+    height: 15vh;
+    background-color: #fff;
+}
+
+.searchBar{
+    position: relative;
+    width:650px;
+    margin: auto;
+    margin-top:100px; 
+}
+
+.search{
+    position: absolute;
+    right:15px;
+    bottom:18px;
+    input{
+        width: 150px;
+        background-color: #f1f6c7;
+    }
+    button{
+        background:none;
+        i{color: #fff;}
+    }
+}
+
+.searchSelect{
+    position: absolute;
+    left: 30px;
+    bottom: 11px;
+    width:400px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    .custom-select {
+        position: relative;
+        font-family: Arial;
+    }
+    
+    .custom-select select {
+        display: none; /*hide original SELECT element:*/
+    }
+    
+    .select-selected {
+        background-color:#f1f6c7;
+    }
+    
+    /*style the arrow inside the select element:*/
+    .select-selected:after {
+        position: absolute;
+        content: "";
+        top: 14px;
+        left: 60px;
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        border-color: #626262 transparent transparent transparent;
+    }
+    
+    /*point the arrow upwards when the select box is open (active):*/
+    .select-selected.select-arrow-active:after {
+        border-color: transparent transparent #626262 transparent;
+        top: 7px;
+    }
+    
+    /*style the items (options), including the selected item:*/
+    .select-items div,.select-selected {
+        font-family: g2Font;
+        font-weight: 900;
+        width: 85px;
+        color: #626262;
+        padding: 8px 16px;
+        border: 1px solid transparent;
+        border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+        cursor: pointer;
+        user-select: none;
+    }
+    
+    /*style items (options):*/
+    .select-items {
+        position: absolute;
+        background-color:#f1f6c7;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 99;
+        width: 85px;
+    }
+    
+    /*hide the items when the select box is closed:*/
+    .select-hide {
+        display: none;
+    }
+    
+    .select-items div:hover, .same-as-selected {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}

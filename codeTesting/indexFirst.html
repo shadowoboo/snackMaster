@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 要引入JQ -->
+    <script src="jquery-3.3.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        #first{
+            position: relative;
+            width: 500px;
+            height: 800px;
+            transition: 2s;
+        }
+        .pin{
+            width: 50px;
+            position: absolute;
+        }
+        #pin1{
+            top: 10px;
+            left: 100px;
+        }
+        #pin2{
+            top: 100px;
+            left: 10px;
+        }
+        #pin3{
+            top: 200px;
+            left: 300px;
+        }
+        #pin4{
+            top: 300px;
+            left: 30px;
+        }
+        #pin5{
+            top: 400px;
+            left: 420px;
+        }
+        .fall{
+            animation: fall 1s;
+        }
+        .snack{
+            width: 100px;
+            position: absolute;
+        }
+        #snack1{
+            top: 30px;
+            left: 200px;
+        }
+        #snack2{
+            top: 200px;
+            left: 20px;
+        }
+        #snack3{
+            top: 280px;
+            left: 300px;
+        }
+        #snack4{
+            top: 380px;
+            left: 150px;
+        }
+        #snack5{
+            top: 70px;
+            left: 400px;
+        }
+        @keyframes fall{
+            from{transform: translateY(-500%)};
+            to{transform: translateY(0)};
+        }
+        .info{
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            width: 180px;
+            z-index: 10;
+        }
+        #info1{
+             top: 30px;
+             left: 320px;
+        }
+        #info2{
+             top: 200px;
+             left: 140px;
+        }
+        .snack:hover +.info{
+            display: block;
+        }
+        #box{
+            background-color: salmon;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="first">
+        <img src="pin.png" class="pin fall" id="pin1">
+        <img src="pin.png" class="pin fall" id="pin1">
+        <img src="pin.png" class="pin fall" id="pin2">
+        <img src="pin.png" class="pin fall" id="pin3">
+        <img src="pin.png" class="pin fall" id="pin4">
+        <img src="pin.png" class="pin fall" id="pin5">
+        <img src="ip1.png" class="snack fall" id="snack1">
+        <div class="info" id="info1">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, iusto.
+        </div>
+        <img src="ip2.png" class="snack fall" id="snack2">
+        <div class="info" id="info2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, iusto.
+        </div>
+        <img src="ip3.png" class="snack fall" id="snack3">
+        <img src="ip4.png" class="snack fall" id="snack4">
+        <img src="ip5.png" class="snack fall" id="snack5">
+    </div>
+    <div id="box"></div>
+    <div id="box"></div>
+    <div id="box"></div>
+    <div id="box"></div>
+
+    
+    <script>
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > $('#box').offset().top - 500) {
+                $('#first').css({
+                    'transform' : 'translateY(50%) scale(0)',
+                    'opacity' : '0',
+                });
+            }else{
+                $('#first').css({
+                    'transform': 'translateY(0) scale(1)',
+                    'opacity': '1',
+                });
+            }
+        });
+    </script>
+</body>
+</html>

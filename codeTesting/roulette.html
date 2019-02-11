@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #roulette{
+            background-color: #fff;
+            border: 2px solid #ddd;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            position: relative;
+            transition: 1s;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            border: 2px solid #ddd;
+        }
+        .color{
+            width: 18%;
+            height: 18%;
+            border-radius: 50%;
+            position: absolute;
+        }
+        #red{
+            background-color: #ff5050;
+            top: 4%;
+            left: 41%;
+        }
+        #orange{
+            background-color: #ff6600;
+            top: 16%;
+            left: 67%;
+        }
+        #yellow{
+            background-color: #ffff00;
+            top: 41%;
+            left: 78%;
+        }
+        #green{
+            background-color: #99ff66;
+            top: 66%;
+            left: 67%
+        }
+        #blue{
+            background-color: #66ccff;
+            top: 78%;
+            left: 41%;
+        }
+        #indigo{
+            background-color: #000066;
+            top: 66%;
+            left: 15%;
+        }
+        #violet{
+            background-color: #cc33ff;
+            top: 41%;
+            left: 4%
+        }
+        #black{
+            background-color: #000;
+            top: 16%;
+            left: 15%;
+        }
+    </style>
+</head>
+<body>
+    <div id="roulette">
+        <div class="color" id="red"></div>
+        <div class="color" id="orange"></div>
+        <div class="color" id="yellow"></div>
+        <div class="color" id="green"></div>
+        <div class="color" id="blue"></div>
+        <div class="color" id="indigo"></div>
+        <div class="color" id="violet"></div>
+        <div class="color" id="black"></div>
+    </div>
+    <div id="box"></div>
+    
+    <script>
+        //要讓被點擊的顏色旋轉到左手邊並將顏色套用到盒子上
+        function rotate(e) {
+            //因為點擊其他顏色的時候，上一個被點擊的顏色放大效果要取消
+            //所以有顏色被點擊時就一律將所有顏色先恢復成正常大小
+            for(var i = 0; i < colors.length; i++){
+                colors[i].style.transform = 'scale(1)';
+            }
+            //只有被點擊的顏色會放大
+            e.target.style.transform = 'scale(1.4)';
+
+            //取得被點擊的顏色的id
+            var color = e.target.id;
+            var roulette = document.getElementById('roulette');
+            //根據顏色來絕對轉盤要轉到哪個角度
+            switch(color){
+                case 'red':
+                roulette.style.transform = 'rotate(90deg)';
+                break;
+                case 'orange':
+                roulette.style.transform = 'rotate(45deg)';
+                break;
+                case 'yellow':
+                roulette.style.transform = 'rotate(0deg)';
+                break;
+                case 'green':
+                roulette.style.transform = 'rotate(-45deg)';
+                break;
+                case 'blue':
+                roulette.style.transform = 'rotate(-90deg)';
+                break;
+                case 'indigo':
+                roulette.style.transform = 'rotate(-135deg)';
+                break;
+                case 'violet':
+                roulette.style.transform = 'rotate(-180deg)';
+                break;
+                case 'black':
+                roulette.style.transform = 'rotate(-225deg)';
+                break;
+            }
+
+            //取得被點擊顏色的色碼
+            var colorCode = window.getComputedStyle(e.target).getPropertyValue("background-color");
+            //將色碼設定給盒子
+            var box = document.getElementById('box');
+            box.style.backgroundColor = colorCode;
+        }
+        function doFirst(){
+            //取得顏色們的物件關聯並設定點擊事件的聆聽功能
+            colors = document.getElementsByClassName('color');
+            for(var i = 0; i < colors.length; i++){
+                colors[i].addEventListener('click', rotate);
+            }
+        }
+        window.addEventListener('load', doFirst);
+    </script>
+</body>
+</html>

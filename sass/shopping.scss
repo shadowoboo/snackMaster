@@ -1,0 +1,285 @@
+@import 'reset';
+@import 'common';
+$sm: 576px;
+
+body{
+    background-color: #fcde91;
+}
+h1,h2,h3,h4,p,span{
+   color: $gray;
+}
+.clearfix{
+    content: "";
+    clear: both;
+}
+.shopping{
+    margin-top: 120px;
+    @media only screen and (min-width: $sm) {
+        margin-top: 150px;
+    }
+    .wrap{
+        width: 100%;
+        max-width: 1200px; 
+        margin: auto;
+        margin-top: 20px;
+        padding: 20px 0;
+        text-align: center;
+        color: $gray;
+        @media only screen and (max-width: $sm) {
+            padding: 10px;
+            margin-top: 30px;
+        }
+        img{
+            width: 100%;
+        }
+        .title{
+            width: 260px;
+            margin: auto;
+            text-align: center;
+            background-image: url(../images/blair/title.png);
+            background-repeat: no-repeat;
+            h2{
+                line-height: 163px;
+                color: $blue;
+            }
+        }
+        .searchBar{
+            position: relative;
+            max-width: 760px; 
+            margin: auto;
+            margin-top: 20px;
+            img{
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                display: none;
+                @media only screen and (min-width: $moblie) {
+                    display: inline-block;
+                }
+            }
+            select, input{
+                background-color: rgba($color: #fff, $alpha: 0.97);
+                // vertical-align: middle;
+                border: transparent;
+                border-radius: 10px;
+            }
+            select{
+                width: 25%;
+                margin-right: 5%;
+                font-size: 16px;
+                padding: 2px 4px 6px 4px;
+                @media only screen and (min-width: $moblie) {
+                    width: 16%;
+                    position: relative;
+                    top: -3px;
+                }
+            }
+            input{
+                position: relative;
+                font-size: 14px;
+                top: -4px;
+                padding: 4px 0px 4px 6px;
+            }
+            i{
+                font-size: 18px;
+                vertical-align: middle;
+            }
+        }
+        .items{
+            margin-top: 60px;
+            margin-bottom: 50px;
+            text-align: center;
+            .red{
+                background-image: url(../images/blair/itemR.png);
+            }
+            .green{
+                background-image: url(../images/blair/itemG.png);
+            }
+            .blue{
+                background-image: url(../images/blair/itemb.png);
+            }
+
+            .item{
+                width: 280px;
+                height: 480px;
+                float: left;
+                margin-left: calc( 50% - 140px );
+                position: relative;
+                @media only screen and (min-width: 768px) {
+                    margin-left: 69.33333px;   
+                }
+                @media only screen and (min-width: 840px) {
+                    margin-left: calc( 25% - 210px); 
+                    //(100% - 280*3)/4  
+                }
+                // @media only screen and (min-width: 1184px) {
+                //     margin-left: 16px;   
+                // }
+                .country{
+                    width: 40px;
+                    position: absolute;
+                    top: 30px;
+                    right: 15px;
+                }
+                .itemImg{
+                    width: 140px;
+                    margin-top: 70px;
+                }
+                .itemName{
+                    width: 196px;
+                    margin: auto;
+                    margin-top: 10px;
+                }
+                .star{
+                    width: 140px;
+                    vertical-align: middle;
+                }
+                .price{
+                    margin-top: 4px;
+                    font-size: 22px;
+                }
+                .itemBtns{
+                    margin-top: 6px;
+                    .cart, .heart{
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+        #pagination ul{
+            display: flex;
+            justify-content: center;
+            li{
+               margin: 0 7.5px;
+               font-size: 20px;
+               a{
+                   color: #076baf;
+                   padding:5px 10px ; 
+                   font-family:g2font;
+               }
+               .nowLoc,a:hover{
+                   color: #fff;
+                   background-color: #076baf;
+               }
+               .fas{
+                   color: #fff;
+               }
+               #next,#last{
+                   background-color: #076baf;
+                   padding: 5px 10px;
+               }
+               #last{
+                   border-radius: 8px 0 0 8px;
+               }
+               #next{
+                   border-radius: 0 8px 8px 0;
+               }
+           }
+        }
+        .mint{
+            display: none;
+            @media only screen and (min-width: 1200px) {
+                display: block;
+                width: 260px;
+                position: fixed;
+                top: 40%;
+                right: 20px;
+                z-index: 9;
+                .info{
+                    width: 200px;
+                    height: 155px;
+                    margin: auto;
+                    background-color: rgba(#fff, 0.9);
+                    padding: 14px;
+                    margin-bottom: 30px;
+                    position: relative;
+                    border-radius: 10px;
+                    &::after{
+                        content: '';
+                        display: block;
+                        border-style: solid;
+                        border-width: 22px 18px 0 18px;
+                        border-color: rgba($color: #fff, $alpha: 0.9) transparent transparent transparent;  
+                        position: absolute;
+                        top: 100%;
+                        right: 20px;
+                    }
+                    h4{
+                        margin-bottom: 6px;
+                    }
+                    #mintStar{
+                        font-size: 50px;
+                        color: #e97d58;
+                        line-height: 1em;
+                    }
+                    #mintFive{
+                        font-size: 20px;
+                        color: #e97d58;
+                    }
+                    .star{
+                        width: 80%;
+                        margin: auto;
+                    }
+                    #msg{
+                        margin-top: 32px;
+                    }
+                }
+                .radar{
+                    width: 180px;
+                    height: 180px;
+                    margin: auto;
+                    margin-top: 52px;
+                }
+                .mintImg{
+                    position: absolute;
+                    top: 180px;
+                    left: 0;
+                    z-index: -1;
+                }
+            }
+        }
+    }
+        #bgChips{
+        display: none;
+        @media only screen and (min-width: 1200px) {
+            display: block;
+            transform: rotate(40deg);
+            max-width: 295px;
+            position: absolute;
+            top: 1200px;
+            left: -120px;
+            z-index: -1;
+            opacity: 0.9;
+        }
+    }
+    @for $i from 1 through 10 {
+        #bgChips#{$i} {
+            display: none;
+        }
+    }
+    @mixin chips ($name, $width, $top, $left, $deg){
+        ##{$name}{
+            display: block;
+            position: absolute;
+            max-width: $width;
+            top: $top;
+            left: $left;
+            transform: rotate($deg);
+            z-index: -2;
+            filter:drop-shadow(0px 0px 3px rgba(0,0,0,0.1)) ;
+        }
+    }
+    @media only screen and (min-width: 1200px) {
+        @include chips('bgChips1', 60px, 1200px, 100px, 10deg);
+        @include chips('bgChips2', 80px, 1290px, 140px, 10deg);
+        @include chips('bgChips3', 44px, 1250px, 140px, 10deg);
+        @include chips('bgChips4', 74px, 1100px, 90px, 10deg);
+        @include chips('bgChips5', 45px, 1000px, 120px, 10deg);
+        @include chips('bgChips6', 68px, 900px, 70px, 10deg);
+        @include chips('bgChips7', 68px, 800px, 80px, 10deg);
+        @include chips('bgChips8', 68px, 700px, 60px, 10deg);
+        @include chips('bgChips9', 68px, 550px, 60px, 10deg);
+        @include chips('bgChips10', 68px, 450px, 70px, 10deg);
+    }
+}

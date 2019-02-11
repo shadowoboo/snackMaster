@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="zh_tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>boxModel</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/boxModel.css">
+</head>
+
+<body>
+
+    <!-- 基本六面體模型:搭配 box3D 相關scss使用
+<div class="camera">
+    <div class="box boxBase">
+        <div class="surface surface_top">上</div>
+        <div class="surface surface_down">下</div>
+        <div class="surface surface_back">後</div>
+        <div class="surface surface_font">前</div>
+        <div class="surface surface_left">左</div>
+        <div class="surface surface_right">右</div>
+    </div>
+</div> -->
+
+    <div id="ctrl_bar">
+        <div class="btn btn_front" id="btn_front">前</div>
+        <div class="btn btn_back" id="btn_back">後</div>
+        <div class="btn btn_top" id="btn_top">上</div>
+        <div class="btn btn_bottom" id="btn_bottom">下</div>
+        <div class="btn btn_left" id="btn_left">左</div>
+        <div class="btn btn_right" id="btn_right">右</div>
+        <div class="btn rotateX" id="rotateX">X軸轉轉</div>
+        <div class="btn rotateY" id="rotateY">Y軸轉轉</div>
+        <div class="btn rotateZ" id="rotateZ">Z軸轉轉</div>
+        <div class="btn show" id="show">Show</div>
+    </div>
+
+
+    <section class="section section_3" id="section_3">
+        <div class="camera">
+            <div class="box boxBase" id="box_3">
+                <div class="surface surface_top">上</div>
+                <div class="surface surface_down">下</div>
+                <div class="surface surface_back">後</div>
+                <div class="surface surface_font">前</div>
+                <div class="surface surface_left">左</div>
+                <div class="surface surface_right">右</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section_9" id="section_9">
+        <div class="camera">
+            <div class="box boxBase" id="box_9">
+
+                <div class="surface surface_top" id="cover_out">上</div>
+                <div class="surface surface_top_inner" id="cover_in">
+                    <div class="way">
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                    </div>
+                    <div class="way">
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                    </div>
+                </div>
+                <div class="surface surface_down">下</div>
+                <div class="surface surface_back">後</div>
+                <div class="surface surface_font">前</div>
+                <div class="surface surface_left">左</div>
+                <div class="surface surface_right">右</div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="section section_12" id="section_12">
+        <div class="camera">
+            <div class="box boxBase" id="box_12">
+
+                <div class="surface surface_top" id="cover_out_12">上</div>
+                <div class="surface surface_top_inner" id="cover_in_12">
+                    <div class="way">
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                    </div>
+                    <div class="way">
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                    </div>
+                </div>
+                <!-- <div class="surface surface_down">下</div> -->
+                <div class="surface surface_down_left" id="cover_dl_12">下左</div>
+                <div class="surface surface_down_right" id="cover_dr_12">下右</div>
+                <div class="surface surface_back">後</div>
+                <div class="surface surface_font">前</div>
+                <div class="surface surface_left">左</div>
+                <div class="surface surface_right">右</div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section section_15" id="section_15">
+        <div class="camera">
+            <div class="box boxBase" id="box_15">
+                <div class="surface surface_top" id="cover_out_15">
+                    <img src="ip2.png" id="a1" alt="">
+                </div>
+                <div class="surface surface_top_inner" id="cover_in_15">
+                    <!-- <div class="way">
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                    </div>
+                    <div class="way">
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                        <div class="light"></div>
+                    </div> -->
+                </div>
+                <div class="surface surface_down">下</div>
+                <div class="surface surface_back">後</div>
+                <div class="surface surface_font">前</div>
+                <div class="surface surface_left">左</div>
+                <div class="surface surface_right">右</div>
+            </div>
+        </div>
+        <div class="pics">
+            <div class="pic">
+                <img src="ip1.png" alt="">
+            </div>
+            <div class="pic">
+                <img src="ip2.png" alt="">
+            </div>
+            <div class="pic">
+                <img src="ip3.png" alt="">
+            </div>
+            <div class="pic">
+                <img src="ip4.png" alt="">
+            </div>
+            <div class="pic">
+                <img src="ip5.png" alt="">
+            </div>
+        </div>
+        <div id="btns15">
+            <div class="btn" id="btn_big">大</div>
+            <div class="btn" id="btn_small">小</div>
+            <div class="btn" id="btn_clk">順</div>
+            <div class="btn" id="btn_unclk">逆</div>
+            <div class="btn" id="btn_del">刪</div>
+        </div>
+    </section>
+
+    <h1>12123123</h1>
+
+
+
+    <script>
+        const boxBases = document.querySelectorAll(".boxBase");
+        const btns = document.querySelectorAll(".btn");
+        //箱子上蓋測試
+        const cover_out = document.querySelector("#cover_out");
+        const cover_in = document.querySelector("#cover_in");
+        const lights = document.querySelectorAll(".light");
+        //箱子上蓋+下蓋收納測試
+        const cover_in_12 = document.querySelector("#cover_in_12");
+        const cover_out_12 = document.querySelector("#cover_out_12");
+        const cover_dl_12 = document.querySelector("#cover_dl_12");
+        const cover_dr_12 = document.querySelector("#cover_dr_12");
+        const box_12 = document.querySelector("#box_12");
+        //拖曳測試
+        const pics = document.querySelectorAll("pics");
+        const pic_img = document.querySelectorAll(".pic img");
+        const surface = document.querySelectorAll(".surface");
+        var arrDropedImg = [];
+        //動態生成的元素會抓不到
+        // const droped_img = document.querySelectorAll(".droped_img");
+        const droped_img = document.querySelectorAll(".surface img");
+        ///允許 drop 的按鈕
+        const btnDropOn = ["btn_front",
+            "btn_back",
+            "btn_top",
+            "btn_bottom",
+            "btn_left",
+            "btn_right",
+            "btn_big",
+            "btn_small",
+            "btn_clk",
+            "btn_unclk",
+            "btn_del"];
+        //工作姿態陣列 posture
+        // 此陣列姿態，開啟 surface 的 drop 監聽，其餘時候不給降落
+        const posture = ["rotateX(0deg) rotateY(0deg) rotateZ(0deg)",//前
+            "rotateX(0deg) rotateY(180deg) rotateZ(0deg)",//後
+            "rotateX(-90deg) rotateY(0deg) rotateZ(0deg)",//上
+            "rotateX(90deg) rotateY(0deg) rotateZ(0deg)",//下
+            "rotateX(0deg) rotateY(90deg) rotateZ(0deg)",//左
+            "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)"]//右
+        //允許控制圖片的按鈕
+        const dropedImgCtrl = ["btn_big", "btn_small", "btn_clk", "btn_unclk", "btn_del"];
+
+
+        //給箱子姿態初始值
+        boxBases.forEach(el => {
+            el.style.transform = "rotateX(-30deg) rotateY(30deg) rotateZ(0deg)";
+        })
+
+        //按鈕監聽事件
+        // for (var i = 0; i < btns.length; i++) {//感覺用foreach處理陣列逐一動作比較開心
+        //     btns[i].addEventListener("click", boxRotate);
+        // }
+        btns.forEach(elem => {
+            elem.addEventListener("click", boxRotate);
+            elem.addEventListener("click", dropedCtrl);
+            elem.addEventListener("click", surfaceDropSwitch);//判斷要不要開drop區監聽
+        })
+
+
+
+        //拖曳功能監聽事件
+        /// 對應按鈕觸發時要添加監聽事件，其餘移除監聽
+        function surfaceDropSwitch(e) {
+            // console.log(`btn id is: ${this.id}`);
+            if (btnDropOn.indexOf(this.id) == -1) { //如果不是工作面的按鈕
+                surface.forEach(el => {
+                    console.log(`el: ${el}`);
+                    el.removeEventListener("drop", dropped);//移除drop監聽
+                })
+            } else {
+                surface.forEach(el => {
+                    el.addEventListener("drop", dropped);
+                })
+            }
+        }
+
+        /// 盒子不在指定姿態時要移除監聽
+        boxBases.forEach(elem => {
+            let pos = elem.style.transform;
+            console.log(`pos: ${pos}`);
+            console.log(`posture.indexOf(pos): ${posture.indexOf(pos)}`);
+            if (posture.indexOf(pos) == -1) {
+                surface.forEach(el => {
+                    console.log(`el: ${el}`);
+                    el.removeEventListener("drop", dropped);
+                })
+            } else {
+                surface.forEach(el => {
+                    el.addEventListener("drop", dropped);
+                })
+            }
+        })
+        //可放置區(就是箱子表面)的監聽事件
+        surface.forEach(elem => {
+            //允許拖到表面(開放領空~)
+            elem.addEventListener("dragover", function drageOver(e) {
+                e.preventDefault();
+                //出現提示效果，透明度改變
+                e.target.style.opacity = "0.8";
+                //drop區內被碰到的圖片開啟穿透的狀態，才能重疊上去
+                //新增加的元素可以直接被事件觸發，透過for迴圈去抓元素的方式不行
+                if (e.target.classList.contains("droped_img") == true) {
+                    e.target.style.pointerEvents = "none";
+                }
+            });
+            //允許丟到表面上(允許降落~)
+            // elem.addEventListener("drop", dropped);
+            //沒被觸發的drop區恢復正常透明度
+            elem.addEventListener("dragleave", function dragLeave(e) {
+                e.target.style.opacity = "1";
+            })
+        })
+
+        //箱子表面監聽
+        //動態新增的東西需要先監聽父層，子層新增的元素開監聽才有效
+        surface.forEach(elem => {
+            elem.addEventListener("mouseenter", function wakeup() {
+                console.log("mouseEnter");
+
+                //"箱子表面的圖片"的監聽事件
+                arrDropedImg.forEach(elem => {
+                    elem.addEventListener("dragstart", function dragStart_2(e) {
+                        console.log("這裡的圖片動起來!");
+                        e.dataTransfer.setData("text", "onSurface");
+                        e.dataTransfer.setData("offsetx", e.offsetX);
+                        e.dataTransfer.setData("offsety", e.offsetY);
+                        srcItem = this;
+                        console.log(`THIS ${this.nodeName}`);
+
+                        // e.dataTransfer.setData("srcItem", this);
+                    })
+                    elem.addEventListener("dragend", function dragEnd_2(e) {
+                        surface.forEach(elem => {
+                            elem.style.opacity = "1";
+                        })
+                        //操作預先存起來的新元素陣列
+                        arrDropedImg.forEach(elem => {
+                            elem.style.pointerEvents = "auto";
+                        })
+                    })
+                    elem.addEventListener("click", function selectDropedImg(e) {
+                        arrDropedImg.forEach(el => {
+                            el.classList.remove("select");
+                        })
+                        e.target.classList.add("select");
+                    })
+                })
+            })
+        })
+        // //"箱子表面的圖片"的監聽事件//父層沒有被事件觸發就無法監聽動態新增的物件
+        // arrDropedImg.forEach(elem => {
+        //     // elem.addEventListener("mousedown", moveStart);
+        //     // elem.addEventListener("mousemove",movingImg);
+        //     // elem.addEventListener("mouseup",moveEnd);
+        //     elem.addEventListener("dragstart", function dragStart_3(e) {
+        //         console.log("這裡的圖片動起來!");
+
+        //         e.dataTransfer.setData("text", "onSurface");
+        //         e.dataTransfer.setData("offsetx", e.offsetX);
+        //         e.dataTransfer.setData("offsety", e.offsetY);
+        //         e.dataTransfer.setData("srcItem", e.target);
+        //     })
+        //     elem.addEventListener("dragend", function dragEnd_3(e) {
+        //         surface.forEach(elem => {
+        //             elem.style.opacity = "1";
+        //         })
+        //         //操作預先存起來的新元素陣列
+        //         arrDropedImg.forEach(elem => {
+        //             elem.style.pointerEvents = "auto";
+        //         })
+        //     })
+        // })
+
+
+        // var igmmmm;
+        // var xx, yy, textX, textY, xxx, yyy;
+        // // textX = e.offsetLeft;
+        // // textY = e.offsetTop;
+        // window.addEventListener("mousedown", (e) => {
+        //     console.log(e.target);
+        //     igmmmm = e.target;
+        //     xx = e.offsetX;
+        //     yy = e.offsetY;
+        //     //   textX = text.offsetLeft;
+        //     //   textY = text.offsetTop;
+        //     xxx = e.clientX;
+        //     yyy = e.clientY;
+
+
+        // })
+        // window.addEventListener("mousemove", (e) => {
+        //     // console.log(e.clientX, e.clientY, e.offsetX, e.offsetY);
+        // })
+        // window.addEventListener("dragover", (e) => {
+        //     // console.log(e.clientX, e.clientY, e.offsetX, e.offsetY);
+
+        // })
+        // // window.addEventListener("drop", (e) => {
+        // //     console.log(e.target);
+        // //     igmmmm.style.top = yyy - e.offsetY - textY + "px";
+        // //     igmmmm.style.left = xxx - e.offsetX - textX + "px";
+        // // })
+        // // droped_img.forEach(elem => {
+        // //     elem.addEventListener("click", function (e) {
+        // //         console.log("click!!!!");
+        // //     })
+        // // })
+
+        //給"遠方的客人"可拖曳物件初始狀態
+        pic_img.forEach(elem => {
+            // console.log(`pic darggable: ${elem.draggable}`);
+            // elem.setAttribute('draggable','true');
+            elem.addEventListener("dragstart", function dragStart(e) {
+                // e.preventDefault();
+                console.log(`e.target.src: ${e.target.src}`);
+                //拖曳開始時，滑鼠在圖片內的相對位置
+                // mouseOffset = { x: e.offsetX, y: e.offsetY };
+                //設定要傳送到drop方的訊息
+                e.dataTransfer.setData("image/jpeg", e.target.src);
+                e.dataTransfer.setData("offsetx", e.offsetX);
+                e.dataTransfer.setData("offsety", e.offsetY);
+            })
+            elem.addEventListener("dragend", function dragEnd(e) {
+                surface.forEach(elem => {
+                    elem.style.opacity = "1";
+                })
+
+                //操作預先存起來的新元素陣列
+                arrDropedImg.forEach(elem => {
+                    elem.style.pointerEvents = "auto";
+                })
+
+                //為了動態生成的元素，想辦法繞遠路QQ //繞一大圈，花很多時間，最後沒用到QQ
+                //隔壁的 .camera .boxBase .surface下 全部子節點，通通給我 不能穿透!!!!
+                //children不是真正的陣列!!!不能用foreach，會掛掉。改用for...in即可
+                //children 回傳元素， childNodes 回傳元素和html換行註解之類的資訊
+                // let classCamera = e.target.parentNode.parentNode.parentNode.firstElementChild.firstElementChild;
+                // let classCamera_childs = e.target.parentNode.parentNode.parentNode.firstElementChild.firstElementChild.childNodes;
+                // var classCamera_children = e.target.parentNode.parentNode.parentNode.firstElementChild.firstElementChild.children;
+                // console.log(`classCamera_children長度: ${classCamera_children.length}`);
+                // console.log(`classCamera_children: ${classCamera_children}`);
+                // for(let i in classCamera_children){
+                //     for(let j in classCamera_children[i].children){
+                //             console.log(classCamera_children[i].children.length);
+                //             classCamera_children[i].children[j].style.pointerEvents = "auto";  
+                //     }
+                // }
+                // surface.forEach(elem=>{
+                //     let imgs=elem.children;
+                //     console.log(`imgs: ${imgs}`);
+                //     console.log(`imgs.length: ${imgs.length}`);
+                //     for(var i in imgs){
+                //         console.log(`imgs[i]: ${imgs[i]}`);
+                //         imgs[i].style.pointerEvents="auto";
+                //     }
+                // })
+                // classCamera_children.forEach(elem=>{//各個.surface
+                //     console.log(elem.classList);
+                //     elem.children.forEach(el=>{//各個.img
+                //         console.log(el.classList);
+                //         el.style.pointerEvents = "auto";
+                //     })
+                // })
+                // var sur= classCamera_children[0];
+                // console.log(sur.classList);
+                // console.log(sur.children);
+                // let aaa= sur.children;
+                // console.log(aaa);
+
+                // for (var i in sur.children) {
+                //     sur.children[i].style.pointerEvents = "auto";
+                // }
+
+                // aaa.forEach(el=>{
+                //     console.log("!");
+                //     el.style.pointerEvents = "auto";
+                // })
+
+                // for(let i=0;i<classCamera_children.length;i++){
+                //     for(let j=0;j<classCamera_children.children.length;j++){
+                //         classCamera_children.children[j].style.pointerEvents = "auto";
+                //     }
+                // }
+
+
+                // for (let i = 0; i < classCamera_childs.length; i++) {
+                //     if (classCamera_childs[i].nodeName == "#text" && !/\s/.test(classCamera_childs.nodeValue)) {
+                //         classCamera.removeChild(classCamera_childs[i]);
+                //     }
+                // }
+                // classCamera_childs.forEach(el => {
+                //     var classSurface=el;
+                //     console.log(`classSurface: ${ classSurface.classList}`);
+
+                //     classSurface_childs=el.childNodes;
+                //     console.log(`classSurface_childs數量: ${classSurface_childs.length}`);
+                //     classSurface_childs.forEach(elem=>{
+                //         if(elem.nodeName=="#text"&&!/\s/.test(elem.nodeValue)){
+                //             classSurface.removeChild(elem);
+                //         }
+                //         console.log(`classSurface_childs數量調整後: ${classSurface_childs.length}`);
+                //     })
+                // })
+                // console.log("surface 子孫數量: " + classSurface_childs.length);
+                // classSurface_childs.forEach(elem => {
+                //     elem.style.pointerEvents = "auto";
+                // })
+                //所有drop區內圖片恢復不可以穿透的狀態
+                // droped_img.forEach(el => {
+                //     el.style.pointerEvents = "auto";
+                // })
+                // console.log(`droped_img.length: ${droped_img.length}`);
+                // for (let i = 0; i < droped_img.length; i++) {
+                //     console.log(`droped_img.alarm: ${i}`);
+                //     droped_img[i].style.pointerEvents = "auto";
+                // }
+            })
+        })
+
+        //確認是因為動態新增元素導致無法正常監聽，改用父層監聽觸發子層監聽
+        //可能是3D導致無法正確確認選取狀態，但仍會選取
+        //(觀察到function log無回應)
+        //造成getData給的資料是空值
+        //故目前改用 getData 空值與否判斷拖曳物件的原生位置
+        //給 "在地人" 的拖曳物件初始狀態
+        // var obj;
+        // droped_img.forEach(elem => {
+        //     elem.addEventListener("dragstart", function dragStart_droped(e) {
+        //         // e.preventDefault();
+        //         console.log(`e.target.classList: ${e.target.classList}`);
+        //         //設定要傳送到drop方的訊息
+        //         // e.dataTransfer.setData("image/jpeg", e.target.src);
+        //         e.dataTransfer.setData("image/jpeg", "");
+        //         e.dataTransfer.setData("text", "onSurface");
+        //         // e.dataTransfer.setData("obj", e.target);
+        //         obj = e.target;
+        //         e.dataTransfer.setData("offsetx", e.offsetX);
+        //         e.dataTransfer.setData("offsety", e.offsetY);
+        //     })
+        // })
+        // const a1=document.querySelector("#a1");
+        // console.log(a1);
+
+        // a1.addEventListener("click",()=>{
+        //     alert("heyyyyyyy");
+        // })
+        // var obj;
+        // a1.addEventListener("dragstart", function dragStart_droped(e) {
+        //         // e.preventDefault();
+        //         console.log(`e.target.classList: ${e.target.id}`);
+        //         //設定要傳送到drop方的訊息
+        //         // e.dataTransfer.setData("image/jpeg", e.target.src);
+        //         e.dataTransfer.setData("image/jpeg", "");
+        //         e.dataTransfer.setData("text", "onSurface");
+        //         // e.dataTransfer.setData("obj", this);
+        //         obj=this;
+        //         e.dataTransfer.setData("offsetx", e.offsetX);
+        //         e.dataTransfer.setData("offsety", e.offsetY);
+        //     })
+
+
+        //從圖片區降落到箱子區的drop事件
+        //要分成 "遠方來的客人" 和 "在地旅行的人"
+        //"遠方的客人"只要新生成一個child在這片土地
+        //"在地旅行的人"只要移動它的位置
+        var drop_count = 1;
+        console.log(`drop_count: ${drop_count}`);
+
+        function dropped(e) {
+            e.preventDefault();
+            // console.log(`e.dataTransfer.getData('image/jpeg'): ${e.dataTransfer.getData('image/jpeg')}`);
+            // console.log(`e.target: ${e.target.classList}`);
+            // console.log(`drop_count: ${drop_count}`);
+            drop_count = drop_count + 1;//每次觸發drop就增加一次，讓新觸發物件的z-index更高
+            // console.log(`drop_count: ${drop_count}`);
+            //如果是有在地人的 class name 就會有 droped_img，那就給移動方法
+            if (e.dataTransfer.getData('text') == "onSurface") {
+                console.log(`droped_img`);
+                // let obj= e.dataTransfer.getData("obj");
+                // console.log(`obj: ${obj}`);
+                //接收來自dragstart的座標訊息
+                let mouseOffset = { x: 0, y: 0 };
+                mouseOffset.x = e.dataTransfer.getData("offsetx");
+                mouseOffset.y = e.dataTransfer.getData("offsety");
+                //因為使用穿透屬性，所以座標定位不用迴避圖片了
+                mouseNow = { x: 0, y: 0 };
+                mouseNow.x = e.offsetX;
+                mouseNow.y = e.offsetY;
+                //接收來自setData的資料，設定新座標
+                // let srcItem= e.dataTransfer.getData("srcItem")
+                srcItem.style.zIndex = drop_count + 1;
+                srcItem.style.top = parseInt(mouseNow.y - mouseOffset.y) + "px";
+                srcItem.style.left = parseInt(mouseNow.x - mouseOffset.x) + "px";
+            } else {//如果是遠方的客人，就新生成一個子元素在目標區
+                //接收來自dragstart的座標訊息
+                let mouseOffset = { x: 0, y: 0 };
+                mouseOffset.x = e.dataTransfer.getData("offsetx");
+                mouseOffset.y = e.dataTransfer.getData("offsety");
+                //因為使用穿透屬性，所以座標定位不用迴避圖片了
+                mouseNow = { x: 0, y: 0 };
+                mouseNow.x = e.offsetX;
+                mouseNow.y = e.offsetY;
+                //創造新元素
+                var img = document.createElement('img');
+                img.src = e.dataTransfer.getData('image/jpeg');
+                img.style.width = '50px';
+                img.style.position = "absolute";
+                img.style.top = parseInt(mouseNow.y - mouseOffset.y) + "px";
+                img.style.left = parseInt(mouseNow.x - mouseOffset.x) + "px";
+                img.classList.add("droped_img");
+                img.style.zIndex = drop_count;
+                img.id = "a" + drop_count;
+                // img.style.pointerEvents = "none"; //可以被穿透，讓後面的圖可以順利覆蓋
+                img.style.transform = "translateX(0px) translateY(0px) rotate(0deg) scale(1)";
+                console.log(`e.target.classList: ${e.target.classList}`);
+                arrDropedImg.push(img);//做一個陣列把動態添加元素的資料先存起來，之後統一操作
+                // console.log(`arrDropedImg[]: ${arrDropedImg}`);
+                // console.log(`arrDropedImg.length: ${arrDropedImg.length}`);
+                this.appendChild(img);
+                //恢復透明度
+                e.target.style.opacity = "1";
+            }
+        }
+
+
+        //dropedImgCtrl
+        function dropedCtrl(e) {
+            switch (this.id) {
+                case "btn_big":
+                    arrDropedImg.forEach(el => {
+                        if (el.classList.contains("select")) {
+                            console.log("to be bigger");
+                            let arr = el.style.transform.split(" ");
+                            //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                            let newScale = parseFloat(arr[3].replace("scale(", "").replace(")", "")) + 0.5;
+                            console.log("arr: " + arr);
+                            console.log("arr[3]: " + arr[3]);
+                            console.log(parseFloat(arr[3].replace("scale(", "").replace(")", "")));
+                            console.log("newScale: " + newScale);
+                            arr[3] = "scale(" + newScale + ")";
+                            el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                        }
+                    })
+                    break;
+                case "btn_small":
+                    arrDropedImg.forEach(el => {
+                        if (el.classList.contains("select")) {
+                            console.log("to be smaller");
+                            let arr = el.style.transform.split(" ");
+                            //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                            let newScale = parseFloat(arr[3].replace("scale(", "").replace(")", "")) - 0.5;
+                            if (newScale < 0.1) newScale = 0.1;
+                            console.log("arr: " + arr);
+                            console.log("arr[3]: " + arr[3]);
+                            console.log(parseFloat(arr[3].replace("scale(", "").replace(")", "")));
+                            console.log("newScale: " + newScale);
+                            arr[3] = "scale(" + newScale + ")";
+                            el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                        }
+                    })
+                    break;
+                case "btn_clk":
+                    arrDropedImg.forEach(el => {
+                        if (el.classList.contains("select")) {
+                            console.log("clk rotate");
+                            let arr = el.style.transform.split(" ");
+                            //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                            let newAngel = parseInt(arr[2].replace("rotate(", "").replace("deg)", "")) + 20;
+                            console.log("arr: " + arr);
+                            console.log("arr[3]: " + arr[2]);
+                            console.log(parseInt(arr[2].replace("rotate(", "").replace("deg)", "")));
+                            console.log("newAngel: " + newAngel);
+                            arr[2] = "rotate(" + newAngel + "deg)";
+                            el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                        }
+                    })
+                    break;
+                case "btn_unclk":
+                    arrDropedImg.forEach(el => {
+                        if (el.classList.contains("select")) {
+                            console.log("unclk rotate");
+                            let arr = el.style.transform.split(" ");
+                            //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                            let newAngel = parseInt(arr[2].replace("rotate(", "").replace("deg)", "")) - 20;
+                            console.log("arr: " + arr);
+                            console.log("arr[2]: " + arr[2]);
+                            console.log(parseInt(arr[2].replace("rotate(", "").replace("deg)", "")));
+                            console.log("newAngel: " + newAngel);
+                            arr[2] = "rotate(" + newAngel + "deg)";
+                            el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                        }
+                    })
+                    break;
+                case "btn_del":
+                    arrDropedImg.forEach(el => {
+                        if (el.classList.contains("select")) {
+                            // el.parent
+                            console.log("刪除前 " + arrDropedImg);
+                            console.log(`el.parent: ${el.parentNode}`);
+                            el.parentNode.removeChild(el);
+                            console.log("刪除後 " + arrDropedImg);
+                            //陣列內東西還在，但html確實移除該元素
+                        } else { }//沒事，不想讓瀏覽器跳錯誤而已
+                    })
+                    break;
+            }
+        }
+
+
+        //轉轉箱子功能鈕
+        //缺陷:style.transform是抓 css inline style的值，所以必須給箱子inline style的初始值 
+        function boxRotate(e) {
+            console.log(`this.id: ${this.id}`);
+            switch (this.id) {
+                case "btn_front":
+                    boxBases.forEach(element => {
+                        element.style.transform = "rotateX(0deg) rotateY(0deg) rotateZ(0deg)";
+                    });
+                    break;
+                case "btn_back":
+                    boxBases.forEach(element => {
+                        element.style.transform = "rotateX(0deg) rotateY(180deg) rotateZ(0deg)";
+                    });
+                    break;
+                case "btn_top":
+                    boxBases.forEach(element => {
+                        element.style.transform = "rotateX(-90deg) rotateY(0deg) rotateZ(0deg)";
+                    });
+                    break;
+                case "btn_bottom":
+                    boxBases.forEach(element => {
+                        element.style.transform = "rotateX(90deg) rotateY(0deg) rotateZ(0deg)";
+                    });
+                    break;
+                case "btn_left":
+                    boxBases.forEach(element => {
+                        element.style.transform = "rotateX(0deg) rotateY(90deg) rotateZ(0deg)";
+                    });
+                    break;
+                case "btn_right":
+                    boxBases.forEach(element => {
+                        element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+                    });
+                    break;
+                case "rotateX":
+                    boxBases.forEach(element => {
+                        // element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+                        console.log("element.style.transform:" + element.style.transform);
+                        let arr = element.style.transform.split(" ");
+                        console.log(`arr: ${arr}`);
+                        let newAngelX = parseInt(arr[0].replace("rotateX(", "").replace("deg)", "")) + 10;
+                        arr[0] = "rotateX(" + newAngelX + "deg)";
+                        console.log(arr[0]);
+                        element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
+                    });
+                    break;
+                case "rotateY":
+                    boxBases.forEach(element => {
+                        // element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+                        console.log("element.style.transform:" + element.style.transform);
+                        let arr = element.style.transform.split(" ");
+                        console.log(`arr: ${arr}`);
+                        let newAngelY = parseInt(arr[1].replace("rotateY(", "").replace("deg)", "")) + 10;
+                        arr[1] = "rotateY(" + newAngelY + "deg)";
+                        console.log(arr[1]);
+                        element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
+                    });
+                    break;
+                case "rotateZ":
+                    boxBases.forEach(element => {
+                        // element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+                        console.log("element.style.transform:" + element.style.transform);
+                        let arr = element.style.transform.split(" ");
+                        console.log(`arr: ${arr}`);
+                        let newAngelZ = parseInt(arr[2].replace("rotateZ(", "").replace("deg)", "")) + 10;
+                        arr[2] = "rotateZ(" + newAngelZ + "deg)";
+                        console.log(arr[2]);
+                        element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
+                    });
+                    break;
+                case "show":
+                    boxBases.forEach(element => {
+                        element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(0deg)";
+                    });
+                    //先把蓋子蓋起來
+                    {
+                        let arr = cover_out.style.transform.split(" ");
+                        console.log(`arr: ${arr}`);
+                        cover_out.style.transform = "translate3d(0, 75px, -150px) rotateX(90deg)";
+                        cover_in.style.transform = "translate3d(0, 75px, -150px) rotateX(90deg) rotateY(180deg)";
+                    }
+
+                    //延遲一段時間後...TADA~蓋子打開~
+                    setTimeout(e => {
+                        cover_out.style.transform = "translate3d(0, 75px, -150px) rotateX(200deg)";
+                        cover_in.style.transform = "translate3d(0, 75px, -150px) rotateX(200deg) rotateY(180deg)";
+                    }, 1000);
+                    //再延遲一下...燈燈~電燈假發光~
+                    setTimeout(e => {
+                        console.log(lights);
+
+                        lights.forEach(element => {
+                            element.classList.add("showLight");
+                        })
+                    }, 1000)
+
+                    //上蓋收納下蓋打開測試
+                    //上蓋初始值要打開
+                    cover_out_12.style.transform = "translate3d(0, 50px, -100px) rotateX(200deg)";
+                    cover_in_12.style.transform = "translate3d(0, 50px, -100px) rotateX(200deg) rotateY(180deg)";
+                    //下蓋初始關起來
+                    cover_dl_12.style.transform = "translate3d(-200px, 150px, 0px) rotateY(-90deg) rotateX(-90deg) ";
+                    cover_dr_12.style.transform = "translate3d(200px, 150px, 0px)  rotateY(90deg) rotateX(-90deg)";
+                    //box_12姿態固定
+                    box_12.style.transform = "rotateX(-30deg) rotateY(30deg) rotateZ(0deg)";
+                    setTimeout(e => {
+                        box_12.style.transform = "rotateX(-30deg) rotateY(0deg) rotateZ(0deg)";
+                    }, 400)
+
+                    //延遲....上蓋關起來
+                    setTimeout(e => {
+                        cover_out_12.style.transform = "translate3d(0, 50px, -100px) rotateX(90deg)";
+                        cover_in_12.style.transform = "translate3d(0, 50px, -100px) rotateX(90deg) rotateY(180deg)";
+                    }, 1000);
+                    //延遲...箱子抬起來
+                    setTimeout(e => {
+                        box_12.style.transform = "rotateX(20deg) rotateY(0deg) rotateZ(0deg)";
+                    }, 1500)
+                    //延遲...下蓋兩片打開
+                    setTimeout(e => {
+                        cover_dl_12.style.transform = "translate3d(-200px, 150px, 0px) rotateY(-90deg) rotateX(30deg) ";
+                        cover_dr_12.style.transform = "translate3d(200px, 150px, 0px)  rotateY(90deg) rotateX(30deg)";
+                    }, 1700);
+
+                    break;
+            }
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /////////////////////////// function 區 /////////////////////////////
+
+        //驗證回傳值確實是陣列
+        console.log(`cssTest: ${cssGet("#box_12", "transform")}`); //每個.boxBase的transform屬性值，我全都要 
+        console.log(`cssTest type: ${typeof (cssGet("#box_12", "transform")[0])}`);//檢查 陣列內 值的型別為字串
+        console.log(`cssTest type arr: ${Object.prototype.toString.call(cssGet("#box_12", "transform"))}`);//檢查回傳值確實是陣列型態
+        // cssGet(".boxBase","transform");
+
+        //抓css檔內樣式
+        //getPropertyValue不支援駝峰寫法=>表示不管大小寫~
+        //原句:window.getComputedStyle(element, null).getPropertyValue("float");
+        //不抓偽類 ex: var result = cssGet(".class","width");
+        //抓偽類 ex: var result = cssGet(".class","width",":after");
+        //回傳值是一個陣列!!!!
+        //transform會得到矩陣，不是 translate / rotate 之類的
+        function cssGet(element, property = "width-height", pseudo = null) {
+            let el = document.querySelectorAll(element);
+            var arrData = [];
+            el.forEach(item => {
+                let data = window.getComputedStyle(item, pseudo).getPropertyValue(property);
+                arrData.push(data);
+            })
+            return arrData;
+        }
+    </script>
+
+</body>
+
+</html>

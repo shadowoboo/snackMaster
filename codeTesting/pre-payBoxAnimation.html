@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .infoBox{
+            width: 750px;
+            height: 1200px;
+            position: relative;
+        }
+        .infoCard{
+            border: 4px solid #ddd;
+            position: absolute;
+            background-color: #fff;
+        }
+        #infoCard1{
+            width: 200px;
+            height: 200px;
+            transform: rotate(-10deg);
+            z-index: 3;
+        }
+        #infoCard2{
+            width: 400px;
+            height: 400px;
+            transform: rotate(5deg);
+            z-index: 2;
+        }
+        #infoCard3{
+            width: 600px;
+            height: 600px;
+            z-index: 1;
+        }
+        .fade_up{
+            animation: fade_up 1s;
+        }
+        @keyframes fade_up{
+            from{
+                transform: translateY(0px);
+                opacity: 1;
+            };
+            to{
+                transform: translateY(-110%);
+                /* opacity: 0; */
+            };
+        }
+        .box{
+            width: 750px;
+            height: 650px;
+            position: relative;
+        }
+        .card{
+            width: 230px;
+            height: 350px;
+            background-color: salmon;
+            float: left;
+            margin: 10px;
+            transition: 1s;
+        }
+        .clearfix{
+           content: "";
+           clear: both;
+        }
+        #card1{
+            transform-origin: left top;
+        }
+        #card2{
+            transform-origin: center top;
+        }
+        #card3{
+            transform-origin: right top;
+        }
+        #card4{
+            transform-origin: left bottom;
+        }
+        #card5{
+            transform-origin: center bottom;
+        }
+        #card6{
+            transform-origin: right bottom;
+        }
+        .miniBox{
+            height: 400px;
+        }
+        .boxImg{
+            width: 100px;
+            position: absolute;
+                opacity: 0;
+        }
+        img{
+            width: 100%;
+        }
+        #boxImg1{
+            top: 200px;
+            animation-delay: 0.1s;
+        }
+        #boxImg2{
+            top: 200px;
+            left: 90px;
+            animation-delay: 0.25s;
+        }
+        #boxImg3{
+            top: 170px;
+            left: 40px;
+            animation-delay: 0.35s;
+        }
+        .fall{
+            animation: fall 1s forwards;
+        }
+        @keyframes fall{
+            from{
+                transform: translateY(-300%);
+            }
+            to{
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="miniBox">
+        <h2>something some else</h2>
+    </div>
+    <div class="infoBox">
+        <!-- <div class="infoCard" id="infoCard1"></div> -->
+        <div class="infoCard" id="infoCard2">
+            <div class="boxImg fall" id="boxImg1"><img src="box.png" alt=""></div>
+            <div class="boxImg fall" id="boxImg2"><img src="box.png" alt=""></div>
+            <div class="boxImg fall" id="boxImg3"><img src="box.png" alt=""></div>
+        </div>
+        <div class="infoCard" id="infoCard3"></div>
+    </div>
+    <div class="box">
+
+        <div class="card" id="card1"></div>
+        <div class="card" id="card2"></div>
+        <div class="card" id="card3"></div>
+        <div class="card" id="card4"></div>
+        <div class="card" id="card5"></div>
+        <div class="card" id="card6"></div>
+        <div class="clearfix"></div>
+    </div>
+
+    <script>
+        
+        function cardSlide(){
+            
+        }
+
+        //被點選的卡片會放大，其他的會刷淡
+        //因為點擊其他卡片的時候，上一個被點擊的卡片放大效果要取消
+        //所以有卡片被點擊時就一律將所有卡片先恢復成正常大小及透明度
+        //只有被點擊的卡片會放大及正常透明度
+        function show(e){
+            for (var i = 0; i < cards.length; i++) {
+                cards[i].style.transform = 'scale(1)';
+                cards[i].style.opacity = '0.6';
+            }
+            e.target.style.transform = 'scale(1.5)';
+            e.target.style.opacity = '1';
+
+        }
+        function doFirst() {
+
+            //取得商品卡片的物件關聯並設定點擊事件處理器
+            cards = document.getElementsByClassName('card');
+            for (var i = 0; i < cards.length; i++) {
+                cards[i].addEventListener('click', show);
+            }
+        }
+        window.addEventListener('load', doFirst)
+    </script>
+</body>
+</html>

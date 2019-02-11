@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/testBtn.css">
+    <style>
+        .box{
+            font-size: 0;
+        }
+        .boxChild1, .boxChild2, .boxChild3, .boxChild4, .boxChild5, .boxChild6{
+            width: 100px;
+            display: inline-block;
+        }
+        img{
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"><div class="boxChild1"><img src="../images/blair/chips.png" alt=""></div><div class="boxChild2"><img src="../images/blair/candy.png" alt=""></div><div class="boxChild3"><img src="../images/blair/chocolate.png" alt=""></div><div class="boxChild4"><img src="../images/blair/chocolate.png" alt=""></div><div class="boxChild5"><img src="../images/blair/cookie.png" alt=""></div><div class="boxChild6"><img src="../images/blair/cookie.png" alt=""></div></div>
+    <br>
+    chocolate
+    <div class="numInput">
+        <span class="numMinus">-</span><input id="chocolate" type="number" value="2"><span class="numPlus">+</span>
+    </div>
+    cookie
+    <div class="numInput">
+        <span class="numMinus">-</span><input id="cookie" type="number" value="2"><span class="numPlus">+</span>
+    </div>
+    candy
+    <div class="numInput">
+        <span class="numMinus">-</span><input id="candy"type="number" value="1"><span class="numPlus">+</span>
+    </div>
+    chips
+    <div class="numInput">
+        <span class="numMinus">-</span><input id="chips" type="number" value="1"><span class="numPlus">+</span>
+    </div>
+    <h3 id="msg" ></h3>
+   
+   <script>
+       function showKind(e, kind, num){
+            var chocolate = parseInt(document.getElementById('chocolate').value);
+            var cookie = parseInt(document.getElementById('cookie').value);
+            var candy = parseInt(document.getElementById('candy').value);
+            var chips = parseInt(document.getElementById('chips').value);
+            var total = chocolate + cookie + candy + chips;
+            var msg = document.getElementById('msg');
+            var box = document.getElementById('box');
+            var childIndex = box.childNodes.length;
+            var kindItem = document.getElementById(kind);
+
+
+            if(num == 1){
+                if(total == 6){
+                    msg.innerText = 'too much~';
+                }else{
+                    kindItem.value = parseInt(kindItem.value) + parseInt(num);
+                    msg.innerText = '';
+                    var arr = [];
+                    var nums = [1, 2, 3, 4, 5, 6];
+                    for (var i = 0; i < childIndex; i++) {
+                        arr.push( parseInt(box.childNodes[i].className.replace('boxChild', '')) );
+                    }
+                    console.log(arr);
+                    for (var j = 0; j < nums.length; j++) {
+                        if (arr.indexOf(nums[j]) == -1) {
+                            var missing = nums[j];
+                            break;
+                        }
+                    }
+                    console.log(missing);
+                    var newSnack = document.createElement('div');
+                    var newImg = document.createElement('img');
+                    newImg.src = '../images/blair/' + kind + '.png';
+                    newSnack.appendChild(newImg);
+                    newSnack.classList.add('boxChild' + missing);
+                    box.appendChild(newSnack);
+                }
+            }else if(num == -1){
+                if(total == 0){
+                    msg.innerText = 'too less~';
+                }else if(parseInt(kindItem.value) == 0){
+                    parseInt(kindItem.value) == 0;
+                }else{
+                    kindItem.value = parseInt(kindItem.value) + parseInt(num);
+                    msg.innerText = '';
+                    for (var k = 0; k < childIndex; k++) {
+                        var str = box.childNodes[k].childNodes[0].src;
+                        if (str.includes(kind)) {
+                            var dead = k;
+                            break;
+                        }
+                    }
+                    box.removeChild(box.childNodes[dead]);
+                }
+            }
+
+           
+           
+       }
+       function init(){
+            var minusBtns = document.getElementsByClassName('numMinus');
+            var plusBtns = document.getElementsByClassName('numPlus');
+            for(var i =0; i < minusBtns.length; i++){
+                minusBtns[i].addEventListener('click', function (e){
+                    var id = e.target.parentNode.childNodes[2].id;
+                    showKind(e, id, -1);
+                });
+                plusBtns[i].addEventListener('click', function (e){
+                    var id = e.target.parentNode.childNodes[2].id;
+                    showKind(e, id, 1);
+                });   
+            }
+           var chocolate = parseInt(document.getElementById('chocolate').value);
+           var cookie = parseInt(document.getElementById('cookie').value);
+           var candy = parseInt(document.getElementById('candy').value);
+           var chips = parseInt(document.getElementById('chips').value);
+           var total = chocolate + cookie + candy + chips;
+           console.log(total);
+       }
+       window.addEventListener('load', init);
+   </script>
+
+</body>
+</html>

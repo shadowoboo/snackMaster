@@ -1,0 +1,910 @@
+@import 'reset';
+@import 'common';
+$sm: 576px;
+
+body{
+    background-color: #fcde91;
+}
+h1,h2,h3,h4,p,span{
+   color: $gray;
+}
+.clearfix{
+    content: "";
+    clear: both;
+}
+.preOrder{
+    margin-top: 120px;
+    @media only screen and (min-width: $sm) {
+        margin-top: 150px;
+    }
+    .wrap{
+        width: 100%;
+        max-width: 1200px; 
+        margin: auto;
+        margin-top: 20px;
+        text-align: center;
+        @media only screen and (max-width: $sm) {
+           padding: 10px;
+           margin-top: 30px;
+        }
+        img{
+            width: 100%;
+        }
+        .title{
+            width: 260px;
+            margin: auto;
+            text-align: center;
+            background-image: url(../images/blair/title.png);
+            background-repeat: no-repeat;
+            h2{
+                line-height: 163px;
+                color: $blue;
+            }
+        }
+        .month{
+            @media only screen and (max-width: 390px) {
+                width: 70px;
+                height: 70px;
+                font-size: 16px;
+            }
+        }
+        .cards{
+            width: 100%;
+            margin-top: 25px;
+            margin: auto;
+            padding: 24px 0 40px 0;
+            @media only screen and (max-width: $moblie) {
+                padding: 24px 0;
+            }
+            text-align: center;
+            background-color: rgba(#fff, 0.85);
+            border-radius: 100px;
+        }
+        .month{
+            margin: 10px;
+        }
+        .cardContainer{
+            font-size: 0;
+            .card{
+                padding: 14px ;
+                display: inline-block;
+                border: 16px solid $coral;
+                border-radius: 32px;
+                width: 330px;
+                margin: 10px 16px;
+                color: $gray;
+                @media only screen and (max-width: $sm) {
+                    width: 80%;
+                }
+                .cardImg{
+                    width: 60%;
+                    margin: auto;
+                    margin-bottom: 10px;
+                }
+                .review{
+                    padding:4px;
+                    margin-top: 8px;
+                }
+                .profile{
+                    width: 25%;
+                    border-radius: 50%;
+                    overflow: hidden;
+                }
+                .profile, .reviewLeft{
+                    display: inline-block;
+                    font-size: 0;
+                    vertical-align: middle;
+                }
+                .reviewLeft{
+                    width: 58%;
+                }
+                .account{
+                    margin: 4px 0;
+                }
+                .star{
+                    width: 80%;
+                }
+                .reviewWord{
+                    margin: 10px 0 0 0;
+                }
+            }
+        }
+        .steps{
+            text-align: center;
+            .lineContainer{
+                display: none;
+            }
+            @media only screen and (min-width: $moblie) {
+                .lineContainer{
+                    display: block;
+                    width: 25%; 
+                    float: left;
+                    position: relative;
+                    transform: translateY(20px);
+                    &::after{
+                        content: '';
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        background-color: #fcde91;
+                        transform-origin: right center;
+                    }
+                }
+                #lineContainer1{
+                    margin-left: 21.875%;
+                    &::after{
+                        animation: spread 9s 3s infinite;
+                    }
+                }
+                #lineContainer2{
+                    margin-left: 6.25%;
+                    &::after{
+                        animation: spread 9s 6s infinite;
+                    }
+                }
+                @keyframes spread{
+                    0%{transform: scaleX(1)}
+                    11.111111%{transform: scaleX(0)}
+                    100%{transform: scaleX(0)}
+                }
+            } 
+            .orderStep{
+                width: 80%;
+                margin: 26px 10%;
+                @media only screen and (min-width: $moblie) {
+                    margin: 10px 10%;
+                }
+                float: left;
+                position: relative;
+                #step1_2, #step1_3, #step1_4, #step2_2, #step2_3, #step2_4, #step3_2, #step3_3{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    transition: 0.8s;
+                }
+                #step1_3{
+                    opacity: 0;
+                }
+                #step1_4{
+                    opacity: 0;
+                }
+                #step2_2{
+                    opacity: 0;
+                }
+                #step2_3{
+                    opacity: 0;
+                }
+                #step3_2{
+                    opacity: 0;
+                }
+                #step3_3{
+                    opacity: 0;
+                }
+                h3{
+                    color: $gray;
+                    span{
+                        font-size: 34px;
+                    }
+                }
+                h4{
+                    color: $blue;
+                }
+            }
+            @media only screen and (max-width: $sm) {
+                #step1_2, #step1_3, #step1_4, #step2_2, #step2_3, #step2_4, #step3_2, #step3_3{
+                    
+                    animation-direction: alternate;
+                }
+                #step1_2{
+                    animation: blink 3s infinite;
+                }
+                #step1_3{
+                    animation: blink 3s 1s infinite;
+                }
+                #step1_4{
+                    animation: blink 3s 2s infinite;
+                }
+                #step2_2{
+                    animation: blink 3s infinite;
+                }
+                #step2_3{
+                    animation: blink 3s 1s infinite;
+                }
+                #step3_2{
+                    animation: blink 3s infinite;
+                }
+                #step3_3{
+                    animation: blink 3s 1s infinite;
+                }
+                @keyframes blink{
+                    0%{opacity: 0;}
+                    33.333333%{opacity: 1;}
+                    100%{opacity: 1;}
+                }
+            }
+            @media only screen and (min-width: $sm) {
+                .orderStep{
+                    width: 25%;
+                    margin: 10px 0 10px 6.25%;
+                }
+                @keyframes blink{
+                    0%{opacity: 0;}
+                    11.111111%{opacity: 1;}
+                    100%{opacity: 1;}
+                } 
+                #step1_2{
+                    animation: blink 9s infinite;
+                }
+                #step1_3{
+                    animation: blink 9s 1s infinite;
+                }
+                #step1_4{
+                    animation: blink 9s 2s infinite;
+                }
+                #step2_2{
+                    animation: blink 9s 4s infinite;
+                }
+                #step2_3{
+                    animation: blink 9s 5s infinite;
+                }
+                #step3_2{
+                    animation: blink 9s 7s infinite;
+                }
+                #step3_3{
+                    animation: blink 9s 8s infinite;
+                } 
+            }
+        }
+        .orderCards{
+            position: relative;
+            margin-top: 60px;
+            @media only screen and (min-width: $sm) {
+                margin: auto;
+            }
+            @media only screen and (min-width: $moblie) {
+                margin-top: 100px;
+                margin-bottom: 120px;
+            }
+            @media only screen and (min-width: 992px) {
+                width: 90%;
+            }
+            .orderCard{
+                position: relative;
+                margin: auto;
+                border: 8px solid $coral;
+                background-color: #fff;
+                border-radius: 32px;
+                padding: 14px;
+                margin-top: 20px;
+                box-shadow: 3px 3px 4px #bbb;
+                h4{
+                    color: $blue;
+                }
+            }
+            #orderCard1{
+                width: 100%;
+                #buy1{
+                    display: none;
+                }
+                @media only screen and (min-width: $sm) {
+                    position: absolute;
+                    transform: rotate(-2deg);
+                    width: 80%;
+                    top: -10%;
+                    #buy1{
+                        display: inline-block;
+                    }
+                }
+                @media only screen and (min-width: $moblie){
+                    width: 650px;                    
+                }
+                p{
+                    margin-bottom: 14px;
+                }
+            }
+            .slideUp{
+                animation: slideUp 1s forwards;
+            }
+            @keyframes slideUp{
+                from{
+                    transform: rotate(1deg) translateY(-300%);
+                    opacity: 0;
+                }
+                to{
+                    transform: rotate(1deg) translateY(0);
+                    opacity: 1;
+                }
+            } 
+            .slideUp2{
+                animation: slideUp2 1s forwards;
+            }
+            @keyframes slideUp2{
+                from{
+                    transform: translateY(-300%);
+                    opacity: 0;
+                    z-index: -1;
+                }
+                to{
+                    transform: translateY(0);
+                    opacity: 1;
+                    z-index: 1;
+                }
+            } 
+            .slideUp3{
+                animation: slideUp3 1s forwards;
+            }
+            @keyframes slideUp3{
+                from{
+                    transform: rotate(1deg) translateY(0);
+                    opacity: 1;
+                }
+                to{
+                    transform: rotate(1deg) translateY(-300%);
+                    opacity: 0;
+                }
+            } 
+            .slideUp4{
+                animation: slideUp4 1s forwards;
+            }
+            @keyframes slideUp4{
+                from{
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+                to{
+                    transform: translateY(-300%);
+                    opacity: 0;
+                }
+            } 
+            #orderCard2{
+                #buy2{
+                    display: none;
+                }
+                @media only screen and (min-width: $sm) {
+                    opacity: 0;                    
+                    position: absolute;
+                    transform: rotate(1deg) translateY(-300%);
+                    #buy2{
+                        display: inline-block;
+                    }
+                }
+                #card2_back{
+                    display: none;
+                    @media only screen and (min-width: $sm) {
+                        display: block;
+                        position: absolute;
+                        top: 10px;
+                        left: 10px;
+                        color: $gray;
+                        font-size: 28px;
+                    }    
+                }
+                @media only screen and (min-width: 992px) {
+                    right: 2%;
+                    top: -3%;
+                }
+                @media only screen and (max-width: 560px) and (min-width: 375px){
+                    padding: 14px 0;
+                }
+                .monthBox{
+                    float: left;
+                    position: relative;
+                    margin-bottom: 14px;
+                    .boxImg{
+                        position: absolute;
+                        opacity: 0;
+                    }
+                    @media only screen and (max-width: 374px){
+                        .boxImg{
+                            display: none;
+                        }
+                        width: 30%;
+                        margin-left: 2.5%;
+                    }
+                    @media only screen and (max-width: $sm) and (min-width: 375px) {
+                        .boxImg{
+                            animation: fall 3s infinite;
+                        }
+                        .boxImg1{
+                            animation-delay: 0.1s ;
+                        }
+                        .boxImg2{
+                            animation-delay: 0.25s ;
+                        }
+                        .boxImg3{
+                            animation-delay: 0.35s ;
+                        }
+                    }
+                    @media only screen and (max-width: 579px) and (min-width: 375px){
+                        width: 100px;
+                        margin-left: calc((100% - 300px) / 4);
+                        height: 200px;
+                        .boxImg{
+                            width: 45px;
+                        }
+                        .boxImg1{
+                            top: 155px;
+                            left: 5px;
+                            animation-delay: 0.1s ;
+                        }
+                        .boxImg2{
+                            top: 155px;
+                            left: 50px;
+                            animation-delay: 0.25s;
+                        }
+                        .boxImg3{
+                            top: 145px;
+                            left: 27.5px;
+                            animation-delay: 0.35s;
+                        }
+                        .boxImgs2{
+                            transform: translateY(-25px);
+                        }
+                        .boxImgs3{
+                            transform: translateY(-50px);
+                        }
+                        .boxImgs4{
+                            transform: translateY(-75px);
+                        }
+
+                    }
+                    @media only screen and (max-width: 767px) and (min-width: 580px){
+                        width: 160px;
+                        margin-left: calc((100% - 480px) / 4);
+                        height: 300px;
+                        .boxImg{
+                            width: 75px;
+                        }
+                        .boxImg1{
+                            top: 225px;
+                            left: 5px;
+                            animation-delay: 0.1s ;
+                        }
+                        .boxImg2{
+                            top: 225px;
+                            left: 80px;
+                            animation-delay: 0.25s;
+                        }
+                        .boxImg3{
+                            top: 202px;
+                            left: 42.5px;
+                            animation-delay: 0.35s;
+                        }
+                        .boxImgs2{
+                            transform: translateY(-40px);
+                        }
+                        .boxImgs3{
+                            transform: translateY(-80px);
+                        }
+                        .boxImgs4{
+                            transform: translateY(-120px);
+                        }
+                    }
+                    @media only screen and (min-width: $moblie){
+                        width: 220px;
+                        height: 400px;
+                        .boxImg{
+                            width: 100px;
+                        }
+                        .boxImg1{
+                            top: 300px;
+                            left: 10px;
+                            // animation-delay: 0.1s ;
+                        }
+                        .boxImg2{
+                            top: 300px;
+                            left: 110px;
+                            // animation-delay: 0.25s;
+                        }
+                        .boxImg3{
+                            top: 270px;
+                            left: 60px;
+                            // animation-delay: 0.35s;
+                        }
+                        .boxImgs2{
+                            transform: translateY(-60px);
+                        }
+                        .boxImgs3{
+                            transform: translateY(-120px);
+                        }
+                        .boxImgs4{
+                            transform: translateY(-180px);
+                        }
+                    }
+                    .fall{
+                        animation: fall 3s infinite;
+                    }
+                    @keyframes fall{
+                        0%{
+                            transform: translateY(-400%);
+                            opacity: 0;
+                        }
+                        20%{
+                            transform: translateY(0);
+                            opacity: 1;
+                        }
+                        100%{
+                            transform: translateY(0);
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+            #orderCard3{
+                padding: 20px 10px;
+                position: relative;
+                @media only screen and (min-width: $sm) {
+                    opacity: 0;
+                    z-index: -1;
+                }
+                #card3_back{
+                    display: none;
+                    @media only screen and (min-width: $sm) {
+                        display: block;
+                        position: absolute;
+                        top: 10px;
+                        left: 10px;
+                        color: $gray;
+                        font-size: 28px;
+                    }
+                }
+                #card3_1, #card3_2{
+                    @media only screen and (min-width: $moblie){
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                }
+                font-size: 0;
+                #card3_1{
+                    @media only screen and (min-width: $moblie){
+                        width: 40%;
+                    }
+                }
+                .card3_img{
+                    position: relative;
+                    #box_bottom{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        z-index: 7;
+                    }
+                    .card3_box{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%; 
+                        width: 100%;  
+                        @mixin boxchild ($name, $top, $left, $deg, $z){
+                            .#{$name}{
+                                position: absolute;
+                                width: 22%;
+                                top: $top;
+                                left: $left;
+                                transform: rotate($deg);
+                                z-index: $z;
+                                animation: floating 1.5s infinite;
+                                animation-direction: alternate;
+                            }
+                        }
+                        @include boxchild('boxChild1', 31.8%, 17.2%, 5deg, 1);
+                        @include boxchild('boxChild2', 27.2%, 41.38%, 15deg, 1);
+                        @include boxchild('boxChild3', 31.8%, 61.52%, -10deg, 1);
+                        @include boxchild('boxChild4', 45.45%, 20.69%, 11deg, 2);
+                        @include boxchild('boxChild5', 45.45%, 41.38%, -15deg, 2);
+                        @include boxchild('boxChild6', 45.45%, 60.34%, 11deg, 2);
+                        @keyframes floating{
+                            from{ transform: translateY(-10px);};
+                            to{ transform: translateY(10px); }
+                        }
+                    }
+                }   
+                #card3_2{
+                    @media only screen and (min-width: $moblie){
+                        width: 60%;
+                    }
+                }
+                #h4_1{
+                    margin: 20px 0 18px 0;
+                }
+                #h4_2{
+                    margin-top: 20px;
+                }
+                input[type=radio]{
+                    display: none;
+                }
+                label{
+                    margin: 6px 10px;
+                    display: inline-block;
+                    @media only screen and (min-width: 500px){
+                        margin: 0 20px;
+                    }
+                }
+                form span{
+                    position: relative;
+                }
+                input[type=radio]:checked +span::after{
+                    content: '';
+                    width: 120%;
+                    height: 130%;
+                    position: absolute;
+                    top: -58%;
+                    left: -20%;
+                    border: 2px solid $blue;
+                    border-radius: 12px;
+                    padding: 6px;
+                }
+                .snackPanels{
+                    margin: 14px 0;
+                    .panel{
+                        width: 45%;
+                        margin-left: 3.333%;
+                        float: left;
+                        font-size: 0;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        @media only screen and (min-width: 375px) and (max-width: 424px) {
+                            width: 42%;
+                            margin-left: 5.333%;
+                        }
+                        @media only screen and (min-width: 425px) and (max-width: 599px) {
+                            width: 34%;
+                            margin-left: 10.666667%;
+                        }
+                        @media only screen and (min-width: 600px) and (max-width: 659px) {
+                            width: 44%;
+                            margin-left: 4%;
+                        }
+                        @media only screen and (min-width: 660px) {
+                            width: 142px;
+                            margin-left: calc(33.3333% - 94.66667px);
+                        }
+                        .grow{
+                            flex-grow: 1;
+                        }
+                        p{
+                            font-size: 18px;
+                            @media only screen and (min-width: $sm) {
+                                font-size: 22px;
+                            }
+                        }
+                        input[type=number]{
+                            line-height: 36px;
+                        }
+                    }
+                }
+                #msg{
+                    color: $coral;
+                    margin-bottom: 14px;
+                }
+                .cart{
+                    opacity: 1;
+                    margin-top: 18px;
+                }
+
+            }
+        }
+    }
+
+
+    .wrap{
+
+        .cards{
+            overflow: hidden;
+            background-color: transparent;
+        }
+    }
+    .snackCard{
+        margin: 0 auto;
+        position: relative;
+        width: 85%;
+        height: 400px;
+        @media only screen and (min-width: 375px) {
+            height: 380px;    
+        }
+        @media only screen and (min-width: 576px) {
+            height: 460px;    
+        }
+        perspective: 3000px;
+        margin-top: 70px;
+        margin-bottom: 30px;
+        @media only screen and (min-width: $moblie) {
+            width: 450px;
+            height: 450px;
+        }
+        .carousels{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            .carousel{
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 50%;
+                left: 50%;
+                padding: 8px;
+                text-align: center;
+                border-radius: 30px;
+                border: 8px solid $coral;
+                box-shadow: 3px 3px 4px #bbb;
+                overflow: hidden;
+                opacity: 1;
+                background-color: #fff;
+                .cardImg{
+                    width: 50%;
+                    margin-left: 25%;
+                }
+                .profile{
+                    width: 20%;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    display: inline-block;
+                    vertical-align: bottom;
+                }
+                .star{
+                    width: 128px;
+                }
+                .review{
+                    font-size:0; 
+                    margin-top: 10px;
+                }
+                .reviewLeft{
+                    display: inline-block;
+                    width: 80%;
+                    padding: 6px;
+                    border-radius: 10px;
+                    box-shadow: 3px 3px 10px #ccc;
+                    position: relative;
+                    img{
+                        vertical-align: unset;
+                    }
+                    &::before{
+                        position: absolute;
+                        content: '';
+                        display: block;
+                        border-style: solid;
+                        border-width: 22px 18px 0 18px;
+                        border-color: #fff transparent transparent transparent;
+                        position: absolute;
+                        bottom: 10px;
+                        left: -12px;
+                    }
+                }
+                @media only screen and (min-width: $moblie) {
+                    .profile{
+                        width: 16%;
+                    }
+                    .reviewLeft{
+                        width: 70%;
+                    }
+                }
+            }
+            .item1{
+                transform: translate(-50%, -50%) rotateY(0deg) translateZ(480px);
+            }
+            .item2{
+                transform: translate(-50%, -50%) rotateY(60deg) translateZ(480px)
+            }
+            .item3{
+                transform: translate(-50%, -50%) rotateY(120deg) translateZ(480px);
+            }
+            .item4{
+                transform: translate(-50%, -50%) rotateY(180deg) translateZ(480px)
+            }
+            .item5{
+                transform: translate(-50%, -50%) rotateY(240deg) translateZ(480px);
+            }
+            .item6{
+                transform: translate(-50%, -50%) rotateY(300deg) translateZ(480px)
+            }
+        }
+    }
+    .arrow{
+        margin-top: 60px;
+        font-size: 60px;
+        color: $coral;
+        i{
+            margin: 0 20px;
+        }
+    }
+
+}
+#bgChips{
+    display: none;
+    @media only screen and (min-width: 1200px) {
+        display: block;
+        transform: rotate(40deg);
+        max-width: 295px;
+        position: absolute;
+        // top: 2700px;
+        top: 2200px;
+        left: -120px;
+        z-index: -1;
+        opacity: 0.9;
+    }
+}
+#bgChips_2{
+    display: none;
+    @media only screen and (min-width: 1200px) {
+        display: block;
+        max-width: 190px;
+        position: absolute;
+        top: 1350px;
+        right: 0;
+        z-index: -1;
+        opacity: 0.9;
+    }
+}
+@for $i from 1 through 20 {
+    #bgChips#{$i} {
+        display: none;
+    }
+}
+@mixin chips ($name, $width, $top, $left, $deg){
+    ##{$name}{
+        display: block;
+        position: absolute;
+        max-width: $width;
+        top: $top;
+        left: $left;
+        transform: rotate($deg);
+        z-index: -2;
+        filter:drop-shadow(0px 0px 3px rgba(0,0,0,0.1)) ;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    @include chips('bgChips1', 60px, 2200px, 100px, 10deg);
+    @include chips('bgChips2', 80px, 2290px, 140px, 10deg);
+    @include chips('bgChips3', 44px, 2250px, 140px, 10deg);
+    @include chips('bgChips4', 74px, 2100px, 90px, 10deg);
+    @include chips('bgChips5', 45px, 2000px, 120px, 10deg);
+    @include chips('bgChips6', 68px, 1900px, 70px, 10deg);
+    @include chips('bgChips7', 68px, 1800px, 80px, 10deg);
+    @include chips('bgChips8', 68px, 1700px, 60px, 10deg);
+    @include chips('bgChips9', 68px, 1550px, 60px, 10deg);
+    @include chips('bgChips10', 68px, 1450px, 70px, 10deg);
+    // @include chips('bgChips1', 60px, 2700px, 100px, 10deg);
+    // @include chips('bgChips2', 80px, 2790px, 140px, 10deg);
+    // @include chips('bgChips3', 44px, 2750px, 140px, 10deg);
+    // @include chips('bgChips4', 74px, 2600px, 90px, 10deg);
+    // @include chips('bgChips5', 45px, 2500px, 120px, 10deg);
+    // @include chips('bgChips6', 68px, 2400px, 70px, 10deg);
+    // @include chips('bgChips7', 68px, 2300px, 80px, 10deg);
+    // @include chips('bgChips8', 68px, 2200px, 60px, 10deg);
+    // @include chips('bgChips9', 68px, 2050px, 60px, 10deg);
+    // @include chips('bgChips10', 68px, 1950px, 70px, 10deg);
+}
+@mixin chips ($name, $width, $top, $right, $deg){
+    ##{$name}{
+        display: block;
+        position: absolute;
+        max-width: $width;
+        top: $top;
+        right: $right;
+        transform: rotate($deg);
+        z-index: -2;
+        filter:drop-shadow(0px 0px 3px rgba(0,0,0,0.1)) ;
+    }
+}
+@media only screen and (min-width: 1200px) {
+    @include chips('bgChips11', 60px, 1380px, 70px, 10deg);
+    @include chips('bgChips12', 60px, 1450px, 110px, 10deg);
+    @include chips('bgChips13', 65px, 1250px, 40px, 40deg);
+    @include chips('bgChips14', 70px, 1150px, 30px, 40deg);
+    @include chips('bgChips15', 70px, 1000px, 40px, 40deg);
+    @include chips('bgChips16', 60px, 900px, 30px, 40deg);
+    @include chips('bgChips17', 55px, 800px, 20px, 40deg);
+    @include chips('bgChips18', 60px, 750px, 40px, 40deg);
+    @include chips('bgChips19', 65px, 620px, 30px, 40deg);
+    @include chips('bgChips20', 60px, 500px, 20px, 40deg);
+}

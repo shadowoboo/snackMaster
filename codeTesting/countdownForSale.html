@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <span id='day'></span>
+    <span id='hour'></span>
+    <span id='minute'></span>
+    <span id='second'></span>
+
+    <script>
+        function doFrist(){
+            //先呼叫一次呈現倒數的函數，不然一進畫面會是空白
+            countdown();
+            //設定計時器讓倒數函式countdown每秒被呼叫一次
+            setInterval(countdown, 1000);
+        }
+        function countdown(){
+            //取得現在的時間
+            var now = new Date();
+            //取得活動結束的時間(第一次專題先寫死而不是從資料庫撈資料)
+            var end = new Date(2019, 0, 15);
+            //算出目前時間到結束時間中間有多少秒            
+            var leftTime = end.getTime() - now.getTime();
+
+            //依序將毫秒轉換成幾天幾時幾分幾秒
+            var leftSecond = parseInt(leftTime / 1000);
+            var day = Math.floor(leftSecond / (24 * 60 * 60));
+            var hour = Math.floor((leftSecond - day * 24 * 60 * 60) / 3600);
+            var minute = Math.floor((leftSecond - day * 24 * 60 * 60 - hour * 3600) / 60);
+            var second = Math.floor(leftSecond - day * 24 * 60 * 60 - hour * 3600 - minute * 60);
+            document.getElementById('day').innerText = day + ':';
+            document.getElementById('hour').innerText = hour + ':';
+            document.getElementById('minute').innerText = minute + ':';
+            document.getElementById('second').innerText = second;
+        }
+        window.addEventListener('load', doFrist);
+    </script>
+</body>
+</html>

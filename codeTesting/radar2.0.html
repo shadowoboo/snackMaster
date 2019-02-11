@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 必須引用套件檔案 -->
+    <script src="Chart.js"></script>
+    <title>Document</title>
+    <style>
+        #box{
+            height: 600px;
+            width: 600px;
+            /* border: 3px solid salmon; */
+            position: relative;  
+            left: 60px;
+        }
+        .radarRange{
+            width: 240px;
+            opacity: 0;
+            position: absolute;
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        .radarRange::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            background: salmon;
+        }
+        #sour{
+            transform: rotate(90deg);
+            top: 67%;
+            left: 29%;
+        }
+        #sweet{
+            top: 48%;
+            left: 48%;
+        }
+        #spicy{
+            transform: rotate(180deg);
+            top: 48%;
+            left: 10%;
+        }
+        #good{
+            transform: rotate(-90deg);
+            top: 29%;
+            left: 29%;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <canvas id="radarCanvas"></canvas>
+        <!-- 因為不知道怎麼直接操控用套件生成的雷達圖...
+            所以建立四個對應的input range，絕對定位在正確的雷達圖四個軸上，並設為透明，讓使用者操控它-->
+        <!-- <input class="radarRange" id="sour" type="range" min="0" max="5" value="3">
+        <input class="radarRange" id="sweet" type="range" min="0" max="5" value="3">
+        <input class="radarRange" id="spicy" type="range" min="0" max="5" value="3">
+        <input class="radarRange" id="good" type="range" min="0" max="5" value="3"> -->
+    </div>
+    <script>
+        //建立一個圖表，內容就是follow套件chart.js的規則
+        function createRadar(){
+            var ctx = document.getElementById("radarCanvas").getContext('2d');
+            Chart.defaults.global.legend.display = false;
+            Chart.defaults.global.tooltips = false;
+            //改字體大小
+            Chart.defaults.global.defaultFontSize = 8;
+            //因為畫完一次圖表之後希望可以再變動，所以用變數代表每個項目的值
+            good = 3;
+            sweet = 3;
+            sour = 3;
+            spicy = 3;
+            radarOptions =
+                {
+                    scale:
+                    {
+                        ticks:
+                        {
+                            fontSize: 16,
+                            beginAtZero: true,
+                            maxTicksLimit: 7,
+                            min: 0,
+                            max: 5
+                        },
+                        pointLabels:
+                        {
+                            fontSize: 25,
+                            color: '#0044BB'
+                        },
+                        gridLines:
+                        {
+                            // color: '#009FCC'
+                        }
+                    },
+                    maintainAspectRatio: false
+                };
+            radarCanvas = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    //項目標籤的文字
+                    labels: ["Good", "Sweet", "Sour", "Spicy"],
+                    datasets: [{
+                        // label: '# of Votes',
+                        data: [good, sweet, sour, spicy],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                        ],
+                        borderWidth: 1,
+                        //端點的大小
+                        pointRadius: 6,
+                    }]
+                },
+                options: radarOptions
+            });
+        }
+        //取得input新的值並依此更新雷達圖
+        function updateRadar(e){
+            //得知被點擊或拖拉的input是哪一個口味的
+            var flavor = e.target.id;
+            //根據口味，把input新的值設定給正確的口味變數
+            switch(flavor){
+                case 'sour':
+                sour = e.target.value;
+                break;
+                case 'sweet':
+                sweet = e.target.value;
+                break;
+                case 'spicy':
+                spicy = e.target.value;
+                break;
+                case 'good':
+                good = e.target.value;
+                break;
+            }
+            //重新把口味變數設定給雷達圖
+            radarCanvas.data.datasets[0].data = [good, sweet, sour, spicy];
+            //更新雷達圖
+            radarCanvas.update();
+        }
+        function doFirst(){
+            //呼叫函式，透過chart.js套件建立雷達圖
+            createRadar();
+            //取得input range們的物件關聯，並建立input事件聆聽函式updateRadar
+            //(input類型的物件只要值有改變就是發生input事件)
+            ranges = document.getElementsByClassName('radarRange');
+            for(var i = 0; i < ranges.length; i++){
+                ranges[i].addEventListener('input', updateRadar);
+            }
+        }
+        window.addEventListener('load', doFirst);
+    </script>
+</body>
+</html>

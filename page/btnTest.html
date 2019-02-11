@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 愛心跟垃圾桶符號是fontawesome，記得引用 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
+    <!--這裡是要引用你自己寫好的scss所產生的css -->
+    <!--你自己寫好的scss裡要import _common.scss -->
+    <link rel="stylesheet" href="../css/testBtn.css">
+    <!-- 記得引用這個js，不然有些按鈕會失效 -->
+    <script src="../js/common.js"></script>
+</head>
+<body>
+    <!-- <a href=""> -->
+        <button class="cart">加入購物車</button>
+    <!-- </a> -->
+    <a href=""><button class="detail">商品詳細</button></a>
+    <button class="heart"><i class="far fa-heart"></i></button>
+    <button class="trash"><i class="far fa-trash-alt"></i></button>
+    
+    <!-- 以下這種number input請勿改為換行的格式 -->
+    <!-- 因為空白也被算為子節點，會導致程式無作用 -->
+    <div class="numInput">
+        <span class="numMinus">-</span><input type="number" value="1"><span class="numPlus">+</span>
+    </div>
+   
+    <button class="step">下一步</button>
+    <button class="step">上一步</button>
+    <button class="dimension">前</button>
+    <button class="dimension">後</button>
+    <button class="dimension">左</button>
+    <button class="dimension">右</button>
+    <button class="dimension">上</button>
+    <button class="action">3D展示</button>
+    <button class="action">新增文字</button>
+    <br>
+    <button class="category">綜合</button>
+    <button class="category">餅乾</button>
+    <button class="category">糖果</button>
+    <button class="category">洋芋片</button>
+    <button class="category">巧克力</button>
+    <a href=""><button class="goToCustom">客製去!</button></a>
+    <a href=""><button class="subscribe">馬上預購!</button></a>
+    <button class="month">2019<br>1月期</button>
+    <button class="month">2019<br>2月期</button>
+    <button class="month">2019<br>3月期</button>
+    
+</body>
+</html>
