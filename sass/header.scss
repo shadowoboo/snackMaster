@@ -319,6 +319,7 @@ header{
             display: flex;
             flex-direction: row;
             justify-content: space-around;
+            margin: auto;
             .searchBtn{
                 display: block;
                 height: 90px;
@@ -333,6 +334,7 @@ header{
             
             
             .menu{
+                max-width: 1200px;
                 .logo{
                     display: none;
                 }
