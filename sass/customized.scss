@@ -47,7 +47,6 @@ body{
     height: 1px;
     background-color: #B0BEC5;
     z-index: 1;
-    -webkit-transition: all 0.5s ease-out;
   }
   
   .step-progress .step-slider .step-slider-item.active:before {
@@ -257,6 +256,7 @@ body{
         }
         .snackHouse{
             width: 1050px;
+            height: 600px;
             display: flex;
             flex-flow: column;
             align-items: center;
@@ -388,8 +388,8 @@ body{
     //     // user-select: none;
     // }
     .pics{
-        width:100%;
-        height:300px;
+        width:300px;
+        height:150px;
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
@@ -403,7 +403,7 @@ body{
             //     width: 50px;
             // }
             img{
-                width:75px;
+                width:65px;
             }
             }
         }
@@ -633,7 +633,7 @@ a {
 
 .form {
     flex:1;
-    height: 400px;
+    height: 300px;
     background:rgba($form-bg,.9);
     max-width:600px;
     border-radius:10px;
@@ -651,7 +651,7 @@ a {
     justify-content: center;
     align-items: center;
     width:300px;
-    margin:101px 0;
+    margin:50px 0;
     .colorBtn{
         width: 60px;
         height: 60px;
@@ -769,15 +769,15 @@ a {
         flex-direction: row;
         align-items:center;
         width: 100%;
+        width: 300px;
         height: 300px;
-        background-color:#fff;
+        margin: auto;
         .cardStyle{
             // display: flex;
             // flex-flow: row wrap;
             // justify-content: center;
             .small{
-                width: 350px;
-                margin: 4px;
+                width: 90%;
                 background-size: 100%;
                 cursor: pointer;
             }
@@ -1294,9 +1294,8 @@ $cardY:600px;
 
 header nav .searchBtn img{
     display: block;
-    background: url(../images/tina/search.png);
-    width: 135px;
-    margin-top:34px;
+    width: 100px;
+    margin-top: 15px;
     margin-left: 30px !important;
     cursor: pointer;
 }
