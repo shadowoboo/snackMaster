@@ -957,9 +957,10 @@ body {
             background-color: #b8f1ed;
             position: relative;
             top: -80px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
+            @media screen and (max-width: 768px) {
+                height: unset;
+                overflow: unset;
+            }
             .poray {
                 position: absolute;
                 transform: scale(2.5);
@@ -969,6 +970,9 @@ body {
                 opacity: 0.5;
                 z-index: 0;
                 right: 0;
+                @media screen and (max-width: 768px) {
+                    transform: scale(1.1);
+                }
                 ul {
                     position: absolute;
                     left: -1em;
@@ -1027,115 +1031,124 @@ body {
                     }
                 }
             }
-            .poCard {
-                width: 23%;
-                position: relative;
-                color: #737374;
-                min-width: 420px;
-                @media screen and (max-width: 768px) {
-                    min-width: unset;
-                    width: 95%;
-                }
-                .poTrait {
-                    padding: 10px;
-                    text-align: center;
-                    background-color: #fff;
-                    border-radius: 10px;
-                    h2 {
+            .poMainCount{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                max-width: 1200px;
+                height: 100%;
+                margin: auto;
+                .poCard {
+                    width: 23%;
+                    position: relative;
+                    color: #737374;
+                    min-width: 420px;
+                    @media screen and (max-width: 768px) {
+                        min-width: unset;
+                        width: 95%;
+                    }
+                    .poTrait {
                         padding: 10px;
-                    }
-                    .traitCount {
-                        width: 90%;
-                        display: flex;
-                        flex-wrap: wrap;
-                        justify-content: space-around;
-                        margin: auto;
-                        p {
-                            border: 2px solid $blue;
-                            padding: 23px 0;
-                            margin: 10px;
-                            width: 100px;
-                            border-radius: 50%;
-                            vertical-align: middle;
-                        }
-                        @media screen and (max-width:768px) {
-                            width: 100%;
-                            p {
-                                margin: 10px 0;
-                            }
-                        }
-                    }
-                    .traitGo {
-                        padding: 20px;
-                        @media screen and (max-width: 768px) {
+                        text-align: center;
+                        background-color: #fff;
+                        border-radius: 10px;
+                        h2 {
                             padding: 10px;
                         }
-                    }
-                }
-                .poInside {
-                    p {
-                        padding: 10px;
-                        color: $blue;
-                    }
-                    .insideBtn {
-                        text-align: right;
-                        .month {
-                            box-shadow: 6px 6px 0 0 #00457b;
-                            margin: 0 10px;
+                        .traitCount {
+                            width: 90%;
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-around;
+                            margin: auto;
+                            p {
+                                border: 2px solid $blue;
+                                padding: 23px 0;
+                                margin: 10px;
+                                width: 100px;
+                                border-radius: 50%;
+                                vertical-align: middle;
+                            }
+                            @media screen and (max-width:768px) {
+                                width: 100%;
+                                p {
+                                    margin: 10px 0;
+                                }
+                            }
                         }
-                        @media screen and (max-width:768px) {
-                            text-align: unset;
+                        .traitGo {
+                            padding: 20px;
+                            @media screen and (max-width: 768px) {
+                                padding: 10px;
+                            }
+                        }
+                    }
+                    .poInside {
+                        p {
+                            padding: 10px;
+                            color: $blue;
+                        }
+                        .insideBtn {
+                            text-align: right;
                             .month {
-                                margin: 0 4px;
+                                box-shadow: 6px 6px 0 0 #00457b;
+                                margin: 0 10px;
+                            }
+                            @media screen and (max-width:768px) {
+                                text-align: unset;
+                                .month {
+                                    margin: 0 4px;
+                                }
                             }
                         }
                     }
                 }
-            }
-            .poBox {
-                .section_9 {
-                    .boxBase {
-                        border: unset;
-                        .surface {
-                            background-image: url(../images/index/boxStyle1.png), linear-gradient($deepyellow, $deepyellow);
-                            background-blend-mode: luminosity;
-                            background-size: cover;
-                            background-color: unset;
-                            border: 1px dashed #ccc;
-                        }
-                        .surface_left,
-                        .surface_right {
-                            background-image: url(../images/index/boxStyle1.png), linear-gradient($blue, $blue);
-                        }
-                        .surface_top {
-                            background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
-                            background-blend-mode: luminosity;
-                            background-repeat: no-repeat, repeat, repeat;
-                            background-size: 100px, cover, cover;
-                            background-position: center;
-                        }
-                        .surface_font {
-                            background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
-                            background-blend-mode: luminosity;
-                            background-repeat: no-repeat, repeat, repeat;
-                            background-size: 70px, cover, cover;
-                            background-position: center;
+                .poBox {
+                    .section_9 {
+                        .boxBase {
+                            border: unset;
+                            .surface {
+                                background-image: url(../images/index/boxStyle1.png), linear-gradient($deepyellow, $deepyellow);
+                                background-blend-mode: luminosity;
+                                background-size: cover;
+                                background-color: unset;
+                                border: 1px dashed #ccc;
+                            }
+                            .surface_left,
+                            .surface_right {
+                                background-image: url(../images/index/boxStyle1.png), linear-gradient($blue, $blue);
+                            }
+                            .surface_top {
+                                background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
+                                background-blend-mode: luminosity;
+                                background-repeat: no-repeat, repeat, repeat;
+                                background-size: 100px, cover, cover;
+                                background-position: center;
+                            }
+                            .surface_font {
+                                background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
+                                background-blend-mode: luminosity;
+                                background-repeat: no-repeat, repeat, repeat;
+                                background-size: 70px, cover, cover;
+                                background-position: center;
+                            }
                         }
                     }
                 }
-            }
-            @media screen and (max-width:768px) {
-                overflow: unset;
-                flex-direction: column;
-                top: -90px;
-                height: 880px;
-                .poray {
-                    transform: unset;
+                @media screen and (max-width:768px) {
+                    overflow: unset;
+                    flex-direction: column;
+                    top: -90px;
+                    height: 880px;
+                    .poray {
+                        transform: unset;
+                    }
+                    .poInside {
+                        text-align: center;
+                    }
                 }
-                .poInside {
-                    text-align: center;
-                }
             }
+            
         }
     } // .igShare {
     //     width: 100%;
@@ -1372,10 +1385,18 @@ body {
     }
     .gameBox{
         position: fixed;
-        bottom: 10%;
+        bottom: 2%;
         left: 1%;
-        width: 15%;
+        width: 240px;
         animation: float 1s linear infinite alternate;
+        z-index: 999;
+        cursor: pointer;
+        p{
+            position: absolute;
+            top: 22px;
+            left: 102px;
+            color:$gray;
+        }
     }
     .footer {
         #floor {
