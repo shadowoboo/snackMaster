@@ -1057,7 +1057,70 @@
             btns[i].addEventListener("click", boxRotate);
         }
 
-        document.getElementById('show').addEventListener("click", boxRotate);
+        // 預購零食箱動畫
+        var btnMonth=document.querySelectorAll(".month");
+        for (var i = 0; i < btnMonth.length; i++) {
+            btnMonth[i].addEventListener("click", monthRotate);
+        }
+
+        function monthRotate(e) {
+            if (window.screen.width > 768) {
+                        boxBases.forEach(element => {
+                            element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(30deg)";
+                        });
+                        // 先把蓋子蓋起來
+                        {
+                            let arr = cover_out.style.transform.split(" ");
+                            console.log(`arr: ${arr}`);
+                            cover_out.style.transform = "translate3d(0, 40px, -100px) rotateX(90deg)";
+                            cover_in.style.transform = "translate3d(0, 40px, -100px) rotateX(90deg) rotateY(180deg)";
+                        }
+
+                        //延遲一段時間後...TADA~蓋子打開~
+                        setTimeout(e => {
+                            cover_out.style.transform = "translate3d(0, 40px, -100px) rotateX(200deg)";
+                            cover_in.style.transform = "translate3d(0, 40px, -100px) rotateX(200deg) rotateY(180deg)";
+                        }, 1000);
+                        //再延遲一下...燈燈~電燈假發光~
+                        setTimeout(e => {
+                            console.log(lights);
+                            lights.forEach(element => {
+                                element.classList.add("showLight");
+                            })
+                        }, 1000);
+                        // break;
+                    } else {
+                        boxBases.forEach(element => {
+                            element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(0deg)";
+                        });
+                        //先把蓋子蓋起來
+                        {
+                            let arr = cover_out.style.transform.split(" ");
+                            console.log(`arr: ${arr}`);
+                            cover_out.style.transform = "translate3d(0, 35px, -75px) rotateX(90deg)";
+                            cover_in.style.transform = "translate3d(0, 35px, -75px) rotateX(90deg) rotateY(180deg)";
+                        }
+
+                        //延遲一段時間後...TADA~蓋子打開~
+                        setTimeout(e => {
+                            cover_out.style.transform = "translate3d(0, 35px, -75px) rotateX(200deg)";
+                            cover_in.style.transform = "translate3d(0, 35px, -75px) rotateX(200deg) rotateY(180deg)";
+                        }, 1000);
+                        //再延遲一下...燈燈~電燈假發光~
+                        setTimeout(e => {
+                            console.log(lights);
+                            lights.forEach(element => {
+                                element.classList.add("showLight");
+                            })
+                        }, 1000);
+                        // break;
+                    }
+        }
+
+
+
+
+
         // 轉轉箱子功能鈕
         // 缺陷:style.transform是抓 css inline style的值，所以必須給箱子inline style的初始值 
         function boxRotate(e) {
@@ -1406,6 +1469,30 @@
 
 
 
+    <!-- <script>
+        var countryImg=document.getElementsByClassName("countryImg");
+        var countryInfoSm=document.getElementsByClassName("countryInfoSm");
+        var countryInfoReel=document.getElementsByClassName("countryInfoReel");
+
+        console.log(`countryInfoSm: ${countryInfoSm}`);
+
+        console.log(`countryImg: ${countryImg}`);
+        let ln=countryImg.length;
+        for(var i=0;i<=ln;i++){
+            countryImg[i].addEventListener("click",moveItem);
+            console.log("moveItem");
+        }
+
+        function moveItem(e) {
+            for (let i=0;i<=countryInfoSm.length;i++){
+                console.log(`countryInfoSm[i] in moveItem: ${countryInfoSm[i]}`);
+                
+                var arr_x=countryInfoSm[i].offsetX;
+            }
+            let xpos= arr_x[5];
+            countryInfoReel.scrollTo(xpos,0);
+        }
+    </script> -->
 </body>
 
 </html>

@@ -1,5 +1,8 @@
 @import "reset.scss";
 @import "common.scss";
+
+// -webkit-overflow-scrolling: touch; //ios 滑動流暢
+
 body {
     background-color: #b8f1ed; // background-color: #cccccc;
     width: 100%;
@@ -339,6 +342,7 @@ body {
             .countryInfo {
                 display: none;
                 @media screen and (max-width: 768px) {
+                    -webkit-overflow-scrolling: touch; //ios 滑動流暢
                     display: block;
                     overflow: auto;
                 }
@@ -410,6 +414,7 @@ body {
                 background-size: cover;
                 background-color: unset;
                 border: 1px dashed #ccc;
+                background-repeat: no-repeat, no-repeat;
             }
             .surface_left,
             .surface_right {
@@ -418,14 +423,16 @@ body {
             .surface_top {
                 background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
                 background-blend-mode: luminosity;
-                background-repeat: no-repeat, repeat, repeat;
+                // background-repeat: no-repeat, repeat, repeat;
+                background-repeat: no-repeat, no-repeat, no-repeat;
                 background-size: 100px, cover, cover;
                 background-position: center;
             }
             .surface_font {
                 background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
                 background-blend-mode: luminosity;
-                background-repeat: no-repeat, repeat, repeat;
+                // background-repeat: no-repeat, repeat, repeat;
+                background-repeat: no-repeat, no-repeat, no-repeat;
                 background-size: 70px, cover, cover;
                 background-position: center;
             }
@@ -464,16 +471,19 @@ body {
             }
         }
         .LeaderboardCount {
+            -webkit-overflow-scrolling: touch;
             @media screen and (max-width: 768px) {
                 overflow: auto;
             }
             .lbReel {
+                // -webkit-overflow-scrolling: touch;
                 max-width: 1200px;
                 height: 700px;
                 margin: auto;
                 display: flex;
                 justify-content: space-around;
                 @media screen and (max-width: 768px) {
+                    // -webkit-overflow-scrolling: touch;
                     width: 1140px;
                     max-width: 1200px;
                     height: unset;
@@ -798,14 +808,16 @@ body {
                     .surface_top {
                         background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient($deepyellow, $deepyellow);
                         background-blend-mode: luminosity;
-                        background-repeat: no-repeat, repeat, repeat;
+                        // background-repeat: no-repeat, repeat, repeat;
+                        background-repeat: no-repeat, no-repeat, no-repeat;
                         background-size: 100px, cover, cover;
                         background-position: center;
                     }
                     .surface_font {
                         background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient($deepyellow, $deepyellow);
                         background-blend-mode: luminosity;
-                        background-repeat: no-repeat, repeat, repeat;
+                        // background-repeat: no-repeat, repeat, repeat;
+                        background-repeat: no-repeat, no-repeat, no-repeat;
                         background-size: 70px, cover, cover;
                         background-position: center;
                     }
@@ -1112,6 +1124,7 @@ body {
                                 background-size: cover;
                                 background-color: unset;
                                 border: 1px dashed #ccc;
+                                background-repeat: no-repeat, no-repeat;
                             }
                             .surface_left,
                             .surface_right {
@@ -1120,14 +1133,16 @@ body {
                             .surface_top {
                                 background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
                                 background-blend-mode: luminosity;
-                                background-repeat: no-repeat, repeat, repeat;
+                                // background-repeat: no-repeat, repeat, repeat;
+                                background-repeat: no-repeat, no-repeat, no-repeat;
                                 background-size: 100px, cover, cover;
                                 background-position: center;
                             }
                             .surface_font {
                                 background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
                                 background-blend-mode: luminosity;
-                                background-repeat: no-repeat, repeat, repeat;
+                                // background-repeat: no-repeat, repeat, repeat;
+                                background-repeat: no-repeat, no-repeat, no-repeat;
                                 background-size: 70px, cover, cover;
                                 background-position: center;
                             }
