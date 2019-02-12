@@ -37,6 +37,9 @@ header{
             span{
             padding: 0 10px;
             cursor: pointer;
+            &:hover{
+                color: #fff;
+            }
             }
         }
     }
@@ -330,10 +333,14 @@ header{
                 height: 90px;
                 text-align: center;
                 img{
-                    width: 100px;
-                     margin-top: 15px;
+                    width: 50px;
+                    margin-top: 20px;
                     margin-left: -80px;
                     cursor: pointer;
+                    transition: all 1s;
+                    &:hover{
+                        transform: scale(1.1);
+                    }
                 }
             }
             
