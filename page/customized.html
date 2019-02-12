@@ -1492,7 +1492,7 @@ var section15 = document.querySelector("#section_15");
     $('.tab-content-2 > li').click(function(e){
         var index = $(this).index(); 
         $('.content.block').removeClass('block').stop().fadeOut(function(){
-            $('.content').eq(index).stop().fadeIn(500).addClass('block');
+            $('.content').eq(index).stop().fadeIn(100).addClass('block');
         });
     });
 });
@@ -1511,7 +1511,7 @@ var section15 = document.querySelector("#section_15");
             $('.tab-content-3 > li').click(function(e){
                 var index = $(this).index(); 
                 $('.good-content.active').removeClass('active').stop().fadeOut(function(){
-                    $('.good-content').eq(index).stop().fadeIn(500).addClass('active');
+                    $('.good-content').eq(index).stop().fadeIn(100).addClass('active');
                 });
             });
         });
