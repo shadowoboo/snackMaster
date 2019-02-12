@@ -1,6 +1,6 @@
-// *{
-//     outline: 1px solid #f00;
-// }
+*{
+    outline: 1px solid #f00;
+}
 @import "reset";
 @import "common";
 $tabColor:#076baf;
@@ -736,13 +736,14 @@ body{
         }
         
         footer{
+            margin-top: 19%;
             
             #floor{
                 
                 display: block;
                 #copy{
                     text-align: center;
-                    position: absolute;
+                    // position: absolute;
                 }
             }
         }
