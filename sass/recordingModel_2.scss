@@ -165,7 +165,7 @@
     //撥放介面結構樣式----------------------開始
     #audioItem{
         width: 200px;
-        height: 300px;
+        height: 230px;
         margin: auto;
         // background-color: #ccc;
         display: flex;
@@ -201,9 +201,6 @@
             }
         }
         .au_ctrl{
-            .defBar{
-                margin-bottom: 25px;
-            }
             .au_time{
                 width: 100%;
                 text-align: right;

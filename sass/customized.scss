@@ -1,6 +1,7 @@
 @import "reset";
 @import 'common';
 
+
 body{
     background-color:#fadfd4 !important;
 }
@@ -366,7 +367,6 @@ body{
     flex-direction: row;
     align-items:center;
     position: relative;
-    top: -33px;
     .surface{
             .droped_img{
                 display:block;
@@ -737,7 +737,8 @@ a {
     background: rgba(255, 255, 255, 0.9);
     // max-width: 600px;
     border-radius: 10px;
-    margin: 12px;
+    margin: 0 40px;
+    margin-top: 20px;
     border: 10px solid #fbc849;
     ul{
         position: relative;
@@ -770,7 +771,7 @@ a {
         align-items:center;
         width: 100%;
         width: 300px;
-        height: 300px;
+        height: 230px;
         margin: auto;
         .cardStyle{
             // display: flex;
@@ -811,12 +812,16 @@ a {
                 border-radius: 10px;
             }
             .showCard{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
                 position: absolute;
-                top:-185px;
-                left: -666px;
+                top: -140px;
+                left: -630px;
                 z-index: 3;
-                width: 600px;
-                height: 400px;
+                width: 500px;
+                height: 350px;
                 
 // 卡片區
 $cardX:800px;
@@ -1050,12 +1055,7 @@ $cardY:600px;
 }
 
 
-
-
 .sectionCard{
-    width: 100%;
-    height:50vh;
-    display: flex;
 
     //卡片控制
     @include card3D(400px,265px);
@@ -1121,7 +1121,6 @@ $cardY:600px;
         color: rgba(105,105,105,1);
         background: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
-        margin: 12px;
         border: 10px solid #fbc849;
         ul{
             width: 100%;
