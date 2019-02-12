@@ -46,7 +46,6 @@ body {
                 padding: 0px 4px 0px 4px;
                 margin: unset;
                 margin-right: 5%;
-                
             }
         }
         input {
@@ -168,10 +167,10 @@ body {
                 }
                 @media screen and (min-width:768px) {
                     .countryImg:hover {
-                        .countryInfoLg{
+                        .countryInfoLg {
                             display: block;
                         }
-                        &:before{
+                        &:before {
                             display: none;
                         }
                     }
@@ -465,7 +464,7 @@ body {
             }
         }
         .LeaderboardCount {
-            @media screen and (max-width:768px) {
+            @media screen and (max-width: 768px) {
                 overflow: auto;
             }
             .lbReel {
@@ -797,14 +796,14 @@ body {
                         background-image: url(../images/index/boxStyle1.png), linear-gradient($blue, $blue);
                     }
                     .surface_top {
-                        background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
+                        background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient($deepyellow, $deepyellow);
                         background-blend-mode: luminosity;
                         background-repeat: no-repeat, repeat, repeat;
                         background-size: 100px, cover, cover;
                         background-position: center;
                     }
                     .surface_font {
-                        background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
+                        background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient($deepyellow, $deepyellow);
                         background-blend-mode: luminosity;
                         background-repeat: no-repeat, repeat, repeat;
                         background-size: 70px, cover, cover;
@@ -1031,7 +1030,7 @@ body {
                     }
                 }
             }
-            .poMainCount{
+            .poMainCount {
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
@@ -1148,7 +1147,6 @@ body {
                     }
                 }
             }
-            
         }
     } // .igShare {
     //     width: 100%;
@@ -1383,7 +1381,7 @@ body {
             }
         }
     }
-    .gameBox{
+    .gameBox {
         position: fixed;
         bottom: 2%;
         left: 1%;
@@ -1391,11 +1389,47 @@ body {
         animation: float 1s linear infinite alternate;
         z-index: 999;
         cursor: pointer;
-        p{
+        p {
             position: absolute;
             top: 22px;
             left: 102px;
-            color:$gray;
+            color: $gray;
+        }
+    }
+    .gameScratch {
+        position: fixed;
+        bottom: 2%;
+        right: -200px;
+        width: 190px;
+        z-index: 999;
+        cursor: pointer;
+        p {
+            position: absolute;
+            top: 22px;
+            left: 35px;
+            color: #737374;
+        }
+    }
+    .fadeIn {
+        animation: fadeIn 1s ;
+    }
+    .fadeOut {
+        animation: fadeOut 1s reverse;
+    }
+    @keyframes fadeIn {
+        0% {
+            transform: translateX(0)
+        }
+        100% {
+            transform: translateX(-200px)
+        }
+    }
+    @keyframes fadeOut {
+        0% {
+            transform: translateX(200px)
+        }
+        100% {
+            transform: translateX(0)
         }
     }
     .footer {
