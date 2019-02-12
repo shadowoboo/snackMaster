@@ -1,9 +1,14 @@
-// *{
-//     outline: 1px solid #f00;
-// }
+*{
+    outline: 1px solid #f00;
+}
+@import "reset";
+@import "common";
 $tabColor:#076baf;
+$p:22px;
+
 body{
     background-color: #b8f1ed;
+    
 }
 
 .memWrap{
@@ -16,6 +21,7 @@ body{
         width: 85%;
         // margin: 45% auto 10% auto;
         height: auto;
+        padding: 45px;
         background-color: #fff;
         border-radius: 10px;
         //---------大頭貼上傳------------
@@ -27,6 +33,7 @@ body{
             width: 100%;
             height: 80px;
             td{
+                
                 text-align: center;
                 padding-top: 1%;
                 div{
@@ -37,26 +44,36 @@ body{
                     border-radius: 50%;
                      
                     img{
-                        width: 70%; 
+                        width: 80%; 
                         padding-top: 2%;
                                                  
                         }
                 }
-                
+            label{
                 p{
-                   padding: 10px; 
-                   color: #076baf;
-                   input{
-                       width: 50%;
-                      padding-top: 5px;
-                      &:focus{
-                          outline: none;
-                      }
-                   }
+                    font-family: g2Font;
+                    font-size: $p;
+                    padding: 10px; 
+                    color: #076baf;
                     img{
                         width: 3%;
+                        vertical-align: middle;
+                        margin-left: 5px;
                     }
+                     
+                 }
+                 input{
+                    width: 50%;
+                   padding-top: 5px;
+                   display: none;
+                   &:focus{
+                       outline: none;
+                   }
                 }
+                 
+
+            } 
+                
 
             }
             
@@ -67,29 +84,36 @@ body{
     //-------------基本資料------------------------
     .col-2{
         width: 100%;
+        padding: 30px;
         tr{
             width: 100%;
-            height: 30px;
+            // height: 30px;
             
             td{
                 padding: 2% 3%;
                 text-align: center;
 
                 p{
+                    font-family: g2Font;
                     color: #076baf;
-                    padding: 1% ;
+                    font-size: $p;
+                    // padding: 1% ;
                     input{
                         color: #076baf;
                         width: 80px;
                         background-color: transparent;
                         border: 1px solid #fff;
+                        font-family: g2Font;
+                        font-size: 16px;
+                        
                         &:focus{
                             outline: none;
                         }
                         
                     }
                     img{
-                        width: 3%;                  
+                        width: 3%; 
+                        vertical-align: unset;                 
                     }
                 }
             }
@@ -97,10 +121,7 @@ body{
             
             
         }
-        tr:nth-child(5){
-            input{
-                font-size: 12px;
-            }
+        
             
         }
         
@@ -108,7 +129,7 @@ body{
     //----------- 成就等級------------
     .col-3{
         width: 100%;
-        height: 30px;
+        // height: 30px;
         tr{
             td{
                 padding: 2% 3%;
@@ -116,8 +137,14 @@ body{
                 height: 35px;
                
                 p{
+                    font-family: g2Font;
+                    font-size: $p;
                     color: #076baf;
                     line-height: 1.6;
+                    span{
+                        font-size: 16px;
+                        font-family: g2Font;
+                    }
                 }
             }
             
@@ -126,15 +153,16 @@ body{
         tr:last-child{
             
             span{
+                font-size: 16px;
                 color: #f00;
                 line-height: 1.6;
+                font-family: g2Font;
                 
                 }
             }
         } 
     }
     
-}
 
 //-------------------------以下為頁籤頁面---------------------------
 
@@ -143,51 +171,64 @@ body{
     width: 100%;
     // height: 100vh;
     margin: 10% auto;
+    
+    
+    
+    
    //--------------------------頁籤-------------------------- 
-    .tab-list{
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        margin: 3% auto;
-        li{
-            position: relative;
-            z-index: -1;
-            h4{
-                position: absolute;
-                top:32%;
-                left: 23%;
-                text-align: center;
-                color: $tabColor;
+   
+    
+    .tabContainer{
+        
+        .tabs{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+
+            .tablinks{
+                margin: 3%;
                 
-                
+                h4{
+                    line-height: 1.6;
+                }
+                h4:hover{
+                    border: 2px solid $deepyellow;
+                    color: $deepyellow;
+                    background-color: #fff;
+                    
+                }
                 
             }
-        }
-        li:last-child{
-            h4{
-                left: 18%;
+            .tablinks.active{
                 
+                border-radius: 10px;
             }
+            li:last-child{
+                width: 150px;
+            }
+          
         }
 
     }
-   //-----------------頁籤內容 --------------------------
-    
-    .tab-panel{
+
+//---------------------------頁籤內容---------------------- 
+.wrapTabPanel{
+    position: relative;
+    width: 100%;
+    // height: auto;
+    .tabPanel{
         width: 85%;
         height: auto;
         background-color: #fff;
         border-radius: 15px;
         margin: auto;
-        display: none;
-
-    }
-    //----------頁籤切換-------------
-    .tab-panel.active{
-        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+    
     }
     
     //-------------累積成就----------------
@@ -201,7 +242,8 @@ body{
             span{
                 font-size: 10px;
                 line-height: 2;
-                color:$tabColor; 
+                color:$tabColor;
+                font-family: g2Font; 
             }
             .topLevel{
                 // position: relative;
@@ -225,7 +267,7 @@ body{
                         width: 100%;
                     } 
                     
-
+    
                 }
                 .colorBar{
                     border: 1px solid #000;
@@ -239,7 +281,7 @@ body{
                         background-color: #f8dcd3;
                         border-radius: 15px 0 0 15px;
                     }
-
+    
                 }
                 .kid{
                     position: absolute;
@@ -262,6 +304,7 @@ body{
         }
         .description{
             h4{
+                font-family: g2Font;
                 color: $tabColor; 
                 text-align: center;
                 line-height: 2;
@@ -274,40 +317,42 @@ body{
                 .col4{
                     width: 50%;
                     p{
+                        font-size: 18px;
                         line-height: 2;
                         padding-left: 2%;
-                        color: $tabColor; 
+                        color: $tabColor;
+                        font-family: g2Font; 
                         
                     }
+                    
                     li{
+                        font-size: 18px;
                         line-height: 1.6;
-                        font-size: 16px;
-                        padding-left: 2%;
                         color: $tabColor;
+                        font-family: g2Med;
+                        padding-left: 2%;
                     }
-                }  
+                } 
+    
                 
             }
-            .btn{
-               padding: 2% 0;
-                p{
-                    width: 30%;
-                    color: #fff;
-                    background-color: $tabColor;
-                    font-size: 13px;
-                    border-radius: 5px;
-                    line-height: 1.6;
-                    margin: auto;
-                    cursor: pointer;
-                    text-align: center;
+            .btnn{
+                text-align: center;
+                .goToCustom{
+                    height: 30px;
+                    font-size: 20px;
+                    line-height: 0.6;
+                    margin-bottom: 1%;
+    
                 }
-                
             }
+            
             
         }
     }
     //----------------訂單管理--------------
     #tab-2{
+    
         .orderList{
             
             display: flex;
@@ -327,6 +372,7 @@ body{
                 td{
                     color: $tabColor;
                     font-size: 15px;
+                    font-family: g2Font;
                 }
             }
             table:first-child{
@@ -336,7 +382,7 @@ body{
                     padding: 1% 3%;
                 }   
                 
-
+    
             }
             table:last-child{
                 th{
@@ -354,20 +400,22 @@ body{
                 p{
                     line-height: 1.6;
                     color: $tabColor;
+                    font-family: g2Font;
                 }
             }
             #listMore{
                 text-align: center;
                 a{
                     color: $tabColor; 
+                    font-family: g2Font;
                     line-height: 2;
                 }
                 
                 
-
+    
             }
             
-
+    
         }
     //-----------------收藏品---------------------
     #tab-3{
@@ -375,6 +423,7 @@ body{
             text-align: center;
             
              p{
+                font-family: g2Font;
                 color: $tabColor; 
                 line-height: 10;
                
@@ -396,33 +445,91 @@ body{
                         line-height: 3;
                         color: $tabColor;
                         font-family: g2Font;
+                        font-size: 16px;
                     }
                 }
                 tr:last-child{
                     td{
                         text-align: center;
                         vertical-align: middle;
-                        padding: 3%;
+                        padding: 2%;
+                        font-family: g2Font;
                         color: $tabColor;
-                        font-size: 15px;
+                        font-size: 12px;
+                        margin-right: 1%;
                     }
                 }
             }
         }
-    }   
+        
+
+    }      
+    
+    
+}   
       
 
 
-//--------------------手機RWD--------------------------
+//--------------------手機RWD-------------------------------
 
 @media screen and(max-width:768px){
     .memWrap{
         form{
             margin: auto ;
             margin-top: 35%;
+
         }
         
     }
+    .itemTab2{
+        
+        .tabContainer{
+            #tab-1{
+                .description{
+                    h4{
+                        font-size: 25px;
+                    }
+                    
+                    .specify{
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        .col4{
+                            width: 50%;
+                            p{
+                                font-size: 18px;
+                                line-height: 2;
+                                padding-left: 2%;
+                                color: $tabColor;
+                                font-family: g2Font; 
+                                
+                            }
+                            li{
+                                padding: 2%;
+                                font-size: 15px;
+                                line-height: 1.6;
+                                color: $tabColor;
+                                font-family: g2Font;
+                            }
+                        }  
+                        
+                    }
+            
+                
+                }
+                
+            }
+        }
+    }
+    footer{
+        #floor{
+            display: none;
+            position: unset;
+        }
+        
+    }
+    
+    
 }
 //------------------桌機ＲＷＤ--------------------------
 
@@ -432,108 +539,236 @@ body{
         form{
             margin: auto;
             margin-top: 15%;
-            height: 33vh;
+            // height: 33vh;
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
             align-content: space-around;
-            
-           
-        }
-       
-    }
+            .col-1{
+                margin: auto;
+                tr{
+                    td{
+                        padding-top: 0%;
+                        div{
+                            width: 65%;
+                            margin-top: 0%;
+                            img{
+                                width: 78%;
+                                label{
+                                    p{
+                                        
+                                        img{
+                                            width: 3%;
+                                        }
+                                         
+                                     }     
+                    
+                                } 
+                            }
+                        }
+                    }
+                }
+            }
+            .col-2{
+                
+                tr{                
+                    td{                          
+                        p{
+                            font-size: $p;                           
+                            input{                               
+                                font-size: 18px;                                
+                            }
+                            img{
+                                width: 5%; 
+                                vertical-align: unset;                 
+                            }
+                            }
+                        }                      
+                    }              
+                    
+                }  
+            }
+            //----------- 成就等級------------
+            .col-3{         
+                tr{
+                    td{                      
+                        p{
+                            font-size: $p;                       
+                            span{
+                                font-size: $p;
+                            }
+                        }
+                    }   
+        
+                    }   
+                } 
+            }       
+
     .itemTab2{
         margin: 5% auto;
         height: auto;
-        .tab-list{
-            flex-direction: no-wrap;
-            justify-content: space-around;
-        }
-        #tab-1{
-            .levelInfor{
-                span{
-                    font-size: 16px;
-                    line-height: 1.6;
-                }
-                .procBar{
-                    .baby{
-                        width: 4%;
-                        top: 0;
-                        left: 3%;
-                    }
-                    .kid{
-                        width: 4%;
-                        top: 25%;
-                        left: 17%;
-                    }
-                }
-
+        .tabContainer{
+            .tabs{
+                flex-direction: no-wrap;
             }
-            .description{
-                margin-top: 2%;
-                padding-left: 2%;
-                p{
-                    font-size: 18px;
+
+        }
+        .wrapTabPanel{
+            .tabPanel{
+                max-width: 1200px;
+            }
+
+            #tab-1{
+                .levelInfor{
+                    span{
+                        font-size: 16px;
+                        line-height: 1.6;
+                    }
+                    .procBar{
+                        .baby{
+                            width: 5%;
+                            top: 0;
+                            left: 3%;
+                        }
+                        .kid{
+                            width: 5%;
+                            top: 25%;
+                            left: 17%;
+                        }
+                    }
+    
                 }
-                .specify{
+                .description{
+                    margin-top: 2%;
+                    h4{
+                        font-size: 28px;
+                    }
+                    
+                    .specify{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-evenly;
+                        padding: 20px 10px;
+                        .col4{
+                            width: 25%;
+                            p{
+                                font-size: $p;
+                            }
+                            
+                            li{
+                                font-size: 18px;
+                            }
+                        }
+                        
+                    } 
+    
+                }
+                
+            }
+            #tab-2{
+                .orderList{
                     display: flex;
                     flex-direction: row;
-                    justify-content: space-evenly;
-                    .col4{
-                        width: 25%;
-                        span{
-                            font-size: 16px;
+                    justify-content: center;
+                    
+                    table{
+                        width: 44%;
+                        tr{
+                            th{
+                                font-size: 20px;
+                            }
+                            td{
+                                padding-left: 1%;
+                                font-size: 18px;
+                            }
+    
                         }
-                        li{
-                            font-size: 15px;
+                        
+                    }
+                    
+                    table:first-child{
+                    
+                        th{
+                            width: 35%;
+                            
+                        }     
+        
+                    }
+                    table:last-child{
+                        th{
+                            
+                            width: 35%;
                         }
+                    }
+                }
+            }
+            #tab-3{
+                .collect{
+                    p{
+                        font-size: $p;
+                        font-family: g2Font;
+                    }
+                }
+            }
+            #tab-4{
+                table{
+                    tr:first-child{
+                        th{
+                            font-size: 25px;
+                           }
+                           
+                    }
+                    tr:last-child{
+                        td{
+                            font-family: g2Font;
+                            font-size: 20px;
+                           }
                     }
                     
                 }
-                .btn{
-                    padding: 2% 0;
-                     p{
-                         width: 15%; 
-                         font-size: 16px; 
-                         
-                     }
-                     
-                 }
-                
+                 
+                    
+                }
 
-            }
+         }
+
+
+        }
+        
+        footer{
+            margin-top: 19%;
             
-        }
-        #tab-2{
-            .orderList{
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                table{
-                    width: 50%;
-                    td{
-                        padding-left: 1%;
-                    }
-                }
+            #floor{
                 
-                table:first-child{
-                
-                    th{
-                        width: 50%;
-                        
-                    }     
-    
-                }
-                table:last-child{
-                    th{
-                        
-                        width: 50%;
-                    }
+                display: block;
+                #copy{
+                    text-align: center;
+                    // position: absolute;
                 }
             }
         }
+    
+    
+}
+
+@media screen and(min-width:1200px){
+    
+    body{
+        background-image: url(../images/tina/leftCandy.png),url(../images/tina/rightCandy.png);
+        background-repeat: no-repeat;
+        background-position: bottom left ,bottom right ;
+        background-size: 17% 75%;
+    }
+    body::before{
+        content: '';
+        display: block;
 
     }
-
+    .wrapTabPanel{
+        height: 70vh;
+        
+    }
+    
+    
 
 }

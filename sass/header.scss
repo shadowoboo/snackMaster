@@ -1,11 +1,12 @@
 // @import"reset";
+@import"common";
 // *{
 //     outline: 1px solid #f00;
 // }
 a{
     display: block;
     font-family: g2Font;
-    color: #737374;
+    color: $gray;
     
 }
 
