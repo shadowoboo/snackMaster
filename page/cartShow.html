@@ -125,30 +125,30 @@
                     <h2>購物掐</h2>
                 </div>
                 <div class="cartFlow">
-                    <div class="step">
+                    <div class="cartStep cartStep_select">
                         <div class="step__img">
                             <img src="https://fakeimg.pl/100x100/ccc">
                         </div>
-                        <h3>step</h3>
+                        <p>step <span>1</span></p>
                     </div>
-                    <div class="step">
+                    <div class="cartStep">
                         <div class="step__img">
                             <img src="https://fakeimg.pl/100x100/ccc">
                         </div>
-                        <h3>step</h3>
+                        <p>step <span>2</span></p>
                     </div>
-                    <div class="step">
+                    <div class="cartStep">
                         <div class="step__img">
                             <img src="https://fakeimg.pl/100x100/ccc">
                         </div>
-                        <h3>step</h3>
+                        <p>step <span>3</span></p>
                     </div>
                 </div>
             </div>
 
             <div class="cartContent cartContent_none">
                 <h3>你的購物掐掐內煤油桑品捏</h3>
-                <a href="shopping.html"><button class="subscribe">繼續選購不要不要停!</button></a>
+                <a href="shopping.html"><button class="subscribe">繼續選GO</button></a>
             </div>
 
             <div class="cartContent cartContent_prod">
@@ -161,10 +161,8 @@
                             <h4>炒雞好ㄘㄉ糖果</h4>
                         </div>
                         <div class="prodPrice">
-                            <p>
-                                <span>$400</span>
-                                <span>$100</span>
-                            </p>
+                                <div class="priceOrigin"><span>$400</span></div>
+                                <div class="priceNow"><span>$100</span></div>
                         </div>
                     </div>
                     <div class="cardCtrl">
@@ -179,16 +177,118 @@
                                     class="numPlus">+</span>
                             </div>
                         </div>
-
                         <button class="trash"><i class="far fa-trash-alt"></i></button>
-
                     </div>
+                </div>
 
+                <div class="prodCard prodCard_normal">
+                    <div class="prodImg">
+                        <img src="https://fakeimg.pl/100x100/aaf">
+                    </div>
+                    <div class="prodInfo">
+                        <div class="prodName">
+                            <h4>炒雞好ㄘㄉ糖果</h4>
+                        </div>
+                        <div class="prodPrice">
+                            <div class="priceOrigin"><span>$400</span></div>
+                            <div class="priceNow"><span>$100</span></div>
+                        </div>
+                    </div>
+                    <div class="cardCtrl">
+                        <div class="prodPriceSum">
+                            <p>
+                                小計: <span>$200</span>
+                            </p>
+                        </div>
+                        <div class="prodQty">
+                            <div class="numInput">
+                                <span class="numMinus">-</span><input type="number" value="1"><span class="numPlus">+</span>
+                            </div>
+                        </div>
+                        <button class="trash"><i class="far fa-trash-alt"></i></button>
+                    </div>
+                </div>
+
+                <div class="prodCard prodCard_normal">
+                    <div class="prodImg">
+                        <img src="https://fakeimg.pl/100x100/aaf">
+                    </div>
+                    <div class="prodInfo">
+                        <div class="prodName">
+                            <h4>炒雞好ㄘㄉ糖果</h4>
+                        </div>
+                        <div class="prodPrice">
+                            <div class="priceOrigin"><span>$400</span></div>
+                            <div class="priceNow"><span>$100</span></div>
+                        </div>
+                    </div>
+                    <div class="cardCtrl">
+                        <div class="prodPriceSum">
+                            <p>
+                                <span>小計:</span><span>$200</span>
+                            </p>
+                        </div>
+                        <div class="prodQty">
+                            <div class="numInput">
+                                <span class="numMinus">-</span><input type="number" value="1"><span class="numPlus">+</span>
+                            </div>
+                        </div>
+                        <button class="trash"><i class="far fa-trash-alt"></i></button>
+                    </div>
+                </div>
+
+                <div class="prodCard prodCard_normal">
+                    <div class="prodImg">
+                        <img src="https://fakeimg.pl/100x100/aaf">
+                    </div>
+                    <div class="prodInfo">
+                        <div class="prodName">
+                            <h4>炒雞好ㄘㄉ糖果</h4>
+                        </div>
+                        <div class="prodPrice">
+                            <div class="priceOrigin"><span>$400</span></div>
+                            <div class="priceNow"><span>$100</span></div>
+                        </div>
+                    </div>
+                    <div class="cardCtrl">
+                        <div class="prodPriceSum">
+                            <p>
+                                小計: <span>$200</span>
+                            </p>
+                        </div>
+                        <div class="prodQty">
+                            <div class="numInput">
+                                <span class="numMinus">-</span><input type="number" value="1"><span class="numPlus">+</span>
+                            </div>
+                        </div>
+                        <button class="trash"><i class="far fa-trash-alt"></i></button>
+                    </div>
+                </div>
+
+                <div class="cartPanel">
+                    <div class="totalAndCoupon">
+                        <div class="priceTotal">
+                            <span>合計: $</span><span>600</span>
+                        </div>
+                        <div class="couponChoose">
+                            <label for="couponItem">
+                                <span>優惠劵: </span>
+                                <form action="" method="post" id="couponList">
+                                    <select name="couponItem" id="couponItem">
+                                        <option value="300">-300</option>
+                                        <option value="50">-50</option>
+                                        <option value="100">-100</option>
+                                    </select>
+                                </form>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="panelBtn">
+                        <div class="btnBack"><span>上一步</span></div>
+                        <div class="btnNext"><span>下一步</span></div>
+                    </div>
                 </div>
             </div>
-
-
-
         </div>
     </section>
 
@@ -221,6 +321,15 @@
             <p id="copy">Copyright©2019 Snack Master</p>
         </div>
     </footer>
+
+
+    <div class="engBtnList">
+        <div class="engBtn"></div>
+        <div class="engBtn"></div>
+        <div class="engBtn"></div>
+        <div class="engBtn"></div>
+        <div class="engBtn"></div>
+    </div>
 </body>
 
 </html>

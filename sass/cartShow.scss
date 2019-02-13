@@ -1,4 +1,135 @@
 @import "reset";
 @import "common";
 
+//由小切到大
+
+.body{
+    background-color: #111;
+}
+
+.cartShow{
+    width: 100%;
+    padding-top: 35px;
+    // background-color: #ccc;
+
+    .wrap{
+        padding-left:15px;
+        padding-right: 15px;
+        .cartTop{ //標題與說明區
+            .title{
+                h2{text-align: center;}
+            }
+            .cartFlow{
+                display: flex;
+                justify-content: space-between;
+                // padding: 0px 15px;
+                .cartStep{
+                    opacity: 0.5;
+                    width: 15%;
+                    margin: 5px;
+                    transition: 0.3s;
+                    .step__img{
+                        width: 100%;
+                        // padding-bottom: 100%;
+                    }
+                    p{
+                        text-align: center;
+                        span{font-family: inherit;font-size: 0.8rem;}
+                    }
+                    &.cartStep_select{width: 20%;opacity: 1;} //進行中流程的特效
+                }
+            }
+        }
+        .cartContent{
+            width: 100%;
+            &.cartContent_none{ //當我們沒有商品在購物車
+                display: flex;
+                display: none;
+                flex-direction: column;
+                h3{margin-top: 80px;text-align: center;}
+                a{
+                    display: block;
+                    align-self: center;
+                    margin-top: 20px;
+                }
+            }
+            &.cartContent_prod{ //當我們有商品在購物車
+                // padding: 15px 15px;
+                .prodCard{
+                    margin-top: 20px;
+                    padding: 10px;
+                    width: 100%;
+                    border: #333333 solid 2px;
+                    border-radius: 10px;
+                    &.prodCard_normal{
+                        display: flex;
+                        justify-content: space-between;
+                        .prodImg{
+                            // width: 20%;
+                            flex:1;
+                        }
+                        .prodInfo{
+                            width: 50%;
+                            padding: 0px 5px;
+                            display: flex;
+                            flex-direction: column;
+                            .prodName{
+                                flex: 3;
+                                justify-self: center;
+                            }
+                            .prodPrice{
+                                flex:1;
+                                justify-self: center;
+                                display: flex;
+                                .priceOrigin{
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    position: relative;
+                                    margin-right:5px;
+                                    &::before{
+                                        content: "";
+                                        display: block;
+                                        width: 100%;
+                                        height: 2px;
+                                        background-color: #141414;
+                                        position: absolute;
+                                        top: 50%;
+                                        transform-origin: center;
+                                        transform: rotate(15deg);
+                                    }
+                                }
+                                .priceNow{
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    span{font-size: 0.55rem;}
+                                }
+                            }
+                        }
+                        .cardCtrl{
+                            flex:1;
+                            // min-width: 20%;
+                            // background-color: #222;
+                            .prodPriceSum{
+                                p{
+                                    // text-align: right;
+                                    span{font-size: 0.55rem;}
+                                }
+                            }
+                            .prodQty{
+                                .numInput{
+                                    width: 100%;
+                                    .numMinus{width: 25%;}
+                                    .numPlus{width: 25%;}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 
