@@ -1,11 +1,7 @@
 var slideIndex = 1;
-showSlides(slideIndex);
 function showSlides(n) {
     var i;
-    var test = document.getElementsByClassName('item');
-    console.log(test);
-    console.log(test[0]);
-    console.log(test.length);
+    var slides = document.getElementsByClassName('item');
     if (n > slides.length) { slideIndex = 1 }
     if (n < 1) { slideIndex = slides.length }
     for (i = 0; i < slides.length; i++) {
@@ -36,13 +32,30 @@ function countdown() {
     document.getElementById('minute').innerText = minute + '分 : ';
     document.getElementById('second').innerText = second + '秒';
 }
+function test(){
+    console.log('here');
+}
 function sale() {
     //先呼叫一次呈現倒數的函數，不然一進畫面會是空白
     countdown();
     //設定計時器讓倒數函式countdown每秒被呼叫一次
     setInterval(countdown, 1000);
-    document.getElementById('close').addEventListener('click', function (){
+    document.getElementById('close').addEventListener('click', test);
+    document.getElementById('closeSale').addEventListener('click', function (){
         document.getElementById('sale').style.display = 'none';
     });
+    window.addEventListener('resize', function (){
+        if (window.screen.width < 768){
+            showSlides(slideIndex);
+        }else{
+            var slides = document.getElementsByClassName('item');
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "block";
+            }
+        }
+    });
+    if (window.screen.width < 768) {
+        showSlides(slideIndex);
+    };
 }
 window.addEventListener('load', sale);
