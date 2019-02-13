@@ -26,7 +26,7 @@
                     </div>
                     <nav>
                         <label for="smlSearch" class="searchBtn" value="search">
-                            <img src="../images/tina/search.png" alt="" id="searchBtn">
+                                <img src="../images/tina/search-icon.svg" alt="" id="searchBtn">
                         </label>
                         
                         <div class="menu">
@@ -52,10 +52,10 @@
                                     <li><a href="customized.html">客製零食箱</a> </li>
                                     <!-- 在手機上要關掉這個li的logo -->
                                     <li><a href="index.html"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
-                                    <li id="store"> <a href="shopping.html">零食商店街</a>
+                                    <li id="store"> 零食商店街
                                         <ul id="Submenu" class="subMenu">
-                                            <li><a href="showItem.html">零食單品</a></li>
                                             <li id="snBox"><a href="preOrder.html">預購零食箱</a></li>
+                                            <li ><a href="shopping.html">零食列表</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="gsell.html">尋找販賣機</a> </li>
@@ -64,8 +64,8 @@
                         </div>
         
                         <ul class="login">
-                            <li><i class="fas fa-shopping-cart"></i></li>
-                            <li><i class="fas fa-user-circle"></i></li>
+                            <li><i class="fas fa-shopping-cart" id="shopCart"></i></li>
+                            <li><i class="fas fa-user-circle" id="memLogin"></i></li>
                         </ul>
                     </nav>
             <div class="seachRegion" id="search_appear">
@@ -172,7 +172,7 @@
                                     <div class="btn" id="btn_clk"><img src="../images/customized/rotate.svg" alt=""></div>
                                     <div class="btn" id="btn_del"><i class="fa fa-trash"></i></div>
                                 </div>                        
-                                <div class="btn show action" id="show" style="line-height: 35px;margin:3px auto;">3D展示</div>
+                                <!-- <div class="btn show action" id="show" style="line-height: 35px;margin:3px auto;">3D展示</div> -->
                         </div>
                     </div>  
                     <div class="form">
@@ -579,7 +579,7 @@
                                             <span>$ 30</span>
                                         </div>
                                     </div>
-                                    <button class="step addCart">加入購物車</button>
+                                    <button class="step addCart">加入零食箱</button>
                                 </div>
                                 <div class="item">
                                     <div class="name">
@@ -589,7 +589,7 @@
                                             <span>$ 30</span>
                                         </div>
                                     </div>
-                                    <button class="step addCart">加入購物車</button>
+                                    <button class="step addCart">加入零食箱</button>
                                 </div>
                                 <div class="item">
                                     <div class="name">
@@ -599,7 +599,7 @@
                                             <span>$ 30</span>
                                         </div>
                                     </div>
-                                    <button class="step addCart">加入購物車</button>
+                                    <button class="step addCart">加入零食箱</button>
                                 </div>
                                 <div class="item">
                                     <div class="name">
@@ -609,7 +609,7 @@
                                             <span>$ 30</span>
                                         </div>
                                     </div>
-                                    <button class="step addCart">加入購物車</button>
+                                    <button class="step addCart">加入零食箱</button>
                                 </div>
                                 <div class="item">
                                     <div class="name">
@@ -619,7 +619,7 @@
                                             <span>$ 30</span>
                                         </div>
                                     </div>
-                                    <button class="step addCart">加入購物車</button>
+                                    <button class="step addCart">加入零食箱</button>
                                 </div>
                                 <div class="item">
                                     <div class="name">
@@ -629,7 +629,7 @@
                                             <span>$ 30</span>
                                         </div>
                                     </div>
-                                    <button class="step addCart">加入購物車</button>
+                                    <button class="step addCart">加入零食箱</button>
                                 </div>
                                 <div class="item">
                                     <div class="name">
@@ -639,7 +639,7 @@
                                             <span>$ 30</span>
                                         </div>
                                     </div>
-                                    <button class="step addCart">加入購物車</button>
+                                    <button class="step addCart">加入零食箱</button>
                                 </div>
                                 <div class="item">
                                     <div class="name">
@@ -649,7 +649,7 @@
                                             <span>$ 30</span>
                                         </div>
                                     </div>
-                                    <button class="step addCart">加入購物車</button>
+                                    <button class="step addCart">加入零食箱</button>
                                 </div>
                             </div>
                             <div class="good-content">
@@ -661,7 +661,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -671,7 +671,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -681,7 +681,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -691,7 +691,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -701,7 +701,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -711,7 +711,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -721,7 +721,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -731,7 +731,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                             </div>
                             <div class="good-content">
@@ -743,7 +743,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -753,7 +753,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -763,7 +763,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -773,7 +773,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -783,7 +783,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -793,7 +793,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -803,7 +803,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                             </div>
                             <div class="good-content">
@@ -815,7 +815,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -825,7 +825,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -835,7 +835,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -845,7 +845,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -855,7 +855,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -865,7 +865,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -875,7 +875,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                                     <div class="item">
                                         <div class="name">
@@ -885,7 +885,7 @@
                                                 <span>$ 30</span>
                                             </div>
                                         </div>
-                                        <button class="step addCart">加入購物車</button>
+                                        <button class="step addCart">加入零食箱</button>
                                     </div>
                             </div>
                         </div>
@@ -903,7 +903,7 @@
       <div class="step-content-foot">
         <button type="button" class="active" name="prev">上一步</button>
         <button type="button" class="active" name="next">下一步</button>
-        <button type="button" class="active out" name="finish"><a href="../page/shopping.html">加入購物車</a></button>
+        <button type="button" class="active out" name="finish"><a href="#">加入購物車</a></button>
       </div>
     </div>
   </div>
@@ -1492,7 +1492,7 @@ var section15 = document.querySelector("#section_15");
     $('.tab-content-2 > li').click(function(e){
         var index = $(this).index(); 
         $('.content.block').removeClass('block').stop().fadeOut(function(){
-            $('.content').eq(index).stop().fadeIn(500).addClass('block');
+            $('.content').eq(index).stop().fadeIn(100).addClass('block');
         });
     });
 });
@@ -1511,7 +1511,7 @@ var section15 = document.querySelector("#section_15");
             $('.tab-content-3 > li').click(function(e){
                 var index = $(this).index(); 
                 $('.good-content.active').removeClass('active').stop().fadeOut(function(){
-                    $('.good-content').eq(index).stop().fadeIn(500).addClass('active');
+                    $('.good-content').eq(index).stop().fadeIn(100).addClass('active');
                 });
             });
         });
