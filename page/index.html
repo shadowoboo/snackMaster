@@ -846,12 +846,13 @@
             </div>
             <div class="poCount">
                 <div class="poray">
-                    <ul>
+                    <!-- <img src="../images/index/ray.svg" alt="放射線"> -->
+                    <!-- <ul>
                         <li></li>
                         <li></li>
                         <li></li>
                         <li></li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <div class="poMainCount">
                     <div class="poCard">
@@ -910,6 +911,26 @@
                                     <div class="surface surface_font"></div>
                                     <div class="surface surface_left"></div>
                                     <div class="surface surface_right"></div>
+                                </div>
+                            </div>
+                            <div id="snacksRun">
+                                <div class="snacksRunImg">
+                                    <img src="../images/index/IP-1.png" alt="零食">
+                                </div>
+                                <div class="snacksRunImg">
+                                    <img src="../images/index/IP-2.png" alt="零食">
+                                </div>
+                                <div class="snacksRunImg">
+                                    <img src="../images/index/IP-3.png" alt="零食">
+                                </div>
+                                <div class="snacksRunImg">
+                                    <img src="../images/index/IP-4.png" alt="零食">
+                                </div>
+                                <div class="snacksRunImg">
+                                    <img src="../images/index/IP-5.png" alt="零食">
+                                </div>
+                                <div class="snacksRunImg">
+                                    <img src="../images/index/IP-6.png" alt="零食">
                                 </div>
                             </div>
                         </section>
@@ -1058,63 +1079,63 @@
         }
 
         // 預購零食箱動畫
-        var btnMonth=document.querySelectorAll(".month");
+        var btnMonth = document.querySelectorAll(".month");
         for (var i = 0; i < btnMonth.length; i++) {
             btnMonth[i].addEventListener("click", monthRotate);
         }
 
         function monthRotate(e) {
             if (window.screen.width > 768) {
-                        boxBases.forEach(element => {
-                            element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(30deg)";
-                        });
-                        // 先把蓋子蓋起來
-                        {
-                            let arr = cover_out.style.transform.split(" ");
-                            console.log(`arr: ${arr}`);
-                            cover_out.style.transform = "translate3d(0, 40px, -100px) rotateX(90deg)";
-                            cover_in.style.transform = "translate3d(0, 40px, -100px) rotateX(90deg) rotateY(180deg)";
-                        }
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(20deg)";
+                });
+                // 先把蓋子蓋起來
+                {
+                    let arr = cover_out.style.transform.split(" ");
+                    console.log(`arr: ${arr}`);
+                    cover_out.style.transform = "translate3d(0, 40px, -100px) rotateX(90deg)";
+                    cover_in.style.transform = "translate3d(0, 40px, -100px) rotateX(90deg) rotateY(180deg)";
+                }
 
-                        //延遲一段時間後...TADA~蓋子打開~
-                        setTimeout(e => {
-                            cover_out.style.transform = "translate3d(0, 40px, -100px) rotateX(200deg)";
-                            cover_in.style.transform = "translate3d(0, 40px, -100px) rotateX(200deg) rotateY(180deg)";
-                        }, 1000);
-                        //再延遲一下...燈燈~電燈假發光~
-                        setTimeout(e => {
-                            console.log(lights);
-                            lights.forEach(element => {
-                                element.classList.add("showLight");
-                            })
-                        }, 1000);
-                        // break;
-                    } else {
-                        boxBases.forEach(element => {
-                            element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(0deg)";
-                        });
-                        //先把蓋子蓋起來
-                        {
-                            let arr = cover_out.style.transform.split(" ");
-                            console.log(`arr: ${arr}`);
-                            cover_out.style.transform = "translate3d(0, 35px, -75px) rotateX(90deg)";
-                            cover_in.style.transform = "translate3d(0, 35px, -75px) rotateX(90deg) rotateY(180deg)";
-                        }
+                //延遲一段時間後...TADA~蓋子打開~
+                setTimeout(e => {
+                    cover_out.style.transform = "translate3d(0, 40px, -100px) rotateX(200deg)";
+                    cover_in.style.transform = "translate3d(0, 40px, -100px) rotateX(200deg) rotateY(180deg)";
+                }, 1000);
+                //再延遲一下...燈燈~電燈假發光~
+                setTimeout(e => {
+                    console.log(lights);
+                    lights.forEach(element => {
+                        element.classList.add("showLight");
+                    })
+                }, 1000);
+                // break;
+            } else {
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(0deg)";
+                });
+                //先把蓋子蓋起來
+                {
+                    let arr = cover_out.style.transform.split(" ");
+                    console.log(`arr: ${arr}`);
+                    cover_out.style.transform = "translate3d(0, 35px, -75px) rotateX(90deg)";
+                    cover_in.style.transform = "translate3d(0, 35px, -75px) rotateX(90deg) rotateY(180deg)";
+                }
 
-                        //延遲一段時間後...TADA~蓋子打開~
-                        setTimeout(e => {
-                            cover_out.style.transform = "translate3d(0, 35px, -75px) rotateX(200deg)";
-                            cover_in.style.transform = "translate3d(0, 35px, -75px) rotateX(200deg) rotateY(180deg)";
-                        }, 1000);
-                        //再延遲一下...燈燈~電燈假發光~
-                        setTimeout(e => {
-                            console.log(lights);
-                            lights.forEach(element => {
-                                element.classList.add("showLight");
-                            })
-                        }, 1000);
-                        // break;
-                    }
+                //延遲一段時間後...TADA~蓋子打開~
+                setTimeout(e => {
+                    cover_out.style.transform = "translate3d(0, 35px, -75px) rotateX(200deg)";
+                    cover_in.style.transform = "translate3d(0, 35px, -75px) rotateX(200deg) rotateY(180deg)";
+                }, 1000);
+                //再延遲一下...燈燈~電燈假發光~
+                setTimeout(e => {
+                    console.log(lights);
+                    lights.forEach(element => {
+                        element.classList.add("showLight");
+                    })
+                }, 1000);
+                // break;
+            }
         }
 
 
@@ -1461,7 +1482,7 @@
             game.classList.add('fadeIn');
             clearInterval(randomTimer);
         }
-        
+
         window.addEventListener('load', doFirst);
     </script>
 
@@ -1493,6 +1514,35 @@
             countryInfoReel.scrollTo(xpos,0);
         }
     </script> -->
+
+
+    <!-- //換排行榜動畫 -->
+    <script>
+        $('.category').click(function () {
+
+            // console.log(`第 ${i} 次 點擊`)
+            // var k = i ;
+            // i++;
+            // $('.LeaderboardCount').addClass('zoomInOut');
+            // setTimeout(function(){
+            //     $('.LeaderboardCount').removeClass('zoomInOut');
+            //     console.log(`第 ${k} 次 播放完畢`);
+
+            // },5000);
+
+            $('.LeaderboardCount').css({
+                'transform': 'translateY(0) scale(0)',
+                'transition': '0.5s',
+
+            })
+            setTimeout(() => {
+                $('.LeaderboardCount').css({
+                    'transform': 'translateY(0) scale(1)',
+                    'transition': '0.5s cubic-bezier(.24,.42,.63,1)',
+                })
+            }, 500);
+        })
+    </script>
 </body>
 
 </html>

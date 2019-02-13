@@ -402,7 +402,7 @@ body {
     .section_12 {
         background-image: url(../images/index/cheese.png);
         background-repeat: no-repeat;
-        height: 1340px;
+        height: 1270px;
         background-position-y: 60px;
         margin: 20px auto;
         position: relative;
@@ -470,6 +470,14 @@ body {
                 }
             }
         }
+        // .zoomInOut{
+        //     animation: zoom 5s;
+        //     @keyframes zoom{
+        //         0%{transform: scale(1)}
+        //         50%{transform: scale(0)}
+        //         100%{transform: scale(1)}
+        //     }
+        // }
         .LeaderboardCount {
             -webkit-overflow-scrolling: touch;
             @media screen and (max-width: 768px) {
@@ -478,18 +486,18 @@ body {
             .lbReel {
                 // -webkit-overflow-scrolling: touch;
                 max-width: 1200px;
-                height: 700px;
+                height: 620px;
                 margin: auto;
                 display: flex;
                 justify-content: space-around;
                 @media screen and (max-width: 768px) {
                     // -webkit-overflow-scrolling: touch;
-                    width: 1140px;
+                    width: 1180px;
                     max-width: 1200px;
                     height: unset;
                     overflow: -webkit-paged-x;
                     justify-content: flex-start;
-                    padding: 20px 0;
+                    padding: 20px;
                     .LeaderboardNo1 {
                         order: -1;
                     }
@@ -687,7 +695,7 @@ body {
             }
         }
         .LeaderboardSort {
-            margin: 80px;
+            margin: 60px;
             text-align: center;
             :nth-child(2),
             :nth-child(3),
@@ -941,7 +949,9 @@ body {
     }
     .preOrder {
         width: 100%;
+        padding-top: 50px;
         @media screen and (max-width: 768px) {
+            padding-top: unset;
             overflow: hidden;
             margin: 50px 0;
         }
@@ -960,87 +970,115 @@ body {
             }
         }
         .poCount {
+            &:before{
+                content: '';
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 210%;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                background-image: url(../images/index/ray.svg);
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+                animation: rotate 200s infinite linear;
+                @keyframes rotate {
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+                @media screen and (max-width: 768px) {
+                    background-size: unset;
+                    height: unset;
+                    transform: scale(2.5);
+                }
+            }
             width: 100%;
             height: 900px;
             margin: auto;
-            overflow: hidden;
             border-radius: 50% / 50%;
             background-color: #b8f1ed;
             position: relative;
             top: -80px;
+            overflow: hidden;
             @media screen and (max-width: 768px) {
                 height: unset;
                 overflow: unset;
             }
             .poray {
                 position: absolute;
-                transform: scale(2.5);
-                margin: auto;
-                height: 100%;
-                left: 0;
-                opacity: 0.5;
-                z-index: 0;
-                right: 0;
-                @media screen and (max-width: 768px) {
-                    transform: scale(1.1);
-                }
-                ul {
-                    position: absolute;
-                    left: -1em;
-                    right: -1em;
-                    top: -1em;
-                    bottom: -1em;
-                    margin: auto;
-                    padding: 0;
-                    width: 0;
-                    height: 0;
-                    list-style: none;
-                    animation: 200s rotate infinite linear;
-                    li,
-                    li:before,
-                    li:after {
-                        position: absolute;
-                        border: 0 solid transparent;
-                        border-width: 1.2em 20em;
-                        border-color: transparent #eaab8c;
-                        width: 0;
-                        height: 0;
-                        font-size: 20px;
-                    }
-                    li {
-                        left: -20em;
-                        top: 50%;
-                        margin-top: -1.2em;
-                        transform: rotate(.1deg);
-                    }
-                    li:before,
-                    li:after {
-                        left: -20em;
-                        top: -1.2em;
-                        display: block;
-                        content: "";
-                    }
-                    li:before {
-                        transform: rotate(60deg);
-                    }
-                    li:after {
-                        transform: rotate(-60deg);
-                    }
-                    li:nth-child(2) {
-                        transform: rotate(15deg);
-                    }
-                    li:nth-child(3) {
-                        transform: rotate(30deg);
-                    }
-                    li:nth-child(4) {
-                        transform: rotate(45deg);
-                    }
-                }
-                @keyframes rotate {
-                    100% {
-                        transform: rotate(360deg);
-                    }
-                }
+                // position: absolute;
+                // transform: scale(2.5);
+                // margin: auto;
+                // height: 100%;
+                // left: 0;
+                // opacity: 0.5;
+                // z-index: 0;
+                // right: 0;
+                // @media screen and (max-width: 768px) {
+                //     transform: scale(1.1);
+                // }
+                // ul {
+                //     position: absolute;
+                //     left: -1em;
+                //     right: -1em;
+                //     top: -1em;
+                //     bottom: -1em;
+                //     margin: auto;
+                //     padding: 0;
+                //     width: 0;
+                //     height: 0;
+                //     list-style: none;
+                //     animation: 200s rotate infinite linear;
+                //     li,
+                //     li:before,
+                //     li:after {
+                //         position: absolute;
+                //         border: 0 solid transparent;
+                //         border-width: 1.2em 20em;
+                //         border-color: transparent #eaab8c;
+                //         width: 0;
+                //         height: 0;
+                //         font-size: 20px;
+                //     }
+                //     li {
+                //         left: -20em;
+                //         top: 50%;
+                //         margin-top: -1.2em;
+                //         transform: rotate(.1deg);
+                //     }
+                //     li:before,
+                //     li:after {
+                //         left: -20em;
+                //         top: -1.2em;
+                //         display: block;
+                //         content: "";
+                //     }
+                //     li:before {
+                //         transform: rotate(60deg);
+                //     }
+                //     li:after {
+                //         transform: rotate(-60deg);
+                //     }
+                //     li:nth-child(2) {
+                //         transform: rotate(15deg);
+                //     }
+                //     li:nth-child(3) {
+                //         transform: rotate(30deg);
+                //     }
+                //     li:nth-child(4) {
+                //         transform: rotate(45deg);
+                //     }
+                // }
+                // @keyframes rotate {
+                //     100% {
+                //         transform: rotate(360deg);
+                //     }
+                // }
             }
             .poMainCount {
                 display: flex;
@@ -1116,6 +1154,47 @@ body {
                 }
                 .poBox {
                     .section_9 {
+                        position: relative;
+                        #snacksRun{
+                            // display: none;
+                            display: flex;
+                            position: absolute;
+                            transform-style: preserve-3d;
+                            outline: 1px solid #f00;
+                            perspective: 1000px;
+                            width: 100%;
+                            .snacksRunImg{
+                                width: 50%;
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                margin: 0;
+                            }
+                            // animation: roSnack 10s infinite linear;
+                            @keyframes roSnack {
+                                100%{transform: rotateY(360deg)}
+                            }
+                            :nth-child(1){
+                                transform: translateX(0px) translateY(0px) translateZ(0px);
+                            }
+                            :nth-child(2){
+                                transform: translateX(0px) translateY(0px) translateZ(0px);
+                            }
+                            :nth-child(3){
+                                transform: translateX(0px) translateY(0px) translateZ(0px);
+                            }
+                            :nth-child(4){
+                                transform: translateX(0px) translateY(0px) translateZ(0px);
+                            }
+                            :nth-child(5){
+                                transform: translateX(0px) translateY(0px) translateZ(0px);
+                            }
+                            :nth-child(6){
+                                transform: translateX(0px) translateY(0px) translateZ(0px);
+                            }
+                        }
                         .boxBase {
                             border: unset;
                             .surface {
