@@ -1,6 +1,7 @@
 @import "reset";
 @import 'common';
 
+
 body{
     background-color:#fadfd4 !important;
 }
@@ -47,7 +48,6 @@ body{
     height: 1px;
     background-color: #B0BEC5;
     z-index: 1;
-    -webkit-transition: all 0.5s ease-out;
   }
   
   .step-progress .step-slider .step-slider-item.active:before {
@@ -257,6 +257,7 @@ body{
         }
         .snackHouse{
             width: 1050px;
+            height: 600px;
             display: flex;
             flex-flow: column;
             align-items: center;
@@ -323,6 +324,7 @@ body{
         background-blend-mode: luminosity;
         background-size: cover;
         background-color: unset;
+        background: no-repeat, no-repeat;
         border: 1px dashed #ccc;
         position: absolute;
         text-align: center;
@@ -349,11 +351,11 @@ body{
         background-blend-mode: luminosity;
         background-repeat: no-repeat, repeat, repeat;
         background-position: center;}
-    .surface_down{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important;}
-    .surface_front{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important;}
-    .surface_back{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important;}
-    .surface_left{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#076baf, #076baf) !important;}
-    .surface_right{background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#076baf, #076baf) !important;}
+    .surface_down{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important;background: no-repeat, no-repeat, no-repeat;}
+    .surface_front{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important;background: no-repeat, no-repeat, no-repeat;}
+    .surface_back{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important;background: no-repeat, no-repeat, no-repeat;}
+    .surface_left{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#076baf, #91b8d3) !important;background: no-repeat, no-repeat, no-repeat;}
+    .surface_right{background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#076baf, #076baf) !important;background: no-repeat, no-repeat, no-repeat;}
 
 }
 
@@ -366,7 +368,6 @@ body{
     flex-direction: row;
     align-items:center;
     position: relative;
-    top: -33px;
     .surface{
             .droped_img{
                 display:block;
@@ -388,8 +389,8 @@ body{
     //     // user-select: none;
     // }
     .pics{
-        width:100%;
-        height:300px;
+        width:300px;
+        height:150px;
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
@@ -403,7 +404,7 @@ body{
             //     width: 50px;
             // }
             img{
-                width:75px;
+                width:65px;
             }
             }
         }
@@ -564,6 +565,7 @@ a {
 .tab-group-1{
   list-style:none;
   padding:0;
+  background: #fbc84a;
   &:after {
     content: "";
     display: table;
@@ -586,7 +588,7 @@ a {
     }
   }
   .active a {
-    background:#fbc84a;
+    background:#fff;
     color:$activeColor;
   }
 }
@@ -633,7 +635,7 @@ a {
 
 .form {
     flex:1;
-    height: 400px;
+    height: 300px;
     background:rgba($form-bg,.9);
     max-width:600px;
     border-radius:10px;
@@ -651,7 +653,7 @@ a {
     justify-content: center;
     align-items: center;
     width:300px;
-    margin:101px 0;
+    margin:50px 0;
     .colorBtn{
         width: 60px;
         height: 60px;
@@ -737,7 +739,8 @@ a {
     background: rgba(255, 255, 255, 0.9);
     // max-width: 600px;
     border-radius: 10px;
-    margin: 12px;
+    margin: 0 40px;
+    margin-top: 20px;
     border: 10px solid #fbc849;
     ul{
         position: relative;
@@ -747,6 +750,7 @@ a {
         flex: 1;
         flex-direction: row;
         justify-content: center;
+        background: #fbc84a;
         .tab{
             font-family: g2Font;
             text-decoration: none;
@@ -760,7 +764,7 @@ a {
             transition: .5s ease;
         }
         .yellow{
-            background-color: #fbc84a;
+            background-color: #fff;
             color: #076baf;
         }
     }
@@ -769,15 +773,15 @@ a {
         flex-direction: row;
         align-items:center;
         width: 100%;
-        height: 300px;
-        background-color:#fff;
+        width: 300px;
+        height: 230px;
+        margin: auto;
         .cardStyle{
             // display: flex;
             // flex-flow: row wrap;
             // justify-content: center;
             .small{
-                width: 350px;
-                margin: 4px;
+                width: 90%;
                 background-size: 100%;
                 cursor: pointer;
             }
@@ -811,12 +815,16 @@ a {
                 border-radius: 10px;
             }
             .showCard{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
                 position: absolute;
-                top:-185px;
-                left: -666px;
+                top: -140px;
+                left: -630px;
                 z-index: 3;
-                width: 600px;
-                height: 400px;
+                width: 500px;
+                height: 350px;
                 
 // 卡片區
 $cardX:800px;
@@ -1050,12 +1058,7 @@ $cardY:600px;
 }
 
 
-
-
 .sectionCard{
-    width: 100%;
-    height:50vh;
-    display: flex;
 
     //卡片控制
     @include card3D(400px,265px);
@@ -1121,7 +1124,6 @@ $cardY:600px;
         color: rgba(105,105,105,1);
         background: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
-        margin: 12px;
         border: 10px solid #fbc849;
         ul{
             width: 100%;
@@ -1129,6 +1131,7 @@ $cardY:600px;
             flex: 1;
             flex-direction: row;
             justify-content: center;
+            background:#fbc84a;
             .good{
                 font-family: g2Font;
                 text-decoration: none;
@@ -1142,7 +1145,7 @@ $cardY:600px;
                 transition: .5s ease;
             }
             .yellow{
-                background-color: #fbc84a;
+                background-color: #fff;
                 color: #076baf;
             }
         }
@@ -1294,9 +1297,8 @@ $cardY:600px;
 
 header nav .searchBtn img{
     display: block;
-    background: url(../images/tina/search.png);
-    width: 135px;
-    margin-top:34px;
+    width: 100px;
+    margin-top: 15px;
     margin-left: 30px !important;
     cursor: pointer;
 }
@@ -1422,7 +1424,7 @@ header nav .searchBtn img{
                     margin: auto;
                     .small{
                         width: 320px;
-                        height: 250px;
+                        height: 200px;
                     }
                 }
                 .cardText{
@@ -1441,7 +1443,7 @@ header nav .searchBtn img{
                     }
                         .cardBaseContent{
                             top: 8px !important;
-                            height: 200px !important;
+                            height: 275px !important;
                         
                         }
                         .cardBaseCover{

@@ -31,27 +31,42 @@ body {
             background-color: rgba($color: #fff, $alpha: 0.97); // vertical-align: middle;
             border: transparent;
             border-radius: 10px;
+            font-family: g2Med;
         }
         select {
             width: 25%;
-            margin-right: 5%;
+            margin: 0 10px;
             font-size: 16px;
             padding: 2px 4px 6px 4px;
+            color: $gray;
             @media only screen and (min-width: $moblie) {
                 width: 16%;
                 position: relative;
-                top: -5px;
+                top: -2px;
+                padding: 0px 4px 0px 4px;
+                margin: unset;
+                margin-right: 5%;
             }
         }
         input {
             position: relative;
             font-size: 14px;
             top: -4px;
-            padding: 4px 0px 4px 6px;
+            padding: 0px 0px 0px 6px;
+            @media screen and (max-width: 768px) {
+                width: 80%;
+                font-size: 20px;
+                margin: 30px 0;
+            }
         }
         i {
-            font-size: 18px;
+            font-size: 20px;
             vertical-align: middle;
+            color: $gray;
+            @media screen and (max-width: 768px) {
+                vertical-align: unset;
+                font-size: 30px;
+            }
         }
         @media screen and (max-width:768px) {
             margin-top: 120px;
@@ -151,8 +166,13 @@ body {
                     }
                 }
                 @media screen and (min-width:768px) {
-                    .countryImg:hover .countryInfoLg {
-                        display: block;
+                    .countryImg:hover {
+                        .countryInfoLg {
+                            display: block;
+                        }
+                        &:before {
+                            display: none;
+                        }
                     }
                 }
                 >:nth-child(2) {
@@ -320,14 +340,15 @@ body {
                 display: none;
                 @media screen and (max-width: 768px) {
                     display: block;
-                    overflow: -webkit-paged-x;
+                    overflow: auto;
                 }
                 .countryInfoReel {
                     @media screen and (max-width: 768px) {
-                        width: 100%;
-                        display: flex; // overflow: -webkit-paged-x;
+                        width: 140%;
+                        display: flex;
                         margin: 40px auto;
                         padding: 0 10px;
+                        overflow: -webkit-paged-x;
                         .countryInfoSm {
                             margin: 10px 10px;
                             background-color: rgba(255, 255, 255, 0.9);
@@ -443,7 +464,7 @@ body {
             }
         }
         .LeaderboardCount {
-            @media screen and (max-width:768px) {
+            @media screen and (max-width: 768px) {
                 overflow: auto;
             }
             .lbReel {
@@ -775,14 +796,14 @@ body {
                         background-image: url(../images/index/boxStyle1.png), linear-gradient($blue, $blue);
                     }
                     .surface_top {
-                        background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
+                        background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient($deepyellow, $deepyellow);
                         background-blend-mode: luminosity;
                         background-repeat: no-repeat, repeat, repeat;
                         background-size: 100px, cover, cover;
                         background-position: center;
                     }
                     .surface_font {
-                        background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
+                        background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient($deepyellow, $deepyellow);
                         background-blend-mode: luminosity;
                         background-repeat: no-repeat, repeat, repeat;
                         background-size: 70px, cover, cover;
@@ -935,9 +956,10 @@ body {
             background-color: #b8f1ed;
             position: relative;
             top: -80px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
+            @media screen and (max-width: 768px) {
+                height: unset;
+                overflow: unset;
+            }
             .poray {
                 position: absolute;
                 transform: scale(2.5);
@@ -947,6 +969,9 @@ body {
                 opacity: 0.5;
                 z-index: 0;
                 right: 0;
+                @media screen and (max-width: 768px) {
+                    transform: scale(1.1);
+                }
                 ul {
                     position: absolute;
                     left: -1em;
@@ -1005,113 +1030,121 @@ body {
                     }
                 }
             }
-            .poCard {
-                width: 23%;
-                position: relative;
-                color: #737374;
-                min-width: 420px;
-                @media screen and (max-width: 768px) {
-                    min-width: unset;
-                    width: 95%;
-                }
-                .poTrait {
-                    padding: 10px;
-                    text-align: center;
-                    background-color: #fff;
-                    border-radius: 10px;
-                    h2 {
+            .poMainCount {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                max-width: 1200px;
+                height: 100%;
+                margin: auto;
+                .poCard {
+                    width: 23%;
+                    position: relative;
+                    color: #737374;
+                    min-width: 420px;
+                    @media screen and (max-width: 768px) {
+                        min-width: unset;
+                        width: 95%;
+                    }
+                    .poTrait {
                         padding: 10px;
-                    }
-                    .traitCount {
-                        width: 90%;
-                        display: flex;
-                        flex-wrap: wrap;
-                        justify-content: space-around;
-                        margin: auto;
-                        p {
-                            border: 2px solid $blue;
-                            padding: 23px 0;
-                            margin: 10px;
-                            width: 100px;
-                            border-radius: 50%;
-                            vertical-align: middle;
-                        }
-                        @media screen and (max-width:768px) {
-                            width: 100%;
-                            p {
-                                margin: 10px 0;
-                            }
-                        }
-                    }
-                    .traitGo {
-                        padding: 20px;
-                        @media screen and (max-width: 768px) {
+                        text-align: center;
+                        background-color: #fff;
+                        border-radius: 10px;
+                        h2 {
                             padding: 10px;
                         }
-                    }
-                }
-                .poInside {
-                    p {
-                        padding: 10px;
-                        color: $blue;
-                    }
-                    .insideBtn {
-                        text-align: right;
-                        .month {
-                            box-shadow: 6px 6px 0 0 #00457b;
-                            margin: 0 10px;
+                        .traitCount {
+                            width: 90%;
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: space-around;
+                            margin: auto;
+                            p {
+                                border: 2px solid $blue;
+                                padding: 23px 0;
+                                margin: 10px;
+                                width: 100px;
+                                border-radius: 50%;
+                                vertical-align: middle;
+                            }
+                            @media screen and (max-width:768px) {
+                                width: 100%;
+                                p {
+                                    margin: 10px 0;
+                                }
+                            }
                         }
-                        @media screen and (max-width:768px) {
-                            text-align: unset;
+                        .traitGo {
+                            padding: 20px;
+                            @media screen and (max-width: 768px) {
+                                padding: 10px;
+                            }
+                        }
+                    }
+                    .poInside {
+                        p {
+                            padding: 10px;
+                            color: $blue;
+                        }
+                        .insideBtn {
+                            text-align: right;
                             .month {
-                                margin: 0 4px;
+                                box-shadow: 6px 6px 0 0 #00457b;
+                                margin: 0 10px;
+                            }
+                            @media screen and (max-width:768px) {
+                                text-align: unset;
+                                .month {
+                                    margin: 0 4px;
+                                }
                             }
                         }
                     }
                 }
-            }
-            .poBox {
-                .section_9 {
-                    .boxBase {
-                        border: unset;
-                        .surface {
-                            background-image: url(../images/index/boxStyle1.png), linear-gradient($deepyellow, $deepyellow);
-                            background-blend-mode: luminosity;
-                            background-size: cover;
-                            background-color: unset;
-                            border: 1px dashed #ccc;
-                        }
-                        .surface_left,
-                        .surface_right {
-                            background-image: url(../images/index/boxStyle1.png), linear-gradient($blue, $blue);
-                        }
-                        .surface_top {
-                            background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
-                            background-blend-mode: luminosity;
-                            background-repeat: no-repeat, repeat, repeat;
-                            background-size: 100px, cover, cover;
-                            background-position: center;
-                        }
-                        .surface_font {
-                            background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
-                            background-blend-mode: luminosity;
-                            background-repeat: no-repeat, repeat, repeat;
-                            background-size: 70px, cover, cover;
-                            background-position: center;
+                .poBox {
+                    .section_9 {
+                        .boxBase {
+                            border: unset;
+                            .surface {
+                                background-image: url(../images/index/boxStyle1.png), linear-gradient($deepyellow, $deepyellow);
+                                background-blend-mode: luminosity;
+                                background-size: cover;
+                                background-color: unset;
+                                border: 1px dashed #ccc;
+                            }
+                            .surface_left,
+                            .surface_right {
+                                background-image: url(../images/index/boxStyle1.png), linear-gradient($blue, $blue);
+                            }
+                            .surface_top {
+                                background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
+                                background-blend-mode: luminosity;
+                                background-repeat: no-repeat, repeat, repeat;
+                                background-size: 100px, cover, cover;
+                                background-position: center;
+                            }
+                            .surface_font {
+                                background-image: url(../images/tina/LOGO1.png), url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600);
+                                background-blend-mode: luminosity;
+                                background-repeat: no-repeat, repeat, repeat;
+                                background-size: 70px, cover, cover;
+                                background-position: center;
+                            }
                         }
                     }
                 }
-            }
-            @media screen and (max-width:768px) {
-                overflow: unset;
-                flex-direction: column;
-                top: -90px;
-                height: 880px;
-                .poray {
-                    transform: unset;
-                }
-                .poInside {
-                    text-align: center;
+                @media screen and (max-width:768px) {
+                    overflow: unset;
+                    flex-direction: column;
+                    top: -90px;
+                    height: 880px;
+                    .poray {
+                        transform: unset;
+                    }
+                    .poInside {
+                        text-align: center;
+                    }
                 }
             }
         }
@@ -1346,6 +1379,57 @@ body {
                     top: -48px;
                 }
             }
+        }
+    }
+    .gameBox {
+        position: fixed;
+        bottom: 2%;
+        left: 1%;
+        width: 240px;
+        animation: float 1s linear infinite alternate;
+        z-index: 999;
+        cursor: pointer;
+        p {
+            position: absolute;
+            top: 22px;
+            left: 102px;
+            color: $gray;
+        }
+    }
+    .gameScratch {
+        position: fixed;
+        bottom: 2%;
+        right: -200px;
+        width: 190px;
+        z-index: 999;
+        cursor: pointer;
+        p {
+            position: absolute;
+            top: 22px;
+            left: 35px;
+            color: #737374;
+        }
+    }
+    .fadeIn {
+        animation: fadeIn 1s ;
+    }
+    .fadeOut {
+        animation: fadeOut 1s reverse;
+    }
+    @keyframes fadeIn {
+        0% {
+            transform: translateX(0)
+        }
+        100% {
+            transform: translateX(-200px)
+        }
+    }
+    @keyframes fadeOut {
+        0% {
+            transform: translateX(200px)
+        }
+        100% {
+            transform: translateX(0)
         }
     }
     .footer {

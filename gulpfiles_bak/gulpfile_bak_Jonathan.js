@@ -38,7 +38,7 @@ gulp.task('default', ['sass'], function () {
         //php連動
         //走proxy
         //proxy 和 server只能擇一
-        proxy:"localhost:8888/testG2/page",
+        proxy:"localhost:8888/snackMaster/page",
     });
 
     gulp.watch(["sass/*.scss", "sass/**/*.scss"], ['sass']).on('change', reload);
