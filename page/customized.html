@@ -170,6 +170,7 @@
                                     <div class="btn" id="btn_big"><img src="../images/customized/zoom_in.svg" alt=""></div>
                                     <div class="btn" id="btn_small"><img src="../images/customized/zoom_out.svg" alt=""></div>
                                     <div class="btn" id="btn_clk"><img src="../images/customized/rotate.svg" alt=""></div>
+                                    <div class="btn" id="btn_clk_r"><img src="../images/customized/rotate.svg" alt="" style="transform: rotate(175deg);"></div>
                                     <div class="btn" id="btn_del"><i class="fa fa-trash"></i></div>
                                 </div>                        
                                 <!-- <div class="btn show action" id="show" style="line-height: 35px;margin:3px auto;">3D展示</div> -->
@@ -979,7 +980,8 @@
         "btn_right",
         "btn_big",
         "btn_small",
-        "btn_clk",
+        "btn_clk",        
+        "btn_clk_r",
         "btn_unclk",
         "btn_del"];
     //工作姿態陣列 posture
@@ -991,7 +993,7 @@
         "rotateX(0deg) rotateY(90deg) rotateZ(0deg)",//左
         "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)"]//右
     //允許控制圖片的按鈕
-    const dropedImgCtrl = ["btn_big", "btn_small", "btn_clk", "btn_unclk", "btn_del"];
+    const dropedImgCtrl = ["btn_big", "btn_small", "btn_clk","btn_clk_r", "btn_unclk", "btn_del"];
 
 
     //給箱子姿態初始值
@@ -1342,6 +1344,22 @@ var section15 = document.querySelector("#section_15");
                         let arr = el.style.transform.split(" ");
                         //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
                         let newAngel = parseInt(arr[2].replace("rotate(", "").replace("deg)", "")) + 20;
+                        console.log("arr: " + arr);
+                        console.log("arr[3]: " + arr[2]);
+                        console.log(parseInt(arr[2].replace("rotate(", "").replace("deg)", "")));
+                        console.log("newAngel: " + newAngel);
+                        arr[2] = "rotate(" + newAngel + "deg)";
+                        el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                    }
+                })
+                break;
+            case "btn_clk_r":
+                arrDropedImg.forEach(el => {
+                    if (el.classList.contains("select")) {
+                        console.log("clk rotate");
+                        let arr = el.style.transform.split(" ");
+                        //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                        let newAngel = parseInt(arr[2].replace("rotate(", "").replace("deg)", "")) - 20;
                         console.log("arr: " + arr);
                         console.log("arr[3]: " + arr[2]);
                         console.log(parseInt(arr[2].replace("rotate(", "").replace("deg)", "")));
