@@ -847,6 +847,7 @@ body {
                     height: 18%;
                     border-radius: 50%;
                     position: absolute;
+                    cursor: pointer;
                 }
                 #red {
                     background-color: #ff5050;
@@ -1376,10 +1377,7 @@ body {
                     @media screen and (max-width: 768px) {
                         padding: 0 0 5px;
                     }
-                    .locateImg {
-                        width: 7%;
-                        position: relative;
-                        animation: float 1s linear infinite alternate;
+                    .showYellow{
                         &::before {
                             content: '';
                             display: block;
@@ -1390,14 +1388,14 @@ body {
                             left: 11%;
                             padding-bottom: 80%;
                             border-radius: 50%;
-                            opacity: 0;
-                        }
-                    }
-                    .locateImg:hover {
-                        &::before {
                             opacity: 1;
                             transition: .5s;
                         }
+                    }
+                    .locateImg {
+                        width: 7%;
+                        position: relative;
+                        animation: float 1s linear infinite alternate; 
                     }
                     img {
                         width: 100%;
@@ -1414,6 +1412,7 @@ body {
                         width: 18%;
                         margin: 2% 7% 0;
                         position: relative;
+                        cursor: pointer;
                     }
                     img:hover {
                         animation: shake 0.1s infinite alternate;
