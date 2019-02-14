@@ -1056,7 +1056,21 @@
         window.addEventListener('load', doFirst);
     </script>
 
-
+    <script>
+        var monthBtn = document.getElementsByClassName('month');
+        for (var m = 0; m < monthBtn.length; m++) {
+            monthBtn[m].addEventListener('click', function (e) {
+                //因為被點擊到的要換色，其他要恢復原狀
+                //所以有按鈕被點擊時先一律全部恢復原狀，再讓被點擊的那個換色
+                for (m = 0; m < monthBtn.length; m++) {
+                    monthBtn[m].style.color = '';
+                    monthBtn[m].style.backgroundColor = '';
+                }
+                e.target.style.color = '#737374';
+                e.target.style.backgroundColor = '#fbc84a';
+            });
+        }
+    </script>
 
     <!-- 箱子打開動畫 -->
     <script>
@@ -1084,6 +1098,7 @@
         var btnMonth = document.querySelectorAll(".month");
         for (var i = 0; i < btnMonth.length; i++) {
             btnMonth[i].addEventListener("click", monthRotate);
+            // $(this).css({'backgroundColor':'#076baf'});
         }
 
         function monthRotate(e) {
@@ -1485,7 +1500,7 @@
             setInterval(showGame, 10000);
         }
         function showGame() {
-            var random = (Math.floor(Math.random()*10) + 1) * 1000;
+            var random = (Math.floor(Math.random() * 10) + 1) * 1000;
             randomTimer = setInterval(randomGame, random);
         }
         function randomGame() {
@@ -1495,7 +1510,7 @@
             clearInterval(randomTimer);
             catchTimer = setInterval(countdown, 5000);
         }
-        function countdown(){
+        function countdown() {
             game.classList.add('fadeOut');
             game.classList.remove('fadeIn');
             clearInterval(catchTimer);
@@ -1564,11 +1579,31 @@
 
     <!-- 點販賣機提示點到哪一台 -->
     <script>
+        // $('.vmImg img').click(function () {
+        //     $('.locateImg').toggleClass('showYellow');
+        // })
+
+        // const aa=$('.vmImg img');
+        // const bb=$('.locateImg');
+        // console.log(`aa: ${aa}`);
+        // console.log(`bb: ${bb}`);
+        
+        // aa.get(0).click(function () {
+        //     bb.get(0).toggleClass('showYellow');
+        // })
+
+        // console.log(`$('.vmImg img')[0]: ${typeof($('.vmImg img')[0])}`);
+        // console.log($('.vmImg img')[0]);
+        
         $('.vmImg img').click(function () {
-            $('.locateImg').css({
-                'backgroundColor': '#f00',
-                'transition': '0.5s',
-            })
+            //陣列無法使用事件處理函式
+            // $('.locateImg')[0].removeClass('showYellow');
+            // console.log($('.vmImg img').index(this));
+            var locaA = $('.vmImg img').index(this);
+            // $('.locateImg')[0].addClass('showYellow');
+            var lightThis = $('.locateImg')[locaA];
+            $(lightThis).addClass('showYellow');
+            $('.locateImg').not(lightThis).removeClass('showYellow');
         })
     </script>
 </body>
