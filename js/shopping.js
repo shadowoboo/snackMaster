@@ -35,7 +35,7 @@ function createRadar() {
         type: 'radar',
         data: {
             //項目標籤的文字
-            labels: ["好評度", "甜", "酸", "辣"],
+            labels: ["好評度", "酸", "甜", "辣"],
             datasets: [{
                 // label: '# of Votes',
                 data: [0, 0, 0, 0],
@@ -58,11 +58,11 @@ function showRadar(e){
     var id = e.target.id;
     var kindArr = id.split('|');
     var good = kindArr[0];
-    var sweet = kindArr[1];
     var sour = kindArr[2];
+    var sweet = kindArr[1];
     var spicy = kindArr[3];
     //重新把口味變數設定給雷達圖
-    radarCanvas.data.datasets[0].data = [good, sweet, sour, spicy];
+    radarCanvas.data.datasets[0].data = [good, sour, sweet, spicy];
     //更新雷達圖
     radarCanvas.update();
 
