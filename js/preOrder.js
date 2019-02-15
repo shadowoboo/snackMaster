@@ -88,19 +88,11 @@ currentDeg = 0;
 function showNext() {
     currentDeg = currentDeg - 60;
     document.getElementsByClassName('carousels')[0].style.transform = 'translate(-50%,-50%) rotateY(' + currentDeg + 'deg)';
-    // carousel.css({
-    //     "transform": "translate(-50%,-50%) rotateY(" + currentDeg + "deg)"
-    // });
-    console.log(document.getElementsByClassName('carousels')[0].style.transform);
 }
 
 function showPrev() {
     currentDeg = currentDeg + 60;
     document.getElementsByClassName('carousels')[0].style.transform = 'translate(-50%,-50%) rotateY(' + currentDeg + 'deg)';
-    // carousel.css({
-    //     "transform": "translate(-50%,-50%) rotateY(" + currentDeg + "deg)"
-    // });
-    console.log('prev');
 }
 
 function init() {
