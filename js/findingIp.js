@@ -1,4 +1,6 @@
 $('document').ready(function(){
+
+  
     var box1 = $("#box1"),
       box2 = $("#box2"),
       box3 = $("#box3"),
@@ -7,7 +9,7 @@ $('document').ready(function(){
       messageBar = $("#msg_bd"),
       kickDropDownAnimationDelay = 1500,
       shuffleSpeed = 500,
-      nuberOfShuffels = 15,
+      nuberOfShuffels = 5,
       z = 0;
   
     var ans = Math.floor(Math.random() * 3) + 1;
@@ -18,18 +20,24 @@ $('document').ready(function(){
       //Show the character fist
       kick.show();
       // Show the message "Starting the game"
-      setMessage("Starting the game", "color_0");
+      setMessage("準備開始囉！", "color_0");
       // Update the initial position based on the answer
-      kickInitialPosition = 68 + ((ans - 1) * 280);
-  
+      var ansBox = $('.boxes')[ans-1];
+      var ajst =$(ansBox).width()*0.116;
+      var ajst2 = $(ansBox).width()*0.231;
+      var ajst3 = $(ansBox).width()*0.042;
+      kickInitialPosition = $(ansBox).position().left+ajst;
+      console.log(kickInitialPosition);
       // Move kick Under the relative box based on answer
       kick.css({
         left: kickInitialPosition + "px"
       });
   
       // Droping kick from the top into the box.
+
+      var dropPoint = $(ansBox).position().top;
       kick.animate({
-        top: "300px"
+        top: dropPoint+"px"
       }, {
         duration: kickDropDownAnimationDelay,
         specialEasing: {
@@ -38,14 +46,14 @@ $('document').ready(function(){
         complete: function() {
           kick.html("<img src='https://websiddu.github.com/3cups/img/kick_smile.png' alt='' />");
           kick.animate({
-            top: "370px"
+            top: dropPoint+ajst2+"px"
           }, {
             duration: 500,
             specialEasing: {
               top: 'easeInQuint'
             },
             complete: function() {
-              setMessage("Closing the boxes ;)")
+              setMessage("　箱子要關起來囉！")
   
               // Close all the three boxes in a regular interval.
               box1.delay(500).queue(function(n) {
@@ -93,7 +101,7 @@ $('document').ready(function(){
   
                 var interval = setInterval(function() {
   
-                  setMessage("Shuffling ....");
+                  setMessage("看仔細囉...");
   
   
   
@@ -125,7 +133,7 @@ $('document').ready(function(){
                   clearInterval(interval);
                   var flag = 0;
                   $('div[id^="box"]').css("cursor", "pointer");
-                  setMessage("Click on the box, that you think Mr Kick is hidden >> :p")
+                  setMessage("好麻吉在哪個箱子呢 ? ")
   
                   box1.click(function() {
                     if(flag == 0) {
@@ -133,7 +141,7 @@ $('document').ready(function(){
                       $(this).append(' <img src="https://websiddu.github.com/3cups/img/box_o_b.png" id="box_o_b" alt="">');
                       if(ans == 1) {
                         kick.css({
-                          left: $(this).position().left + 46 + "px"
+                          left: $(this).position().left + ajst + "px"
                         });
                         flag = 1;
                         slide_out();
@@ -150,7 +158,7 @@ $('document').ready(function(){
                       $(this).append(' <img src="https://websiddu.github.com/3cups/img/box_o_b.png" id="box_o_b" alt="">');
                       if(ans == 2) {
                         kick.css({
-                          left: $(this).position().left + 46 + "px"
+                          left: $(this).position().left + ajst + "px"
                         });
                         flag = 1;
                         slide_out();
@@ -167,7 +175,7 @@ $('document').ready(function(){
                       $(this).append(' <img src="https://websiddu.github.com/3cups/img/box_o_b.png" id="box_o_b" alt="">');
                       if(ans == 3) {
                         kick.css({
-                          left: $(this).position().left + 46 + "px"
+                          left: $(this).position().left + ajst + "px"
                         });
                         flag = 1;
                         slide_out();
@@ -180,10 +188,10 @@ $('document').ready(function(){
   
   
                   function slide_out() {
-                    setMessage("Congrats You won!!!! <a href=\"javascript:location.reload();\" >Play again</a>", "color_2");
+                    setMessage("恭喜你　找到了！ <a  href=\"javascript:location.reload();\" >收下禮物優惠券</a>", "color_2");
                     kick.show();
                     kick.animate({
-                      top: "295px"
+                      top: dropPoint-ajst3+"px"
                     }, {
                       duration: 500,
                       specialEasing: {
@@ -194,7 +202,7 @@ $('document').ready(function(){
                   }
   
                   function print_error() {
-                    setMessage("LOL!!! you lost noting found.. :P :P <a href=\"javascript:location.reload();\" >try again</a>", "color_1");
+                    setMessage("答錯了　麻吉不在這個箱子！ <a href=\"javascript:location.reload();\" >重新再來</a>", "color_1");
                   }
                 }, nuberOfShuffels * shuffleSpeed);
                 n();
