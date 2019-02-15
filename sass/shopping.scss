@@ -63,6 +63,7 @@ h1,h2,h3,h4,p,span{
                 // vertical-align: middle;
                 border: transparent;
                 border-radius: 10px;
+                color: $gray;
             }
             select{
                 width: 25%;
@@ -72,7 +73,7 @@ h1,h2,h3,h4,p,span{
                 @media only screen and (min-width: $moblie) {
                     width: 16%;
                     position: relative;
-                    top: -3px;
+                    top: -2px;
                 }
             }
             input{
@@ -102,7 +103,7 @@ h1,h2,h3,h4,p,span{
 
             .item{
                 width: 280px;
-                height: 480px;
+                height: 500px;
                 float: left;
                 margin-left: calc( 50% - 140px );
                 position: relative;
@@ -111,11 +112,16 @@ h1,h2,h3,h4,p,span{
                 }
                 @media only screen and (min-width: 840px) {
                     margin-left: calc( 25% - 210px); 
-                    //(100% - 280*3)/4  
                 }
-                // @media only screen and (min-width: 1184px) {
-                //     margin-left: 16px;   
-                // }
+                a{
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 1;
+                }
                 .country{
                     width: 40px;
                     position: absolute;
@@ -138,10 +144,13 @@ h1,h2,h3,h4,p,span{
                 .price{
                     margin-top: 4px;
                     font-size: 22px;
+                    color: $blue;
                 }
                 .itemBtns{
                     margin-top: 6px;
                     .cart, .heart{
+                        position: relative;
+                        z-index: 2;
                         vertical-align: middle;
                     }
                 }
@@ -240,7 +249,7 @@ h1,h2,h3,h4,p,span{
             }
         }
     }
-        #bgChips{
+    #bgChips{
         display: none;
         @media only screen and (min-width: 1200px) {
             display: block;

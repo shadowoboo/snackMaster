@@ -1,0 +1,180 @@
+#sale{
+    position: absolute;
+    top: 186px;
+    z-index: 10;
+    background-image: url(../images/blair/sale2.png);
+    background-size: cover;
+    height: 480px;
+    width: 374px;
+    padding: 0;
+    animation: entering 4s linear 1 forwards;
+    @keyframes entering {
+        0%{left: -500px};
+        100%{left: calc(50% - 187px)};
+    }
+    @media only screen and (min-width: 768px) {
+        top: 300px;
+        background-image: url(../images/blair/sale.png);
+        width: 890px;
+        padding: 0 76px;
+        @keyframes entering {
+            0%{left: -1000px};
+            100%{left: calc(50% - 445px)};
+        }
+    }
+    #closeSale{
+        width: 30px;
+        height: 30px;
+        background-color: #fff;
+        border-radius: 50%;
+        font-size: 0;
+        text-align: center;
+        position: absolute;
+        top: 32px;
+        right: 22px;
+        cursor: pointer;
+        i{
+            font-size: 24px;
+            line-height: 30px;
+            color: #737374;
+        }
+        @media only screen and (min-width: 768px) {
+            top: 18px;
+            right: 66px;
+        }
+    }
+    .saleTitle{
+        position: absolute;
+        top: -36px;
+        left: 13px;
+        background-color: #076baf;
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 0;
+        @media only screen and (min-width: 768px) {
+            left: 260px;
+        }
+        h3{
+            color: #fff;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+            @media only screen and (min-width: 768px) {
+                margin-right: 20px;
+            }
+        }
+        .countdown{
+            background-color: #fff;
+            border-radius: 10px;
+            display: inline-block;
+            vertical-align: middle;
+            padding: 4px 10px;
+            width: 198px;
+            text-align: center;
+            @media only screen and (min-width: 768px) {
+                padding: 4px 16px;
+                width: 210px;
+            }
+            span{
+                font-size: 22px;
+            }
+        }
+    }
+    .item{
+        width: 200px;
+        height: 330px;
+        float: left;
+        margin-left: 87px;
+        margin-top: 45px;
+        position: relative;
+        text-align: center;
+        color: #737374;
+        background-color: #fff;
+        box-shadow: 3px 3px 10px #ccc;
+        border-radius: 16px;
+        display: none;
+        @media only screen and (min-width: 768px) {
+            margin-left: 40px;
+            display: block;
+        }
+        a{
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        .country{
+            width: 32px;
+            position: absolute;
+            top: 8px;
+            right: 15px;
+        }
+        .itemImg{
+            width: 110px;
+            margin-top: 38px;
+        }
+        .itemName{
+            width: 154px;
+            margin: auto;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .star{
+            width: 100px;
+            vertical-align: middle;
+        }
+        .price{
+            margin-top: 4px;
+            font-size: 16px;
+            color: #076baf;
+        }
+        .itemBtns{
+            margin-top: 6px;
+            .cart{
+                position: relative;
+                z-index: 2;
+                vertical-align: middle;
+            }
+        }
+        .stock{
+            margin-top: 30px;
+            font-size: 20px;
+            font-family: g2Med;
+            background-color: #fff;
+            box-shadow: 3px 3px 10px #ccc;
+            border-radius: 10px;
+            padding: 4px 0;
+            .stockQty{
+                font-size: 20px;
+                color: #ea5a5a;
+            }
+        }
+    }
+    .fade {
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+    @keyframes fade {
+        from {opacity: .4} 
+        to {opacity: 1}
+    }
+    a{
+        position: absolute;
+        top: 50%;
+        color: #076baf;
+        font-size: 44px;
+        cursor: pointer;
+        @media only screen and (min-width: 768px) {
+            display: none;
+        }
+    }
+    #prev{
+        left: 32px;
+    }
+    #next{
+        right: 32px;
+    }
+}
