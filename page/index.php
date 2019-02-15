@@ -154,7 +154,7 @@
             $i=0;
             // echo $ln; 
             for($i=0; $i<$ln; $i++){
-                $sql = "select nation,snackName,snackWord,snackPic,snackPrice,MAX(snackNo) from snack where nation= ?";
+                $sql = "select MAX(snackNo),nation,snackName,snackWord,snackPic,snackPrice from snack WHERE nation= ? group by snackNo ORDER by MAX(snackNo) DESC limit 1";
                 $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
                 // $aa=$country[$i];
                 // echo $country[$i]; 
@@ -199,7 +199,7 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[0]["nation"];?>] <?php echo $arr_row[0]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[0]["nation"];?>] <?php echo $arr_row[0]["snackName"];?></h3>
                                 <p><?php echo $arr_row[0]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -232,7 +232,7 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[1]["nation"];?>] <?php echo $arr_row[1]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[1]["nation"];?>] <?php echo $arr_row[1]["snackName"];?></h3>
                                 <p><?php echo $arr_row[1]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -264,7 +264,7 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[2]["nation"];?>] <?php echo $arr_row[2]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[2]["nation"];?>] <?php echo $arr_row[2]["snackName"];?></h3>
                                 <p><?php echo $arr_row[2]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -296,7 +296,7 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[3]["nation"];?>] <?php echo $arr_row[3]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[3]["nation"];?>] <?php echo $arr_row[3]["snackName"];?></h3>
                                 <p><?php echo $arr_row[3]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -328,7 +328,7 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[4]["nation"];?>] <?php echo $arr_row[4]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[4]["nation"];?>] <?php echo $arr_row[4]["snackName"];?></h3>
                                 <p><?php echo $arr_row[4]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -360,7 +360,7 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[5]["nation"];?>] <?php echo $arr_row[5]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[5]["nation"];?>] <?php echo $arr_row[5]["snackName"];?></h3>
                                 <p><?php echo $arr_row[5]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -392,7 +392,7 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[6]["nation"];?>] <?php echo $arr_row[6]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[6]["nation"];?>] <?php echo $arr_row[6]["snackName"];?></h3>
                                 <p><?php echo $arr_row[6]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -424,7 +424,7 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[7]["nation"];?>] <?php echo $arr_row[7]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[7]["nation"];?>] <?php echo $arr_row[7]["snackName"];?></h3>
                                 <p><?php echo $arr_row[7]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -1012,22 +1012,22 @@
                             </div>
                             <div id="snacksRun">
                                 <div class="snacksRunImg">
-                                    <img src="../images/blair/item1.png" alt="零食">
+                                    <img src="../images/blair/candy4.png" alt="零食">
                                 </div>
                                 <div class="snacksRunImg">
-                                    <img src="../images/blair/item9.jpg" alt="零食">
+                                    <img src="../images/blair/chips1.png" alt="零食">
                                 </div>
                                 <div class="snacksRunImg">
-                                    <img src="../images/blair/item3.png" alt="零食">
+                                    <img src="../images/blair/choco3.png" alt="零食">
                                 </div>
                                 <div class="snacksRunImg">
-                                    <img src="../images/blair/item4.jpg" alt="零食">
+                                    <img src="../images/blair/candy3.png" alt="零食">
                                 </div>
                                 <div class="snacksRunImg">
-                                    <img src="../images/blair/item5.jpg" alt="零食">
+                                    <img src="../images/blair/cookie3.png" alt="零食">
                                 </div>
                                 <div class="snacksRunImg">
-                                    <img src="../images/blair/item6.jpg" alt="零食">
+                                    <img src="../images/blair/cookie1.png" alt="零食">
                                 </div>
                             </div>
                         </section>

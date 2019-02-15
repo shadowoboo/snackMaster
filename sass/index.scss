@@ -105,7 +105,7 @@ body {
                         display: none;
                         position: relative;
                         z-index: 6;
-                        width: 500px;
+                        width: 440px;
                         background-color: rgba(255, 255, 255, 0.9);
                         border-radius: 10px;
                         transform: translateX(-220px);
@@ -115,6 +115,7 @@ body {
                             justify-content: space-around;
                             .countryInfoImg {
                                 width: 130px;
+                                padding: 10px;
                             }
                             .countryInfoStar {
                                 width: 130px;
