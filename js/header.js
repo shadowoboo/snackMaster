@@ -125,17 +125,17 @@ function showLightBox(e){
         $id('lightBox-wrap').classList.toggle('show');
     }else{
         //清除登入者資訊
-        var xhr = new XMLHttpRequest();
-        xhr.onload = function(){
-        if( xhr.status == 200){
-            $id('btnloglout').innerHTML = '&nbsp';
-            $id('memLogin').style.color = "#737374";
-        }else{
-            alert( xhr.status );
-        }
-        }
-        xhr.open("get", "ajaxLogout.php",true);
-        xhr.send(null);
+        // var xhr = new XMLHttpRequest();
+        // xhr.onload = function(){
+        // if( xhr.status == 200){
+        //     $id('btnloglout').innerHTML = '&nbsp';
+        //     $id('memLogin').style.color = "#737374";
+        // }else{
+        //     alert( xhr.status );
+        // }
+        // }
+        // xhr.open("get", "ajaxLogout.php",true);
+        // xhr.send(null);
         }
     
 }
@@ -158,10 +158,10 @@ function changeway(e,tabchange){
   //   e.currentTarget.className += " active";
     
 }
-document.getElementById('open').click();
-//===========================================//
-//             這是登入程式                    //
-//===========================================//
+// document.getElementById('open').click();
+// //===========================================//
+// //             這是登入程式                    //
+// //===========================================//
 
 function sendForm(){
     var xhr = new XHLHttpRequest();
@@ -204,8 +204,8 @@ function init(){
 
     //點擊事件
     $id('memLogin').addEventListener('click',showLightBox) ;//出現燈箱
-    $id('lightBoxLeave').addEventListener('click',cancelLogin) ;//關閉燈箱
-    $id('btnLogin').addEventListener('click',sendForm);//登入按鈕
+    // $id('lightBoxLeave').addEventListener('click',cancelLogin) ;//關閉燈箱
+    // $id('btnLogin').addEventListener('click',sendForm);//登入按鈕
     // $id('btnSignUp').addEventListener('click',SUForm);//註冊按鈕
     // $id('btnforget').addEventListener('click',FPForm);//寄送密碼按鈕
 

@@ -410,53 +410,53 @@
                     </div>
                 </div>
 
-
-
-                <div class="cartForm" id="cartForm">
-                    <form action="">
-                        <label for="getterName">
-                            p 收件人姓名: 
+            </div>
+            <div class="cartFormZone" id="cartFormZone">
+                    <form id="cartForm">
+                        <label for="getterName" class="cartFormCard">
+                            <h4>收件人姓名:</h4>  
                             <input type="text" id="getterName" name="getterName">
                         </label>
-                        <label for="getterPhone">收件人電話:
+                        <label for="getterPhone" class="cartFormCard">
+                            <h4>收件人電話:</h4>
                             <input type="text" id="getterPhone" name="getterPhone">
                         </label>
-                        <label for="getterAddr">收件人地址:
+                        <label for="getterAddr" class="cartFormCard">
+                            <h4>收件人地址:</h4>
                             <input type="text" id="getterAddr" name="getterAddr">
                         </label>
-                        <label for="getterPayType">付款方式:
-
+                        <label class="cartFormCard">
+                            <h4>付款方式:</h4>
+                            <label for="payCard"><input id="payCard" type="radio" name="getterPayType" value="信用卡"><p>信用卡</p></label>
+                            <label for="payArrived"><input id="payArrived" type="radio" name="getterPayType" value="貨到付款"><p>貨到付款</p></label>
                         </label>
                     </form>
-                </div>
-
-
-                <div class="cartPanel">
-                    <div class="totalAndCoupon">
-                        <div class="priceTotal">
-                            <p>
-                                合計: <span>$600</span>
-                            </p>
-                        </div>
-                        <div class="couponChoose">
-                            <label for="couponItem">
-                                <p>優惠劵: </p>
-                                <form action="" method="post" id="couponList">
-                                    <select name="couponItem" id="couponItem">
-                                        <option value="300">300</option>
-                                        <option value="50">500</option>
-                                        <option value="100">100</option>
-                                    </select>
-                                </form>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="panelBtn">
-                        <div class="btnBack btnBack_none"><span>上一步</span></div>
-                        <div class="btnNext"><span>下一步</span></div>
-                    </div>
-                </div>
             </div>
+            <div class="cartPanel">
+                <div class="totalAndCoupon">
+                    <div class="priceTotal">
+                        <p>
+                            合計: <span>$600</span>
+                        </p>
+                    </div>
+                    <div class="couponChoose">
+                        <label for="couponItem">
+                            <p>優惠劵: </p>
+                            <form action="" method="post" id="couponList">
+                                <select name="couponItem" id="couponItem">
+                                    <option value="300">300</option>
+                                    <option value="50">500</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </form>
+                        </label>
+                    </div>
+                </div>
+                <div class="panelBtn">
+                    <div class="btnBack btnBack_none"><span>上一步</span></div>
+                    <div class="btnNext"><span>下一步</span></div>
+                </div>
+            </div>            
         </div>
         <div class="lightBoxes" id="lightBoxes">
             <div class="lightBox lightBox_cusAlarm">

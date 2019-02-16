@@ -1,12 +1,14 @@
 <?php
-    session_start();
-    try{
-        require_once("connectcd105g2.php");
-        $sql = "select*from member where ";
-    }catch{}
+    // session_start();
+    // try{
+    //     require_once("connectcd105g2.php");
+    //     $sql = "select*from member where ";
+    // }catch{
+
+    // }
 
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -20,9 +22,9 @@
 
     <title>Document</title>
 
-</head>
+</head> -->
 
-<body>
+<!-- <body> -->
     <header>
         <h1>大零食家</h1>
         <div class="cloud">
@@ -120,7 +122,9 @@
             </ul>
             <div class="loginTab-content">
                 <!-----------------------------------登入表單------------------------------------  -->
-                <form action="get" id="Loginpage" class="tabContent">
+                <!-- <form action="login_cy.php" id="Loginpage" class="tabContent" method="post" > -->
+                <form action="" id="Loginpage" class="tabContent" method="post" >
+                
                     <table class="loginBox">
                         <table class="loginBox">
                             <tr>
@@ -139,7 +143,6 @@
                             <tr>
                                 <td>
                                     <input type="button" id="btnLogin" value="登入" class="cart">
-
                                 </td>
                             </tr>
                         </table>
@@ -148,6 +151,10 @@
                         </div>
 
                     </table>
+                </form>
+                <form action="" id="LoginPageSend">
+                    <input type="hidden" id="memId" name="memId">
+                    <input type="hidden" id="memPsw" name="memPsw">
                 </form>
         <!------------------------------------------------註冊表單------------------------------------------  -->
                 <form action="get" id="signup" class="tabContent">
@@ -260,11 +267,11 @@
 
       lightBoxLeave.addEventListener("click",leave);
     </script> -->
-    <script src="../js/header.js"></script>
+    <!-- <script src="../js/header.js"></script> -->
 
 
 
 
-</body>
+<!-- </body> -->
 
-</html>
+<!-- </html> -->

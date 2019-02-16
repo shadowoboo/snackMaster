@@ -387,6 +387,28 @@
                 }
             }
         }
+        .cartFormZone{ //表單填寫
+            width: 100%;
+            // background-color: #ccc;
+            border: #333333 solid 2px;
+            border-radius: 10px;
+            form{
+                .cartFormCard{
+                    display: flex;
+                    padding: 10px;
+                    &:nth-child(n+2){
+                        border-top: #737374 2px dashed;
+                    }
+                    h4{
+                        margin-right:10px;
+                    }
+                    input{
+                        // height: 0.75rem;
+                        // font-size: 0.75rem;
+                    }
+                }
+            }
+        }
         .cartPanel{
             background-color: #fff; //ENG
             // border: 2px solid #111111; //ENG
@@ -549,9 +571,7 @@
         }
     }
 
-    .wrap{
-        // display: none;
-    }
+
 }
 
 
