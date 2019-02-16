@@ -35,7 +35,7 @@ function createRadar() {
         type: 'radar',
         data: {
             //項目標籤的文字
-            labels: ["好評度", "甜", "酸", "辣"],
+            labels: ["好評度", "酸", "甜", "辣"],
             datasets: [{
                 // label: '# of Votes',
                 data: [0, 0, 0, 0],
@@ -58,11 +58,11 @@ function showRadar(e){
     var id = e.target.id;
     var kindArr = id.split('|');
     var good = kindArr[0];
-    var sweet = kindArr[1];
     var sour = kindArr[2];
+    var sweet = kindArr[1];
     var spicy = kindArr[3];
     //重新把口味變數設定給雷達圖
-    radarCanvas.data.datasets[0].data = [good, sweet, sour, spicy];
+    radarCanvas.data.datasets[0].data = [good, sour, sweet, spicy];
     //更新雷達圖
     radarCanvas.update();
 
@@ -76,7 +76,6 @@ function showRadar(e){
     newImg.src = '../images/blair/star.png';
     newImg.id = 'mintImg';
     document.getElementsByClassName('info')[0].insertBefore(newImg, msg);
-
 }
 function cancelRadar(){
     radarCanvas.data.datasets[0].data = [0, 0, 0, 0];
@@ -87,6 +86,48 @@ function cancelRadar(){
     document.getElementById('mintFive').innerText = '';
     document.getElementById('msg').innerText = '我可以告訴你商品的評價星等喔!';
 }
+function search(){
+    var country = document.getElementById('countryBar').value;
+    var kind = document.getElementById('kindBar').value;
+    var flavor = document.getElementById('flavorBar').value;
+    var name = document.getElementById('searchName').value;
+    if( country != 0 ){
+        country = "'" + country + "'";
+    }
+    if( kind != 0 ){
+        kind = "'" + kind + "'";
+    }
+    console.log(country);
+    console.log(kind);
+    console.log(flavor);
+    console.log(name);
+    if( flavor == 0){
+        var search = "and nation = " + country + " and snackGenre = " + kind + " and snackName like '%" + name + "%'";
+    }else{
+        var search = "and nation = " + country + " and snackGenre = " + kind + " and " + flavor + "Stars > 0" + " and snackName like '%" + name + "%'";
+    }
+    console.log(search);
+
+    // var search = "and nation = " + country + " and snackGenre = " + kind + " and " + flavor + "Stars > 0 and snackName like %" + name + "%";
+    // and nation = 泰國 and snackGenre = 巧克力 and sweetStars > 0 and snackName like %巧% 
+    
+    location.href = 'shopping.php?search=' + search;
+
+    // var xhr = new XMLHttpRequest();
+    // xhr.onload = function () {
+    //     if (xhr.status == 200) {
+    //         //modify here
+    //         document.getElementById("showPanel").innerHTML = xhr.responseText;
+    //     } else {
+    //         alert(xhr.status);
+    //     }
+    // }
+
+    // var url = 'search.php?search=' + search;
+    // xhr.open('get', url, true);
+    // xhr.send(null);
+
+}
 window.addEventListener('load', function (){
     createRadar();
     var items = document.getElementsByClassName('item');
@@ -94,4 +135,5 @@ window.addEventListener('load', function (){
         items[i].addEventListener('mouseenter', showRadar);
         items[i].addEventListener('mouseleave', cancelRadar);
     }
+    document.getElementById('searchClick').addEventListener('click', search);
 });

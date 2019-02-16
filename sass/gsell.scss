@@ -87,11 +87,16 @@ body {
         border-radius: 10px;
         margin: 10px auto;
         box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,.09);
+        font-size: 0;
     }
 
     .map_serch_item_pic {
-        float: left;
-        width: 44%;
+        display: inline-block;
+        vertical-align: middle;
+        width: 40%;
+        @media screen and (min-width: 767px) {
+            width: 44%;
+        }
         padding: 8px;
         img {
             width: 100%;
@@ -100,12 +105,13 @@ body {
     }
 
     .map_serch_item_info {
-        float: left;
+        display: inline-block;
+        vertical-align: middle;
         padding:0 10px;
 
-        // .map_serch_item_info_point,      .map_serch_item_info_distance, .map_serch_info_line {
-        //     margin-top: 5px; 
-        // }  
+         .map_serch_item_info_distance{
+            margin: 6px 0;
+         }
     }
 
     .map_serch_info_line a span{
@@ -129,14 +135,14 @@ body {
     .google_search {
         margin-top: 100px;
         #map {
-            width: 70%;
+            width: calc(100% - 356px);
             height: 80vh;
             float: right;
             position: fixed;
         }
 
         .mapSearch_resullt {
-            width: 30%;
+            width: 356px;
             height: 80vh;
             overflow-y: scroll;
 

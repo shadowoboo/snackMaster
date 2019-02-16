@@ -5,23 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
     <script src="../js/TweenMax.min.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
     <script src="../js/Chart.js"></script>
-    <script src="../js/sale.js"></script>
     <script src="../js/index.js"></script>
     <script src="../js/common.js"></script>
+    <script src="../js/sale.js"></script>
     <link rel="stylesheet" href="../css/boxModel.css">
-    <link rel="stylesheet" href="../css/sale.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/sale.css">
     <title>Document</title>
 </head>
 
 <body>
+
     <div class="index">
         <header>
             <h1>大零食家</h1>
@@ -31,12 +32,12 @@
                 </div>
                 <nav>
                     <label for="smlSearch" class="searchBtn" value="search">
-                        <!-- <img src="../images/tina/search-icon.svg" alt="" id="searchBtn"> -->
+                        <!-- <img src="../images/tina/search.png" alt="" id="searchBtn"> -->
                     </label>
-
+                    
                     <div class="menu">
                         <!-------- -----手機漢堡----------- -->
-
+    
                         <div id="ham">
                             <span class="btnTop"></span>
                             <span class="btnMid"></span>
@@ -45,7 +46,7 @@
                         <!----    在手機上打開此logo;桌機上關掉此logo------ -->
                         <div class="logo">
                             <a href="index.html"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
-
+    
                         </div>
                         <div id="list_appear">
                             <!-- ----------手機選單離開-------- -->
@@ -57,56 +58,56 @@
                                 <li><a href="customized.html">客製零食箱</a> </li>
                                 <!-- 在手機上要關掉這個li的logo -->
                                 <li><a href="index.html"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
-                                <li id="store"> 零食商店街
+                                <li id="store"> <a href="shopping.html">零食商店街</a>
                                     <ul id="Submenu" class="subMenu">
+                                        <li><a href="showItem.html">零食單品</a></li>
                                         <li id="snBox"><a href="preOrder.html">預購零食箱</a></li>
-                                        <li><a href="shopping.html">零食列表</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="gsell.html">尋找販賣機</a> </li>
                             </ul>
                         </div>
                     </div>
-
+    
                     <ul class="login">
-                        <li><i class="fas fa-shopping-cart" id="shopCart"></i></li>
-                        <li><i class="fas fa-user-circle" id="memLogin"></i></li>
+                        <li><i class="fas fa-shopping-cart"></i></li>
+                        <li><i class="fas fa-user-circle"></i></li>
                     </ul>
                 </nav>
-                <div class="seachRegion" id="search_appear">
-                    <div class="search">
-                        <img src="../images/blair/pocky.png" alt="">
-                        <div class="selectbar">
-                            <select name="country" id="country">
-                                <option value="">國家</option>
-                                <option value="">英國</option>
-                                <option value="">美國</option>
-                                <option value="">日本</option>
-                                <option value="">泰國</option>
-                            </select>
-                            <select name="kind" id="kind">
-                                <option value="">種類</option>
-                                <option value="">巧克力</option>
-                                <option value="">糖果</option>
-                                <option value="">餅乾</option>
-                                <option value="">洋芋片</option>
-                            </select>
-                            <select name="flavor" id="flavor">
-                                <option value="">口味</option>
-                                <option value="">酸</option>
-                                <option value="">甜</option>
-                                <option value="">辣</option>
-                            </select>
-                        </div>
-                        <div class="inputbar">
-                            <input type="text" placeholder="想找什麼零食呢？">
-                            <i class="fas fa-search"></i>
-                        </div>
+        <div class="seachRegion" id="search_appear">
+                <div class="search">
+                    <img src="../images/blair/pocky.png" alt="">
+                    <div class="selectbar">
+                        <select name="country" id="country">
+                            <option value="">國家</option>
+                            <option value="">英國</option>
+                            <option value="">美國</option>
+                            <option value="">日本</option>
+                            <option value="">泰國</option>
+                        </select>
+                        <select name="kind" id="kind">
+                            <option value="">種類</option>
+                            <option value="">巧克力</option>
+                            <option value="">糖果</option>
+                            <option value="">餅乾</option>
+                            <option value="">洋芋片</option>
+                        </select>
+                        <select name="flavor" id="flavor">
+                            <option value="">口味</option>
+                            <option value="">酸</option>
+                            <option value="">甜</option>
+                            <option value="">辣</option>
+                        </select>                            
                     </div>
+                    <div class="inputbar">
+                        <input type="text" placeholder="想找什麼零食呢？">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
                     <div id="close">
                         <span class="close">X</span>
                     </div>
-                </div>
+        </div>
         </header>
 
         <div class="searchBar">
@@ -157,8 +158,7 @@
                             </div>
                             <div class="countryInfosection">
                                 <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。</p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
@@ -190,8 +190,7 @@
                             </div>
                             <div class="countryInfosection">
                                 <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。</p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
@@ -223,8 +222,7 @@
                             </div>
                             <div class="countryInfosection">
                                 <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。</p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
@@ -256,8 +254,7 @@
                             </div>
                             <div class="countryInfosection">
                                 <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。</p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
@@ -289,8 +286,7 @@
                             </div>
                             <div class="countryInfosection">
                                 <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。</p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
@@ -322,8 +318,7 @@
                             </div>
                             <div class="countryInfosection">
                                 <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。</p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
@@ -355,8 +350,7 @@
                             </div>
                             <div class="countryInfosection">
                                 <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。</p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
@@ -388,8 +382,7 @@
                             </div>
                             <div class="countryInfosection">
                                 <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。</p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
@@ -667,55 +660,6 @@
             </div>
         </section>
 
-        <div id="sale">
-            <div id="closeSale">
-                <i class="fas fa-times"></i>
-            </div>
-            <div class="saleTitle">
-                <h3>限時特賣</h3>
-                <div class="countdown">
-                    <span id='hour'></span>
-                    <span id='minute'></span>
-                    <span id='second'></span>
-                </div>
-            </div>
-            <div class="item fade" id="3.7|1|5|2">
-                <!-- <a href="showItem.html"></a> -->
-                <img class="country" src="../images/blair/jp-no2.png" alt="">
-                <img class="itemImg" src="../images/blair/item2.png" alt="">
-                <h4 class="itemName">[英國]Chikito 牛奶巧克力</h4>
-                <p class="price">$80</p>
-                <div class="itemBtns">
-                    <button class="cart">加入購物車</button>
-                </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">5</span>&nbsp;件</p>
-            </div>
-            <div class="item fade" id="3.7|1|5|2">
-                <!-- <a href="showItem.html"></a> -->
-                <img class="country" src="../images/blair/de-no3.png" alt="">
-                <img class="itemImg" src="../images/blair/candy2.png" alt="">
-                <h4 class="itemName">[德國]Trolli 彩虹蟲蟲軟糖</h4>
-                <p class="price">$80</p>
-                <div class="itemBtns">
-                    <button class="cart">加入購物車</button>
-                </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">1</span>&nbsp;件</p>
-            </div>
-            <div class="item fade" id="3.7|1|5|2">
-                <!-- <a href="showItem.html"></a> -->
-                <img class="country" src="../images/blair/us-no1.png" alt="">
-                <img class="itemImg" src="../images/blair/nuts.png" alt="">
-                <h4 class="itemName">[美國]Tuty BBQ花生粒</h4>
-                <p class="price">$80</p>
-                <div class="itemBtns">
-                    <button class="cart">加入購物車</button>
-                </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">4</span>&nbsp;件</p>
-            </div>
-            <a id="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a id="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-
 
         <section class="section_12" id="section_12">
             <div class="camera">
@@ -738,58 +682,43 @@
             <div class="LeaderboardCount">
                 <div class="lbReel">
                     <div class="LeaderboardNo2">
-                        <a href="showItem.html">
-                            <div class="Leaderboarditem No2">
-                                <div class="LeaderboarCountry">
-                                    <img src="../images/index/jp-no2.png" alt="排行國家">
-                                </div>
-                                <div class="commodity">
-                                    <img src="../images/index/co2.png" alt="產品圖">
-                                    <h4 class="commodityTitle">[日本]POCKY巧克力棒</h4>
-                                    <div class="flexMid">
-                                        <p class="score">4.8<span class="total">/5</span></p>
-                                    </div>
-                                    <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
-                                    </div>
-                                </div>
+                        <div class="Leaderboarditem No2">
+                            <div class="LeaderboarCountry">
+                                <img src="../images/index/jp-no2.png" alt="排行國家">
                             </div>
-                        </a>
+                            <div class="commodity">
+                                <img  src="../images/index/co2.png" alt="產品圖">
+                                <h4 class="commodityTitle">[日本]POCKY巧克力棒</h4>
+                                <div class="flexMid"><p class="score">4.8<span class="total">/5</span></p></div>
+                                <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="LeaderboardNo1">
-                        <a href="showItem.html">
-                            <div class="Leaderboarditem No1">
-                                <div class="LeaderboarCountry">
-                                    <img src="../images/index/us-no1.png" alt="排行國家">
-                                </div>
-                                <div class="commodity">
-                                    <img src="../images/index/co1.png" alt="產品圖">
-                                    <h4 class="commodityTitle">[美國]湖！洋芋片</h4>
-                                    <div class="flexMid">
-                                        <p class="score">4.8<span class="total">/5</span></p>
-                                    </div>
-                                    <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
-                                    </div>
-                                </div>
+                        <div class="Leaderboarditem No1">
+                            <div class="LeaderboarCountry">
+                                <img src="../images/index/us-no1.png" alt="排行國家">
                             </div>
-                        </a>
+                            <div class="commodity">
+                                <img  src="../images/index/co1.png" alt="產品圖">
+                                <h4 class="commodityTitle">[美國]湖！洋芋片</h4>
+                                <div class="flexMid"><p class="score">4.8<span class="total">/5</span></p></div>
+                                <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="LeaderboardNo3">
-                        <a href="showItem.html">
-                            <div class="Leaderboarditem No3">
-                                <div class="LeaderboarCountry">
-                                    <img src="../images/index/de-no3.png" alt="排行國家">
-                                </div>
-                                <div class="commodity">
-                                    <img src="../images/index/co3.png" alt="產品圖">
-                                    <h4 class="commodityTitle">[德國]Pure水果軟糖</h4>
-                                    <div class="flexMid">
-                                        <p class="score">4.8<span class="total">/5</span></p>
-                                    </div>
-                                    <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
-                                    </div>
-                                </div>
+                        <div class="Leaderboarditem No3">
+                            <div class="LeaderboarCountry">
+                                <img src="../images/index/de-no3.png" alt="排行國家">
                             </div>
-                        </a>
+                            <div class="commodity">
+                                <img  src="../images/index/co3.png" alt="產品圖">
+                                <h4 class="commodityTitle">[德國]Pure水果軟糖</h4>
+                                <div class="flexMid"><p class="score">4.8<span class="total">/5</span></p></div>
+                                <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -906,95 +835,72 @@
             </div>
             <div class="poCount">
                 <div class="poray">
-                    <!-- <img src="../images/index/ray.svg" alt="放射線"> -->
-                    <!-- <ul>
+                    <ul>
                         <li></li>
                         <li></li>
                         <li></li>
                         <li></li>
-                    </ul> -->
+                    </ul>
                 </div>
-                <div class="poMainCount">
-                    <div class="poCard">
-                        <div class="poTrait">
-                            <h2>預購5大特點</h2>
-                            <div class="traitCount">
-                                <p>絕對<br>是新品</p>
-                                <p>像開禮物<br>一樣驚喜</p>
-                                <p>零食<br>不重複</p>
-                                <p>每月<br>定期扣款</p>
-                                <p>隨時能<br>取消訂閱</p>
-                            </div>
-                            <div class="traitGo">
-                                <a href="preOrder.html"><button class="subscribe">馬上預購!</button></a>
-                            </div>
+                <div class="poCard">
+                    <div class="poTrait">
+                        <h2>預購5大特點</h2>
+                        <div class="traitCount">
+                            <p>絕對<br>是新品</p>
+                            <p>像開禮物<br>一樣驚喜</p>
+                            <p>零食<br>不重複</p>
+                            <p>每月<br>定期扣款</p>
+                            <p>隨時能<br>取消訂閱</p>
                         </div>
-                        <div class="poInside">
-                            <p>裡面有什麼？</p>
-                            <div class="insideBtn" id="show">
-                                <button class="month">2019<br>1月期</button>
-                                <button class="month">2019<br>2月期</button>
-                                <button class="month">2019<br>3月期</button>
-                            </div>
+                        <div class="traitGo">
+                            <a href="preOrder.html"><button class="subscribe">馬上預購!</button></a>
                         </div>
                     </div>
-                    <div class="poBox">
-                        <section class="section section_9" id="section_9">
-                            <div class="camera">
-                                <div class="box boxBase" id="box_9">
+                    <div class="poInside">
+                        <p>裡面有什麼？</p>
+                        <div class="insideBtn" id="show">
+                            <button class="month">2019<br>1月期</button>
+                            <button class="month">2019<br>2月期</button>
+                            <button class="month">2019<br>3月期</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="poBox">
+                    <section class="section section_9" id="section_9">
+                        <div class="camera">
+                            <div class="box boxBase" id="box_9">
 
-                                    <div class="surface surface_top" id="cover_out"></div>
-                                    <div class="surface surface_top_inner" id="cover_in">
-                                        <div class="way">
-                                            <div class="light"></div>
-                                            <div class="light"></div>
-                                            <div class="light"></div>
-                                            <div class="light"></div>
-                                            <div class="light"></div>
-                                            <div class="light"></div>
-                                            <div class="light"></div>
-                                            <div class="light"></div>
-                                        </div>
-                                        <div class="way">
-                                            <div class="light"></div>
-                                            <div class="light"></div>
-                                            <div class="light"></div>
-                                            <div class="light"></div>
-                                            <div class="light"></div>
-                                            <div class="light"></div>
-                                            <div class="light"></div>
-                                            <div class="light"></div>
-                                        </div>
+                                <div class="surface surface_top" id="cover_out"></div>
+                                <div class="surface surface_top_inner" id="cover_in">
+                                    <div class="way">
+                                        <div class="light"></div>
+                                        <div class="light"></div>
+                                        <div class="light"></div>
+                                        <div class="light"></div>
+                                        <div class="light"></div>
+                                        <div class="light"></div>
+                                        <div class="light"></div>
+                                        <div class="light"></div>
                                     </div>
-                                    <div class="surface surface_down"></div>
-                                    <div class="surface surface_back"></div>
-                                    <div class="surface surface_font"></div>
-                                    <div class="surface surface_left"></div>
-                                    <div class="surface surface_right"></div>
+                                    <div class="way">
+                                        <div class="light"></div>
+                                        <div class="light"></div>
+                                        <div class="light"></div>
+                                        <div class="light"></div>
+                                        <div class="light"></div>
+                                        <div class="light"></div>
+                                        <div class="light"></div>
+                                        <div class="light"></div>
+                                    </div>
                                 </div>
+                                <div class="surface surface_down"></div>
+                                <div class="surface surface_back"></div>
+                                <div class="surface surface_font"></div>
+                                <div class="surface surface_left"></div>
+                                <div class="surface surface_right"></div>
                             </div>
-                            <div id="snacksRun">
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/item1.png" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/item9.jpg" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/item3.png" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/item4.jpg" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/item5.jpg" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/item6.jpg" alt="零食">
-                                </div>
-                            </div>
-                        </section>
-                    </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </section>
@@ -1031,13 +937,11 @@
         </section> -->
 
 
-
         <section class="vmMap">
             <div id="mapSearch">
                 <div id="map"></div>
-                <script async defer
-                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxP0uxcl_z9Y2bY7OkrWZg5TRhtkANEog&callback=initMap">
-                    </script>
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxP0uxcl_z9Y2bY7OkrWZg5TRhtkANEog&callback=initMap">
+                </script>
                 <div class="mapRoof">
                     <img src="../images/index/shed.png" alt="地圖的屋頂">
                 </div>
@@ -1067,15 +971,6 @@
             </div>
         </section>
 
-        <div class="gameBox">
-            <img src="../images/index/gameImgL.png" alt="遊戲圖">
-            <p>玩小遊戲可獲得<br>折價優惠券哦！</p>
-        </div>
-        <div id="game" class="gameScratch">
-            <img src="../images/index/gameImgR.png" alt="遊戲圖">
-            <p>限時刮刮樂<br>刮出優惠券！</p>
-        </div>
-
         <footer class="footer">
             <div id="floor">
                 <img src="../images/nnnnn/floor.png" alt="floor">
@@ -1084,7 +979,54 @@
         </footer>
 
     </div>
-
+    <div id="sale">
+        <div id="closeSale">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="saleTitle">
+            <h3>限時特賣</h3>
+            <div class="countdown">
+                <span id='hour'></span>
+                <span id='minute'></span>
+                <span id='second'></span>
+            </div>
+        </div>
+        <div class="item fade" id="3.7|1|5|2">
+            <a href="showItem.html"></a>
+            <img class="country" src="../images/blair/jp-no2.png" alt="">
+            <img class="itemImg" src="../images/blair/item2.png" alt="">
+            <h4 class="itemName">[英國]Chikito 牛奶巧克力</h4>
+            <p class="price">$80</p>
+            <div class="itemBtns">
+                <button class="cart">加入購物車</button>
+            </div>
+            <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">5</span>&nbsp;件</p>
+        </div>
+        <div class="item fade" id="3.7|1|5|2">
+            <a href="showItem.html"></a>
+            <img class="country" src="../images/blair/de-no3.png" alt="">
+            <img class="itemImg" src="../images/blair/candy2.png" alt="">
+            <h4 class="itemName">[德國]Trolli 彩虹蟲蟲軟糖</h4>
+            <p class="price">$80</p>
+            <div class="itemBtns">
+                <button class="cart">加入購物車</button>
+            </div>
+            <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">1</span>&nbsp;件</p>
+        </div>
+        <div class="item fade" id="3.7|1|5|2">
+            <a href="showItem.html"></a>
+            <img class="country" src="../images/blair/us-no1.png" alt="">
+            <img class="itemImg" src="../images/blair/nuts.png" alt="">
+            <h4 class="itemName">[美國]Tuty BBQ花生粒</h4>
+            <p class="price">$80</p>
+            <div class="itemBtns">
+                <button class="cart">加入購物車</button>
+            </div>
+            <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">4</span>&nbsp;件</p>
+        </div>
+        <a id="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a id="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
 
 
 
@@ -1116,21 +1058,7 @@
         window.addEventListener('load', doFirst);
     </script>
 
-    <script>
-        var monthBtn = document.getElementsByClassName('month');
-        for (var m = 0; m < monthBtn.length; m++) {
-            monthBtn[m].addEventListener('click', function (e) {
-                //因為被點擊到的要換色，其他要恢復原狀
-                //所以有按鈕被點擊時先一律全部恢復原狀，再讓被點擊的那個換色
-                for (m = 0; m < monthBtn.length; m++) {
-                    monthBtn[m].style.color = '';
-                    monthBtn[m].style.backgroundColor = '';
-                }
-                e.target.style.color = '#737374';
-                e.target.style.backgroundColor = '#fbc84a';
-            });
-        }
-    </script>
+
 
     <!-- 箱子打開動畫 -->
     <script>
@@ -1146,88 +1074,13 @@
         const cover_dl_12 = document.querySelector("#cover_dl_12");
         const cover_dr_12 = document.querySelector("#cover_dr_12");
         const box_12 = document.querySelector("#box_12");
-        //零食旋轉
-        const snacksRun = document.querySelector("#snacksRun");
 
 
         for (var i = 0; i < btns.length; i++) {
             btns[i].addEventListener("click", boxRotate);
         }
 
-        // 預購零食箱動畫
-        var btnMonth = document.querySelectorAll(".month");
-        for (var i = 0; i < btnMonth.length; i++) {
-            btnMonth[i].addEventListener("click", monthRotate);
-            // $(this).css({'backgroundColor':'#076baf'});
-        }
-
-        function monthRotate(e) {
-            snacksRun.style.display = 'none';
-            if (window.screen.width > 768) {
-                boxBases.forEach(element => {
-                    element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(20deg)";
-                });
-                // 先把蓋子蓋起來
-                {
-                    let arr = cover_out.style.transform.split(" ");
-                    console.log(`arr: ${arr}`);
-                    cover_out.style.transform = "translate3d(0, 40px, -100px) rotateX(90deg)";
-                    cover_in.style.transform = "translate3d(0, 40px, -100px) rotateX(90deg) rotateY(180deg)";
-                }
-
-                //延遲一段時間後...TADA~蓋子打開~
-                setTimeout(e => {
-                    cover_out.style.transform = "translate3d(0, 40px, -100px) rotateX(200deg)";
-                    cover_in.style.transform = "translate3d(0, 40px, -100px) rotateX(200deg) rotateY(180deg)";
-                }, 1000);
-                //再延遲一下...燈燈~電燈假發光~
-                setTimeout(e => {
-                    console.log(lights);
-                    lights.forEach(element => {
-                        element.classList.add("showLight");
-                    })
-                }, 1000);
-                //零食旋轉出來
-                setTimeout(e => {
-                    snacksRun.style.display = 'block';
-                }, 1350);
-                // break;
-            } else {
-                boxBases.forEach(element => {
-                    element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(0deg)";
-                });
-                //先把蓋子蓋起來
-                {
-                    let arr = cover_out.style.transform.split(" ");
-                    console.log(`arr: ${arr}`);
-                    cover_out.style.transform = "translate3d(0, 35px, -75px) rotateX(90deg)";
-                    cover_in.style.transform = "translate3d(0, 35px, -75px) rotateX(90deg) rotateY(180deg)";
-                }
-
-                //延遲一段時間後...TADA~蓋子打開~
-                setTimeout(e => {
-                    cover_out.style.transform = "translate3d(0, 35px, -75px) rotateX(200deg)";
-                    cover_in.style.transform = "translate3d(0, 35px, -75px) rotateX(200deg) rotateY(180deg)";
-                }, 1000);
-                //再延遲一下...燈燈~電燈假發光~
-                setTimeout(e => {
-                    console.log(lights);
-                    lights.forEach(element => {
-                        element.classList.add("showLight");
-                    })
-                }, 1000);
-                //零食旋轉出來
-                setTimeout(e => {
-                    snacksRun.style.display = 'block';
-                }, 1350);
-                // break;
-            }
-        }
-
-
-
-
-
+        document.getElementById('show').addEventListener("click", boxRotate);
         // 轉轉箱子功能鈕
         // 缺陷:style.transform是抓 css inline style的值，所以必須給箱子inline style的初始值 
         function boxRotate(e) {
@@ -1275,58 +1128,58 @@
                     $('.btns').removeClass('btnSelect');
                     $(this).addClass('btnSelect');
                     break;
-                // case "show":
-                //     if (window.screen.width > 768) {
-                //         boxBases.forEach(element => {
-                //             element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(30deg)";
-                //         });
-                //         //先把蓋子蓋起來
-                //         {
-                //             let arr = cover_out.style.transform.split(" ");
-                //             console.log(`arr: ${arr}`);
-                //             cover_out.style.transform = "translate3d(0, 40px, -100px) rotateX(90deg)";
-                //             cover_in.style.transform = "translate3d(0, 40px, -100px) rotateX(90deg) rotateY(180deg)";
-                //         }
+                case "show":
+                    if(window.screen.width>768){
+                        boxBases.forEach(element => {
+                            element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(30deg)";
+                        });
+                        //先把蓋子蓋起來
+                        {
+                            let arr = cover_out.style.transform.split(" ");
+                            console.log(`arr: ${arr}`);
+                            cover_out.style.transform = "translate3d(0, 40px, -100px) rotateX(90deg)";
+                            cover_in.style.transform = "translate3d(0, 40px, -100px) rotateX(90deg) rotateY(180deg)";
+                        }
 
-                //         //延遲一段時間後...TADA~蓋子打開~
-                //         setTimeout(e => {
-                //             cover_out.style.transform = "translate3d(0, 40px, -100px) rotateX(200deg)";
-                //             cover_in.style.transform = "translate3d(0, 40px, -100px) rotateX(200deg) rotateY(180deg)";
-                //         }, 1000);
-                //         //再延遲一下...燈燈~電燈假發光~
-                //         setTimeout(e => {
-                //             console.log(lights);
-                //             lights.forEach(element => {
-                //                 element.classList.add("showLight");
-                //             })
-                //         }, 1000);
-                //         break;
-                //     } else {
-                //         boxBases.forEach(element => {
-                //             element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(0deg)";
-                //         });
-                //         //先把蓋子蓋起來
-                //         {
-                //             let arr = cover_out.style.transform.split(" ");
-                //             console.log(`arr: ${arr}`);
-                //             cover_out.style.transform = "translate3d(0, 35px, -75px) rotateX(90deg)";
-                //             cover_in.style.transform = "translate3d(0, 35px, -75px) rotateX(90deg) rotateY(180deg)";
-                //         }
+                        //延遲一段時間後...TADA~蓋子打開~
+                        setTimeout(e => {
+                            cover_out.style.transform = "translate3d(0, 40px, -100px) rotateX(200deg)";
+                            cover_in.style.transform = "translate3d(0, 40px, -100px) rotateX(200deg) rotateY(180deg)";
+                        }, 1000);
+                        //再延遲一下...燈燈~電燈假發光~
+                        setTimeout(e => {
+                            console.log(lights);
+                            lights.forEach(element => {
+                                element.classList.add("showLight");
+                            })
+                        }, 1000);
+                        break; 
+                    }else{
+                        boxBases.forEach(element => {
+                            element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(0deg)";
+                        });
+                        //先把蓋子蓋起來
+                        {
+                            let arr = cover_out.style.transform.split(" ");
+                            console.log(`arr: ${arr}`);
+                            cover_out.style.transform = "translate3d(0, 35px, -75px) rotateX(90deg)";
+                            cover_in.style.transform = "translate3d(0, 35px, -75px) rotateX(90deg) rotateY(180deg)";
+                        }
 
-                //         //延遲一段時間後...TADA~蓋子打開~
-                //         setTimeout(e => {
-                //             cover_out.style.transform = "translate3d(0, 35px, -75px) rotateX(200deg)";
-                //             cover_in.style.transform = "translate3d(0, 35px, -75px) rotateX(200deg) rotateY(180deg)";
-                //         }, 1000);
-                //         //再延遲一下...燈燈~電燈假發光~
-                //         setTimeout(e => {
-                //             console.log(lights);
-                //             lights.forEach(element => {
-                //                 element.classList.add("showLight");
-                //             })
-                //         }, 1000);
-                //         break;
-                //     }
+                        //延遲一段時間後...TADA~蓋子打開~
+                        setTimeout(e => {
+                            cover_out.style.transform = "translate3d(0, 35px, -75px) rotateX(200deg)";
+                            cover_in.style.transform = "translate3d(0, 35px, -75px) rotateX(200deg) rotateY(180deg)";
+                        }, 1000);
+                        //再延遲一下...燈燈~電燈假發光~
+                        setTimeout(e => {
+                            console.log(lights);
+                            lights.forEach(element => {
+                                element.classList.add("showLight");
+                            })
+                        }, 1000);
+                        break; 
+                    }     
             }
         };
 
@@ -1364,7 +1217,7 @@
 
 
     <script>
-        if (window.screen.width > 768) {
+        if(window.screen.width>768){
             // console.log(window.screen.width);
             //要讓被點擊的顏色旋轉到左手邊並將顏色套用到盒子上
             function rotate(e) {
@@ -1435,7 +1288,7 @@
                 //     backgroundColor: colorCode
                 // })
             }
-        } else {
+        }else{
             // console.log(window.screen.width);
             //要讓被點擊的顏色旋轉到左手邊並將顏色套用到盒子上
             function rotate(e) {
@@ -1489,8 +1342,7 @@
 
                 //Js
                 let elem = document.getElementsByClassName("btnSelect");
-                // console.log(elem[0].id);
-                // alert(elem[0].id);
+                console.log(elem[0].id);
                 let tar = elem[0].id;
                 tar = tar.replace("btn", "suf");
                 console.log(tar);
@@ -1508,7 +1360,7 @@
                 // })
             }
         }
-
+        
         function doFirst() {
             //取得顏色們的物件關聯並設定點擊事件的聆聽功能
             colors = document.getElementsByClassName('color');
@@ -1548,124 +1400,16 @@
             var uluru = { lat: 24.9650192, lng: 121.1909533 };
             // The map, centered at Uluru地圖以烏魯魯為中心
             var map = new google.maps.Map(
-                document.getElementById('map'), { zoom: 12, center: uluru });
+                document.getElementById('map'), { zoom: 4, center: uluru });
             // The marker, positioned at Uluru標記，位於烏魯魯。下面的代碼在地圖上放置一個標記。
             var marker = new google.maps.Marker({ position: uluru, map: map });
         }
-    </script>
-
-
-    <script>
-        function doFirst() {
-            setInterval(showGame, 10000);
-        }
-        function showGame() {
-            var random = (Math.floor(Math.random() * 10) + 1) * 1000;
-            randomTimer = setInterval(randomGame, random);
-        }
-        function randomGame() {
-            var game = document.getElementById('game');
-            game.classList.remove('fadeOut');
-            game.classList.add('fadeIn');
-            clearInterval(randomTimer);
-            catchTimer = setInterval(gameCountdown, 5000);
-        }
-        function gameCountdown() {
-            game.classList.add('fadeOut');
-            game.classList.remove('fadeIn');
-            clearInterval(catchTimer);
-        }
-
-        window.addEventListener('load', doFirst);
     </script>
 
     <script src="../js/header.js" defer></script>
 
 
 
-    <!-- <script>
-        var countryImg=document.getElementsByClassName("countryImg");
-        var countryInfoSm=document.getElementsByClassName("countryInfoSm");
-        var countryInfoReel=document.getElementsByClassName("countryInfoReel");
-
-        console.log(`countryInfoSm: ${countryInfoSm}`);
-
-        console.log(`countryImg: ${countryImg}`);
-        let ln=countryImg.length;
-        for(var i=0;i<=ln;i++){
-            countryImg[i].addEventListener("click",moveItem);
-            console.log("moveItem");
-        }
-
-        function moveItem(e) {
-            for (let i=0;i<=countryInfoSm.length;i++){
-                console.log(`countryInfoSm[i] in moveItem: ${countryInfoSm[i]}`);
-                
-                var arr_x=countryInfoSm[i].offsetX;
-            }
-            let xpos= arr_x[5];
-            countryInfoReel.scrollTo(xpos,0);
-        }
-    </script> -->
-
-
-    <!-- //換排行榜動畫 -->
-    <script>
-        $('.category').click(function () {
-
-            // console.log(`第 ${i} 次 點擊`)
-            // var k = i ;
-            // i++;
-            // $('.LeaderboardCount').addClass('zoomInOut');
-            // setTimeout(function(){
-            //     $('.LeaderboardCount').removeClass('zoomInOut');
-            //     console.log(`第 ${k} 次 播放完畢`);
-
-            // },5000);
-
-            $('.LeaderboardCount').css({
-                'transform': 'translateY(0) scale(0)',
-                'transition': '0.5s',
-
-            })
-            setTimeout(() => {
-                $('.LeaderboardCount').css({
-                    'transform': 'translateY(0) scale(1)',
-                    'transition': '0.5s cubic-bezier(.24,.42,.63,1)',
-                })
-            }, 500);
-        })
-    </script>
-
-    <!-- 點販賣機提示點到哪一台 -->
-    <script>
-        // $('.vmImg img').click(function () {
-        //     $('.locateImg').toggleClass('showYellow');
-        // })
-
-        // const aa=$('.vmImg img');
-        // const bb=$('.locateImg');
-        // console.log(`aa: ${aa}`);
-        // console.log(`bb: ${bb}`);
-
-        // aa.get(0).click(function () {
-        //     bb.get(0).toggleClass('showYellow');
-        // })
-
-        // console.log(`$('.vmImg img')[0]: ${typeof($('.vmImg img')[0])}`);
-        // console.log($('.vmImg img')[0]);
-
-        $('.vmImg img').click(function () {
-            //陣列無法使用事件處理函式
-            // $('.locateImg')[0].removeClass('showYellow');
-            // console.log($('.vmImg img').index(this));
-            var locaA = $('.vmImg img').index(this);
-            // $('.locateImg')[0].addClass('showYellow');
-            var lightThis = $('.locateImg')[locaA];
-            $(lightThis).addClass('showYellow');
-            $('.locateImg').not(lightThis).removeClass('showYellow');
-        })
-    </script>
 </body>
 
 </html>
