@@ -573,3 +573,21 @@ footer{
 // }
 
 
+.engBtnList{
+    width: 300px;
+    height: 50vh;
+    background-color: #111;
+    transform: translateX(-100%);
+    position: absolute;
+    top: 20%;
+    left: 0%;
+    transition:0.1s;
+    &.show{
+        transform: translateX(0%);
+    }
+    .engBtn{
+        color: #fff;
+        margin:20px;
+        font-size: 0.5rem;
+    }
+}

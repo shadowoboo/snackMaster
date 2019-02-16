@@ -155,7 +155,7 @@
 
             <div class="cartContent cartContent_prod">
 
-                <div class="prodCards">
+                <div class="prodCards" id="prodCards">
                     <div class="prodCard prodCard_Group">
                         <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusBox">
                             <div class="prodImg">
@@ -412,7 +412,9 @@
 
 
 
+                <div class="cartForm" id="cartForm">
 
+                </div>
 
 
                 <div class="cartPanel">
@@ -492,10 +494,10 @@
 
 
     <div class="engBtnList">
-        <div class="engBtn"></div>
-        <div class="engBtn"></div>
-        <div class="engBtn"></div>
-        <div class="engBtn"></div>
+        <div class="engBtn">prodCard_Group</div>
+        <div class="engBtn">prodCard_normal</div>
+        <div class="engBtn">prodCards</div>
+        <div class="engBtn">cartContent_none</div>
         <div class="engBtn"></div>
     </div>
 
@@ -532,6 +534,18 @@
             //     console.log(e.target);
 
             // })
+
+
+            //call ENG BTN
+            $(".title h2").click(function(){
+                $(".engBtnList").toggleClass("show");
+            })
+            $(".engBtn").click(function(e){
+                let tar = e.target.innerText;
+                // alert(tar);
+                $("."+ tar).toggle();
+            })
+            //////ENG BTN ENDDD
         });
     </script>
 </body>
