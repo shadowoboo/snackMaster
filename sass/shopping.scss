@@ -85,12 +85,26 @@ h1,h2,h3,h4,p,span{
             i{
                 font-size: 18px;
                 vertical-align: middle;
+                cursor: pointer;
             }
         }
         .items{
             margin-top: 60px;
             margin-bottom: 50px;
             text-align: center;
+            #searchNone{
+                margin-bottom: 30px;
+                #searchMsg{
+                    color: $blue;
+                    font-size: 20px;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                #searchImg{
+                    width: 60px;
+                    vertical-align: middle;
+                }
+            }
             .red{
                 background-image: url(../images/blair/itemR.png);
             }
@@ -160,8 +174,12 @@ h1,h2,h3,h4,p,span{
             display: flex;
             justify-content: center;
             li{
-               margin: 0 7.5px;
-               font-size: 20px;
+                margin: 0 1px;
+                font-size: 16px;
+                @media only screen and (min-width: 576px) {
+                    margin: 0 7.5px;
+                    font-size: 20px;
+                }
                a{
                    color: #076baf;
                    padding:5px 10px ; 

@@ -1,31 +1,33 @@
 <?php
     $errMsg = "";
     try {
-        //連線
-        require_once("blairConnect.php");
-        //每頁要顯示幾筆($recPerPage: 2)
+        // require_once("blairConnect.php");
+        require_once("connectcd105g2.php");
         $recPerPage = 9;
-        //取得總筆數($totalRec : 7)
         $sql = 'select count(snackNo) from snack';
         $countSta = $pdo -> query($sql);
         $totalRec = ($countSta -> fetchColumn() )-1;
-        //計算共幾頁($pages : ceil($totalRec/$recPerPage) )
         $pages = ceil($totalRec/$recPerPage);
-        //決定目前是顯示哪一頁
         if( isset($_REQUEST['pageNum']) ){
             $pageNum = $_REQUEST['pageNum'];
         }else{
             $pageNum = 1;
         }
-        //取回目前這一頁的資料, 先算出start
         $start = ($pageNum - 1) * 9;
-        // select .... from table limit $start, $recPerPage
-        $sql = "select * from snack where snackName != '客製箱' limit $start, $recPerPage";
-
-
-
-        
+        if( isset($_REQUEST['search']) == false ){
+            $sql = "select * from snack where snackName != '客製箱' limit $start, $recPerPage";
+        }else{
+            $search= $_REQUEST['search'];
+            // and nation = '泰國' and snackGenre = '巧克力' and sweetStars > 0
+            $sql = "select * from snack where snackName != '客製箱' $search limit 0, $recPerPage";
+        }
         $snacks = $pdo -> query($sql); 
+        if( $snacks -> rowCount() == 0){
+            $searchMsg = 'oops';
+            $sql = "select * from snack where snackName != '客製箱' limit $start, $recPerPage";
+            $snacks = $pdo -> query($sql); 
+        }
+
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";
@@ -142,47 +144,66 @@
             </div>
             <div class="searchBar">
                 <img src="../images/blair/pocky.png" alt="">
-                <select name="country" id="country">
-                    <option value="">國家</option>
-                    <option value="">英國</option>
-                    <option value="">美國</option>
-                    <option value="">日本</option>
-                    <option value="">泰國</option>
+                <select name="country" id="countryBar">
+                    <option value="0">國家</option>
+                    <option value='巴西'>巴西</option>
+                    <option value="日本">日本</option>
+                    <option value="美國">美國</option>
+                    <option value="英國">英國</option>
+                    <option value="埃及">埃及</option>
+                    <option value="德國">德國</option>
+                    <option value="澳洲">澳洲</option>
+                    <option value="韓國">韓國</option>
                 </select>
-                <select name="kind" id="kind">
-                    <option value="">種類</option>
-                    <option value="">巧克力</option>
-                    <option value="">糖果</option>
-                    <option value="">餅乾</option>
-                    <option value="">洋芋片</option>
+                <select name="kind" id="kindBar">
+                    <option value="0">種類</option>
+                    <option value="巧克力">巧克力</option>
+                    <option value="糖果">糖果</option>
+                    <option value="餅乾">餅乾</option>
+                    <option value="洋芋片">洋芋片</option>
                 </select>
-                <select name="flavor" id="flavor">
-                    <option value="">口味</option>
-                    <option value="">酸</option>
-                    <option value="">甜</option>
-                    <option value="">辣</option>
+                <select name="flavor" id="flavorBar">
+                    <option value="0">口味</option>
+                    <option value="sour">酸</option>
+                    <option value="sweet">甜</option>
+                    <option value="spicy">辣</option>
                 </select>
-                <input type="text" placeholder="想找什麼零食呢？">
-                <i class="fas fa-search"></i>
+                <input type="text" id="searchName" placeholder="想找什麼零食呢？">
+                <i class="fas fa-search" id="searchClick"></i>
             </div>
             <div class="items">
 <?php
     if( $errMsg != ""){
         exit("<div><center>$errMsg</center></div>");
     }
-    while( $snackRow = $snacks->fetch() ){
+    if( isset($searchMsg)){
 ?>
-                <div class="item red" id="
-                    <?php
+        <div id="searchNone">
+            <p id="searchMsg">哎呀! 目前沒有符合搜尋條件的商品，請參考以下推薦商品</p>
+            <img id="searchImg" src="../images/blair/oops.png" alt="oops">
+        </div>
+<?php
+    }
+    $i = 1;
+    while($snackRow = $snacks -> fetch()){
+        if($i > 6){
+            $color = 'green';
+        }else if($i > 3){
+            $color = 'blue';
+        }else{
+            $color = 'red';
+        }
+        $i++;
+?>
+                <div class="item <?php echo $color ?>" id="<?php
                         $good = round($snackRow['goodStars'] / $snackRow['goodTimes'], 1);
                         $sour = round($snackRow['sourStars'] / $snackRow['sourTimes'], 1);
                         $sweet = round($snackRow['sweetStars'] / $snackRow['sweetTimes'], 1);
                         $spicy = round($snackRow['spicyStars'] / $snackRow['spicyTimes'], 1);
                         echo "$good|$sour|$sweet|$spicy";
-                    ?>
-                    ">
+                    ?>">
                     <a href="showItem.html"></a>
-                    <img class="country" src="../images/blair/jp-no2.png" alt="">
+                    <img class="country" src="../images/blair/<?php echo $snackRow['nation'] ?>.png" alt="">
                     <img class="itemImg" src="<?php echo $snackRow['snackPic']?>" alt="">
                     <h4 class="itemName"><?php echo '['.$snackRow['nation'].']'.$snackRow['snackName']?></h4>
                     <img class="star" src="../images/blair/star.png" alt="star">
@@ -219,9 +240,8 @@
                     <h4 id="goodTitle"></h4>
                     <span id="mintStar"></span>
                     <span id="mintFive"></span>
-                    <!-- <img class="star" src="../images/blair/star.png" alt="star"> -->
                     <!-- <h4>好評度</h4>
-                    <span id="mintStar">4.9</span>
+                    <span id="mintStar">3</span>
                     <span id="mintFive">/5</span>
                     <img class="star" src="../images/blair/star.png" alt="star"> -->
                     <h4 id="msg">我可以告訴你商品的評價星等喔!</h4>
