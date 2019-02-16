@@ -194,17 +194,19 @@ body{
                 h4{
                     line-height: 1.6;
                 }
-                h4:hover{
-                    border: 2px solid $deepyellow;
-                    color: $deepyellow;
-                    background-color: #fff;
+                // h4:hover{
                     
-                }
+                    
+                //     background-color: #fff;
+                    
+                // }
                 
             }
-            .tablinks.active{
-                
+            .tablinks.active h4{
+                border: 2px solid $deepyellow;
+                color: $deepyellow;
                 border-radius: 10px;
+                background-color: #fff;
             }
             li:last-child{
                 width: 150px;
@@ -735,18 +737,21 @@ body{
 
         }
         
-        footer{
-            margin-top: 19%;
+
             
-            #floor{
-                
+         .floor{
+                position: relative;
                 display: block;
                 #copy{
+                    position: absolute;
+                    top:80%;
+                    left: 0%;
+                    right: 0;
                     text-align: center;
-                    // position: absolute;
+                   
                 }
-            }
-        }
+          }
+        
     
     
 }

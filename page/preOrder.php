@@ -1,3 +1,15 @@
+<?php
+    $errMsg = "";
+    try {
+        require_once("blairConnect.php");
+        $sql = "select * from snack where boxDate = 20190101";
+        $snacks = $pdo->query($sql); 
+    } catch (PDOException $e) {
+        $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
+        $errMsg .= "行號 : ".$e -> getLine()."<br>";
+    }
+?> 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -320,11 +332,18 @@
                 <div class="clearfix"></div>
                 <div class="snackCard">
                     <div class="carousels">
-                        <div class="carousel item1">
+<?php
+    if( $errMsg != ""){
+        exit("<div><center>$errMsg</center></div>");
+    }	
+	for($i = 1; $i < 7; $i++){
+        $snackRow = $snacks -> fetch();
+?>
+                        <div class="carousel item<?php echo $i?>">
                             <div class="cardImg">
-                                <img src="../images/blair/item.png" alt="snack">
+                                <img src="<?php echo $snackRow['snackPic']?>" alt="snack">
                             </div>
-                            <h4>[日本]摩巴頂級巧克力軟餅</h4>
+                            <h4><?php echo '['.$snackRow['nation'].']'.$snackRow['snackName']?></h4>
                             <div class="review">
                                 <div class="profile">
                                     <img src="../images/blair/profile6.jpg" alt="profile">
@@ -337,7 +356,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel item2">
+<?php
+	}
+?>
+                        <!-- <div class="carousel item2">
                             <div class="cardImg">
                                 <img src="../images/blair/candy2.png" alt="snack">
                             </div>
@@ -420,7 +442,7 @@
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="arrow">
