@@ -154,64 +154,203 @@
             </div>
 
             <div class="cartContent cartContent_prod">
-                <div class="prodCard prodCard_Group">
-                    <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusBox">
-                        <div class="prodImg">
-                            <!-- <img src="../images/blair/item3.png"> -->
-                            <img src="https://picsum.photos/100/100/?random=1">
-                        </div>
-                        <div class="prodInfo">
-                            <div class="prodName">
-                                <h4>客製零食箱</h4>
+
+                <div class="prodCards">
+                    <div class="prodCard prodCard_Group">
+                        <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusBox">
+                            <div class="prodImg">
+                                <!-- <img src="../images/blair/item3.png"> -->
+                                <img src="https://picsum.photos/100/100/?random=1">
                             </div>
-                            <!-- <div class="prodPrice">
+                            <div class="prodInfo">
+                                <div class="prodName">
+                                    <h4>客製零食箱</h4>
+                                </div>
+                                <!-- <div class="prodPrice">
                                 <div class="priceOrigin"><span>$400</span></div>
                                 <div class="priceNow"><span>$100</span></div>
                             </div> -->
-                        </div>
-                        <div class="cardCtrl">
-                            <!-- <div class="prodPriceSum">
-                                <p>
-                                    小計:<span>$200</span>
-                                </p>
                             </div>
-                            <div class="prodQty">
+                            <div class="cardCtrl">
+                                <div class="prodPriceSum">
+                                    <p>
+                                        小計:<span>$150</span>
+                                    </p>
+                                </div>
+                                <!-- <div class="prodQty">
                                 <div class="numInput">
                                     <span class="numMinus">-</span><input type="number" value="1"><span class="numPlus">+</span>
                                 </div>
                             </div>
                             <button class="trash"><i class="far fa-trash-alt"></i></button> -->
-                        </div>
-                    </div>
-                    <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusCard">
-                        <div class="prodImg">
-                            <!-- <img src="../images/blair/item3.png"> -->
-                            <img src="https://picsum.photos/100/100/?random=2">
-                        </div>
-                        <div class="prodInfo">
-                            <div class="prodName">
-                                <h4>客製卡片</h4>
                             </div>
-                            <!-- <div class="prodPrice">
+                        </div>
+                        <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusCard">
+                            <div class="prodImg">
+                                <!-- <img src="../images/blair/item3.png"> -->
+                                <img src="https://picsum.photos/100/100/?random=2">
+                            </div>
+                            <div class="prodInfo">
+                                <div class="prodName">
+                                    <h4>客製卡片</h4>
+                                </div>
+                                <!-- <div class="prodPrice">
                                 <div class="priceOrigin"><span>$400</span></div>
                                 <div class="priceNow"><span>$100</span></div>
                             </div> -->
-                        </div>
-                        <div class="cardCtrl">
-                            <!-- 撥放介面實體 -->
-                            <div id="audioItem">
-                                <!-- 一開始不給src，待錄音有值會自動增加 -->
-                                <audio id="au_player"></audio>
-                                <!-- 撥放控制按鈕們 -->
-                                <div class="au_btns" id="au_btns">
-                                    <!-- 撥放與暫停 -->
-                                    <button class="au_btn" id="au_btn_play"><i class="fas fa-play"></i></button>
-                                    <!-- 停止 -->
-                                    <button class="au_btn" id="au_btn_stop"><i class="fas fa-stop"></i></button>
+                            </div>
+                            <div class="cardCtrl">
+                                <!-- 撥放介面實體 -->
+                                <div id="audioItem">
+                                    <!-- 一開始不給src，待錄音有值會自動增加 -->
+                                    <audio id="au_player"></audio>
+                                    <!-- 撥放控制按鈕們 -->
+                                    <div class="au_btns" id="au_btns">
+                                        <!-- 撥放與暫停 -->
+                                        <button class="au_btn" id="au_btn_play"><i class="fas fa-play"></i></button>
+                                        <!-- 停止 -->
+                                        <button class="au_btn" id="au_btn_stop"><i class="fas fa-stop"></i></button>
+                                        <!-- 靜音與否 -->
+                                        <button class="au_btn" id="au_btn_vol"><i class="fas fa-volume-up"></i></button>
+                                        <!-- 音量bar -->
+                                        <div class="volBar" id="volBar">
+                                            <!-- 會伸縮的bar -->
+                                            <div class="vol_proBar" id="vol_proBar"></div>
+                                            <!-- 拉桿 -->
+                                            <div class="vol_barNote" id="vol_barNote"></div>
+                                        </div>
+                                        <!-- 刪除 -->
+                                        <!-- <button id="audioDel" class="au_btn trash"><i class="far fa-trash-alt"></i></button> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="prodCard prodCard_normal">
+                            <div class="prodImg">
+                                <img src="../images/blair/item3.png">
+                            </div>
+                            <div class="prodInfo">
+                                <div class="prodName">
+                                    <h4>[日本]Pure 草莓優格軟糖</h4>
+                                </div>
+                                <div class="prodPrice">
+                                    <div class="priceOrigin"><span>$400</span></div>
+                                    <div class="priceNow"><span>$100</span></div>
+                                </div>
+                            </div>
+                            <div class="cardCtrl">
+                                <div class="prodPriceSum">
+                                    <p>
+                                        小計:<span>$200</span>
+                                    </p>
+                                </div>
+                                <div class="prodQty">
+                                    <div class="numInput">
+                                        <span class="numMinus">-</span><input type="number" value="1"><span
+                                            class="numPlus">+</span>
+                                    </div>
+                                </div>
+                                <button class="trash"><i class="far fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <div class="prodCard prodCard_normal">
+                            <div class="prodImg">
+                                <img src="../images/blair/item3.png">
+                            </div>
+                            <div class="prodInfo">
+                                <div class="prodName">
+                                    <h4>[日本]Pure 草莓優格軟糖</h4>
+                                </div>
+                                <div class="prodPrice">
+                                    <div class="priceOrigin"><span>$400</span></div>
+                                    <div class="priceNow"><span>$100</span></div>
+                                </div>
+                            </div>
+                            <div class="cardCtrl">
+                                <div class="prodPriceSum">
+                                    <p>
+                                        小計:<span>$200</span>
+                                    </p>
+                                </div>
+                                <div class="prodQty">
+                                    <div class="numInput">
+                                        <span class="numMinus">-</span><input type="number" value="1"><span
+                                            class="numPlus">+</span>
+                                    </div>
+                                </div>
+                                <button class="trash"><i class="far fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <div class="prodCard prodCard_Cus prodCard_CusPanel">
+                            <div class="cusTotal">
+                                <p>
+                                    共計: <span>$600</span>
+                                </p>
+                            </div>
+                            <div class="cusBtnDel">
+                                <span>刪除客製零食箱</span>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="prodCard prodCard_normal">
+                        <div class="prodImg">
+                            <img src="../images/blair/nuts.png">
+                        </div>
+                        <div class="prodInfo">
+                            <div class="prodName">
+                                <h4>[美國]Tuty BBQ花生粒</h4>
+                            </div>
+                            <div class="prodPrice">
+                                <div class="priceOrigin"><span>$400</span></div>
+                                <div class="priceNow"><span>$100</span></div>
+                            </div>
+                        </div>
+                        <div class="cardCtrl">
+                            <div class="prodPriceSum">
+                                <p>
+                                    小計: <span>$200</span>
+                                </p>
+                            </div>
+                            <div class="prodQty">
+                                <div class="numInput">
+                                    <span class="numMinus">-</span><input type="number" value="1"><span
+                                        class="numPlus">+</span>
+                                </div>
+                            </div>
+                            <button class="trash"><i class="far fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="prodCard prodCard_normal">
+                        <div class="prodImg">
+                            <img src="../images/blair/item.png">
+                        </div>
+                        <div class="prodInfo">
+                            <div class="prodName">
+                                <h4>[日本]摩巴頂級巧克力軟餅</h4>
+                            </div>
+                            <div class="prodPrice">
+                                <div class="priceOrigin"><span>$400</span></div>
+                                <div class="priceNow"><span>$100</span></div>
+                            </div>
+                        </div>
+                        <div class="cardCtrl">
+                            <div class="prodPriceSum">
+                                <p>
+                                    小計: <span>$200</span>
+                                </p>
+                            </div>
+                            <div class="prodQty">
+                                <div class="numInput">
+                                    <span class="numMinus">-</span><input type="number" value="1"><span
+                                        class="numPlus">+</span>
+                                </div>
+                            </div>
+                            <button class="trash"><i class="far fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+
                     <div class="prodCard prodCard_normal">
                         <div class="prodImg">
                             <img src="../images/blair/item3.png">
@@ -240,13 +379,14 @@
                             <button class="trash"><i class="far fa-trash-alt"></i></button>
                         </div>
                     </div>
+
                     <div class="prodCard prodCard_normal">
                         <div class="prodImg">
-                            <img src="../images/blair/item3.png">
+                            <img src="../images/blair/item2.png">
                         </div>
                         <div class="prodInfo">
                             <div class="prodName">
-                                <h4>[日本]Pure 草莓優格軟糖</h4>
+                                <h4>[台灣]情人節義理巧克力</h4>
                             </div>
                             <div class="prodPrice">
                                 <div class="priceOrigin"><span>$400</span></div>
@@ -256,7 +396,7 @@
                         <div class="cardCtrl">
                             <div class="prodPriceSum">
                                 <p>
-                                    小計:<span>$200</span>
+                                    小計: <span>$200</span>
                                 </p>
                             </div>
                             <div class="prodQty">
@@ -268,133 +408,12 @@
                             <button class="trash"><i class="far fa-trash-alt"></i></button>
                         </div>
                     </div>
-                    <div class="prodCard prodCard_Cus prodCard_CusPanel">
-                        <div class="cusTotal">
-                            <p>
-                                共計: <span>$600</span>
-                            </p>
-                        </div>
-                        <div class="cusBtnDel">
-                            <span>刪除客製零食箱</span>
-                        </div>
-                    </div>
                 </div>
 
-                <div class="prodCard prodCard_normal">
-                    <div class="prodImg">
-                        <img src="../images/blair/nuts.png">
-                    </div>
-                    <div class="prodInfo">
-                        <div class="prodName">
-                            <h4>[美國]Tuty BBQ花生粒</h4>
-                        </div>
-                        <div class="prodPrice">
-                            <div class="priceOrigin"><span>$400</span></div>
-                            <div class="priceNow"><span>$100</span></div>
-                        </div>
-                    </div>
-                    <div class="cardCtrl">
-                        <div class="prodPriceSum">
-                            <p>
-                                小計: <span>$200</span>
-                            </p>
-                        </div>
-                        <div class="prodQty">
-                            <div class="numInput">
-                                <span class="numMinus">-</span><input type="number" value="1"><span
-                                    class="numPlus">+</span>
-                            </div>
-                        </div>
-                        <button class="trash"><i class="far fa-trash-alt"></i></button>
-                    </div>
-                </div>
 
-                <div class="prodCard prodCard_normal">
-                    <div class="prodImg">
-                        <img src="../images/blair/item.png">
-                    </div>
-                    <div class="prodInfo">
-                        <div class="prodName">
-                            <h4>[日本]摩巴頂級巧克力軟餅</h4>
-                        </div>
-                        <div class="prodPrice">
-                            <div class="priceOrigin"><span>$400</span></div>
-                            <div class="priceNow"><span>$100</span></div>
-                        </div>
-                    </div>
-                    <div class="cardCtrl">
-                        <div class="prodPriceSum">
-                            <p>
-                                小計: <span>$200</span>
-                            </p>
-                        </div>
-                        <div class="prodQty">
-                            <div class="numInput">
-                                <span class="numMinus">-</span><input type="number" value="1"><span
-                                    class="numPlus">+</span>
-                            </div>
-                        </div>
-                        <button class="trash"><i class="far fa-trash-alt"></i></button>
-                    </div>
-                </div>
 
-                <div class="prodCard prodCard_normal">
-                    <div class="prodImg">
-                        <img src="../images/blair/item3.png">
-                    </div>
-                    <div class="prodInfo">
-                        <div class="prodName">
-                            <h4>[日本]Pure 草莓優格軟糖</h4>
-                        </div>
-                        <div class="prodPrice">
-                            <div class="priceOrigin"><span>$400</span></div>
-                            <div class="priceNow"><span>$100</span></div>
-                        </div>
-                    </div>
-                    <div class="cardCtrl">
-                        <div class="prodPriceSum">
-                            <p>
-                                小計:<span>$200</span>
-                            </p>
-                        </div>
-                        <div class="prodQty">
-                            <div class="numInput">
-                                <span class="numMinus">-</span><input type="number" value="1"><span
-                                    class="numPlus">+</span>
-                            </div>
-                        </div>
-                        <button class="trash"><i class="far fa-trash-alt"></i></button>
-                    </div>
-                </div>
 
-                <div class="prodCard prodCard_normal">
-                    <div class="prodImg">
-                        <img src="../images/blair/item2.png">
-                    </div>
-                    <div class="prodInfo">
-                        <div class="prodName">
-                            <h4>[台灣]情人節義理巧克力</h4>
-                        </div>
-                        <div class="prodPrice">
-                            <div class="priceOrigin"><span>$400</span></div>
-                            <div class="priceNow"><span>$100</span></div>
-                        </div>
-                    </div>
-                    <div class="cardCtrl">
-                        <div class="prodPriceSum">
-                            <p>
-                                小計: <span>$200</span>
-                            </p>
-                        </div>
-                        <div class="prodQty">
-                            <div class="numInput">
-                                <span class="numMinus">-</span><input type="number" value="1"><span
-                                    class="numPlus">+</span>
-                            </div>
-                        </div>
-                        <button class="trash"><i class="far fa-trash-alt"></i></button>
-                    </div>
-                </div>
+
 
                 <div class="cartPanel">
                     <div class="totalAndCoupon">
@@ -420,6 +439,22 @@
                         <div class="btnBack btnBack_none"><span>上一步</span></div>
                         <div class="btnNext"><span>下一步</span></div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="lightBoxes" id="lightBoxes">
+            <div class="lightBox lightBox_cusAlarm">
+                <div class="lightBoxContent">
+                    <h3>寄件提醒</h3>
+                    <p>
+                        感謝您選購<span>客製零食箱</span>，<br>
+                        以上商品將寄送至<span>同一位收件人。</span><br>
+                        如有分送需求，請分別下單，謝謝您的支持! <br>
+                    </p>
+                </div>
+                <div class="lightBoxBtns">
+                    <button class="step stepBack">取消</button>
+                    <button class="step stepNext">繼續結帳</button>
                 </div>
             </div>
         </div>
@@ -464,6 +499,41 @@
         <div class="engBtn"></div>
     </div>
 
+    <script>
+        $(document).ready(function () {
+            //下一步處置
+            $(".panelBtn .btnNext").click(function () {
+                if($(".prodCard_CusBox")){
+                    $('.lightBoxes').css("display", "flex");
+                }else{
+                    alert("下一步~");
+                }
+                
+            })
+
+            //燈箱關閉，燈箱外任意處點擊後關閉
+            $(".lightBoxes").click(function (e) {
+                var elem = e.target;
+                while (elem) { //循環判斷到節點，防止點到子元素   
+                    if (elem.classList && elem.classList.contains("lightBox")) { //如果該元素有class且有某某class的話就不動作
+                        return; //我就跳出
+                    }
+                    elem = elem.parentNode; //往上找找到最大的"不作用"的層
+                }
+                $('.lightBoxes').hide(); //沒被跳出就會走到這裡，可以隱藏跳窗
+            })
+            //燈箱關閉，燈箱內 .stepBack 按鈕點擊後關閉
+            $(".lightBoxBtns .stepBack").click(function (e) {
+                $('.lightBoxes').hide();
+            })
+            // console.log($(".lightBoxes"));
+            // console.log($(".lightBox"));    
+            // $(window).click(function(e){
+            //     console.log(e.target);
+
+            // })
+        });
+    </script>
 </body>
 
 </html>

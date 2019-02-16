@@ -335,6 +335,10 @@
                                                     }
                                                 }
                                             }
+                                            .volBar, 
+                                            #au_btn_vol{
+                                                display: none;
+                                            }
                                         }
                                         .au_ctrl{
                                             .au_time{
@@ -475,6 +479,78 @@
                 }
             }
         }
+    }
+    .lightBoxes{
+        width: 100%;
+        height: 100vh;
+        background-color: #333333aa;
+        padding-left: 15px;
+        padding-right: 15px;
+        position: fixed;
+        z-index: 99999;
+        top: 0;
+        left: 0;
+        // display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+        .lightBox{
+            width: 90%;
+            // height: 50vh;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            // position:absolute; //此置中方式會自動佔滿空間，故改用flex
+            // top: 0;
+            // left: 0;
+            // right: 0;
+            // bottom: 0;
+            // margin: auto; 
+            .lightBoxContent{
+                h3{
+                    text-align: center;
+                    &::after{
+                        content:"";
+                        display:block;
+                        width: 100%;
+                        height: 1px;
+                        background-color: #4444444b;
+                        transform: translateY(-5px);
+                    }
+                }
+                p{
+                    // width: 50%;
+                    margin:auto;
+                    span{
+                        font-size: 0.61rem;
+                    }
+                }
+            }
+            .lightBoxBtns{
+                margin-top: 20px;
+                display: flex;
+                justify-content: space-between;
+                .step{
+                    width: 45%;
+                    &.stepBack{
+                        background-color: #fff;
+                        color: $blue;
+                        border: 2px solid $blue;
+                        &:hover{
+                            background-color: $deepblue;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .wrap{
+        // display: none;
     }
 }
 
