@@ -14,10 +14,22 @@ input[type ="button"]{
     margin: 10px 0;
     
 }
+input{
+    height: 30px;
+    width: 150px;
+    
+}
+
 label[class="Box-name"]{
-    font-size: 20px;
+    font-size: 22px;
     font-family: g2Med;
     line-height: 1.2;
+}
+label.mail{
+    font-size: 22px;
+    font-family: g2Med;
+    line-height: 1.2;
+    margin-left: 0px;
 }
 
 #lightBox-wrap{
@@ -26,15 +38,16 @@ label[class="Box-name"]{
     position: fixed;
     background: rgba(0, 0, 0, .1);
     display: none;
+    overflow-y: auto;
     #lightBox{
         margin: auto;
         position: absolute;
         top: 14%;
         right: 0;
         left: 0;
-        width: 340px;
+        width: 350px;
         background-image: linear-gradient(120deg ,#fdfbfb 0%, #ebedee 100%);
-        height: 45vh;        
+        height: 450px;        
         display: block; 
         order: 1px solid #aaa;
         border-radius: 10px;
@@ -47,13 +60,14 @@ label[class="Box-name"]{
                 width: 30px;
                 text-align: center;
                 transform: translateX(1000%);
+                cursor: pointer;
             }
         }
         .tab-group{
             display: flex;
             justify-content: center;
             padding: 10px;
-            margin:20px;
+            // margin:20px;
             
             
             li{
@@ -69,14 +83,20 @@ label[class="Box-name"]{
                 margin: 0 10px;
         
             }
+            .loginTab.active{
+                background-color: $deepyellow;
+                color: #fff;
+            }
             
         }
         .loginTab-content{
             margin: auto;
             width: 300px;
+            margin-top: 30px;
             form{
+                text-align: center;
                 position: absolute;
-                display: none;
+                // display: none;
                 table{
                     width: 300px;
                 
@@ -95,12 +115,14 @@ label[class="Box-name"]{
                     }
                     .forgetPsw{
                        
-                        #forgetPsw-link{
+                        #forgetPswLink{
                             display: block;
                             font-size: 18px;
                             text-align: right;
                             color: $coral;
                             padding: 5px;
+                            cursor: pointer;
+                            text-decoration: underline;
                             
                          }
                     }
