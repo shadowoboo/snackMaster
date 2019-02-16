@@ -1,3 +1,13 @@
+<?php
+	//判斷有無例外，沒有例外則執行try，有例外則執行catch
+	try{
+		require_once("connectBooksRick.php");
+	}catch(PDOException $e){
+		echo "失敗,原因:",$e -> getMessage();
+		echo "行號:",$e -> getLine();
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -135,17 +145,50 @@
             <i class="fas fa-search"></i>
         </div>
 
+        <?php 
+            $country=array("美國","德國","巴西","英國","埃及","韓國","日本","澳洲");
+            // arr_country: 美國,美國,德國,巴西,英國,埃及,韓國,日本,澳洲
+            $ln=count($country);
+            $arr_row=array();
+
+            $i=0;
+            // echo $ln; 
+            for($i=0; $i<$ln; $i++){
+                $sql = "select nation,snackName,snackWord,snackPic,snackPrice,MAX(snackNo) from snack where nation= ?";
+                $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
+                // $aa=$country[$i];
+                // echo $country[$i]; 
+                $prodRow -> bindValue(1, $country[$i]);
+
+                // echo $country[$i]; exit();
+                // echo print_r($country); exit();
+
+                $prodRow -> execute(); 
+                $row = $prodRow->fetch(); //需求送出去，資料抓回來，阿凱發大財
+                array_push($arr_row,$row);
+                // print_r($arr_row);
+                // print_r($row);
+
+            }
+            
+        ?>
 
         <section class="worldMap">
             <div class="mapCount">
                 <div class="countryMap">
                     <img src="../images/index/map1.svg" id="testMap">
                     <div class="countryImg">
+                        <?php
+                            // $sql = "select nation,snackName,snackWord,snackPic,snackPrice,MAX(snackNo) from snack GROUP by nation = '美國'";
+                            // $prodRow = $pdo->query($sql); //執行上面的指令傳回陣列
+                            // while ($row = $prodRow->fetch()) {
+                        ?>
+                        
                         <img src="../images/index/US.png" alt="美國座標">
                         <div class="countryInfoLg">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[0]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
@@ -156,13 +199,12 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <h2>[<?php echo $arr_row[0]["nation"];?>] <?php echo $arr_row[0]["snackName"];?></h2>
+                                <p><?php echo $arr_row[0]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>價格<span>$45</span></h3>
+                                    <h3>價格<span>$<?php echo $arr_row[0]["snackPrice"];?></span></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
@@ -172,13 +214,14 @@
                                 </div>
                             </div>
                         </div>
+                        <?php //} ?>
                     </div>
                     <div class="countryImg">
                         <img src="../images/index/DE.png" alt="德國座標">
                         <div class="countryInfoLg">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[1]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
@@ -189,13 +232,12 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <h2>[<?php echo $arr_row[1]["nation"];?>] <?php echo $arr_row[1]["snackName"];?></h2>
+                                <p><?php echo $arr_row[1]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>價格<span>$45</span></h3>
+                                    <h3>價格<span>$<?php echo $arr_row[1]["snackPrice"];?></span></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
@@ -211,7 +253,7 @@
                         <div class="countryInfoLg">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[2]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
@@ -222,13 +264,12 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <h2>[<?php echo $arr_row[2]["nation"];?>] <?php echo $arr_row[2]["snackName"];?></h2>
+                                <p><?php echo $arr_row[2]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>價格<span>$45</span></h3>
+                                    <h3>價格<span>$<?php echo $arr_row[2]["snackPrice"];?></span></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
@@ -244,7 +285,7 @@
                         <div class="countryInfoLg">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[3]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
@@ -255,13 +296,12 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <h2>[<?php echo $arr_row[3]["nation"];?>] <?php echo $arr_row[3]["snackName"];?></h2>
+                                <p><?php echo $arr_row[3]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>價格<span>$45</span></h3>
+                                    <h3>價格<span>$<?php echo $arr_row[3]["snackPrice"];?></span></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
@@ -277,7 +317,7 @@
                         <div class="countryInfoLg">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[4]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
@@ -288,13 +328,12 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <h2>[<?php echo $arr_row[4]["nation"];?>] <?php echo $arr_row[4]["snackName"];?></h2>
+                                <p><?php echo $arr_row[4]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>價格<span>$45</span></h3>
+                                    <h3>價格<span>$<?php echo $arr_row[4]["snackPrice"];?></span></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
@@ -310,7 +349,7 @@
                         <div class="countryInfoLg">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[5]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
@@ -321,13 +360,12 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <h2>[<?php echo $arr_row[5]["nation"];?>] <?php echo $arr_row[5]["snackName"];?></h2>
+                                <p><?php echo $arr_row[5]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>價格<span>$45</span></h3>
+                                    <h3>價格<span>$<?php echo $arr_row[5]["snackPrice"];?></span></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
@@ -343,7 +381,7 @@
                         <div class="countryInfoLg">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[6]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
@@ -354,13 +392,12 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <h2>[<?php echo $arr_row[6]["nation"];?>] <?php echo $arr_row[6]["snackName"];?></h2>
+                                <p><?php echo $arr_row[6]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>價格<span>$45</span></h3>
+                                    <h3>價格<span>$<?php echo $arr_row[6]["snackPrice"];?></span></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
@@ -376,7 +413,7 @@
                         <div class="countryInfoLg">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[7]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
@@ -387,13 +424,12 @@
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料，片片厚切，口感稍硬頗具咬勁，甜度適中和芳醇的香味，令人一吃上癮。收錄在2018年9月零食箱中。
-                                </p>
+                                <h2>[<?php echo $arr_row[7]["nation"];?>] <?php echo $arr_row[7]["snackName"];?></h2>
+                                <p><?php echo $arr_row[7]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>價格<span>$45</span></h3>
+                                    <h3>價格<span>$<?php echo $arr_row[7]["snackPrice"];?></span></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
@@ -404,6 +440,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="snackMap" id="container">
                         <div class="snackImg slide1">
                             <img src="../images/index/snack-us.png" alt="零食icon">
@@ -1229,7 +1266,7 @@
 
 
         // 轉轉箱子功能鈕
-        // 缺陷:style.transform是抓 css inline style的值，所以必須給箱子inline style的初始值 
+        // 缺陷:style.transform是抓 css inline style的值，所以必須給箱子inline style的初始值
         function boxRotate(e) {
             console.log(`this.id: ${this.id}`);
             switch (this.id) {
@@ -1338,7 +1375,7 @@
 
 
         // 驗證回傳值確實是陣列
-        console.log(`cssTest: ${cssGet("#box_12", "transform")}`); //每個.boxBase的transform屬性值，我全都要 
+        console.log(`cssTest: ${cssGet("#box_12", "transform")}`); //每個.boxBase的transform屬性值，我全都要
         console.log(`cssTest type: ${typeof (cssGet("#box_12", "transform")[0])}`);//檢查 陣列內 值的型別為字串
         console.log(`cssTest type arr: ${Object.prototype.toString.call(cssGet("#box_12", "transform"))}`);//檢查回傳值確實是陣列型態
         // cssGet(".boxBase","transform");
@@ -1600,7 +1637,7 @@
         function moveItem(e) {
             for (let i=0;i<=countryInfoSm.length;i++){
                 console.log(`countryInfoSm[i] in moveItem: ${countryInfoSm[i]}`);
-                
+
                 var arr_x=countryInfoSm[i].offsetX;
             }
             let xpos= arr_x[5];
@@ -1666,6 +1703,28 @@
             $('.locateImg').not(lightThis).removeClass('showYellow');
         })
     </script>
+
+
+    <script>
+            var concon= document.querySelectorAll('.countryImg > img');
+            console.log(concon);
+            
+            var arr_country=[];
+            concon.forEach(el=>{
+                arr_country.push(el.alt.replace("座標",""));
+            })
+            console.log(`arr_country: ${arr_country}`);
+            console.log(arr_country);
+
+    </script>
+    <?php
+        // $country=$_GET[]
+        // $sql = "select nation,snackName,snackWord,snackPic,snackPrice,MAX(snackNo) from snack where nation=:country";
+        // $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
+        // $prodRow -> bindValue(":country", $country);
+        // $prodRow -> excute(); 
+        // while ($row = $prodRow->fetch()) {}
+    ?>
 </body>
 
 </html>

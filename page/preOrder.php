@@ -325,11 +325,6 @@
             <div class="title">
                 <h2>過去零食箱</h2>
             </div>
-<?php
-    if( $errMsg != ""){
-        exit("<div><center>$errMsg</center></div>");
-    }
-?>
             <div class="cards">
                 <button class="month">2019<br>1月期</button>
                 <button class="month">2019<br>2月期</button>
@@ -337,7 +332,10 @@
                 <div class="clearfix"></div>
                 <div class="snackCard">
                     <div class="carousels">
-<?php	
+<?php
+    if( $errMsg != ""){
+        exit("<div><center>$errMsg</center></div>");
+    }	
 	for($i = 1; $i < 7; $i++){
         $snackRow = $snacks -> fetch();
 ?>
