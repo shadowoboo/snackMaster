@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    try{
+        require_once("connectcd105g2.php");
+        $sql = "select*from member where "
+    }catch{}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +17,9 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="../css/loginBox.css">
     <link rel="stylesheet" href="../css/header.css">
-    <script src="../js/header.js"></script>
+
     <title>Document</title>
+
 </head>
 
 <body>
@@ -60,7 +69,7 @@
                 </div>
 
                 <ul class="login">
-                    <li><span id="btnlogin">&nbsp</span></li>
+                    <li><span id="btnloglout">&nbsp</span></li>
                     <li><i class="fas fa-user-circle" id="memLogin"></i></li>
                     <li><i class="fas fa-shopping-cart" id="shopCart"></i></li>
                 </ul>
@@ -102,123 +111,159 @@
     </header>
     <div id="lightBox-wrap">
         <div id="lightBox">
-                <div class="loginLeave">
-                        <span>X</span>
-                    </div>
-                    <ul class="tab-group">
-                        <li class="loginTab action active " onclick="changeway(event,'signup')">登入</li>
-                        <li class="loginTab action"onclick="changeway(event,'signup')">註冊</li>
-                    </ul>
-                    <div class="loginTab-content">
-                        <form action="/" id="memLogin" class="tabContent">
-                            <table class="loginBox">
-                                <table class="loginBox">
-                                    <tr>
-                                        <td>
-                                            <label class="Box-name" for="loginMemId">帳號</label>
-                                            <input type="text" name="loginMemId" id="loginMemId" size="12" autocomplete="off" placeholder="請輸入帳號">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="Box-name" for="loginMemPsw">密碼</label>
-                                            <input type="password" name="loginMemPsw" id="loginMemPsw" size="12" placeholder="請輸入密碼">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="button" id="btnLogin" value="登入" class="cart" >
-                                            
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div class="forgetPsw">
-                                    <p id="forgetPsw-link"> 忘記密碼</p>
-                                </div>
-            
-                            </table>
-                        </form>
-                        <form action="/" id="signup" class="tabContent">
-                            <table class="signUpBox" >
-                                    <tr>
-                                        <td>
-                                            <label class="Box-name" for="signUpMemId">帳號</label>
-                                            <input type="text" name="signUpMemId" id="signUpMemId" size="12" autocomplete="off" placeholder="請輸入帳號">
-            
-                                        </td>
-            
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="Box-name" for="signUpMemPsw">密碼</label>
-                                            <input type="password" name="signUpMemPsw" id="signUpMemPsw" size="12" placeholder="請輸入密碼">
-                                        </td>
-            
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="Box-name" for="signUpMemEmail">信箱</label>
-                                            <input type="email" name="signUpMemEmail" id="signUpMemEmail" size="20" autocomplete="off">
-                                        </td>
-            
-                                    </tr>
-                                    <tr>
-                                        <td class="formBtn">
-                                            <input type="button" id="btnSignUp" value="註冊" class="cart" >
-                                        </td>
-                                    </tr>
-            
-                                </table>
-                        </form>
-                        <form action="/"id="forgetPsw" class="tabContent" >
-                            <table class="forgetPswBox">
-                                    <tr>
-                                       <td>
-                                            <label class="Box-name" for="forgetMemId">帳號</label>
-                                            <input type="text" name="forgetMemId" id="forgetMemId" size="12" autocomplete="off">  
-                                       </td> 
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                                <label class="Box-name" for="forgetMemEmail" >信箱</label>
-                                                <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" size="20" autocomplete="off">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="formBtn">
-                                           <input type="button" id="forgetSend" value="寄送密碼" class="cart"> 
-                                        </td>
-                                        
-                                    </tr>
-            
-                                </table>
-                            
-            
-                        </form>
-            
-                    </div>
-            
+            <div class="loginLeave">
+                <span id="lightBoxLeave">X</span>
+            </div>
+            <ul class="tab-group">
+                <li class="loginTab action  " id="open" onclick="changeway(event,'Loginpage')">登入</li>
+                <li class="loginTab action" onclick="changeway(event,'signup')">註冊</li>
+            </ul>
+            <div class="loginTab-content">
+                <!-----------------------------------登入表單------------------------------------  -->
+                <form action="get" id="Loginpage" class="tabContent">
+                    <table class="loginBox">
+                        <table class="loginBox">
+                            <tr>
+                                <td>
+                                    <label class="Box-name" for="loginMemId">帳號</label>
+                                    <input type="text" name="loginMemId" id="loginMemId" size="12" autocomplete="off"
+                                        placeholder="請輸入帳號">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="Box-name" for="loginMemPsw">密碼</label>
+                                    <input type="password" name="loginMemPsw" id="loginMemPsw" size="12" placeholder="請輸入密碼">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="button" id="btnLogin" value="登入" class="cart">
+
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="forgetPsw">
+                            <p id="forgetPswLink" class="loginTab " onclick="changeway(event,'forgetPsw')"> 忘記密碼</p>
+                        </div>
+
+                    </table>
+                </form>
+        <!------------------------------------------------註冊表單------------------------------------------  -->
+                <form action="get" id="signup" class="tabContent">
+                    <table class="signUpBox">
+                        <tr>
+                            <td>
+                                <label class="Box-name" for="signUpMemId">帳號</label>
+                                <input type="text" name="signUpMemId" id="signUpMemId" size="12" autocomplete="off"
+                                    placeholder="請輸入帳號">
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="Box-name" for="signUpMemPsw">密碼</label>
+                                <input type="password" name="signUpMemPsw" id="signUpMemPsw" size="12" placeholder="請輸入密碼">
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="Box-name mail" for="signUpMemEmail">信箱</label>
+                                <input type="email" name="signUpMemEmail" id="signUpMemEmail" size="20" autocomplete="off">
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="formBtn">
+                                <input type="button" id="btnSignUp" value="註冊" class="cart">
+                            </td>
+                        </tr>
+
+                    </table>
+                </form>
+                <!-- ---------------------------------------忘記密碼 -->
+                <form action="get" id="forgetPsw" class="tabContent">
+                    <table class="forgetPswBox">
+                        <tr>
+                            <td>
+                                <label class="Box-name" for="forgetMemId">帳號</label>
+                                <input type="text" name="forgetMemId" id="forgetMemId" size="12" autocomplete="off"
+                                    placeholder="請輸入帳號">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="Box-name mail" for="forgetMemEmail">信箱</label>
+                                <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" size="20" autocomplete="off">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="formBtn">
+                                <input type="button" id="forgetSend" value="寄送密碼" class="cart">
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+
+                </form>
+
+            </div>
+
         </div>
-        
+
 
     </div>
-    <script>
+    <!-- <script>
         //1.先開啟燈箱
         var memLogin = document.getElementById("memLogin");
         var lightBox = document.getElementById('lightBox-wrap');
-        var showWord = document.getElementById('btnlogin');
+        memLogin.addEventListener("click",showLightBox);
         function showLightBox(e){
             //icon 換色
              e.target.style.color = "#00457b";
+            //  console.log('aaa');
              //點icon跳出燈箱
-            lightBox.classList.toggle('show').style.diplay = "block";
-            //顯示登出字樣
-            
-        
+            lightBox.classList.toggle('show');
         }
+      
+      //2.頁籤切換 登入＋註冊＋忘記密碼
+      function changeway(e,tabchange){
+          var i,loginTab,tabContent;
+          tabContent = document.getElementsByClassName('tabContent');
+          for(i=0; i<tabContent.length; i++){
+            tabContent[i].style.display="none";
+          }
+          loginTab = document.getElementsByClassName('loginTab');
+        //   console.log('bbb');
+          
+          for(i=0; i<loginTab.length; i++){
+              loginTab[i].classList.remove("active");
+            // loginTab.className = loginTab[i].className.replace('active',"");
+          }
+          document.getElementById(tabchange).style.display = "block";
+          e.target.classList.add("active");
+        //   e.currentTarget.className += " active";
+          
+      }
+      document.getElementById('open').click();
+      //3.點x離開
+      var lightBoxLeave = document.getElementById("lightBoxLeave");
+      function leave(e){
+          //點擊x燈箱關掉
 
-      memLogin.addEventListener("click",showLightBox);
-    </script>
+          //icon換回灰色
+      }
+
+      lightBoxLeave.addEventListener("click",leave);
+    </script> -->
+    <script src="../js/header.js"></script>
+
+
+
 
 </body>
 

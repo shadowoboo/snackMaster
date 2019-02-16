@@ -220,7 +220,7 @@ body{
 .wrapTabPanel{
     position: relative;
     width: 100%;
-    // height: auto;
+    height: 100vh;
     .tabPanel{
         width: 85%;
         height: auto;
@@ -468,7 +468,21 @@ body{
     }      
     
     
-}   
+} 
+.footer{
+    #floor {
+        position: relative;
+        text-align: center;
+        #copy {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            font-size: 1.2vw;
+        }
+    }
+}  
       
 
 
@@ -523,13 +537,7 @@ body{
             }
         }
     }
-    footer{
-        #floor{
-            display: none;
-            position: unset;
-        }
-        
-    }
+    
     
     
 }
@@ -618,6 +626,7 @@ body{
         .wrapTabPanel{
             .tabPanel{
                 max-width: 1200px;
+                // height: auto;
             }
 
             #tab-1{
@@ -739,18 +748,18 @@ body{
         
 
             
-         .floor{
-                position: relative;
-                display: block;
-                #copy{
-                    position: absolute;
-                    top:80%;
-                    left: 0%;
-                    right: 0;
-                    text-align: center;
+        //  .floor{
+        //         position: relative;
+        //         display: block;
+        //         #copy{
+        //             position: absolute;
+        //             top:80%;
+        //             left: 0%;
+        //             right: 0;
+        //             text-align: center;
                    
-                }
-          }
+        //         }
+        //   }
         
     
     
