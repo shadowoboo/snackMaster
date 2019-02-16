@@ -704,6 +704,7 @@
         </section>
 
         <div id="sale">
+            <!-- SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo -->
             <div id="closeSale">
                 <i class="fas fa-times"></i>
             </div>
@@ -759,7 +760,7 @@
                 $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
                 // $prodRow -> bindValue(':snackGenre', 0 );
                 $prodRow -> execute(); 
-                while($row = $prodRow->fetchAll()){ //需求送出去，資料抓回來，阿凱發大財
+                while($row = $prodRow->fetchAll()){ //需求送出去，資料抓回來，阿凱發大財                            
             ?>
                 <div class="camera">
                     <div class="box boxBase" id="box_12">
@@ -784,13 +785,13 @@
                             <a href="showItem.html">
                                 <div class="Leaderboarditem No2">
                                     <div class="LeaderboarCountry">
-                                        <img src="<?php echo $row[1]["nation"];?>" alt="排行國家">
+                                        <img src="../images/blair/<?php echo $row[1]["nation"];?>.png" alt="排行國家">
                                     </div>
                                     <div class="commodity">
                                         <img src="<?php echo $row[1]["snackPic"];?>" alt="產品圖">
                                         <h4 class="commodityTitle">[<?php echo $row[1]["nation"];?>]<?php echo $row[1]["snackName"];?></h4>
                                         <div class="flexMid">
-                                            <p class="score">4.8<span class="total">/5</span></p>
+                                            <p class="score"><?php echo round($row[1]["goodStars"] / $row[1]["goodTimes"],1);?><span class="total">/5</span></p>
                                         </div>
                                         <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
                                         </div>
@@ -802,13 +803,13 @@
                             <a href="showItem.html">
                                 <div class="Leaderboarditem No1">
                                     <div class="LeaderboarCountry">
-                                        <img src="<?php echo $row[0]["nation"];?>" alt="排行國家">
+                                        <img src="../images/blair/<?php echo $row[0]["nation"];?>.png" alt="排行國家">
                                     </div>
                                     <div class="commodity">
                                         <img src="<?php echo $row[0]["snackPic"];?>" alt="產品圖">
                                         <h4 class="commodityTitle">[<?php echo $row[0]["nation"];?>]<?php echo $row[0]["snackName"];?></h4>
                                         <div class="flexMid">
-                                            <p class="score">4.8<span class="total">/5</span></p>
+                                            <p class="score"><?php echo round( $row[0]["goodStars"] / $row[0]["goodTimes"],1);?><span class="total">/5</span></p>
                                         </div>
                                         <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
                                         </div>
@@ -820,13 +821,13 @@
                             <a href="showItem.html">
                                 <div class="Leaderboarditem No3">
                                     <div class="LeaderboarCountry">
-                                        <img src="<?php echo $row[2]["nation"];?>" alt="排行國家">
+                                        <img src="../images/blair/<?php echo $row[2]["nation"];?>.png" alt="排行國家">
                                     </div>
                                     <div class="commodity">
                                         <img src="<?php echo $row[2]["snackPic"];?>" alt="產品圖">
                                         <h4 class="commodityTitle">[<?php echo $row[2]["nation"];?>]<?php echo $row[2]["snackName"];?></h4>
                                         <div class="flexMid">
-                                            <p class="score">4.8<span class="total">/5</span></p>
+                                            <p class="score"><?php echo round($row[2]["goodStars"] / $row[2]["goodTimes"],1);?><span class="total">/5</span></p>
                                         </div>
                                         <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
                                         </div>
@@ -1017,26 +1018,35 @@
                                     <div class="surface surface_right"></div>
                                 </div>
                             </div>
-                            <div id="snacksRun">
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/candy4.png" alt="零食">
+                            
+                            <?php
+                                $sql = "SELECT snackPic FROM `snack` WHERE boxDate = '2019-01-01'";
+                                $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
+                                // $prodRow -> bindValue(':snackGenre', 0 );
+                                $prodRow -> execute(); 
+                                while($row = $prodRow->fetchAll()){ //需求送出去，資料抓回來，阿凱發大財                            
+                            ?>
+                                <div id="snacksRun">
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[0]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[1]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[2]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[3]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[4]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[5]["snackPic"];?>" alt="零食">
+                                    </div>
                                 </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/chips1.png" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/choco3.png" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/candy3.png" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/cookie3.png" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/cookie1.png" alt="零食">
-                                </div>
-                            </div>
+                            <?php };?>
                         </section>
                     </div>
                 </div>
@@ -1669,13 +1679,13 @@
 
             $('.LeaderboardCount').css({
                 'transform': 'translateY(0) scale(0)',
-                'transition': '0.5s',
+                'transition': '0.3s',
 
             })
             setTimeout(() => {
                 $('.LeaderboardCount').css({
                     'transform': 'translateY(0) scale(1)',
-                    'transition': '0.5s cubic-bezier(.24,.42,.63,1)',
+                    'transition': '0.3s cubic-bezier(.24,.42,.63,1)',
                 })
             }, 500);
         })
@@ -1714,6 +1724,39 @@
         });
         rank[4].addEventListener('click',function(){
             showRank('巧克力');
+        });
+        
+    </script>
+
+
+
+    <!-- 點選前幾期預購商品 -->
+    <script>
+        function showGoods(month){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange=function (){
+                if( xhr.readyState == 4){
+                    if( xhr.status == 200 ){
+                        //將撈回來的資料取代原本的網頁內容 
+                        document.getElementById("snacksRun").innerHTML = xhr.responseText;  
+                    }else{
+                    alert( xhr.status );
+                    }
+                }
+            }
+            var url = "getGoods.php?month=" + month;
+            xhr.open("Get", url, true);
+            xhr.send( null );
+        }
+        var preGoods = document.getElementsByClassName('month');
+        preGoods[0].addEventListener('click',function(){
+            showGoods('2019-01-01');
+        });
+        preGoods[1].addEventListener('click',function(){
+            showGoods('2019-02-01');
+        });
+        preGoods[2].addEventListener('click',function(){
+            showGoods('2019-03-01');
         });
         
     </script>

@@ -19,7 +19,7 @@ try{
                         <a href='showItem.html'>
                             <div class='Leaderboarditem No2'>
                                 <div class='LeaderboarCountry'>
-                                    <img src='{$row[1]["nation"]}' alt='排行國家'>
+                                    <img src='../images/blair/{$row[1]["nation"]}.png' alt='排行國家'>
                                 </div>
                                 <div class='commodity'>
                                     <img src='{$row[1]["snackPic"]}' alt='產品圖'>
@@ -37,7 +37,7 @@ try{
                     <a href='showItem.html'>
                         <div class='Leaderboarditem No1'>
                             <div class='LeaderboarCountry'>
-                                <img src='{$row[0]["nation"]}' alt='排行國家'>
+                                <img src='../images/blair/{$row[0]["nation"]}.png' alt='排行國家'>
                             </div>
                             <div class='commodity'>
                                 <img src='{$row[0]["snackPic"]}' alt='產品圖'>
@@ -55,7 +55,7 @@ try{
                     <a href='showItem.html'>
                         <div class='Leaderboarditem No3'>
                             <div class='LeaderboarCountry'>
-                                <img src='{$row[2]["nation"]}' alt='排行國家'>
+                                <img src='../images/blair/{$row[2]["nation"]}.png' alt='排行國家'>
                             </div>
                             <div class='commodity'>
                                 <img src='{$row[2]["snackPic"]}' alt='產品圖'>
@@ -83,21 +83,26 @@ try{
         //傳回空的JSON字串
         echo "<center>此商品暫無評價</center>";
       }else{ //找得到
-           
+
         //送出html結構字串
         $html = '';
         $row = $prodRow->fetchAll();
+        
+        $rank0 = round($row[0]['goodStars'] / $row[0]['goodTimes'],1);
+        $rank1 = round($row[1]['goodStars'] / $row[1]['goodTimes'],1);
+        $rank2 = round($row[2]['goodStars'] / $row[2]['goodTimes'],1);
+        
         $html .= "<div class='LeaderboardNo2'>
                         <a href='showItem.html'>
                             <div class='Leaderboarditem No2'>
                                 <div class='LeaderboarCountry'>
-                                    <img src='{$row[1]["nation"]}' alt='排行國家'>
+                                    <img src='../images/blair/{$row[1]["nation"]}.png' alt='排行國家'>
                                 </div>
                                 <div class='commodity'>
                                     <img src='{$row[1]["snackPic"]}' alt='產品圖'>
                                     <h4 class='commodityTitle'>[{$row[1]["nation"]}]{$row[1]["snackName"]}</h4>
                                     <div class='flexMid'>
-                                        <p class='score'>4.8<span class='total'>/5</span></p>
+                                        <p class='score'>{$rank1}<span class='total'>/5</span></p>
                                     </div>
                                     <div class='commodityStar'><img src='../images/rankBoard/starMask.png' alt='星等'>
                                     </div>
@@ -109,13 +114,13 @@ try{
                     <a href='showItem.html'>
                         <div class='Leaderboarditem No1'>
                             <div class='LeaderboarCountry'>
-                                <img src='{$row[0]["nation"]}' alt='排行國家'>
+                                <img src='../images/blair/{$row[0]["nation"]}.png' alt='排行國家'>
                             </div>
                             <div class='commodity'>
                                 <img src='{$row[0]["snackPic"]}' alt='產品圖'>
                                 <h4 class='commodityTitle'>[{$row[0]["nation"]}]{$row[0]["snackName"]}</h4>
                                 <div class='flexMid'>
-                                    <p class='score'>4.8<span class='total'>/5</span></p>
+                                    <p class='score'>{$rank0}<span class='total'>/5</span></p>
                                 </div>
                                 <div class='commodityStar'><img src='../images/rankBoard/starMask.png' alt='星等'>
                                 </div>
@@ -127,13 +132,13 @@ try{
                     <a href='showItem.html'>
                         <div class='Leaderboarditem No3'>
                             <div class='LeaderboarCountry'>
-                                <img src='{$row[2]["nation"]}' alt='排行國家'>
+                                <img src='../images/blair/{$row[2]["nation"]}.png' alt='排行國家'>
                             </div>
                             <div class='commodity'>
                                 <img src='{$row[2]["snackPic"]}' alt='產品圖'>
                                 <h4 class='commodityTitle'>[{$row[2]["nation"]}]{$row[2]["snackName"]}</h4>
                                 <div class='flexMid'>
-                                    <p class='score'>4.8<span class='total'>/5</span></p>
+                                    <p class='score'>{$rank2}<span class='total'>/5</span></p>
                                 </div>
                                 <div class='commodityStar'><img src='../images/rankBoard/starMask.png' alt='星等'>
                                 </div>
@@ -148,3 +153,6 @@ try{
   echo $e->getMessage();
 }
 ?>
+
+
+
