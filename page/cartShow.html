@@ -155,7 +155,7 @@
 
             <div class="cartContent cartContent_prod">
                 <div class="prodCard prodCard_Group">
-                    <div class="prodCard prodCard_normal prodCard_Cus">
+                    <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusBox">
                         <div class="prodImg">
                             <!-- <img src="../images/blair/item3.png"> -->
                             <img src="https://picsum.photos/100/100/?random=1">
@@ -183,7 +183,7 @@
                             <button class="trash"><i class="far fa-trash-alt"></i></button> -->
                         </div>
                     </div>
-                    <div class="prodCard prodCard_normal prodCard_Cus">
+                    <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusCard">
                         <div class="prodImg">
                             <!-- <img src="../images/blair/item3.png"> -->
                             <img src="https://picsum.photos/100/100/?random=2">
@@ -198,17 +198,18 @@
                             </div> -->
                         </div>
                         <div class="cardCtrl">
-                            <!-- <div class="prodPriceSum">
-                                                    <p>
-                                                        小計:<span>$200</span>
-                                                    </p>
-                                                </div>
-                                                <div class="prodQty">
-                                                    <div class="numInput">
-                                                        <span class="numMinus">-</span><input type="number" value="1"><span class="numPlus">+</span>
-                                                    </div>
-                                                </div>
-                                                <button class="trash"><i class="far fa-trash-alt"></i></button> -->
+                            <!-- 撥放介面實體 -->
+                            <div id="audioItem">
+                                <!-- 一開始不給src，待錄音有值會自動增加 -->
+                                <audio id="au_player"></audio>
+                                <!-- 撥放控制按鈕們 -->
+                                <div class="au_btns" id="au_btns">
+                                    <!-- 撥放與暫停 -->
+                                    <button class="au_btn" id="au_btn_play"><i class="fas fa-play"></i></button>
+                                    <!-- 停止 -->
+                                    <button class="au_btn" id="au_btn_stop"><i class="fas fa-stop"></i></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="prodCard prodCard_normal">
@@ -275,11 +276,9 @@
                         </div>
                         <div class="cusBtnDel">
                             <span>刪除客製零食箱</span>
-                            <!-- <button class="trash"><i class="far fa-trash-alt"></i></button> -->
                         </div>
                     </div>
                 </div>
-
 
                 <div class="prodCard prodCard_normal">
                     <div class="prodImg">
