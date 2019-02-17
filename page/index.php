@@ -54,7 +54,7 @@
                         </div>
                         <!----    在手機上打開此logo;桌機上關掉此logo------ -->
                         <div class="logo">
-                            <a href="index.html"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
+                            <a href="index.php"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
 
                         </div>
                         <div id="list_appear">
@@ -191,9 +191,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>川普最愛</li>
                                     </ul>
                                 </div>
                             </div>
@@ -224,9 +223,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>德國人氣No.1</li>
                                     </ul>
                                 </div>
                             </div>
@@ -256,9 +254,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>南美平民零時榜冠軍</li>
                                     </ul>
                                 </div>
                             </div>
@@ -288,9 +285,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>英國皇室招待品</li>
                                     </ul>
                                 </div>
                             </div>
@@ -320,9 +316,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>觀光客最愛伴手禮</li>
                                     </ul>
                                 </div>
                             </div>
@@ -352,9 +347,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>歐爸推薦商品</li>
                                     </ul>
                                 </div>
                             </div>
@@ -384,9 +378,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>全國零食榜發燒商品</li>
                                     </ul>
                                 </div>
                             </div>
@@ -416,9 +409,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>賣場秒殺零食</li>
                                     </ul>
                                 </div>
                             </div>
@@ -704,7 +696,6 @@
         </section>
 
         <div id="sale">
-            <!-- SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo -->
             <div id="closeSale">
                 <i class="fas fa-times"></i>
             </div>
@@ -716,38 +707,44 @@
                     <span id='second'></span>
                 </div>
             </div>
+            <?php
+                require_once("connectBooksRick.php");
+                $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo";
+                $sales = $pdo->query( $sql );
+                $salesRow = $sales->fetchAll();
+            ?>
             <div class="item fade" id="3.7|1|5|2">
                 <!-- <a href="showItem.html"></a> -->
-                <img class="country" src="../images/blair/jp-no2.png" alt="">
-                <img class="itemImg" src="../images/blair/item2.png" alt="">
-                <h4 class="itemName">[英國]Chikito 牛奶巧克力</h4>
-                <p class="price">$80</p>
+                <img class="country" src="../images/blair/<?php echo $salesRow[0]['nation']?>.png" alt="國家圖">
+                <img class="itemImg" src="<?php echo $salesRow[0]['snackPic']?>" alt="商品圖">
+                <h4 class="itemName">[<?php echo $salesRow[0]['nation']?>]<?php echo $salesRow[0]['snackName']?></h4>
+                <p class="price">$<?php echo $salesRow[0]['salePrice']?></p>
                 <div class="itemBtns">
                     <button class="cart">加入購物車</button>
                 </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">5</span>&nbsp;件</p>
+                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[0]['quantity']?></span>&nbsp;件</p>
             </div>
             <div class="item fade" id="3.7|1|5|2">
                 <!-- <a href="showItem.html"></a> -->
-                <img class="country" src="../images/blair/de-no3.png" alt="">
-                <img class="itemImg" src="../images/blair/candy2.png" alt="">
-                <h4 class="itemName">[德國]Trolli 彩虹蟲蟲軟糖</h4>
-                <p class="price">$80</p>
+                <img class="country" src="../images/blair/<?php echo $salesRow[1]['nation']?>.png" alt="">
+                <img class="itemImg" src="<?php echo $salesRow[1]['snackPic']?>" alt="">
+                <h4 class="itemName">[<?php echo $salesRow[1]['nation']?>]<?php echo $salesRow[1]['snackName']?></h4>
+                <p class="price">$<?php echo $salesRow[1]['salePrice']?></p>
                 <div class="itemBtns">
                     <button class="cart">加入購物車</button>
                 </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">1</span>&nbsp;件</p>
+                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[1]['quantity']?></span>&nbsp;件</p>
             </div>
             <div class="item fade" id="3.7|1|5|2">
                 <!-- <a href="showItem.html"></a> -->
-                <img class="country" src="../images/blair/us-no1.png" alt="">
-                <img class="itemImg" src="../images/blair/nuts.png" alt="">
-                <h4 class="itemName">[美國]Tuty BBQ花生粒</h4>
-                <p class="price">$80</p>
+                <img class="country" src="../images/blair/<?php echo $salesRow[2]['nation']?>.png" alt="">
+                <img class="itemImg" src="<?php echo $salesRow[2]['snackPic']?>" alt="">
+                <h4 class="itemName">[<?php echo $salesRow[2]['nation']?>]<?php echo $salesRow[2]['snackName']?></h4>
+                <p class="price">$<?php echo $salesRow[2]['salePrice']?></p>
                 <div class="itemBtns">
                     <button class="cart">加入購物車</button>
                 </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">4</span>&nbsp;件</p>
+                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[2]['quantity']?></span>&nbsp;件</p>
             </div>
             <a id="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a id="next" onclick="plusSlides(1)">&#10095;</a>
@@ -1516,13 +1513,13 @@
                         roulette.style.transform = 'rotate(-90deg)';
                         break;
                     case 'green':
-                        roulette.style.transform = 'rotate(-135deg)';
+                        roulette.style.transform = 'rotate(225deg)';
                         break;
                     case 'blue':
-                        roulette.style.transform = 'rotate(-180deg)';
+                        roulette.style.transform = 'rotate(180deg)';
                         break;
                     case 'indigo':
-                        roulette.style.transform = 'rotate(-225deg)';
+                        roulette.style.transform = 'rotate(135deg)';
                         break;
                     case 'violet':
                         roulette.style.transform = 'rotate(90deg)';
@@ -1598,13 +1595,159 @@
         function initMap() {
             // 下面的代碼構造了一個新的Google地圖對象，並向地圖添加了屬性，包括中心和縮放級別。
 
+            var directionsService = new google.maps.DirectionsService();
+            var directionsDisplay = new google.maps.DirectionsRenderer();
             // 位置
+            var loc = [
+                // {label:'A',lat:24.9650192,lng:121.1909533},
+                {label:'B',lat:24.959982,lng:121.215134},
+                {label:'C',lat:24.958616,lng:121.298447},
+                {label:'D',lat:24.990711,lng:121.232857}
+            ];
             var uluru = { lat: 24.9650192, lng: 121.1909533 };
             // The map, centered at Uluru地圖以烏魯魯為中心
             var map = new google.maps.Map(
-                document.getElementById('map'), { zoom: 12, center: uluru });
+                document.getElementById('map'), {
+                    zoom: 12,
+                    center: uluru,
+                    styles:[
+                        {
+                            "featureType": "water",
+                            "stylers": [
+                                {
+                                    "visibility": "on"
+                                },
+                                {
+                                    "color": "#b5cbe4"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "landscape",
+                            "stylers": [
+                                {
+                                    "color": "#efefef"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road.highway",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#83a5b0"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road.arterial",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#bdcdd3"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road.local",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#ffffff"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "poi.park",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#e3eed3"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "administrative",
+                            "stylers": [
+                                {
+                                    "visibility": "on"
+                                },
+                                {
+                                    "lightness": 33
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road"
+                        },
+                        {
+                            "featureType": "poi.park",
+                            "elementType": "labels",
+                            "stylers": [
+                                {
+                                    "visibility": "on"
+                                },
+                                {
+                                    "lightness": 20
+                                }
+                            ]
+                        },
+                        {},
+                        {
+                            "featureType": "road",
+                            "stylers": [
+                                {
+                                    "lightness": 20
+                                }
+                            ]
+                        }
+                    ]
+                });
             // The marker, positioned at Uluru標記，位於烏魯魯。下面的代碼在地圖上放置一個標記。
-            var marker = new google.maps.Marker({ position: uluru, map: map });
+
+            var img =[
+                {url:'../images/index/vending-1.png',
+                scaledSize: new google.maps.Size(30,45)},
+                {url:'../images/index/vending-2.png',
+                scaledSize: new google.maps.Size(30,45)},
+                {url:'../images/index/vending-3.png',
+                scaledSize: new google.maps.Size(30,45)},
+            ];
+            var marker = new google.maps.Marker({ position: uluru, map: map});
+            for (var i = 0; i < loc.length; i++) {
+                marker= new google.maps.Marker({
+                    position: {
+                    lat: loc[i].lat,
+                    lng: loc[i].lng
+                    },
+                    map: map,
+                    icon:img[i]
+                });
+            }
+            $('.vmImg img').click(function(){
+                var vm = $('.vmImg img').index(this);
+                var loc = [
+                    // {label:'A',lat:24.9650192,lng:121.1909533},
+                    {label:'B',lat:24.959982,lng:121.215134},
+                    {label:'C',lat:24.958616,lng:121.298447},
+                    {label:'D',lat:24.990711,lng:121.232857}
+                ];
+                    directionsDisplay.setMap(map);
+                    var request = {
+                        origin: uluru,
+                        destination: { lat: loc[vm].lat, lng: loc[vm].lng },
+                        travelMode: 'DRIVING'
+                    };
+                    directionsService.route(request, function (result, status) {
+                        if (status == 'OK') {
+                            // 回傳路線上每個步驟的細節
+                            console.log(result.routes[0].legs[0].steps);
+                            directionsDisplay.setDirections(result);
+                        } else {
+                            console.log(status);
+                        }
+                    });
+            })
         }
     </script>
 
