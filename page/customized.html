@@ -145,8 +145,8 @@
                             <div class="btn btn_top dimension" id="btn_top">上</div>
                             <div class="btn btn_left dimension" id="btn_left">左</div>
                             <div class="btn btn_right dimension" id="btn_right">右</div>
-                            <!-- <div class="btn rotateX" id="rotateX">轉</div> -->
-                              <!-- <div class="btn rotateY" id="rotateY">Y軸轉轉</div>-->
+                            <div class="btn rotateX dimension" id="rotateX">轉</div>
+                              <!-- <div class="btn rotateY" id="rotateY">Y軸轉轉</div> -->
                             <!-- <div class="btn rotateZ dimension" id="rotateZ">轉</div>  -->
                         </div>
                         <div class="showBox">
@@ -1437,14 +1437,14 @@ var section15 = document.querySelector("#section_15");
                 });
                 break;
             case "rotateX":
-                boxBases.forEach(element => {
-                    // element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+            boxBases.forEach(element => {
                     console.log("element.style.transform:" + element.style.transform);
                     let arr = element.style.transform.split(" ");
                     console.log(`arr: ${arr}`);
-                    let newAngelX = parseInt(arr[0].replace("rotateX(", "").replace("deg)", "")) + 10;
-                    arr[0] = "rotateX(" + newAngelX + "deg)";
-                    console.log(arr[0]);
+                    let newAngelY = parseInt(arr[1].replace("rotateY(", "").replace("deg)", "")) +20;
+                    arr[0] = "rotateX(" + "-30" + "deg)";
+                    arr[1] = "rotateY(" + newAngelY + "deg)";                    
+                    console.log(arr[1]);
                     element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
                 });
                 break;
@@ -1454,7 +1454,7 @@ var section15 = document.querySelector("#section_15");
                     console.log("element.style.transform:" + element.style.transform);
                     let arr = element.style.transform.split(" ");
                     console.log(`arr: ${arr}`);
-                    let newAngelY = parseInt(arr[1].replace("rotateY(", "").replace("deg)", "")) + 10;
+                    let newAngelY = parseInt(arr[1].replace("rotateY(", "").replace("deg)", "")) +20;
                     arr[1] = "rotateY(" + newAngelY + "deg)";
                     console.log(arr[1]);
                     element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
@@ -1474,9 +1474,15 @@ var section15 = document.querySelector("#section_15");
                 break;
             case "show":
                 boxBases.forEach(element => {
-                    element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(0deg)";
+                    console.log("element.style.transform:" + element.style.transform);
+                    let arr = element.style.transform.split(" ");
+                    console.log(`arr: ${arr}`);
+                    let newAngelY = parseInt(arr[1].replace("rotateY(", "").replace("deg)", "")) +20;
+                    arr[0] = "rotateX(" + "-30" + "deg)";
+                    arr[1] = "rotateY(" + newAngelY + "deg)";                    
+                    console.log(arr[1]);
+                    element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
                 });
-                
                 break;
         }
     };
