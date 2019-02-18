@@ -1,3 +1,16 @@
+<?php
+$errMsg = "";
+try {
+	require_once("connectcd105g2.php");
+	$sql = "select * from snack";
+     $snack = $pdo->query($sql); 
+     $snackRows = $snack -> fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+	$errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
+	$errMsg .= "行號 : ".$e -> getLine()."<br>";
+}
+ 
+?> 
 <!DOCTYPE html>
 <html lang="en" >
 
@@ -12,97 +25,100 @@
    <!-- 為了各種符號，掛載fontawesome -->
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
    crossorigin="anonymous">
+   <script src="../js/jquery-3.3.1.min.js"></script>
    <script src="../js/shadowLib.js""></script>
    <!-- 錄音外掛。我想我跳下去玩一定會來不及。謝謝你 9527 -->
    <script src="../js/recorder.js"></script>
+   <script src="../js/common.js"></script>
 </head>
 
 <body>
-        <header>
-                <h1>大零食家</h1>
-                <div class="cloud">
-                    <div class="doc doc--bg2">
-                        <canvas id="canvas"></canvas>
-                    </div>
-                    <nav>
-                        <label for="smlSearch" class="searchBtn" value="search">
-                                <img src="../images/tina/search-icon.svg" alt="" id="searchBtn">
-                        </label>
-                        
-                        <div class="menu">
-                            <!-------- -----手機漢堡----------- -->
-        
-                            <div id="ham">
-                                <span class="btnTop"></span>
-                                <span class="btnMid"></span>
-                                <span class="btnBot"></span>
-                            </div>
-                            <!----    在手機上打開此logo;桌機上關掉此logo------ -->
-                            <div class="logo">
-                                <a href="index.html"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
-        
-                            </div>
-                            <div id="list_appear">
-                                <!-- ----------手機選單離開-------- -->
-                                <div id="cros">
-                                    <span class="leave">X</span>
-                                </div>
-                                <ul class="list">
-                                    <li><a href="rankBoard.html">零食排行榜</a></li>
-                                    <li><a href="customized.html">客製零食箱</a> </li>
-                                    <!-- 在手機上要關掉這個li的logo -->
-                                    <li><a href="index.html"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
-                                    <li id="store"> 零食商店街
-                                        <ul id="Submenu" class="subMenu">
-                                            <li id="snBox"><a href="preOrder.html">預購零食箱</a></li>
-                                            <li ><a href="shopping.html">零食列表</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="gsell.html">尋找販賣機</a> </li>
-                                </ul>
-                            </div>
+    <header>
+            <h1>大零食家</h1>
+            <div class="cloud">
+                <div class="doc doc--bg2">
+                    <canvas id="canvas"></canvas>
+                </div>
+                <nav>
+                    <label for="smlSearch" class="searchBtn" value="search">
+                            <img src="../images/tina/search-icon.svg" alt="" id="searchBtn">
+                    </label>
+                    
+                    <div class="menu">
+                        <!-------- -----手機漢堡----------- -->
+    
+                        <div id="ham">
+                            <span class="btnTop"></span>
+                            <span class="btnMid"></span>
+                            <span class="btnBot"></span>
                         </div>
-        
-                        <ul class="login">
-                            <li><i class="fas fa-shopping-cart" id="shopCart"></i></li>
-                            <li><i class="fas fa-user-circle" id="memLogin"></i></li>
-                        </ul>
-                    </nav>
-            <div class="seachRegion" id="search_appear">
-                    <div class="search">
-                        <img src="../images/blair/pocky.png" alt="">
-                        <div class="selectbar">
-                            <select name="country" id="country">
-                                <option value="">國家</option>
-                                <option value="">英國</option>
-                                <option value="">美國</option>
-                                <option value="">日本</option>
-                                <option value="">泰國</option>
-                            </select>
-                            <select name="kind" id="kind">
-                                <option value="">種類</option>
-                                <option value="">巧克力</option>
-                                <option value="">糖果</option>
-                                <option value="">餅乾</option>
-                                <option value="">洋芋片</option>
-                            </select>
-                            <select name="flavor" id="flavor">
-                                <option value="">口味</option>
-                                <option value="">酸</option>
-                                <option value="">甜</option>
-                                <option value="">辣</option>
-                            </select>                            
+                        <!----    在手機上打開此logo;桌機上關掉此logo------ -->
+                        <div class="logo">
+                            <a href="index.html"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
+    
                         </div>
-                        <div class="inputbar">
-                            <input type="text" placeholder="想找什麼零食呢？">
-                            <i class="fas fa-search"></i>
+                        <div id="list_appear">
+                            <!-- ----------手機選單離開-------- -->
+                            <div id="cros">
+                                <span class="leave">X</span>
+                            </div>
+                            <ul class="list">
+                                <li><a href="rankBoard.html">零食排行榜</a></li>
+                                <li><a href="customized.html">客製零食箱</a> </li>
+                                <!-- 在手機上要關掉這個li的logo -->
+                                <li><a href="index.html"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
+                                <li id="store"> 零食商店街
+                                    <ul id="Submenu" class="subMenu">
+                                        <li id="snBox"><a href="preOrder.html">預購零食箱</a></li>
+                                        <li ><a href="shopping.html">零食列表</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="gsell.html">尋找販賣機</a> </li>
+                            </ul>
                         </div>
                     </div>
+    
+                    <ul class="login">
+                        <li><i class="fas fa-shopping-cart" id="shopCart"></i></li>
+                        <li><i class="fas fa-user-circle" id="memLogin"></i></li>
+                    </ul>
+                </nav>
+            
+                <div class="seachRegion" id="search_appear">
+                        <div class="search">
+                            <img src="../images/blair/pocky.png" alt="">
+                            <div class="selectbar">
+                                <select name="country" id="country">
+                                    <option value="">國家</option>
+                                    <option value="">英國</option>
+                                    <option value="">美國</option>
+                                    <option value="">日本</option>
+                                    <option value="">泰國</option>
+                                </select>
+                                <select name="kind" id="kind">
+                                    <option value="">種類</option>
+                                    <option value="">巧克力</option>
+                                    <option value="">糖果</option>
+                                    <option value="">餅乾</option>
+                                    <option value="">洋芋片</option>
+                                </select>
+                                <select name="flavor" id="flavor">
+                                    <option value="">口味</option>
+                                    <option value="">酸</option>
+                                    <option value="">甜</option>
+                                    <option value="">辣</option>
+                                </select>                            
+                            </div>
+                            <div class="inputbar">
+                                <input type="text" placeholder="想找什麼零食呢？">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
                         <div id="close">
                             <span class="close">X</span>
                         </div>
             </div>
-            </header>
+        </header>
 
   <div class="card step-progress">
     <div class="step-slider">
@@ -146,7 +162,7 @@
                             <div class="btn btn_left dimension" id="btn_left">左</div>
                             <div class="btn btn_right dimension" id="btn_right">右</div>
                             <div class="btn rotateX dimension" id="rotateX">轉</div>
-                              <!-- <div class="btn rotateY" id="rotateY">Y軸轉轉</div> -->
+                              <!-- <div class="btn rotateY" id="rotateY">Y軸轉轉</div>-->
                             <!-- <div class="btn rotateZ dimension" id="rotateZ">轉</div>  -->
                         </div>
                         <div class="showBox">
@@ -403,503 +419,171 @@
                                     <li class="good yellow">購物車</li>
                                     <li class="good">收藏</li>
                                     <li class="good">巧克力</li>
-                                    <li class="good">糖果</li>
-                                    <li class="good">餅乾</li>
                                     <li class="good">洋芋片</li>
-                                </ul>
-                            <div class="good-content">
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chocolate/choco-4.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
+                                    <li class="good">餅乾</li>
+                                    <li class="good">糖果</li>
+                                </ul>                    
+                                <div class="good-content">
+                        <?php
+                            for($i=30; $i<37; $i++){
+                        ?>
+                            <div class="item">
+                                <div class="name">           
+                                        <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
+                                        <div class="price">
+                                        <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p>                   
+                                            <p class="snackName"><?php echo $snackRows[$i]['snackName']; ?></p>
+                                            <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
+                                            <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
                                         </div>
-                                        <button class="step addCart">加入零食箱</button>
                                     </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chocolate/choco-1.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chocolate/choco-5.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chips/8.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chocolate/choco-7.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chocolate/choco-3.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cnady/20170426154438.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cookie/80796.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
+                                    
                             </div>
-                            <div class="good-content">
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chocolate/choco-5.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
+                        <?php
+                            }
+                        ?> 
+                    </div>       
+                    <div class="good-content">
+                        <?php
+                            for($i=20; $i<25; $i++){
+                        ?>
+                            <div class="item">
+                                <div class="name">           
+                                        <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
+                                        <div class="price">
+                                        <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p>                   
+                                            <p class="snackName"><?php echo $snackRows[$i]['snackName']; ?></p>
+                                            <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
+                                            <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
                                         </div>
-                                        <button class="step addCart">加入零食箱</button>
                                     </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chocolate/choco-7.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chocolate/choco-4.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chips/8.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chocolate/choco-1.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chocolate/choco-2.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cnady/20170426154438.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cookie/80796.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
+                                    
                             </div>
-                            <div class="good-content">
-                                <div class="item">
-                                    <div class="name">
-                                        <img src="../images/customized/shopping/chocolate/choco-1.png" alt="">
+                        <?php
+                            }
+                        ?> 
+                    </div>       
+                    
+                <form id="snackForm">
+                    <input id="snackDataName" type="hidden" name="snackDataName" value="">
+                </form>                            
+                    <div class="good-content">
+                        <?php
+                            for($i=0; $i<8; $i++){
+                        ?>
+                            <div class="item">
+                                <div class="name">           
+                                        <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
                                         <div class="price">
-                                            <p>巧克力棒</p>
-                                            <span>$ 30</span>
+                                        <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p>                   
+                                            <p class="snackName"><?php echo $snackRows[$i]['snackName']; ?></p>
+                                            <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
+                                            <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
                                         </div>
                                     </div>
-                                    <button class="step addCart">加入零食箱</button>
-                                </div>
-                                <div class="item">
-                                    <div class="name">
-                                        <img src="../images/customized/shopping/chocolate/choco-1.png" alt="">
-                                        <div class="price">
-                                            <p>巧克力棒</p>
-                                            <span>$ 30</span>
-                                        </div>
-                                    </div>
-                                    <button class="step addCart">加入零食箱</button>
-                                </div>
-                                <div class="item">
-                                    <div class="name">
-                                        <img src="../images/customized/shopping/chocolate/choco-1.png" alt="">
-                                        <div class="price">
-                                            <p>巧克力棒</p>
-                                            <span>$ 30</span>
-                                        </div>
-                                    </div>
-                                    <button class="step addCart">加入零食箱</button>
-                                </div>
-                                <div class="item">
-                                    <div class="name">
-                                        <img src="../images/customized/shopping/chocolate/choco-1.png" alt="">
-                                        <div class="price">
-                                            <p>巧克力棒</p>
-                                            <span>$ 30</span>
-                                        </div>
-                                    </div>
-                                    <button class="step addCart">加入零食箱</button>
-                                </div>
-                                <div class="item">
-                                    <div class="name">
-                                        <img src="../images/customized/shopping/chocolate/choco-1.png" alt="">
-                                        <div class="price">
-                                            <p>巧克力棒</p>
-                                            <span>$ 30</span>
-                                        </div>
-                                    </div>
-                                    <button class="step addCart">加入零食箱</button>
-                                </div>
-                                <div class="item">
-                                    <div class="name">
-                                        <img src="../images/customized/shopping/chocolate/choco-1.png" alt="">
-                                        <div class="price">
-                                            <p>巧克力棒</p>
-                                            <span>$ 30</span>
-                                        </div>
-                                    </div>
-                                    <button class="step addCart">加入零食箱</button>
-                                </div>
-                                <div class="item">
-                                    <div class="name">
-                                        <img src="../images/customized/shopping/chocolate/choco-1.png" alt="">
-                                        <div class="price">
-                                            <p>巧克力棒</p>
-                                            <span>$ 30</span>
-                                        </div>
-                                    </div>
-                                    <button class="step addCart">加入零食箱</button>
-                                </div>
-                                <div class="item">
-                                    <div class="name">
-                                        <img src="../images/customized/shopping/chocolate/choco-1.png" alt="">
-                                        <div class="price">
-                                            <p>巧克力棒</p>
-                                            <span>$ 30</span>
-                                        </div>
-                                    </div>
-                                    <button class="step addCart">加入零食箱</button>
-                                </div>
+                                    
                             </div>
-                            <div class="good-content">
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cnady/20170426154438.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
+                        <?php
+                            }
+                        ?> 
+                    </div>                 
+                     <div class="good-content">
+                        <?php
+                            for($i=13; $i<21; $i++){
+                        ?>
+                            <div class="item">
+                                <div class="name">                                    
+                                        <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
+                                        <div class="price">
+                                            <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p> 
+                                            <p class="snackName"><?php echo $snackRows[$i]['snackName']; ?></p>
+                                            <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
+                                            <button class="step addCart sendSnack" id="sendSnack">放入零食車</button>                        
                                         </div>
-                                        <button class="step addCart">加入零食箱</button>
                                     </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cnady/20170426154438.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cnady/20170426154438.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cnady/20170426154438.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cnady/20170426154438.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cnady/20170426154438.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cnady/20170426154438.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cnady/20170426154438.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
+                                    
                             </div>
-                            <div class="good-content">
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cookie/85563.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
+                        <?php
+                            }
+                        ?> 
+                    </div>  
+                    <div class="good-content">
+                        <?php
+                            for($i=24; $i<32; $i++){
+                        ?>
+                            <div class="item">
+                                <div class="name">          
+                                        <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
+                                        <div class="price">
+                                            <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p> 
+                                            <p class="snackName"><?php echo $snackRows[$i]['snackName']; ?></p>
+                                            <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
+                                            <button class="step addCart sendSnack" id="sendSnack">放入零食車</button>                        
                                         </div>
-                                        <button class="step addCart">加入零食箱</button>
                                     </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cookie/85563.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cookie/85563.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cookie/85563.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cookie/85563.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cookie/85563.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/cookie/85563.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
+                                    
                             </div>
-                            <div class="good-content">
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chips/8.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
+                        <?php
+                            }
+                        ?> 
+                    </div> 
+                    <div class="good-content">
+                        <?php
+                            for($i=37; $i<45; $i++){
+                        ?>
+                            <div class="item">
+                                <div class="name">                                    
+                                        <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
+                                        <div class="price">
+                                            <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p> 
+                                            <p class="snackName"><?php echo $snackRows[$i]['snackName']; ?></p>
+                                            <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
+                                            <button class="step addCart sendSnack" id="sendSnack">放入零食車</button>                        
                                         </div>
-                                        <button class="step addCart">加入零食箱</button>
                                     </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chips/8.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chips/8.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chips/8.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chips/8.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chips/8.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chips/8.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
-                                    <div class="item">
-                                        <div class="name">
-                                            <img src="../images/customized/shopping/chips/8.png" alt="">
-                                            <div class="price">
-                                                <p>巧克力棒</p>
-                                                <span>$ 30</span>
-                                            </div>
-                                        </div>
-                                        <button class="step addCart">加入零食箱</button>
-                                    </div>
+                                    
                             </div>
+                        <?php
+                            }
+                        ?> 
+                    </div> 
                         </div>
                     </div>
                 </div> 
                 </div>
                 </div>
       </div>
-      <!-- <div id="step4" class="step-content-body out">
-        <div class="tabContainer">
+      <script>
 
-       </div>
-      </div> -->
+        $(document).ready(function(){
+            $(".sendSnack").bind("click",sendSnack);
+            
+        });
+
+
+        function sendSnack(e){//----------------------------------
+            //=====使用Ajax 回server端,取回資料, 放到頁面上 
+            // var aa=document.getElementById("aa");
+            var snackNo=$(this).parent().children("p")[0];
+            // snackName=snackName.attr("data-snackNo");
+            var snackDataName=document.getElementById("snackDataName");
+            snackDataName.value=snackNo.innerText;
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function(){
+            if( xhr.responseText == "error"){
+            alert("錯誤");
+            }else{
+            alert(`xhr.responseText: ${xhr.responseText}`);
+            }
+        }
+        xhr.open("Post", "sessionSnack.php", true);
+        var snackForm = new FormData( $id("snackForm"));
+        xhr.send( snackForm ); 
+        }
+
+        //===設定sendSnack.onclick 事件處理程序是 sendForm
+        // $id('sendSnack').onclick = sendSnack;
+    </script>     
       <div id="stepLast" class="step-content-body out">Completed</div>
       <div class="step-content-foot">
         <button type="button" class="active" name="prev">上一步</button>
@@ -1045,72 +729,7 @@
                                         document.querySelector("." + target).style.background = tarColor; //變色
                                 }
                         })
-
-                        // console.log(`e.target.clasList[1]: ${e.target.classList[1]}`);
-                        // //慶生的留言(?)
-                        // //不知道是什麼，先做demo以備不時之需
-                        // var color1 = document.querySelector(".color1");
-                        // var color2 = document.querySelector(".color2");
-                        // var color3 = document.querySelector(".color3");
-                        // var color4 = document.querySelector(".color4");
-                        // var color5 = document.querySelector(".color5");
-                        // var color1Color = window.getComputedStyle(color1, null).getPropertyValue("background-color");
-                        // var color2Color = window.getComputedStyle(color2, null).getPropertyValue("background-color");
-                        // var color3Color = window.getComputedStyle(color3, null).getPropertyValue("background-color");
-                        // var color4Color = window.getComputedStyle(color4, null).getPropertyValue("background-color");
-                        // var color5Color = window.getComputedStyle(color5, null).getPropertyValue("background-color");
-                        // var surTop = document.querySelector(".surface_top");
-                        // var surDown = document.querySelector(".surface_down");
-                        // var surBack = document.querySelector(".surface_back");
-                        // var surFront = document.querySelector(".surface_front");
-                        // var surLeft = document.querySelector(".surface_left");
-                        // var surRight = document.querySelector(".surface_right");
-                        // switch (e.target.classList[1]) {
-                        // case "color1":
-                        // surTop.style.background=color1Color;
-                        // surDown.style.background= color1Color;
-                        // surBack.style.background = color2Color;
-                        // surFront.style.background = color2Color;
-                        // surLeft.style.background = color2Color;
-                        // surRight.style.background = color2Color;
-                        // break;
-                        // case "color2":
-                        // surTop.style.background = color2Color;
-                        // surDown.style.background = color2Color;
-                        // surBack.style.background = color3Color;
-                        // surFront.style.background = color3Color;
-                        // surLeft.style.background = color3Color;
-                        // surRight.style.background = color3Color;
-                        // break;
-                        // case "color3":
-                        // surTop.style.background = color3Color;
-                        // surDown.style.background = color3Color;
-                        // surBack.style.background = color4Color;
-                        // surFront.style.background = color4Color;
-                        // surLeft.style.background = color4Color;
-                        // surRight.style.background = color4Color;
-                        // break;
-                        // case "color4":
-                        // surTop.style.background = color4Color;
-                        // surDown.style.background = color4Color;
-                        // surBack.style.background = color5Color;
-                        // surFront.style.background = color5Color;
-                        // surLeft.style.background = color5Color;
-                        // surRight.style.background = color5Color;
-                        // break;
-                        // case "color5":
-                        // surTop.style.background = color5Color;
-                        // surDown.style.background = color5Color;
-                        // surBack.style.background = color1Color;
-                        // surFront.style.background = color1Color;
-                        // surLeft.style.background = color1Color;
-                        // surRight.style.background = color1Color;
-                        // break;
-                        // }
                 }
-
-
-
 
 //任意處點擊解除拖曳圖片的選取狀態
 var section15 = document.querySelector("#section_15");
@@ -1124,8 +743,6 @@ var section15 = document.querySelector("#section_15");
                         })
                 }
         }
-
-
 
     //拖曳功能監聽事件
     /// 對應按鈕觸發時要添加監聽事件，其餘移除監聽
@@ -1179,11 +796,6 @@ var section15 = document.querySelector("#section_15");
             e.target.style.opacity = "1";
         })
     })
-
-
-
-
-    
 
     //箱子表面監聽
     //動態新增的東西需要先監聽父層，子層新增的元素開監聽才有效
@@ -1437,7 +1049,7 @@ var section15 = document.querySelector("#section_15");
                 });
                 break;
             case "rotateX":
-            boxBases.forEach(element => {
+                boxBases.forEach(element => {
                     console.log("element.style.transform:" + element.style.transform);
                     let arr = element.style.transform.split(" ");
                     console.log(`arr: ${arr}`);
@@ -1454,7 +1066,7 @@ var section15 = document.querySelector("#section_15");
                     console.log("element.style.transform:" + element.style.transform);
                     let arr = element.style.transform.split(" ");
                     console.log(`arr: ${arr}`);
-                    let newAngelY = parseInt(arr[1].replace("rotateY(", "").replace("deg)", "")) +20;
+                    let newAngelY = parseInt(arr[1].replace("rotateY(", "").replace("deg)", "")) + 10;
                     arr[1] = "rotateY(" + newAngelY + "deg)";
                     console.log(arr[1]);
                     element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
@@ -1474,15 +1086,9 @@ var section15 = document.querySelector("#section_15");
                 break;
             case "show":
                 boxBases.forEach(element => {
-                    console.log("element.style.transform:" + element.style.transform);
-                    let arr = element.style.transform.split(" ");
-                    console.log(`arr: ${arr}`);
-                    let newAngelY = parseInt(arr[1].replace("rotateY(", "").replace("deg)", "")) +20;
-                    arr[0] = "rotateX(" + "-30" + "deg)";
-                    arr[1] = "rotateY(" + newAngelY + "deg)";                    
-                    console.log(arr[1]);
-                    element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
+                    element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(0deg)";
                 });
+                
                 break;
         }
     };
@@ -2245,5 +1851,4 @@ window.addEventListener('load',doFirst);
 
 </script>
 </body>
-
 </html>
