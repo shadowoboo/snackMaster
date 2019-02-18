@@ -230,11 +230,13 @@
             margin:auto;
             margin-top: 10px;
             &::-webkit-scrollbar{
-                width: 8px;
+                width: 5px;
+                margin-right: 2px;
             }
             &::-webkit-scrollbar-thumb{
-                background-color: #c1f3d2;
-                margin-right: 2px;
+                background-color: lightgray;
+                
+                
             } 
             @media screen and (min-width:$moblie){
                 width: 45%;    
