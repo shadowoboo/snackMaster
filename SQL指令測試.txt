@@ -1,0 +1,7 @@
+SELECT * FROM `snack` WHERE snackNo = (SELECT MAX(snackNo)) and nation = '日本'
+
+select nation, MAX(snackNo), snac from snack group by nation
+
+select nation, MAX(snackNo) from snack GROUP by nation
+
+select nation,snackName,snackWord,snackPic,snackPrice,MAX(snackNo) from snack GROUP by nation = '日本'
