@@ -1,3 +1,4 @@
+// -----------------header雲的動畫--------------------------------------
 var canvas = document.getElementById('canvas');
        var ctx = canvas.getContext('2d');
         canvas.width = canvas.parentNode.offsetWidth;
@@ -56,7 +57,7 @@ var canvas = document.getElementById('canvas');
 }
 loop();
 
-//手機的漢堡
+//----------------手機的漢堡開關--------------------------
 const list_appear = document.getElementById("list_appear");
         const ham = document.getElementById("ham");
         const cros = document.getElementById("cros");
@@ -103,3 +104,111 @@ const list_appear = document.getElementById("list_appear");
         }
 
         window.addEventListener("load",init2);
+//----------------------會員登入燈箱-----------------------
+function $id(id){
+    return document.getElementById(id);
+}
+        //燈箱出現
+function showLightBox(e){
+    //icon 換色
+     e.target.style.color = "#00457b";
+    //  console.log('aaa');
+     
+    // $id('lightBox-wrap').classList.toggle('show');
+    
+    // console.log(e.target.style.color);
+    // console.log(e.target.style.color=="rgb(0, 69, 123)");
+    
+    
+    if($id('memLogin').style.color =='rgb(0, 69, 123)'){
+        console.log('hhh');
+        $id('lightBox-wrap').classList.toggle('show');
+    }else{
+        //清除登入者資訊
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function(){
+        if( xhr.status == 200){
+            $id('btnloglout').innerHTML = '&nbsp';
+            $id('memLogin').style.color = "#737374";
+        }else{
+            alert( xhr.status );
+        }
+        }
+        xhr.open("get", "ajaxLogout.php",true);
+        xhr.send(null);
+        }
+    
+}
+//頁籤切換 登入＋註冊＋忘記密碼
+function changeway(e,tabchange){
+    var i,loginTab,tabContent;
+    tabContent = document.getElementsByClassName('tabContent');
+    for(i=0; i<tabContent.length; i++){
+      tabContent[i].style.display="none";
+    }
+    loginTab = document.getElementsByClassName('loginTab');
+  //   console.log('bbb');
+    
+    for(i=0; i<loginTab.length; i++){
+        loginTab[i].classList.remove("active");
+      loginTab.className = loginTab[i].className.replace('active',"");
+    }
+    document.getElementById(tabchange).style.display = "block";
+    e.target.classList.add("active");
+  //   e.currentTarget.className += " active";
+    
+}
+document.getElementById('open').click();
+//===========================================//
+//             這是登入程式                    //
+//===========================================//
+
+function sendForm(){
+    var xhr = new XHLHttpRequest();
+    xhr.onload = function(){
+        if (xhr.responseText == "error") {
+            alert("帳密錯誤!!!")
+            
+        }else{
+            $id('btnloglout').innerHTML = "登出"
+            $id('memLogin').style.color ="#00457b";
+            $id('loginMemId').value = "";
+            $id('loginMemPsw').value = "";
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+//-----------關閉燈箱---------------------------------------
+function cancelLogin(){
+   $id('lightBox-wrap').classList.remove('show');
+   $id('memLogin').style.color = '#737374';
+   //清除欄位資料
+   $id('loginMemId').value = "";
+   $id('loginMemPsw').value = "";
+
+    
+}
+
+
+//註冊所有事件聆聽！！！！！
+function init(){
+
+    //點擊事件
+    $id('memLogin').addEventListener('click',showLightBox) ;//出現燈箱
+    $id('lightBoxLeave').addEventListener('click',cancelLogin) ;//關閉燈箱
+    $id('btnLogin').addEventListener('click',sendForm);//登入按鈕
+    // $id('btnSignUp').addEventListener('click',SUForm);//註冊按鈕
+    // $id('btnforget').addEventListener('click',FPForm);//寄送密碼按鈕
+
+
+}
+window.addEventListener("load",init);

@@ -172,3 +172,33 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+
+//小遊戲找箱子
+
+    .gameBox {
+        position: fixed;
+        bottom: 2%;
+        left: 1%;
+        width: 240px;
+        animation: floatGame 1s linear infinite alternate;
+        z-index: 99;
+        cursor: pointer;
+
+        p {
+            position: absolute;
+            top: 22px;
+            left: 102px;
+            color: $gray;
+        }
+    }
+
+                @keyframes floatGame {
+                    0% {
+                        transform: translateY(-10px)
+                    }
+
+                    100% {
+                        transform: translateY(10px)
+                    }
+                }
