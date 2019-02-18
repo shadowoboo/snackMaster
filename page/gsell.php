@@ -27,6 +27,7 @@ try {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
     <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/search.js"></script>
 
 
 </head>
@@ -48,7 +49,7 @@ try {
             </div>
             <nav>
                 <label for="smlSearch" class="searchBtn" value="search">
-                    <img src="../images/tina/search.png" alt="" id="searchBtn">
+                    <img src="../images/tina/search-icon.svg" alt="search" id="searchBtn">
                 </label>
                 
                 <div class="menu">
@@ -90,40 +91,45 @@ try {
                     <li><i class="fas fa-user-circle"></i></li>
                 </ul>
             </nav>
-    <div class="seachRegion" id="search_appear">
-            <div class="search">
-                <img src="../images/blair/pocky.png" alt="">
-                <div class="selectbar">
-                    <select name="country" id="country">
-                        <option value="">國家</option>
-                        <option value="">英國</option>
-                        <option value="">美國</option>
-                        <option value="">日本</option>
-                        <option value="">泰國</option>
-                    </select>
-                    <select name="kind" id="kind">
-                        <option value="">種類</option>
-                        <option value="">巧克力</option>
-                        <option value="">糖果</option>
-                        <option value="">餅乾</option>
-                        <option value="">洋芋片</option>
-                    </select>
-                    <select name="flavor" id="flavor">
-                        <option value="">口味</option>
-                        <option value="">酸</option>
-                        <option value="">甜</option>
-                        <option value="">辣</option>
-                    </select>                            
+        </div>
+        <div class="seachRegion" id="search_appear">
+                <div class="search">
+                    <img src="../images/blair/pocky.png" alt="">
+                    <div class="selectbar">
+                        <select name="country" id="country">
+                            <option value="0">國家</option>
+                            <option value='巴西'>巴西</option>
+                            <option value="日本">日本</option>
+                            <option value="美國">美國</option>
+                            <option value="英國">英國</option>
+                            <option value="埃及">埃及</option>
+                            <option value="德國">德國</option>
+                            <option value="澳洲">澳洲</option>
+                            <option value="韓國">韓國</option>
+                        </select>
+                        <select name="kind" id="kind">
+                            <option value="0">種類</option>
+                            <option value="巧克力">巧克力</option>
+                            <option value="糖果">糖果</option>
+                            <option value="餅乾">餅乾</option>
+                            <option value="洋芋片">洋芋片</option>
+                        </select>
+                        <select name="flavor" id="flavor">
+                            <option value="0">口味</option>
+                            <option value="sour">酸</option>
+                            <option value="sweet">甜</option>
+                            <option value="spicy">辣</option>
+                        </select>                        
+                    </div>
+                    <div class="inputbar">
+                        <input type="text"  id="searchName" placeholder="想找什麼零食呢？">
+                        <i class="fas fa-search"  id="searchClick"></i>
+                    </div>
                 </div>
-                <div class="inputbar">
-                    <input type="text" placeholder="想找什麼零食呢？">
-                    <i class="fas fa-search"></i>
-                </div>
-            </div>
-                <div id="close">
-                    <span class="close">X</span>
-                </div>
-    </div>
+                    <div id="close">
+                        <span class="close"><i class="fas fa-times"></i></span>
+                    </div>
+        </div>
     </header>
 
 
@@ -275,16 +281,16 @@ try {
         // var power = ['24.967854,121.191704', '24.959982,121.215134', '24.990711,121.232857','24.962435,121.223572'];
 
         //eight
-        var eight = ['24.958616,121.298447', '24.964466,121.299294'];
+        // var eight = ['24.958616,121.298447', '24.964466,121.299294'];
 
         //mountain
-        var mountain = ['25.003271,121.287598'];
+        // var mountain = ['25.003271,121.287598'];
 
         //river
-        var river = ['24.885115,121.287598'];
+        // var river = ['24.885115,121.287598'];
 
         //hori
-        var hori = ['24.912287,121.206841'];
+        // var hori = ['24.912287,121.206841'];
 
 
 //用php 生成 js 地標 
@@ -308,13 +314,54 @@ try {
     };
     $powerStr .= "];";
     echo "var power = $powerStr";
+
+
+    // 八德區
+    $sql = "select maLnge, maLat from masell where maArea = '八德區'";
+    $eight = $pdo -> query($sql);
+    $eightStr = "[";
+    while( $eightRow = $eight -> fetch() ){
+        $eightStr .= "'{$eightRow["maLnge"]}, {$eightRow["maLat"]}',";
+    };
+    $eightStr .= "];";
+    echo "var eight = $eightStr";
+
+    //龜山區 mountain
+    $sql = "select maLnge, maLat from masell where maArea = '龜山區'";
+    $mountain = $pdo -> query($sql);
+    $mountainStr = "[";
+    while( $mountainRow = $mountain -> fetch() ){
+        $mountainStr .= "'{$mountainRow["maLnge"]}, {$mountainRow["maLat"]}',";
+    };
+    $mountainStr .= "];";
+    echo "var mountain = $mountainStr";
+
+    // 大溪區
+    $sql = "select maLnge, maLat from masell where maArea = '大溪區'";
+    $river = $pdo -> query($sql);
+    $riverStr = "[";
+    while( $riverRow = $river -> fetch() ){
+        $riverStr .= "'{$riverRow["maLnge"]}, {$riverRow["maLat"]}',";
+    };
+    $riverStr .= "];";
+    echo "var river = $riverStr";
+
+    // 平鎮區
+    $sql = "select maLnge, maLat from masell where maArea = '平鎮區'";
+    $hori = $pdo -> query($sql);
+    $horiStr = "[";
+    while( $horiRow = $hori -> fetch() ){
+        $horiStr .= "'{$horiRow["maLnge"]}, {$horiRow["maLat"]}',";
+    };
+    $horiStr .= "];";
+    echo "var hori = $horiStr";
 ?>
 
 
+    //限制地圖區域
         function doFirst(){
             navigator.geolocation.getCurrentPosition(succCallback);
         }
-        //限制地圖區域
         function succCallback(arg){
                 
             var lati = 24.967768;
