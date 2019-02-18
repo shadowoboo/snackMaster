@@ -193,7 +193,7 @@ try {
             </div>
 
         <!-- php 抓資料 -->
-        <div class="change_gsell">
+            <div class="change_gsell">
             <?php
                 while($sellRow = $masell->fetch(PDO::FETCH_ASSOC)){
              ?>
@@ -241,8 +241,9 @@ try {
 
     <script src="../js/header.js"></script>
 
-    <!-- ajax -->
+    
     <script>
+     //ajax 左邊撈資料
         selectMenu = document.getElementsByClassName("maArea");
         searchIcon = document.getElementsByClassName("searchIcon");
         function test(num){
@@ -265,13 +266,13 @@ try {
             // console.log(xhr.status);
         }
 
-    //map js
+    //map js 地標
 
         //hate
-        var hate = ['24.993088,121.301048', '24.994471,121.302025', '24.988993,121.313644'];
+        // var hate = ['24.993088,121.301048', '24.994471,121.302025', '24.988993,121.313644'];
         
         //power
-        var power = ['24.967854,121.191704', '24.959982,121.215134', '24.990711,121.232857','24.962435,121.223572'];
+        // var power = ['24.967854,121.191704', '24.959982,121.215134', '24.990711,121.232857','24.962435,121.223572'];
 
         //eight
         var eight = ['24.958616,121.298447', '24.964466,121.299294'];
@@ -286,10 +287,34 @@ try {
         var hori = ['24.912287,121.206841'];
 
 
+//用php 生成 js 地標 
+<?php
+    // 桃園區
+    $sql = "select maLnge, maLat from masell where maArea = '桃園區'";
+    $hate = $pdo -> query($sql);
+    $hateStr = "[";
+    while( $hateRow = $hate -> fetch() ){
+        $hateStr .= "'{$hateRow["maLnge"]}, {$hateRow["maLat"]}',";
+    };
+    $hateStr .= "];";
+    echo "var hate = $hateStr";
+
+    // 中壢區
+    $sql = "select maLnge, maLat from masell where maArea = '中壢區'";
+    $power = $pdo -> query($sql);
+    $powerStr = "[";
+    while( $powerRow = $power -> fetch() ){
+        $powerStr .= "'{$powerRow["maLnge"]}, {$powerRow["maLat"]}',";
+    };
+    $powerStr .= "];";
+    echo "var power = $powerStr";
+?>
+
+
         function doFirst(){
             navigator.geolocation.getCurrentPosition(succCallback);
         }
-
+        //限制地圖區域
         function succCallback(arg){
                 
             var lati = 24.967768;
@@ -322,7 +347,7 @@ try {
             marker.setTitle('目前位置'); 
         }
 
-    // marker
+    // marker 地標
         function showInfo(num){
             var value = selectMenu[num].value;
             switch(value){
@@ -366,7 +391,8 @@ try {
                 markers[i]  = marker;i++ ;           
             }           
         }
-
+        
+    //做點擊事件
         searchIcon[0].addEventListener('click', function(){
             test(0);
         });
