@@ -51,9 +51,13 @@
             width: 100%;
             &.cartContent_none{ //當我們沒有商品在購物車
                 display: flex;
-                display: none;
+                // display: none;
                 flex-direction: column;
-                h3{margin-top: 80px;text-align: center;}
+                h3{
+                    margin-top: 20px;
+                    text-align: center;
+                    margin-bottom: 40px;
+                }
                 a{
                     display: block;
                     align-self: center;
@@ -61,8 +65,12 @@
                 }
             }
             &.cartContent_prod{ //當我們有商品在購物車
+                display: none;
                 // padding: 15px 15px;
                 margin-bottom: 100px;
+                &.cartPageActive{
+                    display:flex;
+                }
                 .prodCard{
                     margin-top: 20px;
                     padding: 10px;
@@ -388,10 +396,16 @@
             }
         }
         .cartFormZone{ //表單填寫
+            // display: flex;
+            display:none;
+            flex-direction: column;
             width: 100%;
             // background-color: #ccc;
             border: #333333 solid 2px;
             border-radius: 10px;
+            &.cartPageActive{
+                    display:flex;
+                }
             form{
                 .cartFormCard{
                     display: flex;
@@ -401,12 +415,56 @@
                     }
                     h4{
                         margin-right:10px;
+                        // flex: 1;
                     }
                     input{
+                        display: block;
+                        width: 50%;
+                        font-size: 0.6rem;
                         // height: 0.75rem;
                         // font-size: 0.75rem;
+                        &:focus{
+                            outline: $blue 3px solid;
+                        }
+                    }
+                    .payType{
+                        // width: 100%;
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        .payTypeItem{
+                            width: 80px;
+                            margin-left: 20px;
+                            text-align: center;
+                            position: relative;
+                            transition: 0.3s;
+                            &.checked{
+                                border: $blue solid 3px;
+                                border-radius: 10px;
+                            }
+                            input{
+                                position: absolute; 
+                                top:0;
+                                left: 0;
+                                opacity: 0;
+                            }
+                        }
                     }
                 }
+            }
+        }
+        .cartFinishOrder{
+            // display: flex;
+            flex-direction: column;
+            display: none;
+            text-align: center;
+            &.cartPageActive{
+                    display:flex;
+                }
+            h3{
+                margin-top:20px;
+                text-align: center;
+                margin-bottom: 40px;
             }
         }
         .cartPanel{
@@ -416,11 +474,15 @@
             box-shadow: $gray 0px -1px 30px 1px;
             // padding: 0px 15px;
             width: 100%;
-            display: flex;
+            // display: flex;
+            display: none;
             flex-direction: column;
             position:fixed;
             left: 0;
             bottom: 0;
+            &.cartPageActive{
+                    display:flex;
+                }
             .totalAndCoupon{
                 width: 100%;
                 display: flex;
@@ -501,6 +563,10 @@
                 }
             }
         }
+
+        .cartPageActive{
+            display:flex;
+        }
     }
     .lightBoxes{
         width: 100%;
@@ -516,6 +582,9 @@
         justify-content: center;
         align-items: center;
         display: none;
+        &.cartPageActive{
+            display:flex;
+        }
         .lightBox{
             width: 90%;
             // height: 50vh;
@@ -576,11 +645,18 @@
 
 
 footer{
-    display: none;
+    // display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 *{
     // outline: red solid 1px;
 }
+
+
+
+
 
 // .cartPanel{
 //     display: none;
