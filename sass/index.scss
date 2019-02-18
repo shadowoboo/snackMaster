@@ -1500,21 +1500,21 @@ body {
             }
         }
     }
-    .gameBox {
-        position: fixed;
-        bottom: 2%;
-        left: 1%;
-        width: 240px;
-        animation: float 1s linear infinite alternate;
-        z-index: 999;
-        cursor: pointer;
-        p {
-            position: absolute;
-            top: 22px;
-            left: 102px;
-            color: $gray;
-        }
-    }
+    // .gameBox {
+    //     position: fixed;
+    //     bottom: 2%;
+    //     left: 1%;
+    //     width: 240px;
+    //     animation: float 1s linear infinite alternate;
+    //     z-index: 999;
+    //     cursor: pointer;
+    //     p {
+    //         position: absolute;
+    //         top: 22px;
+    //         left: 102px;
+    //         color: $gray;
+    //     }
+    // }
     .gameScratch {
         position: fixed;
         bottom: 2%;

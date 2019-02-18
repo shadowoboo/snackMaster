@@ -1,10 +1,12 @@
 <?php
 	//判斷有無例外，沒有例外則執行try，有例外則執行catch
 	try{
-		require_once("connectBooksRick.php");
+        require_once("connectcd105g2.php");
+        // var_dump($snackRows);exit();
 	}catch(PDOException $e){
 		echo "失敗,原因:",$e -> getMessage();
-		echo "行號:",$e -> getLine();
+        echo "行號:",$e -> getLine();
+        // exit( );
 	}
 ?>
 
@@ -21,9 +23,11 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
     <script src="../js/Chart.js"></script>
-    <script src="../js/sale.js"></script>
+    <!-- <script src="../js/sale.js"></script> -->
     <script src="../js/index.js"></script>
     <script src="../js/common.js"></script>
+    <script src="../js/findingIp.js"></script>
+    <script src="../js/search.js"></script>
     <link rel="stylesheet" href="../css/boxModel.css">
     <link rel="stylesheet" href="../css/sale.css">
     <link rel="stylesheet" href="../css/index.css">
@@ -86,7 +90,7 @@
                 <div class="seachRegion" id="search_appear">
                     <div class="search">
                         <img src="../images/blair/pocky.png" alt="">
-                        <div class="selectbar">
+                        <!-- <div class="selectbar">
                             <select name="country" id="country">
                                 <option value="">國家</option>
                                 <option value="">英國</option>
@@ -107,7 +111,7 @@
                                 <option value="">甜</option>
                                 <option value="">辣</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="inputbar">
                             <input type="text" placeholder="想找什麼零食呢？">
                             <i class="fas fa-search"></i>
@@ -119,7 +123,38 @@
                 </div>
         </header>
 
+        
         <div class="searchBar">
+            <img src="../images/blair/pocky.png" alt="搜尋圖">
+            <select name="country" id="country">
+                <option value="0">國家</option>
+                <option value='巴西'>巴西</option>
+                <option value="日本">日本</option>
+                <option value="美國">美國</option>
+                <option value="英國">英國</option>
+                <option value="埃及">埃及</option>
+                <option value="德國">德國</option>
+                <option value="澳洲">澳洲</option>
+                <option value="韓國">韓國</option>
+            </select>
+            <select name="kind" id="kind">
+                <option value="0">種類</option>
+                <option value="巧克力">巧克力</option>
+                <option value="糖果">糖果</option>
+                <option value="餅乾">餅乾</option>
+                <option value="洋芋片">洋芋片</option>
+            </select>
+            <select name="flavor" id="flavor">
+                <option value="0">口味</option>
+                <option value="sour">酸</option>
+                <option value="sweet">甜</option>
+                <option value="spicy">辣</option>
+            </select>
+            <input type="text" id="searchName" placeholder="想找什麼零食呢？">
+            <i class="fas fa-search" id="searchClick"></i>
+        </div>
+
+        <!-- <div class="searchBar">
             <img src="../images/blair/pocky.png" alt="搜尋圖">
             <select name="country" id="country">
                 <option value="">國家</option>
@@ -143,7 +178,7 @@
             </select>
             <input type="text" placeholder="想找什麼零食呢？">
             <i class="fas fa-search"></i>
-        </div>
+        </div> -->
 
         
 
@@ -157,7 +192,7 @@
                 $i=0;
                 // echo $ln; 
                 for($i=0; $i<$ln; $i++){
-                    $sql = "select MAX(snackNo),nation,snackName,snackWord,snackPic,snackPrice from snack WHERE nation= ? group by snackNo ORDER by MAX(snackNo) DESC limit 1";
+                    $sql = "select MAX(snackNo),snackNo,nation,snackName,snackWord,snackPic,snackPrice from snack WHERE nation= ? group by snackNo ORDER by MAX(snackNo) DESC limit 1";
                     $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
                     // $aa=$country[$i];
                     // echo $country[$i]; 
@@ -208,7 +243,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[0]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -240,7 +275,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[1]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -271,7 +306,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[2]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -302,7 +337,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[3]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -333,7 +368,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[4]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -364,7 +399,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[5]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -395,7 +430,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[6]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -426,7 +461,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[7]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -511,7 +546,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[0]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -536,7 +571,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[1]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -561,7 +596,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[2]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -586,7 +621,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[3]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -611,7 +646,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[4]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -636,7 +671,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[5]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -661,7 +696,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[6]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -686,7 +721,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[7]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -1118,10 +1153,10 @@
             </div>
         </section>
 
-        <div class="gameBox">
+        <!-- <div class="gameBox">
             <img src="../images/index/gameImgL.png" alt="遊戲圖">
             <p>玩小遊戲可獲得<br>折價優惠券哦！</p>
-        </div>
+        </div> -->
         <div id="game" class="gameScratch">
             <img src="../images/index/gameImgR.png" alt="遊戲圖">
             <p>限時刮刮樂<br>刮出優惠券！</p>
@@ -1871,7 +1906,25 @@
         
     </script>
 
-
+    <!-- 點擊購物車增減數量傳回資料庫 -->
+    <script>
+        $('.cart').click(function(){
+            var i = $('.cart').index(this) - 16;
+            var aa = $('.stockQty')[i];
+            // console.log(aa);
+            var qty = $(aa).text();
+            // console.log(text);
+            var cutQty = qty - 1;
+            if(cutQty==0){
+                $(aa).text(0);
+                $(this).css({backgroundColor:'#ccc',color:'#aaa'});
+                $(this).attr('disabled',true);
+            }else{
+                $(aa).text(cutQty);
+            }
+            // console.log(cutQty);
+        })
+    </script>
 
     <!-- 點選前幾期預購商品 -->
     <script>
@@ -1946,6 +1999,85 @@
             console.log(`arr_country: ${arr_country}`);
             console.log(arr_country);
 
+    </script>
+
+<!-- 即期品特賣 -->
+    <script>
+        <?php
+            require_once("connectBooksRick.php");
+            $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo ORDER by a.clearanceNo desc limit 3";
+            $sales = $pdo->query( $sql );
+            $salesRow = $sales->fetchAll();
+        ?>
+        var slideIndex = 1;
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName('item');
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+        function countdown() {
+            //取得現在的時間
+            var now = new Date();
+            // console.log(now);
+            //取得活動結束的時間(第一次專題先寫死而不是從資料庫撈資料)
+            // var oneDay = now.getDate() + 1;
+            var endTime = '<?php echo $salesRow[0]["endTime"]?>';
+            // console.log(endTime); //2019-02-20
+            // var end = new Date(`${endTime} 00:00:00`);
+            var end = new Date(endTime);
+            // console.log(end);
+            //算出目前時間到結束時間中間有多少秒            
+            var leftTime = end.getTime() - now.getTime();  //1552752000-1550378890=2372984
+            // console.log(leftTime); 
+
+            //依序將毫秒轉換成幾天幾時幾分幾秒
+            var leftSecond = parseInt(leftTime / 1000); //毫秒-秒
+            var hour = Math.floor(leftSecond / 3600); //
+            // console.log(hour);
+            var minute = Math.floor((leftSecond - hour * 3600) / 60);
+            var second = Math.floor(leftSecond - hour * 3600 - minute * 60);
+            document.getElementById('hour').innerText = hour + '時 : ';
+            document.getElementById('minute').innerText = minute + '分 : ';
+            document.getElementById('second').innerText = second + '秒';
+        }
+        function test(){
+            console.log('here');
+        }
+        function sale() {
+            //先呼叫一次呈現倒數的函數，不然一進畫面會是空白
+            countdown();
+            //設定計時器讓倒數函式countdown每秒被呼叫一次
+            setInterval(countdown, 1000);
+            document.getElementById('close').addEventListener('click', test);
+            document.getElementById('closeSale').addEventListener('click', function (){
+                document.getElementById('sale').style.display = 'none';
+            });
+            window.addEventListener('resize', function (){
+                if (window.screen.width < 768){
+                    showSlides(slideIndex);
+                }else{
+                    var slides = document.getElementsByClassName('item');
+                    for (i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "block";
+                    }
+                }
+            });
+            if (window.screen.width < 768) {
+                showSlides(slideIndex);
+            };
+        }
+        window.addEventListener('load', sale);
     </script>
     <?php
         // $country=$_GET[]
