@@ -117,21 +117,6 @@ function showLightBox(e){
         location.href = "member.html";
         // alert(123);
     }else{
-<<<<<<< HEAD
-        //清除登入者資訊
-        // var xhr = new XMLHttpRequest();
-        // xhr.onload = function(){
-        // if( xhr.status == 200){
-        //     $id('btnloglout').innerHTML = '&nbsp';
-        //     $id('memLogin').style.color = "#737374";
-        // }else{
-        //     alert( xhr.status );
-        // }
-        // }
-        // xhr.open("get", "ajaxLogout.php",true);
-        // xhr.send(null);
-        }
-=======
         $id('lightBox-wrap').classList.toggle('show');
     }
 
@@ -155,7 +140,6 @@ function showLightBox(e){
     //     }
 
 
->>>>>>> master
     
 }
 //頁籤切換 登入＋註冊＋忘記密碼
@@ -177,12 +161,6 @@ function changeway(e,tabchange){
   //   e.currentTarget.className += " active";
     
 }
-<<<<<<< HEAD
-// document.getElementById('open').click();
-// //===========================================//
-// //             這是登入程式                    //
-// //===========================================//
-=======
     $id('open').click();
 //-----------關閉燈箱---------------------------------------
 function cancelLogin(){
@@ -197,7 +175,6 @@ function cancelLogin(){
 //===========================================//
 //             這是登入程式                    //
 //===========================================//
->>>>>>> master
 
 function sendForm(){
     var xhr = new XMLHttpRequest();
@@ -269,16 +246,10 @@ function init3(){
 
     //點擊事件
     $id('memLogin').addEventListener('click',showLightBox) ;//出現燈箱
-<<<<<<< HEAD
-    // $id('lightBoxLeave').addEventListener('click',cancelLogin) ;//關閉燈箱
-    // $id('btnLogin').addEventListener('click',sendForm);//登入按鈕
-    // $id('btnSignUp').addEventListener('click',SUForm);//註冊按鈕
-=======
     $id('lightBoxLeave').addEventListener('click',cancelLogin) ;//關閉燈箱
     $id('btnLogin').addEventListener('click',sendForm);//登入按鈕
     $id('btnloglout').addEventListener('click',logout);//登出按鈕
     $id('btnSignUp').addEventListener('click',SUForm);//註冊按鈕
->>>>>>> master
     // $id('btnforget').addEventListener('click',FPForm);//寄送密碼按鈕
 
     //檢查是否已登入
