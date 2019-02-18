@@ -113,7 +113,7 @@ function $id(id){
 function showLightBox(e){
     //點擊登入按鈕，顯示燈箱
 
-    if($id('memLogin').style.color =='rgb(7, 107, 175)'){
+    if($id('memLogin').style.color =='rgb(0, 69, 123)'){
         location.href = "member.html";
         // alert(123);
     }else{
@@ -185,7 +185,7 @@ function sendForm(){
         }       
         else{//登入成功顯示“登出”
             $id('btnloglout').innerHTML = "登出"
-            $id('memLogin').style.color ="#076baf";
+            $id('memLogin').style.color ="#00457b";
             $id('loginMemId').value = "";
             $id('loginMemPsw').value = "";
             $id('lightBox-wrap').classList.remove('show');
@@ -224,18 +224,9 @@ function logout(){
 //===========================================//
 //             這是註冊程式                    //
 //===========================================//
-function SUForm(){
-    var account = $id("signUpMemId");
-    var password = $id("signUpMemPsw");
-    var email = $id("signUpMemEmail");
-    //帳號不得為空值
-    if (account.value=="") {
-        alert("請填寫帳號");
-        account.focus();
-        return;
-    }
-    //
-}
+// function SUForm(){
+
+// }
 
 
 
@@ -249,7 +240,7 @@ function init3(){
     $id('lightBoxLeave').addEventListener('click',cancelLogin) ;//關閉燈箱
     $id('btnLogin').addEventListener('click',sendForm);//登入按鈕
     $id('btnloglout').addEventListener('click',logout);//登出按鈕
-    $id('btnSignUp').addEventListener('click',SUForm);//註冊按鈕
+    // $id('btnSignUp').addEventListener('click',SUForm);//註冊按鈕
     // $id('btnforget').addEventListener('click',FPForm);//寄送密碼按鈕
 
     //檢查是否已登入
@@ -257,12 +248,14 @@ function init3(){
     xhr.open("get", "alreadyLogin.php", true);
     xhr.send(null);
     xhr.onload = function(){
-        // console.log(1);
-        var loginInfo = JSON.parse(xhr.responseText);
-        console.log(2);
-        if(loginInfo){
-            $id("memLogin").style.color = "#076baf"
-            $id("btnloglout").innerHTML = "登出";
+        if($id("memLogin").style.color =='rgb(0, 69, 123)'){
+            $id('btnloglout').innerHTML = "登出"
+            location.href = "member.html";
+
+        }else{
+            $id('btnloglout').innerHTML = "&nbsp";
+            $id('memLogin').style.color = "#737374";
+
         }
     }
 
