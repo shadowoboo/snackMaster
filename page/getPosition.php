@@ -28,7 +28,7 @@
                             <span>距離: 100公尺</span>
                         </div>
                         <div class='map_serch_info_line'>
-                            <a href='#'>
+                            <a href='#' id='{$sellRow["maLnge"]}|{$sellRow["maLat"]}'>
                             <span>規劃路線
                                 <i class='fas fa-location-arrow'></i>
                             </span>
