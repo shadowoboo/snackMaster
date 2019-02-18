@@ -27,6 +27,7 @@ try {
    <!-- 為了各種符號，掛載fontawesome -->
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
    crossorigin="anonymous">
+    <script src="../js/search.js"></script>
    <script src="../js/jquery-3.3.1.min.js"></script>
    <script src="../js/shadowLib.js""></script>
    <!-- 錄音外掛。我想我跳下去玩一定會來不及。謝謝你 9527 -->
@@ -87,39 +88,43 @@ try {
                 </nav>
             
                 <div class="seachRegion" id="search_appear">
-                        <div class="search">
-                            <img src="../images/blair/pocky.png" alt="">
-                            <div class="selectbar">
-                                <select name="country" id="country">
-                                    <option value="">國家</option>
-                                    <option value="">英國</option>
-                                    <option value="">美國</option>
-                                    <option value="">日本</option>
-                                    <option value="">泰國</option>
-                                </select>
-                                <select name="kind" id="kind">
-                                    <option value="">種類</option>
-                                    <option value="">巧克力</option>
-                                    <option value="">糖果</option>
-                                    <option value="">餅乾</option>
-                                    <option value="">洋芋片</option>
-                                </select>
-                                <select name="flavor" id="flavor">
-                                    <option value="">口味</option>
-                                    <option value="">酸</option>
-                                    <option value="">甜</option>
-                                    <option value="">辣</option>
-                                </select>                            
-                            </div>
-                            <div class="inputbar">
-                                <input type="text" placeholder="想找什麼零食呢？">
-                                <i class="fas fa-search"></i>
-                            </div>
-                        </div>
-                        <div id="close">
-                            <span class="close">X</span>
-                        </div>
-            </div>
+                <div class="search">
+                    <img src="../images/blair/pocky.png" alt="">
+                    <div class="selectbar">
+                        <select name="country" id="country">
+                            <option value="0">國家</option>
+                            <option value='巴西'>巴西</option>
+                            <option value="日本">日本</option>
+                            <option value="美國">美國</option>
+                            <option value="英國">英國</option>
+                            <option value="埃及">埃及</option>
+                            <option value="德國">德國</option>
+                            <option value="澳洲">澳洲</option>
+                            <option value="韓國">韓國</option>
+                        </select>
+                        <select name="kind" id="kind">
+                            <option value="0">種類</option>
+                            <option value="巧克力">巧克力</option>
+                            <option value="糖果">糖果</option>
+                            <option value="餅乾">餅乾</option>
+                            <option value="洋芋片">洋芋片</option>
+                        </select>
+                        <select name="flavor" id="flavor">
+                            <option value="0">口味</option>
+                            <option value="sour">酸</option>
+                            <option value="sweet">甜</option>
+                            <option value="spicy">辣</option>
+                        </select>                        
+                    </div>
+                    <div class="inputbar">
+                        <input type="text"  id="searchName" placeholder="想找什麼零食呢？">
+                        <i class="fas fa-search"  id="searchClick"></i>
+                    </div>
+                </div>
+                    <div id="close">
+                        <span class="close"><i class="fas fa-times"></i></span>
+                    </div>
+        </div>
         </header>
 
   <div class="card step-progress">
