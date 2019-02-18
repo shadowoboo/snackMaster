@@ -1,6 +1,6 @@
 <?php
 try{
-  require_once("connectBooksRick.php");
+  require_once("connectcd105g2.php");
   $sql = "SELECT snackPic FROM `snack` WHERE boxDate = :boxDate";
   $goodsRow = $pdo->prepare( $sql );
   $goodsRow->bindValue(":boxDate", $_REQUEST["month"]);

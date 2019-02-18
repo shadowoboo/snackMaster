@@ -20,7 +20,8 @@ function countdown() {
     var now = new Date();
     // console.log(now);
     //取得活動結束的時間(第一次專題先寫死而不是從資料庫撈資料)
-    var end = new Date(2019, 1, 18);
+    var oneDay = now.getDate() + 1;
+    var end = new Date(2019, 1, oneDay);
     // console.log(end);
     //算出目前時間到結束時間中間有多少秒            
     var leftTime = end.getTime() - now.getTime();  //1552752000-1550378890=2372984

@@ -1,6 +1,6 @@
 <?php
 try{
-  require_once("connectBooksRick.php");
+  require_once("connectcd105g2.php");
   if($_REQUEST["category"] === '綜合'){
     $sql = "select * from snack order by goodStars desc limit 3";
     $prodRow = $pdo->prepare( $sql );
@@ -15,6 +15,7 @@ try{
         //送出html結構字串
         $html = '';
         $row = $prodRow->fetchAll();
+        // ?snackNo={$row[1]["snackNo"]}
         $html .= "<div class='LeaderboardNo2'>
                         <a href='showItem.html'>
                             <div class='Leaderboarditem No2'>
