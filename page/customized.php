@@ -420,6 +420,9 @@ try {
                             <p>客製完成</p>   
                         </div> -->
                     </div>
+                <form id="snackForm">
+                    <input id="snackDataName" type="hidden" name="snackDataName" value="">
+                </form>                      
                 <div class="section section_15" id="section_15">
                     <div class="shopping">
                         <div class="goodBox">
@@ -440,7 +443,7 @@ try {
                                         <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
                                         <div class="price">
                                         <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p>                   
-                                            <p class="snackName"><?php echo $snackRows[$i]['snackName']; ?></p>
+                                            <p class="snackName"><?php echo $snackRows[$i]['snackName'];?></p>
                                             <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
                                             <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
                                         </div>
@@ -470,11 +473,7 @@ try {
                         <?php
                             }
                         ?> 
-                    </div>       
-                    
-                <form id="snackForm">
-                    <input id="snackDataName" type="hidden" name="snackDataName" value="">
-                </form>                            
+                    </div>                                                 
                     <div class="good-content">
                         <?php
                             for($i=0; $i<8; $i++){
