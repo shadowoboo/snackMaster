@@ -54,7 +54,7 @@
                         </div>
                         <!----    在手機上打開此logo;桌機上關掉此logo------ -->
                         <div class="logo">
-                            <a href="index.html"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
+                            <a href="index.php"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
 
                         </div>
                         <div id="list_appear">
@@ -191,9 +191,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>川普最愛</li>
                                     </ul>
                                 </div>
                             </div>
@@ -224,9 +223,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>德國人氣No.1</li>
                                     </ul>
                                 </div>
                             </div>
@@ -256,9 +254,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>南美平民零時榜冠軍</li>
                                     </ul>
                                 </div>
                             </div>
@@ -288,9 +285,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>英國皇室招待品</li>
                                     </ul>
                                 </div>
                             </div>
@@ -320,9 +316,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>觀光客最愛伴手禮</li>
                                     </ul>
                                 </div>
                             </div>
@@ -352,9 +347,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>歐爸推薦商品</li>
                                     </ul>
                                 </div>
                             </div>
@@ -384,9 +378,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>全國零食榜發燒商品</li>
                                     </ul>
                                 </div>
                             </div>
@@ -416,9 +409,8 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>賣場秒殺零食</li>
                                     </ul>
                                 </div>
                             </div>
@@ -715,38 +707,44 @@
                     <span id='second'></span>
                 </div>
             </div>
+            <?php
+                require_once("connectBooksRick.php");
+                $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo";
+                $sales = $pdo->query( $sql );
+                $salesRow = $sales->fetchAll();
+            ?>
             <div class="item fade" id="3.7|1|5|2">
                 <!-- <a href="showItem.html"></a> -->
-                <img class="country" src="../images/blair/jp-no2.png" alt="">
-                <img class="itemImg" src="../images/blair/item2.png" alt="">
-                <h4 class="itemName">[英國]Chikito 牛奶巧克力</h4>
-                <p class="price">$80</p>
+                <img class="country" src="../images/blair/<?php echo $salesRow[0]['nation']?>.png" alt="國家圖">
+                <img class="itemImg" src="<?php echo $salesRow[0]['snackPic']?>" alt="商品圖">
+                <h4 class="itemName">[<?php echo $salesRow[0]['nation']?>]<?php echo $salesRow[0]['snackName']?></h4>
+                <p class="price">$<?php echo $salesRow[0]['salePrice']?></p>
                 <div class="itemBtns">
                     <button class="cart">加入購物車</button>
                 </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">5</span>&nbsp;件</p>
+                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[0]['quantity']?></span>&nbsp;件</p>
             </div>
             <div class="item fade" id="3.7|1|5|2">
                 <!-- <a href="showItem.html"></a> -->
-                <img class="country" src="../images/blair/de-no3.png" alt="">
-                <img class="itemImg" src="../images/blair/candy2.png" alt="">
-                <h4 class="itemName">[德國]Trolli 彩虹蟲蟲軟糖</h4>
-                <p class="price">$80</p>
+                <img class="country" src="../images/blair/<?php echo $salesRow[1]['nation']?>.png" alt="">
+                <img class="itemImg" src="<?php echo $salesRow[1]['snackPic']?>" alt="">
+                <h4 class="itemName">[<?php echo $salesRow[1]['nation']?>]<?php echo $salesRow[1]['snackName']?></h4>
+                <p class="price">$<?php echo $salesRow[1]['salePrice']?></p>
                 <div class="itemBtns">
                     <button class="cart">加入購物車</button>
                 </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">1</span>&nbsp;件</p>
+                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[1]['quantity']?></span>&nbsp;件</p>
             </div>
             <div class="item fade" id="3.7|1|5|2">
                 <!-- <a href="showItem.html"></a> -->
-                <img class="country" src="../images/blair/us-no1.png" alt="">
-                <img class="itemImg" src="../images/blair/nuts.png" alt="">
-                <h4 class="itemName">[美國]Tuty BBQ花生粒</h4>
-                <p class="price">$80</p>
+                <img class="country" src="../images/blair/<?php echo $salesRow[2]['nation']?>.png" alt="">
+                <img class="itemImg" src="<?php echo $salesRow[2]['snackPic']?>" alt="">
+                <h4 class="itemName">[<?php echo $salesRow[2]['nation']?>]<?php echo $salesRow[2]['snackName']?></h4>
+                <p class="price">$<?php echo $salesRow[2]['salePrice']?></p>
                 <div class="itemBtns">
                     <button class="cart">加入購物車</button>
                 </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">4</span>&nbsp;件</p>
+                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[2]['quantity']?></span>&nbsp;件</p>
             </div>
             <a id="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a id="next" onclick="plusSlides(1)">&#10095;</a>
@@ -759,7 +757,7 @@
                 $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
                 // $prodRow -> bindValue(':snackGenre', 0 );
                 $prodRow -> execute(); 
-                while($row = $prodRow->fetchAll()){ //需求送出去，資料抓回來，阿凱發大財
+                while($row = $prodRow->fetchAll()){ //需求送出去，資料抓回來，阿凱發大財                            
             ?>
                 <div class="camera">
                     <div class="box boxBase" id="box_12">
@@ -784,13 +782,13 @@
                             <a href="showItem.html">
                                 <div class="Leaderboarditem No2">
                                     <div class="LeaderboarCountry">
-                                        <img src="<?php echo $row[1]["nation"];?>" alt="排行國家">
+                                        <img src="../images/blair/<?php echo $row[1]["nation"];?>.png" alt="排行國家">
                                     </div>
                                     <div class="commodity">
                                         <img src="<?php echo $row[1]["snackPic"];?>" alt="產品圖">
                                         <h4 class="commodityTitle">[<?php echo $row[1]["nation"];?>]<?php echo $row[1]["snackName"];?></h4>
                                         <div class="flexMid">
-                                            <p class="score">4.8<span class="total">/5</span></p>
+                                            <p class="score"><?php echo round($row[1]["goodStars"] / $row[1]["goodTimes"],1);?><span class="total">/5</span></p>
                                         </div>
                                         <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
                                         </div>
@@ -802,13 +800,13 @@
                             <a href="showItem.html">
                                 <div class="Leaderboarditem No1">
                                     <div class="LeaderboarCountry">
-                                        <img src="<?php echo $row[0]["nation"];?>" alt="排行國家">
+                                        <img src="../images/blair/<?php echo $row[0]["nation"];?>.png" alt="排行國家">
                                     </div>
                                     <div class="commodity">
                                         <img src="<?php echo $row[0]["snackPic"];?>" alt="產品圖">
                                         <h4 class="commodityTitle">[<?php echo $row[0]["nation"];?>]<?php echo $row[0]["snackName"];?></h4>
                                         <div class="flexMid">
-                                            <p class="score">4.8<span class="total">/5</span></p>
+                                            <p class="score"><?php echo round( $row[0]["goodStars"] / $row[0]["goodTimes"],1);?><span class="total">/5</span></p>
                                         </div>
                                         <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
                                         </div>
@@ -820,13 +818,13 @@
                             <a href="showItem.html">
                                 <div class="Leaderboarditem No3">
                                     <div class="LeaderboarCountry">
-                                        <img src="<?php echo $row[2]["nation"];?>" alt="排行國家">
+                                        <img src="../images/blair/<?php echo $row[2]["nation"];?>.png" alt="排行國家">
                                     </div>
                                     <div class="commodity">
                                         <img src="<?php echo $row[2]["snackPic"];?>" alt="產品圖">
                                         <h4 class="commodityTitle">[<?php echo $row[2]["nation"];?>]<?php echo $row[2]["snackName"];?></h4>
                                         <div class="flexMid">
-                                            <p class="score">4.8<span class="total">/5</span></p>
+                                            <p class="score"><?php echo round($row[2]["goodStars"] / $row[2]["goodTimes"],1);?><span class="total">/5</span></p>
                                         </div>
                                         <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
                                         </div>
@@ -1017,26 +1015,35 @@
                                     <div class="surface surface_right"></div>
                                 </div>
                             </div>
-                            <div id="snacksRun">
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/candy4.png" alt="零食">
+                            
+                            <?php
+                                $sql = "SELECT snackPic FROM `snack` WHERE boxDate = '2019-01-01'";
+                                $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
+                                // $prodRow -> bindValue(':snackGenre', 0 );
+                                $prodRow -> execute(); 
+                                while($row = $prodRow->fetchAll()){ //需求送出去，資料抓回來，阿凱發大財                            
+                            ?>
+                                <div id="snacksRun">
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[0]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[1]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[2]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[3]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[4]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[5]["snackPic"];?>" alt="零食">
+                                    </div>
                                 </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/chips1.png" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/choco3.png" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/candy3.png" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/cookie3.png" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/cookie1.png" alt="零食">
-                                </div>
-                            </div>
+                            <?php };?>
                         </section>
                     </div>
                 </div>
@@ -1506,13 +1513,13 @@
                         roulette.style.transform = 'rotate(-90deg)';
                         break;
                     case 'green':
-                        roulette.style.transform = 'rotate(-135deg)';
+                        roulette.style.transform = 'rotate(225deg)';
                         break;
                     case 'blue':
-                        roulette.style.transform = 'rotate(-180deg)';
+                        roulette.style.transform = 'rotate(180deg)';
                         break;
                     case 'indigo':
-                        roulette.style.transform = 'rotate(-225deg)';
+                        roulette.style.transform = 'rotate(135deg)';
                         break;
                     case 'violet':
                         roulette.style.transform = 'rotate(90deg)';
@@ -1588,13 +1595,159 @@
         function initMap() {
             // 下面的代碼構造了一個新的Google地圖對象，並向地圖添加了屬性，包括中心和縮放級別。
 
+            var directionsService = new google.maps.DirectionsService();
+            var directionsDisplay = new google.maps.DirectionsRenderer();
             // 位置
+            var loc = [
+                // {label:'A',lat:24.9650192,lng:121.1909533},
+                {label:'B',lat:24.959982,lng:121.215134},
+                {label:'C',lat:24.958616,lng:121.298447},
+                {label:'D',lat:24.990711,lng:121.232857}
+            ];
             var uluru = { lat: 24.9650192, lng: 121.1909533 };
             // The map, centered at Uluru地圖以烏魯魯為中心
             var map = new google.maps.Map(
-                document.getElementById('map'), { zoom: 12, center: uluru });
+                document.getElementById('map'), {
+                    zoom: 12,
+                    center: uluru,
+                    styles:[
+                        {
+                            "featureType": "water",
+                            "stylers": [
+                                {
+                                    "visibility": "on"
+                                },
+                                {
+                                    "color": "#b5cbe4"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "landscape",
+                            "stylers": [
+                                {
+                                    "color": "#efefef"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road.highway",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#83a5b0"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road.arterial",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#bdcdd3"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road.local",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#ffffff"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "poi.park",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#e3eed3"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "administrative",
+                            "stylers": [
+                                {
+                                    "visibility": "on"
+                                },
+                                {
+                                    "lightness": 33
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road"
+                        },
+                        {
+                            "featureType": "poi.park",
+                            "elementType": "labels",
+                            "stylers": [
+                                {
+                                    "visibility": "on"
+                                },
+                                {
+                                    "lightness": 20
+                                }
+                            ]
+                        },
+                        {},
+                        {
+                            "featureType": "road",
+                            "stylers": [
+                                {
+                                    "lightness": 20
+                                }
+                            ]
+                        }
+                    ]
+                });
             // The marker, positioned at Uluru標記，位於烏魯魯。下面的代碼在地圖上放置一個標記。
-            var marker = new google.maps.Marker({ position: uluru, map: map });
+
+            var img =[
+                {url:'../images/index/vending-1.png',
+                scaledSize: new google.maps.Size(30,45)},
+                {url:'../images/index/vending-2.png',
+                scaledSize: new google.maps.Size(30,45)},
+                {url:'../images/index/vending-3.png',
+                scaledSize: new google.maps.Size(30,45)},
+            ];
+            var marker = new google.maps.Marker({ position: uluru, map: map});
+            for (var i = 0; i < loc.length; i++) {
+                marker= new google.maps.Marker({
+                    position: {
+                    lat: loc[i].lat,
+                    lng: loc[i].lng
+                    },
+                    map: map,
+                    icon:img[i]
+                });
+            }
+            $('.vmImg img').click(function(){
+                var vm = $('.vmImg img').index(this);
+                var loc = [
+                    // {label:'A',lat:24.9650192,lng:121.1909533},
+                    {label:'B',lat:24.959982,lng:121.215134},
+                    {label:'C',lat:24.958616,lng:121.298447},
+                    {label:'D',lat:24.990711,lng:121.232857}
+                ];
+                    directionsDisplay.setMap(map);
+                    var request = {
+                        origin: uluru,
+                        destination: { lat: loc[vm].lat, lng: loc[vm].lng },
+                        travelMode: 'DRIVING'
+                    };
+                    directionsService.route(request, function (result, status) {
+                        if (status == 'OK') {
+                            // 回傳路線上每個步驟的細節
+                            console.log(result.routes[0].legs[0].steps);
+                            directionsDisplay.setDirections(result);
+                        } else {
+                            console.log(status);
+                        }
+                    });
+            })
         }
     </script>
 
@@ -1669,13 +1822,13 @@
 
             $('.LeaderboardCount').css({
                 'transform': 'translateY(0) scale(0)',
-                'transition': '0.5s',
+                'transition': '0.3s',
 
             })
             setTimeout(() => {
                 $('.LeaderboardCount').css({
                     'transform': 'translateY(0) scale(1)',
-                    'transition': '0.5s cubic-bezier(.24,.42,.63,1)',
+                    'transition': '0.3s cubic-bezier(.24,.42,.63,1)',
                 })
             }, 500);
         })
@@ -1714,6 +1867,39 @@
         });
         rank[4].addEventListener('click',function(){
             showRank('巧克力');
+        });
+        
+    </script>
+
+
+
+    <!-- 點選前幾期預購商品 -->
+    <script>
+        function showGoods(month){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange=function (){
+                if( xhr.readyState == 4){
+                    if( xhr.status == 200 ){
+                        //將撈回來的資料取代原本的網頁內容 
+                        document.getElementById("snacksRun").innerHTML = xhr.responseText;  
+                    }else{
+                    alert( xhr.status );
+                    }
+                }
+            }
+            var url = "getGoods.php?month=" + month;
+            xhr.open("Get", url, true);
+            xhr.send( null );
+        }
+        var preGoods = document.getElementsByClassName('month');
+        preGoods[0].addEventListener('click',function(){
+            showGoods('2019-01-01');
+        });
+        preGoods[1].addEventListener('click',function(){
+            showGoods('2019-02-01');
+        });
+        preGoods[2].addEventListener('click',function(){
+            showGoods('2019-03-01');
         });
         
     </script>
