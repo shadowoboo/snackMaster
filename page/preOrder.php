@@ -1,13 +1,14 @@
 <?php
     $errMsg = "";
     try {
-        require_once("blairConnect.php");
+        require_once("connectcd105g2.php");
         $sql = "select * from snack where boxDate = 20190101";
         $snacks = $pdo->query($sql); 
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";
     }
+
 ?> 
 
 <!DOCTYPE html>
@@ -23,6 +24,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
     <script src="../js/preOrder.js"></script>
+    <script src="../js/search.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
@@ -81,33 +83,37 @@
                     <img src="../images/blair/pocky.png" alt="">
                     <div class="selectbar">
                         <select name="country" id="country">
-                            <option value="">國家</option>
-                            <option value="">英國</option>
-                            <option value="">美國</option>
-                            <option value="">日本</option>
-                            <option value="">泰國</option>
+                            <option value="0">國家</option>
+                            <option value='巴西'>巴西</option>
+                            <option value="日本">日本</option>
+                            <option value="美國">美國</option>
+                            <option value="英國">英國</option>
+                            <option value="埃及">埃及</option>
+                            <option value="德國">德國</option>
+                            <option value="澳洲">澳洲</option>
+                            <option value="韓國">韓國</option>
                         </select>
                         <select name="kind" id="kind">
-                            <option value="">種類</option>
-                            <option value="">巧克力</option>
-                            <option value="">糖果</option>
-                            <option value="">餅乾</option>
-                            <option value="">洋芋片</option>
+                            <option value="0">種類</option>
+                            <option value="巧克力">巧克力</option>
+                            <option value="糖果">糖果</option>
+                            <option value="餅乾">餅乾</option>
+                            <option value="洋芋片">洋芋片</option>
                         </select>
                         <select name="flavor" id="flavor">
-                            <option value="">口味</option>
-                            <option value="">酸</option>
-                            <option value="">甜</option>
-                            <option value="">辣</option>
-                        </select>                            
+                            <option value="0">口味</option>
+                            <option value="sour">酸</option>
+                            <option value="sweet">甜</option>
+                            <option value="spicy">辣</option>
+                        </select>                        
                     </div>
                     <div class="inputbar">
-                        <input type="text" placeholder="想找什麼零食呢？">
-                        <i class="fas fa-search"></i>
+                        <input type="text"  id="searchName" placeholder="想找什麼零食呢？">
+                        <i class="fas fa-search"  id="searchClick"></i>
                     </div>
                 </div>
                     <div id="close">
-                        <span class="close">X</span>
+                        <span class="close"><i class="fas fa-times"></i></span>
                     </div>
         </div>
     </header>
@@ -326,7 +332,7 @@
                 <h2>過去零食箱</h2>
             </div>
             <div class="cards">
-                <button class="month">2019<br>1月期</button>
+                <button class="month" style="color:#737374;background-color:#fbc84a;">2019<br>1月期</button>
                 <button class="month">2019<br>2月期</button>
                 <button class="month">2019<br>3月期</button>
                 <div class="clearfix"></div>
@@ -338,6 +344,11 @@
     }	
 	for($i = 1; $i < 7; $i++){
         $snackRow = $snacks -> fetch();
+        $sql = "SELECT e.evaCtx, e.memNo, e.snackNo, e.goodStar, m.memPic FROM eva e join member m on e.memNo = m.memNo where snackNo = :snackNo order by goodStar DESC limit 1";
+        $eva = $pdo -> prepare($sql);
+        $eva -> bindValue(":snackNo", $snackRow['snackNo']);
+        $eva -> execute();
+        $evaRow  = $eva -> fetch();
 ?>
                         <div class="carousel item<?php echo $i?>">
                             <div class="cardImg">
@@ -346,12 +357,12 @@
                             <h4><?php echo '['.$snackRow['nation'].']'.$snackRow['snackName']?></h4>
                             <div class="review">
                                 <div class="profile">
-                                    <img src="../images/blair/profile6.jpg" alt="profile">
+                                    <img src="<?php echo $evaRow['memPic'] ?>" alt="profile">
                                 </div>
                                 <div class="reviewLeft">
                                     <img src="../images/blair/star.png" class="star" alt="star">
                                     <p class="reviewWord">
-                                        日本來的餅乾就是特別好吃，收到很滿意，當初有預購零食箱真是太好了
+                                        <?php echo $evaRow['evaCtx']?>
                                     </p>
                                 </div>
                             </div>
@@ -359,90 +370,6 @@
 <?php
 	}
 ?>
-                        <!-- <div class="carousel item2">
-                            <div class="cardImg">
-                                <img src="../images/blair/candy2.png" alt="snack">
-                            </div>
-                            <h4>[德國]Trolli 彩色蟲蟲軟糖</h4>
-                            <div class="review">
-                                <div class="profile">
-                                    <img src="../images/blair/profile5.jpg" alt="profile">
-                                </div>
-                                <div class="reviewLeft">
-                                    <img src="../images/blair/star.png" class="star" alt="star">
-                                    <p class="reviewWord">
-                                        大爆笑！！軟糖長這樣合理嗎哈哈哈哈哈笑死我，不過味道還不錯
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel item3">
-                            <div class="cardImg">
-                                <img src="../images/blair/item3.png" alt="snack">
-                            </div>
-                            <h4>[日本]Pure 草莓優格軟糖</h4>
-                            <div class="review">
-                                <div class="profile">
-                                    <img src="../images/blair/profile4.jpg" alt="profile">
-                                </div>
-                                <div class="reviewLeft">
-                                    <img src="../images/blair/star.png" class="star" alt="star">
-                                    <p class="reviewWord">
-                                        冬天吃到草莓零食超開心的，還是我愛的甜食～
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel item4">
-                            <div class="cardImg">
-                                <img src="../images/blair/item2.png" alt="snack">
-                            </div>
-                            <h4>[英國]Chikito 牛奶巧克力</h4>
-                            <div class="review">
-                                <div class="profile">
-                                    <img src="../images/blair/profile3.jpg" alt="profile">
-                                </div>
-                                <div class="reviewLeft">
-                                    <img src="../images/blair/star.png" class="star" alt="star">
-                                    <p class="reviewWord">
-                                        身為小朋友最喜歡這種巧克力了，吃了還想再一直吃～～
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel item5">
-                            <div class="cardImg">
-                                <img src="../images/blair/nuts.png" alt="snack">
-                            </div>
-                            <h4>[美國]Tuty BBQ花生粒</h4>
-                            <div class="review">
-                                <div class="profile">
-                                    <img src="../images/blair/profile2.jpg" alt="profile">
-                                </div>
-                                <div class="reviewLeft">
-                                    <img src="../images/blair/star.png" class="star" alt="star">
-                                    <p class="reviewWord">
-                                        超級好吃的！上課吃了都不會睡著了，真是惠我良多
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel item6">
-                            <div class="cardImg">
-                                <img src="../images/blair/popcorn.png" alt="snack">
-                            </div>
-                            <h4>[匈牙利]Mogyi 焦糖爆米花</h4>
-                            <div class="review">
-                                <div class="profile">
-                                    <img src="../images/blair/profile1.jpg" alt="profile">
-                                </div>
-                                <div class="reviewLeft">
-                                    <img src="../images/blair/star.png" class="star" alt="star">
-                                    <p class="reviewWord">
-                                        在家看Netflix配這個簡直太完美了，比電影院的還好吃耶
-                                    </p>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
                 <div class="arrow">

@@ -38,6 +38,7 @@ h1,h2,h3,h4,p,span{
             text-align: center;
             background-image: url(../images/blair/title.png);
             background-repeat: no-repeat;
+            cursor: pointer;
             h2{
                 line-height: 163px;
                 color: $blue;
@@ -49,12 +50,12 @@ h1,h2,h3,h4,p,span{
             margin: auto;
             margin-top: 20px;
             img{
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: -1;
                 display: none;
                 @media only screen and (min-width: $moblie) {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: -1;
                     display: inline-block;
                 }
             }
@@ -78,14 +79,29 @@ h1,h2,h3,h4,p,span{
             }
             input{
                 position: relative;
-                font-size: 14px;
+                font-size: 20px;
                 top: -4px;
                 padding: 4px 0px 4px 6px;
+                width: 80%;
+                margin-top: 30px;
+                @media only screen and (min-width: $moblie) {
+                    width: 153px;                
+                    font-size: 14px;
+                    margin-top: 0;
+                }
             }
-            i{
-                font-size: 18px;
+            #searchClick{
+                font-size: 30px;
                 vertical-align: middle;
                 cursor: pointer;
+                @media only screen and (min-width: $moblie) {
+                    font-size: 18px;    
+                }
+                &:hover{
+                    color: $blue;
+                    transform: scale(1.2);
+                    transition: 0.6s;
+                }
             }
         }
         .items{
