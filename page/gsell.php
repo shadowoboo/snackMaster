@@ -273,7 +273,6 @@ try {
         }
 
     //map js 地標
-
         //hate
         // var hate = ['24.993088,121.301048', '24.994471,121.302025', '24.988993,121.313644'];
         
@@ -377,7 +376,7 @@ try {
             var xy = new google.maps.LatLng(lati, longi);
             var mapBoard = document.getElementById('mapBoard');
             var options = {
-                zoom: 10,
+                zoom: 12,
                 center: xy,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 restriction: {
