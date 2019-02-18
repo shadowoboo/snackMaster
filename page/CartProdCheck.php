@@ -2,7 +2,7 @@
     session_start();
     $errorMsg="";
     try {
-        if(isset($_SESSION["snackNo"])){ //檢查有沒有 snackNo 存在於 session 之中
+        if(isset($_SESSION["snackName"])){ //檢查有沒有 snackNo 存在於 session 之中
             //知之為知之
             echo "prodExist";
         }else{

@@ -26,7 +26,7 @@ try {
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
    crossorigin="anonymous">
    <script src="../js/jquery-3.3.1.min.js"></script>
-   <script src="../js/shadowLib.js""></script>
+   <script src="../js/shadowLib.js"></script>
    <!-- 錄音外掛。我想我跳下去玩一定會來不及。謝謝你 9527 -->
    <script src="../js/recorder.js"></script>
    <script src="../js/common.js"></script>
@@ -620,7 +620,7 @@ try {
     </div>
 </footer>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src="../js/customizedstep.js""></script>
+  <script src="../js/customizedstep.js"></script>
   <script src="../js/header.js"></script>
     
   <!-- <script>

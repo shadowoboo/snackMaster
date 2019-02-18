@@ -50,8 +50,8 @@
         .cartContent{
             width: 100%;
             &.cartContent_none{ //當我們沒有商品在購物車
-                display: flex;
-                // display: none;
+                // display: flex;
+                display: none;
                 flex-direction: column;
                 h3{
                     margin-top: 20px;
@@ -62,6 +62,9 @@
                     display: block;
                     align-self: center;
                     margin-top: 20px;
+                }
+                &.cartPageActive{
+                    display: flex;
                 }
             }
             &.cartContent_prod{ //當我們有商品在購物車

@@ -1,3 +1,32 @@
+<?php
+    //檢查是否登入
+    // require("CartStepLoginCheck.php");
+
+    //ENG 工程用檔案
+    require("CartProdAdd_ENG.php");
+    
+
+    // //檢查有沒有商品在session
+    // if(isset($_SESSION["snackNo"])){
+    //     //檢查商品種類
+
+    //     //如果有客製箱
+    //     if(in_array("y",$_SESSION["cusType"])){
+    //         //產生客製箱表格
+            
+    //     }else{//若不是客製箱
+    //         //若是預購箱
+    //         // if()
+
+    //         //其餘單品
+
+    //     }
+
+    // }
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="zh_tw">
 
@@ -28,10 +57,13 @@
     <script src="../js/header.js" defer></script>
     <!-- for common -->
     <script src="../js/common.js"></script>
+    <!-- for shadowLib -->
+    <script src="../js/shadowLib.js"></script>
     <!-- ------------------js-------------- -->
 </head>
 
 <body>
+
 
     <header>
         <h1>大零食家</h1>
@@ -164,11 +196,11 @@
                         <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusBox">
                             <div class="prodImg">
                                 <!-- <img src="../images/blair/item3.png"> -->
-                                <img src="https://picsum.photos/100/100/?random=1">
+                                <img src="<?php echo $_SESSION["cusBox"] ?>">
                             </div>
                             <div class="prodInfo">
                                 <div class="prodName">
-                                    <h4>客製零食箱</h4>
+                                    <h4><?php echo $_SESSION["snackName"][49] ?></h4>
                                 </div>
                                 <!-- <div class="prodPrice">
                                 <div class="priceOrigin"><span>$400</span></div>
@@ -178,7 +210,7 @@
                             <div class="cardCtrl">
                                 <div class="prodPriceSum">
                                     <p>
-                                        小計:<span>$150</span>
+                                        小計:<span><?php echo $_SESSION["snackPrice"][49] ?></span>
                                     </p>
                                 </div>
                                 <!-- <div class="prodQty">
@@ -192,7 +224,7 @@
                         <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusCard">
                             <div class="prodImg">
                                 <!-- <img src="../images/blair/item3.png"> -->
-                                <img src="https://picsum.photos/100/100/?random=2">
+                                <img src="<?php echo $_SESSION["cusCard"]; ?>">
                             </div>
                             <div class="prodInfo">
                                 <div class="prodName">
@@ -207,7 +239,7 @@
                                 <!-- 撥放介面實體 -->
                                 <div id="audioItem">
                                     <!-- 一開始不給src，待錄音有值會自動增加 -->
-                                    <audio id="au_player"></audio>
+                                    <audio id="au_player" src="<?php echo $_SESSION["cusSound"]; ?>"></audio>
                                     <!-- 撥放控制按鈕們 -->
                                     <div class="au_btns" id="au_btns">
                                         <!-- 撥放與暫停 -->
@@ -229,17 +261,24 @@
                                 </div>
                             </div>
                         </div>
+<?php
+    // getCus();
+    // function getCus($snackNo){
+        foreach ($_SESSION["cusType"] as $snackNo => $cusType) {
+            if($cusType=="y" && $snackNo!=49){
+?>             
                         <div class="prodCard prodCard_normal">
+                            <input id="<?php echo $snackNo;?>" type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
                             <div class="prodImg">
-                                <img src="../images/blair/item3.png">
+                                <img src="<?php echo $_SESSION["snackPic"][$snackNo]; ?>">
                             </div>
                             <div class="prodInfo">
                                 <div class="prodName">
-                                    <h4>[日本]Pure 草莓優格軟糖</h4>
+                                    <h4><?php echo $_SESSION["snackName"][$snackNo]; ?></h4>
                                 </div>
                                 <div class="prodPrice">
                                     <div class="priceOrigin"><span>$400</span></div>
-                                    <div class="priceNow"><span>$100</span></div>
+                                    <div class="priceNow"><span><?php echo $_SESSION["snackPrice"][$snackNo]; ?></span></div>
                                 </div>
                             </div>
                             <div class="cardCtrl">
@@ -250,41 +289,19 @@
                                 </div>
                                 <div class="prodQty">
                                     <div class="numInput">
-                                        <span class="numMinus">-</span><input type="number" value="1"><span
+                                        <span class="numMinus">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
                                             class="numPlus">+</span>
                                     </div>
                                 </div>
-                                <button class="trash"><i class="far fa-trash-alt"></i></button>
+                                <!-- <button class="trash"><i class="far fa-trash-alt"></i></button> -->
                             </div>
                         </div>
-                        <div class="prodCard prodCard_normal">
-                            <div class="prodImg">
-                                <img src="../images/blair/item3.png">
-                            </div>
-                            <div class="prodInfo">
-                                <div class="prodName">
-                                    <h4>[日本]Pure 草莓優格軟糖</h4>
-                                </div>
-                                <div class="prodPrice">
-                                    <div class="priceOrigin"><span>$400</span></div>
-                                    <div class="priceNow"><span>$100</span></div>
-                                </div>
-                            </div>
-                            <div class="cardCtrl">
-                                <div class="prodPriceSum">
-                                    <p>
-                                        小計:<span>$200</span>
-                                    </p>
-                                </div>
-                                <div class="prodQty">
-                                    <div class="numInput">
-                                        <span class="numMinus">-</span><input type="number" value="1"><span
-                                            class="numPlus">+</span>
-                                    </div>
-                                </div>
-                                <button class="trash"><i class="far fa-trash-alt"></i></button>
-                            </div>
-                        </div>
+            
+<?php            
+            }
+        }
+    // }
+?>
                         <div class="prodCard prodCard_Cus prodCard_CusPanel">
                             <div class="cusTotal">
                                 <p>
@@ -297,17 +314,23 @@
                         </div>
                     </div>
 
+<?php
+    //單品。非客製(且非預購?)
+    foreach ($_SESSION["cusType"] as $snackNo => $cusType) {
+        if($cusType=="n"){
+?>
                     <div class="prodCard prodCard_normal">
+                        <input type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
                         <div class="prodImg">
-                            <img src="../images/blair/nuts.png">
+                            <img src="<?php echo  $_SESSION["snackPic"][$snackNo]?>">
                         </div>
                         <div class="prodInfo">
                             <div class="prodName">
-                                <h4>[美國]Tuty BBQ花生粒</h4>
+                                <h4><?php echo  $_SESSION["snackName"][$snackNo]?></h4>
                             </div>
                             <div class="prodPrice">
                                 <div class="priceOrigin"><span>$400</span></div>
-                                <div class="priceNow"><span>$100</span></div>
+                                <div class="priceNow"><span><?php echo  $_SESSION["snackPrice"][$snackNo]?></span></div>
                             </div>
                         </div>
                         <div class="cardCtrl">
@@ -318,100 +341,17 @@
                             </div>
                             <div class="prodQty">
                                 <div class="numInput">
-                                    <span class="numMinus">-</span><input type="number" value="1"><span
-                                        class="numPlus">+</span>
+                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
+                                        class="numPlus" data-snackno="<?php echo $snackNo;?>">+</span>
                                 </div>
                             </div>
-                            <button class="trash"><i class="far fa-trash-alt"></i></button>
+                            <button class="trash" data-snackno="<?php echo $snackNo;?>"><i class="far fa-trash-alt" data-snackno="<?php echo $snackNo;?>"></i></button>
                         </div>
                     </div>
-
-                    <div class="prodCard prodCard_normal">
-                        <div class="prodImg">
-                            <img src="../images/blair/item.png">
-                        </div>
-                        <div class="prodInfo">
-                            <div class="prodName">
-                                <h4>[日本]摩巴頂級巧克力軟餅</h4>
-                            </div>
-                            <div class="prodPrice">
-                                <div class="priceOrigin"><span>$400</span></div>
-                                <div class="priceNow"><span>$100</span></div>
-                            </div>
-                        </div>
-                        <div class="cardCtrl">
-                            <div class="prodPriceSum">
-                                <p>
-                                    小計: <span>$200</span>
-                                </p>
-                            </div>
-                            <div class="prodQty">
-                                <div class="numInput">
-                                    <span class="numMinus">-</span><input type="number" value="1"><span
-                                        class="numPlus">+</span>
-                                </div>
-                            </div>
-                            <button class="trash"><i class="far fa-trash-alt"></i></button>
-                        </div>
-                    </div>
-
-                    <div class="prodCard prodCard_normal">
-                        <div class="prodImg">
-                            <img src="../images/blair/item3.png">
-                        </div>
-                        <div class="prodInfo">
-                            <div class="prodName">
-                                <h4>[日本]Pure 草莓優格軟糖</h4>
-                            </div>
-                            <div class="prodPrice">
-                                <div class="priceOrigin"><span>$400</span></div>
-                                <div class="priceNow"><span>$100</span></div>
-                            </div>
-                        </div>
-                        <div class="cardCtrl">
-                            <div class="prodPriceSum">
-                                <p>
-                                    小計:<span>$200</span>
-                                </p>
-                            </div>
-                            <div class="prodQty">
-                                <div class="numInput">
-                                    <span class="numMinus">-</span><input type="number" value="1"><span
-                                        class="numPlus">+</span>
-                                </div>
-                            </div>
-                            <button class="trash"><i class="far fa-trash-alt"></i></button>
-                        </div>
-                    </div>
-
-                    <div class="prodCard prodCard_normal">
-                        <div class="prodImg">
-                            <img src="../images/blair/item2.png">
-                        </div>
-                        <div class="prodInfo">
-                            <div class="prodName">
-                                <h4>[台灣]情人節義理巧克力</h4>
-                            </div>
-                            <div class="prodPrice">
-                                <div class="priceOrigin"><span>$400</span></div>
-                                <div class="priceNow"><span>$100</span></div>
-                            </div>
-                        </div>
-                        <div class="cardCtrl">
-                            <div class="prodPriceSum">
-                                <p>
-                                    小計: <span>$200</span>
-                                </p>
-                            </div>
-                            <div class="prodQty">
-                                <div class="numInput">
-                                    <span class="numMinus">-</span><input type="number" value="1"><span
-                                        class="numPlus">+</span>
-                                </div>
-                            </div>
-                            <button class="trash"><i class="far fa-trash-alt"></i></button>
-                        </div>
-                    </div>
+<?php
+        }
+    }
+?>
                 </div>
 
             </div>
@@ -532,7 +472,7 @@
 
 
 
-    
+    <script src="../js/search.js"></script>
     <script src="../js/cartShow.js"></script>
 </body>
 
