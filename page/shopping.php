@@ -1,7 +1,6 @@
 <?php
     $errMsg = "";
     try {
-        // require_once("blairConnect.php");
         require_once("connectcd105g2.php");
         $recPerPage = 9;
         $sql = 'select count(snackNo) from snack';
@@ -18,8 +17,7 @@
             $sql = "select * from snack where snackName != '客製箱' limit $start, $recPerPage";
         }else{
             $search= $_REQUEST['search'];
-            // and nation = '泰國' and snackGenre = '巧克力' and sweetStars > 0
-            $sql = "select * from snack where snackName != '客製箱' $search limit 0, $recPerPage";
+            $sql = "select * from snack where snackName != '客製箱' $search limit 0, 9";
         }
         $snacks = $pdo -> query($sql); 
         if( $snacks -> rowCount() == 0){
@@ -60,7 +58,7 @@
                 </div>
                 <nav>
                     <label for="smlSearch" class="searchBtn" value="search">
-                            <img src="../images/tina/search-icon.svg" alt="" id="searchBtn">
+                            <img src="" alt="" id="searchBtn">
                     </label>
                     
                     <div class="menu">
@@ -89,7 +87,7 @@
                                 <li id="store"> 零食商店街
                                     <ul id="Submenu" class="subMenu">
                                         <li id="snBox"><a href="preOrder.html">預購零食箱</a></li>
-                                        <li ><a href="shopping.html">零食列表</a></li>
+                                        <li ><a href="shopping.php">零食列表</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="gsell.html">尋找販賣機</a> </li>
@@ -102,40 +100,12 @@
                         <li><i class="fas fa-user-circle" id="memLogin"></i></li>
                     </ul>
                 </nav>
-        <div class="seachRegion" id="search_appear">
-                <div class="search">
-                    <img src="../images/blair/pocky.png" alt="">
-                    <div class="selectbar">
-                        <select name="country" id="country">
-                            <option value="">國家</option>
-                            <option value="">英國</option>
-                            <option value="">美國</option>
-                            <option value="">日本</option>
-                            <option value="">泰國</option>
-                        </select>
-                        <select name="kind" id="kind">
-                            <option value="">種類</option>
-                            <option value="">巧克力</option>
-                            <option value="">糖果</option>
-                            <option value="">餅乾</option>
-                            <option value="">洋芋片</option>
-                        </select>
-                        <select name="flavor" id="flavor">
-                            <option value="">口味</option>
-                            <option value="">酸</option>
-                            <option value="">甜</option>
-                            <option value="">辣</option>
-                        </select>                            
-                    </div>
-                    <div class="inputbar">
-                        <input type="text" placeholder="想找什麼零食呢？">
-                        <i class="fas fa-search"></i>
-                    </div>
+            </div>
+            <div class="seachRegion" id="search_appear">
+                <div id="close">
+                    <span class="close">X</span>
                 </div>
-                    <div id="close">
-                        <span class="close">X</span>
-                    </div>
-        </div>
+            </div>
     </header>
     <div class="shopping">
         <div class="wrap">
@@ -144,7 +114,7 @@
             </div>
             <div class="searchBar">
                 <img src="../images/blair/pocky.png" alt="">
-                <select name="country" id="countryBar">
+                <select name="country" id="country">
                     <option value="0">國家</option>
                     <option value='巴西'>巴西</option>
                     <option value="日本">日本</option>
@@ -155,14 +125,14 @@
                     <option value="澳洲">澳洲</option>
                     <option value="韓國">韓國</option>
                 </select>
-                <select name="kind" id="kindBar">
+                <select name="kind" id="kind">
                     <option value="0">種類</option>
                     <option value="巧克力">巧克力</option>
                     <option value="糖果">糖果</option>
                     <option value="餅乾">餅乾</option>
                     <option value="洋芋片">洋芋片</option>
                 </select>
-                <select name="flavor" id="flavorBar">
+                <select name="flavor" id="flavor">
                     <option value="0">口味</option>
                     <option value="sour">酸</option>
                     <option value="sweet">甜</option>
@@ -202,7 +172,7 @@
                         $spicy = round($snackRow['spicyStars'] / $snackRow['spicyTimes'], 1);
                         echo "$good|$sour|$sweet|$spicy";
                     ?>">
-                    <a href="showItem.html"></a>
+                    <a href="showItem.html?showItem.php=<?php echo $snackRow['snackNo'] ?>"></a>
                     <img class="country" src="../images/blair/<?php echo $snackRow['nation'] ?>.png" alt="">
                     <img class="itemImg" src="<?php echo $snackRow['snackPic']?>" alt="">
                     <h4 class="itemName"><?php echo '['.$snackRow['nation'].']'.$snackRow['snackName']?></h4>
@@ -210,7 +180,7 @@
                     <p class="price">$<?php echo $snackRow['snackPrice']?></p>
                     <div class="itemBtns">
                         <button class="cart">加入購物車</button>
-                        <button class="heart"><i class="far fa-heart"></i></button>
+                        <button class="heart" id="<?php echo $snackRow['snackNo'] ?>"><i class="far fa-heart"></i></button>
                     </div>
                 </div> 
 <?php
@@ -221,17 +191,19 @@
             <div id="pagination">
                 <ul>
                     <?php
-                        $prev = $pageNum - 1 == 0? 1:$pageNum - 1;
-                        $next = $pageNum + 1 == 7? 6:$pageNum + 1;
-                        echo '<li class="page-item"><a href="shopping.php?pageNum='.$prev.'" id="last" class="page-link"><i class="fas fa-chevron-left"></i></a></li>';
-                        for($i=1; $i<=$pages; $i++){
-                            if( $i == $pageNum ){
-                                echo '<li class="page-item"><a href="shopping.php?pageNum='.$i.'" class="page-link nowLoc">0'.$i.'</a></li>';
-                            }else{
-                                echo '<li class="page-item"><a href="shopping.php?pageNum='.$i.'" class="page-link">0'.$i.'</a></li>';
+                        if( isset($_REQUEST['search']) == false ){
+                            $prev = $pageNum - 1 == 0? 1:$pageNum - 1;
+                            $next = $pageNum + 1 == 7? 6:$pageNum + 1;
+                            echo '<li class="page-item"><a href="shopping.php?pageNum='.$prev.'" id="last" class="page-link"><i class="fas fa-chevron-left"></i></a></li>';
+                            for($i=1; $i<=$pages; $i++){
+                                if( $i == $pageNum ){
+                                    echo '<li class="page-item"><a href="shopping.php?pageNum='.$i.'" class="page-link nowLoc">0'.$i.'</a></li>';
+                                }else{
+                                    echo '<li class="page-item"><a href="shopping.php?pageNum='.$i.'" class="page-link">0'.$i.'</a></li>';
+                                }
                             }
+                            echo '<li class="page-item"><a href="shopping.php?pageNum='.$next.'" id="next" class="page-link"><i class="fas fa-chevron-right"></i></a></li>';
                         }
-                        echo '<li class="page-item"><a href="shopping.php?pageNum='.$next.'" id="next" class="page-link"><i class="fas fa-chevron-right"></i></a></li>';
                     ?>
                 </ul>
             </div>

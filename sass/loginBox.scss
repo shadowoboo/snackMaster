@@ -1,5 +1,5 @@
-@import"reset";
-@import"common";
+// @import"reset";
+// @import"common";
 // *{
 //     outline: 1px solid #f00;
 // }
@@ -39,9 +39,11 @@ label.mail{
     background: rgba(0, 0, 0, .1);
     display: none;
     overflow-y: auto;
+    z-index: 1000;
     #lightBox{
         margin: auto;
         position: absolute;
+        z-index: 1000;
         top: 14%;
         right: 0;
         left: 0;

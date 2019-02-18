@@ -86,47 +86,23 @@ function cancelRadar(){
     document.getElementById('mintFive').innerText = '';
     document.getElementById('msg').innerText = '我可以告訴你商品的評價星等喔!';
 }
-function search(){
-    var country = document.getElementById('countryBar').value;
-    var kind = document.getElementById('kindBar').value;
-    var flavor = document.getElementById('flavorBar').value;
+function searchBar(){
+    var country = document.getElementById('country').value;
+    var kind = document.getElementById('kind').value;
+    var flavor = document.getElementById('flavor').value;
     var name = document.getElementById('searchName').value;
     if( country != 0 ){
         country = "'" + country + "'";
-    }
+    };
     if( kind != 0 ){
         kind = "'" + kind + "'";
-    }
-    console.log(country);
-    console.log(kind);
-    console.log(flavor);
-    console.log(name);
+    };
     if( flavor == 0){
         var search = "and nation = " + country + " and snackGenre = " + kind + " and snackName like '%" + name + "%'";
     }else{
         var search = "and nation = " + country + " and snackGenre = " + kind + " and " + flavor + "Stars > 0" + " and snackName like '%" + name + "%'";
-    }
-    console.log(search);
-
-    // var search = "and nation = " + country + " and snackGenre = " + kind + " and " + flavor + "Stars > 0 and snackName like %" + name + "%";
-    // and nation = 泰國 and snackGenre = 巧克力 and sweetStars > 0 and snackName like %巧% 
-    
+    };
     location.href = 'shopping.php?search=' + search;
-
-    // var xhr = new XMLHttpRequest();
-    // xhr.onload = function () {
-    //     if (xhr.status == 200) {
-    //         //modify here
-    //         document.getElementById("showPanel").innerHTML = xhr.responseText;
-    //     } else {
-    //         alert(xhr.status);
-    //     }
-    // }
-
-    // var url = 'search.php?search=' + search;
-    // xhr.open('get', url, true);
-    // xhr.send(null);
-
 }
 window.addEventListener('load', function (){
     createRadar();
@@ -135,5 +111,8 @@ window.addEventListener('load', function (){
         items[i].addEventListener('mouseenter', showRadar);
         items[i].addEventListener('mouseleave', cancelRadar);
     }
-    document.getElementById('searchClick').addEventListener('click', search);
+    document.getElementById('searchClick').addEventListener('click', searchBar);
+    document.getElementsByClassName('title')[0].addEventListener('click',  function (){
+        location.href = 'shopping.php';        
+    });
 });

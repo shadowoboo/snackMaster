@@ -94,7 +94,20 @@ function showPrev() {
     currentDeg = currentDeg + 60;
     document.getElementsByClassName('carousels')[0].style.transform = 'translate(-50%,-50%) rotateY(' + currentDeg + 'deg)';
 }
+function getBoxSnack(month){
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            document.getElementsByClassName("carousels")[0].innerHTML = xhr.responseText;
+        } else {
+            alert(xhr.status);
+        }
+    }
 
+    var url = 'getBoxSnack.php?month=' + month;
+    xhr.open('get', url, true);
+    xhr.send(null);
+}
 function init() {
     //取得加減符號的物件關聯並設定事件處理器
     var minusBtns = document.getElementsByClassName('numMinus');
@@ -111,6 +124,30 @@ function init() {
     }
     //將第一個立即預購按鈕設定事件處理器
     document.getElementById('buy1').addEventListener('click', showCard2);
+
+    var months = document.getElementsByClassName('month');
+    months[0].addEventListener('click', function (){
+        getBoxSnack(1);
+    });
+    months[1].addEventListener('click', function (){
+        getBoxSnack(2);
+    });
+    months[2].addEventListener('click', function (){
+        getBoxSnack(3);
+    });
+
+    for (var j = 0; j < 3; j++) {
+        months[j].addEventListener('click', function (e) {
+            //因為被點擊到的要換色，其他要恢復原狀
+            //所以有按鈕被點擊時先一律全部恢復原狀，再讓被點擊的那個換色
+            for (j = 0; j < 3; j++) {
+                months[j].style.color = '';
+                months[j].style.backgroundColor = '';
+            }
+            e.target.style.color = '#737374';
+            e.target.style.backgroundColor = '#fbc84a';
+        });
+    }
 
     document.getElementById('angle_left').addEventListener('click', showPrev);
     document.getElementById('angle_right').addEventListener('click', showNext);
