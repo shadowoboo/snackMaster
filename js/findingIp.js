@@ -1,4 +1,16 @@
-function setting() {
+ function byebye() {
+   $('#findingIp').remove();
+
+ }
+
+ function byebye2() {
+  //  $('#findingIp').html('').append(forReplay);
+  $('#findingIp').remove();
+  $('body').append(findingIp);
+  setting();
+
+ }
+ function setting() {
  var forReplay = $('#content').clone(true);
  var box1 = $("#box1"),
    box2 = $("#box2"),
@@ -13,14 +25,7 @@ function setting() {
 
  var ans = Math.floor(Math.random() * 3) + 1;
 
- function byebye() {
-   $('#findingIp').css('display', 'none').html('');
 
- }
-
- function byebye2() {
-   $('#findingIp').html('').append(forReplay);
- }
 
  $('#cancel').click(byebye);
  startButton.on("click", function (event) {
@@ -268,7 +273,7 @@ function setting() {
 
 $('document').ready(function(){
 
-  var findingIp = `<link rel="stylesheet" href="../css/findingIp.css">
+  var findingIp = `
   <section id="findingIp" >
         <div id="content" >
             <div id="cancel">
@@ -316,7 +321,7 @@ $('document').ready(function(){
 
 
 
-  var gamebox = `<div class="gameBox"> <img src="../images/index/gameImgL.png" alt="遊戲圖">
+  var gamebox = `<link rel="stylesheet" href="../css/findingIp.css"><div class="gameBox"> <img src="../images/index/gameImgL.png" alt="遊戲圖">
     <p> 玩小遊戲可獲得 <br> 折價優惠券哦！ </p> </div>`
   $('body').append(gamebox);
   $('.gameBox').click(function () {
