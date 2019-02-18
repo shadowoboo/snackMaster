@@ -1915,12 +1915,16 @@
             var qty = $(aa).text();
             // console.log(text);
             var cutQty = qty - 1;
+            sessionStorage['cutQty'] = cutQty;
             if(cutQty==0){
                 $(aa).text(0);
                 $(this).css({backgroundColor:'#ccc',color:'#aaa'});
                 $(this).attr('disabled',true);
             }else{
+                var fCutQty = sessionStorage['cutQty'];
+                console.log(fCutQty);//9 8 7....
                 $(aa).text(cutQty);
+                console.log(cc);
             }
             // console.log(cutQty);
         })
