@@ -13,6 +13,20 @@
         $sql = "SELECT * FROM snack WHERE snackNo={$snackNo}";
         $feed=$pdo->query($sql);
         $snackRow=$feed->fetch();
+        $sql ="SELECT 
+                COUNT(snackNo) as Etimes,
+                AVG(goodStar) as avgG,
+                AVG(sourStar) as avgS,
+                AVG(sweetStar) as avgT,
+                AVG(spicyStar) as avgH  
+                FROM `eva` WHERE `snackNo`={$snackNo}";
+        $feed=$pdo->query($sql);
+        $evaRow=$feed->fetch();
+        $Etimes =$evaRow['Etimes'];
+        $avgG =number_format($evaRow['avgG'],1);
+        $avgS =number_format($evaRow['avgS'],1);
+        $avgT =number_format($evaRow['avgT'],1);
+        $avgH =number_format($evaRow['avgH'],1);
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";
@@ -160,14 +174,14 @@
                     </div>
                     <div class="col score">
                                 <p id="rate">好評度</p>
-                                <p class="scoreAvg">4.7<span class="total">/5</span></p>
+                                <p class="scoreAvg"><?php echo $avgG ?><span class="total">/5</span></p>
                                 <div class="star"><img src="../images/rankBoard/starMask.png" alt="星等"></div>
-                                <p class="evaTimes">共348次評價</p>
+                                <p class="evaTimes">共<?php echo $Etimes ?>次評價</p>
                     </div>
                     <div class="col stars">
-                        <p>甜<span id="sweet" class="star"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span>4.9</span></p>
-                        <p>酸<span id="sour" class="star"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span>4.0</span></p>
-                        <p>辣<span id="spicy" class="star"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span>0.0</span></p>
+                        <p>甜<span id="sweet" class="star"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span id="avgT"><?php echo $avgT ?></span></p>
+                        <p>酸<span id="sour" class="star"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span id="avgS"><?php echo $avgS ?></span></p>
+                        <p>辣<span id="spicy" class="star"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span id="avgH"><?php echo $avgH ?></span></p>
                     </div>
             </div>
         
@@ -196,7 +210,7 @@
             </div>
             <div class="map flexWrapR">
                 
-            <p>尋找最近的販賣機</p>
+            <p>最近的販賣機</p>
                 <?php if($snackRow['snackVending']){
                     echo '<img src="../images/rankBoard/map.png" alt="地圖">';
                 }else{
