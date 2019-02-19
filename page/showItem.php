@@ -58,6 +58,7 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/header.js" defer></script>
     <script src="../js/showMsg.js"></script>
+    <script src="../js/showStar.js"></script>
 </head>
 
 <body id="showItem">
@@ -175,13 +176,13 @@
                     <div class="col score">
                                 <p id="rate">好評度</p>
                                 <p class="scoreAvg"><?php echo $avgG ?><span class="total">/5</span></p>
-                                <div class="star"><img src="../images/rankBoard/starMask.png" alt="星等"></div>
+                                <div class="star" grad="<?php echo $avgG ?>"><img src="../images/rankBoard/starMask.png" alt="星等"></div>
                                 <p class="evaTimes">共<?php echo $Etimes ?>次評價</p>
                     </div>
                     <div class="col stars">
-                        <p>甜<span id="sweet" class="star"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span id="avgT"><?php echo $avgT ?></span></p>
-                        <p>酸<span id="sour" class="star"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span id="avgS"><?php echo $avgS ?></span></p>
-                        <p>辣<span id="spicy" class="star"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span id="avgH"><?php echo $avgH ?></span></p>
+                        <p>甜<span id="sweet" class="star" grad="<?php echo $avgT ?>"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span><?php echo $avgT ?></span></p>
+                        <p>酸<span id="sour" class="star" grad="<?php echo $avgS ?>"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span><?php echo $avgS ?></span></p>
+                        <p>辣<span id="spicy" class="star " grad="<?php echo $avgH ?>" ><img src="../images/rankBoard/starMask.png" alt="星等"></span><span><?php echo $avgH ?></span></p>
                     </div>
             </div>
         
