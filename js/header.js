@@ -104,7 +104,7 @@ const list_appear = document.getElementById("list_appear");
         }
 
         window.addEventListener("load",init2);
-//----------------------會員登入燈箱-----------------------
+//----------------------會員登入燈箱-----------------------//
 
 function $id(id){
     return document.getElementById(id);
@@ -224,19 +224,135 @@ function logout(){
 //===========================================//
 //             這是註冊程式                    //
 //===========================================//
+
 function SUForm(){
+
     var account = $id("signUpMemId");
-    var password = $id("signUpMemPsw");
     var email = $id("signUpMemEmail");
-    //帳號不得為空值
-    if (account.value=="") {
-        alert("請填寫帳號");
-        account.focus();
-        return;
-    }
-    //
+        //檢查帳號
+       
+          
+        // //帳號不得空白  
+        if (account.value=="") {
+            alert("請填寫帳號");
+            account.focus();
+            return;
+        }
+        //帳號不能少於2碼
+        
+        if (account.value.length<2) {
+            alert("帳號不得少於2碼");
+            account.focus();
+            return; 
+        }
+        //密碼不得空白
+        if($id('signUpMemPsw').value==""){
+            alert("請填寫密碼");
+            $id('signUpMemPsw').focus();
+            return ; 
+        }
+        
+        
+
+         if (email.value =="") {
+             alert("請填寫Email");
+             email.focus();
+             return;
+         }
+         if (!validateEmail(email.value)) {
+             alert("請填寫正確的Email格式!");
+             email.focus();
+             return;
+             
+         }
+        //確認正確寫進資料庫
+        add_member();
+}
+function checkPsw(){
+    var pLen = $id("signUpMemPsw");
+    for (var index = 0; index < pLen.length; index++) {
+        if(pLen.charAt(index)==' '|| pLen.charAt(index) == '\"'){
+            alert("密碼不可以含有空白或雙引號！");
+            return false;
+        }
+        if(pLen.value.length<2){
+            alert("密碼長度不得少於2碼");
+            return false;
+        }
+        return true;
+ }
+    
+}
+function validateEmail(str_email){
+    var emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+    return emailRule.test(String(str_email).toLowerCase());
 }
 
+function add_member() {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function(){
+        // alert(xhr.responseText);
+    
+        if( xhr.status == 200 ){ 
+            //檢查帳號是否已註冊過   
+            if(xhr.responseText==1){
+                alert("帳號已有人使用");
+            }
+            else{
+                //註冊成功
+                alert('會員註冊成功!!');
+                //關閉燈箱，並將註冊表單上的資料清空
+                $id('lightBox-wrap').classList.remove('show');
+                $id('signUpMemId').value = "";
+                $id('signUpMemPsw').value = "";        
+                $id('signUpMemEmail').value = "";
+                $id('btnloglout').innerHTML = "登出"
+                $id('memLogin').style.color ="#076baf";
+
+                
+            }
+           
+        }else{
+            alert( xhr.status );
+            
+        }
+    
+     }
+     //php$_REQUEST代入以下變數
+     var account = $id("signUpMemId").value;
+     var password = $id("signUpMemPsw").value;
+     var email = $id("signUpMemEmail").value; 
+
+     var url = "addMember.php?account=" + account+"&password="+password+"&email="+email;
+     xhr.open("Get",url,true);
+     xhr.send(null);
+    //     regInfo = {
+    //     memId :$id("signUpMemId").value,
+    //     memPsw:$id("signUpMemPsw").value,
+    //     email:$id('signUpMemEmail').value
+    // }
+
+    //  xhr.send( "regInfo="+ JSON.stringify(regInfo) );
+    
+}
+//===========================================//
+//             這是忘記密碼                   //
+//===========================================//
+
+// function FPForm(){
+//     var xhr = new XMLHttpRequest();
+//     xhr.onload = function(){
+//         if (xhr.responseText == 0){
+
+//         }else{
+
+//         }
+
+//     }
+
+
+
+// }
 
 
 
@@ -247,25 +363,42 @@ function init3(){
     //點擊事件
     $id('memLogin').addEventListener('click',showLightBox) ;//出現燈箱
     $id('lightBoxLeave').addEventListener('click',cancelLogin) ;//關閉燈箱
-    $id('btnLogin').addEventListener('click',sendForm);//登入按鈕
+    $id('btnLogin').addEventListener('click',sendForm);//送出登入按鈕
     $id('btnloglout').addEventListener('click',logout);//登出按鈕
-    $id('btnSignUp').addEventListener('click',SUForm);//註冊按鈕
+    $id('btnSignUp').addEventListener('click',SUForm);//送出註冊按鈕
     // $id('btnforget').addEventListener('click',FPForm);//寄送密碼按鈕
+    
+    //帳號錯誤無法登入
+    // var keyboard_register = $id('signUpMemId');
+    // keyboard_register.addEventListener("keyup",function(e){
+    //     e.preventDefault();
+    //     $id('signUpMemId').style.border.color = "#f00";
+    //     if(event.keyCode === 13){
+    //         $id('btnSignUp').click();
+    //     }
+    // });
 
-    //檢查是否已登入
+    // 檢查是否已登入
     var xhr = new XMLHttpRequest();
-    xhr.open("get", "alreadyLogin.php", true);
-    xhr.send(null);
+    
     xhr.onload = function(){
-        // console.log(1);
+        // console.log(xhr.responseText);
         var loginInfo = JSON.parse(xhr.responseText);
-        console.log(2);
+        // console.log(xhr.responseText);
+        // console.log(loginInfo)
         if(loginInfo){
             $id("memLogin").style.color = "#076baf"
             $id("btnloglout").innerHTML = "登出";
+        }else{
+            $id("memLogin").style.color = "#737374f"
+            $id("btnloglout").innerHTML = "&nbsp";
         }
+        xhr.open("get", "alreadyLogin.php", true);
+        xhr.send(null);
     }
-
+    
+    
+    
 
 
 }
