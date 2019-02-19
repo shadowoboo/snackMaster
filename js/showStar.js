@@ -3,7 +3,7 @@ function showStar(){
 $('.star').each(function(){
     var avgG = $(this).attr('grad');
     var gap = avgG>Math.floor(avgG)?Math.floor(avgG):Math.floor(avgG)-1;
-    console.log(gap);
+    // console.log(gap);
     var starLength= avgG*11+gap*5+13;
     $(this).css('background',`linear-gradient(to right, rgb(233, 125, 88) ${starLength}%, rgb(255, 255, 255)10%)`)
 })

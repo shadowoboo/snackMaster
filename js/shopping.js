@@ -86,7 +86,6 @@ function showRadar(e){
 function cancelRadar(){
     radarCanvas.data.datasets[0].data = [0, 0, 0, 0];
     radarCanvas.update();
-    document.getElementById('starShow').removeChild(document.getElementById('starImg'));
     document.getElementsByClassName('info')[0].removeChild(document.getElementById('starShow'));
     document.getElementById('goodTitle').innerText = '';
     document.getElementById('mintStar').innerText = '';

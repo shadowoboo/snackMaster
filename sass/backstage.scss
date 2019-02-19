@@ -17,6 +17,11 @@ h1,h2,h3,h4,p,span{
 .backstage{
     color: $gray;
     font-family: g2font;
+    button{
+        &:focus{
+            outline: none;
+        }
+    }
     #menu{
         width: 230px;
         height: 100%;
@@ -101,6 +106,9 @@ h1,h2,h3,h4,p,span{
                 color: $gray;
                 margin-top: 0;
                 cursor: pointer;
+                &:hover{
+                    color: $blue;
+                }
             }
             #snack{
                 width: 240%;

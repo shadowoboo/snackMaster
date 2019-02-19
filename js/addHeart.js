@@ -1,25 +1,28 @@
 function addHeart(e){
-    if( e.target.className.indexOf('fa') == -1 ){
-        var snackNo = e.target.id;        
+    if (document.getElementById("btnloglout").innerHTML == "&nbsp"){
+        alert('請先登入會員唷～');
+        return;
     }else{
-        e.stopPropagation();
-        var snackNo = e.target.parentNode.id;        
-    }
-    e.target.style.color = 'rgb(234, 90, 90)';
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-        if (xhr.status == 200) {
-            alert('已將零食加入收藏～');
+        if (e.target.className.indexOf('fa') == -1) {
+            var snackNo = e.target.id;
         } else {
-            alert(xhr.status);
+            e.stopPropagation();
+            var snackNo = e.target.parentNode.id;
         }
+        e.target.style.color = 'rgb(234, 90, 90)';
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                alert('已將零食加入收藏～');
+            } else {
+                alert(xhr.status);
+            }
+        }
+
+        var url = 'addHeart.php?snackNo=' + snackNo;
+        xhr.open('get', url, true);
+        xhr.send(null);   
     }
-
-    var url = 'addHeart.php?snackNo=' + snackNo;
-    xhr.open('get', url, true);
-    xhr.send(null);   
-    
-
 }
 window.addEventListener('load', function (){
     var hearts = document.getElementsByClassName('heart');
