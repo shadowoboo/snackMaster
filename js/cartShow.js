@@ -7,6 +7,14 @@ $(function () {
         $(this).addClass("checked");
     })
 
+    //小計初始化
+    //預設所有商品初始數量皆為1，php讀進來就順便代入原始價錢
+
+    //總計初始化
+    priceTotal();
+
+    //客製箱的總計初始化
+    priceTotalCus();
 
     //刪除按鈕們控制
     //刪除客製箱
@@ -15,6 +23,8 @@ $(function () {
         $(".prodCard.prodCard_Group").remove();
         //刪除php session的客製箱訊息
         clearCusSession();
+        //更新總計
+        priceTotal();
         //如果刪光光，顯示 "無商品提醒"
         if ($("#prodCards").children().length==0){
             //隱藏商品卡
@@ -32,6 +42,8 @@ $(function () {
         $(this).closest(".prodCard.prodCard_normal").remove();
         //刪除php session的normal訊息
         clearNormalSession(e);
+        //更新總計
+        priceTotal();
         //如果刪光光，顯示 "無商品提醒"
         if ($("#prodCards").children().length == 0) {
             //隱藏商品卡
@@ -51,12 +63,12 @@ $(function () {
     //減少
     $(".numMinus").bind("click",function(e){
         var snackNo = e.target.dataset.snackno;
-        console.log($(this));
         var val=$(this).next().val();
-        console.log(val);
+        // console.log(val);
         //因為直接取值會慢實際看到的value一次，故手動補正
         if (snackQty==1){
             snackQty=1;
+            console.log(snackQty);
         }else{
             snackQty=parseInt(val)-1;
             console.log(snackQty);
@@ -69,19 +81,26 @@ $(function () {
                 console.log(`response:　${response}`);
             }
         });
+        //變更小計
+        priceSum(e, snackQty)
+        //變更總計
+        priceTotal();
+        //變更客製箱的總計
+        priceTotalCus();
     })
     //增加
     $(".numPlus").bind("click", function (e) {
         var snackNo = e.target.dataset.snackno;
-        console.log($(this));
+        // var snackPrice = e.target.dataset.snackprice;
+        // console.log($(this));
         //因為直接取值會慢實際看到的value一次，故手動補正
         //小心!! 這個input取出的值是字串!!! 相加務必檢查!!
         var val = $(this).prev().val();
-        console.log(val);
+        // console.log(val);
         // qty = val+parseInt(1);
         snackQty = parseInt(val)+ 1;
         console.log(snackQty);
-        
+        //改變session數量
         $.ajax({
             type: "get",
             url: "cartUpdate.php",
@@ -90,6 +109,12 @@ $(function () {
                 console.log(`response:　${response}`);
             }
         });
+        //變更小計
+        priceSum(e, snackQty);
+        //變更總計
+        priceTotal();
+        //變更客製箱的總計
+        priceTotalCus();
     })
 
 
@@ -120,6 +145,30 @@ $(function () {
                 console.log(`response:　${response}`);
             }
         });
+    }
+    //計算總價並變更總計
+    function priceTotal(){
+        //變更總計
+        var total = 0;
+        $(".priceSum").each(function () {
+            total += Number(parseInt($(this).text()));
+        })
+        $("#priceTotalContent").text(total);
+    }
+    //計算客製箱的總價並變更之
+    function priceTotalCus() {
+        //變更總計
+        var total = 0;
+        $(".prodCard_Group .priceSum").each(function () {
+            total += Number(parseInt($(this).text()));
+        })
+        $("#cusTotalContent").text(total);
+    }
+    //變更小計
+    function priceSum(e, snackQty){
+        var snackPrice = e.target.dataset.snackprice;
+        var priceSum = snackPrice * snackQty;
+        $(e.target).closest(".cardCtrl").children(".prodPriceSum").children("p").children(".priceSum").text(priceSum);
     }
 })
 

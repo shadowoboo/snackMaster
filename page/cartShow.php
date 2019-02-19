@@ -188,7 +188,11 @@
                 <h3>你的購物掐掐內煤油桑品捏</h3>
                 <a href="shopping.html"><button class="subscribe">繼續選GO</button></a>
             </div>
+<?php
+// if(isset($_SESSION["snackNo"])){
 
+// }
+?>
             <div class="cartContent cartContent_prod">
 
                 <div class="prodCards" id="prodCards">
@@ -210,7 +214,7 @@
                             <div class="cardCtrl">
                                 <div class="prodPriceSum">
                                     <p>
-                                        小計:<span><?php echo $_SESSION["snackPrice"][49] ?></span>
+                                        小計: $<span class="priceSum"><?php echo $_SESSION["snackPrice"][49] ?></span>
                                     </p>
                                 </div>
                                 <!-- <div class="prodQty">
@@ -277,20 +281,20 @@
                                     <h4><?php echo $_SESSION["snackName"][$snackNo]; ?></h4>
                                 </div>
                                 <div class="prodPrice">
-                                    <div class="priceOrigin"><span>$400</span></div>
+                                    <div class="priceOrigin"><span><?php echo $_SESSION["snackPrice"][$snackNo]; ?></span></div>
                                     <div class="priceNow"><span><?php echo $_SESSION["snackPrice"][$snackNo]; ?></span></div>
                                 </div>
                             </div>
                             <div class="cardCtrl">
                                 <div class="prodPriceSum">
                                     <p>
-                                        小計:<span>$200</span>
+                                        小計: $<span class="priceSum"><?php echo  $_SESSION["snackPrice"][$snackNo]?></span>
                                     </p>
                                 </div>
                                 <div class="prodQty">
                                     <div class="numInput">
-                                        <span class="numMinus">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
-                                            class="numPlus">+</span>
+                                        <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][$snackNo]?>">-</span><input class="snackQty" type="number" value="1" readonly><span
+                                            class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][$snackNo]?>">+</span>
                                     </div>
                                 </div>
                                 <!-- <button class="trash"><i class="far fa-trash-alt"></i></button> -->
@@ -305,7 +309,7 @@
                         <div class="prodCard prodCard_Cus prodCard_CusPanel">
                             <div class="cusTotal">
                                 <p>
-                                    共計: <span>$600</span>
+                                    共計: <span id="cusTotalContent">$0</span>
                                 </p>
                             </div>
                             <div class="cusBtnDel">
@@ -317,7 +321,7 @@
 <?php
     //單品。非客製(且非預購?)
     foreach ($_SESSION["cusType"] as $snackNo => $cusType) {
-        if($cusType=="n"){
+        if($cusType=="n" || $cusType=="p"){
 ?>
                     <div class="prodCard prodCard_normal">
                         <input type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
@@ -329,20 +333,20 @@
                                 <h4><?php echo  $_SESSION["snackName"][$snackNo]?></h4>
                             </div>
                             <div class="prodPrice">
-                                <div class="priceOrigin"><span>$400</span></div>
+                                <div class="priceOrigin"><span><?php echo  $_SESSION["snackPrice"][$snackNo]?></span></div>
                                 <div class="priceNow"><span><?php echo  $_SESSION["snackPrice"][$snackNo]?></span></div>
                             </div>
                         </div>
                         <div class="cardCtrl">
                             <div class="prodPriceSum">
                                 <p>
-                                    小計: <span>$200</span>
+                                    小計: $<span class="priceSum" ><?php echo  $_SESSION["snackPrice"][$snackNo]?></span>
                                 </p>
                             </div>
                             <div class="prodQty">
                                 <div class="numInput">
-                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
-                                        class="numPlus" data-snackno="<?php echo $snackNo;?>">+</span>
+                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][$snackNo]?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
+                                        class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][$snackNo]?>">+</span>
                                 </div>
                             </div>
                             <button class="trash" data-snackno="<?php echo $snackNo;?>"><i class="far fa-trash-alt" data-snackno="<?php echo $snackNo;?>"></i></button>
@@ -394,7 +398,7 @@
                 <div class="totalAndCoupon">
                     <div class="priceTotal">
                         <p>
-                            合計: <span>$600</span>
+                            合計: $<span id="priceTotalContent">600</span>
                         </p>
                     </div>
                     <div class="couponChoose">
