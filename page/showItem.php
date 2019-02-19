@@ -13,6 +13,7 @@
         $sql = "SELECT * FROM snack WHERE snackNo={$snackNo}";
         $feed=$pdo->query($sql);
         $snackRow=$feed->fetch();
+
         $sql ="SELECT 
                 COUNT(snackNo) as Etimes,
                 AVG(goodStar) as avgG,
@@ -27,6 +28,12 @@
         $avgS =number_format($evaRow['avgS'],1);
         $avgT =number_format($evaRow['avgT'],1);
         $avgH =number_format($evaRow['avgH'],1);
+
+        // $sql =`SELECT * FROM rank WHERE snackNo={$snackNo}`;
+        $sql="SELECT * FROM `rank` WHERE `snackNo`={$snackNo}";
+        $Rankfeed=$pdo->query($sql);
+        
+
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";
@@ -161,12 +168,42 @@
                 <img class="itemImg" src="<?php echo $snackRow['snackPic']?>" alt="商品圖">
             </div>
             <div class="flexWrap rankWrap">
-                <div class="rank" id="allRank">2019年1月綜合排行 第1名</div>
-                <div class="rank" id="catRank">2019年1月餅乾排行 第1名</div>
-                <div class="rank" id="flaRank">2019年1月甜食排行 第1名</div>
+            <?php
+                $i=1;
+                $month=Date("m")==1?12:Date("m")-1;
+                $year= Date("m")==1?Date("Y")-1:Date("Y");
+                ;
+                    while($i<4){
+                        if($rankRow=$Rankfeed->fetch()){
+                            echo "<div class='rank' id='rank{$i}'>{$year}年{$month}月{$rankRow['rankGenre']}排行 第{$rankRow['ranking']}名</div>";   
+                            if($i==1){$crownNum=$rankRow['ranking'];}
+                            
+                        }else{
+                            if($i==1){
+                                echo "<div class='rank'  id='rank0'>本商品目前尚未上榜</div>";
+                                $crownNum=0;
+                            }else{
+                            echo "<div class='rank notRank'  id='rank{$i}'>本商品目前尚未上榜</div>";
+                            }
+                           
+                        }
+                        $i++;
+                    }
+            ?>
             </div>
             <div class="flexWrap" id="rankGrid">
                     <div class="col colCrown">
+                        <?php
+                            switch($crownNum){
+                                case "1":$crownPic=""; break;
+                                case "2":$crownPic=""; break;
+                                case "3":$crownPic=""; break;
+                                case "4":$crownPic=""; break;
+                                case "5":$crownPic=""; break;
+                                case "6":$crownPic=""; break;  
+                                case "0":$crownPic=""; break;                                
+                            }
+                        ?>
                         <img class="crown"src="../images/rankBoard/crown.png" alt="皇冠">
                     </div>
 
@@ -176,13 +213,13 @@
                     <div class="col score">
                                 <p id="rate">好評度</p>
                                 <p class="scoreAvg"><?php echo $avgG ?><span class="total">/5</span></p>
-                                <div class="star" grad="<?php echo $avgG ?>"><img src="../images/rankBoard/starMask.png" alt="星等"></div>
+                                <div class="star"id="avgG" grad="<?php echo $avgG ?>"><img src="../images/rankBoard/starMask.png" alt="星等"></div>
                                 <p class="evaTimes">共<?php echo $Etimes ?>次評價</p>
                     </div>
                     <div class="col stars">
-                        <p>甜<span id="sweet" class="star" grad="<?php echo $avgT ?>"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span><?php echo $avgT ?></span></p>
-                        <p>酸<span id="sour" class="star" grad="<?php echo $avgS ?>"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span><?php echo $avgS ?></span></p>
-                        <p>辣<span id="spicy" class="star " grad="<?php echo $avgH ?>" ><img src="../images/rankBoard/starMask.png" alt="星等"></span><span><?php echo $avgH ?></span></p>
+                        <p>甜<span id="sweet" class="star" grad="<?php echo $avgT ?>"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span id="avgT"><?php echo $avgT ?></span></p>
+                        <p>酸<span id="sour" class="star" grad="<?php echo $avgS ?>"><img src="../images/rankBoard/starMask.png" alt="星等"></span><span id="avgS"><?php echo $avgS ?></span></p>
+                        <p>辣<span id="spicy" class="star " grad="<?php echo $avgH ?>" ><img src="../images/rankBoard/starMask.png" alt="星等"></span><span id="avgH"><?php echo $avgH ?></span></p>
                     </div>
             </div>
         
@@ -322,47 +359,7 @@
             </ul>
         </div>
     </section>
-    <!-- <section id='moreItem'>
-        <div class="title">
-            <h2>推薦商品</h2>
-        </div>
-        <div class="itemList">
-            <div class="item red" >
-                <img class="country" src="../images/blair/jp-no2.png" alt="">
-                <img class="itemImg" src="../images/blair/item3.png" alt="">
-                <h4 class="itemName">[日本]Pure 草莓優格軟糖</h4>
-                <img class="star" src="../images/blair/star.png" alt="star">
-                <p class="price">$80</p>
-                <div class="itemBtns">
-                    <button class="cart">加入購物車</button>
-                    <button class="heart"><i class="far fa-heart"></i></button>
-                </div>
-            </div>
-            <div class="item red" >
-                <img class="country" src="../images/blair/us-no1.png" alt="">
-                <img class="itemImg" src="../images/blair/nuts.png" alt="">
-                <h4 class="itemName">[美國]Tuty BBQ花生粒</h4>
-                <img class="star" src="../images/blair/star.png" alt="star">
-                <p class="price">$90</p>
-                <div class="itemBtns">
-                    <button class="cart">加入購物車</button>
-                    <button class="heart"><i class="far fa-heart"></i></button>
-                </div>
-            </div>
-            <div class="item red">
-                <img class="country" src="../images/blair/de-no3.png" alt="">
-                <img class="itemImg" src="../images/blair/item2.png" alt="">
-                <h4 class="itemName">[德國]Chikito 牛奶巧克力</h4>
-                <img class="star" src="../images/blair/star.png" alt="star">
-                <p class="price">$60</p>
-                <div class="itemBtns">
-                    <button class="cart">加入購物車</button>
-                    <button class="heart"><i class="far fa-heart"></i></button>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </section> -->
+
     <footer>
         <div class="footer_ip">
             <div class="ip_size">
@@ -391,5 +388,5 @@
         </div>
     </footer>
 </body>
-<script src="../js/rankBoard.js"></script>
+<script src="../js/showItem.js"></script>
 </html>

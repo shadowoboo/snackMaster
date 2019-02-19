@@ -56,15 +56,23 @@
                 color: #fff;
                 letter-spacing: 2.8px;
             }
-            #allRank{
+            .notRank{
+                // background-color:rgb(173, 173, 173); 
+                visibility: hidden;
+            }
+            #rank0{
+                background-color:rgb(173, 173, 173); 
+            }
+            #rank1{
                 background-color: #ea5a5a;
             }
-            #catRank{
+            #rank2{
                 background-color: #00b96d;
             }
-            #flaRank{
+            #rank3{
                 background-color: #5cb3ff;
             }
+
         }
 
         #rankGrid{
