@@ -386,9 +386,10 @@ try {
             };
             
             map = new google.maps.Map(map, options);
+            
             var marker = new google.maps.Marker({ 
                 position: xy, 
-                map: map 
+                map: map
             });
             marker.setTitle('目前位置'); 
         }
@@ -429,14 +430,21 @@ try {
                 var lati = as[k].split(',')[0]; 
                 var longi = as[k].split(',')[1]; 
                 var xy = new google.maps.LatLng(lati, longi);
+                //加 icon
+                var image = '../images/nnnnn/masell.png';
                 var marker = new google.maps.Marker({ 
                     position: xy, 
-                    map: map 
+                    map: map,
+                    icon: image
                 });
                 marker.setTitle(title); 
                 markers[i]  = marker;i++ ;           
             }           
         }
+
+        
+
+        
         
     //做點擊事件
         searchIcon[0].addEventListener('click', function(){
