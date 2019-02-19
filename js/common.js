@@ -42,7 +42,7 @@ function doFirst() {
                 dimensions[k].style.color = '';
                 dimensions[k].style.backgroundColor = '';
             }
-            e.target.style.color = '#737374';
+            e.target.style.color = '#076baf';
             e.target.style.backgroundColor = '#fbc84a';
         });
     }

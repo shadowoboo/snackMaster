@@ -96,7 +96,7 @@ try{
         $rank2 = round($row[2]['avg'],1);
         
         $html .= "<div class='LeaderboardNo2'>
-                        <a href='showItem.html'>
+                        <a href='showItem.php?snackNo={$row[1]["snackNo"]}'>
                             <div class='Leaderboarditem No2'>
                                 <div class='LeaderboarCountry'>
                                     <img src='../images/blair/{$row[1]["nation"]}.png' alt='排行國家'>
@@ -107,14 +107,15 @@ try{
                                     <div class='flexMid'>
                                         <p class='score'>{$rank1}<span class='total'>/5</span></p>
                                     </div>
-                                    <div class='commodityStar'><img src='../images/rankBoard/starMask.png' alt='星等'>
+                                    <div class='star' grad={$rank1}>
+                                        <img src='../images/rankBoard/starMask.png' alt='星等'>
                                     </div>
                                 </div>
                             </div>
                         </a>
                   </div>"; 
         $html .= "<div class='LeaderboardNo1'>
-                    <a href='showItem.html'>
+                        <a href='showItem.php?snackNo={$row[0]["snackNo"]}'>
                         <div class='Leaderboarditem No1'>
                             <div class='LeaderboarCountry'>
                                 <img src='../images/blair/{$row[0]["nation"]}.png' alt='排行國家'>
@@ -125,14 +126,15 @@ try{
                                 <div class='flexMid'>
                                     <p class='score'>{$rank0}<span class='total'>/5</span></p>
                                 </div>
-                                <div class='commodityStar'><img src='../images/rankBoard/starMask.png' alt='星等'>
+                                <div class='star' grad={$rank0}>
+                                    <img src='../images/rankBoard/starMask.png' alt='星等'>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>";
         $html .= "<div class='LeaderboardNo3'>
-                    <a href='showItem.html'>
+                    <a href='showItem.php?snackNo={$row[2]["snackNo"]}'>
                         <div class='Leaderboarditem No3'>
                             <div class='LeaderboarCountry'>
                                 <img src='../images/blair/{$row[2]["nation"]}.png' alt='排行國家'>
@@ -143,7 +145,8 @@ try{
                                 <div class='flexMid'>
                                     <p class='score'>{$rank2}<span class='total'>/5</span></p>
                                 </div>
-                                <div class='commodityStar'><img src='../images/rankBoard/starMask.png' alt='星等'>
+                                <div class='star' grad={$rank2}>
+                                    <img src='../images/rankBoard/starMask.png' alt='星等'>
                                 </div>
                             </div>
                         </div>
