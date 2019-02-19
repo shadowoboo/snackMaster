@@ -374,7 +374,7 @@ body{
                 cursor: move;
                 &.select{
                     //border會佔面積，不太方便
-                    outline:#e26565 dashed 10px;
+                    outline:#e26565 dashed 5px;
                     transition: 0.3s;
                 }
             }
@@ -1294,6 +1294,7 @@ $cardY:600px;
         // }
       }
 }
+
 
 @media screen and (max-width:768px){
 .step-content {
