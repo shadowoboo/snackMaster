@@ -6,6 +6,36 @@
     require("CartProdAdd_ENG.php");
     
 
+    //撈出優惠卷
+    function getCoupon(){
+        if(isset($_SESSION["memId"])){
+            require_once("connectcd105g2.php");
+            $errMsg = "";
+            try {
+                //撈出 本登入會員 尚未使用 的優惠卷夾，依照到期日排列(先到期的排上面)
+                $sql = "SELECT * FROM `coupon` JOIN couponbox ON coupon.coupNo = couponbox.coupNo WHERE memNo = ? and cUse=1 ORDER BY endDate";
+                $coupon = $pdo->prepare( $sql ); //先編譯好
+                $coupon->bindValue(1, $_SESSION["memId"]);
+                $coupon->execute();//執行之
+            } catch (PDOException $e) {
+                $errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
+                $errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";
+            }
+            if($errMsg != ""){
+                exit("<div><center>$errMg</center></div>");
+            }elseif( $coupon->rowCount() == 0 ){
+                // echo "none";
+            }else{
+                $couponRow = $coupon->fetchAll(PDO::FETCH_ASSOC);
+                return $couponRow;
+            }
+        }else{
+
+        }
+    }
+    
+    
+
     // //檢查有沒有商品在session
     // if(isset($_SESSION["snackNo"])){
     //     //檢查商品種類
@@ -14,7 +44,8 @@
     //     if(in_array("y",$_SESSION["cusType"])){
     //         //產生客製箱表格
             
-    //     }else{//若不是客製箱
+    //     }
+    //     if{//若不是客製箱
     //         //若是預購箱
     //         // if()
 
@@ -189,13 +220,15 @@
                 <a href="shopping.html"><button class="subscribe">繼續選GO</button></a>
             </div>
 <?php
-// if(isset($_SESSION["snackNo"])){
-
-// }
+//檢查有沒有商品在session
+if(isset($_SESSION["snackName"])){
 ?>
             <div class="cartContent cartContent_prod">
-
                 <div class="prodCards" id="prodCards">
+<?php
+    //如果有客製箱
+    if(in_array("y",$_SESSION["cusType"])){
+?>
                     <div class="prodCard prodCard_Group">
                         <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusBox">
                             <div class="prodImg">
@@ -317,11 +350,16 @@
                             </div>
                         </div>
                     </div>
-
 <?php
+    
+    }
+?>
+<?php
+    //如果有非客製的商品
+    if(in_array("n",$_SESSION["cusType"])||in_array("p",$_SESSION["cusType"])){
     //單品。非客製(且非預購?)
-    foreach ($_SESSION["cusType"] as $snackNo => $cusType) {
-        if($cusType=="n" || $cusType=="p"){
+        foreach ($_SESSION["cusType"] as $snackNo => $cusType) {
+            if($cusType=="n" || $cusType=="p"){
 ?>
                     <div class="prodCard prodCard_normal">
                         <input type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
@@ -353,12 +391,22 @@
                         </div>
                     </div>
 <?php
-        }
+            }
+        }       
     }
 ?>
-                </div>
+        </div>
+    </div>
+<?php
+}
+?>
 
-            </div>
+
+<?php /////////////////////////// ?>
+
+
+
+
             <div class="cartContent cartFormZone " id="cartFormZone">
                 <form id="cartForm">
                     <label for="getterName" class="cartFormCard">
@@ -406,9 +454,9 @@
                             <p>優惠劵: </p>
                             <form action="" method="post" id="couponList">
                                 <select name="couponItem" id="couponItem">
-                                    <option value="300">300</option>
+                                    <!-- <option value="300">300</option>
                                     <option value="50">500</option>
-                                    <option value="100">100</option>
+                                    <option value="100">100</option> -->
                                 </select>
                             </form>
                         </label>

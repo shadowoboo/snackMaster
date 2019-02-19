@@ -16,6 +16,9 @@ $(function () {
     //客製箱的總計初始化
     priceTotalCus();
 
+    //優惠卷初始化
+    getCoupon();
+
     //刪除按鈕們控制
     //刪除客製箱
     $(".cusBtnDel").bind("click",function(e){
@@ -169,6 +172,30 @@ $(function () {
         var snackPrice = e.target.dataset.snackprice;
         var priceSum = snackPrice * snackQty;
         $(e.target).closest(".cardCtrl").children(".prodPriceSum").children("p").children(".priceSum").text(priceSum);
+    }
+    //優惠卷初始化
+    function getCoupon(){
+        console.log("coupon gogo");
+        
+        $.ajax({
+            type: "post",
+            url: "getCoupon.php",
+            success: function (response) {
+                if(response="error"){
+                    $("#couponItem").html("\<option value=\"未登入\"\>未登入\<\/option\>");
+                    console.log(`response="error"`);
+                    
+                }else if(response=="none"){
+                    $("#couponItem").html("<option value=\"\"> </option>");
+                    console.log(`response="none"`);
+
+                }else{
+                    $("#couponItem").html(response);
+                    console.log(`response="ok"`);
+
+                }
+            }
+        });
     }
 })
 
