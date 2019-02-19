@@ -180,7 +180,7 @@ try {
                                             
                                         <img id="cusImg" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
-                                        <div class="surface surface_top_inner">
+                                        <div class="surface surface_top_inner" id="cover_in_15">
                                         </div>
                                         <div class="surface surface_down"></div>
                                         <div class="surface surface_back"></div>
@@ -443,7 +443,7 @@ try {
                                     <li class="good">餅乾</li>
                                     <li class="good">糖果</li>
                                 </ul>                    
-                                <div class="good-content">
+                    <div class="good-content">
                         <?php
                             for($i=30; $i<37; $i++){
                         ?>
@@ -569,8 +569,9 @@ try {
                 </div>
                 </div>
       </div>
-      <script>
 
+      
+      <script>
         $(document).ready(function(){
             $(".sendSnack").bind("click",sendSnack);
             
@@ -1241,6 +1242,30 @@ var section15 = document.querySelector("#section_15");
          }
 
 
+//     function $id(id){
+//   return document.getElementById(id);
+// }
+
+// cusPic=document.getElementsByClassName("cusPic");
+
+// for(var i = 0;i<cusPic.length;i++){
+//  document.getElementsByClassName("cusPic")[i].addEventListener("click",putPic)
+// }
+
+// function addSpot(){
+    
+//     for(var i = 0;i<7;i++){
+// 	var itm=document.getElementsByClassName("pic")[i];}
+// var cln=itm.cloneNode(true);
+// document.getElementById("cover_out_15").appendChild(cln);
+
+// }
+
+
+
+// window.addEventListener("load", function(){
+// 	$id("dd").onclick = addSpot;
+// },false )
 
 
         const boxBases = document.querySelectorAll(".boxBase");
