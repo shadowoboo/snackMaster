@@ -84,7 +84,7 @@
                     <div class="selectbar">
                         <select name="country" id="country">
                             <option value="0">國家</option>
-                            <option value='巴西'>巴西</option>
+                            <option value="巴西">巴西</option>
                             <option value="日本">日本</option>
                             <option value="美國">美國</option>
                             <option value="英國">英國</option>

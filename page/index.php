@@ -1,15 +1,17 @@
 <?php
 	//判斷有無例外，沒有例外則執行try，有例外則執行catch
 	try{
-		require_once("connectBooksRick.php");
+        require_once("connectcd105g2.php");
+        // var_dump($snackRows);exit();
 	}catch(PDOException $e){
 		echo "失敗,原因:",$e -> getMessage();
-		echo "行號:",$e -> getLine();
+        echo "行號:",$e -> getLine();
+        // exit( );
 	}
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -21,9 +23,11 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
     <script src="../js/Chart.js"></script>
-    <script src="../js/sale.js"></script>
+    <!-- <script src="../js/sale.js"></script> -->
     <script src="../js/index.js"></script>
     <script src="../js/common.js"></script>
+    <script src="../js/findingIp.js"></script>
+    <script src="../js/search.js"></script>
     <link rel="stylesheet" href="../css/boxModel.css">
     <link rel="stylesheet" href="../css/sale.css">
     <link rel="stylesheet" href="../css/index.css">
@@ -54,7 +58,7 @@
                         </div>
                         <!----    在手機上打開此logo;桌機上關掉此logo------ -->
                         <div class="logo">
-                            <a href="index.html"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
+                            <a href="index.php"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
 
                         </div>
                         <div id="list_appear">
@@ -86,7 +90,7 @@
                 <div class="seachRegion" id="search_appear">
                     <div class="search">
                         <img src="../images/blair/pocky.png" alt="">
-                        <div class="selectbar">
+                        <!-- <div class="selectbar">
                             <select name="country" id="country">
                                 <option value="">國家</option>
                                 <option value="">英國</option>
@@ -107,7 +111,7 @@
                                 <option value="">甜</option>
                                 <option value="">辣</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="inputbar">
                             <input type="text" placeholder="想找什麼零食呢？">
                             <i class="fas fa-search"></i>
@@ -119,7 +123,38 @@
                 </div>
         </header>
 
+        
         <div class="searchBar">
+            <img src="../images/blair/pocky.png" alt="搜尋圖">
+            <select name="country" id="country">
+                <option value="0">國家</option>
+                <option value='巴西'>巴西</option>
+                <option value="日本">日本</option>
+                <option value="美國">美國</option>
+                <option value="英國">英國</option>
+                <option value="埃及">埃及</option>
+                <option value="德國">德國</option>
+                <option value="澳洲">澳洲</option>
+                <option value="韓國">韓國</option>
+            </select>
+            <select name="kind" id="kind">
+                <option value="0">種類</option>
+                <option value="巧克力">巧克力</option>
+                <option value="糖果">糖果</option>
+                <option value="餅乾">餅乾</option>
+                <option value="洋芋片">洋芋片</option>
+            </select>
+            <select name="flavor" id="flavor">
+                <option value="0">口味</option>
+                <option value="sour">酸</option>
+                <option value="sweet">甜</option>
+                <option value="spicy">辣</option>
+            </select>
+            <input type="text" id="searchName" placeholder="想找什麼零食呢？">
+            <i class="fas fa-search" id="searchClick"></i>
+        </div>
+
+        <!-- <div class="searchBar">
             <img src="../images/blair/pocky.png" alt="搜尋圖">
             <select name="country" id="country">
                 <option value="">國家</option>
@@ -143,37 +178,36 @@
             </select>
             <input type="text" placeholder="想找什麼零食呢？">
             <i class="fas fa-search"></i>
-        </div>
+        </div> -->
 
-        <?php 
-            $country=array("美國","德國","巴西","英國","埃及","韓國","日本","澳洲");
-            // arr_country: 美國,美國,德國,巴西,英國,埃及,韓國,日本,澳洲
-            $ln=count($country);
-            $arr_row=array();
-
-            $i=0;
-            // echo $ln; 
-            for($i=0; $i<$ln; $i++){
-                $sql = "select nation,snackName,snackWord,snackPic,snackPrice,MAX(snackNo) from snack where nation= ?";
-                $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
-                // $aa=$country[$i];
-                // echo $country[$i]; 
-                $prodRow -> bindValue(1, $country[$i]);
-
-                // echo $country[$i]; exit();
-                // echo print_r($country); exit();
-
-                $prodRow -> execute(); 
-                $row = $prodRow->fetch(); //需求送出去，資料抓回來，阿凱發大財
-                array_push($arr_row,$row);
-                // print_r($arr_row);
-                // print_r($row);
-
-            }
-            
-        ?>
+        
 
         <section class="worldMap">
+            <?php 
+                $country=array("美國","德國","巴西","英國","埃及","韓國","日本","澳洲");
+                // arr_country: 美國,美國,德國,巴西,英國,埃及,韓國,日本,澳洲
+                $ln=count($country);
+                $arr_row=array();
+
+                $i=0;
+                // echo $ln; 
+                for($i=0; $i<$ln; $i++){
+                    $sql = "select MAX(snackNo),snackNo,nation,snackName,snackWord,snackPic,snackPrice from snack WHERE nation= ? group by snackNo ORDER by MAX(snackNo) DESC limit 1";
+                    $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
+                    // $aa=$country[$i];
+                    // echo $country[$i]; 
+                    $prodRow -> bindValue(1, $country[$i]);
+
+                    // echo $country[$i]; exit();
+                    // echo print_r($country); exit();
+
+                    $prodRow -> execute(); 
+                    $row = $prodRow->fetch(); //需求送出去，資料抓回來，阿凱發大財
+                    array_push($arr_row,$row);
+                    // print_r($arr_row);
+                    // print_r($row);
+                } 
+            ?>
             <div class="mapCount">
                 <div class="countryMap">
                     <img src="../images/index/map1.svg" id="testMap">
@@ -192,14 +226,13 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>川普最愛</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[0]["nation"];?>] <?php echo $arr_row[0]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[0]["nation"];?>] <?php echo $arr_row[0]["snackName"];?></h3>
                                 <p><?php echo $arr_row[0]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -210,7 +243,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[0]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -225,14 +258,13 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>德國人氣No.1</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[1]["nation"];?>] <?php echo $arr_row[1]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[1]["nation"];?>] <?php echo $arr_row[1]["snackName"];?></h3>
                                 <p><?php echo $arr_row[1]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -243,7 +275,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[1]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -257,14 +289,13 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>南美平民零時榜冠軍</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[2]["nation"];?>] <?php echo $arr_row[2]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[2]["nation"];?>] <?php echo $arr_row[2]["snackName"];?></h3>
                                 <p><?php echo $arr_row[2]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -275,7 +306,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[2]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -289,14 +320,13 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>英國皇室招待品</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[3]["nation"];?>] <?php echo $arr_row[3]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[3]["nation"];?>] <?php echo $arr_row[3]["snackName"];?></h3>
                                 <p><?php echo $arr_row[3]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -307,7 +337,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[3]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -321,14 +351,13 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>觀光客最愛伴手禮</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[4]["nation"];?>] <?php echo $arr_row[4]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[4]["nation"];?>] <?php echo $arr_row[4]["snackName"];?></h3>
                                 <p><?php echo $arr_row[4]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -339,7 +368,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[4]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -353,14 +382,13 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>歐爸推薦商品</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[5]["nation"];?>] <?php echo $arr_row[5]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[5]["nation"];?>] <?php echo $arr_row[5]["snackName"];?></h3>
                                 <p><?php echo $arr_row[5]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -371,7 +399,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[5]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -385,14 +413,13 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>全國零食榜發燒商品</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[6]["nation"];?>] <?php echo $arr_row[6]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[6]["nation"];?>] <?php echo $arr_row[6]["snackName"];?></h3>
                                 <p><?php echo $arr_row[6]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -403,7 +430,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[6]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -417,14 +444,13 @@
                                 </div>
                                 <div class="countryInfoStar">
                                     <ul>
-                                        <li>共348次評價</li>
-                                        <li>4.9/5</li>
-                                        <li><img src="../images/index/star.png" alt="評價星等"></li>
+                                        <li>新品上市！</li>
+                                        <li>賣場秒殺零食</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[<?php echo $arr_row[7]["nation"];?>] <?php echo $arr_row[7]["snackName"];?></h2>
+                                <h3>[<?php echo $arr_row[7]["nation"];?>] <?php echo $arr_row[7]["snackName"];?></h3>
                                 <p><?php echo $arr_row[7]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
@@ -435,7 +461,7 @@
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[7]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -502,200 +528,200 @@
                         <div class="countryInfoSm">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[0]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoTitle">
                                     <h3>新品上市！</h3>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料。</p>
+                                <h4>[<?php echo $arr_row[0]["nation"];?>] <?php echo $arr_row[0]["snackName"];?></h4>
+                                <p><?php echo $arr_row[0]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>$45</h3>
+                                    <h3>$<?php echo $arr_row[0]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[0]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
                         <div class="countryInfoSm">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[1]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoTitle">
                                     <h3>新品上市！</h3>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料。</p>
+                                <h4>[<?php echo $arr_row[1]["nation"];?>] <?php echo $arr_row[1]["snackName"];?></h4>
+                                <p><?php echo $arr_row[1]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>$45</h3>
+                                    <h3>$<?php echo $arr_row[1]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[1]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
                         <div class="countryInfoSm">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[2]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoTitle">
                                     <h3>新品上市！</h3>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料。</p>
+                                <h4>[<?php echo $arr_row[2]["nation"];?>] <?php echo $arr_row[2]["snackName"];?></h4>
+                                <p><?php echo $arr_row[2]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>$45</h3>
+                                    <h3>$<?php echo $arr_row[2]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[2]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
                         <div class="countryInfoSm">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[3]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoTitle">
                                     <h3>新品上市！</h3>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料。</p>
+                                <h4>[<?php echo $arr_row[3]["nation"];?>] <?php echo $arr_row[3]["snackName"];?></h4>
+                                <p><?php echo $arr_row[3]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>$45</h3>
+                                    <h3>$<?php echo $arr_row[3]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[3]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
                         <div class="countryInfoSm">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[4]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoTitle">
                                     <h3>新品上市！</h3>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料。</p>
+                                <h4>[<?php echo $arr_row[4]["nation"];?>] <?php echo $arr_row[4]["snackName"];?></h4>
+                                <p><?php echo $arr_row[4]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>$45</h3>
+                                    <h3>$<?php echo $arr_row[4]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[4]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
                         <div class="countryInfoSm">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[5]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoTitle">
                                     <h3>新品上市！</h3>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料。</p>
+                                <h4>[<?php echo $arr_row[5]["nation"];?>] <?php echo $arr_row[5]["snackName"];?></h4>
+                                <p><?php echo $arr_row[5]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>$45</h3>
+                                    <h3>$<?php echo $arr_row[5]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[5]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
                         <div class="countryInfoSm">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[6]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoTitle">
                                     <h3>新品上市！</h3>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料。</p>
+                                <h4>[<?php echo $arr_row[6]["nation"];?>] <?php echo $arr_row[6]["snackName"];?></h4>
+                                <p><?php echo $arr_row[6]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>$45</h3>
+                                    <h3>$<?php echo $arr_row[6]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[6]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
                         <div class="countryInfoSm">
                             <div class="countryInfoHeader">
                                 <div class="countryInfoImg">
-                                    <img src="../images/index/gold.png">
+                                    <img src="<?php echo $arr_row[7]["snackPic"];?>">
                                 </div>
                                 <div class="countryInfoTitle">
                                     <h3>新品上市！</h3>
                                 </div>
                             </div>
                             <div class="countryInfosection">
-                                <h2>[日本] UHA味覺糖甘藷片</h2>
-                                <p>UHA味覺糖推出的蕃薯片系列，採用鹿耳島黃金千貫品種的白皮地瓜製作，經常當作日本燒烤的主要原料。</p>
+                                <h4>[<?php echo $arr_row[7]["nation"];?>] <?php echo $arr_row[7]["snackName"];?></h4>
+                                <p><?php echo $arr_row[7]["snackWord"];?></p>
                             </div>
                             <div class="countryInfofooter">
                                 <div class="countryInfoPrice">
-                                    <h3>$45</h3>
+                                    <h3>$<?php echo $arr_row[7]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
                                     <button class="cart">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
-                                    <button class="heart"><i class="far fa-heart"></i></button>
+                                    <button class="heart" id="<?php echo $arr_row[7]['snackNo'];?>"><i class="far fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -716,38 +742,44 @@
                     <span id='second'></span>
                 </div>
             </div>
+            <?php
+                require_once("connectBooksRick.php");
+                $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo";
+                $sales = $pdo->query( $sql );
+                $salesRow = $sales->fetchAll();
+            ?>
             <div class="item fade" id="3.7|1|5|2">
                 <!-- <a href="showItem.html"></a> -->
-                <img class="country" src="../images/blair/jp-no2.png" alt="">
-                <img class="itemImg" src="../images/blair/item2.png" alt="">
-                <h4 class="itemName">[英國]Chikito 牛奶巧克力</h4>
-                <p class="price">$80</p>
+                <img class="country" src="../images/blair/<?php echo $salesRow[0]['nation']?>.png" alt="國家圖">
+                <img class="itemImg" src="<?php echo $salesRow[0]['snackPic']?>" alt="商品圖">
+                <h4 class="itemName">[<?php echo $salesRow[0]['nation']?>]<?php echo $salesRow[0]['snackName']?></h4>
+                <p class="price">$<?php echo $salesRow[0]['salePrice']?></p>
                 <div class="itemBtns">
                     <button class="cart">加入購物車</button>
                 </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">5</span>&nbsp;件</p>
+                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[0]['quantity']?></span>&nbsp;件</p>
             </div>
             <div class="item fade" id="3.7|1|5|2">
                 <!-- <a href="showItem.html"></a> -->
-                <img class="country" src="../images/blair/de-no3.png" alt="">
-                <img class="itemImg" src="../images/blair/candy2.png" alt="">
-                <h4 class="itemName">[德國]Trolli 彩虹蟲蟲軟糖</h4>
-                <p class="price">$80</p>
+                <img class="country" src="../images/blair/<?php echo $salesRow[1]['nation']?>.png" alt="">
+                <img class="itemImg" src="<?php echo $salesRow[1]['snackPic']?>" alt="">
+                <h4 class="itemName">[<?php echo $salesRow[1]['nation']?>]<?php echo $salesRow[1]['snackName']?></h4>
+                <p class="price">$<?php echo $salesRow[1]['salePrice']?></p>
                 <div class="itemBtns">
                     <button class="cart">加入購物車</button>
                 </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">1</span>&nbsp;件</p>
+                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[1]['quantity']?></span>&nbsp;件</p>
             </div>
             <div class="item fade" id="3.7|1|5|2">
                 <!-- <a href="showItem.html"></a> -->
-                <img class="country" src="../images/blair/us-no1.png" alt="">
-                <img class="itemImg" src="../images/blair/nuts.png" alt="">
-                <h4 class="itemName">[美國]Tuty BBQ花生粒</h4>
-                <p class="price">$80</p>
+                <img class="country" src="../images/blair/<?php echo $salesRow[2]['nation']?>.png" alt="">
+                <img class="itemImg" src="<?php echo $salesRow[2]['snackPic']?>" alt="">
+                <h4 class="itemName">[<?php echo $salesRow[2]['nation']?>]<?php echo $salesRow[2]['snackName']?></h4>
+                <p class="price">$<?php echo $salesRow[2]['salePrice']?></p>
                 <div class="itemBtns">
                     <button class="cart">加入購物車</button>
                 </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty">4</span>&nbsp;件</p>
+                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[2]['quantity']?></span>&nbsp;件</p>
             </div>
             <a id="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a id="next" onclick="plusSlides(1)">&#10095;</a>
@@ -755,117 +787,125 @@
 
 
         <section class="section_12" id="section_12">
-            <div class="camera">
-                <div class="box boxBase" id="box_12">
-                    <div class="surface surface_top" id="cover_out_12"></div>
-                    <div class="surface surface_top_inner" id="cover_in_12"></div>
-                    <!-- <div class="surface surface_down">下</div> -->
-                    <div class="surface surface_down_left" id="cover_dl_12"></div>
-                    <div class="surface surface_down_right" id="cover_dr_12"></div>
-                    <div class="surface surface_back"></div>
-                    <div class="surface surface_font"></div>
-                    <div class="surface surface_left"></div>
-                    <div class="surface surface_right"></div>
-                </div>
-            </div>
-            <div class="LeaderboardTitle">
-                <h2>零食排行榜</h2>
-                <canvas id="celebration"></canvas>
-            </div>
-            <div class="LeaderboardCount">
-                <div class="lbReel">
-                    <div class="LeaderboardNo2">
-                        <a href="showItem.html">
-                            <div class="Leaderboarditem No2">
-                                <div class="LeaderboarCountry">
-                                    <img src="../images/index/jp-no2.png" alt="排行國家">
-                                </div>
-                                <div class="commodity">
-                                    <img src="../images/index/co2.png" alt="產品圖">
-                                    <h4 class="commodityTitle">[日本]POCKY巧克力棒</h4>
-                                    <div class="flexMid">
-                                        <p class="score">4.8<span class="total">/5</span></p>
-                                    </div>
-                                    <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="LeaderboardNo1">
-                        <a href="showItem.html">
-                            <div class="Leaderboarditem No1">
-                                <div class="LeaderboarCountry">
-                                    <img src="../images/index/us-no1.png" alt="排行國家">
-                                </div>
-                                <div class="commodity">
-                                    <img src="../images/index/co1.png" alt="產品圖">
-                                    <h4 class="commodityTitle">[美國]湖！洋芋片</h4>
-                                    <div class="flexMid">
-                                        <p class="score">4.8<span class="total">/5</span></p>
-                                    </div>
-                                    <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="LeaderboardNo3">
-                        <a href="showItem.html">
-                            <div class="Leaderboarditem No3">
-                                <div class="LeaderboarCountry">
-                                    <img src="../images/index/de-no3.png" alt="排行國家">
-                                </div>
-                                <div class="commodity">
-                                    <img src="../images/index/co3.png" alt="產品圖">
-                                    <h4 class="commodityTitle">[德國]Pure水果軟糖</h4>
-                                    <div class="flexMid">
-                                        <p class="score">4.8<span class="total">/5</span></p>
-                                    </div>
-                                    <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+            <?php
+                $sql = "select * from snack order by goodStars desc limit 3";
+                $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
+                // $prodRow -> bindValue(':snackGenre', 0 );
+                $prodRow -> execute(); 
+                while($row = $prodRow->fetchAll()){ //需求送出去，資料抓回來，阿凱發大財                            
+            ?>
+                <div class="camera">
+                    <div class="box boxBase" id="box_12">
+                        <div class="surface surface_top" id="cover_out_12"></div>
+                        <div class="surface surface_top_inner" id="cover_in_12"></div>
+                        <!-- <div class="surface surface_down">下</div> -->
+                        <div class="surface surface_down_left" id="cover_dl_12"></div>
+                        <div class="surface surface_down_right" id="cover_dr_12"></div>
+                        <div class="surface surface_back"></div>
+                        <div class="surface surface_font"></div>
+                        <div class="surface surface_left"></div>
+                        <div class="surface surface_right"></div>
                     </div>
                 </div>
-            </div>
-            <div class="LeaderboardIcon">
-                <div class="lbIconImg">
-                    <img src="../images/index/candy-1.png" alt="糖果背景圖">
+                <div class="LeaderboardTitle">
+                    <h2>零食排行榜</h2>
+                    <canvas id="celebration"></canvas>
                 </div>
-                <div class="lbIconImg">
-                    <img src="../images/index/candy-2.png" alt="糖果背景圖">
+                <div class="LeaderboardCount">
+                    <div id="lbReel">
+                        <div class="LeaderboardNo2">
+                            <a href="showItem.html">
+                                <div class="Leaderboarditem No2">
+                                    <div class="LeaderboarCountry">
+                                        <img src="../images/blair/<?php echo $row[1]["nation"];?>.png" alt="排行國家">
+                                    </div>
+                                    <div class="commodity">
+                                        <img src="<?php echo $row[1]["snackPic"];?>" alt="產品圖">
+                                        <h4 class="commodityTitle">[<?php echo $row[1]["nation"];?>]<?php echo $row[1]["snackName"];?></h4>
+                                        <div class="flexMid">
+                                            <p class="score"><?php echo round($row[1]["goodStars"] / $row[1]["goodTimes"],1);?><span class="total">/5</span></p>
+                                        </div>
+                                        <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="LeaderboardNo1">
+                            <a href="showItem.html">
+                                <div class="Leaderboarditem No1">
+                                    <div class="LeaderboarCountry">
+                                        <img src="../images/blair/<?php echo $row[0]["nation"];?>.png" alt="排行國家">
+                                    </div>
+                                    <div class="commodity">
+                                        <img src="<?php echo $row[0]["snackPic"];?>" alt="產品圖">
+                                        <h4 class="commodityTitle">[<?php echo $row[0]["nation"];?>]<?php echo $row[0]["snackName"];?></h4>
+                                        <div class="flexMid">
+                                            <p class="score"><?php echo round( $row[0]["goodStars"] / $row[0]["goodTimes"],1);?><span class="total">/5</span></p>
+                                        </div>
+                                        <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="LeaderboardNo3">
+                            <a href="showItem.html">
+                                <div class="Leaderboarditem No3">
+                                    <div class="LeaderboarCountry">
+                                        <img src="../images/blair/<?php echo $row[2]["nation"];?>.png" alt="排行國家">
+                                    </div>
+                                    <div class="commodity">
+                                        <img src="<?php echo $row[2]["snackPic"];?>" alt="產品圖">
+                                        <h4 class="commodityTitle">[<?php echo $row[2]["nation"];?>]<?php echo $row[2]["snackName"];?></h4>
+                                        <div class="flexMid">
+                                            <p class="score"><?php echo round($row[2]["goodStars"] / $row[2]["goodTimes"],1);?><span class="total">/5</span></p>
+                                        </div>
+                                        <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="lbIconImg">
-                    <img src="../images/index/candy-3.png" alt="糖果背景圖">
+                <div class="LeaderboardIcon">
+                    <div class="lbIconImg">
+                        <img src="../images/index/candy-1.png" alt="糖果背景圖">
+                    </div>
+                    <div class="lbIconImg">
+                        <img src="../images/index/candy-2.png" alt="糖果背景圖">
+                    </div>
+                    <div class="lbIconImg">
+                        <img src="../images/index/candy-3.png" alt="糖果背景圖">
+                    </div>
+                    <div class="lbIconImg">
+                        <img src="../images/index/candy-4.png" alt="糖果背景圖">
+                    </div>
+                    <div class="lbIconImg">
+                        <img src="../images/index/candy-5.png" alt="糖果背景圖">
+                    </div>
+                    <div class="lbIconImg">
+                        <img src="../images/index/candy-6.png" alt="糖果背景圖">
+                    </div>
+                    <div class="lbIconImg">
+                        <img src="../images/index/candy-7.png" alt="糖果背景圖">
+                    </div>
+                    <div class="lbIconImg">
+                        <img src="../images/index/candy-8.png" alt="糖果背景圖">
+                    </div>
+                    <div class="lbIconImg">
+                        <img src="../images/index/candy-9.png" alt="糖果背景圖">
+                    </div>
                 </div>
-                <div class="lbIconImg">
-                    <img src="../images/index/candy-4.png" alt="糖果背景圖">
+                <div class="LeaderboardSort">
+                    <button class="category">綜合</button>
+                    <button class="category">餅乾</button>
+                    <button class="category">糖果</button>
+                    <button class="category">洋芋片</button>
+                    <button class="category">巧克力</button>
                 </div>
-                <div class="lbIconImg">
-                    <img src="../images/index/candy-5.png" alt="糖果背景圖">
-                </div>
-                <div class="lbIconImg">
-                    <img src="../images/index/candy-6.png" alt="糖果背景圖">
-                </div>
-                <div class="lbIconImg">
-                    <img src="../images/index/candy-7.png" alt="糖果背景圖">
-                </div>
-                <div class="lbIconImg">
-                    <img src="../images/index/candy-8.png" alt="糖果背景圖">
-                </div>
-                <div class="lbIconImg">
-                    <img src="../images/index/candy-9.png" alt="糖果背景圖">
-                </div>
-            </div>
-            <div class="LeaderboardSort">
-                <button class="category">綜合</button>
-                <button class="category">餅乾</button>
-                <button class="category">糖果</button>
-                <button class="category">洋芋片</button>
-                <button class="category">巧克力</button>
-            </div>
+            <?php };?>
         </section>
         <!-- <div id="ctrl_bar">
             <div class="btn btn_front" id="btn_front">前</div>
@@ -1010,26 +1050,35 @@
                                     <div class="surface surface_right"></div>
                                 </div>
                             </div>
-                            <div id="snacksRun">
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/item1.png" alt="零食">
+                            
+                            <?php
+                                $sql = "SELECT snackPic FROM `snack` WHERE boxDate = '2019-01-01'";
+                                $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
+                                // $prodRow -> bindValue(':snackGenre', 0 );
+                                $prodRow -> execute(); 
+                                while($row = $prodRow->fetchAll()){ //需求送出去，資料抓回來，阿凱發大財                            
+                            ?>
+                                <div id="snacksRun">
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[0]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[1]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[2]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[3]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[4]["snackPic"];?>" alt="零食">
+                                    </div>
+                                    <div class="snacksRunImg">
+                                        <img src="<?php echo $row[5]["snackPic"];?>" alt="零食">
+                                    </div>
                                 </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/item9.jpg" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/item3.png" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/item4.jpg" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/item5.jpg" alt="零食">
-                                </div>
-                                <div class="snacksRunImg">
-                                    <img src="../images/blair/item6.jpg" alt="零食">
-                                </div>
-                            </div>
+                            <?php };?>
                         </section>
                     </div>
                 </div>
@@ -1104,10 +1153,10 @@
             </div>
         </section>
 
-        <div class="gameBox">
+        <!-- <div class="gameBox">
             <img src="../images/index/gameImgL.png" alt="遊戲圖">
             <p>玩小遊戲可獲得<br>折價優惠券哦！</p>
-        </div>
+        </div> -->
         <div id="game" class="gameScratch">
             <img src="../images/index/gameImgR.png" alt="遊戲圖">
             <p>限時刮刮樂<br>刮出優惠券！</p>
@@ -1499,13 +1548,13 @@
                         roulette.style.transform = 'rotate(-90deg)';
                         break;
                     case 'green':
-                        roulette.style.transform = 'rotate(-135deg)';
+                        roulette.style.transform = 'rotate(225deg)';
                         break;
                     case 'blue':
-                        roulette.style.transform = 'rotate(-180deg)';
+                        roulette.style.transform = 'rotate(180deg)';
                         break;
                     case 'indigo':
-                        roulette.style.transform = 'rotate(-225deg)';
+                        roulette.style.transform = 'rotate(135deg)';
                         break;
                     case 'violet':
                         roulette.style.transform = 'rotate(90deg)';
@@ -1581,13 +1630,159 @@
         function initMap() {
             // 下面的代碼構造了一個新的Google地圖對象，並向地圖添加了屬性，包括中心和縮放級別。
 
+            var directionsService = new google.maps.DirectionsService();
+            var directionsDisplay = new google.maps.DirectionsRenderer();
             // 位置
+            var loc = [
+                // {label:'A',lat:24.9650192,lng:121.1909533},
+                {label:'B',lat:24.959982,lng:121.215134},
+                {label:'C',lat:24.958616,lng:121.298447},
+                {label:'D',lat:24.990711,lng:121.232857}
+            ];
             var uluru = { lat: 24.9650192, lng: 121.1909533 };
             // The map, centered at Uluru地圖以烏魯魯為中心
             var map = new google.maps.Map(
-                document.getElementById('map'), { zoom: 12, center: uluru });
+                document.getElementById('map'), {
+                    zoom: 12,
+                    center: uluru,
+                    styles:[
+                        {
+                            "featureType": "water",
+                            "stylers": [
+                                {
+                                    "visibility": "on"
+                                },
+                                {
+                                    "color": "#b5cbe4"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "landscape",
+                            "stylers": [
+                                {
+                                    "color": "#efefef"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road.highway",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#83a5b0"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road.arterial",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#bdcdd3"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road.local",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#ffffff"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "poi.park",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "color": "#e3eed3"
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "administrative",
+                            "stylers": [
+                                {
+                                    "visibility": "on"
+                                },
+                                {
+                                    "lightness": 33
+                                }
+                            ]
+                        },
+                        {
+                            "featureType": "road"
+                        },
+                        {
+                            "featureType": "poi.park",
+                            "elementType": "labels",
+                            "stylers": [
+                                {
+                                    "visibility": "on"
+                                },
+                                {
+                                    "lightness": 20
+                                }
+                            ]
+                        },
+                        {},
+                        {
+                            "featureType": "road",
+                            "stylers": [
+                                {
+                                    "lightness": 20
+                                }
+                            ]
+                        }
+                    ]
+                });
             // The marker, positioned at Uluru標記，位於烏魯魯。下面的代碼在地圖上放置一個標記。
-            var marker = new google.maps.Marker({ position: uluru, map: map });
+
+            var img =[
+                {url:'../images/index/vending-1.png',
+                scaledSize: new google.maps.Size(30,45)},
+                {url:'../images/index/vending-2.png',
+                scaledSize: new google.maps.Size(30,45)},
+                {url:'../images/index/vending-3.png',
+                scaledSize: new google.maps.Size(30,45)},
+            ];
+            var marker = new google.maps.Marker({ position: uluru, map: map});
+            for (var i = 0; i < loc.length; i++) {
+                marker= new google.maps.Marker({
+                    position: {
+                    lat: loc[i].lat,
+                    lng: loc[i].lng
+                    },
+                    map: map,
+                    icon:img[i]
+                });
+            }
+            $('.vmImg img').click(function(){
+                var vm = $('.vmImg img').index(this);
+                var loc = [
+                    // {label:'A',lat:24.9650192,lng:121.1909533},
+                    {label:'B',lat:24.959982,lng:121.215134},
+                    {label:'C',lat:24.958616,lng:121.298447},
+                    {label:'D',lat:24.990711,lng:121.232857}
+                ];
+                    directionsDisplay.setMap(map);
+                    var request = {
+                        origin: uluru,
+                        destination: { lat: loc[vm].lat, lng: loc[vm].lng },
+                        travelMode: 'DRIVING'
+                    };
+                    directionsService.route(request, function (result, status) {
+                        if (status == 'OK') {
+                            // 回傳路線上每個步驟的細節
+                            console.log(result.routes[0].legs[0].steps);
+                            directionsDisplay.setDirections(result);
+                        } else {
+                            console.log(status);
+                        }
+                    });
+            })
         }
     </script>
 
@@ -1662,16 +1857,104 @@
 
             $('.LeaderboardCount').css({
                 'transform': 'translateY(0) scale(0)',
-                'transition': '0.5s',
+                'transition': '0.3s',
 
             })
             setTimeout(() => {
                 $('.LeaderboardCount').css({
                     'transform': 'translateY(0) scale(1)',
-                    'transition': '0.5s cubic-bezier(.24,.42,.63,1)',
+                    'transition': '0.3s cubic-bezier(.24,.42,.63,1)',
                 })
             }, 500);
         })
+    </script>
+
+<!-- 點選排行分類撈出該分類的排行 -->
+    <script>
+        function showRank(category){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange=function (){
+                if( xhr.readyState == 4){
+                    if( xhr.status == 200 ){
+                        //將撈回來的資料取代原本的網頁內容 
+                        document.getElementById("lbReel").innerHTML = xhr.responseText;  
+                    }else{
+                    alert( xhr.status );
+                    }
+                }
+            }
+            var url = "getRank.php?category=" + category;
+            xhr.open("Get", url, true);
+            xhr.send( null );
+        }
+        var rank = document.getElementsByClassName('category');
+        rank[0].addEventListener('click',function(){
+            showRank('綜合');
+        });
+        rank[1].addEventListener('click',function(){
+            showRank('餅乾');
+        });
+        rank[2].addEventListener('click',function(){
+            showRank('糖果');
+        });
+        rank[3].addEventListener('click',function(){
+            showRank('洋芋片');
+        });
+        rank[4].addEventListener('click',function(){
+            showRank('巧克力');
+        });
+        
+    </script>
+
+    <!-- 點擊購物車增減數量傳回資料庫 -->
+    <script>
+        $('.cart').click(function(){
+            var i = $('.cart').index(this) - 16;
+            var aa = $('.stockQty')[i];
+            // console.log(aa);
+            var qty = $(aa).text();
+            // console.log(text);
+            var cutQty = qty - 1;
+            if(cutQty==0){
+                $(aa).text(0);
+                $(this).css({backgroundColor:'#ccc',color:'#aaa'});
+                $(this).attr('disabled',true);
+            }else{
+                $(aa).text(cutQty);
+            }
+            // console.log(cutQty);
+        })
+    </script>
+
+    <!-- 點選前幾期預購商品 -->
+    <script>
+        function showGoods(month){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange=function (){
+                if( xhr.readyState == 4){
+                    if( xhr.status == 200 ){
+                        //將撈回來的資料取代原本的網頁內容 
+                        document.getElementById("snacksRun").innerHTML = xhr.responseText;  
+                    }else{
+                    alert( xhr.status );
+                    }
+                }
+            }
+            var url = "getGoods.php?month=" + month;
+            xhr.open("Get", url, true);
+            xhr.send( null );
+        }
+        var preGoods = document.getElementsByClassName('month');
+        preGoods[0].addEventListener('click',function(){
+            showGoods('2019-01-01');
+        });
+        preGoods[1].addEventListener('click',function(){
+            showGoods('2019-02-01');
+        });
+        preGoods[2].addEventListener('click',function(){
+            showGoods('2019-03-01');
+        });
+        
     </script>
 
     <!-- 點販賣機提示點到哪一台 -->
@@ -1716,6 +1999,85 @@
             console.log(`arr_country: ${arr_country}`);
             console.log(arr_country);
 
+    </script>
+
+<!-- 即期品特賣 -->
+    <script>
+        <?php
+            require_once("connectBooksRick.php");
+            $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo ORDER by a.clearanceNo desc limit 3";
+            $sales = $pdo->query( $sql );
+            $salesRow = $sales->fetchAll();
+        ?>
+        var slideIndex = 1;
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName('item');
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+        function countdown() {
+            //取得現在的時間
+            var now = new Date();
+            // console.log(now);
+            //取得活動結束的時間(第一次專題先寫死而不是從資料庫撈資料)
+            // var oneDay = now.getDate() + 1;
+            var endTime = '<?php echo $salesRow[0]["endTime"]?>';
+            // console.log(endTime); //2019-02-20
+            // var end = new Date(`${endTime} 00:00:00`);
+            var end = new Date(endTime);
+            // console.log(end);
+            //算出目前時間到結束時間中間有多少秒            
+            var leftTime = end.getTime() - now.getTime();  //1552752000-1550378890=2372984
+            // console.log(leftTime); 
+
+            //依序將毫秒轉換成幾天幾時幾分幾秒
+            var leftSecond = parseInt(leftTime / 1000); //毫秒-秒
+            var hour = Math.floor(leftSecond / 3600); //
+            // console.log(hour);
+            var minute = Math.floor((leftSecond - hour * 3600) / 60);
+            var second = Math.floor(leftSecond - hour * 3600 - minute * 60);
+            document.getElementById('hour').innerText = hour + '時 : ';
+            document.getElementById('minute').innerText = minute + '分 : ';
+            document.getElementById('second').innerText = second + '秒';
+        }
+        function test(){
+            console.log('here');
+        }
+        function sale() {
+            //先呼叫一次呈現倒數的函數，不然一進畫面會是空白
+            countdown();
+            //設定計時器讓倒數函式countdown每秒被呼叫一次
+            setInterval(countdown, 1000);
+            document.getElementById('close').addEventListener('click', test);
+            document.getElementById('closeSale').addEventListener('click', function (){
+                document.getElementById('sale').style.display = 'none';
+            });
+            window.addEventListener('resize', function (){
+                if (window.screen.width < 768){
+                    showSlides(slideIndex);
+                }else{
+                    var slides = document.getElementsByClassName('item');
+                    for (i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "block";
+                    }
+                }
+            });
+            if (window.screen.width < 768) {
+                showSlides(slideIndex);
+            };
+        }
+        window.addEventListener('load', sale);
     </script>
     <?php
         // $country=$_GET[]

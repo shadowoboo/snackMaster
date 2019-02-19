@@ -47,6 +47,7 @@
     <script src="../js/common.js"></script>
     <script src="../js/Chart.js"></script>
     <script src="../js/shopping.js"></script>
+    <script src="../js/addHeart.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
@@ -116,7 +117,7 @@
                 <img src="../images/blair/pocky.png" alt="">
                 <select name="country" id="country">
                     <option value="0">國家</option>
-                    <option value='巴西'>巴西</option>
+                    <option value="巴西">巴西</option>
                     <option value="日本">日本</option>
                     <option value="美國">美國</option>
                     <option value="英國">英國</option>
@@ -172,7 +173,7 @@
                         $spicy = round($snackRow['spicyStars'] / $snackRow['spicyTimes'], 1);
                         echo "$good|$sour|$sweet|$spicy";
                     ?>">
-                    <a href="showItem.html?showItem.php=<?php echo $snackRow['snackNo'] ?>"></a>
+                    <a href="showItem.php?snackNo=<?php echo $snackRow['snackNo'] ?>"></a>
                     <img class="country" src="../images/blair/<?php echo $snackRow['nation'] ?>.png" alt="">
                     <img class="itemImg" src="<?php echo $snackRow['snackPic']?>" alt="">
                     <h4 class="itemName"><?php echo '['.$snackRow['nation'].']'.$snackRow['snackName']?></h4>

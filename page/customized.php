@@ -5,9 +5,11 @@ try {
 	$sql = "select * from snack";
      $snack = $pdo->query($sql); 
      $snackRows = $snack -> fetchAll(PDO::FETCH_ASSOC);
+    //  var_dump($snackRows);exit();
 } catch (PDOException $e) {
 	$errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
-	$errMsg .= "行號 : ".$e -> getLine()."<br>";
+    $errMsg .= "行號 : ".$e -> getLine()."<br>";
+    exit($errMsg);
 }
  
 ?> 
@@ -25,6 +27,7 @@ try {
    <!-- 為了各種符號，掛載fontawesome -->
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
    crossorigin="anonymous">
+    <script src="../js/search.js"></script>
    <script src="../js/jquery-3.3.1.min.js"></script>
    <script src="../js/shadowLib.js""></script>
    <!-- 錄音外掛。我想我跳下去玩一定會來不及。謝謝你 9527 -->
@@ -85,39 +88,43 @@ try {
                 </nav>
             
                 <div class="seachRegion" id="search_appear">
-                        <div class="search">
-                            <img src="../images/blair/pocky.png" alt="">
-                            <div class="selectbar">
-                                <select name="country" id="country">
-                                    <option value="">國家</option>
-                                    <option value="">英國</option>
-                                    <option value="">美國</option>
-                                    <option value="">日本</option>
-                                    <option value="">泰國</option>
-                                </select>
-                                <select name="kind" id="kind">
-                                    <option value="">種類</option>
-                                    <option value="">巧克力</option>
-                                    <option value="">糖果</option>
-                                    <option value="">餅乾</option>
-                                    <option value="">洋芋片</option>
-                                </select>
-                                <select name="flavor" id="flavor">
-                                    <option value="">口味</option>
-                                    <option value="">酸</option>
-                                    <option value="">甜</option>
-                                    <option value="">辣</option>
-                                </select>                            
-                            </div>
-                            <div class="inputbar">
-                                <input type="text" placeholder="想找什麼零食呢？">
-                                <i class="fas fa-search"></i>
-                            </div>
-                        </div>
-                        <div id="close">
-                            <span class="close">X</span>
-                        </div>
-            </div>
+                <div class="search">
+                    <img src="../images/blair/pocky.png" alt="">
+                    <div class="selectbar">
+                        <select name="country" id="country">
+                            <option value="0">國家</option>
+                            <option value='巴西'>巴西</option>
+                            <option value="日本">日本</option>
+                            <option value="美國">美國</option>
+                            <option value="英國">英國</option>
+                            <option value="埃及">埃及</option>
+                            <option value="德國">德國</option>
+                            <option value="澳洲">澳洲</option>
+                            <option value="韓國">韓國</option>
+                        </select>
+                        <select name="kind" id="kind">
+                            <option value="0">種類</option>
+                            <option value="巧克力">巧克力</option>
+                            <option value="糖果">糖果</option>
+                            <option value="餅乾">餅乾</option>
+                            <option value="洋芋片">洋芋片</option>
+                        </select>
+                        <select name="flavor" id="flavor">
+                            <option value="0">口味</option>
+                            <option value="sour">酸</option>
+                            <option value="sweet">甜</option>
+                            <option value="spicy">辣</option>
+                        </select>                        
+                    </div>
+                    <div class="inputbar">
+                        <input type="text"  id="searchName" placeholder="想找什麼零食呢？">
+                        <i class="fas fa-search"  id="searchClick"></i>
+                    </div>
+                </div>
+                    <div id="close">
+                        <span class="close"><i class="fas fa-times"></i></span>
+                    </div>
+        </div>
         </header>
 
   <div class="card step-progress">
@@ -136,7 +143,7 @@ try {
                 </div>
                 <div class="makingStep">
                         <div class="cloudy step1">
-                            <div class="circle" style="background:#aedcd3;"></div>
+                            <div class="circle" style="background:#aedcd3;" id="cartgogo"></div>
                         <p>設計箱子</p>
                         </div>    
                          <div class="cloudy step2">
@@ -213,7 +220,7 @@ try {
                             </div>
                                 </div>
                             <div id="login">   
-                                <div class="pics">
+                                <div class="pics" id="picsRegion">
                                     <div class="pic">
                                         <img src="../images/tina/LOGO1.png" alt="">
                                     </div>
@@ -229,18 +236,19 @@ try {
                                     <div class="pic">
                                         <img src="../images/customized/lollip.svg" alt="">
                                     </div>                                    
-                                    <!-- <div class="pic">
+                                    <div class="pic">
                                         <img src="../images/customized/candy.svg" alt="">
-                                    </div>                                     -->
+                                    </div>                                    
                                     <div class="pic">
                                         <img src="../images/customized/machi.svg" alt="">
                                     </div>
                                     <div class="pic">
                                         <img id="image">
                                     </div>
+                                    <input type="file" id="theFile">
                                 </div>  
                                 
-                                <input type="file" id="theFile">
+                              
             <p>
                 <textarea id="fileInfo" rows="5" cols="70" style="display:none;"></textarea>
             </p>
@@ -412,6 +420,9 @@ try {
                             <p>客製完成</p>   
                         </div> -->
                     </div>
+                <form id="snackForm">
+                    <input id="snackDataName" type="hidden" name="snackDataName" value="">
+                </form>                      
                 <div class="section section_15" id="section_15">
                     <div class="shopping">
                         <div class="goodBox">
@@ -432,7 +443,7 @@ try {
                                         <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
                                         <div class="price">
                                         <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p>                   
-                                            <p class="snackName"><?php echo $snackRows[$i]['snackName']; ?></p>
+                                            <p class="snackName"><?php echo $snackRows[$i]['snackName'];?></p>
                                             <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
                                             <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
                                         </div>
@@ -462,11 +473,7 @@ try {
                         <?php
                             }
                         ?> 
-                    </div>       
-                    
-                <form id="snackForm">
-                    <input id="snackDataName" type="hidden" name="snackDataName" value="">
-                </form>                            
+                    </div>                                                 
                     <div class="good-content">
                         <?php
                             for($i=0; $i<8; $i++){
@@ -644,6 +651,51 @@ try {
         window.addEventListener("load",init);
 
   </script> -->
+  <!-- <script>
+      if($(window).width() > 767)
+{
+    aa=document.getElementById("cartgogo");
+        aa.addEventListener("click",changeSize);
+        console.log("aaaaa");
+
+        function changeSize(e){
+            console.log(`bbbbb`);
+            //換色            
+            e.target.style.background="pink";
+          
+                        
+        }
+}else{
+    aa=document.getElementById("cartgogo");
+        aa.addEventListener("click",changeSize);
+        console.log("aaaaa");
+
+        function changeSize(e){
+            console.log(`bbbbb`);
+            //換色            
+            e.target.style.background="blue";
+          
+                        
+        }
+ 
+};
+</script> -->
+<!-- <script>
+ if($(window).width() > 767 ){
+
+ }else{
+    function pushImg(){
+	var $("surface")= appendChild(img);
+    alert("123");
+    }
+ }
+
+ 
+window.addEventListener("load",function(){
+	getElementsByTagName("img").onclick = pushImg;
+},false)
+</script> -->
+
   <script>
     const boxBases = document.querySelectorAll(".boxBase");
     const btns = document.querySelectorAll(".btn");
@@ -760,7 +812,7 @@ var section15 = document.querySelector("#section_15");
         }
     }
 
-    /// 盒子不在指定姿態時要移除監聽
+    /// 盒子不在指定姿態時要移除監聽,雙重保險盒子姿勢
     boxBases.forEach(elem => {
         let pos = elem.style.transform;
         console.log(`pos: ${pos}`);
@@ -785,9 +837,9 @@ var section15 = document.querySelector("#section_15");
             e.target.style.opacity = "0.8";
             //drop區內被碰到的圖片開啟穿透的狀態，才能重疊上去
             //新增加的元素可以直接被事件觸發，透過for迴圈去抓元素的方式不行
-            if (e.target.classList.contains("droped_img") == true) {
-                e.target.style.pointerEvents = "none";
-            }
+            if (e.target.classList.contains("droped_img") == true) {//contains一個droped_img使
+                e.target.style.pointerEvents = "none";//pointerEvents穿透屬性 none指不到
+            }//使用 classList 屬性是取得元素 Class 的一種便利方式
         });
         //允許丟到表面上(允許降落~)
         // elem.addEventListener("drop", dropped);
@@ -801,16 +853,16 @@ var section15 = document.querySelector("#section_15");
     //動態新增的東西需要先監聽父層，子層新增的元素開監聽才有效
     surface.forEach(elem => {
         elem.addEventListener("mouseenter", function wakeup() {
-            console.log("mouseEnter");
+            console.log("mouseEnter");//監聽事件 滑鼠進來了選取圖片區
 
             //"箱子表面的圖片"的監聽事件
             arrDropedImg.forEach(elem => {
-                elem.addEventListener("dragstart", function dragStart_2(e) {
+                elem.addEventListener("dragstart", function dragStart_2(e) {//拉動起始
                     console.log("這裡的圖片動起來!");
-                    e.dataTransfer.setData("text", "onSurface");
+                    e.dataTransfer.setData("text", "onSurface");//dataTransfer.setData傳現在的座標
                     e.dataTransfer.setData("offsetx", e.offsetX);
                     e.dataTransfer.setData("offsety", e.offsetY);
-                    srcItem = this;
+                    srcItem = this;//沒有加var 是全域變數 任何時候都可以載他
                     console.log(`THIS ${this.nodeName}`);
 
                     // e.dataTransfer.setData("srcItem", this);
@@ -821,7 +873,7 @@ var section15 = document.querySelector("#section_15");
                     })
                     //操作預先存起來的新元素陣列
                     arrDropedImg.forEach(elem => {
-                        elem.style.pointerEvents = "auto";
+                        elem.style.pointerEvents = "auto";//取消穿透
                     })
                 })
                 elem.addEventListener("click", function selectDropedImg(e) {
@@ -840,7 +892,7 @@ var section15 = document.querySelector("#section_15");
             // e.preventDefault();
             console.log(`e.target.src: ${e.target.src}`);
             //設定要傳送到drop方的訊息
-            e.dataTransfer.setData("image/jpeg", e.target.src);
+            e.dataTransfer.setData("image/jpeg", e.target.src);//offste相對視窗定位
             e.dataTransfer.setData("offsetx", e.offsetX);//拖曳開始時，滑鼠在圖片內的相對位置
             e.dataTransfer.setData("offsety", e.offsetY);//拖曳開始時，滑鼠在圖片內的相對位置
         })
@@ -860,7 +912,7 @@ var section15 = document.querySelector("#section_15");
     //"遠方的客人"只要新生成一個child在這片土地
     //"在地旅行的人"只要移動它的位置
     var drop_count = 1;
-    console.log(`drop_count: ${drop_count}`);
+    console.log(`drop_count: ${drop_count}`);//drop_count計數處法第幾次drop事件 一觸發+1
     function dropped(e) {
         e.preventDefault();
         drop_count = drop_count + 1;//每次觸發drop就增加一次，讓新觸發物件的z-index更高
@@ -891,22 +943,22 @@ var section15 = document.querySelector("#section_15");
             mouseNow.x = e.offsetX;
             mouseNow.y = e.offsetY;
             //創造新元素
-            var img = document.createElement('img');
+            var img = document.createElement('img');//塞圖片後給他初始值
             img.src = e.dataTransfer.getData('image/jpeg');
             img.style.width = '50px';
             img.style.position = "absolute";
             img.style.top = parseInt(mouseNow.y - mouseOffset.y) + "px";
             img.style.left = parseInt(mouseNow.x - mouseOffset.x) + "px";
-            img.classList.add("droped_img");
-            img.style.zIndex = drop_count;
-            img.id = "a" + drop_count;
+            img.classList.add("droped_img");//添加droped_img 為了好控制 使用 classList 屬性是取得元素 Class 的一種便利方式
+            img.style.zIndex = drop_count;//z-index會一直變大
+            img.id = "a" + drop_count;//多個id名稱a1 a3 a5..
             // img.style.pointerEvents = "none"; //可以被穿透，讓後面的圖可以順利覆蓋
             img.style.transform = "translateX(0px) translateY(0px) rotate(0deg) scale(1)";
             console.log(`e.target.classList: ${e.target.classList}`);
             arrDropedImg.push(img);//做一個陣列把動態添加元素的資料先存起來，之後統一操作
             // console.log(`arrDropedImg[]: ${arrDropedImg}`);
             // console.log(`arrDropedImg.length: ${arrDropedImg.length}`);
-            this.appendChild(img);
+            this.appendChild(img);//把圖片塞進去
             //恢復透明度
             e.target.style.opacity = "1";
         }

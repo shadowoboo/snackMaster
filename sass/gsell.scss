@@ -33,6 +33,8 @@ body {
     display: none;
 }
 
+
+
 //search_mobile 
 .search_mobile {
     // 手機 title
@@ -177,6 +179,7 @@ body {
                         color: $blue;
                         font-size: 25px;
                         padding-top: 21px;
+                        cursor: pointer;
                     }
                 }
             }
