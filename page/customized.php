@@ -36,97 +36,9 @@ try {
 </head>
 
 <body>
-    <header>
-            <h1>大零食家</h1>
-            <div class="cloud">
-                <div class="doc doc--bg2">
-                    <canvas id="canvas"></canvas>
-                </div>
-                <nav>
-                    <label for="smlSearch" class="searchBtn" value="search">
-                            <img src="../images/tina/search-icon.svg" alt="" id="searchBtn">
-                    </label>
-                    
-                    <div class="menu">
-                        <!-------- -----手機漢堡----------- -->
-    
-                        <div id="ham">
-                            <span class="btnTop"></span>
-                            <span class="btnMid"></span>
-                            <span class="btnBot"></span>
-                        </div>
-                        <!----    在手機上打開此logo;桌機上關掉此logo------ -->
-                        <div class="logo">
-                            <a href="index.html"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
-    
-                        </div>
-                        <div id="list_appear">
-                            <!-- ----------手機選單離開-------- -->
-                            <div id="cros">
-                                <span class="leave">X</span>
-                            </div>
-                            <ul class="list">
-                                <li><a href="rankBoard.html">零食排行榜</a></li>
-                                <li><a href="customized.html">客製零食箱</a> </li>
-                                <!-- 在手機上要關掉這個li的logo -->
-                                <li><a href="index.html"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
-                                <li id="store"> 零食商店街
-                                    <ul id="Submenu" class="subMenu">
-                                        <li id="snBox"><a href="preOrder.html">預購零食箱</a></li>
-                                        <li ><a href="shopping.html">零食列表</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="gsell.html">尋找販賣機</a> </li>
-                            </ul>
-                        </div>
-                    </div>
-    
-                    <ul class="login">
-                        <li><i class="fas fa-shopping-cart" id="shopCart"></i></li>
-                        <li><i class="fas fa-user-circle" id="memLogin"></i></li>
-                    </ul>
-                </nav>
-            
-                <div class="seachRegion" id="search_appear">
-                <div class="search">
-                    <img src="../images/blair/pocky.png" alt="">
-                    <div class="selectbar">
-                        <select name="country" id="country">
-                            <option value="0">國家</option>
-                            <option value='巴西'>巴西</option>
-                            <option value="日本">日本</option>
-                            <option value="美國">美國</option>
-                            <option value="英國">英國</option>
-                            <option value="埃及">埃及</option>
-                            <option value="德國">德國</option>
-                            <option value="澳洲">澳洲</option>
-                            <option value="韓國">韓國</option>
-                        </select>
-                        <select name="kind" id="kind">
-                            <option value="0">種類</option>
-                            <option value="巧克力">巧克力</option>
-                            <option value="糖果">糖果</option>
-                            <option value="餅乾">餅乾</option>
-                            <option value="洋芋片">洋芋片</option>
-                        </select>
-                        <select name="flavor" id="flavor">
-                            <option value="0">口味</option>
-                            <option value="sour">酸</option>
-                            <option value="sweet">甜</option>
-                            <option value="spicy">辣</option>
-                        </select>                        
-                    </div>
-                    <div class="inputbar">
-                        <input type="text"  id="searchName" placeholder="想找什麼零食呢？">
-                        <i class="fas fa-search"  id="searchClick"></i>
-                    </div>
-                </div>
-                    <div id="close">
-                        <span class="close"><i class="fas fa-times"></i></span>
-                    </div>
-        </div>
-        </header>
-
+    <?php
+    require_once("header.php");
+    ?>
   <div class="card step-progress">
     <div class="step-slider">
       <div data-id="step1" class="step-slider-item"></div>
@@ -569,7 +481,6 @@ try {
                 </div>
                 </div>
       </div>
-
       
       <script>
         $(document).ready(function(){
@@ -639,104 +550,9 @@ try {
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script src="../js/customizedstep.js"></script>
   <script src="../js/header.js"></script>
-    
-  <!-- <script>
-    const search_appear = document.getElementById("search_appear");
-        const search = document.getElementById("searchBtn");
-        const closex = document.getElementById("close");
-        function init(e) {
-            search.addEventListener("click", showSearch);
-            closex.addEventListener("click", closeSearch);
-
-        }
-        function showSearch(e) {
-            search_appear.classList.add("down");
-        
-        }
-        function closeSearch(e) {
-            console.log(`remove`);
-            search_appear.classList.remove("down");
-        }
-
-        window.addEventListener("load",init);
-
-  </script> -->
-  <!-- <script>
-      if($(window).width() > 767)
-{
-    aa=document.getElementById("cartgogo");
-        aa.addEventListener("click",changeSize);
-        console.log("aaaaa");
-
-        function changeSize(e){
-            console.log(`bbbbb`);
-            //換色            
-            e.target.style.background="pink";
-          
-                        
-        }
-}else{
-    aa=document.getElementById("cartgogo");
-        aa.addEventListener("click",changeSize);
-        console.log("aaaaa");
-
-        function changeSize(e){
-            console.log(`bbbbb`);
-            //換色            
-            e.target.style.background="blue";
-          
-                        
-        }
  
-};
 
-window.addEventListener("resize",()=>{
-    if($(window).width() > 767)
-{
-    aa=document.getElementById("cartgogo");
-        aa.addEventListener("click",changeSize);
-        console.log("aaaaa");
-
-        function changeSize(e){
-            console.log(`bbbbb`);
-            //換色            
-            e.target.style.background="pink";
-          
-                        
-        }
-}else{
-    aa=document.getElementById("cartgogo");
-        aa.addEventListener("click",changeSize);
-        console.log("aaaaa");
-
-        function changeSize(e){
-            console.log(`bbbbb`);
-            //換色            
-            e.target.style.background="blue";
-          
-                        
-        }
- 
-};  
-})
-</script> -->
-<!-- <script>
- if($(window).width() > 767 ){
-
- }else{
-    function pushImg(){
-	var $("surface")= appendChild(img);
-    alert("123");
-    }
- }
-
- 
-window.addEventListener("load",function(){
-	getElementsByTagName("img").onclick = pushImg;
-},false)
-</script> -->
-
-  <script>
+<script>
 if($(window).width() > 767){
     const boxBases = document.querySelectorAll(".boxBase");
     const btns = document.querySelectorAll(".btn");
