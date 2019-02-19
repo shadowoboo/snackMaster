@@ -1,19 +1,20 @@
 #sale{
-    position: absolute;
-    top: 186px;
+    position: fixed;
+    top: 130px;
+    left: -1000px;
     z-index: 10;
     background-image: url(../images/blair/sale2.png);
     background-size: cover;
     height: 480px;
     width: 374px;
     padding: 0;
-    animation: entering 4s linear 1 forwards;
+    animation: entering 4s 10s linear 1 forwards;
     @keyframes entering {
         0%{left: -500px};
         100%{left: calc(50% - 187px)};
     }
     @media only screen and (min-width: 768px) {
-        top: 300px;
+        top: 180px;
         background-image: url(../images/blair/sale.png);
         width: 890px;
         padding: 0 76px;
@@ -46,7 +47,7 @@
     .saleTitle{
         position: absolute;
         top: -36px;
-        left: 13px;
+        left: 3px;
         background-color: #076baf;
         border-radius: 10px;
         padding: 10px 14px;
@@ -69,11 +70,11 @@
             display: inline-block;
             vertical-align: middle;
             padding: 4px 10px;
-            width: 198px;
+            width: 218px;
             text-align: center;
             @media only screen and (min-width: 768px) {
                 padding: 4px 16px;
-                width: 210px;
+                width: 220px;
             }
             span{
                 font-size: 22px;
