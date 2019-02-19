@@ -789,6 +789,7 @@
         <section class="section_12" id="section_12">
             <?php
                 $sql = "select * from snack order by goodStars desc limit 3";
+                $sql = "SELECT * FROM `snack` s , `rank` r where s.snackNo = r.snackNo and r.rankGenre='綜合'  order by r.ranking";
                 $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
                 // $prodRow -> bindValue(':snackGenre', 0 );
                 $prodRow -> execute(); 
@@ -1908,25 +1909,34 @@
 
     <!-- 點擊購物車增減數量傳回資料庫 -->
     <script>
+        
+        // if(sessionStorage['cutQty'] == null){
+        //     sessionStorage['cutQty'] = $('.stockQty').eq(2).text();
+        // }else{
+            
+        //     $('.stockQty').eq(2).text(sessionStorage['cutQty']);
+        // }
+        
         $('.cart').click(function(){
             var i = $('.cart').index(this) - 16;
-            var aa = $('.stockQty')[i];
+            var thisQty = $('.stockQty').eq(i);
             // console.log(aa);
-            var qty = $(aa).text();
-            // console.log(text);
-            var cutQty = qty - 1;
-            sessionStorage['cutQty'] = cutQty;
+            var qty = $(thisQty).text();
+            // console.log(qty);
+            // var qty = aa.firstChild.nodeValue;
+            cutQty = qty - 1;
             if(cutQty==0){
-                $(aa).text(0);
+                $(thisQty).text(0);
                 $(this).css({backgroundColor:'#ccc',color:'#aaa'});
                 $(this).attr('disabled',true);
             }else{
-                var fCutQty = sessionStorage['cutQty'];
-                console.log(fCutQty);//9 8 7....
-                $(aa).text(cutQty);
-                console.log(cc);
+                // fCutQty = sessionStorage['cutQty'];
+                console.log(cutQty);//9 8 7....
+                $(thisQty).text(cutQty);
+                // sessionStorage['cutQty'] = cutQty;
+                // console.log($(aa).text(fCutQty));
+                // console.log(fCutQty);
             }
-            // console.log(cutQty);
         })
     </script>
 
