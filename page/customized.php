@@ -177,9 +177,10 @@ try {
                                     <div class="box boxBase" id="box_15">
                                         <div class="surface surface_top" id="cover_out_15">
                                             <img src="ip2.png" id="a1" alt="">
+                                            
+                                        <img id="cusImg" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
-                                        <div class="surface surface_top_inner" id="cover_in_15">
-                                    
+                                        <div class="surface surface_top_inner">
                                         </div>
                                         <div class="surface surface_down"></div>
                                         <div class="surface surface_back"></div>
@@ -1211,45 +1212,35 @@ var section15 = document.querySelector("#section_15");
         };
 
 
-    cusPic=document.getElementsByClassName("cusPic");
+    // cusPic=document.getElementsByClassName("cusPic");
 
-    for(var i = 0;i<cusPic.length;i++){
-            document.getElementsByClassName("cusPic")[i].addEventListener("click",putPic);
+    // for(var i = 0;i<cusPic.length;i++){
+    //         document.getElementsByClassName("cusPic")[i].addEventListener("click",putPic);
 
-            function putPic(e){
-                console.log(`cusPic`);
+    //         function putPic(e){
+    //             console.log(`cusPic`);
                 
-            for(var i = 0;i<7;i++){
-            var itm=document.getElementsByClassName("pic")[i];}
-            var cln=itm.cloneNode(true);
-            document.getElementById("cover_out_15").appendChild(cln);
-            };
-    }
+    //         for(var i = 0;i<7;i++){
+    //         var itm=document.getElementsByClassName("pic")[i];}
+    //         var cln=itm.cloneNode(true);
+    //         document.getElementById("cover_out_15").appendChild(cln);
+    //         };
+    // }
 
-//     function $id(id){
-//   return document.getElementById(id);
-// }
+    var dropPic = document.querySelector('#cusImg');
+         var img = document.querySelectorAll('.cusPic');
+         for (var i = 0; i < img.length; i++){
+             img[i].addEventListener('click', function (e) {
+             var imgSrc = e.target.src;
+             dropPic.setAttribute("src", imgSrc)             
+             dropPic.style.display = 'block';
+             dropPic.style.maxHeight = '50px';
+             dropPic.style.maxWidth = '50px';
 
-// cusPic=document.getElementsByClassName("cusPic");
-
-// for(var i = 0;i<cusPic.length;i++){
-//  document.getElementsByClassName("cusPic")[i].addEventListener("click",putPic)
-// }
-
-// function addSpot(){
-    
-//     for(var i = 0;i<7;i++){
-// 	var itm=document.getElementsByClassName("pic")[i];}
-// var cln=itm.cloneNode(true);
-// document.getElementById("cover_out_15").appendChild(cln);
-
-// }
+             },false);
+         }
 
 
-
-// window.addEventListener("load", function(){
-// 	$id("dd").onclick = addSpot;
-// },false )
 
 
         const boxBases = document.querySelectorAll(".boxBase");
