@@ -12,7 +12,7 @@
     $prodRow = $prod->fetchAll(PDO::FETCH_ASSOC);
 
     //會員登入模擬
-    $_SESSION["memId"]=2;
+    $_SESSION["memId"]=3;
     // echo "memId: ".$_SESSION["memId"]." already loggin";
 
     //購物清單模擬
