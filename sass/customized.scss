@@ -140,19 +140,18 @@ body{
         justify-content:center;
         align-items: center;
         width: 100%;
-        height:80vh;
+        height:666px;
         background-color: #fadfd4;
         overflow: hidden;
         .makingStep{
             position: relative;
-            top: 10px;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
             width: 800px;
             height:100px;
-            margin:40px;
+            margin:20px;
             .cloudy{
                 width:120px;
                 .circle{
@@ -266,7 +265,7 @@ body{
             border:5px solid #fca8b7;
             // height: 630px;
             .roof{
-                transform: scale(4) translate(4px,0px);
+                transform: scale(4) translate(4px,-9px);
             }
             .container{
                 display: flex;
@@ -396,17 +395,13 @@ body{
         justify-content: center;
         align-items: center;
         background-color:#fff;
-        .pic{
-            flex:5;
-            cursor: move;
-            // user-select: none;//讓使用者選div，不要選到圖片
-            // img{
-            //     width: 50px;
-            // }
+       
             img{
                 width:65px;
+                flex: 5;
+                cursor: move;
             }
-            }
+            
         }
         #btns15{
         position: relative;
@@ -938,6 +933,10 @@ $cardY:600px;
         .cardBaseContent {
             .cardSurface {
                 background-image: url();
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
             } //內容
             .cardSurfaceInner {
                 background-image: url();
@@ -969,8 +968,6 @@ $cardY:600px;
     //想要直接釘在正中央的話要在算一下
     //用transform:translate 會干擾 drag的座標
     position: absolute;
-    top: 0%;
-    left: 0%;
     // transform: translate(-50%,-50%);
 
     //resize作用器
@@ -1124,7 +1121,7 @@ $cardY:600px;
         color: rgba(105,105,105,1);
         background: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
-        border: 10px solid #fbc849;
+        border:5px solid #fbc849;
         ul{
             width: 100%;
             display: flex;
@@ -1155,15 +1152,21 @@ $cardY:600px;
             flex-flow:wrap row;
             align-items:center;
             width: 100%;
-            height: 300px;
             .item{
                 display: flex;
                 flex-direction:column;
                 justify-content: center;
                 align-items: center;
                 width: 25%;
-                height: 150px;
-                border:5px solid #fbc84a;
+                height:170px;                
+                border-right: 5px solid #fbc84a;
+                &:first-child,&:nth-child(2),&:nth-child(3),&:nth-child(4){
+                    border-top: 5px solid #fbc84a;
+                    border-bottom: 5px solid #fbc84a;
+                }
+                &:nth-child(4),&:nth-child(8){
+                    border-right:none;
+                }
                 .name{
                     display: flex;
                     flex: 1;
@@ -1178,8 +1181,7 @@ $cardY:600px;
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
-                        align-items: center;
-                        margin-left:30px;
+                        align-items: center;  
                         p{
                             font-size:20px;
                         }
@@ -1302,6 +1304,7 @@ $cardY:600px;
         .makingStep{
             justify-content:space-between;
             align-items: center;
+            top: 20px;
             width:350px;
             margin:auto;
             p{
@@ -1371,6 +1374,11 @@ $cardY:600px;
             margin-top: 30px;
             flex-direction: column;
             align-items: center;
+            .pics{
+                img{
+                    cursor: initial;
+                }
+            }
             .purchaseDetail{
                 width: 100%;
             }
@@ -1397,7 +1405,6 @@ $cardY:600px;
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
-
             }
             .cardBox{
                 width: 100%;
@@ -1471,6 +1478,9 @@ $cardY:600px;
                     flex-wrap: wrap;
                     align-items: center;
                     border: 5px solid #fbc84a;
+                    .price{
+                        margin-left:10px;
+                    }
                     }
                 }
             }
@@ -1479,6 +1489,7 @@ $cardY:600px;
     .step-content-foot {
     padding: 10px;
     margin-top: 30px;
+    margin-bottom: 65px;
     }
     #card{
         height: auto;

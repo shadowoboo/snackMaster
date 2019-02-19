@@ -5,9 +5,11 @@ try {
 	$sql = "select * from snack";
      $snack = $pdo->query($sql); 
      $snackRows = $snack -> fetchAll(PDO::FETCH_ASSOC);
+    //  var_dump($snackRows);exit();
 } catch (PDOException $e) {
 	$errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
-	$errMsg .= "行號 : ".$e -> getLine()."<br>";
+    $errMsg .= "行號 : ".$e -> getLine()."<br>";
+    exit($errMsg);
 }
  
 ?> 
@@ -25,6 +27,7 @@ try {
    <!-- 為了各種符號，掛載fontawesome -->
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
    crossorigin="anonymous">
+    <script src="../js/search.js"></script>
    <script src="../js/jquery-3.3.1.min.js"></script>
    <script src="../js/shadowLib.js"></script>
    <!-- 錄音外掛。我想我跳下去玩一定會來不及。謝謝你 9527 -->
@@ -85,39 +88,43 @@ try {
                 </nav>
             
                 <div class="seachRegion" id="search_appear">
-                        <div class="search">
-                            <img src="../images/blair/pocky.png" alt="">
-                            <div class="selectbar">
-                                <select name="country" id="country">
-                                    <option value="">國家</option>
-                                    <option value="">英國</option>
-                                    <option value="">美國</option>
-                                    <option value="">日本</option>
-                                    <option value="">泰國</option>
-                                </select>
-                                <select name="kind" id="kind">
-                                    <option value="">種類</option>
-                                    <option value="">巧克力</option>
-                                    <option value="">糖果</option>
-                                    <option value="">餅乾</option>
-                                    <option value="">洋芋片</option>
-                                </select>
-                                <select name="flavor" id="flavor">
-                                    <option value="">口味</option>
-                                    <option value="">酸</option>
-                                    <option value="">甜</option>
-                                    <option value="">辣</option>
-                                </select>                            
-                            </div>
-                            <div class="inputbar">
-                                <input type="text" placeholder="想找什麼零食呢？">
-                                <i class="fas fa-search"></i>
-                            </div>
-                        </div>
-                        <div id="close">
-                            <span class="close">X</span>
-                        </div>
-            </div>
+                <div class="search">
+                    <img src="../images/blair/pocky.png" alt="">
+                    <div class="selectbar">
+                        <select name="country" id="country">
+                            <option value="0">國家</option>
+                            <option value='巴西'>巴西</option>
+                            <option value="日本">日本</option>
+                            <option value="美國">美國</option>
+                            <option value="英國">英國</option>
+                            <option value="埃及">埃及</option>
+                            <option value="德國">德國</option>
+                            <option value="澳洲">澳洲</option>
+                            <option value="韓國">韓國</option>
+                        </select>
+                        <select name="kind" id="kind">
+                            <option value="0">種類</option>
+                            <option value="巧克力">巧克力</option>
+                            <option value="糖果">糖果</option>
+                            <option value="餅乾">餅乾</option>
+                            <option value="洋芋片">洋芋片</option>
+                        </select>
+                        <select name="flavor" id="flavor">
+                            <option value="0">口味</option>
+                            <option value="sour">酸</option>
+                            <option value="sweet">甜</option>
+                            <option value="spicy">辣</option>
+                        </select>                        
+                    </div>
+                    <div class="inputbar">
+                        <input type="text"  id="searchName" placeholder="想找什麼零食呢？">
+                        <i class="fas fa-search"  id="searchClick"></i>
+                    </div>
+                </div>
+                    <div id="close">
+                        <span class="close"><i class="fas fa-times"></i></span>
+                    </div>
+        </div>
         </header>
 
   <div class="card step-progress">
@@ -136,7 +143,7 @@ try {
                 </div>
                 <div class="makingStep">
                         <div class="cloudy step1">
-                            <div class="circle" style="background:#aedcd3;"></div>
+                            <div class="circle" style="background:#aedcd3;" id="cartgogo"></div>
                         <p>設計箱子</p>
                         </div>    
                          <div class="cloudy step2">
@@ -213,34 +220,43 @@ try {
                             </div>
                                 </div>
                             <div id="login">   
-                                <div class="pics">
+                                <div class="pics" id="picsRegion">
                                     <div class="pic">
-                                        <img src="../images/tina/LOGO1.png" alt="">
+                                        <img class="cusPic" src="../images/tina/LOGO1.png" alt="">
                                     </div>
                                     <div class="pic">
-                                        <img src="../images/customized/chips.svg" alt="">
+                                        <img class="cusPic" src="../images/customized/chips.svg" alt="">
                                     </div>
                                     <div class="pic">
-                                        <img src="../images/customized/cookies.svg" alt="">
+                                        <img class="cusPic" src="../images/customized/cookies.svg" alt="">
                                     </div>
                                     <div class="pic">
-                                        <img src="../images/customized/chocolate.svg" alt="">
+                                        <img class="cusPic" src="../images/customized/chocolate.svg" alt="">
                                     </div>
                                     <div class="pic">
-                                        <img src="../images/customized/lollip.svg" alt="">
+                                        <img class="cusPic" src="../images/customized/lollip.svg" alt="">
                                     </div>                                    
-                                    <!-- <div class="pic">
-                                        <img src="../images/customized/candy.svg" alt="">
-                                    </div>                                     -->
                                     <div class="pic">
-                                        <img src="../images/customized/machi.svg" alt="">
+                                        <img class="cusPic" src="../images/customized/candy.svg" alt="">
+                                    </div>                                    
+                                    <div class="pic">
+                                        <img class="cusPic" src="../images/customized/machi.svg" alt="">
                                     </div>
                                     <div class="pic">
-                                        <img id="image">
+                                        <img class="cusPic" id="image">
                                     </div>
+                                    <input type="file" id="theFile">
                                 </div>  
-                                
-                                <input type="file" id="theFile">
+             <!-- <script>
+                var bbb = doccument.getElementClassName("bbb");
+                for(var i = 0;i<bbb.length;i++){
+                    doccument.getElementClassName("bbb")[i].addEventListener("click",bbb);
+                    function bbb (e){
+                        console.log(e.target);
+                    }
+                }
+             </script>                    -->
+                              
             <p>
                 <textarea id="fileInfo" rows="5" cols="70" style="display:none;"></textarea>
             </p>
@@ -412,6 +428,9 @@ try {
                             <p>客製完成</p>   
                         </div> -->
                     </div>
+                <form id="snackForm">
+                    <input id="snackDataName" type="hidden" name="snackDataName" value="">
+                </form>                      
                 <div class="section section_15" id="section_15">
                     <div class="shopping">
                         <div class="goodBox">
@@ -432,7 +451,7 @@ try {
                                         <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
                                         <div class="price">
                                         <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p>                   
-                                            <p class="snackName"><?php echo $snackRows[$i]['snackName']; ?></p>
+                                            <p class="snackName"><?php echo $snackRows[$i]['snackName'];?></p>
                                             <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
                                             <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
                                         </div>
@@ -462,11 +481,7 @@ try {
                         <?php
                             }
                         ?> 
-                    </div>       
-                    
-                <form id="snackForm">
-                    <input id="snackDataName" type="hidden" name="snackDataName" value="">
-                </form>                            
+                    </div>                                                 
                     <div class="good-content">
                         <?php
                             for($i=0; $i<8; $i++){
@@ -644,7 +659,83 @@ try {
         window.addEventListener("load",init);
 
   </script> -->
+  <!-- <script>
+      if($(window).width() > 767)
+{
+    aa=document.getElementById("cartgogo");
+        aa.addEventListener("click",changeSize);
+        console.log("aaaaa");
+
+        function changeSize(e){
+            console.log(`bbbbb`);
+            //換色            
+            e.target.style.background="pink";
+          
+                        
+        }
+}else{
+    aa=document.getElementById("cartgogo");
+        aa.addEventListener("click",changeSize);
+        console.log("aaaaa");
+
+        function changeSize(e){
+            console.log(`bbbbb`);
+            //換色            
+            e.target.style.background="blue";
+          
+                        
+        }
+ 
+};
+
+window.addEventListener("resize",()=>{
+    if($(window).width() > 767)
+{
+    aa=document.getElementById("cartgogo");
+        aa.addEventListener("click",changeSize);
+        console.log("aaaaa");
+
+        function changeSize(e){
+            console.log(`bbbbb`);
+            //換色            
+            e.target.style.background="pink";
+          
+                        
+        }
+}else{
+    aa=document.getElementById("cartgogo");
+        aa.addEventListener("click",changeSize);
+        console.log("aaaaa");
+
+        function changeSize(e){
+            console.log(`bbbbb`);
+            //換色            
+            e.target.style.background="blue";
+          
+                        
+        }
+ 
+};  
+})
+</script> -->
+<!-- <script>
+ if($(window).width() > 767 ){
+
+ }else{
+    function pushImg(){
+	var $("surface")= appendChild(img);
+    alert("123");
+    }
+ }
+
+ 
+window.addEventListener("load",function(){
+	getElementsByTagName("img").onclick = pushImg;
+},false)
+</script> -->
+
   <script>
+if($(window).width() > 767){
     const boxBases = document.querySelectorAll(".boxBase");
     const btns = document.querySelectorAll(".btn");
     //拖曳測試
@@ -760,7 +851,7 @@ var section15 = document.querySelector("#section_15");
         }
     }
 
-    /// 盒子不在指定姿態時要移除監聽
+    /// 盒子不在指定姿態時要移除監聽,雙重保險盒子姿勢
     boxBases.forEach(elem => {
         let pos = elem.style.transform;
         console.log(`pos: ${pos}`);
@@ -785,9 +876,9 @@ var section15 = document.querySelector("#section_15");
             e.target.style.opacity = "0.8";
             //drop區內被碰到的圖片開啟穿透的狀態，才能重疊上去
             //新增加的元素可以直接被事件觸發，透過for迴圈去抓元素的方式不行
-            if (e.target.classList.contains("droped_img") == true) {
-                e.target.style.pointerEvents = "none";
-            }
+            if (e.target.classList.contains("droped_img") == true) {//contains一個droped_img使
+                e.target.style.pointerEvents = "none";//pointerEvents穿透屬性 none指不到
+            }//使用 classList 屬性是取得元素 Class 的一種便利方式
         });
         //允許丟到表面上(允許降落~)
         // elem.addEventListener("drop", dropped);
@@ -801,16 +892,16 @@ var section15 = document.querySelector("#section_15");
     //動態新增的東西需要先監聽父層，子層新增的元素開監聽才有效
     surface.forEach(elem => {
         elem.addEventListener("mouseenter", function wakeup() {
-            console.log("mouseEnter");
+            console.log("mouseEnter");//監聽事件 滑鼠進來了選取圖片區
 
             //"箱子表面的圖片"的監聽事件
             arrDropedImg.forEach(elem => {
-                elem.addEventListener("dragstart", function dragStart_2(e) {
+                elem.addEventListener("dragstart", function dragStart_2(e) {//拉動起始
                     console.log("這裡的圖片動起來!");
-                    e.dataTransfer.setData("text", "onSurface");
+                    e.dataTransfer.setData("text", "onSurface");//dataTransfer.setData傳現在的座標
                     e.dataTransfer.setData("offsetx", e.offsetX);
                     e.dataTransfer.setData("offsety", e.offsetY);
-                    srcItem = this;
+                    srcItem = this;//沒有加var 是全域變數 任何時候都可以載他
                     console.log(`THIS ${this.nodeName}`);
 
                     // e.dataTransfer.setData("srcItem", this);
@@ -821,7 +912,7 @@ var section15 = document.querySelector("#section_15");
                     })
                     //操作預先存起來的新元素陣列
                     arrDropedImg.forEach(elem => {
-                        elem.style.pointerEvents = "auto";
+                        elem.style.pointerEvents = "auto";//取消穿透
                     })
                 })
                 elem.addEventListener("click", function selectDropedImg(e) {
@@ -840,7 +931,7 @@ var section15 = document.querySelector("#section_15");
             // e.preventDefault();
             console.log(`e.target.src: ${e.target.src}`);
             //設定要傳送到drop方的訊息
-            e.dataTransfer.setData("image/jpeg", e.target.src);
+            e.dataTransfer.setData("image/jpeg", e.target.src);//offste相對視窗定位
             e.dataTransfer.setData("offsetx", e.offsetX);//拖曳開始時，滑鼠在圖片內的相對位置
             e.dataTransfer.setData("offsety", e.offsetY);//拖曳開始時，滑鼠在圖片內的相對位置
         })
@@ -860,7 +951,7 @@ var section15 = document.querySelector("#section_15");
     //"遠方的客人"只要新生成一個child在這片土地
     //"在地旅行的人"只要移動它的位置
     var drop_count = 1;
-    console.log(`drop_count: ${drop_count}`);
+    console.log(`drop_count: ${drop_count}`);//drop_count計數處法第幾次drop事件 一觸發+1
     function dropped(e) {
         e.preventDefault();
         drop_count = drop_count + 1;//每次觸發drop就增加一次，讓新觸發物件的z-index更高
@@ -891,22 +982,22 @@ var section15 = document.querySelector("#section_15");
             mouseNow.x = e.offsetX;
             mouseNow.y = e.offsetY;
             //創造新元素
-            var img = document.createElement('img');
+            var img = document.createElement('img');//塞圖片後給他初始值
             img.src = e.dataTransfer.getData('image/jpeg');
             img.style.width = '50px';
             img.style.position = "absolute";
             img.style.top = parseInt(mouseNow.y - mouseOffset.y) + "px";
             img.style.left = parseInt(mouseNow.x - mouseOffset.x) + "px";
-            img.classList.add("droped_img");
-            img.style.zIndex = drop_count;
-            img.id = "a" + drop_count;
+            img.classList.add("droped_img");//添加droped_img 為了好控制 使用 classList 屬性是取得元素 Class 的一種便利方式
+            img.style.zIndex = drop_count;//z-index會一直變大
+            img.id = "a" + drop_count;//多個id名稱a1 a3 a5..
             // img.style.pointerEvents = "none"; //可以被穿透，讓後面的圖可以順利覆蓋
             img.style.transform = "translateX(0px) translateY(0px) rotate(0deg) scale(1)";
             console.log(`e.target.classList: ${e.target.classList}`);
             arrDropedImg.push(img);//做一個陣列把動態添加元素的資料先存起來，之後統一操作
             // console.log(`arrDropedImg[]: ${arrDropedImg}`);
             // console.log(`arrDropedImg.length: ${arrDropedImg.length}`);
-            this.appendChild(img);
+            this.appendChild(img);//把圖片塞進去
             //恢復透明度
             e.target.style.opacity = "1";
         }
@@ -1092,7 +1183,366 @@ var section15 = document.querySelector("#section_15");
                 break;
         }
     };
+    aa=document.getElementById("cartgogo");
+        aa.addEventListener("click",changeSize);
+        console.log("aaaaa");
+
+        function changeSize(e){
+            console.log(`bbbbb`);
+            //換色            
+            e.target.style.background="pink";
+               
+        }
+
+
+
+
+
+
+}else{
+    aa=document.getElementById("cartgogo");
+        aa.addEventListener("click",changeSize);
+        console.log("aaaaa");
+
+        function changeSize(e){
+            console.log(`bbbbb`);
+            //換色            
+            e.target.style.background="blue";
+        };
+
+
+    cusPic=document.getElementsByClassName("cusPic");
+
+    for(var i = 0;i<cusPic.length;i++){
+            document.getElementsByClassName("cusPic")[i].addEventListener("click",putPic);
+
+            function putPic(e){
+                console.log(`cusPic`);
+                
+            for(var i = 0;i<7;i++){
+            var itm=document.getElementsByClassName("pic")[i];}
+            var cln=itm.cloneNode(true);
+            document.getElementById("cover_out_15").appendChild(cln);
+            };
+    }
+
+//     function $id(id){
+//   return document.getElementById(id);
+// }
+
+// cusPic=document.getElementsByClassName("cusPic");
+
+// for(var i = 0;i<cusPic.length;i++){
+//  document.getElementsByClassName("cusPic")[i].addEventListener("click",putPic)
+// }
+
+// function addSpot(){
+    
+//     for(var i = 0;i<7;i++){
+// 	var itm=document.getElementsByClassName("pic")[i];}
+// var cln=itm.cloneNode(true);
+// document.getElementById("cover_out_15").appendChild(cln);
+
+// }
+
+
+
+// window.addEventListener("load", function(){
+// 	$id("dd").onclick = addSpot;
+// },false )
+
+
+        const boxBases = document.querySelectorAll(".boxBase");
+    const btns = document.querySelectorAll(".btn");
+    //拖曳測試
+    const pics = document.querySelectorAll("pics");
+    const pic_img = document.querySelectorAll(".pic img");
+    const surface = document.querySelectorAll(".surface");
+    var arrDropedImg = [];
+    // //動態生成的元素會抓不到
+    // // const droped_img = document.querySelectorAll(".droped_img");
+    // const droped_img = document.querySelectorAll(".surface img");
+    ///允許 drop 的按鈕
+    const btnDropOn = ["btn_front",
+        "btn_back",
+        "btn_top",
+        "btn_bottom",
+        "btn_left",
+        "btn_right",
+        "btn_big",
+        "btn_small",
+        "btn_clk",        
+        "btn_clk_r",
+        "btn_unclk",
+        "btn_del"];
+    //工作姿態陣列 posture
+    // 此陣列姿態，開啟 surface 的 drop 監聽，其餘時候不給降落
+    const posture = ["rotateX(0deg) rotateY(0deg) rotateZ(0deg)",//前
+        "rotateX(0deg) rotateY(180deg) rotateZ(0deg)",//後
+        "rotateX(-90deg) rotateY(0deg) rotateZ(0deg)",//上
+        "rotateX(90deg) rotateY(0deg) rotateZ(0deg)",//下
+        "rotateX(0deg) rotateY(90deg) rotateZ(0deg)",//左
+        "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)"]//右
+    //允許控制圖片的按鈕
+    const dropedImgCtrl = ["btn_big", "btn_small", "btn_clk","btn_clk_r", "btn_unclk", "btn_del"];
+
+
+    //給箱子姿態初始值
+    boxBases.forEach(el => {
+        el.style.transform = "rotateX(-30deg) rotateY(30deg) rotateZ(0deg)";
+    })
+
+                 //按鈕監聽事件
+                 btns.forEach(elem => {
+                        elem.addEventListener("click", boxRotate);
+                        elem.addEventListener("click", dropedCtrl);
+                        elem.addEventListener("click", surfaceDropSwitch);//判斷要不要開drop區監聽
+                        elem.addEventListener("click", addSelect); // 指定面上色 --------------------------0128
+                })
+    
+
+                    //上標籤
+                    function addSelect(e) {
+                        if (e.target.classList.contains("rotateZ") || e.target.classList.contains("rotateX") ||
+                                e.target.classList.contains("rotateY")) return; //工程鈕跳過
+                        btns.forEach(el => {
+                                el.classList.remove("btnSelect");
+                        })
+                        e.target.classList.add("btnSelect");
+                }
+
+
+
+                //監聽顏色按鈕們
+                // console.log(`$class("colorBtn"): ${$class("colorBtn")}`);
+                const colorBtn = document.querySelectorAll(".colorBtn");
+                colorBtn.forEach(el => {
+                        el.addEventListener("click", surfaceColorChange);
+                        // console.log("監聽顏色鈕");
+                })
+                //改指定表面顏色
+                function surfaceColorChange(e) {
+                        //取按鈕背景色
+                        var tarColor = window.getComputedStyle(e.target, null).getPropertyValue("background-color");
+                        // console.log(`tarColor: ${tarColor}`);
+                        // console.log(`tarColor type: ${typeof (tarColor)}`);
+
+                        //更換目標背景色
+                        // console.log(`$class("btnSelect").classLis: ${$class("btnSelect").classLis}`);
+                        btns.forEach(el => {
+                                if (el.classList.contains("btnSelect")) {
+                                        var target = el.id; //取出按鈕id當字串
+                                        target = target.replace("btn", "surface"); //把字串改成對應的surface
+                                        document.querySelector("." + target).style.background = tarColor; //變色
+                                }
+                        })
+                }
+
+
+
+    //dropedImgCtrl
+    function dropedCtrl(e) {
+        switch (this.id) {
+            case "btn_big":
+                arrDropedImg.forEach(el => {
+                    if (el.classList.contains("select")) {
+                        console.log("to be bigger");
+                        let arr = el.style.transform.split(" ");
+                        //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                        let newScale = parseFloat(arr[3].replace("scale(", "").replace(")", "")) + 0.5;
+                        console.log("arr: " + arr);
+                        console.log("arr[3]: " + arr[3]);
+                        console.log(parseFloat(arr[3].replace("scale(", "").replace(")", "")));
+                        console.log("newScale: " + newScale);
+                        arr[3] = "scale(" + newScale + ")";
+                        el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                    }
+                })
+                break;
+            case "btn_small":
+                arrDropedImg.forEach(el => {
+                    if (el.classList.contains("select")) {
+                        console.log("to be smaller");
+                        let arr = el.style.transform.split(" ");
+                        //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                        let newScale = parseFloat(arr[3].replace("scale(", "").replace(")", "")) - 0.5;
+                        if (newScale < 0.1) newScale = 0.1;
+                        console.log("arr: " + arr);
+                        console.log("arr[3]: " + arr[3]);
+                        console.log(parseFloat(arr[3].replace("scale(", "").replace(")", "")));
+                        console.log("newScale: " + newScale);
+                        arr[3] = "scale(" + newScale + ")";
+                        el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                    }
+                })
+                break;
+            case "btn_clk":
+                arrDropedImg.forEach(el => {
+                    if (el.classList.contains("select")) {
+                        console.log("clk rotate");
+                        let arr = el.style.transform.split(" ");
+                        //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                        let newAngel = parseInt(arr[2].replace("rotate(", "").replace("deg)", "")) + 20;
+                        console.log("arr: " + arr);
+                        console.log("arr[3]: " + arr[2]);
+                        console.log(parseInt(arr[2].replace("rotate(", "").replace("deg)", "")));
+                        console.log("newAngel: " + newAngel);
+                        arr[2] = "rotate(" + newAngel + "deg)";
+                        el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                    }
+                })
+                break;
+            case "btn_clk_r":
+                arrDropedImg.forEach(el => {
+                    if (el.classList.contains("select")) {
+                        console.log("clk rotate");
+                        let arr = el.style.transform.split(" ");
+                        //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                        let newAngel = parseInt(arr[2].replace("rotate(", "").replace("deg)", "")) - 20;
+                        console.log("arr: " + arr);
+                        console.log("arr[3]: " + arr[2]);
+                        console.log(parseInt(arr[2].replace("rotate(", "").replace("deg)", "")));
+                        console.log("newAngel: " + newAngel);
+                        arr[2] = "rotate(" + newAngel + "deg)";
+                        el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                    }
+                })
+                break;
+            case "btn_unclk":
+                arrDropedImg.forEach(el => {
+                    if (el.classList.contains("select")) {
+                        console.log("unclk rotate");
+                        let arr = el.style.transform.split(" ");
+                        //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                        let newAngel = parseInt(arr[2].replace("rotate(", "").replace("deg)", "")) - 20;
+                        console.log("arr: " + arr);
+                        console.log("arr[2]: " + arr[2]);
+                        console.log(parseInt(arr[2].replace("rotate(", "").replace("deg)", "")));
+                        console.log("newAngel: " + newAngel);
+                        arr[2] = "rotate(" + newAngel + "deg)";
+                        el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                    }
+                })
+                break;
+            case "btn_del":
+                arrDropedImg.forEach(el => {
+                    if (el.classList.contains("select")) {
+                        // el.parent
+                        console.log("刪除前 " + arrDropedImg);
+                        console.log(`el.parent: ${el.parentNode}`);
+                        el.parentNode.removeChild(el);
+                        console.log("刪除後 " + arrDropedImg);
+                        //陣列內東西還在，但html確實移除該元素
+                    } else { }//沒事，不想讓瀏覽器跳錯誤而已
+                })
+                break;
+        }
+    }
+
+
+    //轉轉箱子功能鈕
+    //缺陷:style.transform是抓 css inline style的值，所以必須給箱子inline style的初始值 
+    function boxRotate(e) {
+        console.log(`this.id: ${this.id}`);
+        switch (this.id) {
+            case "btn_front":
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(0deg) rotateY(0deg) rotateZ(0deg)";
+                });
+                break;
+            case "btn_back":
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(0deg) rotateY(180deg) rotateZ(0deg)";
+                });
+                break;
+            case "btn_top":
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(-90deg) rotateY(0deg) rotateZ(0deg)";
+                });
+                break;
+            case "btn_bottom":
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(90deg) rotateY(0deg) rotateZ(0deg)";
+                });
+                break;
+            case "btn_left":
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(0deg) rotateY(90deg) rotateZ(0deg)";
+                });
+                break;
+            case "btn_right":
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+                });
+                break;
+            case "rotateX":
+                boxBases.forEach(element => {
+                    console.log("element.style.transform:" + element.style.transform);
+                    let arr = element.style.transform.split(" ");
+                    console.log(`arr: ${arr}`);
+                    let newAngelY = parseInt(arr[1].replace("rotateY(", "").replace("deg)", "")) +20;
+                    arr[0] = "rotateX(" + "-30" + "deg)";
+                    arr[1] = "rotateY(" + newAngelY + "deg)";                    
+                    console.log(arr[1]);
+                    element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
+                });
+                break;
+            case "rotateY":
+                boxBases.forEach(element => {
+                    // element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+                    console.log("element.style.transform:" + element.style.transform);
+                    let arr = element.style.transform.split(" ");
+                    console.log(`arr: ${arr}`);
+                    let newAngelY = parseInt(arr[1].replace("rotateY(", "").replace("deg)", "")) + 10;
+                    arr[1] = "rotateY(" + newAngelY + "deg)";
+                    console.log(arr[1]);
+                    element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
+                });
+                break;
+            case "rotateZ":
+                boxBases.forEach(element => {
+                    // element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+                    console.log("element.style.transform:" + element.style.transform);
+                    let arr = element.style.transform.split(" ");
+                    console.log(`arr: ${arr}`);
+                    let newAngelZ = parseInt(arr[2].replace("rotateZ(", "").replace("deg)", "")) + 10;
+                    arr[2] = "rotateZ(" + newAngelZ + "deg)";
+                    console.log(arr[2]);
+                    element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
+                });
+                break;
+            case "show":
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(0deg)";
+                });
+                
+                break;
+        }
+    };
+
+ 
+};
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
     $('.tab-1 a').on('click', function (e) {
     

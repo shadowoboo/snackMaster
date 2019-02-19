@@ -8,7 +8,6 @@
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";
     }
-
 ?> 
 
 <!DOCTYPE html>

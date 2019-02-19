@@ -1,4 +1,7 @@
 <?php
+    ob_start();
+    session_start();
+
     $errMsg = "";
     try {
         require_once("connectcd105g2.php");
@@ -12,17 +15,17 @@
         }else{
             $pageNum = 1;
         }
-        $start = ($pageNum - 1) * 9;
+        $start = ($pageNum - 1) * $recPerPage;
         if( isset($_REQUEST['search']) == false ){
-            $sql = "select * from snack where snackName != '客製箱' limit $start, $recPerPage";
+            $sql = "select * from snack where snackGenre != '客製箱' and snackGenre != '預購箱' limit $start, $recPerPage";
         }else{
             $search= $_REQUEST['search'];
-            $sql = "select * from snack where snackName != '客製箱' $search limit 0, 9";
+            $sql = "select * from snack where snackName != '客製箱' and snackGenre != '預購箱' $search limit 0, 9";
         }
         $snacks = $pdo -> query($sql); 
         if( $snacks -> rowCount() == 0){
             $searchMsg = 'oops';
-            $sql = "select * from snack where snackName != '客製箱' limit $start, $recPerPage";
+            $sql = "select * from snack where snackName != '客製箱' and snackGenre != '預購箱' limit $start, $recPerPage";
             $snacks = $pdo -> query($sql); 
         }
 

@@ -105,7 +105,7 @@ body {
                         display: none;
                         position: relative;
                         z-index: 6;
-                        width: 500px;
+                        width: 440px;
                         background-color: rgba(255, 255, 255, 0.9);
                         border-radius: 10px;
                         transform: translateX(-220px);
@@ -115,13 +115,15 @@ body {
                             justify-content: space-around;
                             .countryInfoImg {
                                 width: 130px;
+                                padding: 10px;
                             }
                             .countryInfoStar {
-                                width: 130px;
+                                width: 190px;
                                 li {
-                                    font-size: 22px;
+                                    line-height: 1.6em;
+                                    font-size: 26px;
                                     font-family: g2Font;
-                                    color: #737374;
+                                    color: #e97d58;
                                 }
                             }
                         }
@@ -142,6 +144,7 @@ body {
                                 color: #737374;
                                 span {
                                     font-size: 28px;
+                                    color: $blue;
                                 }
                             }
                         }
@@ -346,10 +349,10 @@ body {
                 }
                 .countryInfoReel {
                     @media screen and (max-width: 768px) {
-                        width: 140%;
+                        width: 2910px;
                         display: flex;
                         margin: 40px auto;
-                        padding: 0 10px;
+                        // padding: 0 10px;
                         overflow: -webkit-paged-x;
                         .countryInfoSm {
                             margin: 10px 10px;
@@ -378,9 +381,8 @@ body {
                                 width: 100%;
                                 margin: auto;
                                 padding: 10px 0;
-                                h2 {
+                                h4 {
                                     text-align: center;
-                                    font-size: 24px;
                                 }
                             }
                             .countryInfofooter {
@@ -388,7 +390,7 @@ body {
                                 justify-content: space-around;
                                 align-items: center;
                                 .countryInfoPrice {
-                                    color: #737374;
+                                    color:  $blue;
                                 }
                             }
                         }
@@ -478,21 +480,49 @@ body {
             @media screen and (max-width: 768px) {
                 overflow: auto;
             }
-            .lbReel {
+            #lbReel {
                 // -webkit-overflow-scrolling: touch;
                 max-width: 1200px;
                 height: 620px;
                 margin: auto;
                 display: flex;
                 justify-content: space-around;
+                .LeaderboardNo1,
+                .LeaderboardNo2,
+                .LeaderboardNo3 {
+                    position: relative;
+                    &::before {
+                        content: '';
+                        display: block;
+                        width: 200px;
+                        height: 200px;
+                        position: absolute;
+                        z-index: -1;
+                        top: -47px;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        background-size: cover;
+                        background-image: url("../images/rankBoard/glow.png");
+                        animation: rollGlow 5s infinite linear;
+                    }
+                    @keyframes rollGlow {
+                        0% {
+                            transform: rotate(0deg); // opacity: 0;
+                        }
+                        100% {
+                            transform: rotate(360deg); // opacity: .7;
+                        }
+                    }
+                }
                 @media screen and (max-width: 768px) {
                     // -webkit-overflow-scrolling: touch;
-                    width: 1180px;
+                    width: 1135px;
                     max-width: 1200px;
                     height: unset;
                     overflow: -webkit-paged-x;
                     justify-content: flex-start;
-                    padding: 20px;
+                    padding: 10px 0;
                     .LeaderboardNo1 {
                         order: -1;
                     }
@@ -507,49 +537,14 @@ body {
                 }
                 .LeaderboardNo3 {
                     align-self: flex-end;
-                } // .Crown {
-                //     width: 100px;
-                //     margin: auto;
-                //     position: relative;
-                //     &::before {
-                //         content: '';
-                //         display: block;
-                //         width: 200px;
-                //         height: 200px;
-                //         position: absolute;
-                //         z-index: -1;
-                //         top: -50px;
-                //         left: -50px;
-                //         right: 0;
-                //         margin: auto;
-                //         background-size: cover;
-                //         background-image: url(../images/rankBoard/glow.png);
-                //         animation: rollGlow 5s infinite linear;
-                //     }
-                //     h2 {
-                //         color: #fff;
-                //         position: absolute;
-                //         text-align: center;
-                //         top: 20px;
-                //         right: 0;
-                //         left: 0;
-                //     }
-                //     @keyframes rollGlow {
-                //         0% {
-                //             transform: rotate(0deg); // opacity: 0;
-                //         }
-                //         100% {
-                //             transform: rotate(360deg); // opacity: .7;
-                //         }
-                //     }
-                // }
+                }
                 .No2 {
                     background-image: url(../images/rankBoard/rank2.png);
                     background-repeat: no-repeat;
                     background-size: 280px;
                     .commodity {
                         img {
-                            width: 40%;
+                            width: 55%;
                         }
                     }
                 }
@@ -559,7 +554,7 @@ body {
                     background-size: 280px;
                     .commodity {
                         img {
-                            width: 53%;
+                            width: 55%;
                         }
                     }
                 }
@@ -570,7 +565,7 @@ body {
                     align-self: end;
                     .commodity {
                         img {
-                            width: 63%;
+                            width: 55%;
                         }
                     }
                 }
@@ -614,11 +609,11 @@ body {
                                 color: #e97d58;
                             }
                         }
-                        .commodityStar {
+                        .star {
                             width: 74.4%;
                             margin: auto;
                             border-radius: 100px;
-                            background: linear-gradient(to right, rgb(233, 125, 88) 85%, rgb(255, 255, 255)10%);
+                            // background: linear-gradient(to right, rgb(233, 125, 88) 85%, rgb(255, 255, 255)10%);
                             img {
                                 width: 100%;
                                 height: 100%;
@@ -730,6 +725,8 @@ body {
         position: relative; // padding-bottom: 16%;
         @media screen and (max-width: 768px) {
             margin: 60px 0;
+            background-size: 2000px;
+            // background-position: bottom center;
         }
         .waveTop {
             position: absolute;
@@ -803,6 +800,7 @@ body {
                         background-size: cover;
                         background-color: unset;
                         border: 1px dashed #ccc;
+                        background-repeat: no-repeat, no-repeat;
                     }
                     .surface_left,
                     .surface_right {
@@ -1095,27 +1093,27 @@ body {
                             transform: rotateX(-20deg);
                             >:nth-child(1) {
                                 transform: rotateY(0deg);
-                                animation: roSnack1 10s linear infinite ;
+                                animation: roSnack1 10s linear infinite;
                             }
                             >:nth-child(2) {
                                 transform: rotateY(60deg);
-                                animation: roSnack2 10s linear infinite ;
+                                animation: roSnack2 10s linear infinite;
                             }
                             >:nth-child(3) {
                                 transform: rotateY(120deg);
-                                animation: roSnack3 10s linear infinite ;
+                                animation: roSnack3 10s linear infinite;
                             }
                             >:nth-child(4) {
                                 transform: rotateY(180deg);
-                                animation: roSnack4 10s linear infinite ;
+                                animation: roSnack4 10s linear infinite;
                             }
                             >:nth-child(5) {
                                 transform: rotateY(240deg);
-                                animation: roSnack5 10s linear infinite ;
+                                animation: roSnack5 10s linear infinite;
                             }
                             >:nth-child(6) {
                                 transform: rotateY(300deg);
-                                animation: roSnack6 10s linear infinite ;
+                                animation: roSnack6 10s linear infinite;
                             }
                             .snacksRunImg {
                                 width: 25%;
@@ -1127,57 +1125,104 @@ body {
                                 margin: auto;
                             }
                             @keyframes roSnack1 {
-                                0% {transform: rotateY(0deg) translateZ(140px)}
-                                100% {transform: rotateY(360deg) translateZ(140px)}
+                                0% {
+                                    transform: rotateY(0deg) translateZ(140px)
+                                }
+                                100% {
+                                    transform: rotateY(360deg) translateZ(140px)
+                                }
                             }
-                            @keyframes roSnack2{
-                                0%{transform: rotateY(60deg) translateZ(140px)}
-                                100%{transform: rotateY(420deg) translateZ(140px)}
+                            @keyframes roSnack2 {
+                                0% {
+                                    transform: rotateY(60deg) translateZ(140px)
+                                }
+                                100% {
+                                    transform: rotateY(420deg) translateZ(140px)
+                                }
                             }
-                            @keyframes roSnack3{
-                                0%{transform: rotateY(120deg) translateZ(140px)}
-                                100%{transform: rotateY(480deg) translateZ(140px)}
+                            @keyframes roSnack3 {
+                                0% {
+                                    transform: rotateY(120deg) translateZ(140px)
+                                }
+                                100% {
+                                    transform: rotateY(480deg) translateZ(140px)
+                                }
                             }
-                            @keyframes roSnack4{
-                                0%{transform: rotateY(180deg) translateZ(140px)}
-                                100%{transform: rotateY(540deg) translateZ(140px)}
+                            @keyframes roSnack4 {
+                                0% {
+                                    transform: rotateY(180deg) translateZ(140px)
+                                }
+                                100% {
+                                    transform: rotateY(540deg) translateZ(140px)
+                                }
                             }
-                            @keyframes roSnack5{
-                                0%{transform: rotateY(240deg) translateZ(140px)}
-                                100%{transform: rotateY(600deg) translateZ(140px)}
+                            @keyframes roSnack5 {
+                                0% {
+                                    transform: rotateY(240deg) translateZ(140px)
+                                }
+                                100% {
+                                    transform: rotateY(600deg) translateZ(140px)
+                                }
                             }
-                            @keyframes roSnack6{
-                                0%{transform: rotateY(300deg) translateZ(140px)}
-                                100%{transform: rotateY(660deg) translateZ(140px)}
+                            @keyframes roSnack6 {
+                                0% {
+                                    transform: rotateY(300deg) translateZ(140px)
+                                }
+                                100% {
+                                    transform: rotateY(660deg) translateZ(140px)
+                                }
                             }
                             @media screen and (max-width: 768px) {
                                 left: 0;
                                 @keyframes roSnack1 {
-                                    0% {transform: rotateY(0deg) translateZ(90px)}
-                                    100% {transform: rotateY(360deg) translateZ(90px)}
+                                    0% {
+                                        transform: rotateY(0deg) translateZ(90px)
+                                    }
+                                    100% {
+                                        transform: rotateY(360deg) translateZ(90px)
+                                    }
                                 }
-                                @keyframes roSnack2{
-                                    0%{transform: rotateY(60deg) translateZ(90px)}
-                                    100%{transform: rotateY(420deg) translateZ(90px)}
+                                @keyframes roSnack2 {
+                                    0% {
+                                        transform: rotateY(60deg) translateZ(90px)
+                                    }
+                                    100% {
+                                        transform: rotateY(420deg) translateZ(90px)
+                                    }
                                 }
-                                @keyframes roSnack3{
-                                    0%{transform: rotateY(120deg) translateZ(90px)}
-                                    100%{transform: rotateY(480deg) translateZ(90px)}
+                                @keyframes roSnack3 {
+                                    0% {
+                                        transform: rotateY(120deg) translateZ(90px)
+                                    }
+                                    100% {
+                                        transform: rotateY(480deg) translateZ(90px)
+                                    }
                                 }
-                                @keyframes roSnack4{
-                                    0%{transform: rotateY(180deg) translateZ(90px)}
-                                    100%{transform: rotateY(540deg) translateZ(90px)}
+                                @keyframes roSnack4 {
+                                    0% {
+                                        transform: rotateY(180deg) translateZ(90px)
+                                    }
+                                    100% {
+                                        transform: rotateY(540deg) translateZ(90px)
+                                    }
                                 }
-                                @keyframes roSnack5{
-                                    0%{transform: rotateY(240deg) translateZ(90px)}
-                                    100%{transform: rotateY(600deg) translateZ(90px)}
+                                @keyframes roSnack5 {
+                                    0% {
+                                        transform: rotateY(240deg) translateZ(90px)
+                                    }
+                                    100% {
+                                        transform: rotateY(600deg) translateZ(90px)
+                                    }
                                 }
-                                @keyframes roSnack6{
-                                    0%{transform: rotateY(300deg) translateZ(90px)}
-                                    100%{transform: rotateY(660deg) translateZ(90px)}
+                                @keyframes roSnack6 {
+                                    0% {
+                                        transform: rotateY(300deg) translateZ(90px)
+                                    }
+                                    100% {
+                                        transform: rotateY(660deg) translateZ(90px)
+                                    }
                                 }
                             }
-                            
                         }
                         .boxBase {
                             border: unset;
@@ -1359,13 +1404,36 @@ body {
                 padding: 50px 0;
                 position: relative;
                 z-index: 1;
-                margin-bottom: 20%;
+                margin-bottom: 10%;
                 h2 {
                     line-height: 50px;
                     color: $blue;
                 }
                 @media screen and (max-width:768px) {
                     margin-bottom: 8%;
+                }
+            }
+            .vmMainCount{
+                display: flex;
+                justify-content: space-around;
+                padding-bottom: 10%;
+                align-items: center;
+                
+                .vmText{
+                    letter-spacing: 2px;
+                    color: $gray;
+                }
+                .vmBtn{
+                    // a{
+                    //     display: block;
+                    //     font-size: 85%;
+                    //     padding: 15px 30px;
+                    //     background-color: #fcda85;
+                    //     border-radius: 10px;
+                    //     &:hover{
+                    //         background-color: #fbc84a;
+                    //     }
+                    // }
                 }
             }
             .vmInfo {
@@ -1377,7 +1445,7 @@ body {
                     @media screen and (max-width: 768px) {
                         padding: 0 0 5px;
                     }
-                    .showYellow{
+                    .showYellow {
                         &::before {
                             content: '';
                             display: block;
@@ -1395,7 +1463,7 @@ body {
                     .locateImg {
                         width: 7%;
                         position: relative;
-                        animation: float 1s linear infinite alternate; 
+                        animation: float 1s linear infinite alternate;
                     }
                     img {
                         width: 100%;
@@ -1455,21 +1523,21 @@ body {
             }
         }
     }
-    .gameBox {
-        position: fixed;
-        bottom: 2%;
-        left: 1%;
-        width: 240px;
-        animation: float 1s linear infinite alternate;
-        z-index: 999;
-        cursor: pointer;
-        p {
-            position: absolute;
-            top: 22px;
-            left: 102px;
-            color: $gray;
-        }
-    }
+    // .gameBox {
+    //     position: fixed;
+    //     bottom: 2%;
+    //     left: 1%;
+    //     width: 240px;
+    //     animation: float 1s linear infinite alternate;
+    //     z-index: 999;
+    //     cursor: pointer;
+    //     p {
+    //         position: absolute;
+    //         top: 22px;
+    //         left: 102px;
+    //         color: $gray;
+    //     }
+    // }
     .gameScratch {
         position: fixed;
         bottom: 2%;

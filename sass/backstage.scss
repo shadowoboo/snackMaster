@@ -20,10 +20,8 @@ h1,h2,h3,h4,p,span{
     #menu{
         width: 230px;
         height: 100%;
-        border-style: solid;
-        border-width: 2px;
-        border-color: transparent $blue transparent transparent;
         position: fixed;
+        box-shadow: 2px 2px 5px #aaa;
         background-color: rgba($color: #fff, $alpha: 0.9);
         text-align: center;
         #logo{
@@ -32,9 +30,8 @@ h1,h2,h3,h4,p,span{
             margin-bottom: 30px;
         }
         #manager{
-            color: deeppink;
+            color: $blue;
             font-size: 16px;
-            text-decoration: underline;
         }
         #menuUl{
             font-size: 22px;
@@ -49,10 +46,18 @@ h1,h2,h3,h4,p,span{
                     }
                 }
             }
+            #logout{
+                font-size: 18px;
+                color: $gray;
+                &:hover{
+                    color: $blue;
+                    text-decoration: underline;
+                }
+            }
         }
     }
     #contentWrap{
-        padding-top: 30px; 
+        padding-top: 20px; 
         #content{
             overflow-x: auto ;
             background-color: rgba($color: #fff, $alpha: 0.9);
@@ -61,12 +66,12 @@ h1,h2,h3,h4,p,span{
             margin-right: 30px;
             button{
                 margin-top: 10px;
+                width: 100px;
             }
             table{
                 margin-top: 20px;
-                margin-bottom: 60px;
+                margin-bottom: 20px;
                 font-size: 18px;
-                width: 200%;
                 text-align: center;
                 tr{
                     &:nth-child(even){
@@ -74,7 +79,6 @@ h1,h2,h3,h4,p,span{
                     }
                 }
                 th, td{
-                    width: 110px;
                     vertical-align: middle;
                     padding: 4px;
                 }
@@ -86,9 +90,20 @@ h1,h2,h3,h4,p,span{
                         color: $gray;
                     }
                 }
-                #ingredient{
-                    width: 500px;
-                }
+            }
+            #editTable input{
+                text-align: center;
+            }
+            #subBtn{
+                border: none;
+                background-color: transparent;
+                font-size: 20px;
+                color: $gray;
+                margin-top: 0;
+                cursor: pointer;
+            }
+            #snack{
+                width: 240%;
             }
             #pagination ul{
                 display: flex;
@@ -123,7 +138,7 @@ h1,h2,h3,h4,p,span{
         }
         footer{
             margin-left: 260px;
-            padding: 20px 0;
+            padding: 5px 0;
             text-align: center;            
         }
     }

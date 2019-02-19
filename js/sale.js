@@ -18,14 +18,19 @@ function currentSlide(n) {
 function countdown() {
     //取得現在的時間
     var now = new Date();
+    // console.log(now);
     //取得活動結束的時間(第一次專題先寫死而不是從資料庫撈資料)
-    var end = new Date(2019, 1, 16);
+    var oneDay = now.getDate() + 1;
+    var end = new Date(2019, 1, oneDay);
+    // console.log(end);
     //算出目前時間到結束時間中間有多少秒            
-    var leftTime = end.getTime() - now.getTime();
+    var leftTime = end.getTime() - now.getTime();  //1552752000-1550378890=2372984
+    // console.log(leftTime); 
 
     //依序將毫秒轉換成幾天幾時幾分幾秒
-    var leftSecond = parseInt(leftTime / 1000);
-    var hour = Math.floor(leftSecond / 3600);
+    var leftSecond = parseInt(leftTime / 1000); //毫秒-秒
+    var hour = Math.floor(leftSecond / 3600); //
+    // console.log(hour);
     var minute = Math.floor((leftSecond - hour * 3600) / 60);
     var second = Math.floor(leftSecond - hour * 3600 - minute * 60);
     document.getElementById('hour').innerText = hour + '時 : ';

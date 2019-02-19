@@ -81,7 +81,7 @@ try {
                                     <li id="snBox"><a href="preOrder.html">預購零食箱</a></li>
                                 </ul>
                             </li>
-                            <li><a href="gsell.html">尋找販賣機</a> </li>
+                            <li><a href="gsell.php">尋找販賣機</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -219,7 +219,7 @@ try {
                             <span>距離: 100公尺</span>
                         </div>
                         <div class="map_serch_info_line">
-                            <a href="#">
+                            <a href="#" id="<?php echo $sellRow["maLnge"]."|".$sellRow["maLat"];?>">
                                 <span>規劃路線
                                     <i class="fas fa-location-arrow"></i></span>
                             </a>
