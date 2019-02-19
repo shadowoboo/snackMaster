@@ -52,6 +52,8 @@
     <script src="../js/shopping.js"></script>
     <script src="../js/addHeart.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/showStar.js"></script>
+    <!-- <script src="../js/findingIp.js"></script> -->
 </head>
 <body>
     <header>
@@ -180,7 +182,9 @@
                     <img class="country" src="../images/blair/<?php echo $snackRow['nation'] ?>.png" alt="">
                     <img class="itemImg" src="<?php echo $snackRow['snackPic']?>" alt="">
                     <h4 class="itemName"><?php echo '['.$snackRow['nation'].']'.$snackRow['snackName']?></h4>
-                    <img class="star" src="../images/blair/star.png" alt="star">
+                    <div class="star" grad="<?php echo $good;?>">
+                        <img src="../images/rankBoard/starMask.png" alt="星等">
+                    </div>
                     <p class="price">$<?php echo $snackRow['snackPrice']?></p>
                     <div class="itemBtns">
                         <button class="cart">加入購物車</button>
@@ -219,7 +223,9 @@
                     <!-- <h4>好評度</h4>
                     <span id="mintStar">3</span>
                     <span id="mintFive">/5</span>
-                    <img class="star" src="../images/blair/star.png" alt="star"> -->
+                    <div class="star" grad="3" id="starShow">
+                        <img src="../images/rankBoard/starMask.png" alt="星等">
+                    </div> -->
                     <h4 id="msg">我可以告訴你商品的評價星等喔!</h4>
                 </div>
                 <div class="radar">

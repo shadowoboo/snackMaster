@@ -72,15 +72,22 @@ function showRadar(e){
     document.getElementById('mintStar').innerText = good;
     document.getElementById('mintFive').innerText = '/5';
     var newImg = document.createElement('img');
-    newImg.className = 'star';
-    newImg.src = '../images/blair/star.png';
-    newImg.id = 'mintImg';
-    document.getElementsByClassName('info')[0].insertBefore(newImg, msg);
+    var newDiv = document.createElement('div');
+    newDiv.className = 'star';
+    newDiv.id = 'starShow';
+    newDiv.setAttribute('grad', good);
+    newImg.alt = '星等';
+    newImg.id = 'starImg';
+    newImg.src = '../images/rankBoard/starMask.png';
+    newDiv.appendChild(newImg);
+    document.getElementsByClassName('info')[0].insertBefore(newDiv, msg);
+    showStar();
 }
 function cancelRadar(){
     radarCanvas.data.datasets[0].data = [0, 0, 0, 0];
     radarCanvas.update();
-    document.getElementsByClassName('info')[0].removeChild(document.getElementById('mintImg'));
+    document.getElementById('starShow').removeChild(document.getElementById('starImg'));
+    document.getElementsByClassName('info')[0].removeChild(document.getElementById('starShow'));
     document.getElementById('goodTitle').innerText = '';
     document.getElementById('mintStar').innerText = '';
     document.getElementById('mintFive').innerText = '';

@@ -37,6 +37,12 @@
             width: 120px;
             height: 46px;
         }
+        #delete{
+            background-color: #fbc84a;
+        }
+        #delete:hover{
+            background-color: #ffb600;
+        }
         #content form{
             text-align: center;
         }
@@ -109,7 +115,22 @@
                         <tr>
                             <td>種類</td>
                             <td>
-                                <input type="text" name="snackGenre" value="<?php echo $snackRow['snackGenre'] ?>" size="10">
+                                <label>
+                                    <input type="radio" name ="snackGenre" value="巧克力" <?php echo $snackRow['snackGenre']=='巧克力'? 'checked':'' ?>>
+                                    巧克力
+                                </label>
+                                <label>
+                                    <input type="radio" name ="snackGenre" value="糖果" <?php echo $snackRow['snackGenre']=='糖果'? 'checked':'' ?>>
+                                    糖果
+                                </label>
+                                <label>
+                                    <input type="radio" name ="snackGenre" value="餅乾" <?php echo $snackRow['snackGenre']=='餅乾'? 'checked':'' ?>>
+                                    餅乾
+                                </label>
+                                <label>
+                                    <input type="radio" name ="snackGenre" value="洋芋片" <?php echo $snackRow['snackGenre']=='洋芋片'? 'checked':'' ?>>
+                                    洋芋片
+                                </label>
                             </td>
                         </tr>
                         <tr>
@@ -127,7 +148,16 @@
                         <tr>
                             <td>國家</td>
                             <td>
-                                <input type="text" name="nation" value="<?php echo $snackRow['nation'] ?>" size="10">                                
+                                <select name="nation">
+                                    <option value="巴西" <?php echo $snackRow['nation']=='巴西'? 'selected':'' ?>>巴西</option>
+                                    <option value="日本" <?php echo $snackRow['nation']=='日本'? 'selected':'' ?>>日本</option>
+                                    <option value="美國" <?php echo $snackRow['nation']=='美國'? 'selected':'' ?>>美國</option>
+                                    <option value="英國" <?php echo $snackRow['nation']=='英國'? 'selected':'' ?>>英國</option>
+                                    <option value="埃及" <?php echo $snackRow['nation']=='埃及'? 'selected':'' ?>>埃及</option>
+                                    <option value="德國" <?php echo $snackRow['nation']=='德國'? 'selected':'' ?>>德國</option>
+                                    <option value="澳洲" <?php echo $snackRow['nation']=='澳洲'? 'selected':'' ?>>澳洲</option>
+                                    <option value="韓國" <?php echo $snackRow['nation']=='韓國'? 'selected':'' ?>>韓國</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
@@ -139,13 +169,27 @@
                         <tr>
                             <td>上下架狀態</td>
                             <td>
-                                <input type="text" name="snackStatus" value="<?php echo $snackRow['snackStatus']== 1? '上架中':'下架中' ?>" size="10">
+                                <label>
+                                    <input type="radio" name ="snackStatus" value="1" <?php echo $snackRow['snackStatus']=='1'? 'checked':'' ?>>
+                                    上架中
+                                </label>
+                                <label>
+                                    <input type="radio" name ="snackStatus" value="0" <?php echo $snackRow['snackStatus']=='0'? 'checked':'' ?>>
+                                    下架中
+                                </label>
                             </td>
                         </tr>
                         <tr>
                             <td>販賣機販售</td>
                             <td>
-                                <input type="text" name="snackVending" value="<?php echo $snackRow['snackVending']== 1? '是':'否' ?>" size="10">
+                                <label>
+                                    <input type="radio" name ="snackVending" value="1" <?php echo $snackRow['snackVending']=='1'? 'checked':'' ?>>
+                                    是
+                                </label>
+                                <label>
+                                    <input type="radio" name ="snackVending" value="0" <?php echo $snackRow['snackVending']=='0'? 'checked':'' ?>>
+                                    否
+                                </label>
                             </td>
                         </tr>
                         <tr>
