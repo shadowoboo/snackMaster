@@ -1374,6 +1374,11 @@ $cardY:600px;
             margin-top: 30px;
             flex-direction: column;
             align-items: center;
+            .pics{
+                img{
+                    cursor: initial;
+                }
+            }
             .purchaseDetail{
                 width: 100%;
             }
@@ -1400,7 +1405,6 @@ $cardY:600px;
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
-
             }
             .cardBox{
                 width: 100%;

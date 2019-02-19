@@ -29,7 +29,7 @@ try {
    crossorigin="anonymous">
     <script src="../js/search.js"></script>
    <script src="../js/jquery-3.3.1.min.js"></script>
-   <script src="../js/shadowLib.js""></script>
+   <script src="../js/shadowLib.js"></script>
    <!-- 錄音外掛。我想我跳下去玩一定會來不及。謝謝你 9527 -->
    <script src="../js/recorder.js"></script>
    <script src="../js/common.js"></script>
@@ -222,32 +222,40 @@ try {
                             <div id="login">   
                                 <div class="pics" id="picsRegion">
                                     <div class="pic">
-                                        <img src="../images/tina/LOGO1.png" alt="">
+                                        <img class="cusPic" src="../images/tina/LOGO1.png" alt="">
                                     </div>
                                     <div class="pic">
-                                        <img src="../images/customized/chips.svg" alt="">
+                                        <img class="cusPic" src="../images/customized/chips.svg" alt="">
                                     </div>
                                     <div class="pic">
-                                        <img src="../images/customized/cookies.svg" alt="">
+                                        <img class="cusPic" src="../images/customized/cookies.svg" alt="">
                                     </div>
                                     <div class="pic">
-                                        <img src="../images/customized/chocolate.svg" alt="">
+                                        <img class="cusPic" src="../images/customized/chocolate.svg" alt="">
                                     </div>
                                     <div class="pic">
-                                        <img src="../images/customized/lollip.svg" alt="">
+                                        <img class="cusPic" src="../images/customized/lollip.svg" alt="">
                                     </div>                                    
                                     <div class="pic">
-                                        <img src="../images/customized/candy.svg" alt="">
+                                        <img class="cusPic" src="../images/customized/candy.svg" alt="">
                                     </div>                                    
                                     <div class="pic">
-                                        <img src="../images/customized/machi.svg" alt="">
+                                        <img class="cusPic" src="../images/customized/machi.svg" alt="">
                                     </div>
                                     <div class="pic">
-                                        <img id="image">
+                                        <img class="cusPic" id="image">
                                     </div>
                                     <input type="file" id="theFile">
                                 </div>  
-                                
+             <!-- <script>
+                var bbb = doccument.getElementClassName("bbb");
+                for(var i = 0;i<bbb.length;i++){
+                    doccument.getElementClassName("bbb")[i].addEventListener("click",bbb);
+                    function bbb (e){
+                        console.log(e.target);
+                    }
+                }
+             </script>                    -->
                               
             <p>
                 <textarea id="fileInfo" rows="5" cols="70" style="display:none;"></textarea>
@@ -627,7 +635,7 @@ try {
     </div>
 </footer>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src="../js/customizedstep.js""></script>
+  <script src="../js/customizedstep.js"></script>
   <script src="../js/header.js"></script>
     
   <!-- <script>
@@ -679,6 +687,36 @@ try {
         }
  
 };
+
+window.addEventListener("resize",()=>{
+    if($(window).width() > 767)
+{
+    aa=document.getElementById("cartgogo");
+        aa.addEventListener("click",changeSize);
+        console.log("aaaaa");
+
+        function changeSize(e){
+            console.log(`bbbbb`);
+            //換色            
+            e.target.style.background="pink";
+          
+                        
+        }
+}else{
+    aa=document.getElementById("cartgogo");
+        aa.addEventListener("click",changeSize);
+        console.log("aaaaa");
+
+        function changeSize(e){
+            console.log(`bbbbb`);
+            //換色            
+            e.target.style.background="blue";
+          
+                        
+        }
+ 
+};  
+})
 </script> -->
 <!-- <script>
  if($(window).width() > 767 ){
@@ -697,6 +735,7 @@ window.addEventListener("load",function(){
 </script> -->
 
   <script>
+if($(window).width() > 767){
     const boxBases = document.querySelectorAll(".boxBase");
     const btns = document.querySelectorAll(".btn");
     //拖曳測試
@@ -1144,7 +1183,366 @@ var section15 = document.querySelector("#section_15");
                 break;
         }
     };
+    aa=document.getElementById("cartgogo");
+        aa.addEventListener("click",changeSize);
+        console.log("aaaaa");
+
+        function changeSize(e){
+            console.log(`bbbbb`);
+            //換色            
+            e.target.style.background="pink";
+               
+        }
+
+
+
+
+
+
+}else{
+    aa=document.getElementById("cartgogo");
+        aa.addEventListener("click",changeSize);
+        console.log("aaaaa");
+
+        function changeSize(e){
+            console.log(`bbbbb`);
+            //換色            
+            e.target.style.background="blue";
+        };
+
+
+    cusPic=document.getElementsByClassName("cusPic");
+
+    for(var i = 0;i<cusPic.length;i++){
+            document.getElementsByClassName("cusPic")[i].addEventListener("click",putPic);
+
+            function putPic(e){
+                console.log(`cusPic`);
+                
+            for(var i = 0;i<7;i++){
+            var itm=document.getElementsByClassName("pic")[i];}
+            var cln=itm.cloneNode(true);
+            document.getElementById("cover_out_15").appendChild(cln);
+            };
+    }
+
+//     function $id(id){
+//   return document.getElementById(id);
+// }
+
+// cusPic=document.getElementsByClassName("cusPic");
+
+// for(var i = 0;i<cusPic.length;i++){
+//  document.getElementsByClassName("cusPic")[i].addEventListener("click",putPic)
+// }
+
+// function addSpot(){
+    
+//     for(var i = 0;i<7;i++){
+// 	var itm=document.getElementsByClassName("pic")[i];}
+// var cln=itm.cloneNode(true);
+// document.getElementById("cover_out_15").appendChild(cln);
+
+// }
+
+
+
+// window.addEventListener("load", function(){
+// 	$id("dd").onclick = addSpot;
+// },false )
+
+
+        const boxBases = document.querySelectorAll(".boxBase");
+    const btns = document.querySelectorAll(".btn");
+    //拖曳測試
+    const pics = document.querySelectorAll("pics");
+    const pic_img = document.querySelectorAll(".pic img");
+    const surface = document.querySelectorAll(".surface");
+    var arrDropedImg = [];
+    // //動態生成的元素會抓不到
+    // // const droped_img = document.querySelectorAll(".droped_img");
+    // const droped_img = document.querySelectorAll(".surface img");
+    ///允許 drop 的按鈕
+    const btnDropOn = ["btn_front",
+        "btn_back",
+        "btn_top",
+        "btn_bottom",
+        "btn_left",
+        "btn_right",
+        "btn_big",
+        "btn_small",
+        "btn_clk",        
+        "btn_clk_r",
+        "btn_unclk",
+        "btn_del"];
+    //工作姿態陣列 posture
+    // 此陣列姿態，開啟 surface 的 drop 監聽，其餘時候不給降落
+    const posture = ["rotateX(0deg) rotateY(0deg) rotateZ(0deg)",//前
+        "rotateX(0deg) rotateY(180deg) rotateZ(0deg)",//後
+        "rotateX(-90deg) rotateY(0deg) rotateZ(0deg)",//上
+        "rotateX(90deg) rotateY(0deg) rotateZ(0deg)",//下
+        "rotateX(0deg) rotateY(90deg) rotateZ(0deg)",//左
+        "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)"]//右
+    //允許控制圖片的按鈕
+    const dropedImgCtrl = ["btn_big", "btn_small", "btn_clk","btn_clk_r", "btn_unclk", "btn_del"];
+
+
+    //給箱子姿態初始值
+    boxBases.forEach(el => {
+        el.style.transform = "rotateX(-30deg) rotateY(30deg) rotateZ(0deg)";
+    })
+
+                 //按鈕監聽事件
+                 btns.forEach(elem => {
+                        elem.addEventListener("click", boxRotate);
+                        elem.addEventListener("click", dropedCtrl);
+                        elem.addEventListener("click", surfaceDropSwitch);//判斷要不要開drop區監聽
+                        elem.addEventListener("click", addSelect); // 指定面上色 --------------------------0128
+                })
+    
+
+                    //上標籤
+                    function addSelect(e) {
+                        if (e.target.classList.contains("rotateZ") || e.target.classList.contains("rotateX") ||
+                                e.target.classList.contains("rotateY")) return; //工程鈕跳過
+                        btns.forEach(el => {
+                                el.classList.remove("btnSelect");
+                        })
+                        e.target.classList.add("btnSelect");
+                }
+
+
+
+                //監聽顏色按鈕們
+                // console.log(`$class("colorBtn"): ${$class("colorBtn")}`);
+                const colorBtn = document.querySelectorAll(".colorBtn");
+                colorBtn.forEach(el => {
+                        el.addEventListener("click", surfaceColorChange);
+                        // console.log("監聽顏色鈕");
+                })
+                //改指定表面顏色
+                function surfaceColorChange(e) {
+                        //取按鈕背景色
+                        var tarColor = window.getComputedStyle(e.target, null).getPropertyValue("background-color");
+                        // console.log(`tarColor: ${tarColor}`);
+                        // console.log(`tarColor type: ${typeof (tarColor)}`);
+
+                        //更換目標背景色
+                        // console.log(`$class("btnSelect").classLis: ${$class("btnSelect").classLis}`);
+                        btns.forEach(el => {
+                                if (el.classList.contains("btnSelect")) {
+                                        var target = el.id; //取出按鈕id當字串
+                                        target = target.replace("btn", "surface"); //把字串改成對應的surface
+                                        document.querySelector("." + target).style.background = tarColor; //變色
+                                }
+                        })
+                }
+
+
+
+    //dropedImgCtrl
+    function dropedCtrl(e) {
+        switch (this.id) {
+            case "btn_big":
+                arrDropedImg.forEach(el => {
+                    if (el.classList.contains("select")) {
+                        console.log("to be bigger");
+                        let arr = el.style.transform.split(" ");
+                        //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                        let newScale = parseFloat(arr[3].replace("scale(", "").replace(")", "")) + 0.5;
+                        console.log("arr: " + arr);
+                        console.log("arr[3]: " + arr[3]);
+                        console.log(parseFloat(arr[3].replace("scale(", "").replace(")", "")));
+                        console.log("newScale: " + newScale);
+                        arr[3] = "scale(" + newScale + ")";
+                        el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                    }
+                })
+                break;
+            case "btn_small":
+                arrDropedImg.forEach(el => {
+                    if (el.classList.contains("select")) {
+                        console.log("to be smaller");
+                        let arr = el.style.transform.split(" ");
+                        //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                        let newScale = parseFloat(arr[3].replace("scale(", "").replace(")", "")) - 0.5;
+                        if (newScale < 0.1) newScale = 0.1;
+                        console.log("arr: " + arr);
+                        console.log("arr[3]: " + arr[3]);
+                        console.log(parseFloat(arr[3].replace("scale(", "").replace(")", "")));
+                        console.log("newScale: " + newScale);
+                        arr[3] = "scale(" + newScale + ")";
+                        el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                    }
+                })
+                break;
+            case "btn_clk":
+                arrDropedImg.forEach(el => {
+                    if (el.classList.contains("select")) {
+                        console.log("clk rotate");
+                        let arr = el.style.transform.split(" ");
+                        //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                        let newAngel = parseInt(arr[2].replace("rotate(", "").replace("deg)", "")) + 20;
+                        console.log("arr: " + arr);
+                        console.log("arr[3]: " + arr[2]);
+                        console.log(parseInt(arr[2].replace("rotate(", "").replace("deg)", "")));
+                        console.log("newAngel: " + newAngel);
+                        arr[2] = "rotate(" + newAngel + "deg)";
+                        el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                    }
+                })
+                break;
+            case "btn_clk_r":
+                arrDropedImg.forEach(el => {
+                    if (el.classList.contains("select")) {
+                        console.log("clk rotate");
+                        let arr = el.style.transform.split(" ");
+                        //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                        let newAngel = parseInt(arr[2].replace("rotate(", "").replace("deg)", "")) - 20;
+                        console.log("arr: " + arr);
+                        console.log("arr[3]: " + arr[2]);
+                        console.log(parseInt(arr[2].replace("rotate(", "").replace("deg)", "")));
+                        console.log("newAngel: " + newAngel);
+                        arr[2] = "rotate(" + newAngel + "deg)";
+                        el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                    }
+                })
+                break;
+            case "btn_unclk":
+                arrDropedImg.forEach(el => {
+                    if (el.classList.contains("select")) {
+                        console.log("unclk rotate");
+                        let arr = el.style.transform.split(" ");
+                        //有小數點時記得使用parseFloat保留小數點!!!用parseInt會砍掉小數點!!
+                        let newAngel = parseInt(arr[2].replace("rotate(", "").replace("deg)", "")) - 20;
+                        console.log("arr: " + arr);
+                        console.log("arr[2]: " + arr[2]);
+                        console.log(parseInt(arr[2].replace("rotate(", "").replace("deg)", "")));
+                        console.log("newAngel: " + newAngel);
+                        arr[2] = "rotate(" + newAngel + "deg)";
+                        el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+                    }
+                })
+                break;
+            case "btn_del":
+                arrDropedImg.forEach(el => {
+                    if (el.classList.contains("select")) {
+                        // el.parent
+                        console.log("刪除前 " + arrDropedImg);
+                        console.log(`el.parent: ${el.parentNode}`);
+                        el.parentNode.removeChild(el);
+                        console.log("刪除後 " + arrDropedImg);
+                        //陣列內東西還在，但html確實移除該元素
+                    } else { }//沒事，不想讓瀏覽器跳錯誤而已
+                })
+                break;
+        }
+    }
+
+
+    //轉轉箱子功能鈕
+    //缺陷:style.transform是抓 css inline style的值，所以必須給箱子inline style的初始值 
+    function boxRotate(e) {
+        console.log(`this.id: ${this.id}`);
+        switch (this.id) {
+            case "btn_front":
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(0deg) rotateY(0deg) rotateZ(0deg)";
+                });
+                break;
+            case "btn_back":
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(0deg) rotateY(180deg) rotateZ(0deg)";
+                });
+                break;
+            case "btn_top":
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(-90deg) rotateY(0deg) rotateZ(0deg)";
+                });
+                break;
+            case "btn_bottom":
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(90deg) rotateY(0deg) rotateZ(0deg)";
+                });
+                break;
+            case "btn_left":
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(0deg) rotateY(90deg) rotateZ(0deg)";
+                });
+                break;
+            case "btn_right":
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+                });
+                break;
+            case "rotateX":
+                boxBases.forEach(element => {
+                    console.log("element.style.transform:" + element.style.transform);
+                    let arr = element.style.transform.split(" ");
+                    console.log(`arr: ${arr}`);
+                    let newAngelY = parseInt(arr[1].replace("rotateY(", "").replace("deg)", "")) +20;
+                    arr[0] = "rotateX(" + "-30" + "deg)";
+                    arr[1] = "rotateY(" + newAngelY + "deg)";                    
+                    console.log(arr[1]);
+                    element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
+                });
+                break;
+            case "rotateY":
+                boxBases.forEach(element => {
+                    // element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+                    console.log("element.style.transform:" + element.style.transform);
+                    let arr = element.style.transform.split(" ");
+                    console.log(`arr: ${arr}`);
+                    let newAngelY = parseInt(arr[1].replace("rotateY(", "").replace("deg)", "")) + 10;
+                    arr[1] = "rotateY(" + newAngelY + "deg)";
+                    console.log(arr[1]);
+                    element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
+                });
+                break;
+            case "rotateZ":
+                boxBases.forEach(element => {
+                    // element.style.transform = "rotateX(0deg) rotateY(-90deg) rotateZ(0deg)";
+                    console.log("element.style.transform:" + element.style.transform);
+                    let arr = element.style.transform.split(" ");
+                    console.log(`arr: ${arr}`);
+                    let newAngelZ = parseInt(arr[2].replace("rotateZ(", "").replace("deg)", "")) + 10;
+                    arr[2] = "rotateZ(" + newAngelZ + "deg)";
+                    console.log(arr[2]);
+                    element.style.transform = `${arr[0]} ${arr[1]} ${arr[2]}`;
+                });
+                break;
+            case "show":
+                boxBases.forEach(element => {
+                    element.style.transform = "rotateX(270deg) rotateY(180deg) rotateZ(0deg)";
+                });
+                
+                break;
+        }
+    };
+
+ 
+};
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
     $('.tab-1 a').on('click', function (e) {
     
