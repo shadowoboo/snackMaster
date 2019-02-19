@@ -544,7 +544,7 @@ body {
                     background-size: 280px;
                     .commodity {
                         img {
-                            width: 40%;
+                            width: 55%;
                         }
                     }
                 }
@@ -554,7 +554,7 @@ body {
                     background-size: 280px;
                     .commodity {
                         img {
-                            width: 53%;
+                            width: 55%;
                         }
                     }
                 }
@@ -565,7 +565,7 @@ body {
                     align-self: end;
                     .commodity {
                         img {
-                            width: 63%;
+                            width: 55%;
                         }
                     }
                 }
@@ -609,11 +609,11 @@ body {
                                 color: #e97d58;
                             }
                         }
-                        .commodityStar {
+                        .star {
                             width: 74.4%;
                             margin: auto;
                             border-radius: 100px;
-                            background: linear-gradient(to right, rgb(233, 125, 88) 85%, rgb(255, 255, 255)10%);
+                            // background: linear-gradient(to right, rgb(233, 125, 88) 85%, rgb(255, 255, 255)10%);
                             img {
                                 width: 100%;
                                 height: 100%;
@@ -1404,13 +1404,36 @@ body {
                 padding: 50px 0;
                 position: relative;
                 z-index: 1;
-                margin-bottom: 20%;
+                margin-bottom: 10%;
                 h2 {
                     line-height: 50px;
                     color: $blue;
                 }
                 @media screen and (max-width:768px) {
                     margin-bottom: 8%;
+                }
+            }
+            .vmMainCount{
+                display: flex;
+                justify-content: space-around;
+                padding-bottom: 10%;
+                align-items: center;
+                
+                .vmText{
+                    letter-spacing: 2px;
+                    color: $gray;
+                }
+                .vmBtn{
+                    // a{
+                    //     display: block;
+                    //     font-size: 85%;
+                    //     padding: 15px 30px;
+                    //     background-color: #fcda85;
+                    //     border-radius: 10px;
+                    //     &:hover{
+                    //         background-color: #fbc84a;
+                    //     }
+                    // }
                 }
             }
             .vmInfo {

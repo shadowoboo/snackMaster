@@ -1,5 +1,14 @@
+<?php
+    // session_start();
+    // try{
+    //     require_once("connectcd105g2.php");
+    //     $sql = "select*from member where ";
+    // }catch{
 
-<!DOCTYPE html>
+    // }
+
+?>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,13 +19,12 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="../css/loginBox.css">
     <link rel="stylesheet" href="../css/header.css">
-    <script src="../js/jquery-3.3.1.min.js"></script>
 
     <title>Document</title>
 
-</head>
+</head> -->
 
-<body>
+<!-- <body> -->
     <header>
         <h1>大零食家</h1>
         <div class="cloud">
@@ -102,7 +110,6 @@
                     <span class="close">X</span>
                 </div>
             </div>
-        </div>  
     </header>
     <div id="lightBox-wrap">
         <div id="lightBox">
@@ -110,12 +117,14 @@
                 <span id="lightBoxLeave">X</span>
             </div>
             <ul class="tab-group">
-                <li class="loginTab"  id="open" onclick="changeway(event,'Loginpage')">登入</li>
-                <li class="loginTab"   onclick="changeway(event,'signup')">註冊</li>
+                <li class="loginTab action  " id="open" onclick="changeway(event,'Loginpage')">登入</li>
+                <li class="loginTab action" onclick="changeway(event,'signup')">註冊</li>
             </ul>
             <div class="loginTab-content">
                 <!-----------------------------------登入表單------------------------------------  -->
-                <form  id="Loginpage" class="tabContent">
+                <!-- <form action="login_cy.php" id="Loginpage" class="tabContent" method="post" > -->
+                <form action="" id="Loginpage" class="tabContent" method="post" >
+                
                     <table class="loginBox">
                         <table class="loginBox">
                             <tr>
@@ -134,7 +143,6 @@
                             <tr>
                                 <td>
                                     <input type="button" id="btnLogin" value="登入" class="cart">
-
                                 </td>
                             </tr>
                         </table>
@@ -144,14 +152,18 @@
 
                     </table>
                 </form>
+                <form action="" id="LoginPageSend">
+                    <input type="hidden" id="memId" name="memId">
+                    <input type="hidden" id="memPsw" name="memPsw">
+                </form>
         <!------------------------------------------------註冊表單------------------------------------------  -->
-                <form  id="signup" class="tabContent">
+                <form action="get" id="signup" class="tabContent">
                     <table class="signUpBox">
                         <tr>
                             <td>
                                 <label class="Box-name" for="signUpMemId">帳號</label>
                                 <input type="text" name="signUpMemId" id="signUpMemId" size="12" autocomplete="off"
-                                    placeholder="不得少於2碼">
+                                    placeholder="請輸入帳號">
 
                             </td>
 
@@ -179,7 +191,7 @@
                     </table>
                 </form>
                 <!-- ---------------------------------------忘記密碼 -->
-                <form  id="forgetPsw" class="tabContent">
+                <form action="get" id="forgetPsw" class="tabContent">
                     <table class="forgetPswBox">
                         <tr>
                             <td>
@@ -212,12 +224,54 @@
 
 
     </div>
-    
-    <script src="../js/header.js"></script>
+    <!-- <script>
+        //1.先開啟燈箱
+        var memLogin = document.getElementById("memLogin");
+        var lightBox = document.getElementById('lightBox-wrap');
+        memLogin.addEventListener("click",showLightBox);
+        function showLightBox(e){
+            //icon 換色
+             e.target.style.color = "#00457b";
+            //  console.log('aaa');
+             //點icon跳出燈箱
+            lightBox.classList.toggle('show');
+        }
+      
+      //2.頁籤切換 登入＋註冊＋忘記密碼
+      function changeway(e,tabchange){
+          var i,loginTab,tabContent;
+          tabContent = document.getElementsByClassName('tabContent');
+          for(i=0; i<tabContent.length; i++){
+            tabContent[i].style.display="none";
+          }
+          loginTab = document.getElementsByClassName('loginTab');
+        //   console.log('bbb');
+          
+          for(i=0; i<loginTab.length; i++){
+              loginTab[i].classList.remove("active");
+            // loginTab.className = loginTab[i].className.replace('active',"");
+          }
+          document.getElementById(tabchange).style.display = "block";
+          e.target.classList.add("active");
+        //   e.currentTarget.className += " active";
+          
+      }
+      document.getElementById('open').click();
+      //3.點x離開
+      var lightBoxLeave = document.getElementById("lightBoxLeave");
+      function leave(e){
+          //點擊x燈箱關掉
+
+          //icon換回灰色
+      }
+
+      lightBoxLeave.addEventListener("click",leave);
+    </script> -->
+    <!-- <script src="../js/header.js"></script> -->
 
 
 
 
-</body>
+<!-- </body> -->
 
-</html>
+<!-- </html> -->
