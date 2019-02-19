@@ -2,9 +2,24 @@ function addHeart(e){
     if( e.target.className.indexOf('fa') == -1 ){
         var snackNo = e.target.id;        
     }else{
+        e.stopPropagation();
         var snackNo = e.target.parentNode.id;        
     }
-    console.log(snackNo);
+    e.target.style.color = 'rgb(234, 90, 90)';
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            alert('已將零食加入收藏～');
+        } else {
+            alert(xhr.status);
+        }
+    }
+
+    var url = 'addHeart.php?snackNo=' + snackNo;
+    xhr.open('get', url, true);
+    xhr.send(null);   
+    
+
 }
 window.addEventListener('load', function (){
     var hearts = document.getElementsByClassName('heart');

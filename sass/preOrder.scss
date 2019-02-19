@@ -618,6 +618,7 @@ h1,h2,h3,h4,p,span{
                 label{
                     margin: 6px 10px;
                     display: inline-block;
+                    cursor: pointer;
                     @media only screen and (min-width: 500px){
                         margin: 0 20px;
                     }

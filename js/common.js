@@ -18,18 +18,6 @@ function updateNum(e, num, type) {
 }
 
 function doFirst() {
-    //取得愛心按鈕們的物件關聯並設定點擊事件處理器toggleColor
-    var hearts = document.getElementsByClassName('heart');
-    for (var i = 0; i < hearts.length; i++) {
-        hearts[i].addEventListener('click', function (e) {
-            //愛心按鈕被點擊時會改變顏色，再次點擊會換回原本的顏色
-            if (e.target.style.color == 'rgb(234, 90, 90)') {
-                e.target.style.color = '';
-            } else {
-                e.target.style.color = 'rgb(234, 90, 90)';
-            }
-        });
-    }
 
     //取得number input左右的加減按鈕們的物件關聯
     var numMinus = document.getElementsByClassName('numMinus');
