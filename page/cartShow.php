@@ -6,33 +6,33 @@
     require("CartProdAdd_ENG.php");
     
 
-    //撈出優惠卷
-    function getCoupon(){
-        if(isset($_SESSION["memId"])){
-            require_once("connectcd105g2.php");
-            $errMsg = "";
-            try {
-                //撈出 本登入會員 尚未使用 的優惠卷夾，依照到期日排列(先到期的排上面)
-                $sql = "SELECT * FROM `coupon` JOIN couponbox ON coupon.coupNo = couponbox.coupNo WHERE memNo = ? and cUse=1 ORDER BY endDate";
-                $coupon = $pdo->prepare( $sql ); //先編譯好
-                $coupon->bindValue(1, $_SESSION["memId"]);
-                $coupon->execute();//執行之
-            } catch (PDOException $e) {
-                $errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
-                $errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";
-            }
-            if($errMsg != ""){
-                exit("<div><center>$errMg</center></div>");
-            }elseif( $coupon->rowCount() == 0 ){
-                // echo "none";
-            }else{
-                $couponRow = $coupon->fetchAll(PDO::FETCH_ASSOC);
-                return $couponRow;
-            }
-        }else{
+    // //撈出優惠卷
+    // function getCoupon(){
+    //     if(isset($_SESSION["memId"])){
+    //         require_once("connectcd105g2.php");
+    //         $errMsg = "";
+    //         try {
+    //             //撈出 本登入會員 尚未使用 的優惠卷夾，依照到期日排列(先到期的排上面)
+    //             $sql = "SELECT * FROM `coupon` JOIN couponbox ON coupon.coupNo = couponbox.coupNo WHERE memNo = ? and cUse=1 ORDER BY endDate";
+    //             $coupon = $pdo->prepare( $sql ); //先編譯好
+    //             $coupon->bindValue(1, $_SESSION["memId"]);
+    //             $coupon->execute();//執行之
+    //         } catch (PDOException $e) {
+    //             $errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
+    //             $errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";
+    //         }
+    //         if($errMsg != ""){
+    //             exit("<div><center>$errMg</center></div>");
+    //         }elseif( $coupon->rowCount() == 0 ){
+    //             // echo "none";
+    //         }else{
+    //             $couponRow = $coupon->fetchAll(PDO::FETCH_ASSOC);
+    //             return $couponRow;
+    //         }
+    //     }else{
 
-        }
-    }
+    //     }
+    // }
     
     
 
@@ -65,6 +65,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- 工程用清除快取，上線要刪除!!!! -->
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="EXPIRES" CONTENT="0">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <!-- 工程用，上線要刪除!!!! -->
+
+
     <title>大零食家 > 購物車</title>
     <!-- ------------------css---------------- -->
     <!-- for cartShow   -->
@@ -491,7 +499,7 @@ if(isset($_SESSION["snackName"])){
         <div class="engBtn">prodCard_normal</div>
         <div class="engBtn">prodCards</div>
         <div class="engBtn">cartContent_none</div>
-        <div class="engBtn"></div>
+        <div class="engBtn clearSession" id="clearSession">清除所有 php session</div>
     </div>
 
     <footer>

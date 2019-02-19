@@ -181,7 +181,7 @@ $(function () {
             type: "post",
             url: "getCoupon.php",
             success: function (response) {
-                if(response="error"){
+                if(response=="error"){
                     $("#couponItem").html("\<option value=\"未登入\"\>未登入\<\/option\>");
                     console.log(`response="error"`);
                     
@@ -191,7 +191,9 @@ $(function () {
 
                 }else{
                     $("#couponItem").html(response);
-                    console.log(`response="ok"`);
+                    // console.log(`response="ok"`);
+                    console.log(response);
+                    
 
                 }
             }
@@ -340,10 +342,18 @@ $(document).ready(function () {
     $(".title h2").click(function () {
         $(".engBtnList").toggleClass("show");
     })
-    $(".engBtn").click(function (e) {
+    $(".engBtn:not(#clearSession)").click(function (e) {
         let tar = e.target.innerText;
         // alert(tar);
         $("." + tar).toggle();
+    })
+    $("#clearSession").click(function(){
+        $.ajax({
+            url: "clearSession_ENG.php",
+            success: function (response) {
+                console.log(response);
+            }
+        });
     })
     //////ENG BTN ENDDD
 

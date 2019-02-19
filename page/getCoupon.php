@@ -23,12 +23,12 @@
                 $html="";
                 for($i=0;$i<$count;$i++){
                     $value=$couponRow[$i]["discountPrice"];
-                    $html=$html+"<option value=\"".$value."\">".$value."</option>";
+                    $html=$html."<option value=\"".$value."\">".$value."</option>";
                 }
                 echo $html;
             }
         }else{
-            echo "none";//沒登入
+            echo "aaa";//沒登入
         }
 
 ?>
