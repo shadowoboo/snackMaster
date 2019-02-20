@@ -45,17 +45,17 @@
                             <span class="leave">X</span>
                         </div>
                         <ul class="list">
-                            <li><a href="rankBoard.html">零食排行榜</a></li>
-                            <li><a href="customized.phpl">客製零食箱</a> </li>
+                            <li id="goRankBoard"><a href="rankBoard.html">零食排行榜</a></li>
+                            <li id="goCustomized"><a href="customized.php">客製零食箱</a> </li>
                             <!-- 在手機上要關掉這個li的logo -->
-                            <li><a href="index.php"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
+                            <li><a href="homePage.php"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
                             <li id="store"> 零食商店街
                                 <ul id="Submenu" class="subMenu">
                                     <li id="snBox"><a href="preOrder.php">預購零食箱</a></li>
                                     <li><a href="shopping.php">零食列表</a></li>
                                 </ul>
                             </li>
-                            <li><a href="gsell.php">尋找販賣機</a> </li>
+                            <li id="goGsell"><a href="gsell.php">尋找販賣機</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                 <ul class="login">
                     <li><span id="btnloglout">&nbsp</span></li>
                     <li><i class="fas fa-user-circle" id="memLogin"></i></li>
-                    <li><a href="cartShow.php"><i class="fas fa-shopping-cart" id="shopCart"></i></a></li>
+                    <li id="goCartShow"><a href="cartShow.php"><i class="fas fa-shopping-cart" id="shopCart"></i></a></li>
                 </ul>
             </nav>
             <div class="seachRegion" id="search_appear">
