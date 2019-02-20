@@ -10,8 +10,8 @@ if(isset($_REQUEST["snackNo"])){
     $snackNo=$_REQUEST["snackNo"];
 }
 
-if(isset($_REQUEST["snackQty"])){
-    $snackQty=$_REQUEST["snackQty"];
+if(isset($_REQUEST["snackQuan"])){
+    $snackQuan=$_REQUEST["snackQuan"];
 }
 
 
@@ -24,7 +24,7 @@ switch ($updateType) {
                 unset($_SESSION["snackName"][$snackNo]);
                 unset($_SESSION["snackPrice"][$snackNo]);
                 unset($_SESSION["cusType"][$snackNo]);
-                unset($_SESSION["snackQty"][$snackNo]);
+                unset($_SESSION["snackQuan"][$snackNo]);
                 unset($_SESSION["snackPic"][$snackNo]);
             }
         }
@@ -40,21 +40,20 @@ switch ($updateType) {
         unset($_SESSION["snackName"][$snackNo]);
         unset($_SESSION["snackPrice"][$snackNo]);
         unset($_SESSION["cusType"][$snackNo]);
-        unset($_SESSION["snackQty"][$snackNo]);
+        unset($_SESSION["snackQuan"][$snackNo]);
         unset($_SESSION["snackPic"][$snackNo]);
         echo "Done normal clear ".$snackNo;
         //清掉收到的變數
         unset($snackNo);
         break;
     case 'numMinus': //如果是 numMinus
-        $_SESSION["snackQty"][$snackNo]=$snackQty;
-        echo $_SESSION["snackQty"][$snackNo];
+        $_SESSION["snackQuan"][$snackNo]=$snackQuan;
+        echo $_SESSION["snackQuan"][$snackNo];
         unset($snackNo);
-
         break;
     case 'numPlus': //如果是 numPlus
-        $_SESSION["snackQty"][$snackNo]=$snackQty;
-        echo $_SESSION["snackQty"][$snackNo];
+        $_SESSION["snackQuan"][$snackNo]=$snackQuan;
+        echo $_SESSION["snackQuan"][$snackNo];
         unset($snackNo);
         break;
     default:

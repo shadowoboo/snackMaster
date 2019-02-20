@@ -66,11 +66,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- 工程用清除快取，上線要刪除!!!! -->
+    <!-- 工程用清除快取!!!! -->
     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
     <META HTTP-EQUIV="EXPIRES" CONTENT="0">
     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
-    <!-- 工程用，上線要刪除!!!! -->
+    <!-- 工程用清除快取!!!! -->
 
 
     <title>大零食家 > 購物車</title>
@@ -154,7 +154,7 @@ if(isset($_SESSION["snackName"])){
                         <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusBox">
                             <div class="prodImg">
                                 <!-- <img src="../images/blair/item3.png"> -->
-                                <img src="<?php echo $_SESSION["cusBox"] ?>">
+                                <img src="<?php echo $_SESSION["cusBox"] ?>" id="boxPic">
                             </div>
                             <div class="prodInfo">
                                 <div class="prodName">
@@ -182,7 +182,7 @@ if(isset($_SESSION["snackName"])){
                         <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusCard">
                             <div class="prodImg">
                                 <!-- <img src="../images/blair/item3.png"> -->
-                                <img src="<?php echo $_SESSION["cusCard"]; ?>">
+                                <img src="<?php echo $_SESSION["cusCard"]; ?>" id="cardPic">
                             </div>
                             <div class="prodInfo">
                                 <div class="prodName">
