@@ -11,6 +11,25 @@
     $prod->execute();//執行之
     $prodRow = $prod->fetchAll(PDO::FETCH_ASSOC);
 
+    // snackNo = 50 是客製箱
+    // 但是  $prodRow[ 49 ]["snackName"]; 才能撈出 正確的客製箱名稱
+    
+    // //補正方法一
+    // //在寫入 session時 補正
+    // $_SESSION["snackName"][50]=$prodRow[49]["snackName"];
+    // $_SESSION["snackPrice"][50]=$prodRow[49]["snackPrice"];
+    // $_SESSION["cusType"][50]="y";
+    // $_SESSION["snackQuan"][50]=1;
+
+    // //補正方法二
+    // //在"訂單產生" 要寫入欄位時 由購物車補正
+    // $orderitem->bindValue(":snackNo", $snackNo+1); //若 session 錯誤則須補正
+    
+
+
+
+
+
     //會員登入模擬
     $_SESSION["memNo"]=1;
     // echo "memId: ".$_SESSION["memId"]." already loggin";
@@ -42,10 +61,16 @@
     $_SESSION["cusBox"]="../images/customized/ip5.png"; //預計截圖之後產生檔案
     $_SESSION["cusCard"]="../images/customized/card.png"; //預計截圖之後產生檔案
     $_SESSION["cusSound"]="../codeTesting/Mozart1.mp3"; //預計錄音產生檔案
-    $_SESSION["snackName"][49]=$prodRow[49]["snackName"];
-    $_SESSION["snackPrice"][49]=$prodRow[49]["snackPrice"];
-    $_SESSION["cusType"][49]="y";
-    $_SESSION["snackQuan"][49]=1;
+    $_SESSION["snackName"][50]=$prodRow[49]["snackName"];
+    $_SESSION["snackPrice"][50]=$prodRow[49]["snackPrice"];
+    $_SESSION["cusType"][50]="y";
+    $_SESSION["snackQuan"][50]=1;
+
+
+    function cusProd(){
+        
+    }
+
     // // $_SESSION["snackPic"][49]=$prodRow[49]["snackPic"]; //客製箱只抓截圖檔，所以不撈此檔案
     // //跟客製有關聯的商品
     // $_SESSION["snackName"][0]=$prodRow[0]["snackName"];
@@ -120,11 +145,11 @@
     // $_SESSION["snackQuan"][18]=1;
     // $_SESSION["snackPic"][18]=$prodRow[18]["snackPic"];
 
-    $_SESSION["snackName"][38]=$prodRow[38]["snackName"];
-    $_SESSION["snackPrice"][38]=$prodRow[38]["snackPrice"];
-    $_SESSION["cusType"][38]="n";
-    $_SESSION["snackQuan"][38]=1;
-    $_SESSION["snackPic"][38]=$prodRow[38]["snackPic"];
+    // $_SESSION["snackName"][38]=$prodRow[38]["snackName"];
+    // $_SESSION["snackPrice"][38]=$prodRow[38]["snackPrice"];
+    // $_SESSION["cusType"][38]="n";
+    // $_SESSION["snackQuan"][38]=1;
+    // $_SESSION["snackPic"][38]=$prodRow[38]["snackPic"];
 
 
 

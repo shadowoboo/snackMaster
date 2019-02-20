@@ -58,7 +58,7 @@
             }else{
                 $orderitem->bindValue(":customBoxItem", 0); //不是給0
             }
-            $orderitem->bindValue(":snackNo", $snackNo);
+            $orderitem->bindValue(":snackNo", $snackNo+1); //若 session 錯誤則須補正
             $orderitem->execute();
         }
 
