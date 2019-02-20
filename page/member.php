@@ -28,7 +28,8 @@
         // require_once('ajaxLogin.php');
         
         $sql = "select * from member ";
-        $recMember = $pdo->query($sql);
+        $member = $pdo->query($sql);
+        // $memRow = $members->fetch();
       
         
         
@@ -75,7 +76,9 @@
                 <tr>
                     <td>
                         <div>
-                            <img id="headPic">
+                            <img id="headPic" src="../images/<?php
+                                
+                            ?>">
                         </div>
 
                         <label class="memPic" for="upFile">
