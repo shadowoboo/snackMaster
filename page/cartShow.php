@@ -95,7 +95,7 @@
     <!-- for header -->
     <script src="../js/header.js" defer></script>
     <!-- for common -->
-    <script src="../js/common.js"></script>
+    <script src="../js/common.js" defer></script>
     <!-- for shadowLib -->
     <script src="../js/shadowLib.js"></script>
     <!-- ------------------js-------------- -->

@@ -94,50 +94,50 @@ function init4() {
 
 window.addEventListener("load", init4);
 //----------------手機的漢堡開關--------------------------
-       var list_appear = document.getElementById("list_appear");
-        var ham = document.getElementById("ham");
-        var cros = document.getElementById("cros");
-        // const store = document.getElementById("store");
-        // const subMenu = document.getElementById("Submenu");
-        function init(e) {
-            ham.addEventListener("click", show);
-            cros.addEventListener("click", close);
-            // store.addEventListener("click",appear);
+var list_appear = document.getElementById("list_appear");
+var ham = document.getElementById("ham");
+var cros = document.getElementById("cros");
+// const store = document.getElementById("store");
+// const subMenu = document.getElementById("Submenu");
+function init(e) {
+    ham.addEventListener("click", show);
+    cros.addEventListener("click", close);
+    // store.addEventListener("click",appear);
 
-        }
-        function show(e) {
-            list_appear.classList.add("show");
-        
-        }
-        function close(e) {
-            // console.log(`remove`);
-            list_appear.classList.remove("show");
-        }
-        //hover的設定,不確定需不需要
-        //還沒移除show,如果點擊子選單會收不起來
-        // function appear(e){
-        //     console.log('hi');
-        //     Submenu.classList.add("show");
-        // }
-        
-        window.addEventListener("load",init);
+}
+function show(e) {
+    list_appear.classList.add("show");
 
-        var search_appear = document.getElementById("search_appear");
-        var search = document.getElementById("searchBtn");
-        var closex = document.getElementById("close");
-        function init2(e) {
-            search.addEventListener("click", showSearch);
-            closex.addEventListener("click", closeSearch);
+}
+function close(e) {
+    // console.log(`remove`);
+    list_appear.classList.remove("show");
+}
+//hover的設定,不確定需不需要
+//還沒移除show,如果點擊子選單會收不起來
+// function appear(e){
+//     console.log('hi');
+//     Submenu.classList.add("show");
+// }
 
-        }
-        function showSearch(e) {
-            search_appear.classList.add("down");
-        
-        }
-        function closeSearch(e) {
-            // console.log(`remove`);
-            search_appear.classList.remove("down");
-        }
+window.addEventListener("load", init);
+
+var search_appear = document.getElementById("search_appear");
+var search = document.getElementById("searchBtn");
+var closex = document.getElementById("close");
+function init2(e) {
+    search.addEventListener("click", showSearch);
+    closex.addEventListener("click", closeSearch);
+
+}
+function showSearch(e) {
+    search_appear.classList.add("down");
+
+}
+function closeSearch(e) {
+    // console.log(`remove`);
+    search_appear.classList.remove("down");
+}
 
 function closeSearch(e) {
     console.log(`remove`);
@@ -154,7 +154,7 @@ function $id(id) {
 function showLightBox(e) {
     //點擊登入按鈕，顯示燈箱
 
-    if($id('memLogin').style.color =='rgb(7, 107, 175)'){
+    if ($id('memLogin').style.color == 'rgb(7, 107, 175)') {
         location.href = "../page/member.php";
         // alert(123);
     } else {
@@ -457,23 +457,23 @@ function init3() {
     $id('btnloglout').addEventListener('click', logout);//登出按鈕
     $id('btnSignUp').addEventListener('click', SUForm);//送出註冊按鈕
     // $id('forgetSend').addEventListener('click',FPForm);//寄送密碼按鈕
-    
+
 
     // 檢查是否已登入
     var xhr = new XMLHttpRequest();
-    
-    xhr.onload = function(){
+
+    xhr.onload = function () {
         console.log(`xhr.onlod now`);
-        
+
         // console.log(xhr.responseText);
         // var loginInfo = JSON.parse(xhr.responseText);
         // console.log(xhr.responseText);
         // console.log(loginInfo)
-        if(xhr.responseText=="notyetLogin"){
+        if (xhr.responseText == "notyetLogin") {
             $id("memLogin").style.color = "#737374f";
             $id("btnloglout").innerHTML = "&nbsp";
             console.log(xhr.responseText);
-        }else{
+        } else {
             $id("memLogin").style.color = "#076baf"
             $id("btnloglout").innerHTML = "登出";
         }
@@ -483,5 +483,15 @@ function init3() {
     console.log(`init3`);
 
 
+
 }
 window.addEventListener("load", init3);
+
+
+
+$(document).ready(function(){
+    $('#store').click(function () {
+        // $('#store .subMenu').show();
+        $('#store .subMenu').stop(true).slideToggle();
+    });
+});
