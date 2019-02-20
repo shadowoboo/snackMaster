@@ -223,7 +223,7 @@ if(isset($_SESSION["snackName"])){
     // getCus();
     // function getCus($snackNo){
         foreach ($_SESSION["cusType"] as $snackNo => $cusType) {
-            if($cusType=="y" && $snackNo!=49){
+            if($cusType=="y" && $snackNo!=50){
 ?>             
                         <div class="prodCard prodCard_normal">
                             <input id="<?php echo $snackNo;?>" type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
@@ -277,10 +277,10 @@ if(isset($_SESSION["snackName"])){
 ?>
 <?php
     //如果有非客製的商品
-    if(in_array("n",$_SESSION["cusType"])||in_array("p",$_SESSION["cusType"])){
+    if(in_array("n",$_SESSION["cusType"])||in_array("c",$_SESSION["cusType"])){
     //單品。非客製(且非預購?)
         foreach ($_SESSION["cusType"] as $snackNo => $cusType) {
-            if($cusType=="n" || $cusType=="p"){
+            if($cusType=="n" || $cusType=="c" ){
 ?>
                     <div class="prodCard prodCard_normal">
                         <input type="hidden" name="snackNo" value="<?php echo $snackNo;?>">

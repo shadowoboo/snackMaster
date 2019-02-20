@@ -68,9 +68,14 @@
 
 
     cus(1,10,$prodRow);
-    normal(11,15,$prodRow);
+    // normal(11,15,$prodRow);
+    clean(20,30,$prodRow);
+    plan(20,30,$prodRow);
 
 
+    //若要重複取得不同 type 的零食
+    //要考慮把零食型別(客製/一般/即期/預購)也寫進session裡
+    //ex: $_SESSION["snackName"][$snackType][$snackNo]
 
     //以資料庫snackNo為準
     function cus( $start, $end, $prodRow){
