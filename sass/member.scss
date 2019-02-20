@@ -1,7 +1,7 @@
-// *{
-//     outline: 1px solid #f00;
-// }
-@import "reset";
+*{
+    outline: 1px solid #f00;
+}
+// @import "reset";
 @import "common";
 $tabColor:#076baf;
 $p:22px;
@@ -11,14 +11,16 @@ body{
     
 }
 
+
 .memWrap{
     width: 100%;
     height: auto;
     max-width: 1200px;
     margin: auto;
+    
    
     form{
-        width: 85%;
+        width: 90%;
         // margin: 45% auto 10% auto;
         height: auto;
         padding: 45px;
@@ -39,24 +41,24 @@ body{
                 div{
                    margin: auto;
                    margin-top: 5%; 
-                    width: 30%;
-                    border: 2px dotted #076baf;
-                    border-radius: 50%;
+                    width: 250px;
+                    // border: 2px dotted #076baf;
+                    // border-radius: 50%;
                      
                     img{
-                        width: 80%; 
+                        width: 200px; 
                         padding-top: 2%;
                                                  
                         }
                 }
-            label{
+            .memPic{
                 p{
                     font-family: g2Font;
                     font-size: $p;
                     padding: 10px; 
                     color: #076baf;
                     img{
-                        width: 3%;
+                        width: 5%;
                         vertical-align: middle;
                         margin-left: 5px;
                     }
@@ -91,7 +93,7 @@ body{
             
             td{
                 padding: 2% 3%;
-                text-align: center;
+                // text-align: center;
 
                 p{
                     font-family: g2Font;
@@ -100,7 +102,7 @@ body{
                     // padding: 1% ;
                     input{
                         color: #076baf;
-                        width: 80px;
+                        width: 160px;
                         background-color: transparent;
                         border: 1px solid #fff;
                         font-family: g2Font;
@@ -111,8 +113,12 @@ body{
                         }
                         
                     }
+                    span{
+                        font-size: 20px;
+                        font-family: g2Med;
+                    }
                     img{
-                        width: 3%; 
+                        width: 5%; 
                         vertical-align: unset;                 
                     }
                 }
@@ -133,7 +139,7 @@ body{
         tr{
             td{
                 padding: 2% 3%;
-                text-align: center;
+                // text-align: center;
                 height: 35px;
                
                 p{
@@ -150,8 +156,8 @@ body{
             
 
         }
-        tr:last-child{
-            
+        tr:nth-child(3){
+            text-align: center;
             span{
                 font-size: 16px;
                 color: #f00;
@@ -160,6 +166,16 @@ body{
                 
                 }
             }
+           tr:last-child{
+               text-align: center;
+               .modify{
+                   button{
+                       height: 35px;
+                       font-size: 20px;
+                       margin: 20px;
+                   }
+               }
+           } 
         } 
     }
     
@@ -341,10 +357,10 @@ body{
             .btnn{
                 text-align: center;
                 .goToCustom{
-                    height: 30px;
+                    height: 35px;
                     font-size: 20px;
-                    line-height: 0.6;
-                    margin-bottom: 1%;
+                    line-height: 1.6;
+                    margin: 10px 0;
     
                 }
             }
@@ -470,6 +486,7 @@ body{
     
 } 
 .footer{
+    bottom: unset;
     #floor {
         position: relative;
         text-align: center;
@@ -556,6 +573,7 @@ body{
             align-content: space-around;
             .col-1{
                 margin: auto;
+                margin-right: 20px;
                 tr{
                     td{
                         padding-top: 0%;

@@ -75,10 +75,10 @@
     // $_SESSION["snackQuan"][50]=1;
 
 
-    cus(1,10,$prodRow);
-    // normal(11,15,$prodRow);
-    clean(20,30,$prodRow);
-    plan(20,30,$prodRow);
+    cus(1,3,$prodRow);
+    normal(5,6,$prodRow);
+    // clean(20,30,$prodRow);
+    // plan(20,30,$prodRow);
 
 
     //若要重複取得不同 type 的零食
