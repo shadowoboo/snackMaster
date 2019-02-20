@@ -973,7 +973,7 @@
                             <button class="dimension btns btn_top" id="btn_top">上</button>
                         </div>
                         <div class="ctBtnGo">
-                            <a href="customized.html"><button class="goToCustom">客製去!</button></a>
+                            <a href="customized.php"><button class="goToCustom">客製去!</button></a>
                         </div>
                     </div>
                 </div>
@@ -1009,7 +1009,7 @@
                                 <p>隨時能<br>取消訂閱</p>
                             </div>
                             <div class="traitGo">
-                                <a href="preOrder.html"><button class="subscribe">馬上預購!</button></a>
+                                <a href="preOrder.php"><button class="subscribe">馬上預購!</button></a>
                             </div>
                         </div>
                         <div class="poInside">
