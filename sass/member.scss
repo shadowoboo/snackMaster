@@ -1,6 +1,6 @@
-*{
-    outline: 1px solid #f00;
-}
+// *{
+//     outline: 1px solid #f00;
+// }
 // @import "reset";
 @import "common";
 $tabColor:#076baf;
@@ -9,6 +9,9 @@ $p:22px;
 body{
     background-color: #b8f1ed;
     
+}
+span{
+    color:$blue;
 }
 
 
@@ -20,7 +23,7 @@ body{
     
    
     form{
-        width: 90%;
+        width: 94%;
         // margin: 45% auto 10% auto;
         height: auto;
         padding: 45px;

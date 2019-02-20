@@ -25,13 +25,27 @@
     $errMsg = "";
     try{
         require_once('connectcd105g2.php');
-        // require_once('ajaxLogin.php');
-        
-        $sql = "select * from member ";
-        $recMember = $pdo->query($sql);
-      
-        
-        
+        //用No找到該筆會員資料
+        $memNo =$_SESSION["memNo"];
+        //從會員裡的會員編號找出其他相關欄位
+        $sql = "select * from member where memNo=:memNo";        
+        $members = $pdo->prepare($sql);
+        $members ->bindValue(":memNo", $memNo);
+        // $members ->bindValue(":grade", $grade);
+        // $members ->bindValue(":memId", $memId);
+        // $members ->bindValue(":memPsw", $memPsw);
+        // $members ->bindValue(":email", $email);
+        // $members ->bindValue(":memPic", $memPic);
+        // $members ->bindValue(":memPhone", $memPhone);
+        // $members ->bindValue(":memPoint", $memPoint);
+        // $members ->bindValue(":memName", $memName);
+        $members->execute();
+        //抓出一筆資料(1行)
+        $memRow = $members->fetch(PDO::FETCH_ASSOC);   
+
+        // $grade=$memRow["grade"];
+        // $memId=
+
     }catch(PDOException $e){
         echo "失敗",$e->getMessage();
         echo "行號",$e->getLine();
@@ -75,7 +89,9 @@
                 <tr>
                     <td>
                         <div>
-                            <img id="headPic">
+                            <img id="headPic" src="../images/Level<?php 
+                                echo $memRow["memPic"]; 
+                             ?>">
                         </div>
 
                         <label class="memPic" for="upFile">
@@ -95,7 +111,7 @@
                 <tr>
                     <td>
                         <p>
-                            會員編號：<span>1</span>
+                            會員編號：<span><?php echo $memRow["memNo"];?></span>
                             <!-- <input type="text" name="nickName" value="我是帥帥" maxlength="15">
                             <img src="../images/tina/pen.png" alt="編輯"> -->
                         </p>
@@ -105,7 +121,7 @@
                     <td>
                         <p>
                             帳號：
-                            <input type="text" name="memId" value="test" maxlength="15">
+                            <input type="text" name="memId" value="<?php echo $memRow["memId"];?>" maxlength="15">
                             <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
@@ -114,7 +130,7 @@
                     <td>
                         <p>
                             密碼：
-                            <input type="password" name="memPsw" value="test" maxlength="15" autofocus>
+                            <input type="password" name="memPsw" value="<?php echo $memRow["memPsw"];?>" maxlength="15" autofocus>
                             <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
@@ -123,7 +139,7 @@
                     <td>
                         <p>
                             姓名：
-                            <input type="text" name="memName" value="林大樹" maxlength="12">
+                            <input type="text" name="memName" value="<?php echo $memRow["memName"];?>" maxlength="12">
                             <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
@@ -132,7 +148,7 @@
                     <td>
                         <p>
                             電話：
-                            <input type="number" name="phone" value="" maxlength="10">
+                            <input type="number" name="phone" value="<?php echo $memRow["memPhone"];?>" maxlength="10">
                             <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
@@ -141,7 +157,7 @@
                     <td>
                         <p>
                             信箱：
-                            <input type="email" name="email" value="aa123@gmail.com" maxlength="20">
+                            <input type="email" name="email" value="<?php echo $memRow["email"];?>" maxlength="20">
                             <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
@@ -165,7 +181,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <span>禁言中</span>
+                        <span><?php echo $memRow["commentRight"];?></span>
                     </td>
                 </tr>
                 <tr>
