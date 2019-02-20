@@ -29,7 +29,6 @@ try {
    crossorigin="anonymous">
     <script src="../js/search.js"></script>
    <script src="../js/jquery-3.3.1.min.js"></script>
-   <script src="../js/jquery.ui.touch-punch.js"></script>
    <script src="../js/shadowLib.js"></script>
    <!-- 錄音外掛。我想我跳下去玩一定會來不及。謝謝你 9527 -->
    <script src="../js/recorder.js"></script>
@@ -89,9 +88,10 @@ try {
                                 <div class="camera">
                                     <div class="box boxBase" id="box_15">
                                         <div class="surface surface_top" id="cover_out_15">
-                                            <img src="ip2.png" id="a1" alt="">
-                                            
-                                        <img id="cusImg_top" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+                                            <!-- <img src="ip2.png" id="a1" alt=""> -->
+                                        <div id="touchmebaby" style="width:100px;postion:relative;z-index:999;">
+                                            <img id="cusImg_top" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+                                        </div>
                                         </div>
                                         <div class="surface surface_top_inner" id="cover_in_15">
                                         </div>
@@ -104,7 +104,9 @@ try {
                                         <div class="surface surface_right"></div>
                                     </div>
                                 </div>
-
+                    <script>
+                         $( "touchmebaby" ).draggable();
+                        </script>
                         
                                 <div id="btns15">
                                     <div class="btn" id="btn_big"><img src="../images/customized/zoom_in.svg" alt=""></div>
@@ -366,7 +368,7 @@ try {
 
                 $i=0;
                 for($i=0; $i<$ln; $i++){
-                    $sql = "select snackNo,snackName,snackPic,snackPrice from snack WHERE snackGenre= ? ORDER BY `snack`.`goodStars` DESC";
+                    $sql = "select snackNo,snackName,snackPic,snackPrice from snack WHERE snackGenre= ? ORDER BY snackNo in('1','8');";
                     $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
                     $prodRow -> bindValue(1, $cusSnack[$i]);
 
@@ -376,7 +378,6 @@ try {
                     array_push($arr_row,$row);
                 } 
             ?>
-
                     <div class="good-content">
                         <?php
                              for($i=0; $i<8; $i++){
@@ -385,7 +386,7 @@ try {
                                 <div class="name">           
                                         <img src="<?php echo $arr_row[3]['snackPic']; ?>" alt="">                                    
                                         <div class="price">
-                                        <p class="snackNo" style="display:none;"><?php echo $arr_row[3]['snackNo']; ?></p>                   
+                                        <p  class="snackNo" style="display:none;"><?php echo $arr_row[3]['snackNo']; ?></p>                   
                                             <p class="snackName"><?php echo $arr_row[3]['snackName'];?></p>
                                             <span>$<?php echo $arr_row[3]['snackPrice']; ?></span>
                                             <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
@@ -495,7 +496,7 @@ try {
                             </div>
                         <?php
                             }
-                        ?> 
+                        ?>
                     </div> 
                         </div>
                     </div>
@@ -577,6 +578,7 @@ try {
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" defer></script>
+   <script src="../js/jquery.ui.touch-punch.js"></script>
     
   <!-- <script>
     const search_appear = document.getElementById("search_appear");
@@ -1130,20 +1132,20 @@ var section15 = document.querySelector("#section_15");
                 }
         }
 }else{
-    var dropPic_top = document.querySelector('#cusImg_top');
-         var img = document.querySelectorAll('.cusPic');
-         for (var i = 0; i < img.length; i++){
-             img[i].addEventListener('click', function (e) {
-             var imgSrc = e.target.src;
-             dropPic_top.setAttribute("src", imgSrc)             
-             dropPic_top.style.display = 'block';
-             dropPic_top.style.maxHeight = '50px';
-             dropPic_top.style.maxWidth = '50px';
+    // var dropPic_top = document.querySelector('#cusImg_top');
+    //      var img = document.querySelectorAll('.cusPic');
+    //      for (var i = 0; i < img.length; i++){
+    //          img[i].addEventListener('click', function (e) {
+    //          var imgSrc = e.target.src;
+    //          dropPic_top.setAttribute("src", imgSrc)             
+    //          dropPic_top.style.display = 'block';
+    //          dropPic_top.style.maxHeight = '50px';
+    //          dropPic_top.style.maxWidth = '50px';
 
-             },false);
-         }
+    //          },false);
+    //      }
 
-         $( "#cusImg_top" ).draggable();
+    //      $( "#cusImg_top" ).draggable();
 
          var dropPic_left = document.querySelector('#cusImg_left');
          var img = document.querySelectorAll('.cusPic');
