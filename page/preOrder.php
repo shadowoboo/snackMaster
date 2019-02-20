@@ -1,4 +1,7 @@
 <?php
+    ob_start();
+    session_start();
+
     $errMsg = "";
     try {
         require_once("connectcd105g2.php");
@@ -25,6 +28,7 @@
     <script src="../js/preOrder.js"></script>
     <script src="../js/search.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/showStar.js"></script>
 </head>
 <body>
     <header>
@@ -359,7 +363,12 @@
                                     <img src="<?php echo $evaRow['memPic'] ?>" alt="profile">
                                 </div>
                                 <div class="reviewLeft">
-                                    <img src="../images/blair/star.png" class="star" alt="star">
+                                    <div class="star" grad="<?php 
+                                            $good = round($snackRow['goodStars'] / $snackRow['goodTimes'], 1);
+                                            echo $good;
+                                        ?>">
+                                        <img src="../images/rankBoard/starMask.png" alt="星等">
+                                    </div>
                                     <p class="reviewWord">
                                         <?php echo $evaRow['evaCtx']?>
                                     </p>

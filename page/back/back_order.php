@@ -9,7 +9,7 @@
     try {
         require_once("../connectcd105g2.php");
         $recPerPage = 12;
-        $sql = 'select count(snackNo) from snack';
+        $sql = 'select count(orderNo) from snackorder';
         $countSta = $pdo -> query($sql);
         $totalRec = ($countSta -> fetchColumn() )-1;
         $pages = ceil($totalRec/$recPerPage);
@@ -19,8 +19,8 @@
             $pageNum = 1;
         }
         $start = ($pageNum - 1) * $recPerPage;
-        $sql = "select * from snack limit $start, $recPerPage";
-        $snacks = $pdo -> query($sql); 
+        $sql = "select * from snackorder limit $start, $recPerPage";
+        $orders = $pdo -> query($sql); 
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";
@@ -81,65 +81,44 @@
         </div>
         <div id="contentWrap">
             <div id="content">
-                <h3>商品資料管理</h3>
-                <a href="back_addSnack.php"><button class="step">新增</button></a>
-                <table id="snack">
+                <h3>訂單管理</h3>
+                <table>
                     <tr>
-                        <th width="55">編輯</th>
-                        <th width="55">編號</th>
-                        <th width="80">種類</th>
-                        <th width="120">名稱</th>
-                        <th width="55">價格</th>
-                        <th width="55">國家</th>
-                        <th width="120">圖片</th>
-                        <th width="55">上下架</th>
-                        <th width="80">販賣機<br>販售</th>
-                        <th width="80">零食箱<br>年月</th>
-                        <th width="80">好評度<br>總次數</th>
-                        <th width="80">好評度<br>總星等</th>
-                        <th width="80">酸度<br>總次數</th>
-                        <th width="80">酸度<br>總星等</th>
-                        <th width="80">甜度<br>總次數</th>
-                        <th width="80">甜度<br>總星等</th>
-                        <th width="80">辣度<br>總次數</th>
-                        <th width="80">辣度<br>總星等</th>
-                        <th width="510">描述</th>
-                        <th width="300">成分</th>
+                        <th width="60">編號</th>
+                        <th width="60">明細</th>
+                        <th width="100">會員編號</th>
+                        <th width="150">下單日期</th>
+                        <th width="100">狀態</th>
+                        <th width="100">付款方式</th>
+                        <th width="60">總額</th>
+                        <th width="100">收件人</th>
+                        <th width="200">地址</th>
+                        <th width="200">電話</th>
                     </tr>
                     <tr>
 <?php
     if( $errMsg != ""){
         exit("<div><center>$errMsg</center></div>");
     }
-    while( $snackRow = $snacks -> fetch() ){
+    while( $orderRow = $orders -> fetch() ){
 ?>
+                        <td><?php echo $orderRow['orderNo']?></td>
                         <td>
-                            <form action="back_editSnack.php">
-                                <input type="hidden" name="snackNo" value="<?php echo $snackRow['snackNo']?>">
+                            <form action="back_orderDetail.php">
+                                <input type="hidden" name="orderNo" value="<?php echo $orderRow['orderNo']?>">
                                 <a href="">
-                                    <button type="submit" id="subBtn"><i class="fas fa-edit"></i></button>
+                                    <button type="submit" id="subBtn"><i class="fas fa-sitemap"></i></button>
                                 </a>
                             </form>
                         </td>
-                        <td><?php echo $snackRow['snackNo']?></td>
-                        <td><?php echo $snackRow['snackGenre']?></td>
-                        <td><?php echo $snackRow['snackName']?></td>
-                        <td><?php echo $snackRow['snackPrice']?></td>
-                        <td><?php echo $snackRow['nation']?></td>
-                        <td><?php echo $snackRow['snackPic']?></td>
-                        <td><?php echo $snackRow['snackStatus'] == 1? '上架中':'下架中'; ?></td>
-                        <td><?php echo $snackRow['snackVending'] == 1? '是':'否'; ?></td>
-                        <td><?php echo $snackRow['boxDate']?></td>
-                        <td><?php echo $snackRow['goodTimes']?></td>
-                        <td><?php echo $snackRow['goodStars']?></td>
-                        <td><?php echo $snackRow['sourTimes']?></td>
-                        <td><?php echo $snackRow['sourStars']?></td>
-                        <td><?php echo $snackRow['sweetTimes']?></td>
-                        <td><?php echo $snackRow['sweetStars']?></td>
-                        <td><?php echo $snackRow['spicyTimes']?></td>
-                        <td><?php echo $snackRow['spicyStars']?></td>
-                        <td><?php echo $snackRow['snackWord']?></td>
-                        <td><?php echo $snackRow['snackIngre']?></td>
+                        <td><?php echo $orderRow['memNo']?></td>
+                        <td><?php echo $orderRow['orderTime']?></td>
+                        <td><?php echo $orderRow['orderStatus']?></td>
+                        <td><?php echo $orderRow['payWay']?></td>
+                        <td><?php echo $orderRow['orderTotal']?></td>
+                        <td><?php echo $orderRow['orderName']?></td>
+                        <td><?php echo $orderRow['address']?></td>
+                        <td><?php echo $orderRow['phone']?></td>
                     </tr>
 <?php
     }
@@ -150,15 +129,15 @@
                         <?php
                             $prev = $pageNum - 1 == 0? 1:$pageNum - 1;
                             $next = $pageNum + 1 == 7? 6:$pageNum + 1;
-                            echo '<li class="page-item"><a href="back_snack.php?pageNum='.$prev.'" id="last" class="page-link"><i class="fas fa-chevron-left"></i></a></li>';
+                            echo '<li class="page-item"><a href="back_order.php?pageNum='.$prev.'" id="last" class="page-link"><i class="fas fa-chevron-left"></i></a></li>';
                             for($i=1; $i<=$pages; $i++){
                                 if( $i == $pageNum ){
-                                    echo '<li class="page-item"><a href="back_snack.php?pageNum='.$i.'" class="page-link nowLoc">0'.$i.'</a></li>';
+                                    echo '<li class="page-item"><a href="back_order.php?pageNum='.$i.'" class="page-link nowLoc">0'.$i.'</a></li>';
                                 }else{
-                                    echo '<li class="page-item"><a href="back_snack.php?pageNum='.$i.'" class="page-link">0'.$i.'</a></li>';
+                                    echo '<li class="page-item"><a href="back_order.php?pageNum='.$i.'" class="page-link">0'.$i.'</a></li>';
                                 }
                             }
-                            echo '<li class="page-item"><a href="back_snack.php?pageNum='.$next.'" id="next" class="page-link"><i class="fas fa-chevron-right"></i></a></li>';
+                            echo '<li class="page-item"><a href="back_order.php?pageNum='.$next.'" id="next" class="page-link"><i class="fas fa-chevron-right"></i></a></li>';
                         ?>
                     </ul>
                 </div>

@@ -2,9 +2,9 @@
 $errMsg = "";
 try {
 	require_once("connectcd105g2.php");
-	$sql = "select * from snack";
-     $snack = $pdo->query($sql); 
-     $snackRows = $snack -> fetchAll(PDO::FETCH_ASSOC);
+	// $sql = "select * from snack";
+    //  $snack = $pdo->query($sql); 
+    //  $snackRows = $snack -> fetchAll(PDO::FETCH_ASSOC);
     //  var_dump($snackRows);exit();
 } catch (PDOException $e) {
 	$errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
@@ -36,97 +36,9 @@ try {
 </head>
 
 <body>
-    <header>
-            <h1>大零食家</h1>
-            <div class="cloud">
-                <div class="doc doc--bg2">
-                    <canvas id="canvas"></canvas>
-                </div>
-                <nav>
-                    <label for="smlSearch" class="searchBtn" value="search">
-                            <img src="../images/tina/search-icon.svg" alt="" id="searchBtn">
-                    </label>
-                    
-                    <div class="menu">
-                        <!-------- -----手機漢堡----------- -->
-    
-                        <div id="ham">
-                            <span class="btnTop"></span>
-                            <span class="btnMid"></span>
-                            <span class="btnBot"></span>
-                        </div>
-                        <!----    在手機上打開此logo;桌機上關掉此logo------ -->
-                        <div class="logo">
-                            <a href="index.html"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
-    
-                        </div>
-                        <div id="list_appear">
-                            <!-- ----------手機選單離開-------- -->
-                            <div id="cros">
-                                <span class="leave">X</span>
-                            </div>
-                            <ul class="list">
-                                <li><a href="rankBoard.html">零食排行榜</a></li>
-                                <li><a href="customized.html">客製零食箱</a> </li>
-                                <!-- 在手機上要關掉這個li的logo -->
-                                <li><a href="index.html"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
-                                <li id="store"> 零食商店街
-                                    <ul id="Submenu" class="subMenu">
-                                        <li id="snBox"><a href="preOrder.html">預購零食箱</a></li>
-                                        <li ><a href="shopping.html">零食列表</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="gsell.html">尋找販賣機</a> </li>
-                            </ul>
-                        </div>
-                    </div>
-    
-                    <ul class="login">
-                        <li><i class="fas fa-shopping-cart" id="shopCart"></i></li>
-                        <li><i class="fas fa-user-circle" id="memLogin"></i></li>
-                    </ul>
-                </nav>
-            
-                <div class="seachRegion" id="search_appear">
-                <div class="search">
-                    <img src="../images/blair/pocky.png" alt="">
-                    <div class="selectbar">
-                        <select name="country" id="country">
-                            <option value="0">國家</option>
-                            <option value='巴西'>巴西</option>
-                            <option value="日本">日本</option>
-                            <option value="美國">美國</option>
-                            <option value="英國">英國</option>
-                            <option value="埃及">埃及</option>
-                            <option value="德國">德國</option>
-                            <option value="澳洲">澳洲</option>
-                            <option value="韓國">韓國</option>
-                        </select>
-                        <select name="kind" id="kind">
-                            <option value="0">種類</option>
-                            <option value="巧克力">巧克力</option>
-                            <option value="糖果">糖果</option>
-                            <option value="餅乾">餅乾</option>
-                            <option value="洋芋片">洋芋片</option>
-                        </select>
-                        <select name="flavor" id="flavor">
-                            <option value="0">口味</option>
-                            <option value="sour">酸</option>
-                            <option value="sweet">甜</option>
-                            <option value="spicy">辣</option>
-                        </select>                        
-                    </div>
-                    <div class="inputbar">
-                        <input type="text"  id="searchName" placeholder="想找什麼零食呢？">
-                        <i class="fas fa-search"  id="searchClick"></i>
-                    </div>
-                </div>
-                    <div id="close">
-                        <span class="close"><i class="fas fa-times"></i></span>
-                    </div>
-        </div>
-        </header>
-
+    <?php 
+    require_once("header.php")
+    ?>
   <div class="card step-progress">
     <div class="step-slider">
       <div data-id="step1" class="step-slider-item"></div>
@@ -177,9 +89,10 @@ try {
                                     <div class="box boxBase" id="box_15">
                                         <div class="surface surface_top" id="cover_out_15">
                                             <img src="ip2.png" id="a1" alt="">
+                                            
+                                        <img class="droped_img select" id="cusImg" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
                                         <div class="surface surface_top_inner" id="cover_in_15">
-                                    
                                         </div>
                                         <div class="surface surface_down"></div>
                                         <div class="surface surface_back"></div>
@@ -441,18 +354,42 @@ try {
                                     <li class="good">洋芋片</li>
                                     <li class="good">餅乾</li>
                                     <li class="good">糖果</li>
-                                </ul>                    
-                                <div class="good-content">
+                                </ul>                   
+                                <?php 
+                $country=array("巧克力","洋芋片","餅乾","糖果");
+                $ln=count($country);
+                $arr_row=array();
+
+                $i=0;
+                for($i=0; $i<$ln; $i++){
+                    $sql = "select snackNo,snackName,snackPic,snackPrice from snack WHERE snackGenre= ? ORDER by goodStars ASC limit 8";
+                    $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
+                    // $aa=$country[$i];
+                    // echo $country[$i]; 
+                    $prodRow -> bindValue(1, $country[$i]);
+
+                    // echo $country[$i]; exit();
+                    // echo print_r($country); exit();
+
+                    $prodRow -> execute(); 
+                    $row = $prodRow->fetch(); //需求送出去，資料抓回來，阿凱發大財
+                    array_push($arr_row,$row);
+                    // print_r($arr_row);
+                    // print_r($row);
+                } 
+            ?>
+
+                    <div class="good-content">
                         <?php
-                            for($i=30; $i<37; $i++){
+                             for($i=0; $i<8; $i++){
                         ?>
                             <div class="item">
                                 <div class="name">           
-                                        <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
+                                        <img src="<?php echo $arr_row[3]['snackPic']; ?>" alt="">                                    
                                         <div class="price">
-                                        <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p>                   
-                                            <p class="snackName"><?php echo $snackRows[$i]['snackName'];?></p>
-                                            <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
+                                        <p class="snackNo" style="display:none;"><?php echo $arr_row[3]['snackNo']; ?></p>                   
+                                            <p class="snackName"><?php echo $arr_row[3]['snackName'];?></p>
+                                            <span>$<?php echo $arr_row[3]['snackPrice']; ?></span>
                                             <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
                                         </div>
                                     </div>
@@ -464,15 +401,15 @@ try {
                     </div>       
                     <div class="good-content">
                         <?php
-                            for($i=20; $i<25; $i++){
+                             for($i=0; $i<8; $i++){
                         ?>
                             <div class="item">
                                 <div class="name">           
-                                        <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
+                                        <img src="<?php echo $arr_row[3]['snackPic']; ?>" alt="">                                    
                                         <div class="price">
-                                        <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p>                   
-                                            <p class="snackName"><?php echo $snackRows[$i]['snackName']; ?></p>
-                                            <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
+                                        <p class="snackNo" style="display:none;"><?php echo $arr_row[3]['snackNo']; ?></p>                   
+                                            <p class="snackName"><?php echo $arr_row[3]['snackName']; ?></p>
+                                            <span>$<?php echo $arr_row[3]['snackPrice']; ?></span>
                                             <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
                                         </div>
                                     </div>
@@ -488,11 +425,11 @@ try {
                         ?>
                             <div class="item">
                                 <div class="name">           
-                                        <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
+                                        <img src="<?php echo $arr_row[0]['snackPic']; ?>" alt="">                                    
                                         <div class="price">
-                                        <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p>                   
-                                            <p class="snackName"><?php echo $snackRows[$i]['snackName']; ?></p>
-                                            <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
+                                        <p class="snackNo" style="display:none;"><?php echo $arr_row[0]['snackNo']; ?></p>                   
+                                            <p class="snackName"><?php echo $arr_row[0]['snackName']; ?></p>
+                                            <span>$<?php echo $arr_row[0]['snackPrice']; ?></span>
                                             <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
                                         </div>
                                     </div>
@@ -504,15 +441,15 @@ try {
                     </div>                 
                      <div class="good-content">
                         <?php
-                            for($i=13; $i<21; $i++){
+                            for($i=0; $i<8; $i++){
                         ?>
                             <div class="item">
                                 <div class="name">                                    
-                                        <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
+                                        <img src="<?php echo $arr_row[1]['snackPic']; ?>" alt="">                                    
                                         <div class="price">
-                                            <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p> 
-                                            <p class="snackName"><?php echo $snackRows[$i]['snackName']; ?></p>
-                                            <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
+                                            <p class="snackNo" style="display:none;"><?php echo $arr_row[1]['snackNo']; ?></p> 
+                                            <p class="snackName"><?php echo $arr_row[1]['snackName']; ?></p>
+                                            <span>$<?php echo $arr_row[1]['snackPrice']; ?></span>
                                             <button class="step addCart sendSnack" id="sendSnack">放入零食車</button>                        
                                         </div>
                                     </div>
@@ -524,15 +461,15 @@ try {
                     </div>  
                     <div class="good-content">
                         <?php
-                            for($i=24; $i<32; $i++){
+                            for($i=0; $i<8; $i++){
                         ?>
                             <div class="item">
                                 <div class="name">          
-                                        <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
+                                        <img src="<?php echo $arr_row[2]['snackPic']; ?>" alt="">                                    
                                         <div class="price">
-                                            <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p> 
-                                            <p class="snackName"><?php echo $snackRows[$i]['snackName']; ?></p>
-                                            <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
+                                            <p class="snackNo" style="display:none;"><?php echo $arr_row[2]['snackNo']; ?></p> 
+                                            <p class="snackName"><?php echo $arr_row[2]['snackName']; ?></p>
+                                            <span>$<?php echo $arr_row[2]['snackPrice']; ?></span>
                                             <button class="step addCart sendSnack" id="sendSnack">放入零食車</button>                        
                                         </div>
                                     </div>
@@ -544,15 +481,15 @@ try {
                     </div> 
                     <div class="good-content">
                         <?php
-                            for($i=37; $i<45; $i++){
+                            for($i=0; $i<8; $i++){
                         ?>
                             <div class="item">
                                 <div class="name">                                    
-                                        <img src="<?php echo $snackRows[$i]['snackPic']; ?>" alt="">                                    
+                                        <img src="<?php echo $arr_row[3]['snackPic']; ?>" alt="">                                    
                                         <div class="price">
-                                            <p class="snackNo" style="display:none;"><?php echo $snackRows[$i]['snackNo']; ?></p> 
-                                            <p class="snackName"><?php echo $snackRows[$i]['snackName']; ?></p>
-                                            <span>$<?php echo $snackRows[$i]['snackPrice']; ?></span>
+                                            <p class="snackNo" style="display:none;"><?php echo $arr_row[3]['snackNo']; ?></p> 
+                                            <p class="snackName"><?php echo $arr_row[3]['snackName']; ?></p>
+                                            <span>$<?php echo $arr_row[3]['snackPrice']; ?></span>
                                             <button class="step addCart sendSnack" id="sendSnack">放入零食車</button>                        
                                         </div>
                                     </div>
@@ -568,8 +505,8 @@ try {
                 </div>
                 </div>
       </div>
+      
       <script>
-
         $(document).ready(function(){
             $(".sendSnack").bind("click",sendSnack);
             
@@ -607,7 +544,7 @@ try {
       </div>
     </div>
   </div>
-  <footer>
+  <footer style="position:relative;">
     <div class="footer_ip">
         <div class="ip_size">
             <img src="../images/nnnnn/ipc.png" alt="ipPicture" class="floating">
@@ -1211,20 +1148,34 @@ var section15 = document.querySelector("#section_15");
         };
 
 
-    cusPic=document.getElementsByClassName("cusPic");
+    // cusPic=document.getElementsByClassName("cusPic");
 
-    for(var i = 0;i<cusPic.length;i++){
-            document.getElementsByClassName("cusPic")[i].addEventListener("click",putPic);
+    // for(var i = 0;i<cusPic.length;i++){
+    //         document.getElementsByClassName("cusPic")[i].addEventListener("click",putPic);
 
-            function putPic(e){
-                console.log(`cusPic`);
+    //         function putPic(e){
+    //             console.log(`cusPic`);
                 
-            for(var i = 0;i<7;i++){
-            var itm=document.getElementsByClassName("pic")[i];}
-            var cln=itm.cloneNode(true);
-            document.getElementById("cover_out_15").appendChild(cln);
-            };
-    }
+    //         for(var i = 0;i<7;i++){
+    //         var itm=document.getElementsByClassName("pic")[i];}
+    //         var cln=itm.cloneNode(true);
+    //         document.getElementById("cover_out_15").appendChild(cln);
+    //         };
+    // }
+
+    var dropPic = document.querySelector('#cusImg');
+         var img = document.querySelectorAll('.cusPic');
+         for (var i = 0; i < img.length; i++){
+             img[i].addEventListener('click', function (e) {
+             var imgSrc = e.target.src;
+             dropPic.setAttribute("src", imgSrc)             
+             dropPic.style.display = 'block';
+             dropPic.style.maxHeight = '50px';
+             dropPic.style.maxWidth = '50px';
+
+             },false);
+         }
+
 
 //     function $id(id){
 //   return document.getElementById(id);

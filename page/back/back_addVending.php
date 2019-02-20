@@ -88,86 +88,45 @@
         </div>
         <div id="contentWrap">
             <div id="content">
-                <h3>新增商品資料</h3>
+                <h3>新增優惠券</h3>
 <?php
     if( $errMsg != ""){
         exit("<div><center>$errMsg</center></div>");
     }
 ?>
-                <form action="back_snackToDb.php">
+                <form action="back_vendingToDb.php">
                     <table>
                         <tr>
-                            <td>種類</td>
+                            <td>經度</td>
+                            <td><input type="text" name="maLnge" size="20"></td>
+                        </tr>
+                        <tr>
+                            <td>緯度</td>
+                            <td><input type="text" name="maLat" size="20"></td>
+                        </tr>
+                        <tr>
+                            <td>圖片</td>
+                            <td><input type="text" name="maPic" size="20"></td>
+                        </tr>
+                        <tr>
+                            <td>地區</td>
                             <td>
-                                <select name="genre">
-                                    <option value="巧克力">巧克力</option>
-                                    <option value="糖果">糖果</option>
-                                    <option value="餅乾">餅乾</option>
-                                    <option value="洋芋片">洋芋片</option>
+                                <select name="maArea">
+                                    <option value="桃園區">桃園區</option>
+                                    <option value="中壢區">中壢區</option>
+                                    <option value="八德區">八德區</option>
+                                    <option value="龜山區">龜山區 </option>
+                                    <option value="大溪區">大溪區 </option>
+                                    <option value="平鎮區">平鎮區 </option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <td>名稱</td>
-                            <td><input type="text" name="snackName" size="28"></td>
-                        </tr>
-                        <tr>
-                            <td>價格</td>
-                            <td><input type="text" name="snackPrice" size="6"></td>
-                        </tr>
-                        <tr>
-                            <td>國家</td>
-                            <td>
-                                <select name="nation">
-                                    <option value="巴西">巴西</option>
-                                    <option value="日本">日本</option>
-                                    <option value="美國">美國</option>
-                                    <option value="英國">英國</option>
-                                    <option value="埃及">埃及</option>
-                                    <option value="德國">德國</option>
-                                    <option value="澳洲">澳洲</option>
-                                    <option value="韓國">韓國</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>圖片路徑</td>
-                            <td><input type="text" name="snackPic" size="28"></td>
-                        </tr>
-                        <tr>
-                            <td>上下架狀態</td>
-                            <td>
-                                <select name="snackStatus">
-                                    <option value="1">上架中</option>
-                                    <option value="0">下架中</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>販賣機販售</td>
-                            <td>
-                                <select name="snackVending">
-                                    <option value="1">是</option>
-                                    <option value="0">否</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>販賣機年月</td>
-                            <td>
-                                <input type="month" name="boxDate">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>零食描述</td>
-                            <td><textarea name="snackWord" rows="4" cols="40"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td>成分</td>
-                            <td><textarea name="snackIngre" rows="2" cols="40"></textarea></td>
+                            <td>地址</td>
+                            <td><input type="text" name="maAdd" size="20"></td>
                         </tr>
                     </table>
-                    <button type="submit" class="cart" id="commit">新增商品</button>   
+                    <button type="submit" class="cart" id="commit">新增販賣機</button>   
                     <input type="button" class="cart" id="cancel" value="放棄新增">
                 </form>
             </div>
@@ -178,8 +137,8 @@
     </div> 
     <script>
         document.getElementById('cancel').addEventListener('click', function (){
-            if(window.confirm('確定要放棄新增商品嗎？') == true){
-                location.href = 'back_snack.php';
+            if(window.confirm('確定要放棄新增販賣機嗎？') == true){
+                location.href = 'back_vending.php';
             }
         })
     </script>

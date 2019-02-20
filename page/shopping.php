@@ -44,73 +44,23 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
     <title>大零食家 - 零食列表</title>
-    <link rel="stylesheet" href="../css/shopping.css">
     <link rel="stylesheet" href="../css/nnnnn.css">
-    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/shopping.css">
+    <!-- <link rel="stylesheet" href="../css/header.css"> -->
+    <?php
+        require_once("header.php");
+    ?>
     <script src="../js/common.js"></script>
     <script src="../js/Chart.js"></script>
     <script src="../js/shopping.js"></script>
     <script src="../js/addHeart.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script src="../js/showStar.js"></script>
+    <script src="../js/findingIp.js"></script>
+    
 </head>
 <body>
-    <header>
-            <h1>大零食家</h1>
-            <div class="cloud">
-                <div class="doc doc--bg2">
-                    <canvas id="canvas"></canvas>
-                </div>
-                <nav>
-                    <label for="smlSearch" class="searchBtn" value="search">
-                            <img src="" alt="" id="searchBtn">
-                    </label>
-                    
-                    <div class="menu">
-                        <!-------- -----手機漢堡----------- -->
-    
-                        <div id="ham">
-                            <span class="btnTop"></span>
-                            <span class="btnMid"></span>
-                            <span class="btnBot"></span>
-                        </div>
-                        <!----    在手機上打開此logo;桌機上關掉此logo------ -->
-                        <div class="logo">
-                            <a href="index.html"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
-    
-                        </div>
-                        <div id="list_appear">
-                            <!-- ----------手機選單離開-------- -->
-                            <div id="cros">
-                                <span class="leave">X</span>
-                            </div>
-                            <ul class="list">
-                                <li><a href="rankBoard.html">零食排行榜</a></li>
-                                <li><a href="customized.html">客製零食箱</a> </li>
-                                <!-- 在手機上要關掉這個li的logo -->
-                                <li><a href="index.html"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
-                                <li id="store"> 零食商店街
-                                    <ul id="Submenu" class="subMenu">
-                                        <li id="snBox"><a href="preOrder.html">預購零食箱</a></li>
-                                        <li ><a href="shopping.php">零食列表</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="gsell.html">尋找販賣機</a> </li>
-                            </ul>
-                        </div>
-                    </div>
-    
-                    <ul class="login">
-                        <li><i class="fas fa-shopping-cart" id="shopCart"></i></li>
-                        <li><i class="fas fa-user-circle" id="memLogin"></i></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="seachRegion" id="search_appear">
-                <div id="close">
-                    <span class="close">X</span>
-                </div>
-            </div>
-    </header>
     <div class="shopping">
         <div class="wrap">
             <div class="title">
@@ -180,7 +130,9 @@
                     <img class="country" src="../images/blair/<?php echo $snackRow['nation'] ?>.png" alt="">
                     <img class="itemImg" src="<?php echo $snackRow['snackPic']?>" alt="">
                     <h4 class="itemName"><?php echo '['.$snackRow['nation'].']'.$snackRow['snackName']?></h4>
-                    <img class="star" src="../images/blair/star.png" alt="star">
+                    <div class="star" grad="<?php echo $good;?>">
+                        <img src="../images/rankBoard/starMask.png" alt="星等">
+                    </div>
                     <p class="price">$<?php echo $snackRow['snackPrice']?></p>
                     <div class="itemBtns">
                         <button class="cart">加入購物車</button>
@@ -219,7 +171,9 @@
                     <!-- <h4>好評度</h4>
                     <span id="mintStar">3</span>
                     <span id="mintFive">/5</span>
-                    <img class="star" src="../images/blair/star.png" alt="star"> -->
+                    <div class="star" grad="3" id="starShow">
+                        <img src="../images/rankBoard/starMask.png" alt="星等">
+                    </div> -->
                     <h4 id="msg">我可以告訴你商品的評價星等喔!</h4>
                 </div>
                 <div class="radar">
@@ -268,6 +222,6 @@
             <p id="copy">Copyright©2019 Snack Master</p>
         </div>
     </footer>
-    <script src="../js/header.js"></script>
+    <!-- <script src="../js/header.js"></script> -->
 </body>
 </html>
