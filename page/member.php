@@ -1,5 +1,43 @@
 <?php 
+    ob_start();
     session_start();
+    //未登入直接跳轉到首頁
+    // if( isset($_SESSION['memId']) == false ){
+    //     header('location:index.php');
+    // }
+    //點擊登出，會員資料要清空
+    //跳轉回首頁
+    if (isset($_REQUEST["btnloglout"]) && ($_REQUEST["btnloglout"]=="true")) {
+        //登出資料要清空
+        unset ($_SESSION["memNo"]);
+        unset ($_SESSION["grade"]);
+        unset ($_SESSION["memId"]);
+        unset ($_SESSION["email"]);
+        unset ($_SESSION["memPic"]);
+        unset ($_SESSION["memPhone"]);
+        unset ($_SESSION["commentRight"]);
+        unset ($_SESSION["reportTimes"]);
+        unset ($_SESSION["memName"]);
+        //跳轉回首頁
+        header("Location: index.php");
+      
+    }
+    $errMsg = "";
+    try{
+        require_once('connectcd105g2.php');
+        // require_once('ajaxLogin.php');
+        
+        $sql = "select * from member ";
+        $recMember = $pdo->query($sql);
+      
+        
+        
+    }catch(PDOException $e){
+        echo "失敗",$e->getMessage();
+        echo "行號",$e->getLine();
+
+    }
+    
     
  ?>
 
