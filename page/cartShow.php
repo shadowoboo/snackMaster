@@ -163,7 +163,7 @@ if(isset($_SESSION["snackName"])){
                             </div>
                             <div class="prodInfo">
                                 <div class="prodName">
-                                    <h5><?php echo $_SESSION["snackName"][49] ?></h5>
+                                    <h5><?php echo $_SESSION["snackName"][50] ?></h5>
                                 </div>
                                 <!-- <div class="prodPrice">
                                 <div class="priceOrigin"><span>$400</span></div>
@@ -173,7 +173,7 @@ if(isset($_SESSION["snackName"])){
                             <div class="cardCtrl">
                                 <div class="prodPriceSum">
                                     <p>
-                                        小計: <span class="priceSum"><?php echo $_SESSION["snackPrice"][49] ?></span>
+                                        小計: <span class="priceSum"><?php echo $_SESSION["snackPrice"][50] ?></span>
                                     </p>
                                 </div>
                                 <!-- <div class="prodQty">
