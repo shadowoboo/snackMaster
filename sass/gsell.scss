@@ -116,8 +116,9 @@ body {
          }
     }
 
-    .map_serch_info_line a span{
+    .map_serch_info_line span{
         color: $blue;
+        cursor: pointer
     }
 }
 

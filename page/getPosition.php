@@ -27,12 +27,10 @@
                         <div class='map_serch_item_info_distance'>
                             <span>距離: 100公尺</span>
                         </div>
-                        <div class='map_serch_info_line'>
-                            <a href='#' id='{$sellRow["maLnge"]}|{$sellRow["maLat"]}'>
+                        <div class='map_serch_info_line' id='{$sellRow["maLnge"]}|{$sellRow["maLat"]}'>
                             <span>規劃路線
                                 <i class='fas fa-location-arrow'></i>
                             </span>
-                            </a>
                         </div>
                     </div>
                 <div class='clearfix'></div>
