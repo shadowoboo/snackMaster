@@ -18,7 +18,7 @@
                 $eva -> bindValue(":snackNo", $snackRow['snackNo']);
                 $eva -> execute();
                 $evaRow  = $eva -> fetch();
-
+                $good = round($snackRow['goodStars'] / $snackRow['goodTimes'], 1);
                 $html .= "<div class='carousel item{$i}'>
                             <div class='cardImg'>
                                 <img src='{$snackRow['snackPic']}' alt='snack'>
@@ -29,7 +29,9 @@
                                     <img src='{$evaRow['memPic']}' alt='profile'>
                                 </div>
                                 <div class='reviewLeft'>
-                                    <img src='../images/blair/star.png' class='star' alt='star'>
+                                    <div class='star' grad='{$good}'>
+                                        <img src='../images/rankBoard/starMask.png' alt='星等'>
+                                    </div>
                                     <p class='reviewWord'>
                                         {$evaRow['evaCtx']}
                                     </p>

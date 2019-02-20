@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh_tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SQL 塞進去</title>
+</head>
+<body>
+    <h1>SQL Faker Data</h1>
+
+    <div class="formatSet">
+        <h2>格式</h2>
+        <label for="sqlTable">
+            sql Table
+            <input type="text" id="sqlTable">
+        </label>
+        
+    </div>
+
+
+    <div class="btnCtrlZone">
+        <div class="btn btnCtrl" id="btnCreate"></div>
+    </div>
+
+    <div class="codeCreate">
+
+    </div>
+    INSERT INTO `material` (`materialNo`, `materialGenre`, `materialName`, `materialPath`)
+    VALUES (NULL, 'img', 'ip1.png', 'images\\customized\\ip1.png'),
+</body>
+<script>
+
+    var sqlInsertStr=`INSERT INTO ${sqlTable}`;
+    sqlInsertStr += 
+</script>
+</html>

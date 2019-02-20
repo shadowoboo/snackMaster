@@ -63,52 +63,6 @@ h1,h2,h3,h4,p,span{
         .month{
             margin: 10px;
         }
-        .cardContainer{
-            font-size: 0;
-            .card{
-                padding: 14px ;
-                display: inline-block;
-                border: 16px solid $coral;
-                border-radius: 32px;
-                width: 330px;
-                margin: 10px 16px;
-                color: $gray;
-                @media only screen and (max-width: $sm) {
-                    width: 80%;
-                }
-                .cardImg{
-                    width: 60%;
-                    margin: auto;
-                    margin-bottom: 10px;
-                }
-                .review{
-                    padding:4px;
-                    margin-top: 8px;
-                }
-                .profile{
-                    width: 25%;
-                    border-radius: 50%;
-                    overflow: hidden;
-                }
-                .profile, .reviewLeft{
-                    display: inline-block;
-                    font-size: 0;
-                    vertical-align: middle;
-                }
-                .reviewLeft{
-                    width: 58%;
-                }
-                .account{
-                    margin: 4px 0;
-                }
-                .star{
-                    width: 80%;
-                }
-                .reviewWord{
-                    margin: 10px 0 0 0;
-                }
-            }
-        }
         .steps{
             text-align: center;
             .lineContainer{
@@ -753,7 +707,9 @@ h1,h2,h3,h4,p,span{
                     vertical-align: bottom;
                 }
                 .star{
-                    width: 128px;
+                    // width: 128px;
+                    width: 170px;
+                    margin: auto;
                 }
                 .review{
                     font-size:0; 
@@ -815,6 +771,7 @@ h1,h2,h3,h4,p,span{
         font-size: 60px;
         color: $coral;
         i{
+            cursor: pointer;
             margin: 0 20px;
         }
     }

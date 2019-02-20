@@ -23,16 +23,16 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
     <script src="../js/Chart.js"></script>
-    <!-- <script src="../js/sale.js"></script> -->
     <script src="../js/index.js"></script>
     <script src="../js/common.js"></script>
     <script src="../js/findingIp.js"></script>
     <script src="../js/search.js"></script>
+    <script src="../js/showStar.js"></script>
     <link rel="stylesheet" href="../css/boxModel.css">
     <link rel="stylesheet" href="../css/sale.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/header.css">
-    <title>Document</title>
+    <title>Home Page</title>
 </head>
 
 <body>
@@ -788,11 +788,15 @@
 
         <section class="section_12" id="section_12">
             <?php
-                $sql = "select * from snack order by goodStars desc limit 3";
+                // $sql = "select * from snack order by goodStars desc limit 3";
+                $sql = "SELECT  s.`snackNo` snackNo,s.`nation` nation,s.`snackName` snackName,s.`snackPic` snackPic,r.`ranking` ranking, AVG(`goodstar`) avg from `snack` s,`rank` r, `eva` e WHERE s.snackNo=r.snackNo AND r.`rankGenre`=:category AND s.`snackNo`=e.`snackNo` GROUP BY e.snackNo";
                 $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
-                // $prodRow -> bindValue(':snackGenre', 0 );
+                $prodRow -> bindValue(':category', '綜合' );
                 $prodRow -> execute(); 
-                while($row = $prodRow->fetchAll()){ //需求送出去，資料抓回來，阿凱發大財                            
+                $row = $prodRow->fetchAll(); //需求送出去，資料抓回來，阿凱發大財  
+                $rank0 = round($row[0]['avg'],1);
+                $rank1 = round($row[1]['avg'],1);
+                $rank2 = round($row[2]['avg'],1);           
             ?>
                 <div class="camera">
                     <div class="box boxBase" id="box_12">
@@ -814,7 +818,7 @@
                 <div class="LeaderboardCount">
                     <div id="lbReel">
                         <div class="LeaderboardNo2">
-                            <a href="showItem.html">
+                            <a href="showItem.php?snackNo=<?php echo $row[1]["snackNo"];?>">
                                 <div class="Leaderboarditem No2">
                                     <div class="LeaderboarCountry">
                                         <img src="../images/blair/<?php echo $row[1]["nation"];?>.png" alt="排行國家">
@@ -823,16 +827,17 @@
                                         <img src="<?php echo $row[1]["snackPic"];?>" alt="產品圖">
                                         <h4 class="commodityTitle">[<?php echo $row[1]["nation"];?>]<?php echo $row[1]["snackName"];?></h4>
                                         <div class="flexMid">
-                                            <p class="score"><?php echo round($row[1]["goodStars"] / $row[1]["goodTimes"],1);?><span class="total">/5</span></p>
+                                            <p class="score"><?php echo ($rank1);?><span class="total">/5</span></p>
                                         </div>
-                                        <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
+                                        <div class="star" grad="<?php echo ($rank1);?>">
+                                            <img src="../images/rankBoard/starMask.png" alt="星等">
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div class="LeaderboardNo1">
-                            <a href="showItem.html">
+                            <a href="showItem.php?snackNo=<?php echo $row[0]["snackNo"];?>">
                                 <div class="Leaderboarditem No1">
                                     <div class="LeaderboarCountry">
                                         <img src="../images/blair/<?php echo $row[0]["nation"];?>.png" alt="排行國家">
@@ -841,16 +846,17 @@
                                         <img src="<?php echo $row[0]["snackPic"];?>" alt="產品圖">
                                         <h4 class="commodityTitle">[<?php echo $row[0]["nation"];?>]<?php echo $row[0]["snackName"];?></h4>
                                         <div class="flexMid">
-                                            <p class="score"><?php echo round( $row[0]["goodStars"] / $row[0]["goodTimes"],1);?><span class="total">/5</span></p>
+                                            <p class="score"><?php echo ($rank0);?><span class="total">/5</span></p>
                                         </div>
-                                        <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
+                                        <div class="star" grad="<?php echo ($rank0);?>">
+                                            <img src="../images/rankBoard/starMask.png" alt="星等">
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div class="LeaderboardNo3">
-                            <a href="showItem.html">
+                            <a href="showItem.php?snackNo=<?php echo $row[2]["snackNo"];?>">
                                 <div class="Leaderboarditem No3">
                                     <div class="LeaderboarCountry">
                                         <img src="../images/blair/<?php echo $row[2]["nation"];?>.png" alt="排行國家">
@@ -859,9 +865,10 @@
                                         <img src="<?php echo $row[2]["snackPic"];?>" alt="產品圖">
                                         <h4 class="commodityTitle">[<?php echo $row[2]["nation"];?>]<?php echo $row[2]["snackName"];?></h4>
                                         <div class="flexMid">
-                                            <p class="score"><?php echo round($row[2]["goodStars"] / $row[2]["goodTimes"],1);?><span class="total">/5</span></p>
+                                            <p class="score"><?php echo ($rank2);?><span class="total">/5</span></p>
                                         </div>
-                                        <div class="commodityStar"><img src="../images/rankBoard/starMask.png" alt="星等">
+                                        <div class="star" grad="<?php echo ($rank2);?>">
+                                            <img src="../images/rankBoard/starMask.png" alt="星等">
                                         </div>
                                     </div>
                                 </div>
@@ -905,7 +912,6 @@
                     <button class="category">洋芋片</button>
                     <button class="category">巧克力</button>
                 </div>
-            <?php };?>
         </section>
         <!-- <div id="ctrl_bar">
             <div class="btn btn_front" id="btn_front">前</div>
@@ -1131,6 +1137,10 @@
             <div class="vmCount">
                 <div class="vmTitle">
                     <h2>尋找販賣機</h2>
+                </div>
+                <div class="vmMainCount">
+                    <div class="vmText"><h3>點選販賣機馬上搜尋！</h3></div>
+                    <div class="vmBtn"><a href="gsell.php"><button class="subscribe">了解更多</button></a></div>
                 </div>
                 <div class="vmInfo">
                     <div class="vmLocate">
@@ -1877,7 +1887,8 @@
                 if( xhr.readyState == 4){
                     if( xhr.status == 200 ){
                         //將撈回來的資料取代原本的網頁內容 
-                        document.getElementById("lbReel").innerHTML = xhr.responseText;  
+                        document.getElementById("lbReel").innerHTML = xhr.responseText;
+                        showStar();
                     }else{
                     alert( xhr.status );
                     }
@@ -1886,6 +1897,7 @@
             var url = "getRank.php?category=" + category;
             xhr.open("Get", url, true);
             xhr.send( null );
+            
         }
         var rank = document.getElementsByClassName('category');
         rank[0].addEventListener('click',function(){
@@ -1908,21 +1920,34 @@
 
     <!-- 點擊購物車增減數量傳回資料庫 -->
     <script>
+        
+        // if(sessionStorage['cutQty'] == null){
+        //     sessionStorage['cutQty'] = $('.stockQty').eq(2).text();
+        // }else{
+            
+        //     $('.stockQty').eq(2).text(sessionStorage['cutQty']);
+        // }
+        
         $('.cart').click(function(){
             var i = $('.cart').index(this) - 16;
-            var aa = $('.stockQty')[i];
+            var thisQty = $('.stockQty').eq(i);
             // console.log(aa);
-            var qty = $(aa).text();
-            // console.log(text);
-            var cutQty = qty - 1;
+            var qty = $(thisQty).text();
+            // console.log(qty);
+            // var qty = aa.firstChild.nodeValue;
+            cutQty = qty - 1;
             if(cutQty==0){
-                $(aa).text(0);
+                $(thisQty).text(0);
                 $(this).css({backgroundColor:'#ccc',color:'#aaa'});
                 $(this).attr('disabled',true);
             }else{
-                $(aa).text(cutQty);
+                // fCutQty = sessionStorage['cutQty'];
+                console.log(cutQty);//9 8 7....
+                $(thisQty).text(cutQty);
+                // sessionStorage['cutQty'] = cutQty;
+                // console.log($(aa).text(fCutQty));
+                // console.log(fCutQty);
             }
-            // console.log(cutQty);
         })
     </script>
 
@@ -2028,17 +2053,20 @@
         }
         function countdown() {
             //取得現在的時間
-            var now = new Date();
+            var now = String( new Date());
             // console.log(now);
+            var newNow = new Date(now.replace(/-/g, "/"));
+            // console.log(newNow);
             //取得活動結束的時間(第一次專題先寫死而不是從資料庫撈資料)
             // var oneDay = now.getDate() + 1;
-            var endTime = '<?php echo $salesRow[0]["endTime"]?>';
+            var endTime = String('<?php echo $salesRow[0]["endTime"]?>') ;
+            var newEndTime = new Date(endTime.replace(/-/g, "/"));
             // console.log(endTime); //2019-02-20
             // var end = new Date(`${endTime} 00:00:00`);
-            var end = new Date(endTime);
+            // var end = new Date(newEndTime);
             // console.log(end);
             //算出目前時間到結束時間中間有多少秒            
-            var leftTime = end.getTime() - now.getTime();  //1552752000-1550378890=2372984
+            var leftTime = newEndTime.getTime() - newNow.getTime();  //1552752000-1550378890=2372984
             // console.log(leftTime); 
 
             //依序將毫秒轉換成幾天幾時幾分幾秒

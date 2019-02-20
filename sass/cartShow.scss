@@ -1,0 +1,692 @@
+@import "reset";
+@import "common";
+
+//由小切到大
+
+.body{
+    background-color: #111;
+}
+
+.cartShow{
+    width: 100%;
+    padding-top: 35px;
+    // background-color: #ccc;
+
+    .wrap{
+        padding-left:15px;
+        padding-right: 15px;
+        .cartTop{ //標題與說明區
+            .title{
+                h2{text-align: center;}
+            }
+            .cartFlow{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                // padding: 0px 15px;
+                .cartStep{
+                    opacity: 0.5;
+                    width: 15%;
+                    margin: 5px;
+                    transition: 0.3s;
+                    .step__img{
+                        width: 100%;
+                        // padding-bottom: 100%;
+                    }
+                    p{
+                        text-align: center;
+                        span{font-family: inherit;font-size: 0.5rem;}
+                    }
+                    &.cartStep_select{
+                        width: 20%;
+                        opacity: 1;
+                        p{
+                            span{font-size: 0.8rem;}
+                        }
+                    } //進行中流程的特效
+                }
+            }
+        }
+        .cartContent{
+            width: 100%;
+            &.cartContent_none{ //當我們沒有商品在購物車
+                // display: flex;
+                display: none;
+                flex-direction: column;
+                h3{
+                    margin-top: 20px;
+                    text-align: center;
+                    margin-bottom: 40px;
+                }
+                a{
+                    display: block;
+                    align-self: center;
+                    margin-top: 20px;
+                }
+                &.cartPageActive{
+                    display: flex;
+                }
+            }
+            &.cartContent_prod{ //當我們有商品在購物車
+                display: none;
+                // padding: 15px 15px;
+                margin-bottom: 100px;
+                &.cartPageActive{
+                    display:flex;
+                }
+                .prodCard{
+                    margin-top: 20px;
+                    padding: 10px;
+                    width: 100%;
+                    border: #333333 solid 2px;
+                    border-radius: 10px;
+                    &.prodCard_normal{
+                        display: flex;
+                        justify-content: space-between;
+                        .prodImg{
+                            // width: 20%;
+                            flex:1;
+                            display: flex;
+                            align-items: center;
+                            img{
+                                display: block;
+                            }
+                        }
+                        .prodInfo{
+                            width: 50%;
+                            padding: 0px 5px;
+                            display: flex;
+                            flex-direction: column;
+                            .prodName{
+                                flex: 3;
+                                display: flex;
+                                h4{
+                                    justify-self: center;
+                                    align-self: center;
+                                }
+                            }
+                            .prodPrice{
+                                flex:1;
+                                justify-self: center;
+                                display: flex;
+                                .priceOrigin{
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    position: relative;
+                                    margin-right:5px;
+                                    color: $gray;
+                                    span{vertical-align: bottom;}
+                                    &::before{
+                                        content: "";
+                                        display: block;
+                                        width: 100%;
+                                        height: 2px;
+                                        background-color: $gray;
+                                        position: absolute;
+                                        top: 50%;
+                                        transform-origin: center;
+                                        transform: rotate(15deg);
+                                    }
+                                }
+                                .priceNow{
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    color: $coral;
+                                    span{
+                                        font-size: 0.55rem;
+                                        vertical-align: bottom;
+                                    }
+                                }
+                            }
+                        }
+                        .cardCtrl{
+                            flex:1.5;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-end;
+                            // min-width: 20%;
+                            // background-color: #222;
+                            .prodPriceSum{
+                                flex: 1;
+                                p{
+                                    // text-align: right;
+                                    span{font-size: 0.6rem;}
+                                }
+                            }
+                            .prodQty{
+                                flex:1;
+                                .numInput{
+                                    width: 100%;
+                                    height: 30px;
+                                    margin: 5px 0px;
+                                    position: relative;
+                                    .numMinus{width: 25%;height: 30px;}
+                                    .numPlus{width: 25%;height: 30px;}
+                                    span{
+                                        line-height: 30px;
+                                    }
+                                    input{
+                                        display: block;
+                                        width: 100%;
+                                        height: 100%;
+                                        font-size: 0.5rem;
+                                        line-height: 30px;
+                                        // padding: 0px;
+                                    }
+                                }
+                            }
+                            .trash{
+                                flex:1;
+                                display: block;
+                                // width: ;
+                                // align-self: flex-end;
+                                height: 20px;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                    &.prodCard_Group{
+                        padding-top: 0;
+                        padding-left: 0;
+                        padding-right: 0;
+                        padding-bottom: 0;
+                        .prodCard.prodCard_normal,
+                        .prodCard.prodCard_Cus{
+                            margin: 0;
+                            border: none;
+                            border-radius: 0px;
+                        }
+                        .prodCard:nth-child(n+2){
+                            border-top: $gray 2px dashed;
+                        }
+                        .prodCard_CusCard{
+                            .cardCtrl{
+                                    //撥放介面樣式-----------開始
+                                    //播放條寬度
+                                    $defBarWidth:350px * 0.8;
+                                    //撥放條高度
+                                    $defBarHeight:10px;
+                                    //撥放拉桿寬度
+                                    $barNoteWidth:10px;
+                                    //撥放拉桿高度
+                                    $barNoteHeight:30px;
+                                    //播放條整包
+                                    .defBar{
+                                        width:$defBarWidth ;
+                                        height:$defBarHeight ;
+                                        //播放條背景色
+                                        background-color: #fbc84a;
+                                        //給拉桿定位用
+                                        position: relative;
+                                        cursor: pointer;
+                                        &:hover .proBar,
+                                        &:hover .barNote{
+                                            background-color: $deepblue;
+                                        }
+                                        //進度條
+                                        .proBar{
+                                            //寬度隨播放進度變化
+                                            width: 0%;
+                                            //高度繼承播放條就好
+                                            height: inherit;
+                                            //撥放時的進度條顏色
+                                            background-color: #076baf;
+                                            cursor: pointer;
+                                            // transition:  0.1s linear;
+                                        }
+                                        //拉桿
+                                        .barNote{
+                                            width: $barNoteWidth;
+                                            height: $barNoteHeight;
+                                            // width: 0;
+                                            // height: 0px;
+                                            background-color: #076baf;
+                                            position: absolute;
+                                            //用公式置中這樣
+                                            top: -($barNoteHeight/2) + ($defBarHeight/2) ;
+                                            left:0%; //隨撥放時間移動
+                                            // transform: translateX(-50%); //使用上好像沒有很在意位置的精準度
+                                            cursor: pointer;
+                                            // transition: 0.1s linear;
+                                        }
+                                    }
+
+
+                                    //音量條寬度
+                                    $volBarWidth:50px;
+                                    //音量條高度
+                                    $volBarHeight:5px;
+                                    //音量拉桿寬度
+                                    $vol_barNoteWidth:15px;
+                                    //音量拉桿高度
+                                    $vol_barNoteHeight:15px;
+                                    //音量條整包
+                                    .volBar{
+                                        width:$volBarWidth ;
+                                        height:$volBarHeight ;
+                                        //播放條背景色
+                                        background-color: #fbc84a;
+                                        //給拉桿定位用
+                                        position: relative;
+                                        cursor: pointer;
+                                        &:hover .vol_proBar,
+                                        &:hover .vol_barNote{
+                                            background-color: #fff;
+                                        }
+
+                                        //三角形風格
+                                        // clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+                                        //進度條
+                                        .vol_proBar{
+                                            //寬度隨音量調整變化，html5音量預設是 1 ，所以我們寬度也設100%
+                                            width: 100%;
+                                            //高度繼承音量條就好
+                                            height: inherit;
+                                            //音量調整bar的顏色
+                                            background-color: #076baf;
+                                            cursor: pointer;
+                                        }
+                                        //拉桿
+                                        .vol_barNote{
+                                            width: $vol_barNoteWidth;
+                                            height: $vol_barNoteHeight;
+                                            background-color: #076baf;
+                                            position: absolute;
+                                            //用公式置中這樣
+                                            top: -($vol_barNoteHeight/2) + ($volBarHeight/2) ;
+                                            left:100%; //隨音量時間移動，html5音量預設是1，所以我們left也設100%
+                                            transform: translateX(-50%);
+                                            cursor: pointer;
+                                            border-radius: 50%;
+                                        }
+                                    }
+                                    .au_btn{
+                                        cursor: pointer;
+                                    }
+                                    //撥放介面元件樣式-----------結束
+
+
+                                    //撥放介面結構樣式----------------------開始
+                                    #audioItem{
+                                        width: 100%;
+                                        // height: 230px;
+                                        margin: auto;
+                                        // background-color: #ccc;
+                                        display: flex;
+                                        flex-direction: column;
+                                        justify-content: space-evenly;
+                                        align-items: center;
+                                        .au_btns{
+                                            width:100%;
+                                            height: 50px;
+                                            border-radius: 10px;
+                                            // background-color: $yellow;
+                                            border: 7px solid $blue;
+                                            display: flex;
+                                            justify-content: space-around;
+                                            align-items: center;
+
+                                            .au_btn, .trash {
+                                                width: 25px;
+                                                height: 25px;
+                                                color: $blue;
+                                                background-color: transparent;
+                                                border: unset;
+                                                border-radius: 10px;
+                                                padding: 0px;
+                                                text-align: center;
+                                                font-size: 22px;
+                                                cursor: pointer;
+                                                @media only screen and (min-width: $moblie) {
+                                                &:hover {
+                                                        // background-color: $blue;
+                                                        color: #fff;
+                                                    }
+                                                }
+                                            }
+                                            .volBar, 
+                                            #au_btn_vol{
+                                                display: none;
+                                            }
+                                        }
+                                        .au_ctrl{
+                                            .au_time{
+                                                width: 100%;
+                                                text-align: right;
+                                                span{color: $blue;}
+                                            }
+                                        }
+                                    }
+                                    //撥放介面結構樣式----------------------結束
+                            }
+                        }
+                        .prodCard_CusPanel{
+                            display: flex;
+                            width: 100%;
+                            height: 100%;
+                            justify-content: center;
+                            align-items: center;
+                            .cusTotal{
+                                width: 50%;
+                                flex: 1;
+                                p{
+                                    span{
+                                        font-size: 0.6rem;
+                                    }
+                                }
+                            }
+                            .cusBtnDel{
+                                width: 50%;
+                                flex: 1;
+                                display: flex;
+                                justify-content: flex-end;
+                                // cursor: pointer;
+                                span{
+                                    display: block;
+                                    font-size: 0.5rem;
+                                    padding: 5px;
+                                    border: $blue solid 2px;
+                                    color: $blue;
+                                    border-radius: 10px;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .cartFormZone{ //表單填寫
+            // display: flex;
+            display:none;
+            flex-direction: column;
+            width: 100%;
+            // background-color: #ccc;
+            border: #333333 solid 2px;
+            border-radius: 10px;
+            &.cartPageActive{
+                    display:flex;
+                }
+            form{
+                .cartFormCard{
+                    display: flex;
+                    padding: 10px;
+                    &:nth-child(n+2){
+                        border-top: #737374 2px dashed;
+                    }
+                    h4{
+                        margin-right:10px;
+                        // flex: 1;
+                    }
+                    input{
+                        display: block;
+                        width: 50%;
+                        font-size: 0.6rem;
+                        // height: 0.75rem;
+                        // font-size: 0.75rem;
+                        &:focus{
+                            outline: $blue 3px solid;
+                        }
+                    }
+                    .payType{
+                        // width: 100%;
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        .payTypeItem{
+                            width: 80px;
+                            margin-left: 20px;
+                            text-align: center;
+                            position: relative;
+                            transition: 0.3s;
+                            &.checked{
+                                border: $blue solid 3px;
+                                border-radius: 10px;
+                            }
+                            input{
+                                position: absolute; 
+                                top:0;
+                                left: 0;
+                                opacity: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .cartFinishOrder{
+            // display: flex;
+            flex-direction: column;
+            display: none;
+            text-align: center;
+            &.cartPageActive{
+                    display:flex;
+                }
+            h3{
+                margin-top:20px;
+                text-align: center;
+                margin-bottom: 40px;
+            }
+        }
+        .cartPanel{
+            background-color: #fff; //ENG
+            // border: 2px solid #111111; //ENG
+            border-radius: 20px 20px 0px 0px;
+            box-shadow: $gray 0px -1px 30px 1px;
+            // padding: 0px 15px;
+            width: 100%;
+            // display: flex;
+            display: none;
+            flex-direction: column;
+            position:fixed;
+            left: 0;
+            bottom: 0;
+            &.cartPageActive{
+                    display:flex;
+                }
+            .totalAndCoupon{
+                width: 100%;
+                display: flex;
+                padding: 0px 15px;
+                .priceTotal{
+                    width: 50%;
+                    justify-self: flex-end;
+                    span{
+                        font-size: 0.75rem;
+                    }
+                }
+                .couponChoose{
+                    width: 50%;
+                    label{
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: center;
+                        p{
+                            vertical-align: bottom;
+                        }
+                        #couponList{
+                            // width: 50px;
+                            display: flex;
+                            position: relative;
+                            // top: -50%;
+                            #couponItem{
+                                width: 100%;
+                                height: 100%;
+                                background-color: #fff;
+                                // border: $gray solid 1px;
+                                border: none;
+                                font-size: 0.75rem;
+                                // transform: translateY(-5px);
+                                // position: relative;
+                                // top: +50%;
+                                // margin:auto;
+                                // option{
+                                //     // vertical-align: middle;
+                                // }
+                            }
+                        }
+                    }
+                }
+            }
+            .panelBtn{
+                display: flex;
+                width: 100%;
+                // padding-bottom: 10px;
+                .btnBack{
+                    flex: 1;
+                    width: 50%;
+                    text-align: center;
+                    vertical-align: middle;
+                    color: $gray;
+                    cursor: pointer;
+                    span{
+                        font-size: 0.65rem;
+                    }
+                    &.btnBack_none{
+                        display: none;
+                    }
+                }
+                .btnNext{
+                    background-color: $blue;
+                    color: #fff;
+                    // border: 2px solid #111111; //ENG
+                    border-radius: 20px 20px 0px 0px;
+                    flex: 1;
+                    width: 50%;
+                    text-align: center;
+                    vertical-align: middle;
+                    cursor: pointer;
+                    span{
+                        font-size: 0.65rem;
+                    }
+                }
+            }
+        }
+
+        .cartPageActive{
+            display:flex;
+        }
+    }
+    .lightBoxes{
+        width: 100%;
+        height: 100vh;
+        background-color: #333333aa;
+        padding-left: 15px;
+        padding-right: 15px;
+        position: fixed;
+        z-index: 99999;
+        top: 0;
+        left: 0;
+        // display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+        &.cartPageActive{
+            display:flex;
+        }
+        .lightBox{
+            width: 90%;
+            // height: 50vh;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            // position:absolute; //此置中方式會自動佔滿空間，故改用flex
+            // top: 0;
+            // left: 0;
+            // right: 0;
+            // bottom: 0;
+            // margin: auto; 
+            .lightBoxContent{
+                h3{
+                    text-align: center;
+                    &::after{
+                        content:"";
+                        display:block;
+                        width: 100%;
+                        height: 1px;
+                        background-color: #4444444b;
+                        transform: translateY(-5px);
+                    }
+                }
+                p{
+                    // width: 50%;
+                    margin:auto;
+                    span{
+                        font-size: 0.61rem;
+                    }
+                }
+            }
+            .lightBoxBtns{
+                margin-top: 20px;
+                display: flex;
+                justify-content: space-between;
+                .step{
+                    width: 45%;
+                    &.stepBack{
+                        background-color: #fff;
+                        color: $blue;
+                        border: 2px solid $blue;
+                        &:hover{
+                            background-color: $deepblue;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+
+
+footer{
+    // display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+*{
+    // outline: red solid 1px;
+}
+
+
+
+
+
+// .cartPanel{
+//     display: none;
+// }
+// .cartContent_prod{
+//     display: none;
+// }
+// .cartContent.cartContent_none{
+//     display: block;
+// }
+
+
+.engBtnList{
+    width: 300px;
+    height: 50vh;
+    background-color: #111;
+    transform: translateX(-100%);
+    position: absolute;
+    top: 20%;
+    left: 0%;
+    transition:0.1s;
+    &.show{
+        transform: translateX(0%);
+    }
+    .engBtn{
+        color: #fff;
+        margin:20px;
+        font-size: 0.5rem;
+    }
+}

@@ -99,6 +99,7 @@ function getBoxSnack(month){
     xhr.onload = function () {
         if (xhr.status == 200) {
             document.getElementsByClassName("carousels")[0].innerHTML = xhr.responseText;
+            showStar();
         } else {
             alert(xhr.status);
         }

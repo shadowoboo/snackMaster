@@ -14,15 +14,13 @@
         $snack -> bindValue(':snackGenre', $_REQUEST['snackGenre']);
         $snack -> bindValue(':nation', $_REQUEST['nation']);
         $snack -> bindValue(':snackName', $_REQUEST['snackName']);
-        $status = $_REQUEST['snackStatus'] == '上架中'? 1:0;
-        $snack -> bindValue(':snackStatus', $status);
+        $snack -> bindValue(':snackStatus', $_REQUEST['snackStatus']);
         $snack -> bindValue(':snackWord', $_REQUEST['snackWord']);
         $snack -> bindValue(':snackPic', $_REQUEST['snackPic']);
         $snack -> bindValue(':snackPrice', $_REQUEST['snackPrice']);
         $snack -> bindValue(':snackIngre', $_REQUEST['snackIngre']);
-        $vending = $_REQUEST['snackVending'] == '是'? 1:0;
-        $snack -> bindValue(':snackVending', $vending);
-        $boxDate = $_REQUEST['boxDate']."-01";
+        $snack -> bindValue(':snackVending', $_REQUEST['snackVending']);
+        $boxDate = $boxDate == ''? null:$_REQUEST['boxDate']."-01";
         $snack -> bindValue(':boxDate', $boxDate);
         $snack -> execute();
         echo "<script>alert('修改商品成功！');location.href='back_snack.php';</script>";

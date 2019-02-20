@@ -20,9 +20,15 @@ try{
   	//將登入者資料寫入session
   	$_SESSION["memNo"] = $memRow["memNo"];
     $_SESSION["memId"] = $memRow["memId"];
-    $_SESSION["grade"] = $memRow["grade"];
+    $_SESSION["memPsw"] = $memRow["memPsw"];
+    $_SESSION["memName"] = $memRow["memName"];
+    $_SESSION["memPic"] = $memRow["memPic"];
+    $_SESSION["memPoint"] = $memRow["memPoint"];
     $_SESSION["email"] = $memRow["email"];
+    $_SESSION["grade"] = $memRow["grade"];
     $_SESSION["memPhone"] = $memRow["memPhone"];
+    $_SESSION["commentRight"] = $memRow["commentRight"];
+    $_SESSION["reportTimes"] = $memRow["reportTimes"];
 
     //送出登入者的姓名資料
     echo $memRow["memId"];
