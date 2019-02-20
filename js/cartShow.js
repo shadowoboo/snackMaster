@@ -162,11 +162,6 @@ $(function () {
             total += Number(parseInt($(this).text()));
         })
         //扣除優惠卷
-        // var couponItem = document.getElementById("couponItem");
-        // console.log(`couponItem: ${couponItem.value()}`);
-        
-        console.log($("#couponItem").val());
-        
         if ($("#couponItem").val()){
             total = total - $("#couponItem").val();
         }
@@ -208,8 +203,6 @@ $(function () {
                     $("#couponItem").html(response);
                     // console.log(`response="ok"`);
                     console.log(response);
-                    
-
                 }
             }
         });
@@ -282,8 +275,10 @@ $(document).ready(function () {
                 getterData += "&orderTotal=" + orderTotal;
                 //如果有優惠卷
                 if ($("option").length > 0) { //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式
-                    var coupNo = $("#couponItem").data("coupNo");
-                    getterData += "&coupNo=" + coupNo;
+                    // var couponboxNo = $("#couponItem").data("couponboxno");
+                    var couponboxNo = $("#couponItem").find(":selected").data("couponboxno");
+                    // var couponboxNo= document.getElementById()
+                    getterData += "&couponboxNo=" + couponboxNo;
                 }
                 //如果有箱子
                 if ($("#boxPic").length > 0){ //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式

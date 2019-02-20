@@ -20,6 +20,8 @@
         // $snackQuan=$_SESSION["snackQuan"];
         // $customBoxItem=$_SESSION["cusType"];//如果cusType為y則是客製
         //-----------------以上宣告會報錯，乖乖使用 $_SESSION[""][] 二維陣列
+        //取優惠卷
+        (isset($_REQUEST["couponboxNo"]))?$couponboxNo=$_REQUEST["couponboxNo"]:$couponboxNo=null;
 
 
         //連線
@@ -66,7 +68,15 @@
         //刪除即期品
 
 
-        //刪除使用的優惠卷
+        //變更優惠卷使用狀態
+        if(isset($couponboxNo)){
+            $sql = "UPDATE couponbox SET`status`=1 WHERE couponboxNo=:couponboxno";
+            $coupbox = $pdo->prepare($sql);
+            $coupbox->bindValue(":couponboxno",$couponboxNo);
+            $coupbox->execute();
+        }
+
+
 
         $pdo->commit();
 
