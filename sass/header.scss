@@ -258,19 +258,12 @@ label.mail {
             margin: auto;
             width: 300px;
             margin-top: 30px;
-<<<<<<< HEAD
-            form {
-                text-align: center;
-                position: absolute; // display: none;
-                table {
-=======
             form{
                 
                 position: absolute;
                 // display: none;
                 table{
                     text-align: center;
->>>>>>> tina
                     width: 300px;
                     tr {
                         td {
@@ -281,22 +274,6 @@ label.mail {
                         }
                     }
                 }
-<<<<<<< HEAD
-                .loginBox {
-                    text-align: center;
-                }
-                .forgetPsw {
-                    #forgetPswLink {
-                        display: block;
-                        font-size: 18px;
-                        text-align: right;
-                        color: $coral;
-                        padding: 5px;
-                        cursor: pointer;
-                        text-decoration: underline;
-                    }
-                }
-=======
 
                 
 
@@ -316,7 +293,6 @@ label.mail {
                             
                        }
                   }
->>>>>>> tina
             }
         }
     }
