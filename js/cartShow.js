@@ -275,9 +275,8 @@ $(document).ready(function () {
                 getterData += "&orderTotal=" + orderTotal;
                 //如果有優惠卷
                 if ($("option").length > 0) { //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式
-                    // var couponboxNo = $("#couponItem").data("couponboxno");
+                    // var couponboxNo = $("#couponItem").data("couponboxno"); //這種選法是錯的!!!!選項很多，被選擇的才是我們要的
                     var couponboxNo = $("#couponItem").find(":selected").data("couponboxno");
-                    // var couponboxNo= document.getElementById()
                     getterData += "&couponboxNo=" + couponboxNo;
                 }
                 //如果有箱子
