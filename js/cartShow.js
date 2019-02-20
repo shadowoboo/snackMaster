@@ -280,6 +280,11 @@ $(document).ready(function () {
                 //取得總價(不想再php算)
                 var orderTotal = $("#priceTotalContent").text(); console.log(`orderTotal: ${orderTotal}`);
                 getterData += "&orderTotal=" + orderTotal;
+                //如果有優惠卷
+                if ($("option").length > 0) { //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式
+                    var coupNo = $("#couponItem").data("coupNo");
+                    getterData += "&coupNo=" + coupNo;
+                }
                 //如果有箱子
                 if ($("#boxPic").length > 0){ //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式
                     var boxPic = $("#boxPic").attr("src");

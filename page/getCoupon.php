@@ -23,7 +23,8 @@
                 $html="";
                 for($i=0;$i<$count;$i++){
                     $value=$couponRow[$i]["discountPrice"];
-                    $html=$html."<option value=\"".$value."\">".$value."</option>";
+                    $coupNo=$couponRow[$i]["coupNo"];
+                    $html=$html."<option value=\"".$value."\""."data-coupno=\"".$coupNo."\">".$value."</option>";
                 }
                 echo $html;
             }
