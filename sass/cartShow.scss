@@ -1,14 +1,18 @@
 @import "reset";
 @import "common";
-* {
-    color: $gray;
-}
+// * {
+//     // color: $gray;
+// }
 
 //由小切到大
 .body {
     background-color: #111;
 }
-
+#goCartShow{
+    i {
+        color: #53a9f5;
+    }
+}
 .cartShow {
     width: 100%;
     padding-top: 35px; // background-color: #ccc;
