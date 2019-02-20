@@ -58,9 +58,9 @@ var canvas = document.getElementById('canvas');
 loop();
 
 //----------------手機的漢堡開關--------------------------
-const list_appear = document.getElementById("list_appear");
-        const ham = document.getElementById("ham");
-        const cros = document.getElementById("cros");
+       var list_appear = document.getElementById("list_appear");
+        var ham = document.getElementById("ham");
+        var cros = document.getElementById("cros");
         // const store = document.getElementById("store");
         // const subMenu = document.getElementById("Submenu");
         function init(e) {
@@ -74,7 +74,7 @@ const list_appear = document.getElementById("list_appear");
         
         }
         function close(e) {
-            console.log(`remove`);
+            // console.log(`remove`);
             list_appear.classList.remove("show");
         }
         //hover的設定,不確定需不需要
@@ -86,9 +86,9 @@ const list_appear = document.getElementById("list_appear");
         
         window.addEventListener("load",init);
 
-        const search_appear = document.getElementById("search_appear");
-        const search = document.getElementById("searchBtn");
-        const closex = document.getElementById("close");
+        var search_appear = document.getElementById("search_appear");
+        var search = document.getElementById("searchBtn");
+        var closex = document.getElementById("close");
         function init2(e) {
             search.addEventListener("click", showSearch);
             closex.addEventListener("click", closeSearch);
@@ -99,7 +99,7 @@ const list_appear = document.getElementById("list_appear");
         
         }
         function closeSearch(e) {
-            console.log(`remove`);
+            // console.log(`remove`);
             search_appear.classList.remove("down");
         }
 
@@ -114,7 +114,7 @@ function showLightBox(e){
     //點擊登入按鈕，顯示燈箱
 
     if($id('memLogin').style.color =='rgb(7, 107, 175)'){
-        location.href = "member.html";
+        location.href = "../page/member.php";
         // alert(123);
     }else{
         $id('lightBox-wrap').classList.toggle('show');
@@ -417,34 +417,29 @@ function init3(){
     $id('btnSignUp').addEventListener('click',SUForm);//送出註冊按鈕
     // $id('forgetSend').addEventListener('click',FPForm);//寄送密碼按鈕
     
-    //帳號錯誤無法登入
-    // var keyboard_register = $id('signUpMemId');
-    // keyboard_register.addEventListener("keyup",function(e){
-    //     e.preventDefault();
-    //     $id('signUpMemId').style.border.color = "#f00";
-    //     if(event.keyCode === 13){
-    //         $id('btnSignUp').click();
-    //     }
-    // });
 
     // 檢查是否已登入
     var xhr = new XMLHttpRequest();
     
     xhr.onload = function(){
+        console.log(`xhr.onlod now`);
+        
         // console.log(xhr.responseText);
-        var loginInfo = JSON.parse(xhr.responseText);
+        // var loginInfo = JSON.parse(xhr.responseText);
         // console.log(xhr.responseText);
         // console.log(loginInfo)
-        if(loginInfo){
+        if(xhr.responseText=="notyetLogin"){
+            $id("memLogin").style.color = "#737374f";
+            $id("btnloglout").innerHTML = "&nbsp";
+            console.log(xhr.responseText);
+        }else{
             $id("memLogin").style.color = "#076baf"
             $id("btnloglout").innerHTML = "登出";
-        }else{
-            $id("memLogin").style.color = "#737374f"
-            $id("btnloglout").innerHTML = "&nbsp";
         }
-        xhr.open("get", "alreadyLogin.php", true);
-        xhr.send(null);
     }
+    xhr.open("get", "alreadyLogin.php", true);
+    xhr.send(null);
+    console.log(`init3`);
     
     
     

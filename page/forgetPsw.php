@@ -8,7 +8,7 @@ $email=$_REQUEST["memEmail"];
 try {
     require_once("connectcd105g2.php");
 
-    
+
         $sql ="select memId, email from member where memId=:memId and email=:email";
         $forget = $pdo->prepare($sql);
         $forget ->bindValue(":memId",$id);
