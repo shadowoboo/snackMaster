@@ -135,9 +135,14 @@
                     </div>
                 </div> -->
             </div>
+            <div class="cartTh">
+                <h4>商品</h4>
+                <h4>品名</h4>
+                <h4>價格</h4>
+            </div>
 
             <div class="cartContent cartContent_none cartPageActive">
-                <h3>你的購物掐掐內煤油桑品捏</h3>
+                <h4>購物車暫無商品！</h4>
                 <a href="shopping.html"><button class="subscribe">繼續選GO</button></a>
             </div>
 <?php
@@ -158,7 +163,7 @@ if(isset($_SESSION["snackName"])){
                             </div>
                             <div class="prodInfo">
                                 <div class="prodName">
-                                    <h4><?php echo $_SESSION["snackName"][50] ?></h4>
+                                    <h5><?php echo $_SESSION["snackName"][49] ?></h5>
                                 </div>
                                 <!-- <div class="prodPrice">
                                 <div class="priceOrigin"><span>$400</span></div>
@@ -168,7 +173,7 @@ if(isset($_SESSION["snackName"])){
                             <div class="cardCtrl">
                                 <div class="prodPriceSum">
                                     <p>
-                                        小計: $<span class="priceSum"><?php echo $_SESSION["snackPrice"][50] ?></span>
+                                        小計: <span class="priceSum"><?php echo $_SESSION["snackPrice"][49] ?></span>
                                     </p>
                                 </div>
                                 <!-- <div class="prodQty">
@@ -186,7 +191,7 @@ if(isset($_SESSION["snackName"])){
                             </div>
                             <div class="prodInfo">
                                 <div class="prodName">
-                                    <h4>客製卡片</h4>
+                                    <h5>客製卡片</h5>
                                 </div>
                                 <!-- <div class="prodPrice">
                                 <div class="priceOrigin"><span>$400</span></div>
@@ -232,7 +237,7 @@ if(isset($_SESSION["snackName"])){
                             </div>
                             <div class="prodInfo">
                                 <div class="prodName">
-                                    <h4><?php echo $_SESSION["snackName"][$snackNo]; ?></h4>
+                                    <h5><?php echo $_SESSION["snackName"][$snackNo]; ?></h5>
                                 </div>
                                 <div class="prodPrice">
                                     <div class="priceOrigin"><span><?php echo $_SESSION["snackPrice"][$snackNo]; ?></span></div>
@@ -242,7 +247,7 @@ if(isset($_SESSION["snackName"])){
                             <div class="cardCtrl">
                                 <div class="prodPriceSum">
                                     <p>
-                                        小計: $<span class="priceSum"><?php echo  $_SESSION["snackPrice"][$snackNo]?></span>
+                                        小計: <span class="priceSum"><?php echo  $_SESSION["snackPrice"][$snackNo]?></span>
                                     </p>
                                 </div>
                                 <div class="prodQty">
@@ -282,14 +287,14 @@ if(isset($_SESSION["snackName"])){
         foreach ($_SESSION["cusType"] as $snackNo => $cusType) {
             if($cusType=="n" || $cusType=="c" ){
 ?>
-                    <div class="prodCard prodCard_normal">
+                    <div class="prodCard prodCard_normal prodCard_single">
                         <input type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
                         <div class="prodImg">
                             <img src="<?php echo  $_SESSION["snackPic"][$snackNo]?>">
                         </div>
                         <div class="prodInfo">
                             <div class="prodName">
-                                <h4><?php echo  $_SESSION["snackName"][$snackNo]?></h4>
+                                <h5><?php echo  $_SESSION["snackName"][$snackNo]?></h5>
                             </div>
                             <div class="prodPrice">
                                 <div class="priceOrigin"><span><?php echo  $_SESSION["snackPrice"][$snackNo]?></span></div>
@@ -299,7 +304,7 @@ if(isset($_SESSION["snackName"])){
                         <div class="cardCtrl">
                             <div class="prodPriceSum">
                                 <p>
-                                    小計: $<span class="priceSum" ><?php echo  $_SESSION["snackPrice"][$snackNo]?></span>
+                                    小計: <span class="priceSum" ><?php echo  $_SESSION["snackPrice"][$snackNo]?></span>
                                 </p>
                             </div>
                             <div class="prodQty">
