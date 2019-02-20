@@ -27,6 +27,14 @@
     
 
 
+// 0 一般
+// 1 客製
+// 2 即期
+// 3 預購
+//若要重複取得不同 type 的零食
+//要考慮把零食型別(客製/一般/即期/預購)也寫進session裡
+//ex: $_SESSION["snackName"][$snackType][$snackNo]
+
 
 
 
