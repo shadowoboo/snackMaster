@@ -68,7 +68,7 @@
 
 
     cus(1,3,$prodRow);
-    normal(11,15,$prodRow);
+    normal(5,6,$prodRow);
     // clean(20,30,$prodRow);
     // plan(20,30,$prodRow);
 

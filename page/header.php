@@ -36,7 +36,7 @@
                     </div>
                     <!----    在手機上打開此logo;桌機上關掉此logo------ -->
                     <div class="logo">
-                        <a href="index.php"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
+                        <a href="homePage.php"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
 
                     </div>
                     <div id="list_appear">
@@ -45,13 +45,8 @@
                             <span class="leave">X</span>
                         </div>
                         <ul class="list">
-<<<<<<< HEAD
-                            <li id="goRankBoard"><a href="rankBoard.html">零食排行榜</a></li>
-                            <li id="goCustomized"><a href="customized.php">客製零食箱</a> </li>
-=======
                             <li><a href="rankBoard.php">零食排行榜</a></li>
                             <li><a href="customized.php">客製零食箱</a> </li>
->>>>>>> tina
                             <!-- 在手機上要關掉這個li的logo -->
                             <li><a href="homePage.php"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
                             <li id="store"> 零食商店街
