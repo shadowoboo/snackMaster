@@ -342,19 +342,68 @@ function add_member() {
 // function FPForm(){
 //     var xhr = new XMLHttpRequest();
 //     xhr.onload = function(){
-//         if (xhr.responseText == 0){
-
+//         if( xhr.status == 200 ){
+//             if (xhr.responseText == 0){
+//                 alert("帳號不存在");
+//             }else{
+//                 alert("已寄出信件");
+//                 $id('lightBox-wrap').classList.remove('show');
+    
+//             }
 //         }else{
-
+//             alert( xhr.status );
 //         }
+        
 
 //     }
-
+//     var forgetPsw = {
+//         memId :$id("forgetMemId").value,
+//         memEmail:$id("forgetpMemEmail").value
+//     }
+//     console.log("forgetPsw="+ JSON.stringify(forgetPsw));
+    
+//     // console.log(forgetPsw);
+//     xhr.open("Post", "forgetPsw.php",true);
+//     // xhr.send("forgetPsw="+ JSON.stringify(forgetPsw));
+//     xhr.send(JSON.stringify(forgetPsw));
 
 
 // }
 
 
+
+$(function(){
+
+    $("#forgetSend").click(FPform);
+
+    function FPform(){
+        // var forgetPsw = {
+        //     memId :$id("forgetMemId").value,
+        //     memEmail:$id("forgetpMemEmail").value
+        // }
+        // var sJson = JSON.stringify(forgetPsw);
+        var data ="memId="+$id("forgetMemId").value+"&memEmail="+$id("forgetpMemEmail").value;
+        console.log(data);
+         
+        $.ajax({
+            type:"post",
+            // dataType:"json",
+            url: "forgetPsw.php",
+            // contentType:"application/json; charset=UTF-8",
+            data: data,
+            success: function(response){
+                if (response == 0){
+                    alert("帳號不存在");
+                }else{
+                    alert("已寄出信件");
+                    $id('lightBox-wrap').classList.remove('show');
+        
+                }
+            }
+        })
+    }
+    
+})
 
 
 //註冊所有事件聆聽！！！！！
@@ -366,7 +415,7 @@ function init3(){
     $id('btnLogin').addEventListener('click',sendForm);//送出登入按鈕
     $id('btnloglout').addEventListener('click',logout);//登出按鈕
     $id('btnSignUp').addEventListener('click',SUForm);//送出註冊按鈕
-    // $id('btnforget').addEventListener('click',FPForm);//寄送密碼按鈕
+    // $id('forgetSend').addEventListener('click',FPForm);//寄送密碼按鈕
     
     //帳號錯誤無法登入
     // var keyboard_register = $id('signUpMemId');
