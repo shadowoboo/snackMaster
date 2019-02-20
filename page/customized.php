@@ -89,25 +89,28 @@ try {
                                     <div class="box boxBase" id="box_15">
                                         <div class="surface surface_top" id="cover_out_15">
                                             <!-- <img src="ip2.png" id="a1" alt=""> -->
-                                        <div id="touchmebaby" style="width:100px;postion:relative;z-index:999;">
-                                            <img id="cusImg_top" src="../images/tina/LOGO1.png" alt="" style="display:none;">
-                                        </div>
+                                        
+                                        <img id="cusImg_top" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+                                       
                                         </div>
                                         <div class="surface surface_top_inner" id="cover_in_15">
                                         </div>
-                                        <div class="surface surface_down"></div>
+                                        <div class="surface surface_down">
+                                        <img id="cusImg_down" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+                                        </div>
                                         <div class="surface surface_back"></div>
-                                        <div class="surface surface_front"></div>
+                                        <div class="surface surface_front">
+                                        <img id="cusImg_front" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+                                        </div>
                                         <div class="surface surface_left">
                                         <img id="cusImg_left" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
-                                        <div class="surface surface_right"></div>
+                                        <div class="surface surface_right">
+                                        <img id="cusImg_right" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+                                        </div>
                                     </div>
                                 </div>
-                    <script>
-                         $( "touchmebaby" ).draggable();
-                        </script>
-                        
+            
                                 <div id="btns15">
                                     <div class="btn" id="btn_big"><img src="../images/customized/zoom_in.svg" alt=""></div>
                                     <div class="btn" id="btn_small"><img src="../images/customized/zoom_out.svg" alt=""></div>
@@ -580,102 +583,6 @@ try {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" defer></script>
    <script src="../js/jquery.ui.touch-punch.js"></script>
     
-  <!-- <script>
-    const search_appear = document.getElementById("search_appear");
-        const search = document.getElementById("searchBtn");
-        const closex = document.getElementById("close");
-        function init(e) {
-            search.addEventListener("click", showSearch);
-            closex.addEventListener("click", closeSearch);
-
-        }
-        function showSearch(e) {
-            search_appear.classList.add("down");
-        
-        }
-        function closeSearch(e) {
-            console.log(`remove`);
-            search_appear.classList.remove("down");
-        }
-
-        window.addEventListener("load",init);
-
-  </script> -->
-  <!-- <script>
-      if($(window).width() > 767)
-{
-    aa=document.getElementById("cartgogo");
-        aa.addEventListener("click",changeSize);
-        console.log("aaaaa");
-
-        function changeSize(e){
-            console.log(`bbbbb`);
-            //換色            
-            e.target.style.background="pink";
-          
-                        
-        }
-}else{
-    aa=document.getElementById("cartgogo");
-        aa.addEventListener("click",changeSize);
-        console.log("aaaaa");
-
-        function changeSize(e){
-            console.log(`bbbbb`);
-            //換色            
-            e.target.style.background="blue";
-          
-                        
-        }
- 
-};
-
-window.addEventListener("resize",()=>{
-    if($(window).width() > 767)
-{
-    aa=document.getElementById("cartgogo");
-        aa.addEventListener("click",changeSize);
-        console.log("aaaaa");
-
-        function changeSize(e){
-            console.log(`bbbbb`);
-            //換色            
-            e.target.style.background="pink";
-          
-                        
-        }
-}else{
-    aa=document.getElementById("cartgogo");
-        aa.addEventListener("click",changeSize);
-        console.log("aaaaa");
-
-        function changeSize(e){
-            console.log(`bbbbb`);
-            //換色            
-            e.target.style.background="blue";
-          
-                        
-        }
- 
-};  
-})
-</script> -->
-<!-- <script>
- if($(window).width() > 767 ){
-
- }else{
-    function pushImg(){
-	var $("surface")= appendChild(img);
-    alert("123");
-    }
- }
-
- 
-window.addEventListener("load",function(){
-	getElementsByTagName("img").onclick = pushImg;
-},false)
-</script> -->
-
   <script>
     const boxBases = document.querySelectorAll(".boxBase");
     const btns = document.querySelectorAll(".btn");
@@ -1132,36 +1039,132 @@ var section15 = document.querySelector("#section_15");
                 }
         }
 }else{
-    // var dropPic_top = document.querySelector('#cusImg_top');
-    //      var img = document.querySelectorAll('.cusPic');
-    //      for (var i = 0; i < img.length; i++){
-    //          img[i].addEventListener('click', function (e) {
-    //          var imgSrc = e.target.src;
-    //          dropPic_top.setAttribute("src", imgSrc)             
-    //          dropPic_top.style.display = 'block';
-    //          dropPic_top.style.maxHeight = '50px';
-    //          dropPic_top.style.maxWidth = '50px';
-
-    //          },false);
-    //      }
-
-    //      $( "#cusImg_top" ).draggable();
-
-         var dropPic_left = document.querySelector('#cusImg_left');
+    //丟圖片進去
+    var dropPic_top = document.querySelector('#cusImg_top');
          var img = document.querySelectorAll('.cusPic');
          for (var i = 0; i < img.length; i++){
              img[i].addEventListener('click', function (e) {
              var imgSrc = e.target.src;
-             dropPic_left.setAttribute("src", imgSrc)             
-             dropPic_left.style.display = 'block';
-             dropPic_left.style.maxHeight = '50px';
-             dropPic_left.style.maxWidth = '50px';
+             dropPic_top.setAttribute("src", imgSrc)             
+             dropPic_top.style.display = 'block';
+             
+             
 
              },false);
          }
+
+         $( "#cusImg_top" ).draggable();
+
+        //  var dropPic_left = document.querySelector('#cusImg_left');
+        //  var img = document.querySelectorAll('.cusPic');
+        //  for (var i = 0; i < img.length; i++){
+        //      img[i].addEventListener('click', function (e) {
+        //      var imgSrc = e.target.src;
+        //      dropPic_left.setAttribute("src", imgSrc)             
+        //      dropPic_left.style.display = 'block';
+             
+             
+
+        //      },false);
+        //  }
           
-         $( "#cusImg_left" ).draggable();
-}
+        //  $( "#cusImg_left" ).draggable();
+
+        //  var dropPic_right = document.querySelector('#cusImg_right');
+        //  var img = document.querySelectorAll('.cusPic');
+        //  for (var i = 0; i < img.length; i++){
+        //      img[i].addEventListener('click', function (e) {
+        //      var imgSrc = e.target.src;
+        //      dropPic_right.setAttribute("src", imgSrc)             
+        //      dropPic_right.style.display = 'block';
+             
+             
+
+        //      },false);
+        //  }
+          
+        //  $( "#cusImg_right" ).draggable();
+         
+        //  var dropPic_front = document.querySelector('#cusImg_front');
+        //  var img = document.querySelectorAll('.cusPic');
+        //  for (var i = 0; i < img.length; i++){
+        //      img[i].addEventListener('click', function (e) {
+        //      var imgSrc = e.target.src;
+        //      dropPic_front.setAttribute("src", imgSrc)             
+        //      dropPic_front.style.display = 'block';
+             
+             
+
+        //      },false);
+        //  }
+          
+        //  $( "#cusImg_front" ).draggable();
+                  
+        //  var dropPic_down = document.querySelector('#cusImg_down');
+        //  var img = document.querySelectorAll('.cusPic');
+        //  for (var i = 0; i < img.length; i++){
+        //      img[i].addEventListener('click', function (e) {
+        //      var imgSrc = e.target.src;
+        //      dropPic_down.setAttribute("src", imgSrc)             
+        //      dropPic_down.style.display = 'block';
+             
+             
+
+        //      },false);
+        //  }
+          
+        //  $( "#cusImg_down").draggable();
+
+
+
+         //放大縮小旋轉刪除
+
+         function doFirst(){
+            document.getElementById('btn_big').addEventListener('click',bigger);
+            document.getElementById('btn_small').addEventListener('click',smaller);
+            document.getElementById('btn_clk').addEventListener('click',rotateLeft);
+            document.getElementById('btn_clk_r').addEventListener('click',rotateRight);
+            document.getElementById('btn_del').addEventListener('click',clear);
+        }
+
+
+        function bigger(){
+            var image = document.getElementById('cusImg_top');
+                image.width = image.width * 1.05;
+                image.height = image.height * 1.05;
+
+        }
+
+
+        function smaller(){
+            var image= document.getElementById('cusImg_top');
+		image.width = image.width * 0.95;
+		image.height = image.height * 0.95;
+		console.log(image.width); 
+        }
+
+        var deg = 0;
+        function rotateLeft(){
+            var image = document.getElementById('cusImg_top');
+            deg += 15;
+            image.style.transform = "rotate(" + deg + "deg)";
+        }
+
+        var deg = 0;
+        function rotateRight(){
+            var image = document.getElementById('cusImg_top');
+            deg -= 15;
+            image.style.transform = "rotate(" + deg + "deg)";
+        }
+
+        function clear(){
+            var imgClear = document.getElementById('cusImg_top');
+	        imgClear.remove(image);
+        }
+        window.addEventListener('load', doFirst);
+        }
+
+
 
 </script>
 
@@ -1924,7 +1927,7 @@ function fileChange(){
 	readFile.addEventListener('load',function(){
 		var image = document.getElementById('image');
 		image.src = readFile.result;
-		image.style.maxWidth = '400px';
+		image.style.width = '400px';
 		image.style.maxHeight = '300px';
 	});
 
