@@ -124,7 +124,7 @@
             $j=$i-1; //補正資料庫跟陣列計數差異
             $_SESSION["snackName"][2][$i]=$prodRow[$i-1]["snackName"];
             $_SESSION["snackPrice"][2][$i]=$prodRow[$i-1]["snackPrice"];
-            $_SESSION["note"][2][$i]="999|1"; //紀錄原價
+            $_SESSION["note"][2][$i]="999|1"; //紀錄原價 | 紀錄 clearenceNo (用來抓出唯一值，雖然是外來但沒設FK)
             $_SESSION["snackQuan"][2][$i]=1;
             $_SESSION["snackPic"][2][$i]=$prodRow[$i-1]["snackPic"];
         }
