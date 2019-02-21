@@ -8,6 +8,8 @@
     $errMsg = "";
     try {
         require_once("../connectcd105g2.php");
+        $sql = "select * from manager where managerNo = {$_REQUEST['managerNo']}";
+        $manager = $pdo -> query($sql);
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";
@@ -35,6 +37,12 @@
             width: 120px;
             height: 46px;
         }
+        #delete{
+            background-color: #fbc84a;
+        }
+        #delete:hover{
+            background-color: #ffb600;
+        }
         #content form{
             text-align: center;
         }
@@ -52,35 +60,41 @@
 ?>
         <div id="contentWrap">
             <div id="content">
-                <h3>新增優惠券</h3>
+                <h3>修改後台帳號</h3>
 <?php
     if( $errMsg != ""){
         exit("<div><center>$errMsg</center></div>");
     }
+    $magRow = $manager -> fetch();
 ?>
                 <form id="myForm">
-                    <table>
+                    <table id="editTable">
                         <tr>
-                            <td>折價金額</td>
-                            <td><input type="text" name="discountPrice" size="10"></td>
-                        </tr>
-                        <tr>
-                            <td>圖片</td>
-                            <td><input type="text" name="imgSRC" size="30"></td>
-                        </tr>
-                        <tr>
-                            <td>名目</td>
+                            <td>編號</td>
                             <td>
-                                <select name="getWay">
-                                    <option value="刮刮樂">刮刮樂</option>
-                                    <option value="猜箱子">猜箱子</option>
-                                    <option value="升等獎勵">升等獎勵</option>
-                                </select>
+                                <?php echo $magRow['managerNo'] ?>
+                                <input type="hidden" name="managerNo" value="<?php echo $magRow['managerNo'] ?>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>姓名</td>
+                            <td><input type="text" name="managerName" value="<?php echo $magRow['managerName'] ?>" size="16"></td>
+                        </tr>
+                        <tr>
+                            <td>帳號</td>
+                            <td>
+                                <?php echo $magRow['managerId'] ?>
+                                <input type="hidden" name="managerId" value="<?php echo $magRow['managerId'] ?>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>輸入密碼</td>
+                            <td><input type="password" name="managerPsw" size="16">
                             </td>
                         </tr>
                     </table>
-                    <input type="button" class="cart" id="submit" value="新增優惠券">
-                    <input type="button" class="cart" id="cancel" value="放棄新增">
+                    <input type="button" class="cart" id="submit" value="修改帳號">
+                    <input type="button" class="cart" id="cancel" value="放棄修改">
                 </form>
             </div>
             <footer>
@@ -90,30 +104,27 @@
     </div> 
     <script>
         document.getElementById('submit').addEventListener('click', function (){
-            if(window.confirm('優惠券新增後，折價金額將不能再修改，確認要新增優惠券嗎？') == true){
-                var xhr = new XMLHttpRequest();
-                xhr.onload = function () {
-                    if (xhr.status == 200) {
-                        if( xhr.responseText == 'true' ){
-                            alert('新增優惠券成功！');
-                            location.href='back_coupon.php';
-                        }else{
-                            alert(xhr.responseText);
-                        }
-                    } else {
-                        alert(xhr.status);
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    if( xhr.responseText == 'false' ){
+                        alert('密碼錯誤！請重新輸入');
+                    }else{
+                        alert('修改帳號成功！');
+                        location.href='back_manager.php';
                     }
-                } 
+                } else {
+                    alert(xhr.status);
+                }
+            } 
 
-                xhr.open("Post", "back_couponToDb.php", true);
-                var myForm = new FormData( document.getElementById('myForm'));
-                xhr.send( myForm );  
-            }
-              
+            xhr.open("Post", "back_editManagerToDb.php", true);
+            var myForm = new FormData( document.getElementById('myForm'));
+            xhr.send( myForm );    
         })
         document.getElementById('cancel').addEventListener('click', function (){
-            if(window.confirm('確定要放棄新增優惠券嗎？') == true){
-                location.href = 'back_coupon.php';
+            if(window.confirm('確定要放棄修改帳號嗎？') == true){
+                location.href = 'back_manager.php';
             }
         })
     </script>

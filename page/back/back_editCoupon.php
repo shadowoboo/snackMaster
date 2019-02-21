@@ -8,6 +8,8 @@
     $errMsg = "";
     try {
         require_once("../connectcd105g2.php");
+        $sql = "select * from coupon where coupNo = {$_REQUEST['coupNo']}";
+        $coupon = $pdo -> query($sql);
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";
@@ -31,9 +33,15 @@
         .backstage #contentWrap #content table td{
             width: 350px;
         }
-        .backstage #contentWrap #content button, #cancel, #submit{
+        .backstage #contentWrap #content button, #cancel{
             width: 120px;
             height: 46px;
+        }
+        #delete{
+            background-color: #fbc84a;
+        }
+        #delete:hover{
+            background-color: #ffb600;
         }
         #content form{
             text-align: center;
@@ -52,35 +60,39 @@
 ?>
         <div id="contentWrap">
             <div id="content">
-                <h3>新增優惠券</h3>
+                <h3>修改優惠券</h3>
 <?php
     if( $errMsg != ""){
         exit("<div><center>$errMsg</center></div>");
     }
+    $coupRow = $coupon -> fetch();
 ?>
-                <form id="myForm">
-                    <table>
+                <form action="back_editCouponToDb.php">
+                    <table id="editTable">
+                        <tr>
+                            <td>編號</td>
+                            <td>
+                                <?php echo $coupRow['coupNo'] ?>
+                                <input type="hidden" name="coupNo" value="<?php echo $coupRow['coupNo'] ?>">
+                            </td>
+                        </tr>
                         <tr>
                             <td>折價金額</td>
-                            <td><input type="text" name="discountPrice" size="10"></td>
+                            <td><?php echo $coupRow['discountPrice'] ?></td>
                         </tr>
                         <tr>
                             <td>圖片</td>
-                            <td><input type="text" name="imgSRC" size="30"></td>
+                            <td><input type="text" name="imgSRC" size="26" value="<?php echo $coupRow['imgSRC'] ?>"></td>
                         </tr>
                         <tr>
                             <td>名目</td>
                             <td>
-                                <select name="getWay">
-                                    <option value="刮刮樂">刮刮樂</option>
-                                    <option value="猜箱子">猜箱子</option>
-                                    <option value="升等獎勵">升等獎勵</option>
-                                </select>
+                                <?php echo $coupRow['getWay'] ?>
                             </td>
                         </tr>
                     </table>
-                    <input type="button" class="cart" id="submit" value="新增優惠券">
-                    <input type="button" class="cart" id="cancel" value="放棄新增">
+                    <button type="submit" class="cart">修改優惠券</button>   
+                    <input type="button" class="cart" id="cancel" value="放棄修改">
                 </form>
             </div>
             <footer>
@@ -89,30 +101,8 @@
         </div>
     </div> 
     <script>
-        document.getElementById('submit').addEventListener('click', function (){
-            if(window.confirm('優惠券新增後，折價金額將不能再修改，確認要新增優惠券嗎？') == true){
-                var xhr = new XMLHttpRequest();
-                xhr.onload = function () {
-                    if (xhr.status == 200) {
-                        if( xhr.responseText == 'true' ){
-                            alert('新增優惠券成功！');
-                            location.href='back_coupon.php';
-                        }else{
-                            alert(xhr.responseText);
-                        }
-                    } else {
-                        alert(xhr.status);
-                    }
-                } 
-
-                xhr.open("Post", "back_couponToDb.php", true);
-                var myForm = new FormData( document.getElementById('myForm'));
-                xhr.send( myForm );  
-            }
-              
-        })
         document.getElementById('cancel').addEventListener('click', function (){
-            if(window.confirm('確定要放棄新增優惠券嗎？') == true){
+            if(window.confirm('確定要放棄修改優惠券嗎？') == true){
                 location.href = 'back_coupon.php';
             }
         })

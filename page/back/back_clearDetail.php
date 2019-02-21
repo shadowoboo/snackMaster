@@ -8,10 +8,10 @@
     $errMsg = "";
     try {
         require_once("../connectcd105g2.php");
-        $sql = "select * from snackorder where orderNo = {$_REQUEST['orderNo']}";
-        $orders = $pdo -> query($sql); 
-        $sql = "select * from orderitem where orderNo = {$_REQUEST['orderNo']}";
-        $orderItems = $pdo -> query($sql);
+        $sql = "select * from clearance where clearanceNo = {$_REQUEST['clearanceNo']}";
+        $clears = $pdo -> query($sql); 
+        $sql = "select * from clearanceitem where clearanceNo = {$_REQUEST['clearanceNo']}";
+        $clearItems = $pdo -> query($sql);
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";
@@ -38,59 +38,47 @@
     <div class="backstage">
 <?php
     require_once('back_menu.php');
-?>        
+?>  
         <div id="contentWrap">
             <div id="content">
-                <h3>訂單明細</h3>
+                <h3>即期品專案明細</h3>
 <?php
     if( $errMsg != ""){
         exit("<div><center>$errMsg</center></div>");
     }
-    $orderRow = $orders -> fetch();
+    $clearRow = $clears -> fetch();
 ?>
                 <table>
                     <tr>
                         <th width="60">編號</th>
-                        <th width="100">會員編號</th>
-                        <th width="150">下單日期</th>
-                        <th width="100">狀態</th>
-                        <th width="100">付款方式</th>
-                        <th width="60">總額</th>
-                        <th width="100">收件人</th>
-                        <th width="200">地址</th>
-                        <th width="200">電話</th>
+                        <th width="200">開始時間</th>
+                        <th width="200">結束時間</th>
                     </tr>
                     <tr>   
-                        <td><?php echo $orderRow['orderNo']?></td>
-                        <td><?php echo $orderRow['memNo']?></td>
-                        <td><?php echo $orderRow['orderTime']?></td>
-                        <td><?php echo $orderRow['orderStatus']?></td>
-                        <td><?php echo $orderRow['payWay']?></td>
-                        <td><?php echo $orderRow['orderTotal']?></td>
-                        <td><?php echo $orderRow['orderName']?></td>
-                        <td><?php echo $orderRow['address']?></td>
-                        <td><?php echo $orderRow['phone']?></td>
+                        <td><?php echo $clearRow['clearanceNo']?></td>
+                        <td><?php echo $clearRow['startTime']?></td>
+                        <td><?php echo $clearRow['endTime']?></td>
                     </tr>
                 </table>
                 <table style="margin-top: 45px;">
                     <tr>
-                        <th width='100'>明細編號</th>
-                        <th width='100'>商品編號</th>
-                        <th width='100'>單價</th>
-                        <th width='100'>數量</th>
-                        <th width='100'>客製箱項目</th>
+                        <th width='120'>明細編號</th>
+                        <th width='120'>商品編號</th>
+                        <th width='120'>出清價格</th>
+                        <th width='120'>出清數量</th>
                     </tr>
                     <tr>
 <?php
-    while($itemRow = $orderItems -> fetch()){
+    $i = 1;
+    while($itemRow = $clearItems -> fetch()){
 ?>
-                    <td><?php echo $itemRow['orderItemNo']?></td>
+                    <td><?php echo $i?></td>
                     <td><?php echo $itemRow['snackNo']?></td>
-                    <td><?php echo $itemRow['snackPrice']?></td>
-                    <td><?php echo $itemRow['snackQuan']?></td>
-                    <td><?php echo $itemRow['customBoxItem']==1? '是':'否'?></td>
+                    <td><?php echo $itemRow['salePrice']?></td>
+                    <td><?php echo $itemRow['quantity']?></td>
                     </tr>
 <?php
+    $i++;
     }
 ?>
                 </table>
