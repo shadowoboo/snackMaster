@@ -1,6 +1,6 @@
-*{
-    outline: 1px solid #f00;
-}
+// *{
+//     outline: 1px solid #f00;
+// }
 // @import "reset";
 @import "common";
 $tabColor:#076baf;
@@ -10,17 +10,21 @@ body{
     background-color: #b8f1ed;
     
 }
-
+span{
+    color:$blue;
+}
 
 .memWrap{
     width: 100%;
     height: auto;
     max-width: 1200px;
     margin: auto;
-    
+    input[type="number"]{
+        text-align: left;
+    }
    
     form{
-        width: 90%;
+        width: 94%;
         // margin: 45% auto 10% auto;
         height: auto;
         padding: 45px;
@@ -116,6 +120,7 @@ body{
                     span{
                         font-size: 20px;
                         font-family: g2Med;
+                        padding: 0 20px;
                     }
                     img{
                         width: 5%; 
@@ -166,16 +171,7 @@ body{
                 
                 }
             }
-           tr:last-child{
-               text-align: center;
-               .modify{
-                   button{
-                       height: 35px;
-                       font-size: 20px;
-                       margin: 20px;
-                   }
-               }
-           } 
+           
         } 
     }
     
@@ -436,19 +432,60 @@ body{
     
         }
     //-----------------收藏品---------------------
-    #tab-3{
-        .collect{
-            text-align: center;
-            
-             p{
-                font-family: g2Font;
-                color: $tabColor; 
-                line-height: 10;
-               
+    
+        #tab-3{
+                .collect{
+                    width: 100%;
+                    height: 100vh;
+                    // margin: auto;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-self: center;
+                        
+                        .item{
+                            background-color: rgb(228, 222, 222);
+                            width: 280px;
+                            height: 400px;
+                            border-radius: 10px;
+                            position: relative;
+                            margin: auto;
+                            text-align: center;
+                            .country{
+                                width: 40px;
+                                position: absolute;
+                                top: 10px;
+                                right: 15px;
+                            }
+                            .itemImg{
+                                width: 140px;
+                                margin-top: 29px;
+                            }
+                            .sellPrice{
+                                width: 280px;
+                                height: 50px;
+                                p{
+                                    font-size: $p;
+                                    line-height: 2;
+                                    color: $tabColor;
+                                    span{
+                                        font-size: $p;
+                                        padding: 0 5px;
+
+                                    }
+                                }
+                                
+                            }
+                            .citemBtns{
+                                margin-top: 30px;
+                            }
+                            
+                        }
+                
                 }
             }
         
-        }
+        
     //---------------優惠券--------------------------    
         #tab-4{
             width: 85%;
@@ -510,6 +547,12 @@ body{
         form{
             margin: auto ;
             margin-top: 35%;
+            .col-3{
+                tr:last-child{
+                    text-align: center;
+                    
+                } 
+            }
 
         }
         
@@ -552,6 +595,7 @@ body{
                 }
                 
             }
+        
         }
     }
     
@@ -621,14 +665,36 @@ body{
                 tr{
                     td{                      
                         p{
+                            padding: 0 20px;
                             font-size: $p;                       
                             span{
                                 font-size: $p;
                             }
                         }
-                    }   
+                    }  
+                    
         
-                    }   
+                    }
+                    tr:nth-child(3){
+                        td{
+                            text-align: left;
+                            span{
+                                padding: 0 20px;
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                    tr:last-child{
+                        text-align: left;
+                        padding: 0 20px;
+                        .modify{
+                            button{
+                                height: 35px;
+                                font-size: 20px;
+                                margin: 20px;
+                            }
+                        }
+                    }     
                 } 
             }       
 
@@ -733,10 +799,12 @@ body{
             }
             #tab-3{
                 .collect{
-                    p{
-                        font-size: $p;
-                        font-family: g2Font;
-                    }
+                    flex-direction: row;
+                    justify-content: space-around;
+                    align-self: center;  
+                    .item{
+                        margin: 20px;
+                    }    
                 }
             }
             #tab-4{
