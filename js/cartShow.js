@@ -164,6 +164,8 @@ $(function () {
         //扣除優惠卷
         if ($("#couponItem").val()){
             total = total - $("#couponItem").val();
+            //設定總額最小值，預設為0
+            if (total<0){total=0;}
         }
         $("#priceTotalContent").text(total);
     }

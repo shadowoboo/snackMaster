@@ -75,44 +75,46 @@
     // $_SESSION["snackQuan"][50]=1;
 
 
-    cus(1,3,$prodRow);
+    cus(2,2,$prodRow);
     normal(5,6,$prodRow);
-    // clean(20,30,$prodRow);
-    // plan(20,30,$prodRow);
+    clean(1,1,$prodRow);
+    plan(51,51,$prodRow);
 
 
     //若要重複取得不同 type 的零食
     //要考慮把零食型別(客製/一般/即期/預購)也寫進session裡
     //ex: $_SESSION["snackName"][$snackType][$snackNo]
 
-    //以資料庫snackNo為準
+
+
+//以資料庫snackNo為準，使用三維陣列
     function cus( $start, $end, $prodRow){
         for($i=$start;$i<=$end;$i++){
             $j=$i-1; //補正資料庫跟陣列計數差異
-            $_SESSION["snackName"][$i]=$prodRow[$i-1]["snackName"];
-            $_SESSION["snackPrice"][$i]=$prodRow[$i-1]["snackPrice"];
-            $_SESSION["cusType"][$i]="y";
-            $_SESSION["snackQuan"][$i]=1;
-            $_SESSION["snackPic"][$i]=$prodRow[$i-1]["snackPic"];
+            $_SESSION["snackName"][1][$i]=$prodRow[$i-1]["snackName"];
+            $_SESSION["snackPrice"][1][$i]=$prodRow[$i-1]["snackPrice"];
+            $_SESSION["note"][1][$i]=1;
+            $_SESSION["snackQuan"][1][$i]=1;
+            $_SESSION["snackPic"][1][$i]=$prodRow[$i-1]["snackPic"];
         }
         //箱子
         $_SESSION["cusBox"]="../images/customized/ip5.png"; //預計截圖之後產生檔案
         $_SESSION["cusCard"]="../images/customized/card.png"; //預計截圖之後產生檔案
         $_SESSION["cusSound"]="../codeTesting/Mozart1.mp3"; //預計錄音產生檔案
-        $_SESSION["snackName"][50]=$prodRow[49]["snackName"];
-        $_SESSION["snackPrice"][50]=$prodRow[49]["snackPrice"];
-        $_SESSION["cusType"][50]="y";
-        $_SESSION["snackQuan"][50]=1;
+        $_SESSION["snackName"][1][50]=$prodRow[49]["snackName"];
+        $_SESSION["snackPrice"][1][50]=$prodRow[49]["snackPrice"];
+        $_SESSION["note"][1][50]="box";
+        $_SESSION["snackQuan"][1][50]=1;
     }
 
     function normal( $start, $end, $prodRow){
         for($i=$start;$i<=$end;$i++){
             $j=$i-1; //補正資料庫跟陣列計數差異
-            $_SESSION["snackName"][$i]=$prodRow[$i-1]["snackName"];
-            $_SESSION["snackPrice"][$i]=$prodRow[$i-1]["snackPrice"];
-            $_SESSION["cusType"][$i]="n";
-            $_SESSION["snackQuan"][$i]=1;
-            $_SESSION["snackPic"][$i]=$prodRow[$i-1]["snackPic"];
+            $_SESSION["snackName"][0][$i]=$prodRow[$i-1]["snackName"];
+            $_SESSION["snackPrice"][0][$i]=$prodRow[$i-1]["snackPrice"];
+            $_SESSION["note"][0][$i]=0;
+            $_SESSION["snackQuan"][0][$i]=1;
+            $_SESSION["snackPic"][0][$i]=$prodRow[$i-1]["snackPic"];
         }
     }
 
@@ -120,11 +122,11 @@
     function clean( $start, $end, $prodRow){
         for($i=$start;$i<=$end;$i++){
             $j=$i-1; //補正資料庫跟陣列計數差異
-            $_SESSION["snackName"][$i]=$prodRow[$i-1]["snackName"];
-            $_SESSION["snackPrice"][$i]=$prodRow[$i-1]["snackPrice"];
-            $_SESSION["cusType"][$i]="c";
-            $_SESSION["snackQuan"][$i]=1;
-            $_SESSION["snackPic"][$i]=$prodRow[$i-1]["snackPic"];
+            $_SESSION["snackName"][2][$i]=$prodRow[$i-1]["snackName"];
+            $_SESSION["snackPrice"][2][$i]=$prodRow[$i-1]["snackPrice"];
+            $_SESSION["note"][2][$i]="999|1"; //紀錄原價
+            $_SESSION["snackQuan"][2][$i]=1;
+            $_SESSION["snackPic"][2][$i]=$prodRow[$i-1]["snackPic"];
         }
     }
 
@@ -132,13 +134,72 @@
     function plan( $start, $end, $prodRow){
         for($i=$start;$i<=$end;$i++){
             $j=$i-1; //補正資料庫跟陣列計數差異
-            $_SESSION["snackName"][$i]=$prodRow[$i-1]["snackName"];
-            $_SESSION["snackPrice"][$i]=$prodRow[$i-1]["snackPrice"];
-            $_SESSION["cusType"][$i]="p";
-            $_SESSION["snackQuan"][$i]=1;
-            $_SESSION["snackPic"][$i]=$prodRow[$i-1]["snackPic"];
+            $_SESSION["snackName"][3][$i]=$prodRow[$i-1]["snackName"];
+            $_SESSION["snackPrice"][3][$i]=$prodRow[$i-1]["snackPrice"];
+            $_SESSION["note"][3][$i]="預購十年，度日如年"; //字串
+            $_SESSION["snackQuan"][3][$i]=1;
+            $_SESSION["snackPic"][3][$i]=$prodRow[$i-1]["snackPic"];
         }
     }
+
+
+
+
+
+    // //以資料庫snackNo為準
+    // function cus( $start, $end, $prodRow){
+    //     for($i=$start;$i<=$end;$i++){
+    //         $j=$i-1; //補正資料庫跟陣列計數差異
+    //         $_SESSION["snackName"][$i]=$prodRow[$i-1]["snackName"];
+    //         $_SESSION["snackPrice"][$i]=$prodRow[$i-1]["snackPrice"];
+    //         $_SESSION["cusType"][$i]="y";
+    //         $_SESSION["snackQuan"][$i]=1;
+    //         $_SESSION["snackPic"][$i]=$prodRow[$i-1]["snackPic"];
+    //     }
+    //     //箱子
+    //     $_SESSION["cusBox"]="../images/customized/ip5.png"; //預計截圖之後產生檔案
+    //     $_SESSION["cusCard"]="../images/customized/card.png"; //預計截圖之後產生檔案
+    //     $_SESSION["cusSound"]="../codeTesting/Mozart1.mp3"; //預計錄音產生檔案
+    //     $_SESSION["snackName"][50]=$prodRow[49]["snackName"];
+    //     $_SESSION["snackPrice"][50]=$prodRow[49]["snackPrice"];
+    //     $_SESSION["cusType"][50]="y";
+    //     $_SESSION["snackQuan"][50]=1;
+    // }
+
+    // function normal( $start, $end, $prodRow){
+    //     for($i=$start;$i<=$end;$i++){
+    //         $j=$i-1; //補正資料庫跟陣列計數差異
+    //         $_SESSION["snackName"][$i]=$prodRow[$i-1]["snackName"];
+    //         $_SESSION["snackPrice"][$i]=$prodRow[$i-1]["snackPrice"];
+    //         $_SESSION["cusType"][$i]="n";
+    //         $_SESSION["snackQuan"][$i]=1;
+    //         $_SESSION["snackPic"][$i]=$prodRow[$i-1]["snackPic"];
+    //     }
+    // }
+
+
+    // function clean( $start, $end, $prodRow){
+    //     for($i=$start;$i<=$end;$i++){
+    //         $j=$i-1; //補正資料庫跟陣列計數差異
+    //         $_SESSION["snackName"][$i]=$prodRow[$i-1]["snackName"];
+    //         $_SESSION["snackPrice"][$i]=$prodRow[$i-1]["snackPrice"];
+    //         $_SESSION["cusType"][$i]="c";
+    //         $_SESSION["snackQuan"][$i]=1;
+    //         $_SESSION["snackPic"][$i]=$prodRow[$i-1]["snackPic"];
+    //     }
+    // }
+
+
+    // function plan( $start, $end, $prodRow){
+    //     for($i=$start;$i<=$end;$i++){
+    //         $j=$i-1; //補正資料庫跟陣列計數差異
+    //         $_SESSION["snackName"][$i]=$prodRow[$i-1]["snackName"];
+    //         $_SESSION["snackPrice"][$i]=$prodRow[$i-1]["snackPrice"];
+    //         $_SESSION["cusType"][$i]="p";
+    //         $_SESSION["snackQuan"][$i]=1;
+    //         $_SESSION["snackPic"][$i]=$prodRow[$i-1]["snackPic"];
+    //     }
+    // }
 
     // // $_SESSION["snackPic"][49]=$prodRow[49]["snackPic"]; //客製箱只抓截圖檔，所以不撈此檔案
     // //跟客製有關聯的商品
