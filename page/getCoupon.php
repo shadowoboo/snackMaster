@@ -26,10 +26,11 @@
                     $couponboxNo=$couponRow[$i]["couponboxNo"];
                     $html=$html."<option value=\"".$value."\""."data-couponboxno=\"".$couponboxNo."\">".$value."</option>";
                 }
+                $html.="<option value=\""."0"."\""."data-couponboxno=\""."none"."\">"."不使用"."</option>";
                 echo $html;
             }
         }else{
-            echo "aaa";//沒登入
+            echo "0";//沒登入
         }
 
 ?>

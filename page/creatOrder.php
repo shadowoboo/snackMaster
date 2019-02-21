@@ -1,4 +1,14 @@
 <?php
+//////////////////////////////////////////////////////////////
+// 0 一般
+// 1 客製
+// 2 即期
+// 3 預購
+//若要重複取得不同 type 的零食
+//要考慮把零食型別(客製/一般/即期/預購)也寫進session裡
+//ex: $_SESSION["snackName"][$snackType][$snackNo]
+/////////////////////////////////////////////////////////////
+
     session_start();
     $errMsg="";
     try {
@@ -52,21 +62,39 @@
 		$sql = "INSERT INTO orderitem (orderItemNo, snackPrice, snackQuan, customBoxItem, snackNo, orderNo) 
                                     values( null , :snackPrice, :snackQuan, :customBoxItem, :snackNo, $orderNo)";
         $orderitem = $pdo->prepare($sql);
-        foreach( $_SESSION["snackQuan"] as $snackNo => $qty){
-            $orderitem->bindValue(":snackPrice", $_SESSION["snackPrice"][$snackNo]); //紀錄購入時價錢
-            $orderitem->bindValue(":snackQuan", $qty);
-            if($_SESSION["cusType"][$snackNo]="y"){ //如果是客製
-                $orderitem->bindValue(":customBoxItem", 1); //是給1
-            }else{
-                $orderitem->bindValue(":customBoxItem", 0); //不是給0
+        foreach ($_SESSION["snackQuan"] as $type) {
+            foreach( $_SESSION["snackQuan"][$type] as $snackNo => $qty){
+                $orderitem->bindValue(":snackPrice", $_SESSION["snackPrice"][$type][$snackNo]); //紀錄購入時價錢
+                $orderitem->bindValue(":snackQuan", $qty);
+                if($type==1){ //如果是客製
+                    $orderitem->bindValue(":customBoxItem", 1); //是給1
+                }else{
+                    $orderitem->bindValue(":customBoxItem", 0); //不是給0
+                }
+                $orderitem->bindValue(":snackNo", $snackNo); //若 session 錯誤則須補正
+                $orderitem->execute();
             }
-            $orderitem->bindValue(":snackNo", $snackNo); //若 session 錯誤則須補正
-            $orderitem->execute();
         }
+        
 
 
-        //刪除即期品
-
+        //變更即期品數量
+        if(isset($_SESSION["snackQuan"][2])){ //如果有即期品
+            //找出對應的即期品並扣掉本次購買的數量
+            $sql = "UPDATE clearanceitem SET`quantity`=`quantity`-:quantity WHERE clearanceNo=:clearanceNo and snackNo=:snackNo";
+            $clearanceitem = $pdo->prepare($sql);
+                foreach( $_SESSION["snackQuan"][2] as $snackNo => $qty){
+                    //字串處理，把clearanceNo分割出來
+                    $str=$_SESSION["note"][2][$snackNo];
+                    $arr_str=explode("|",$str);
+                    $clearanceNo=$arr_str[1];
+                    //把數字塞進去
+                    $clearanceitem->bindValue(":quantity",$qty);
+                    $clearanceitem->bindValue(":clearanceNo",$clearanceNo);
+                    $clearanceitem->bindValue(":snackNo",$snackNo);
+                    $clearanceitem->execute();
+                }
+        }
 
         //變更優惠卷使用狀態
         if(isset($couponboxNo)){
@@ -82,12 +110,23 @@
 
         //清除快取
         // session_destroy();
+        //清除所有零食名
+        unset($_SESSION["snackName"]);
         //清除購物清單所有價格
         unset($_SESSION['snackPrice']);
         //清除購物清單所有數量
         unset($_SESSION['snackQuan']);
         //清除購物清單所有類別
-        unset($_SESSION['cusType']);
+        unset($_SESSION["note"]);
+        //清除購物清單所有圖片
+        unset($_SESSION["snackPic"]);
+        //清除客製箱子圖
+        unset($_SESSION["cusBox"]);
+        //清除客製卡片圖
+        unset($_SESSION["cusCard"]);
+        //清除客製音檔
+        unset($_SESSION["cusSound"]);
+
 
 
         // echo "error";
