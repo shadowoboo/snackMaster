@@ -162,13 +162,10 @@ $(function () {
             total += Number(parseInt($(this).text()));
         })
         //扣除優惠卷
-        // var couponItem = document.getElementById("couponItem");
-        // console.log(`couponItem: ${couponItem.value()}`);
-        
-        console.log($("#couponItem").val());
-        
         if ($("#couponItem").val()){
             total = total - $("#couponItem").val();
+            //設定總額最小值，預設為0
+            if (total<0){total=0;}
         }
         $("#priceTotalContent").text(total);
     }
@@ -208,8 +205,6 @@ $(function () {
                     $("#couponItem").html(response);
                     // console.log(`response="ok"`);
                     console.log(response);
-                    
-
                 }
             }
         });
@@ -282,8 +277,9 @@ $(document).ready(function () {
                 getterData += "&orderTotal=" + orderTotal;
                 //如果有優惠卷
                 if ($("option").length > 0) { //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式
-                    var coupNo = $("#couponItem").data("coupNo");
-                    getterData += "&coupNo=" + coupNo;
+                    // var couponboxNo = $("#couponItem").data("couponboxno"); //這種選法是錯的!!!!選項很多，被選擇的才是我們要的
+                    var couponboxNo = $("#couponItem").find(":selected").data("couponboxno");
+                    getterData += "&couponboxNo=" + couponboxNo;
                 }
                 //如果有箱子
                 if ($("#boxPic").length > 0){ //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式
@@ -346,6 +342,8 @@ $(document).ready(function () {
             case 2:
                 //關掉表單
                 $(".cartFormZone").removeClass("cartPageActive");
+                //顯示購物頭頭
+                $(".cartTh").css("display","flex");
                 //顯示購物清單
                 $(".cartContent_prod").addClass("cartPageActive");
                 //隱藏上一步按鈕
@@ -442,7 +440,11 @@ $(document).ready(function () {
                 //內容切換到表格
                 $(".cartContent_prod").removeClass("cartPageActive");
                 $(".cartFormZone").addClass("cartPageActive");
+                //隱藏表頭
+                $(".cartTh").hide();
                 //顯示 "上一步" 按鈕
+                console.log(`btnBack`);
+                
                 $(".btnBack").removeClass("btnBack_none");
                 //頁數+1
                 stepCount += 1;
@@ -511,25 +513,25 @@ function init() {
         // 停止
         $id("au_btn_stop").addEventListener("click", auStop);
         // 靜音
-        $id("au_btn_vol").addEventListener("click", auMute);
+        // $id("au_btn_vol").addEventListener("click", auMute);
     }
 
 
     if ($(window).width() > 767) {
-        // 進度條點擊跳轉
-        $id("defBar").addEventListener("click", auJumpTo);
-        // 音量點擊跳轉
-        $id("volBar").addEventListener("click", auVol);
+        // // 進度條點擊跳轉
+        // $id("defBar").addEventListener("click", auJumpTo);
+        // // 音量點擊跳轉
+        // $id("volBar").addEventListener("click", auVol);
         // 撥放結束相關事宜
-        $id("au_player").addEventListener("ended", auStop);
-        // 緩衝完成可以撥放時相關事宜, ex:提供總長度等數據
-        $id("au_player").addEventListener("canplaythrough", auUpdateTimeAll);
-        // 更新當前秒數
-        $id("au_player").addEventListener("timeupdate", auUpdateTimeNow);
-        //拖曳進度條拉桿
-        $id("barNote").addEventListener("mousedown", dragStartBarNote);
-        //拖曳音量拉桿
-        $id("vol_barNote").addEventListener("mousedown", dragStartVolBarNote);
+        // $id("au_player").addEventListener("ended", auStop);
+        // // 緩衝完成可以撥放時相關事宜, ex:提供總長度等數據
+        // $id("au_player").addEventListener("canplaythrough", auUpdateTimeAll);
+        // // 更新當前秒數
+        // $id("au_player").addEventListener("timeupdate", auUpdateTimeNow);
+        // //拖曳進度條拉桿
+        // $id("barNote").addEventListener("mousedown", dragStartBarNote);
+        // //拖曳音量拉桿
+        // $id("vol_barNote").addEventListener("mousedown", dragStartVolBarNote);
     }
 
 }

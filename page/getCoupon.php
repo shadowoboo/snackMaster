@@ -5,7 +5,7 @@
             $errMsg = "";
             try {
                 //撈出 本登入會員 尚未使用 的優惠卷夾，依照到期日排列(先到期的排上面)
-                $sql = "SELECT * FROM `coupon` JOIN couponbox ON coupon.coupNo = couponbox.coupNo WHERE memNo = ? and cUse=1 ORDER BY endDate";
+                $sql = "SELECT * FROM `coupon` JOIN couponbox ON coupon.coupNo = couponbox.coupNo WHERE memNo = ? and `status`=0 ORDER BY endDate";
                 $coupon = $pdo->prepare( $sql ); //先編譯好
                 $coupon->bindValue(1, $_SESSION["memNo"]);
                 $coupon->execute();//執行之
@@ -23,13 +23,14 @@
                 $html="";
                 for($i=0;$i<$count;$i++){
                     $value=$couponRow[$i]["discountPrice"];
-                    $coupNo=$couponRow[$i]["coupNo"];
-                    $html=$html."<option value=\"".$value."\""."data-coupno=\"".$coupNo."\">".$value."</option>";
+                    $couponboxNo=$couponRow[$i]["couponboxNo"];
+                    $html=$html."<option value=\"".$value."\""."data-couponboxno=\"".$couponboxNo."\">".$value."</option>";
                 }
+                $html.="<option value=\""."0"."\""."data-couponboxno=\""."none"."\">"."不使用"."</option>";
                 echo $html;
             }
         }else{
-            echo "aaa";//沒登入
+            echo "0";//沒登入
         }
 
 ?>

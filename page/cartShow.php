@@ -1,40 +1,19 @@
 <?php
+//////////////////////////////////////////////////////////////
+// 0 一般
+// 1 客製
+// 2 即期
+// 3 預購
+//若要重複取得不同 type 的零食
+//要考慮把零食型別(客製/一般/即期/預購)也寫進session裡
+//ex: $_SESSION["snackName"][$snackType][$snackNo]
+/////////////////////////////////////////////////////////////
+
     //檢查是否登入
     // require("CartStepLoginCheck.php");
 
     //ENG 工程用檔案
     require("CartProdAdd_ENG.php");
-    
-
-    // //撈出優惠卷
-    // function getCoupon(){
-    //     if(isset($_SESSION["memId"])){
-    //         require_once("connectcd105g2.php");
-    //         $errMsg = "";
-    //         try {
-    //             //撈出 本登入會員 尚未使用 的優惠卷夾，依照到期日排列(先到期的排上面)
-    //             $sql = "SELECT * FROM `coupon` JOIN couponbox ON coupon.coupNo = couponbox.coupNo WHERE memNo = ? and cUse=1 ORDER BY endDate";
-    //             $coupon = $pdo->prepare( $sql ); //先編譯好
-    //             $coupon->bindValue(1, $_SESSION["memId"]);
-    //             $coupon->execute();//執行之
-    //         } catch (PDOException $e) {
-    //             $errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
-    //             $errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";
-    //         }
-    //         if($errMsg != ""){
-    //             exit("<div><center>$errMg</center></div>");
-    //         }elseif( $coupon->rowCount() == 0 ){
-    //             // echo "none";
-    //         }else{
-    //             $couponRow = $coupon->fetchAll(PDO::FETCH_ASSOC);
-    //             return $couponRow;
-    //         }
-    //     }else{
-
-    //     }
-    // }
-    
-    
 
     // //檢查有沒有商品在session
     // if(isset($_SESSION["snackNo"])){
@@ -95,7 +74,7 @@
     <!-- for header -->
     <script src="../js/header.js" defer></script>
     <!-- for common -->
-    <script src="../js/common.js"></script>
+    <script src="../js/common.js" defer></script>
     <!-- for shadowLib -->
     <script src="../js/shadowLib.js"></script>
     <!-- ------------------js-------------- -->
@@ -114,30 +93,15 @@
                 <div class="title">
                     <h2>購物掐</h2>
                 </div>
-                <!-- <div class="cartFlow">
-                    <div class="cartStep cartStep_select">
-                        <div class="step__img">
-                            <img src="https://fakeimg.pl/100x100/ccc">
-                        </div>
-                        <p>step <span>1</span></p>
-                    </div>
-                    <div class="cartStep">
-                        <div class="step__img">
-                            <img src="https://fakeimg.pl/100x100/ccc">
-                        </div>
-                        <p>step <span>2</span></p>
-                    </div>
-                    <div class="cartStep">
-                        <div class="step__img">
-                            <img src="https://fakeimg.pl/100x100/ccc">
-                        </div>
-                        <p>step <span>3</span></p>
-                    </div>
-                </div> -->
+            </div>
+            <div class="cartTh">
+                <h4>商品</h4>
+                <h4>品名</h4>
+                <h4>價格</h4>
             </div>
 
             <div class="cartContent cartContent_none cartPageActive">
-                <h3>你的購物掐掐內煤油桑品捏</h3>
+                <h4>購物車暫無商品！</h4>
                 <a href="shopping.html"><button class="subscribe">繼續選GO</button></a>
             </div>
 <?php
@@ -148,7 +112,7 @@ if(isset($_SESSION["snackName"])){
                 <div class="prodCards" id="prodCards">
 <?php
     //如果有客製箱
-    if(in_array("y",$_SESSION["cusType"])){
+    if(isset($_SESSION["snackName"][1])){
 ?>
                     <div class="prodCard prodCard_Group">
                         <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusBox">
@@ -158,7 +122,7 @@ if(isset($_SESSION["snackName"])){
                             </div>
                             <div class="prodInfo">
                                 <div class="prodName">
-                                    <h4><?php echo $_SESSION["snackName"][50] ?></h4>
+                                    <h5><?php echo $_SESSION["snackName"][1][50] ?></h5>
                                 </div>
                                 <!-- <div class="prodPrice">
                                 <div class="priceOrigin"><span>$400</span></div>
@@ -168,7 +132,7 @@ if(isset($_SESSION["snackName"])){
                             <div class="cardCtrl">
                                 <div class="prodPriceSum">
                                     <p>
-                                        小計: $<span class="priceSum"><?php echo $_SESSION["snackPrice"][50] ?></span>
+                                        小計: <span class="priceSum"><?php echo $_SESSION["snackPrice"][1][50] ?></span>
                                     </p>
                                 </div>
                                 <!-- <div class="prodQty">
@@ -186,7 +150,7 @@ if(isset($_SESSION["snackName"])){
                             </div>
                             <div class="prodInfo">
                                 <div class="prodName">
-                                    <h4>客製卡片</h4>
+                                    <h5>客製卡片</h5>
                                 </div>
                                 <!-- <div class="prodPrice">
                                 <div class="priceOrigin"><span>$400</span></div>
@@ -220,35 +184,34 @@ if(isset($_SESSION["snackName"])){
                             </div>
                         </div>
 <?php
-    // getCus();
-    // function getCus($snackNo){
-        foreach ($_SESSION["cusType"] as $snackNo => $cusType) {
-            if($cusType=="y" && $snackNo!=50){
+        //客製商品
+        foreach ($_SESSION["snackName"][1] as $snackNo => $snackName) {
+            if($snackNo!=50){ //箱子本身不要放在商品卡片迴圈
 ?>             
                         <div class="prodCard prodCard_normal">
                             <input id="<?php echo $snackNo;?>" type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
                             <div class="prodImg">
-                                <img src="<?php echo $_SESSION["snackPic"][$snackNo]; ?>">
+                                <img src="<?php echo $_SESSION["snackPic"][1][$snackNo]; ?>">
                             </div>
                             <div class="prodInfo">
                                 <div class="prodName">
-                                    <h4><?php echo $_SESSION["snackName"][$snackNo]; ?></h4>
+                                    <h5><?php echo $_SESSION["snackName"][1][$snackNo]; ?></h5>
                                 </div>
                                 <div class="prodPrice">
-                                    <div class="priceOrigin"><span><?php echo $_SESSION["snackPrice"][$snackNo]; ?></span></div>
-                                    <div class="priceNow"><span><?php echo $_SESSION["snackPrice"][$snackNo]; ?></span></div>
+                                    <div class="priceOrigin"><span><?php echo $_SESSION["snackPrice"][1][$snackNo]; ?></span></div>
+                                    <div class="priceNow"><span><?php echo $_SESSION["snackPrice"][1][$snackNo]; ?></span></div>
                                 </div>
                             </div>
                             <div class="cardCtrl">
                                 <div class="prodPriceSum">
                                     <p>
-                                        小計: $<span class="priceSum"><?php echo  $_SESSION["snackPrice"][$snackNo]?></span>
+                                        小計: <span class="priceSum"><?php echo  $_SESSION["snackPrice"][1][$snackNo]?></span>
                                     </p>
                                 </div>
                                 <div class="prodQty">
                                     <div class="numInput">
-                                        <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][$snackNo]?>">-</span><input class="snackQty" type="number" value="1" readonly><span
-                                            class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][$snackNo]?>">+</span>
+                                        <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][1][$snackNo]?>">-</span><input class="snackQty" type="number" value="1" readonly><span
+                                            class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][1][$snackNo]?>">+</span>
                                     </div>
                                 </div>
                                 <!-- <button class="trash"><i class="far fa-trash-alt"></i></button> -->
@@ -258,7 +221,6 @@ if(isset($_SESSION["snackName"])){
 <?php            
             }
         }
-    // }
 ?>
                         <div class="prodCard prodCard_Cus prodCard_CusPanel">
                             <div class="cusTotal">
@@ -275,47 +237,142 @@ if(isset($_SESSION["snackName"])){
     
     }
 ?>
+
+
 <?php
-    //如果有非客製的商品
-    if(in_array("n",$_SESSION["cusType"])||in_array("c",$_SESSION["cusType"])){
-    //單品。非客製(且非預購?)
-        foreach ($_SESSION["cusType"] as $snackNo => $cusType) {
-            if($cusType=="n" || $cusType=="c" ){
+    //如果是預購商品
+    if(isset($_SESSION["snackName"][3])){
+    //即期品喔即期品
+        foreach ($_SESSION["snackName"][3] as $snackNo => $snackName) {
+            // if($cusType=="n" || $cusType=="c" ){
 ?>
-                    <div class="prodCard prodCard_normal">
+                    <div class="prodCard prodCard_normal prodCard_single">
                         <input type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
                         <div class="prodImg">
-                            <img src="<?php echo  $_SESSION["snackPic"][$snackNo]?>">
+                            <img src="<?php echo  $_SESSION["snackPic"][3][$snackNo]?>">
                         </div>
                         <div class="prodInfo">
                             <div class="prodName">
-                                <h4><?php echo  $_SESSION["snackName"][$snackNo]?></h4>
+                                <h5><?php echo  $_SESSION["snackName"][3][$snackNo]?></h5>
                             </div>
                             <div class="prodPrice">
-                                <div class="priceOrigin"><span><?php echo  $_SESSION["snackPrice"][$snackNo]?></span></div>
-                                <div class="priceNow"><span><?php echo  $_SESSION["snackPrice"][$snackNo]?></span></div>
+                                <div class="priceOrigin"><span><?php echo  $_SESSION["snackPrice"][3][$snackNo]?></span></div>
+                                <div class="priceNow"><span><?php echo  $_SESSION["snackPrice"][3][$snackNo]?></span></div>
+                            </div>
+                            <div class="prodNote">
+                                <p>
+                                    <?php echo  $_SESSION["note"][3][$snackNo]?>
+                                </p>
                             </div>
                         </div>
                         <div class="cardCtrl">
                             <div class="prodPriceSum">
                                 <p>
-                                    小計: $<span class="priceSum" ><?php echo  $_SESSION["snackPrice"][$snackNo]?></span>
+                                    小計: <span class="priceSum" ><?php echo  $_SESSION["snackPrice"][3][$snackNo]?></span>
                                 </p>
                             </div>
                             <div class="prodQty">
                                 <div class="numInput">
-                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][$snackNo]?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
-                                        class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][$snackNo]?>">+</span>
+                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][3][$snackNo]?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
+                                        class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][3][$snackNo]?>">+</span>
                                 </div>
                             </div>
                             <button class="trash" data-snackno="<?php echo $snackNo;?>"><i class="far fa-trash-alt" data-snackno="<?php echo $snackNo;?>"></i></button>
                         </div>
                     </div>
 <?php
-            }
+            // }
         }       
     }
 ?>
+
+
+<?php
+    //如果是一般商品
+    if(isset($_SESSION["snackName"][0])){
+    //單品。非客製(且非預購?)
+        foreach ($_SESSION["snackName"][0] as $snackNo => $snackName) {
+            // if($cusType=="n" || $cusType=="c" ){
+?>
+                    <div class="prodCard prodCard_normal prodCard_single">
+                        <input type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
+                        <div class="prodImg">
+                            <img src="<?php echo  $_SESSION["snackPic"][0][$snackNo]?>">
+                        </div>
+                        <div class="prodInfo">
+                            <div class="prodName">
+                                <h5><?php echo  $_SESSION["snackName"][0][$snackNo]?></h5>
+                            </div>
+                            <div class="prodPrice">
+                                <div class="priceOrigin"><span><?php echo  $_SESSION["snackPrice"][0][$snackNo]?></span></div>
+                                <div class="priceNow"><span><?php echo  $_SESSION["snackPrice"][0][$snackNo]?></span></div>
+                            </div>
+                        </div>
+                        <div class="cardCtrl">
+                            <div class="prodPriceSum">
+                                <p>
+                                    小計: <span class="priceSum" ><?php echo  $_SESSION["snackPrice"][0][$snackNo]?></span>
+                                </p>
+                            </div>
+                            <div class="prodQty">
+                                <div class="numInput">
+                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][0][$snackNo]?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
+                                        class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][0][$snackNo]?>">+</span>
+                                </div>
+                            </div>
+                            <button class="trash" data-snackno="<?php echo $snackNo;?>"><i class="far fa-trash-alt" data-snackno="<?php echo $snackNo;?>"></i></button>
+                        </div>
+                    </div>
+<?php
+            // }
+        }       
+    }
+?>
+
+<?php
+    //如果是即期商品
+    if(isset($_SESSION["snackName"][2])){
+    //即期品喔即期品
+        foreach ($_SESSION["snackName"][2] as $snackNo => $snackName) {
+            $str=$_SESSION["note"][2][$snackNo];
+            $arr_str=explode("|",$str);
+            //分割出字串
+            $priceOrigin=$arr_str[0];
+?>
+                    <div class="prodCard prodCard_normal prodCard_single">
+                        <input type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
+                        <div class="prodImg">
+                            <img src="<?php echo  $_SESSION["snackPic"][2][$snackNo]?>">
+                        </div>
+                        <div class="prodInfo">
+                            <div class="prodName">
+                                <h5><?php echo  $_SESSION["snackName"][2][$snackNo]?></h5>
+                            </div>
+                            <div class="prodPrice">
+                                <div class="priceOrigin"><span><?php echo  $priceOrigin?></span></div>
+                                <div class="priceNow"><span><?php echo  $_SESSION["snackPrice"][2][$snackNo]?></span></div>
+                            </div>
+                        </div>
+                        <div class="cardCtrl">
+                            <div class="prodPriceSum">
+                                <p>
+                                    小計: <span class="priceSum" ><?php echo  $_SESSION["snackPrice"][2][$snackNo]?></span>
+                                </p>
+                            </div>
+                            <div class="prodQty">
+                                <div class="numInput">
+                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][2][$snackNo]?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
+                                        class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][2][$snackNo]?>">+</span>
+                                </div>
+                            </div>
+                            <button class="trash" data-snackno="<?php echo $snackNo;?>"><i class="far fa-trash-alt" data-snackno="<?php echo $snackNo;?>"></i></button>
+                        </div>
+                    </div>
+<?php
+        }       
+    }
+?>
+
         </div>
     </div>
 <?php
@@ -332,15 +389,15 @@ if(isset($_SESSION["snackName"])){
                 <form id="cartForm">
                     <label for="getterName" class="cartFormCard">
                         <h4>收件人姓名:</h4>
-                        <input type="text" id="getterName" name="getterName">
+                        <input type="text" id="getterName" name="getterName" maxlength="10">
                     </label>
                     <label for="getterPhone" class="cartFormCard">
                         <h4>收件人電話:</h4>
-                        <input type="text" id="getterPhone" name="getterPhone">
+                        <input type="text" id="getterPhone" name="getterPhone" maxlength="10">
                     </label>
                     <label for="getterAddr" class="cartFormCard">
                         <h4>收件人地址:</h4>
-                        <input type="text" id="getterAddr" name="getterAddr">
+                        <input type="text" id="getterAddr" name="getterAddr" >
                     </label>
                     <label class="cartFormCard">
                         <h4>付款方式:</h4>
