@@ -162,13 +162,10 @@ $(function () {
             total += Number(parseInt($(this).text()));
         })
         //扣除優惠卷
-        // var couponItem = document.getElementById("couponItem");
-        // console.log(`couponItem: ${couponItem.value()}`);
-        
-        console.log($("#couponItem").val());
-        
         if ($("#couponItem").val()){
             total = total - $("#couponItem").val();
+            //設定總額最小值，預設為0
+            if (total<0){total=0;}
         }
         $("#priceTotalContent").text(total);
     }
@@ -208,8 +205,6 @@ $(function () {
                     $("#couponItem").html(response);
                     // console.log(`response="ok"`);
                     console.log(response);
-                    
-
                 }
             }
         });
@@ -282,8 +277,9 @@ $(document).ready(function () {
                 getterData += "&orderTotal=" + orderTotal;
                 //如果有優惠卷
                 if ($("option").length > 0) { //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式
-                    var coupNo = $("#couponItem").data("coupNo");
-                    getterData += "&coupNo=" + coupNo;
+                    // var couponboxNo = $("#couponItem").data("couponboxno"); //這種選法是錯的!!!!選項很多，被選擇的才是我們要的
+                    var couponboxNo = $("#couponItem").find(":selected").data("couponboxno");
+                    getterData += "&couponboxNo=" + couponboxNo;
                 }
                 //如果有箱子
                 if ($("#boxPic").length > 0){ //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式

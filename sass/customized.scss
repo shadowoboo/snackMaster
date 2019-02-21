@@ -6,6 +6,12 @@ body{
     background-color:#fadfd4 !important;
 }
 
+#goCustomized{
+    a {
+        color: #53a9f5;
+    }
+}
+
 .card {
     position: relative;
   }
@@ -323,7 +329,7 @@ body{
         background-blend-mode: luminosity;
         background-size: cover;
         background-color: unset;
-        background: no-repeat, no-repeat;
+        background-repeat: no-repeat, no-repeat;
         border: 1px dashed #ccc;
         position: absolute;
         text-align: center;
@@ -348,13 +354,19 @@ body{
     .surface_top{    
         background-image: url(../images/index/boxStyle1.png), linear-gradient(#ffb600, #ffb600) !important;
         background-blend-mode: luminosity;
-        background-repeat: no-repeat, repeat, repeat;
+        background-repeat: no-repeat, no-repeat, no-repeat;
         background-position: center;}
-    .surface_down{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important;background: no-repeat, no-repeat, no-repeat;}
-    .surface_front{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important;background: no-repeat, no-repeat, no-repeat;}
-    .surface_back{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important;background: no-repeat, no-repeat, no-repeat;}
-    .surface_left{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#076baf, #91b8d3) !important;background: no-repeat, no-repeat, no-repeat;}
-    .surface_right{background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#076baf, #076baf) !important;background: no-repeat, no-repeat, no-repeat;}
+    .surface_down{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important; background-repeat: no-repeat, no-repeat, no-repeat;}
+    .surface_front{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important;background-repeat: no-repeat, no-repeat, no-repeat;}
+    .surface_back{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important;background-repeat: no-repeat, no-repeat, no-repeat;}
+    .surface_left{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#076baf, #91b8d3) !important;background-repeat: no-repeat, no-repeat, no-repeat;
+    #cusImg_left{
+        .redline{
+            outline:1px #f00 dot;
+        }
+    }
+    }
+    .surface_right{background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#076baf, #076baf) !important;background-repeat: no-repeat, no-repeat, no-repeat;}
 
 }
 
