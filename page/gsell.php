@@ -144,7 +144,7 @@ try {
         <div class="search_select">
             <form action="" method="get" name="serch_list" class="serch_form">
                 <select name="serch_place" class="maArea">
-                    <option value="All">All</option>
+                    <option value="0">All</option>
                     <option value="桃園區">桃園區</option>
                     <option value="中壢區">中壢區</option>
                     <option value="八德區">八德區</option>
@@ -183,7 +183,7 @@ try {
                 <div class="search_select_desk">
                 <form action="" method="get" name="serch_list" class="serch_form">
                     <select name="serch_place" class="maArea">
-                        <option value="All">All</option>
+                        <option value="0">All</option>
                         <option value="桃園區">桃園區</option>
                         <option value="中壢區">中壢區</option>
                         <option value="八德區">八德區</option>
@@ -218,11 +218,10 @@ try {
                         <div class="map_serch_item_info_distance">
                             <span>距離: 100公尺</span>
                         </div>
-                        <div class="map_serch_info_line">
-                            <a href="#" id="<?php echo $sellRow["maLnge"]."|".$sellRow["maLat"];?>">
-                                <span>規劃路線
-                                    <i class="fas fa-location-arrow"></i></span>
-                            </a>
+                        <div class="map_serch_info_line" id="<?php echo $sellRow["maLnge"]."|".$sellRow["maLat"];?>">
+                            <span>規劃路線
+                                <i class="fas fa-location-arrow"></i>
+                            </span>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -250,27 +249,42 @@ try {
     
     <script>
      //ajax 左邊撈資料
-        selectMenu = document.getElementsByClassName("maArea");
-        searchIcon = document.getElementsByClassName("searchIcon");
-        function test(num){
+    selectMenu = document.getElementsByClassName("maArea");
+    searchIcon = document.getElementsByClassName("searchIcon");
+    function searchUpdate(num){
+        if(selectMenu[num].value != 0){
             var xhr = new XMLHttpRequest();
             xhr.onload = function(){
-                // console.log(`xhr.status: ${xhr.status}`);
-
-                // console.log(`xhr.responseText: ${xhr.responseText}`);
                 if( xhr.status == 200){
                     document.getElementsByClassName("change_gsell")[0].innerHTML = xhr.responseText;
+                    var searchLine = document.getElementsByClassName('map_serch_info_line');
+                    //做終點經緯度的'字串分割'
+                    for ( var p = 0; p < searchLine.length; p++ ) {
+                        searchLine[p].addEventListener('click', function(e){
+                            if(e.target.className.indexOf('line') != -1){
+                                    var item = e.target;
+                            }else if(e.target.className.indexOf('arrow') != -1){
+                                    var item = e.target.parentNode.parentNode;
+                            }else{
+                                    var item = e.target.parentNode;
+                            }
+                            endLnge = item.id.split('|')[0];
+                            endLat = item.id.split('|')[1];
+                            initialize(); 
+                            });
+                        }
                 }else{
                     alert( xhr.status );
                 }
             }
+                
             var url = "getPosition.php?maArea=" + selectMenu[num].value;
-            // console.log(selectMenu.value);
             
             xhr.open("Get", url, true);
             xhr.send( null );
-            // console.log(xhr.status);
-        }
+                
+            }    
+    }
 
     //map js 地標
         //hate
@@ -292,107 +306,107 @@ try {
         // var hori = ['24.912287,121.206841'];
 
 
-//用php 生成 js 地標 
-<?php
-    // 桃園區
-    $sql = "select maLnge, maLat from masell where maArea = '桃園區'";
-    $hate = $pdo -> query($sql);
-    $hateStr = "[";
-    while( $hateRow = $hate -> fetch() ){
-        $hateStr .= "'{$hateRow["maLnge"]}, {$hateRow["maLat"]}',";
-    };
-    $hateStr .= "];";
-    echo "var hate = $hateStr";
+    //用php 生成 js 地標 
+    <?php
+        // 桃園區
+        $sql = "select maLnge, maLat from masell where maArea = '桃園區'";
+        $hate = $pdo -> query($sql);
+        $hateStr = "[";
+        while( $hateRow = $hate -> fetch() ){
+            $hateStr .= "'{$hateRow["maLnge"]}, {$hateRow["maLat"]}',";
+        };
+        $hateStr .= "];";
+        echo "var hate = $hateStr";
 
-    // 中壢區
-    $sql = "select maLnge, maLat from masell where maArea = '中壢區'";
-    $power = $pdo -> query($sql);
-    $powerStr = "[";
-    while( $powerRow = $power -> fetch() ){
-        $powerStr .= "'{$powerRow["maLnge"]}, {$powerRow["maLat"]}',";
-    };
-    $powerStr .= "];";
-    echo "var power = $powerStr";
+        // 中壢區
+        $sql = "select maLnge, maLat from masell where maArea = '中壢區'";
+        $power = $pdo -> query($sql);
+        $powerStr = "[";
+        while( $powerRow = $power -> fetch() ){
+            $powerStr .= "'{$powerRow["maLnge"]}, {$powerRow["maLat"]}',";
+        };
+        $powerStr .= "];";
+        echo "var power = $powerStr";
 
 
-    // 八德區
-    $sql = "select maLnge, maLat from masell where maArea = '八德區'";
-    $eight = $pdo -> query($sql);
-    $eightStr = "[";
-    while( $eightRow = $eight -> fetch() ){
-        $eightStr .= "'{$eightRow["maLnge"]}, {$eightRow["maLat"]}',";
-    };
-    $eightStr .= "];";
-    echo "var eight = $eightStr";
+        // 八德區
+        $sql = "select maLnge, maLat from masell where maArea = '八德區'";
+        $eight = $pdo -> query($sql);
+        $eightStr = "[";
+        while( $eightRow = $eight -> fetch() ){
+            $eightStr .= "'{$eightRow["maLnge"]}, {$eightRow["maLat"]}',";
+        };
+        $eightStr .= "];";
+        echo "var eight = $eightStr";
 
-    //龜山區 mountain
-    $sql = "select maLnge, maLat from masell where maArea = '龜山區'";
-    $mountain = $pdo -> query($sql);
-    $mountainStr = "[";
-    while( $mountainRow = $mountain -> fetch() ){
-        $mountainStr .= "'{$mountainRow["maLnge"]}, {$mountainRow["maLat"]}',";
-    };
-    $mountainStr .= "];";
-    echo "var mountain = $mountainStr";
+        //龜山區 mountain
+        $sql = "select maLnge, maLat from masell where maArea = '龜山區'";
+        $mountain = $pdo -> query($sql);
+        $mountainStr = "[";
+        while( $mountainRow = $mountain -> fetch() ){
+            $mountainStr .= "'{$mountainRow["maLnge"]}, {$mountainRow["maLat"]}',";
+        };
+        $mountainStr .= "];";
+        echo "var mountain = $mountainStr";
 
-    // 大溪區
-    $sql = "select maLnge, maLat from masell where maArea = '大溪區'";
-    $river = $pdo -> query($sql);
-    $riverStr = "[";
-    while( $riverRow = $river -> fetch() ){
-        $riverStr .= "'{$riverRow["maLnge"]}, {$riverRow["maLat"]}',";
-    };
-    $riverStr .= "];";
-    echo "var river = $riverStr";
+        // 大溪區
+        $sql = "select maLnge, maLat from masell where maArea = '大溪區'";
+        $river = $pdo -> query($sql);
+        $riverStr = "[";
+        while( $riverRow = $river -> fetch() ){
+            $riverStr .= "'{$riverRow["maLnge"]}, {$riverRow["maLat"]}',";
+        };
+        $riverStr .= "];";
+        echo "var river = $riverStr";
 
-    // 平鎮區
-    $sql = "select maLnge, maLat from masell where maArea = '平鎮區'";
-    $hori = $pdo -> query($sql);
-    $horiStr = "[";
-    while( $horiRow = $hori -> fetch() ){
-        $horiStr .= "'{$horiRow["maLnge"]}, {$horiRow["maLat"]}',";
-    };
-    $horiStr .= "];";
-    echo "var hori = $horiStr";
-?>
+        // 平鎮區
+        $sql = "select maLnge, maLat from masell where maArea = '平鎮區'";
+        $hori = $pdo -> query($sql);
+        $horiStr = "[";
+        while( $horiRow = $hori -> fetch() ){
+            $horiStr .= "'{$horiRow["maLnge"]}, {$horiRow["maLat"]}',";
+        };
+        $horiStr .= "];";
+        echo "var hori = $horiStr";
+    ?>
 
 
     //限制地圖區域
-        function doFirst(){
-            navigator.geolocation.getCurrentPosition(succCallback);
-        }
-        function succCallback(arg){
-                
-            var lati = 24.967768;
-            var longi = 121.191705;
+    function doFirst(){
+        navigator.geolocation.getCurrentPosition(succCallback);
+    }
 
-            var taiwan = {
-                north: 25.46,
-                south: 21.09,
-                west: 118.20,
-                east: 122.70,
-                };
+    function succCallback(arg){
+        var lati = 24.967768;
+        var longi = 121.191705;
 
-            var xy = new google.maps.LatLng(lati, longi);
-            var mapBoard = document.getElementById('mapBoard');
-            var options = {
-                zoom: 12,
-                center: xy,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                restriction: {
-                    latLngBounds: taiwan,
-                    strictBounds: false,
-                },
-            };
+        var taiwan = {
+            north: 25.46,
+            south: 21.09,
+            west: 118.20,
+            east: 122.70,
+        };
+
+        var xy = new google.maps.LatLng(lati, longi);
+        // var mapBoard = document.getElementById('mapBoard');
+        var options = {
+            zoom: 12,
+            center: xy,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            restriction: {
+                latLngBounds: taiwan,
+                strictBounds: false,
+            },
+        };
             
-            map = new google.maps.Map(map, options);
+        map = new google.maps.Map(map, options);
             
-            var marker = new google.maps.Marker({ 
-                position: xy, 
-                map: map
-            });
-            marker.setTitle('目前位置'); 
-        }
+        var marker = new google.maps.Marker({ 
+            position: xy, 
+            map: map
+        });
+        marker.setTitle('目前位置'); 
+    }
 
     // marker 地標
         function showInfo(num){
@@ -447,26 +461,129 @@ try {
         
         
     //做點擊事件
-        searchIcon[0].addEventListener('click', function(){
-            test(0);
-        });
-        searchIcon[1].addEventListener('click', function(){
-            test(1);
-        });
-        searchIcon[0].addEventListener('click', function(){
-            showInfo(0);
-        });
-        searchIcon[1].addEventListener('click', function(){
-            showInfo(1);
-        });
+    searchIcon[0].addEventListener('click', function(){
+        searchUpdate(0);
+    });
+    searchIcon[1].addEventListener('click', function(){
+        searchUpdate(1);
+    });
+    searchIcon[0].addEventListener('click', function(){
+        showInfo(0);
+    });
+    searchIcon[1].addEventListener('click', function(){
+        showInfo(1);
+    });
         
 
     
 
-    window.addEventListener('load', doFirst, false);
+    
     
 
+    //規劃路線
+    function initialize() {
+        var markerArray = [];
+        // 實例化路線服務
+        var directionsService = new google.maps.DirectionsService;
 
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: 24.967768, lng: 121.191705}
+        });
+
+        // 為路線創建渲染器並將其綁定到地
+        var directionsDisplay = new google.maps.DirectionsRenderer({map: map});
+
+        // 實例化信息窗口以保存步驟文
+        var stepDisplay = new google.maps.InfoWindow;
+
+         // 顯示初始開始和結束選擇之間的路徑
+         calculateAndDisplayRoute(
+            directionsDisplay, directionsService, markerArray, stepDisplay, map);
+
+
+        // 從開始和結束列表中收聽更改事件
+        var onClickSearch = function() {
+            calculateAndDisplayRoute(
+              directionsDisplay, directionsService, markerArray, stepDisplay, map);
+        };
+        
+        var searchLine = document.getElementsByClassName('map_serch_info_line');
+        for ( var p = 0; p < searchLine.length; p++ ) {
+            searchLine[p].addEventListener('click', onClickSearch);
+        }
+    }
+
+    
+    //抓點擊到的物件
+    var searchLine = document.getElementsByClassName('map_serch_info_line');
+    for ( var p = 0; p < searchLine.length; p++ ) {
+        searchLine[p].addEventListener('click', function(e){
+            if(e.target.className.indexOf('line') != -1){
+                var item = e.target;
+            }else if(e.target.className.indexOf('arrow') != -1){
+                var item = e.target.parentNode.parentNode;
+            }else{
+                var item = e.target.parentNode;
+            }
+            endLnge = item.id.split('|')[0];
+            endLat = item.id.split('|')[1];
+            initialize(); //有用到就要呼叫
+        });
+    }
+
+
+    // 首先，從地圖中刪除任何現有標記
+    function calculateAndDisplayRoute(directionsDisplay, directionsService,markerArray, stepDisplay, map) {
+        for (var i = 0; i < markerArray.length; i++) {
+            markerArray[i].setMap(null);
+        }
+
+        // 檢索開始和結束位置並使用創建
+        directionsService.route({
+            origin: {lat: 24.9650192, lng: 121.1909533},
+            destination: endLnge+','+endLat,
+            travelMode: 'DRIVING'
+            },function(response, status){
+                //路線指示並將響應傳遞給要創建的功能
+                //每個步驟的標記
+                if (status === 'OK') {
+                    // 回傳路線上每個步驟的細節
+                    console.log(response.routes[0]);
+                    directionsDisplay.setDirections(response);
+                    showSteps(response, markerArray, stepDisplay, map);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                } 
+        });
+    }
+
+    
+        
+    function showSteps(directionResult, markerArray, stepDisplay, map) {
+        // 對於每個步驟，放置一個標記，然後將文本添加到標記的infowindow
+        // 當計算新路線時，還要將標記附加到陣列，以便我們可以跟踪它並將其刪除
+        var myRoute = directionResult.routes[0].legs[0];
+        for (var i = 0; i < myRoute.steps.length; i++) {
+          var marker = markerArray[i] = markerArray[i] || new google.maps.Marker;
+          marker.setMap(map);
+          marker.setPosition(myRoute.steps[i].start_location);
+          attachInstructionText(
+              stepDisplay, marker, myRoute.steps[i].instructions, map);
+        }
+    }
+
+    function attachInstructionText(stepDisplay, marker, text, map) {
+        google.maps.event.addListener(marker, 'click', function(){
+          // 單擊標記時打開信息窗口，其中包含文本步驟
+          stepDisplay.setContent(text);
+          stepDisplay.open(map, marker);
+        });
+    }
+    
+
+    window.addEventListener('load', doFirst, false);
+    
     </script>
 
 </body>
