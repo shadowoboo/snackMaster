@@ -114,6 +114,7 @@ if(isset($_SESSION["snackName"])){
     //如果有客製箱
     if(isset($_SESSION["snackName"][1])){
 ?>
+
                     <div class="prodCard prodCard_Group">
                         <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusBox">
                             <div class="prodImg">
@@ -217,11 +218,14 @@ if(isset($_SESSION["snackName"])){
                                 <!-- <button class="trash"><i class="far fa-trash-alt"></i></button> -->
                             </div>
                         </div>
+                        
             
 <?php            
             }
         }
 ?>
+                        
+
                         <div class="prodCard prodCard_Cus prodCard_CusPanel">
                             <div class="cusTotal">
                                 <p>
@@ -379,6 +383,7 @@ if(isset($_SESSION["snackName"])){
 }
 ?>
 
+                        
 
 <?php /////////////////////////// ?>
 
