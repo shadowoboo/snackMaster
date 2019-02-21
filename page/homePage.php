@@ -2241,8 +2241,6 @@
         // $prodRow -> excute(); 
         // while ($row = $prodRow->fetch()) {}
     ?>
-
-
     
 </body>
 
