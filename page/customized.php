@@ -88,10 +88,8 @@ try {
                                 <div class="camera">
                                     <div class="box boxBase" id="box_15">
                                         <div class="surface surface_top" id="cover_out_15">
-                                            <!-- <img src="ip2.png" id="a1" alt=""> -->
-                                        
-                                        <img id="cusImg_top" src="../images/tina/LOGO1.png" alt="" style="display:none;">
-                                       
+                                            <!-- <img src="ip2.png" id="a1" alt=""> -->                                      
+                                            <img id="cusImg_top" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
                                         <div class="surface surface_top_inner" id="cover_in_15">
                                         </div>
@@ -428,7 +426,7 @@ try {
             if( xhr.responseText == "error"){
             alert("錯誤");
             }else{
-            alert(`xhr.responseText: ${xhr.responseText}`);
+            // alert(`xhr.responseText: ${xhr.responseText}`);
             }
         }
         xhr.open("Post", "sessionSnack.php", true);
@@ -452,8 +450,15 @@ try {
         <button type="button" class="active" name="prev">上一步</button>
         <button type="button" class="active" name="next">下一步</button>
         <button type="button" class="active out" name="finish"><a href="#">加入購物車</a></button>
-      </div>
-  <footer style="position:relative;">
+  </div>
+
+  <input type="button" value="轉為圖檔" />
+  <fieldset>
+    <legend>圖檔</legend>
+    <div>
+    </div>
+  </fieldset>
+  <footer>
     <div class="footer_ip">
         <div class="ip_size">
             <img src="../images/nnnnn/ipc.png" alt="ipPicture" class="floating">
@@ -489,7 +494,24 @@ try {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" defer></script>
    <script src="../js/jquery.ui.touch-punch.js"></script>
+   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js "></script>
+<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js "></script>
+<script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     
+<script>
+    $(":button").click(function() {
+        for($i=49;$i<=50;$i++){
+            html2canvas($("div")[$i]).then(function(canvas) {
+                var $div = $("fieldset div");
+                $div.empty();
+                $("<img />", { src: canvas.toDataURL("image/png") }).appendTo-($div);
+            });
+        }
+      
+    });
+  </script>
+
+
   <script>
     const boxBases = document.querySelectorAll(".boxBase");
     const btns = document.querySelectorAll(".btn");
