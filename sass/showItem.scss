@@ -1,4 +1,4 @@
-// @import 'reset';
+@import 'reset';
 @import 'common';
 
 .clearfix {
@@ -232,7 +232,7 @@
                 }
                 .numInput{
                     margin: 0;
-                    height: 45px;
+                    height: 40px;
                     span{
                         width: 35px;
                         @media screen and (min-width: $moblie){
@@ -240,7 +240,7 @@
                         }
                     }
                     span,input{
-                        height: 45px;
+                        height: 40px;
                     }
                 }
             }
@@ -347,7 +347,7 @@
             padding-bottom: 17.5px;
 
             .memPic {
-                width: 11.33%;
+                width: 6.33%;
                 position: relative;
                 z-index: 2;
                 min-width: 40px;
@@ -359,6 +359,8 @@
             }
 
             .memCol {
+                // flex-grow: 1;
+                width: 93.67%;
                 margin-left: 10px;
 
                 .memId {
@@ -392,12 +394,12 @@
                 .commentCtx {
                     color: #737374;
                     font-family: g2Med;
+                    word-wrap:break-word; 
                 }
 
                 .msgs {
-                    height: 0;
                     overflow: hidden;
-                    transition: .3s;
+                    transition: .8s;
                 }
 
                 .msgsShow {
