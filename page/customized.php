@@ -1040,35 +1040,39 @@ var section15 = document.querySelector("#section_15");
         }
 }else{
     //丟圖片進去
-    var dropPic_top = document.querySelector('#cusImg_top');
+    // var dropPic_top = document.querySelector('#cusImg_top');
+    //      var img = document.querySelectorAll('.cusPic');
+    //      for (var i = 0; i < img.length; i++){
+    //          img[i].addEventListener('click', function (e) {
+    //          var imgSrc = e.target.src;
+    //          dropPic_top.setAttribute("src", imgSrc)             
+    //          dropPic_top.style.display = 'block';
+             
+             
+
+    //          },false);
+    //      }
+
+    //      $( "#cusImg_top" ).draggable();
+
+
+
+
+
+         var dropPic_left = document.querySelector('#cusImg_left');
          var img = document.querySelectorAll('.cusPic');
          for (var i = 0; i < img.length; i++){
              img[i].addEventListener('click', function (e) {
              var imgSrc = e.target.src;
-             dropPic_top.setAttribute("src", imgSrc)             
-             dropPic_top.style.display = 'block';
+             dropPic_left.setAttribute("src", imgSrc)             
+             dropPic_left.style.display = 'block';
              
              
 
              },false);
          }
-
-         $( "#cusImg_top" ).draggable();
-
-        //  var dropPic_left = document.querySelector('#cusImg_left');
-        //  var img = document.querySelectorAll('.cusPic');
-        //  for (var i = 0; i < img.length; i++){
-        //      img[i].addEventListener('click', function (e) {
-        //      var imgSrc = e.target.src;
-        //      dropPic_left.setAttribute("src", imgSrc)             
-        //      dropPic_left.style.display = 'block';
-             
-             
-
-        //      },false);
-        //  }
           
-        //  $( "#cusImg_left" ).draggable();
+         $( "#cusImg_left" ).draggable();
 
         //  var dropPic_right = document.querySelector('#cusImg_right');
         //  var img = document.querySelectorAll('.cusPic');
@@ -1129,7 +1133,7 @@ var section15 = document.querySelector("#section_15");
 
 
         function bigger(){
-            var image = document.getElementById('cusImg_top');
+            var image = document.getElementById('cusImg_left');
                 image.width = image.width * 1.05;
                 image.height = image.height * 1.05;
 
@@ -1137,7 +1141,7 @@ var section15 = document.querySelector("#section_15");
 
 
         function smaller(){
-            var image= document.getElementById('cusImg_top');
+            var image= document.getElementById('cusImg_left');
 		image.width = image.width * 0.95;
 		image.height = image.height * 0.95;
 		console.log(image.width); 
@@ -1145,26 +1149,25 @@ var section15 = document.querySelector("#section_15");
 
         var deg = 0;
         function rotateLeft(){
-            var image = document.getElementById('cusImg_top');
+            var image = document.getElementById('cusImg_left');
             deg += 15;
             image.style.transform = "rotate(" + deg + "deg)";
         }
 
         var deg = 0;
         function rotateRight(){
-            var image = document.getElementById('cusImg_top');
+            var image = document.getElementById('cusImg_left');
             deg -= 15;
             image.style.transform = "rotate(" + deg + "deg)";
         }
 
         function clear(){
-            var imgClear = document.getElementById('cusImg_top');
+            var imgClear = document.getElementById('cusImg_left');
 	        imgClear.remove(image);
         }
         window.addEventListener('load', doFirst);
+
         }
-
-
 
 </script>
 
@@ -1238,24 +1241,7 @@ var section15 = document.querySelector("#section_15");
             });
         });
         </script>
-<script>
-//卡片樣式的小圖換大圖
-function showLarge(e){
-  var small = e.target;
-  var src = small.src.replace("small","big");
-  document.getElementById("large").src = src;
-}
 
-function init(){
-  //var imgs = document.querySelectorAll(".small");
-  var imgs = document.getElementsByClassName("small");
-  for( var i=0; i<imgs.length; i++){
-  	imgs[i].onclick = showLarge;
-  }
-}
-
-window.onload = init;
-</script>
  <script>
 
         // window.event.cancelBubble=true;
@@ -1933,6 +1919,8 @@ function fileChange(){
 
 }
 window.addEventListener('load',doFirst);
+
+
 
 </script>
 </body>
