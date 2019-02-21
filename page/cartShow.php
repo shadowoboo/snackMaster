@@ -256,8 +256,13 @@ if(isset($_SESSION["snackName"])){
                                 <h5><?php echo  $_SESSION["snackName"][3][$snackNo]?></h5>
                             </div>
                             <div class="prodPrice">
-                                <div class="priceOrigin"><span><?php echo  $_SESSION["note"][3][$snackNo]?></span></div>
+                                <div class="priceOrigin"><span><?php echo  $_SESSION["snackPrice"][3][$snackNo]?></span></div>
                                 <div class="priceNow"><span><?php echo  $_SESSION["snackPrice"][3][$snackNo]?></span></div>
+                            </div>
+                            <div class="prodNote">
+                                <p>
+                                    <?php echo  $_SESSION["note"][3][$snackNo]?>
+                                </p>
                             </div>
                         </div>
                         <div class="cardCtrl">
@@ -329,7 +334,10 @@ if(isset($_SESSION["snackName"])){
     if(isset($_SESSION["snackName"][2])){
     //即期品喔即期品
         foreach ($_SESSION["snackName"][2] as $snackNo => $snackName) {
-            // if($cusType=="n" || $cusType=="c" ){
+            $str=$_SESSION["note"][2][$snackNo];
+            $arr_str=explode("|",$str);
+            //分割出字串
+            $priceOrigin=$arr_str[0];
 ?>
                     <div class="prodCard prodCard_normal prodCard_single">
                         <input type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
@@ -341,7 +349,7 @@ if(isset($_SESSION["snackName"])){
                                 <h5><?php echo  $_SESSION["snackName"][2][$snackNo]?></h5>
                             </div>
                             <div class="prodPrice">
-                                <div class="priceOrigin"><span><?php echo  $_SESSION["note"][2][$snackNo]?></span></div>
+                                <div class="priceOrigin"><span><?php echo  $priceOrigin?></span></div>
                                 <div class="priceNow"><span><?php echo  $_SESSION["snackPrice"][2][$snackNo]?></span></div>
                             </div>
                         </div>
@@ -361,7 +369,6 @@ if(isset($_SESSION["snackName"])){
                         </div>
                     </div>
 <?php
-            // }
         }       
     }
 ?>
@@ -382,15 +389,15 @@ if(isset($_SESSION["snackName"])){
                 <form id="cartForm">
                     <label for="getterName" class="cartFormCard">
                         <h4>收件人姓名:</h4>
-                        <input type="text" id="getterName" name="getterName">
+                        <input type="text" id="getterName" name="getterName" maxlength="10">
                     </label>
                     <label for="getterPhone" class="cartFormCard">
                         <h4>收件人電話:</h4>
-                        <input type="text" id="getterPhone" name="getterPhone">
+                        <input type="text" id="getterPhone" name="getterPhone" maxlength="10">
                     </label>
                     <label for="getterAddr" class="cartFormCard">
                         <h4>收件人地址:</h4>
-                        <input type="text" id="getterAddr" name="getterAddr">
+                        <input type="text" id="getterAddr" name="getterAddr" >
                     </label>
                     <label class="cartFormCard">
                         <h4>付款方式:</h4>
