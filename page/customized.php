@@ -867,7 +867,7 @@ try {
     //要分成 "遠方來的客人" 和 "在地旅行的人"
     //"遠方的客人"只要新生成一個child在這片土地
     //"在地旅行的人"只要移動它的位置
-    var drop_count = 1;
+    drop_count = 1; //設為全域，讓手機板JQ可以使用
     console.log(`drop_count: ${drop_count}`);//drop_count計數處法第幾次drop事件 一觸發+1
     function dropped(e) {
         e.preventDefault();
@@ -908,6 +908,7 @@ try {
             img.classList.add("droped_img");//添加droped_img 為了好控制 使用 classList 屬性是取得元素 Class 的一種便利方式
             img.style.zIndex = drop_count;//z-index會一直變大
             img.id = "a" + drop_count;//多個id名稱a1 a3 a5..
+
             // img.style.pointerEvents = "none"; //可以被穿透，讓後面的圖可以順利覆蓋
             img.style.transform = "translateX(0px) translateY(0px) rotate(0deg) scale(1)";
             console.log(`e.target.classList: ${e.target.classList}`);
@@ -920,6 +921,49 @@ try {
         }
     }
 
+    //手機板拖曳事件 箱子與圖片
+    $(function(){
+        $(".cusPic").on("click",copyToSurface);
+
+
+
+
+        function copyToSurface(e){
+            //如果不在工作面，就跳出，不做啦!!!!
+            if(!$("#section_15 .btn.btnSelect").length>0){
+                return;
+            }
+            //抓現在是哪一面，工作面才工作
+            var tarSurfaceId = $("#section_15 .btn.btnSelect").attr("id");
+            tarSurfaceClass = tarSurfaceId.replace("btn","surface");
+            //複製圖片`,更新屬性,塞進目標父層
+            var tarCusPic=$(e.target).clone();
+            console.log(tarCusPic);
+            tarCusPic.css({
+                "width":"50px",
+                "position":"absolute",
+                "zIndex":drop_count,
+                "transform":"translateX(0px) translateY(0px) rotate(0deg) scale(1)",
+            });
+            tarCusPic.attr("class","droped_img");
+            tarCusPic.attr("id","a"+drop_count);
+            //設定JQ拖曳事件
+            tarCusPic.draggable({
+                start: function(e) {
+                    //拖曳開始時，zIndex等級++，確保在最上層
+                    drop_count++;
+                    $(e.target).css("zIndex",drop_count);
+                    $(e.target).addClass("select"); //增加class，有被選到的感覺
+                },
+                drag: function(e) {
+                },
+                stop: function(e) {
+                    $(e.target).removeClass("select"); //移除class
+                }
+            });
+            $("."+tarSurfaceClass).append($(tarCusPic));
+        }
+    })
 
     //dropedImgCtrl
     function dropedCtrl(e) {
@@ -1104,150 +1148,150 @@ try {
 </script>
 
 <script>
-if($(window).width() > 767){
+// if($(window).width() > 767){
     
-//任意處點擊解除拖曳圖片的選取狀態
-var section15 = document.querySelector("#section_15");
-        section15.addEventListener("click", removeDropImgTag);
-        function removeDropImgTag(e) {
-                //btnSelect是個不好的判斷法，因為目前是泡泡傳到div裡的圖片上所以才會產生btnSelect
-                //目前已知會造成每個圖片都被上class
-                if ((e.target.classList.contains("droped_img")) == false && (e.target.classList.contains("btnSelect")) == false) {
-                        arrDropedImg.forEach(el => {
-                                el.classList.remove("select");
-                        })
-                }
-        }
-}else{
-    //丟圖片進去
-    // var dropPic_top = document.querySelector('#cusImg_top');
-    //      var img = document.querySelectorAll('.cusPic');
-    //      for (var i = 0; i < img.length; i++){
-    //          img[i].addEventListener('click', function (e) {
-    //          var imgSrc = e.target.src;
-    //          dropPic_top.setAttribute("src", imgSrc)             
-    //          dropPic_top.style.display = 'block';
+// //任意處點擊解除拖曳圖片的選取狀態
+// var section15 = document.querySelector("#section_15");
+//         section15.addEventListener("click", removeDropImgTag);
+//         function removeDropImgTag(e) {
+//                 //btnSelect是個不好的判斷法，因為目前是泡泡傳到div裡的圖片上所以才會產生btnSelect
+//                 //目前已知會造成每個圖片都被上class
+//                 if ((e.target.classList.contains("droped_img")) == false && (e.target.classList.contains("btnSelect")) == false) {
+//                         arrDropedImg.forEach(el => {
+//                                 el.classList.remove("select");
+//                         })
+//                 }
+//         }
+// }else{
+//     //丟圖片進去
+//     // var dropPic_top = document.querySelector('#cusImg_top');
+//     //      var img = document.querySelectorAll('.cusPic');
+//     //      for (var i = 0; i < img.length; i++){
+//     //          img[i].addEventListener('click', function (e) {
+//     //          var imgSrc = e.target.src;
+//     //          dropPic_top.setAttribute("src", imgSrc)             
+//     //          dropPic_top.style.display = 'block';
              
              
 
-    //          },false);
-    //      }
+//     //          },false);
+//     //      }
 
-    //      $( "#cusImg_top" ).draggable();
-
-
+//     //      $( "#cusImg_top" ).draggable();
 
 
 
-         var dropPic_left = document.querySelector('#cusImg_left');
-         var img = document.querySelectorAll('.cusPic');
-         for (var i = 0; i < img.length; i++){
-             img[i].addEventListener('click', function (e) {
-             var imgSrc = e.target.src;
-             dropPic_left.setAttribute("src", imgSrc)             
-             dropPic_left.style.display = 'block';
+
+
+//          var dropPic_left = document.querySelector('#cusImg_left');
+//          var img = document.querySelectorAll('.cusPic');
+//          for (var i = 0; i < img.length; i++){
+//              img[i].addEventListener('click', function (e) {
+//              var imgSrc = e.target.src;
+//              dropPic_left.setAttribute("src", imgSrc)             
+//              dropPic_left.style.display = 'block';
              
              
 
-             },false);
-         }
+//              },false);
+//          }
           
-         $( "#cusImg_left" ).draggable();
+//          $( "#cusImg_left" ).draggable();
 
-        //  var dropPic_right = document.querySelector('#cusImg_right');
-        //  var img = document.querySelectorAll('.cusPic');
-        //  for (var i = 0; i < img.length; i++){
-        //      img[i].addEventListener('click', function (e) {
-        //      var imgSrc = e.target.src;
-        //      dropPic_right.setAttribute("src", imgSrc)             
-        //      dropPic_right.style.display = 'block';
+//         //  var dropPic_right = document.querySelector('#cusImg_right');
+//         //  var img = document.querySelectorAll('.cusPic');
+//         //  for (var i = 0; i < img.length; i++){
+//         //      img[i].addEventListener('click', function (e) {
+//         //      var imgSrc = e.target.src;
+//         //      dropPic_right.setAttribute("src", imgSrc)             
+//         //      dropPic_right.style.display = 'block';
              
              
 
-        //      },false);
-        //  }
+//         //      },false);
+//         //  }
           
-        //  $( "#cusImg_right" ).draggable();
+//         //  $( "#cusImg_right" ).draggable();
          
-        //  var dropPic_front = document.querySelector('#cusImg_front');
-        //  var img = document.querySelectorAll('.cusPic');
-        //  for (var i = 0; i < img.length; i++){
-        //      img[i].addEventListener('click', function (e) {
-        //      var imgSrc = e.target.src;
-        //      dropPic_front.setAttribute("src", imgSrc)             
-        //      dropPic_front.style.display = 'block';
+//         //  var dropPic_front = document.querySelector('#cusImg_front');
+//         //  var img = document.querySelectorAll('.cusPic');
+//         //  for (var i = 0; i < img.length; i++){
+//         //      img[i].addEventListener('click', function (e) {
+//         //      var imgSrc = e.target.src;
+//         //      dropPic_front.setAttribute("src", imgSrc)             
+//         //      dropPic_front.style.display = 'block';
              
              
 
-        //      },false);
-        //  }
+//         //      },false);
+//         //  }
           
-        //  $( "#cusImg_front" ).draggable();
+//         //  $( "#cusImg_front" ).draggable();
                   
-        //  var dropPic_down = document.querySelector('#cusImg_down');
-        //  var img = document.querySelectorAll('.cusPic');
-        //  for (var i = 0; i < img.length; i++){
-        //      img[i].addEventListener('click', function (e) {
-        //      var imgSrc = e.target.src;
-        //      dropPic_down.setAttribute("src", imgSrc)             
-        //      dropPic_down.style.display = 'block';
+//         //  var dropPic_down = document.querySelector('#cusImg_down');
+//         //  var img = document.querySelectorAll('.cusPic');
+//         //  for (var i = 0; i < img.length; i++){
+//         //      img[i].addEventListener('click', function (e) {
+//         //      var imgSrc = e.target.src;
+//         //      dropPic_down.setAttribute("src", imgSrc)             
+//         //      dropPic_down.style.display = 'block';
              
              
 
-        //      },false);
-        //  }
+//         //      },false);
+//         //  }
           
-        //  $( "#cusImg_down").draggable();
+//         //  $( "#cusImg_down").draggable();
 
 
 
-         //放大縮小旋轉刪除
+//          //放大縮小旋轉刪除
 
-         function doFirst(){
-            document.getElementById('btn_big').addEventListener('click',bigger);
-            document.getElementById('btn_small').addEventListener('click',smaller);
-            document.getElementById('btn_clk').addEventListener('click',rotateLeft);
-            document.getElementById('btn_clk_r').addEventListener('click',rotateRight);
-            document.getElementById('btn_del').addEventListener('click',clear);
-        }
-
-
-        function bigger(){
-            var image = document.getElementById('cusImg_left');
-                image.width = image.width * 1.05;
-                image.height = image.height * 1.05;
-
-        }
+//          function doFirst(){
+//             document.getElementById('btn_big').addEventListener('click',bigger);
+//             document.getElementById('btn_small').addEventListener('click',smaller);
+//             document.getElementById('btn_clk').addEventListener('click',rotateLeft);
+//             document.getElementById('btn_clk_r').addEventListener('click',rotateRight);
+//             document.getElementById('btn_del').addEventListener('click',clear);
+//         }
 
 
-        function smaller(){
-            var image= document.getElementById('cusImg_left');
-		image.width = image.width * 0.95;
-		image.height = image.height * 0.95;
-		console.log(image.width); 
-        }
+//         function bigger(){
+//             var image = document.getElementById('cusImg_left');
+//                 image.width = image.width * 1.05;
+//                 image.height = image.height * 1.05;
 
-        var deg = 0;
-        function rotateLeft(){
-            var image = document.getElementById('cusImg_left');
-            deg += 15;
-            image.style.transform = "rotate(" + deg + "deg)";
-        }
+//         }
 
-        var deg = 0;
-        function rotateRight(){
-            var image = document.getElementById('cusImg_left');
-            deg -= 15;
-            image.style.transform = "rotate(" + deg + "deg)";
-        }
 
-        function clear(){
-            var imgClear = document.getElementById('cusImg_left');
-	        imgClear.remove(image);
-        }
-        window.addEventListener('load', doFirst);
+//         function smaller(){
+//             var image= document.getElementById('cusImg_left');
+// 		image.width = image.width * 0.95;
+// 		image.height = image.height * 0.95;
+// 		console.log(image.width); 
+//         }
 
-        }
+//         var deg = 0;
+//         function rotateLeft(){
+//             var image = document.getElementById('cusImg_left');
+//             deg += 15;
+//             image.style.transform = "rotate(" + deg + "deg)";
+//         }
+
+//         var deg = 0;
+//         function rotateRight(){
+//             var image = document.getElementById('cusImg_left');
+//             deg -= 15;
+//             image.style.transform = "rotate(" + deg + "deg)";
+//         }
+
+//         function clear(){
+//             var imgClear = document.getElementById('cusImg_left');
+// 	        imgClear.remove(image);
+//         }
+//         window.addEventListener('load', doFirst);
+
+//         }
 
 </script>
 
