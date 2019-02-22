@@ -45,8 +45,8 @@
                             <span class="leave">X</span>
                         </div>
                         <ul class="list">
-                            <li><a href="rankBoard.php">零食排行榜</a></li>
-                            <li><a href="customized.php">客製零食箱</a> </li>
+                            <li id="gorankBoard"><a href="rankBoard.php">零食排行榜</a></li>
+                            <li id="gocustomized"><a href="customized.php">客製零食箱</a> </li>
                             <!-- 在手機上要關掉這個li的logo -->
                             <li><a href="homePage.php"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
                             <li id="store"> 零食商店街
