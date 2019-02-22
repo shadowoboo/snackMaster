@@ -160,17 +160,16 @@ header {
         }
         .login {
             li {
+                &:hover i{
+                    color: $blue;
+                }
                 color: #737374;
+                cursor: pointer;
             }
             li:first-child {
-                cursor: default;
                 span {
                     font-size: 20px;
                 }
-                
-            }
-            li:nth-child(2){
-                cursor: pointer;
             }
         }
     }
@@ -448,7 +447,7 @@ label.mail {
             }
             .menu {
                 max-width: 1200px;
-                margin: auto;
+                margin-left: 15px;
                 flex: 1;
                 .logo {
                     display: none;
