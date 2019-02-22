@@ -421,7 +421,6 @@ fieldset,aside,main,picture,figure,article{
                 flex: 5;
                 cursor: move;
             }
-            
         }
         #btns15{
         position: relative;
@@ -505,7 +504,22 @@ fieldset,aside,main,picture,figure,article{
          }
         }
 }
-
+.form{
+    label{
+        color: #fff;
+        background-color: #076baf;
+        margin: 10px;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;        
+        transition:all .2s;
+        // &:hover{
+        //     background-color: #fff;
+        //     color: #076baf; 
+        //     border:1px solid #076baf;  
+        // }
+    }
+}
 .cardBox{
     width:500px;
     margin:auto;
@@ -1204,7 +1218,7 @@ $cardY:600px;
                         justify-content: center;
                         align-items: center;  
                         p{
-                            font-size:20px;
+                            font-size:24px;
                         }
                         span{
                             font-size: 25px;
@@ -1485,7 +1499,9 @@ $cardY:600px;
         height: auto;
         .goodBox{
             ul{
-                flex-wrap:wrap;
+               .good{
+                   font-size: 18px;
+               }
             }
             .good-content{
                 display: flex;
