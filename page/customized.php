@@ -825,6 +825,7 @@ try {
             //"箱子表面的圖片"的監聽事件
             arrDropedImg.forEach(elem => {
                 elem.addEventListener("dragstart", function dragStart_2(e) {//拉動起始
+                    e.target.classList.add("select");
                     console.log("這裡的圖片動起來!");
                     e.dataTransfer.setData("text", "onSurface");//dataTransfer.setData傳現在的座標
                     e.dataTransfer.setData("offsetx", e.offsetX);
@@ -900,6 +901,7 @@ try {
             srcItem.style.zIndex = drop_count + 1;
             srcItem.style.top = parseInt(mouseNow.y - mouseOffset.y) + "px";
             srcItem.style.left = parseInt(mouseNow.x - mouseOffset.x) + "px";
+            srcItem.classList.remove("select");
         } else {//如果是遠方的客人，就新生成一個子元素在目標區
             //接收來自dragstart的座標訊息
             let mouseOffset = { x: 0, y: 0 };
@@ -941,15 +943,31 @@ try {
             $("#section_15 #ctrl_bar .btn").removeClass("working");
             $(e.target).addClass("working");
         })
-        //點擊droped_img觸發的事情，委託給父元素
-        $(".surface").on("click",".droped_img",function(e){
-                //如果拖曳中，不做事
-                if ( $(this).is('.ui-draggable-dragging') ) {
-                    return;
+        ////點擊空白處取消 drop_img 的 select
+        $(".customized").on("click",function (e) {
+            var elem = e.target;
+            while (elem) { //循環判斷到節點，防止點到子元素   
+                if (elem.classList && (elem.classList.contains("droped_img")||elem.classList.contains("btn"))) { //如果該元素有class且有某某class的話就不動作
+                    return; //我就跳出
                 }
-                //新增個class="seclect"
-                $(e.target).addClass("select");
+                elem = elem.parentNode; //往上找找到最大的"不作用"的層
+            }
+            $('.droped_img').removeClass("select"); //沒被跳出就會走到這裡，可以隱藏跳窗
         })
+        //點擊空白處取消 drop_img 的 select
+        // let droped_img=document
+        // $(".customized").not(".droped_img").on("click",function(e){
+        //     $(".droped_img").removeClass("select");
+        // })
+        //點擊droped_img觸發的事情，委託給父元素
+        // $(".surface").on("click",".droped_img",function(e){
+        //         //如果拖曳中，不做事
+        //         if ( $(this).is('.ui-draggable-dragging') ) {
+        //             return;
+        //         }
+        //         //新增個class="seclect"
+        //         $(e.target).addClass("select");
+        // })
         function copyToSurface(e){
             // 如果不在工作面，就跳出，不做啦!!!!
             if($("#section_15 .btn.working").length<=0){
@@ -989,22 +1007,24 @@ try {
                     $(e.target).removeClass("select"); //移除class
                 }
             })
-            .on("touchend",function(e){
+            .on("touchend",function(e){ //手機touch事件轉變成click事件
                 if ( $(this).is('.ui-draggable-dragging') ) {
                     return;
                 }
                 if(getIsTouch()){ //如果滑動距離太短，視為click。(針對安卓)
+                    $(".droped_img").removeClass("select");
                     $(e.target).addClass("select");
                 }
             })
-            // .on("click tap",function(e){ //串點擊事件
-            //     //如果拖曳中，不做事
-            //     if ( $(this).is('.ui-draggable-dragging') ) {
-            //         return;
-            //     }
-            //     //新增個class="seclect"
-            //     $(e.target).addClass("select");
-            // });
+            .on("click tap",function(e){ //串點擊事件
+                //如果拖曳中，不做事
+                if ( $(this).is('.ui-draggable-dragging') ) {
+                    return;
+                }
+                $(".droped_img").removeClass("select");
+                //新增個class="seclect"
+                $(e.target).addClass("select");
+            });
             
         }
     })
