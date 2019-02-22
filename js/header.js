@@ -31,7 +31,7 @@ function cloudResize() {
     //             ];
     var lines = ["#fff",
         "fdfbfb",
-        "rgba(235,237,238, 0.3)"
+        "rgba(235,237,238, 0.5)"
 
     ];
     if (window.screen.width > 768) {
