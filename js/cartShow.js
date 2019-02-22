@@ -24,7 +24,7 @@ $(function () {
 
     //刪除按鈕們控制
     //刪除客製箱
-    $(".cusBtnDel").bind("click",function(e){
+    $(".cusBtnDel").bind("click", function (e) {
         //刪除客製箱節點
         $(".prodCard.prodCard_Group").remove();
         //刪除php session的客製箱訊息
@@ -32,7 +32,7 @@ $(function () {
         //更新總計
         priceTotal();
         //如果刪光光，顯示 "無商品提醒"
-        if ($("#prodCards").children().length==0){
+        if ($("#prodCards").children().length == 0) {
             //隱藏商品卡
             $(".cartContent_prod").removeClass("cartPageActive");
             //隱藏 cartPanel 小計跟優惠卷
@@ -44,7 +44,7 @@ $(function () {
         }
     })
     //刪除一般卡片
-    $(".trash").bind("click",function(e){
+    $(".trash").bind("click", function (e) {
         $(this).closest(".prodCard.prodCard_normal").remove();
         //刪除php session的normal訊息
         clearNormalSession(e);
@@ -67,16 +67,16 @@ $(function () {
     //嘗試直接監控 input變化，但是oninput, onchange等皆無法監控js改變的值
     //故改監控按鈕並計算補正值
     //減少
-    $(".numMinus").bind("click",function(e){
+    $(".numMinus").bind("click", function (e) {
         var snackNo = e.target.dataset.snackno;
-        var val=$(this).next().val();
+        var val = $(this).next().val();
         // console.log(val);
         //因為直接取值會慢實際看到的value一次，故手動補正
-        if (snackQuan==1){
-            snackQuan=1;
+        if (snackQuan == 1) {
+            snackQuan = 1;
             console.log(snackQuan);
-        }else{
-            snackQuan=parseInt(val)-1;
+        } else {
+            snackQuan = parseInt(val) - 1;
             console.log(snackQuan);
         }
         $.ajax({
@@ -104,13 +104,13 @@ $(function () {
         var val = $(this).prev().val();
         // console.log(val);
         // qty = val+parseInt(1);
-        snackQuan = parseInt(val)+ 1;
+        snackQuan = parseInt(val) + 1;
         console.log(snackQuan);
         //改變session數量
         $.ajax({
             type: "get",
             url: "cartUpdate.php",
-            data: "updateType=numPlus&snackNo="+snackNo+"&snackQuan="+snackQuan,
+            data: "updateType=numPlus&snackNo=" + snackNo + "&snackQuan=" + snackQuan,
             success: function (response) {
                 console.log(`response:　${response}`);
             }
@@ -123,16 +123,16 @@ $(function () {
         priceTotalCus();
     })
     //優惠卷變更時，重新計算總價
-    $("#couponItem").bind("change",priceTotal);
+    $("#couponItem").bind("change", priceTotal);
 
 
     ////function區
     //清除客製箱相關session
-    function clearCusSession(e) { 
+    function clearCusSession(e) {
         $.ajax({
             type: "get",
             url: "cartUpdate.php",
-            data:"updateType=cusDel",
+            data: "updateType=cusDel",
             success: function (response) {
                 // console.log("done Clear cus session");
                 console.log(`response:　${response}`);
@@ -140,32 +140,32 @@ $(function () {
         });
     }
     //清除一般卡片session
-    function clearNormalSession(e){
+    function clearNormalSession(e) {
         //用 data-* 神秘西方力量取值 (我不想占用id之類的)
         var snackNo = e.target.dataset.snackno;
         console.log(snackNo);
-        
+
         $.ajax({
             type: "get",
             url: "cartUpdate.php",
-            data: "updateType=normalDel&snackNo="+snackNo,
+            data: "updateType=normalDel&snackNo=" + snackNo,
             success: function (response) {
                 console.log(`response:　${response}`);
             }
         });
     }
     //計算總價並變更總計
-    function priceTotal(){
+    function priceTotal() {
         //變更總計
         var total = 0;
         $(".priceSum").each(function () {
             total += Number(parseInt($(this).text()));
         })
         //扣除優惠卷
-        if ($("#couponItem").val()){
+        if ($("#couponItem").val()) {
             total = total - $("#couponItem").val();
             //設定總額最小值，預設為0
-            if (total<0){total=0;}
+            if (total < 0) { total = 0; }
         }
         $("#priceTotalContent").text(total);
     }
@@ -179,29 +179,29 @@ $(function () {
         $("#cusTotalContent").text(total);
     }
     //變更小計
-    function priceSum(e, snackQuan){
+    function priceSum(e, snackQuan) {
         var snackPrice = e.target.dataset.snackprice;
         var priceSum = snackPrice * snackQuan;
         $(e.target).closest(".cardCtrl").children(".prodPriceSum").children("p").children(".priceSum").text(priceSum);
     }
     //優惠卷初始化
-    function getCoupon(){
+    function getCoupon() {
         console.log("coupon gogo");
-        
+
         $.ajax({
             type: "post",
             url: "getCoupon.php",
             async: false, //強迫他 "不是異步" = 同步 = 後面的程式要等這個程式做完
             success: function (response) {
-                if(response=="error"){
+                if (response == "error") {
                     $("#couponItem").html("\<option value=\"未登入\"\>未登入\<\/option\>");
                     console.log(`response="error"`);
-                    
-                }else if(response=="none"){
+
+                } else if (response == "none") {
                     $("#couponItem").html("<option value=\"\"> </option>");
                     console.log(`response="none"`);
 
-                }else{
+                } else {
                     $("#couponItem").html(response);
                     // console.log(`response="ok"`);
                     console.log(response);
@@ -218,11 +218,11 @@ $(document).ready(function () {
     $.ajaxSetup({ cache: false });
     //ENG 寫入商品測試用
     // CartProdAdd_ENG();
-
     //進入cartShow網頁，立刻檢查php session，若沒有商品則顯示 無商品頁面 / footer
     $.ajax({
         type: "get",
         url: "CartProdCheck.php",
+        // async: false, //強迫他 "不是異步" = 同步 = 後面的程式要等這個程式做完
         success: function (response) {
             //畫面淨空
             $(".cartContent").removeClass("cartPageActive");
@@ -234,6 +234,8 @@ $(document).ready(function () {
                 $("footer").show();
                 //預設不顯示其他區塊，所以不再動作
             } else {
+                console.log(`Product Exist!!`);
+                
                 //隱藏 "未購物提示" 
                 $(".cartContent_none").removeClass("cartPageActive");
                 //隱藏 footer
@@ -282,7 +284,7 @@ $(document).ready(function () {
                     getterData += "&couponboxNo=" + couponboxNo;
                 }
                 //如果有箱子
-                if ($("#boxPic").length > 0){ //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式
+                if ($("#boxPic").length > 0) { //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式
                     var boxPic = $("#boxPic").attr("src");
                     getterData += "&boxPic=" + boxPic;
                 }
@@ -290,7 +292,7 @@ $(document).ready(function () {
                 if ($("#cardPic").length > 0) {
                     var cardPic = $("#cardPic").attr("src");
                     getterData += "&cardPic=" + cardPic;
-                } 
+                }
                 //如果有卡片聲音
                 if ($("#au_player").length > 0) {
                     var audioFile = $("#au_player").attr("src");
@@ -343,7 +345,7 @@ $(document).ready(function () {
                 //關掉表單
                 $(".cartFormZone").removeClass("cartPageActive");
                 //顯示購物頭頭
-                $(".cartTh").css("display","flex");
+                $(".cartTh").css("display", "flex");
                 //顯示購物清單
                 $(".cartContent_prod").addClass("cartPageActive");
                 //隱藏上一步按鈕
@@ -394,7 +396,7 @@ $(document).ready(function () {
         $(".engBtnList").removeClass("show");
 
     })
-    $("#clearSession").click(function(){
+    $("#clearSession").click(function () {
         $.ajax({
             url: "clearSession_ENG.php",
             success: function (response) {
@@ -429,7 +431,7 @@ $(document).ready(function () {
     //step2
     function step2() {
         //如果有 客製箱 或 預購箱，需要跳出警告提醒消費者，將與單品寄給同一位收件人
-        if ($(".prodCard_CusBox").length>0 || $(".prodCard_planItem").length>0) {
+        if ($(".prodCard_CusBox").length > 0 || $(".prodCard_planItem").length > 0) {
             $('.lightBoxes').addClass("cartPageActive");
             //燈箱 "繼續結帳" 被點擊，則顯示下一頁面
             //使用unbind避免重複綁定點擊事件，造成stepCount錯誤
@@ -444,7 +446,7 @@ $(document).ready(function () {
                 $(".cartTh").hide();
                 //顯示 "上一步" 按鈕
                 console.log(`btnBack`);
-                
+
                 $(".btnBack").removeClass("btnBack_none");
                 //頁數+1
                 stepCount += 1;
@@ -507,7 +509,7 @@ $(document).ready(function () {
 function init() {
     console.log($(window).width());
     var au_player = document.getElementById("au_player");
-    if(au_player){
+    if (au_player) {
         // 撥放/暫停
         $id("au_btn_play").addEventListener("click", auPlayAndPause);
         // 停止
@@ -556,7 +558,7 @@ function auPlayAndPause(e) {
         //切換icon成暫停符號
         $id("au_btn_play").innerHTML = "<i class='fas fa-pause'></i>";
         //持續作用直到撥放結束
-        if ($(window).width()>768){ //桌機板可能有進度條之類的
+        if ($(window).width() > 768) { //桌機板可能有進度條之類的
             setInterval(() => {
                 if (!$id("au_player").ended) {
                     //撥放中
@@ -577,8 +579,8 @@ function auPlayAndPause(e) {
                     $id("au_btn_play").innerHTML = "<i class='fas fa-play'></i>";
                 }
             }, 100);
-        }else{ //手機板沒有那些bar要算，直接等到結束復歸
-            if ($id("au_player").ended){
+        } else { //手機板沒有那些bar要算，直接等到結束復歸
+            if ($id("au_player").ended) {
                 $id("au_player").currentTime = 0;
                 $id("au_btn_play").innerHTML = "<i class='fas fa-play'></i>";
             }
@@ -592,7 +594,7 @@ function auStop(e) {
     $id("au_player").pause();
     // $id("au_btn_play").innerText = "播";
     $id("au_btn_play").classList.remove("select");
-    if ($(window).width() > 768){
+    if ($(window).width() > 768) {
         ////bar、拉桿及撥放時序歸零
         $id("proBar").style.width = '0px';
         $id("barNote").style.left = "0%";
