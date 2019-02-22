@@ -438,11 +438,6 @@ try {
         // $id('sendSnack').onclick = sendSnack;
     </script>     
       <div id="stepLast" class="step-content-body out">Completed</div>
-      <!-- <div class="step-content-foot">
-        <button type="button" class="active" name="prev">上一步</button>
-        <button type="button" class="active" name="next">下一步</button>
-        <button type="button" class="active out" name="finish"><a href="#">加入購物車</a></button>
-      </div> -->
     </div>
     
   </div>
@@ -489,25 +484,36 @@ try {
   <script src="../js/customizedstep.js"></script>
   <script src="../js/header.js"></script>
     <!-- Draggable -->
+  
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" defer></script>
    <script src="../js/jquery.ui.touch-punch.js"></script>
-   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js "></script>
+
 <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js "></script>
 <script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     
 <script>
-    $(":button").click(function() {
-        for($i=49;$i<=50;$i++){
-            html2canvas($("div")[$i]).then(function(canvas) {
-                var $div = $("fieldset div");
-                $div.empty();
-                $("<img />", { src: canvas.toDataURL("image/png") }).appendTo-($div);
-            });
-        }
+    // $(":button").click(function() {
       
+    //         html2canvas($("div")[50]).then(function(canvas) {
+    //             var $div = $("fieldset div");
+    //             $div.empty();
+    //             $("<img />", { src: canvas.toDataURL("image/png") }).appendTo-($div);
+    //         });
+    //     for($i=49;$i<=50;$i++){
+    //     }
+      
+    // });
+
+//前:50  後：49 上：48 左：51 右：52 
+      $(":button").click(function() {
+      html2canvas($("div")[48]).then(function(canvas) {
+          var $div = $("fieldset div");
+          $div.empty();
+          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+      });
     });
   </script>
 
