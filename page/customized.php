@@ -113,7 +113,7 @@ try {
                                     <div class="btn" id="btn_big"><img src="../images/customized/zoom_in.svg" alt=""></div>
                                     <div class="btn" id="btn_small"><img src="../images/customized/zoom_out.svg" alt=""></div>
                                     <div class="btn" id="btn_clk"><img src="../images/customized/rotate.svg" alt=""></div>
-                                    <div class="btn" id="btn_clk_r"><img src="../images/customized/rotate.svg" alt="" style="transform: rotate(175deg);"></div>
+                                    <div class="btn" id="btn_clk_r"><img src="../images/customized/rotatereverse.png" alt=""></div>
                                     <div class="btn" id="btn_del"><i class="fa fa-trash"></i></div>
                                 </div>                        
                                 <!-- <div class="btn show action" id="show" style="line-height: 35px;margin:3px auto;">3D展示</div> -->
@@ -142,28 +142,28 @@ try {
                             <div id="picBtn">   
                                 <div class="pics" id="picsRegion">
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/tina/LOGO1.png" alt="">
+                                        <img class="cusPic" src="../images/tina/LOGO1.png" alt="" style="width:65px;">
                                     </div>
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/customized/chips.svg" alt="">
+                                        <img class="cusPic" src="../images/nnnnn/ipf.png" alt="">
                                     </div>
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/customized/cookies.svg" alt="">
+                                        <img class="cusPic" src="../images//nnnnn/ipc.png" alt="" style="width:53px;">
                                     </div>
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/customized/chocolate.svg" alt="">
+                                        <img class="cusPic" src="../images//nnnnn/ipcho.png" alt="">
                                     </div>
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/customized/lollip.svg" alt="">
+                                        <img class="cusPic" src="../images//nnnnn/ipcandy.png" alt="">
                                     </div>                                    
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/customized/candy.svg" alt="">
+                                        <img class="cusPic" src="../images/index/IP-2.png" alt="" style="width:56px;">
                                     </div>                                    
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/customized/machi.svg" alt="">
+                                        <img class="cusPic" src="../images/index/IP-1.png" alt="" style="width:60px;">
                                     </div>
                                     <div class="pic">
-                                        <img class="cusPic" id="image">
+                                        <img class="cusPic" id="image" style="width:53px;">
                                     </div>
                                     <div class="upfile">
                                         <span>上傳您得圖片:</span>

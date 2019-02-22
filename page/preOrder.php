@@ -22,13 +22,14 @@
     <title>大零食家 - 預購商品頁</title>
     <link rel="stylesheet" href="../css/preOrder.css">
     <link rel="stylesheet" href="../css/nnnnn.css">
-    <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
     <script src="../js/preOrder.js"></script>
     <script src="../js/search.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/showStar.js"></script>
+    <script src="../js/addCart.js"></script>
+
 </head>
 <body> 
     <header>
@@ -135,7 +136,6 @@
             <div class="loginTab-content">
                 <!-----------------------------------登入表單------------------------------------  -->
                 <form id="Loginpage" class="tabContent">
-
                     <table class="loginBox">
                         <tr>
                             <td>
@@ -161,8 +161,6 @@
                     <div class="forgetPsw">
                         <p id="forgetPswLink" class="loginTab " onclick="changeway(event,'forgetPsw')"> 忘記密碼</p>
                     </div>
-
-
                 </form>
                 <!------------------------------------------------註冊表單------------------------------------------  -->
                 <form id="signup" class="tabContent">
@@ -174,7 +172,6 @@
                                     placeholder="不得少於2碼">
 
                             </td>
-
                         </tr>
                         <tr>
                             <td>
@@ -182,7 +179,6 @@
                                 <input type="password" name="signUpMemPsw" id="signUpMemPsw" size="12"
                                     placeholder="請輸入密碼">
                             </td>
-
                         </tr>
                         <tr>
                             <td>
@@ -190,14 +186,12 @@
                                 <input type="email" name="signUpMemEmail" id="signUpMemEmail" size="20"
                                     autocomplete="off">
                             </td>
-
                         </tr>
                         <tr>
                             <td class="formBtn">
                                 <input type="button" id="btnSignUp" value="註冊" class="cart">
                             </td>
                         </tr>
-
                     </table>
                 </form>
                 <!-- ---------------------------------------忘記密碼 -->
@@ -221,19 +215,11 @@
                             <td class="formBtn">
                                 <input type="button" id="forgetSend" value="寄送密碼" class="cart">
                             </td>
-
                         </tr>
-
                     </table>
-
-
                 </form>
-
             </div>
-
         </div>
-
-
     </div>
     <div class="preOrder">
         <div class="wrap">
@@ -441,7 +427,7 @@
                             <div class="clearfix"></div>
                         </div>
                     </div>                    
-                    <button class="cart">加入購物車</button>
+                    <button class="cart" id="realCart">加入購物車</button>
                 </div>
             </div>
         </div>

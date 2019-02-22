@@ -109,6 +109,30 @@ function getBoxSnack(month){
     xhr.open('get', url, true);
     xhr.send(null);
 }
+function forCart(){
+    var cart = document.getElementById('realCart');
+    if (document.getElementById('month_3').hasAttribute('checked') == true ){
+        var snackNo = 51;
+        var price = 900;
+    }
+    if (document.getElementById('month_6').hasAttribute('checked') == true ){
+        var snackNo = 52;
+        var price = 1800;
+    }
+    if (document.getElementById('month_12').hasAttribute('checked') == true ){
+        var snackNo = 53;
+        var price = 3600;
+    }
+    
+    var chips = document.getElementById('chips').value;
+    var candy = document.getElementById('candy').value;
+    var cookie = document.getElementById('cookie').value;
+    var chocolate = document.getElementById('chocolate').value;
+    var note = '洋芋片' + chips + ' 糖果' + candy + ' 餅乾' + cookie + ' 巧克力' + chocolate;
+
+    var cartId = snackNo + '|' + price + '|3|' + note;
+    cart.id = cartId; 
+}
 function init() {
     //取得加減符號的物件關聯並設定事件處理器
     var minusBtns = document.getElementsByClassName('numMinus');
@@ -137,6 +161,16 @@ function init() {
         getBoxSnack(3);
     });
 
+    var monthsRadio = document.getElementsByName('months');
+    for(var k = 0 ; k < 3; k++){
+        monthsRadio[k].addEventListener('click', function (e){
+            for( k = 0; k < 3; k++){
+                monthsRadio[k].removeAttribute('checked');
+            }
+            e.target.setAttribute('checked', true);
+        })
+    }
+
     for (var j = 0; j < 3; j++) {
         months[j].addEventListener('click', function (e) {
             //因為被點擊到的要換色，其他要恢復原狀
@@ -152,6 +186,7 @@ function init() {
 
     document.getElementById('angle_left').addEventListener('click', showPrev);
     document.getElementById('angle_right').addEventListener('click', showNext);
+    document.getElementById('realCart').addEventListener('click', forCart);
 }
 window.addEventListener('load', init);
 

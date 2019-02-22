@@ -46,7 +46,6 @@
     <title>大零食家 - 零食列表</title>
     <link rel="stylesheet" href="../css/nnnnn.css">
     <link rel="stylesheet" href="../css/shopping.css">
-    <link rel="stylesheet" href="../css/header.css">
     <script src="../js/common.js"></script>
     <script src="../js/Chart.js"></script>
     <script src="../js/shopping.js"></script>
@@ -338,9 +337,9 @@
                             echo '<li class="page-item"><a href="shopping.php?pageNum='.$prev.'" id="last" class="page-link"><i class="fas fa-chevron-left"></i></a></li>';
                             for($i=1; $i<=$pages; $i++){
                                 if( $i == $pageNum ){
-                                    echo '<li class="page-item"><a href="shopping.php?pageNum='.$i.'" class="page-link nowLoc">0'.$i.'</a></li>';
+                                    echo '<li class="page-item"><a href="shopping.php?pageNum='.$i.'" class="page-link nowLoc">'.$i.'</a></li>';
                                 }else{
-                                    echo '<li class="page-item"><a href="shopping.php?pageNum='.$i.'" class="page-link">0'.$i.'</a></li>';
+                                    echo '<li class="page-item"><a href="shopping.php?pageNum='.$i.'" class="page-link">'.$i.'</a></li>';
                                 }
                             }
                             echo '<li class="page-item"><a href="shopping.php?pageNum='.$next.'" id="next" class="page-link"><i class="fas fa-chevron-right"></i></a></li>';
