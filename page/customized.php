@@ -165,18 +165,13 @@ try {
                                     <div class="pic">
                                         <img class="cusPic" id="image">
                                     </div>
-                                    <input type="file" id="theFile">
-                                </div>  
-             <!-- <script>
-                var bbb = document.getElementClassName("bbb");
-                for(var i = 0;i<bbb.length;i++){
-                    doccument.getElementClassName("bbb")[i].addEventListener("click",bbb);
-                    function bbb (e){
-                        console.log(e.target);
-                    }
-                }
-             </script>                    -->
-                              
+                                    <label for="theFile">
+                                        <input type="file" id="theFile" style="display:none">     
+                                        <p>上傳您的圖案</p>
+                                        <!-- <p>8M內，jpg、png之圖檔。</p> -->
+                                    </label>
+                                </div>
+                                                                                           
             <p>
                 <textarea id="fileInfo" rows="5" cols="70" style="display:none;"></textarea>
             </p>
@@ -187,7 +182,15 @@ try {
         </div>
     </div>
     </div>
-   
+      <!-- <script>
+                var bbb = document.getElementClassName("bbb");
+                for(var i = 0;i<bbb.length;i++){
+                    doccument.getElementClassName("bbb")[i].addEventListener("click",bbb);
+                    function bbb (e){
+                        console.log(e.target);
+                    }
+                }
+             </script>                    -->
       <div id="step2" class="step-content-body out">
         <div class="customized">
             <!-- <div class="priceSign">$150</div> -->
@@ -355,15 +358,15 @@ try {
                     <div class="shopping">
                         <div class="goodBox">
                                 <ul class="tab-content-3">
-                                    <li class="good yellow">購物車</li>
-                                    <li class="good">收藏</li>
-                                    <li class="good">巧克力</li>
+                                    <!-- <li class="good yellow">購物車</li>
+                                    <li class="good">收藏</li> -->
+                                    <li class="good yellow">巧克力</li>
                                     <li class="good">洋芋片</li>
                                     <li class="good">餅乾</li>
                                     <li class="good">糖果</li>
                                 </ul>                   
             <?php 
-                $cusSnack=array("巧克力","巧克力","巧克力","巧克力","洋芋片","餅乾","糖果");
+                $cusSnack=array("巧克力","洋芋片","餅乾","糖果");
                 $ln=count($cusSnack);
                 $arr_row=array();
 
@@ -487,14 +490,19 @@ try {
         <p id="copy">Copyright©2019 Snack Master</p>
     </div>
 </footer>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src="../js/customizedstep.js"></script>
-    <script src="../js/header.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" defer></script>
-    <script src="../js/jquery.ui.touch-punch.js"></script>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src="../js/customizedstep.js"></script>
+  <script src="../js/header.js"></script>
+   <!-- Draggable -->
   
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" defer></script>
+   <script src="../js/jquery.ui.touch-punch.js"></script>
+
+<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js "></script>
+<script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <script>
 //前:50  後：49 上：48 左：51 右：52 
     
@@ -2037,7 +2045,7 @@ function fileChange(){
 	readFile.addEventListener('load',function(){
 		var image = document.getElementById('image');
 		image.src = readFile.result;
-		image.style.width = '400px';
+		// image.style.width = '400px';
 		image.style.maxHeight = '300px';
 	});
 
