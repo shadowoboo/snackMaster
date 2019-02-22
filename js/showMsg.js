@@ -72,7 +72,8 @@ function sendMsg(){
                             <div class="memId">
                                 <p>${msgArr[i].memId}</p><button class="report">...</button>
                             </div>
-                            <p class="msgCtx">${ strip_tags(msgArr[i].msgText)}!</p>
+                            <p class="msgCtx">${msgArr[i].msgText}</p>
+                            <p class="msgTime">留言時間:${msgArr[i].msgTime}</p>
                         </div>
                     </div>`
                 }
@@ -81,6 +82,7 @@ function sendMsg(){
         };
         $(this).prev().val('');
         $(this).parent().prev().children().last().html('<i class="fas fa-comment"></i>隱藏留言');
+
         }else{
         //登入false->把留言內容寫入secction後 等到確定登入了再送資料庫並重撈。    
             alert('登入會員後才能進行留言');
@@ -125,7 +127,8 @@ function msgBtnAdd(){
                                 <div class="memId">
                                     <p>${msgArr[i].memId}</p><button class="report">...</button>
                                 </div>
-                                <p class="msgCtx">${msgArr[i].msgText}!</p>
+                                <p class="msgCtx">${msgArr[i].msgText}</p>
+                                <p class="msgTime">留言時間:${msgArr[i].msgTime}</p>
                             </div>
                         </div>`
                     }
