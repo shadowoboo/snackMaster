@@ -359,7 +359,7 @@
                                             </div>
                                         </a>
                                         <div class="countryInfoAddCart">
-                                            <button class="cart">加入購物車</button>
+                                            <button class="cart" id="<?php echo "{$arr_row[0]['snackNo']}|{$arr_row[0]['snackPrice']}|0" ?>">加入購物車</button>
                                         </div>
                                         <div class="countryInfoHeart">
                                             <button class="heart" id="<?php echo $arr_row[0]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -397,7 +397,7 @@
                                         </div>
                                     </a>
                                     <div class="countryInfoAddCart">
-                                        <button class="cart">加入購物車</button>
+                                        <button class="cart" id="<?php echo "{$arr_row[1]['snackNo']}|{$arr_row[1]['snackPrice']}|0" ?>">加入購物車</button>
                                     </div>
                                     <div class="countryInfoHeart">
                                         <button class="heart" id="<?php echo $arr_row[1]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -434,7 +434,7 @@
                                         </div>
                                     </a>
                                     <div class="countryInfoAddCart">
-                                        <button class="cart">加入購物車</button>
+                                        <button class="cart" id="<?php echo "{$arr_row[2]['snackNo']}|{$arr_row[2]['snackPrice']}|0" ?>">加入購物車</button>
                                     </div>
                                     <div class="countryInfoHeart">
                                         <button class="heart" id="<?php echo $arr_row[2]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -471,7 +471,7 @@
                                     </div>
                                 </a>
                                     <div class="countryInfoAddCart">
-                                        <button class="cart">加入購物車</button>
+                                        <button class="cart" id="<?php echo "{$arr_row[3]['snackNo']}|{$arr_row[3]['snackPrice']}|0" ?>">加入購物車</button>
                                     </div>
                                     <div class="countryInfoHeart">
                                         <button class="heart" id="<?php echo $arr_row[3]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -508,7 +508,7 @@
                                     </div>
                                 </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[4]['snackNo']}|{$arr_row[4]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[4]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -545,7 +545,7 @@
                                     </div>
                                 </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[5]['snackNo']}|{$arr_row[5]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[5]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -582,7 +582,7 @@
                                     </div>
                                 </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[6]['snackNo']}|{$arr_row[6]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[6]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -619,7 +619,7 @@
                                     </div>
                                 </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[7]['snackNo']}|{$arr_row[7]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[7]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -705,7 +705,7 @@
                                     <h3>$<?php echo $arr_row[0]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[0]['snackNo']}|{$arr_row[0]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[0]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -732,7 +732,7 @@
                                     <h3>$<?php echo $arr_row[1]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[1]['snackNo']}|{$arr_row[1]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[1]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -759,7 +759,7 @@
                                     <h3>$<?php echo $arr_row[2]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[2]['snackNo']}|{$arr_row[2]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[2]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -786,7 +786,7 @@
                                     <h3>$<?php echo $arr_row[3]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[3]['snackNo']}|{$arr_row[3]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[3]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -813,7 +813,7 @@
                                     <h3>$<?php echo $arr_row[4]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[4]['snackNo']}|{$arr_row[4]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[4]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -840,7 +840,7 @@
                                     <h3>$<?php echo $arr_row[5]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[5]['snackNo']}|{$arr_row[5]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[5]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -867,7 +867,7 @@
                                     <h3>$<?php echo $arr_row[6]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[6]['snackNo']}|{$arr_row[6]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[6]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -894,7 +894,7 @@
                                     <h3>$<?php echo $arr_row[7]["snackPrice"];?></h3>
                                 </div>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[7]['snackNo']}|{$arr_row[7]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[7]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -933,7 +933,7 @@
                 <h4 class="itemName">[<?php echo $salesRow[0]['nation']?>]<?php echo $salesRow[0]['snackName']?></h4>
                 <p class="price">$<?php echo $salesRow[0]['salePrice']?></p>
                 <div class="itemBtns">
-                    <button class="cart">加入購物車</button>
+                    <button class="cart" id="<?php echo "{$salesRow[0]['snackNo']}|{$salesRow[0]['salePrice']}|2|{$salesRow[0]['snackPrice']}|{$salesRow[0]['clearanceNo']}" ?>">加入購物車</button>
                 </div>
                 <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[0]['quantity']?></span>&nbsp;件</p>
             </div>
@@ -944,7 +944,7 @@
                 <h4 class="itemName">[<?php echo $salesRow[1]['nation']?>]<?php echo $salesRow[1]['snackName']?></h4>
                 <p class="price">$<?php echo $salesRow[1]['salePrice']?></p>
                 <div class="itemBtns">
-                    <button class="cart">加入購物車</button>
+                    <button class="cart" id="<?php echo "{$salesRow[1]['snackNo']}|{$salesRow[1]['salePrice']}|2|{$salesRow[1]['snackPrice']}|{$salesRow[1]['clearanceNo']}" ?>">加入購物車</button>
                 </div>
                 <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[1]['quantity']?></span>&nbsp;件</p>
             </div>
@@ -955,7 +955,7 @@
                 <h4 class="itemName">[<?php echo $salesRow[2]['nation']?>]<?php echo $salesRow[2]['snackName']?></h4>
                 <p class="price">$<?php echo $salesRow[2]['salePrice']?></p>
                 <div class="itemBtns">
-                    <button class="cart">加入購物車</button>
+                    <button class="cart" id="<?php echo "{$salesRow[0]['snackNo']}|{$salesRow[0]['salePrice']}|2|{$salesRow[0]['snackPrice']}|{$salesRow[0]['clearanceNo']}" ?>">加入購物車</button>
                 </div>
                 <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[2]['quantity']?></span>&nbsp;件</p>
             </div>
@@ -1499,7 +1499,7 @@
         }
 
         function init() {
-            monthRotate();
+            monthRotate(e);
             window.addEventListener('resize', monthRotate);
         }
 
