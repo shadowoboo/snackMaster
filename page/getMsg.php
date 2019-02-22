@@ -3,6 +3,7 @@ class rsp{
     public $memPic;
     public $memId;
     public $msgCtx;
+    public $msgTime;
 }
 
 $rspArr =[];
@@ -18,6 +19,7 @@ require_once("connectcd105g2.php");
     $rsp->memPic=$msgCtx['memPic'];
     $rsp->memId=$msgCtx['memId'];
     $rsp->msgText=$msgCtx['msgText'];
+    $rsp->msgTime=$msgCtx['msgTime'];
     $rspArr[]=$rsp;
   }  
 

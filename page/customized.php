@@ -75,12 +75,12 @@ try {
                     
                     <div class="leftBox">
                         <div id="ctrl_bar">
-                            <div class="btn btn_front dimension" id="btn_front">前</div>
-                            <div class="btn btn_back dimension" id="btn_back">後</div>
-                            <div class="btn btn_top dimension" id="btn_top">上</div>
-                            <div class="btn btn_left dimension" id="btn_left">左</div>
-                            <div class="btn btn_right dimension" id="btn_right">右</div>
-                            <div class="btn rotateX dimension" id="rotateX">轉</div>
+                            <div class="btn btn_front dimension"  id="btn_front">前</div>
+                            <div class="btn btn_back dimension"  id="btn_back">後</div>
+                            <div class="btn btn_top dimension"  id="btn_top">上</div>
+                            <div class="btn btn_left dimension"  id="btn_left">左</div>
+                            <div class="btn btn_right dimension"  id="btn_right">右</div>
+                            <div class="btn rotateX dimension"  id="rotateX">轉</div>
                               <!-- <div class="btn rotateY" id="rotateY">Y軸轉轉</div>-->
                             <!-- <div class="btn rotateZ dimension" id="rotateZ">轉</div>  -->
                         </div>
@@ -89,21 +89,21 @@ try {
                                     <div class="box boxBase" id="box_15">
                                         <div class="surface surface_top" id="cover_out_15">
                                             <!-- <img src="ip2.png" id="a1" alt=""> -->                                      
-                                            <img id="cusImg_top" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+                                            <!-- <img id="cusImg_top" src="../images/tina/LOGO1.png" alt="" style="display:none;"> -->
                                         </div>
-                                        <div class="surface surface_top_inner" id="cover_in_15">
-                                        </div>
-                                        <div class="surface surface_down">
+                                        <!-- <div class="surface surface_top_inner" id="cover_in_15">
+                                        </div> -->
+                                        <div class="surface surface_down" id="cover_down">
                                         <img id="cusImg_down" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
-                                        <div class="surface surface_back"></div>
-                                        <div class="surface surface_front">
+                                        <div class="surface surface_back" id="cover_back"></div>
+                                        <div class="surface surface_front" id="cover_front">
                                         <img id="cusImg_front" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
-                                        <div class="surface surface_left">
+                                        <div class="surface surface_left" id="cover_left">
                                         <img id="cusImg_left" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
-                                        <div class="surface surface_right">
+                                        <div class="surface surface_right" id="cover_right">
                                         <img id="cusImg_right" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
                                     </div>
@@ -165,18 +165,16 @@ try {
                                     <div class="pic">
                                         <img class="cusPic" id="image">
                                     </div>
-                                    <input type="file" id="theFile">
-                                </div>  
-             <!-- <script>
-                var bbb = document.getElementClassName("bbb");
-                for(var i = 0;i<bbb.length;i++){
-                    doccument.getElementClassName("bbb")[i].addEventListener("click",bbb);
-                    function bbb (e){
-                        console.log(e.target);
-                    }
-                }
-             </script>                    -->
-                              
+                                    <div class="upfile">
+                                        <span>上傳您得圖片:</span>
+                                        <label for="theFile">
+                                            <input type="file" id="theFile" style="display:none">                                             
+                                            <p>選取檔案(png/jpg)</p>
+                                            <!-- <p>8M內，jpg、png之圖檔。</p> -->
+                                        </label>
+                                    </div>
+                                </div>
+                                                                                           
             <p>
                 <textarea id="fileInfo" rows="5" cols="70" style="display:none;"></textarea>
             </p>
@@ -187,7 +185,15 @@ try {
         </div>
     </div>
     </div>
-   
+      <!-- <script>
+                var bbb = document.getElementClassName("bbb");
+                for(var i = 0;i<bbb.length;i++){
+                    doccument.getElementClassName("bbb")[i].addEventListener("click",bbb);
+                    function bbb (e){
+                        console.log(e.target);
+                    }
+                }
+             </script>                    -->
       <div id="step2" class="step-content-body out">
         <div class="customized">
             <!-- <div class="priceSign">$150</div> -->
@@ -355,15 +361,15 @@ try {
                     <div class="shopping">
                         <div class="goodBox">
                                 <ul class="tab-content-3">
-                                    <li class="good yellow">購物車</li>
-                                    <li class="good">收藏</li>
-                                    <li class="good">巧克力</li>
+                                    <!-- <li class="good yellow">購物車</li>
+                                    <li class="good">收藏</li> -->
+                                    <li class="good yellow">巧克力</li>
                                     <li class="good">洋芋片</li>
                                     <li class="good">餅乾</li>
                                     <li class="good">糖果</li>
                                 </ul>                   
             <?php 
-                $cusSnack=array("巧克力","巧克力","巧克力","巧克力","洋芋片","餅乾","糖果");
+                $cusSnack=array("巧克力","洋芋片","餅乾","糖果");
                 $ln=count($cusSnack);
                 $arr_row=array();
 
@@ -437,12 +443,7 @@ try {
         //===設定sendSnack.onclick 事件處理程序是 sendForm
         // $id('sendSnack').onclick = sendSnack;
     </script>     
-      <div id="stepLast" class="step-content-body out">Completed</div>
-      <!-- <div class="step-content-foot">
-        <button type="button" class="active" name="prev">上一步</button>
-        <button type="button" class="active" name="next">下一步</button>
-        <button type="button" class="active out" name="finish"><a href="#">加入購物車</a></button>
-      </div> -->
+      <!-- <div id="stepLast" class="step-content-body out">Completed</div> -->
     </div>
     
   </div>
@@ -451,13 +452,20 @@ try {
         <button type="button" class="active" name="next">下一步</button>
         <button type="button" class="active out" name="finish"><a href="#">加入購物車</a></button>
   </div>
+<!-- 
+  <input type="button" value="轉為圖檔" /> -->
+  <fieldset></fieldset>
+  <main></main>
+  <figure></figure>
+  <aside></aside>
+  <picture></picture>
+  <article></article>
 
-  <input type="button" value="轉為圖檔" />
-  <fieldset>
-    <legend>圖檔</legend>
-    <div>
-    </div>
-  </fieldset>
+  <form id="myForm">
+    <input type="hidden" name="myImage" id="myImage">
+  </form>  
+
+
   <footer>
     <div class="footer_ip">
         <div class="ip_size">
@@ -488,29 +496,183 @@ try {
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script src="../js/customizedstep.js"></script>
   <script src="../js/header.js"></script>
-    <!-- Draggable -->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <!-- Draggable -->
+  
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" defer></script>
    <script src="../js/jquery.ui.touch-punch.js"></script>
-   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js "></script>
+
 <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js "></script>
 <script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-    
 <script>
-    $(":button").click(function() {
-        for($i=49;$i<=50;$i++){
-            html2canvas($("div")[$i]).then(function(canvas) {
-                var $div = $("fieldset div");
-                $div.empty();
-                $("<img />", { src: canvas.toDataURL("image/png") }).appendTo-($div);
-            });
-        }
-      
-    });
-  </script>
+//前:50  後：49 上：48 左：51 右：52 
+    
+    //   $(":button").click(function() {
+    //   html2canvas($("#cover_front")[0]).then(function(canvas) {
+    //       var $div = $("fieldset");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
+            
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
+            
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
+                
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
 
+    //   $(":button").click(function() {
+    //   html2canvas($("#cover_down")[0]).then(function(canvas) {
+    //       var $div = $("aside");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
+            
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
+            
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
+                
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
+
+    
+    // $(":button").click(function() {
+    //   html2canvas($("#cover_back")[0]).then(function(canvas) {
+    //       var $div = $("main");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
+            
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
+            
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
+                
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
+    
+    // $(":button").click(function() {
+    //   html2canvas($("#cover_left")[0]).then(function(canvas) {
+    //       var $div = $("picture");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
+            
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
+            
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
+                
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
+    
+    // $(":button").click(function() {
+    //   html2canvas($("#cover_right")[0]).then(function(canvas) {
+    //       var $div = $("figure");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
+            
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
+            
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
+                
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
+
+    
+    // $(":button").click(function() {
+    //   html2canvas($("#section_7")[0]).then(function(canvas) {
+    //       var $div = $("article");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
+            
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
+            
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
+                
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
+  </script>
 
   <script>
     const boxBases = document.querySelectorAll(".boxBase");
@@ -716,7 +878,7 @@ try {
     //要分成 "遠方來的客人" 和 "在地旅行的人"
     //"遠方的客人"只要新生成一個child在這片土地
     //"在地旅行的人"只要移動它的位置
-    var drop_count = 1;
+    drop_count = 1; //設為全域，讓手機板JQ可以使用
     console.log(`drop_count: ${drop_count}`);//drop_count計數處法第幾次drop事件 一觸發+1
     function dropped(e) {
         e.preventDefault();
@@ -757,6 +919,7 @@ try {
             img.classList.add("droped_img");//添加droped_img 為了好控制 使用 classList 屬性是取得元素 Class 的一種便利方式
             img.style.zIndex = drop_count;//z-index會一直變大
             img.id = "a" + drop_count;//多個id名稱a1 a3 a5..
+
             // img.style.pointerEvents = "none"; //可以被穿透，讓後面的圖可以順利覆蓋
             img.style.transform = "translateX(0px) translateY(0px) rotate(0deg) scale(1)";
             console.log(`e.target.classList: ${e.target.classList}`);
@@ -769,11 +932,119 @@ try {
         }
     }
 
+    //JQ板拖曳事件 客製箱子與圖片 (含手機)
+    $(function(){
+        //點擊新增圖片到箱子表面
+        $(".cusPic").off("click").on("click",copyToSurface);
+        //新增工作面控制
+        $("#section_15 #ctrl_bar .btn").on("click",function(e){
+            $("#section_15 #ctrl_bar .btn").removeClass("working");
+            $(e.target).addClass("working");
+        })
+        //點擊droped_img觸發的事情，委託給父元素
+        $(".surface").on("click",".droped_img",function(e){
+                //如果拖曳中，不做事
+                if ( $(this).is('.ui-draggable-dragging') ) {
+                    return;
+                }
+                //新增個class="seclect"
+                $(e.target).addClass("select");
+        })
+        function copyToSurface(e){
+            // 如果不在工作面，就跳出，不做啦!!!!
+            if($("#section_15 .btn.working").length<=0){
+                return;
+            }
+            //抓現在是哪一面，工作面才工作
+            var tarSurfaceId = $("#section_15 .btn.working").attr("id");
+            tarSurfaceClass = tarSurfaceId.replace("btn","surface");
+            //複製圖片,更新屬性,塞進目標父層
+            var tarCusPic=$(e.target).clone();
+            console.log(tarCusPic);
+            tarCusPic.css({
+                "width":"50px",
+                "position":"absolute",
+                "zIndex":drop_count,
+                "transform":"translateX(0px) translateY(0px) rotate(0deg) scale(1)",
+            });
+            tarCusPic.attr("class","droped_img");
+            tarCusPic.attr("id","a"+drop_count);
+            //jq抓到的元素都是神奇陣列，補0避免意外
+            arrDropedImg.push(tarCusPic[0]);//做一個陣列把動態添加元素的資料先存起來，之後統一操作
+            console.log(arrDropedImg);
+            //塞入指定父層
+            $("."+tarSurfaceClass).append($(tarCusPic));
+            //設定JQ拖曳事件
+            tarCusPic.draggable({
+                start: function(e) {
+                    //拖曳開始時，zIndex等級++，確保在最上層
+                    drop_count++;
+                    $(e.target).css("zIndex",drop_count);
+                    $(".droped_img").removeClass("select");
+                    $(e.target).addClass("select"); //增加class，有被選到的感覺
+                },
+                drag: function(e) {
+                },
+                stop: function(e) { //結束拖曳
+                    $(e.target).removeClass("select"); //移除class
+                }
+            })
+            .on("touchend",function(e){
+                if ( $(this).is('.ui-draggable-dragging') ) {
+                    return;
+                }
+                if(getIsTouch()){ //如果滑動距離太短，視為click。(針對安卓)
+                    $(e.target).addClass("select");
+                }
+            })
+            // .on("click tap",function(e){ //串點擊事件
+            //     //如果拖曳中，不做事
+            //     if ( $(this).is('.ui-draggable-dragging') ) {
+            //         return;
+            //     }
+            //     //新增個class="seclect"
+            //     $(e.target).addClass("select");
+            // });
+            
+        }
+    })
+    //android在JQ dragable之後click失效的問題
+    //JQ android touch太過靈敏蓋掉click的解決方案
+    //偵測滑動距離，太短的不滑，讓他觸發click。
+    var touchValue = {x:5,y:5,sx:0,sy:0,ex:0,ey:0}; //initialize the touch values
+    window.addEventListener("touchstart",function(){
+        var event=event || window.event;
+        touchValue.sx = event.targetTouches[0].pageX;
+        touchValue.sy = event.targetTouches[0].pageY;
+        touchValue.ex = touchValue.sx;
+        touchValue.ey = touchValue.sy;
+    });
+    window.addEventListener("touchmove", function(event){
+        var event=event || window.event;
+        event.preventDefault();
+        touchValue.ex = event.targetTouches[0].pageX;
+        touchValue.ey = event.targetTouches[0].pageY;
+    });
+    window.addEventListener("touchend", function(event){
+        var event=event || window.event;
+        var changeX = touchValue.ex - touchValue.sx;
+        var changeY = touchValue.ey - touchValue.sy;
+        //console.log("X:"+changeX+" Y:"+changeY);
+        window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty(); 
+    });
+    function getIsTouch(){
+        var changeX = touchValue.ex - touchValue.sx;
+        var changeY = touchValue.ey - touchValue.sy;
+        if(Math.abs(changeX)<=touchValue.x&&Math.abs(changeY)<=touchValue.y){
+            return true
+        }else return false
+    }
 
     //dropedImgCtrl
     function dropedCtrl(e) {
         switch (this.id) {
             case "btn_big":
+                //桌機板
                 arrDropedImg.forEach(el => {
                     if (el.classList.contains("select")) {
                         console.log("to be bigger");
@@ -788,6 +1059,17 @@ try {
                         el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
                     }
                 })
+                // //手機板
+                // // document.getElementsByClassName("tip")[0]
+                // var tarPic=document.getElementsByClassName(".droped_img.select");
+                // console.log(`tarPic: ${tarPic}`);
+                // console.log(tarPic);
+                
+                // let arr = tarPic.style.transform.split(" ");
+                // let newScale = parseFloat(arr[3].replace("scale(", "").replace(")", "")) + 0.5;
+                // arr[3] = "scale(" + newScale + ")";
+                // tarPic.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+            
                 break;
             case "btn_small":
                 arrDropedImg.forEach(el => {
@@ -953,150 +1235,150 @@ try {
 </script>
 
 <script>
-if($(window).width() > 767){
+// if($(window).width() > 767){
     
-//任意處點擊解除拖曳圖片的選取狀態
-var section15 = document.querySelector("#section_15");
-        section15.addEventListener("click", removeDropImgTag);
-        function removeDropImgTag(e) {
-                //btnSelect是個不好的判斷法，因為目前是泡泡傳到div裡的圖片上所以才會產生btnSelect
-                //目前已知會造成每個圖片都被上class
-                if ((e.target.classList.contains("droped_img")) == false && (e.target.classList.contains("btnSelect")) == false) {
-                        arrDropedImg.forEach(el => {
-                                el.classList.remove("select");
-                        })
-                }
-        }
-}else{
-    //丟圖片進去
-    // var dropPic_top = document.querySelector('#cusImg_top');
-    //      var img = document.querySelectorAll('.cusPic');
-    //      for (var i = 0; i < img.length; i++){
-    //          img[i].addEventListener('click', function (e) {
-    //          var imgSrc = e.target.src;
-    //          dropPic_top.setAttribute("src", imgSrc)             
-    //          dropPic_top.style.display = 'block';
+// //任意處點擊解除拖曳圖片的選取狀態
+// var section15 = document.querySelector("#section_15");
+//         section15.addEventListener("click", removeDropImgTag);
+//         function removeDropImgTag(e) {
+//                 //btnSelect是個不好的判斷法，因為目前是泡泡傳到div裡的圖片上所以才會產生btnSelect
+//                 //目前已知會造成每個圖片都被上class
+//                 if ((e.target.classList.contains("droped_img")) == false && (e.target.classList.contains("btnSelect")) == false) {
+//                         arrDropedImg.forEach(el => {
+//                                 el.classList.remove("select");
+//                         })
+//                 }
+//         }
+// }else{
+//     //丟圖片進去
+//     // var dropPic_top = document.querySelector('#cusImg_top');
+//     //      var img = document.querySelectorAll('.cusPic');
+//     //      for (var i = 0; i < img.length; i++){
+//     //          img[i].addEventListener('click', function (e) {
+//     //          var imgSrc = e.target.src;
+//     //          dropPic_top.setAttribute("src", imgSrc)             
+//     //          dropPic_top.style.display = 'block';
              
              
 
-    //          },false);
-    //      }
+//     //          },false);
+//     //      }
 
-    //      $( "#cusImg_top" ).draggable();
-
-
+//     //      $( "#cusImg_top" ).draggable();
 
 
 
-         var dropPic_left = document.querySelector('#cusImg_left');
-         var img = document.querySelectorAll('.cusPic');
-         for (var i = 0; i < img.length; i++){
-             img[i].addEventListener('click', function (e) {
-             var imgSrc = e.target.src;
-             dropPic_left.setAttribute("src", imgSrc)             
-             dropPic_left.style.display = 'block';
+
+
+//          var dropPic_left = document.querySelector('#cusImg_left');
+//          var img = document.querySelectorAll('.cusPic');
+//          for (var i = 0; i < img.length; i++){
+//              img[i].addEventListener('click', function (e) {
+//              var imgSrc = e.target.src;
+//              dropPic_left.setAttribute("src", imgSrc)             
+//              dropPic_left.style.display = 'block';
              
              
 
-             },false);
-         }
+//              },false);
+//          }
           
-         $( "#cusImg_left" ).draggable();
+//          $( "#cusImg_left" ).draggable();
 
-        //  var dropPic_right = document.querySelector('#cusImg_right');
-        //  var img = document.querySelectorAll('.cusPic');
-        //  for (var i = 0; i < img.length; i++){
-        //      img[i].addEventListener('click', function (e) {
-        //      var imgSrc = e.target.src;
-        //      dropPic_right.setAttribute("src", imgSrc)             
-        //      dropPic_right.style.display = 'block';
+//         //  var dropPic_right = document.querySelector('#cusImg_right');
+//         //  var img = document.querySelectorAll('.cusPic');
+//         //  for (var i = 0; i < img.length; i++){
+//         //      img[i].addEventListener('click', function (e) {
+//         //      var imgSrc = e.target.src;
+//         //      dropPic_right.setAttribute("src", imgSrc)             
+//         //      dropPic_right.style.display = 'block';
              
              
 
-        //      },false);
-        //  }
+//         //      },false);
+//         //  }
           
-        //  $( "#cusImg_right" ).draggable();
+//         //  $( "#cusImg_right" ).draggable();
          
-        //  var dropPic_front = document.querySelector('#cusImg_front');
-        //  var img = document.querySelectorAll('.cusPic');
-        //  for (var i = 0; i < img.length; i++){
-        //      img[i].addEventListener('click', function (e) {
-        //      var imgSrc = e.target.src;
-        //      dropPic_front.setAttribute("src", imgSrc)             
-        //      dropPic_front.style.display = 'block';
+//         //  var dropPic_front = document.querySelector('#cusImg_front');
+//         //  var img = document.querySelectorAll('.cusPic');
+//         //  for (var i = 0; i < img.length; i++){
+//         //      img[i].addEventListener('click', function (e) {
+//         //      var imgSrc = e.target.src;
+//         //      dropPic_front.setAttribute("src", imgSrc)             
+//         //      dropPic_front.style.display = 'block';
              
              
 
-        //      },false);
-        //  }
+//         //      },false);
+//         //  }
           
-        //  $( "#cusImg_front" ).draggable();
+//         //  $( "#cusImg_front" ).draggable();
                   
-        //  var dropPic_down = document.querySelector('#cusImg_down');
-        //  var img = document.querySelectorAll('.cusPic');
-        //  for (var i = 0; i < img.length; i++){
-        //      img[i].addEventListener('click', function (e) {
-        //      var imgSrc = e.target.src;
-        //      dropPic_down.setAttribute("src", imgSrc)             
-        //      dropPic_down.style.display = 'block';
+//         //  var dropPic_down = document.querySelector('#cusImg_down');
+//         //  var img = document.querySelectorAll('.cusPic');
+//         //  for (var i = 0; i < img.length; i++){
+//         //      img[i].addEventListener('click', function (e) {
+//         //      var imgSrc = e.target.src;
+//         //      dropPic_down.setAttribute("src", imgSrc)             
+//         //      dropPic_down.style.display = 'block';
              
              
 
-        //      },false);
-        //  }
+//         //      },false);
+//         //  }
           
-        //  $( "#cusImg_down").draggable();
+//         //  $( "#cusImg_down").draggable();
 
 
 
-         //放大縮小旋轉刪除
+//          //放大縮小旋轉刪除
 
-         function doFirst(){
-            document.getElementById('btn_big').addEventListener('click',bigger);
-            document.getElementById('btn_small').addEventListener('click',smaller);
-            document.getElementById('btn_clk').addEventListener('click',rotateLeft);
-            document.getElementById('btn_clk_r').addEventListener('click',rotateRight);
-            document.getElementById('btn_del').addEventListener('click',clear);
-        }
-
-
-        function bigger(){
-            var image = document.getElementById('cusImg_left');
-                image.width = image.width * 1.05;
-                image.height = image.height * 1.05;
-
-        }
+//          function doFirst(){
+//             document.getElementById('btn_big').addEventListener('click',bigger);
+//             document.getElementById('btn_small').addEventListener('click',smaller);
+//             document.getElementById('btn_clk').addEventListener('click',rotateLeft);
+//             document.getElementById('btn_clk_r').addEventListener('click',rotateRight);
+//             document.getElementById('btn_del').addEventListener('click',clear);
+//         }
 
 
-        function smaller(){
-            var image= document.getElementById('cusImg_left');
-		image.width = image.width * 0.95;
-		image.height = image.height * 0.95;
-		console.log(image.width); 
-        }
+//         function bigger(){
+//             var image = document.getElementById('cusImg_left');
+//                 image.width = image.width * 1.05;
+//                 image.height = image.height * 1.05;
 
-        var deg = 0;
-        function rotateLeft(){
-            var image = document.getElementById('cusImg_left');
-            deg += 15;
-            image.style.transform = "rotate(" + deg + "deg)";
-        }
+//         }
 
-        var deg = 0;
-        function rotateRight(){
-            var image = document.getElementById('cusImg_left');
-            deg -= 15;
-            image.style.transform = "rotate(" + deg + "deg)";
-        }
 
-        function clear(){
-            var imgClear = document.getElementById('cusImg_left');
-	        imgClear.remove(image);
-        }
-        window.addEventListener('load', doFirst);
+//         function smaller(){
+//             var image= document.getElementById('cusImg_left');
+// 		image.width = image.width * 0.95;
+// 		image.height = image.height * 0.95;
+// 		console.log(image.width); 
+//         }
 
-        }
+//         var deg = 0;
+//         function rotateLeft(){
+//             var image = document.getElementById('cusImg_left');
+//             deg += 15;
+//             image.style.transform = "rotate(" + deg + "deg)";
+//         }
+
+//         var deg = 0;
+//         function rotateRight(){
+//             var image = document.getElementById('cusImg_left');
+//             deg -= 15;
+//             image.style.transform = "rotate(" + deg + "deg)";
+//         }
+
+//         function clear(){
+//             var imgClear = document.getElementById('cusImg_left');
+// 	        imgClear.remove(image);
+//         }
+//         window.addEventListener('load', doFirst);
+
+//         }
 
 </script>
 
@@ -1842,7 +2124,7 @@ function fileChange(){
 	readFile.addEventListener('load',function(){
 		var image = document.getElementById('image');
 		image.src = readFile.result;
-		image.style.width = '400px';
+		// image.style.width = '400px';
 		image.style.maxHeight = '300px';
 	});
 

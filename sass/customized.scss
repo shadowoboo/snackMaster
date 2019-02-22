@@ -6,9 +6,17 @@ body{
     background-color:#fadfd4 !important;
 }
 
-#goCustomized{
+#gocustomized{
     a {
-        color: #53a9f5;
+        color:$blue;
+    }
+}
+
+fieldset,aside,main,picture,figure,article{
+    img{
+        width:300px;    
+        height: 150px;
+        // display: none;
     }
 }
 
@@ -387,7 +395,7 @@ body{
                 &.select{
                     //border會佔面積，不太方便
                     outline:#e26565 dashed 5px;
-                    transition: 0.3s;
+                    transition: transform 0.3s;
                 }
             }
             #a1{
@@ -402,18 +410,18 @@ body{
     .pics{
         width:300px;
         height:150px;
+        margin-top: 10px;
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
         align-items: center;
-        background-color:#fff;
+        // background-color:#fff;
        
             img{
-                width:65px;
+                width:60px;
                 flex: 5;
                 cursor: move;
             }
-            
         }
         #btns15{
         position: relative;
@@ -497,7 +505,26 @@ body{
          }
         }
 }
-
+.form{
+    .upfile{
+            display: flex;
+            align-items: center;
+        label{
+            color: #fff;
+            background-color: #076baf;
+            margin: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;        
+            transition:all .2s;
+            // &:hover{
+            //     background-color: #fff;
+            //     color: #076baf; 
+            //     border:1px solid #076baf;  
+            // }
+        }
+    }
+}
 .cardBox{
     width:500px;
     margin:auto;
@@ -1039,6 +1066,7 @@ $cardY:600px;
         height: calc(100% - #{$areaHead});
         width: 100%;
         overflow: hidden; //不要露出卷軸
+        font-family: g2Font;
         // font-size: 20px;
         // vertical-align: center;
         //文字框被使用中的時候，提示使用者還在輸入中
@@ -1195,7 +1223,7 @@ $cardY:600px;
                         justify-content: center;
                         align-items: center;  
                         p{
-                            font-size:20px;
+                            font-size:24px;
                         }
                         span{
                             font-size: 25px;
@@ -1466,17 +1494,30 @@ $cardY:600px;
             }
             .pics{
                 width: 100%;
+                margin-top: 5%;
             }
         }
     }
     .form{
         width:100%;
+        height: 330px;
+        .upfile{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content:center;
+            // span{
+            //     width: 200px;
+            // }
+        }
     }
     .shopping{
         height: auto;
         .goodBox{
             ul{
-                flex-wrap:wrap;
+               .good{
+                   font-size: 18px;
+               }
             }
             .good-content{
                 display: flex;

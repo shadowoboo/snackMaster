@@ -1,6 +1,6 @@
 @import "reset";
 @import 'common';
-
+@import 'header';
 *{
     margin: 0;
     padding: 0;
@@ -9,14 +9,14 @@
     // color: $gray;
 }
 
+header nav .menu #list_appear .list #goGsell a{
+    color: $blue;
+}
 
 span {
     color: $gray;
 }
 
-a {
-    color: $blue; 
-}
 
 body {
     background-color: #eeffbc;
