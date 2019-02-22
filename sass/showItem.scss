@@ -6,7 +6,6 @@
     clear: both;
 }
 .breadcrumb{
-@import 'reset';
     display: flex;
     position: absolute;
     top:110px;
@@ -56,15 +55,23 @@
                 color: #fff;
                 letter-spacing: 2.8px;
             }
-            #allRank{
+            .notRank{
+                // background-color:rgb(173, 173, 173); 
+                visibility: hidden;
+            }
+            #rank0{
+                background-color:rgb(173, 173, 173); 
+            }
+            #rank1{
                 background-color: #ea5a5a;
             }
-            #catRank{
+            #rank2{
                 background-color: #00b96d;
             }
-            #flaRank{
+            #rank3{
                 background-color: #5cb3ff;
             }
+
         }
 
         #rankGrid{
@@ -225,7 +232,7 @@
                 }
                 .numInput{
                     margin: 0;
-                    height: 45px;
+                    height: 40px;
                     span{
                         width: 35px;
                         @media screen and (min-width: $moblie){
@@ -233,7 +240,7 @@
                         }
                     }
                     span,input{
-                        height: 45px;
+                        height: 40px;
                     }
                 }
             }
@@ -281,6 +288,16 @@
        .map{
            margin-top: 15px;
            order: 6;
+           #map{
+               width: 100%;
+               height: 400px;
+               position: relative;
+               #errMsg{
+                line-height: 400px;
+                text-align: center;
+                color: $coral;
+            }
+           }
        }
        @media screen and (min-width:$moblie){
             .rankWrap {
@@ -305,11 +322,12 @@
             }
             .map{
                 margin-top: 0px;
+
             }
        }
     }
     #comment{
-        height:80vh;
+        height:auto;
         border-radius: 100px;
         margin: 50px auto;
         @media screen and (min-width: $moblie) {
@@ -329,7 +347,7 @@
             padding-bottom: 17.5px;
 
             .memPic {
-                width: 11.33%;
+                width: 6.33%;
                 position: relative;
                 z-index: 2;
                 min-width: 40px;
@@ -341,6 +359,8 @@
             }
 
             .memCol {
+                // flex-grow: 1;
+                width: 93.67%;
                 margin-left: 10px;
 
                 .memId {
@@ -374,12 +394,12 @@
                 .commentCtx {
                     color: #737374;
                     font-family: g2Med;
+                    word-wrap:break-word; 
                 }
 
                 .msgs {
-                    height: 0;
                     overflow: hidden;
-                    transition: .3s;
+                    transition: .8s;
                 }
 
                 .msgsShow {
@@ -393,7 +413,8 @@
                     position: relative;
 
                     .memPic {
-                        width: 7.4%;
+                        width: 7.33%;
+
                     }
 
                     .memId {
@@ -475,10 +496,12 @@
         .msg {
             width: calc(63.95% + 2px);
             height: 30px;
+            padding:0 5px;
             border: solid 2px #076baf;
             border-radius: 10px;
             font-size: 14px;
             resize: none;
+            font-family: g2Med;
 
             @media screen and (min-width: $moblie) {
                 font-size: 16px;
