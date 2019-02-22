@@ -1,7 +1,7 @@
 // *{
-//     outline: 1px solid #f00;
+//     outline: 1px solid #ff0000;
 // }
-// @import "reset";
+@import "reset";
 @import "common";
 $tabColor:#076baf;
 $p:22px;
@@ -13,18 +13,19 @@ body{
 span{
     color:$blue;
 }
+input[type="number"]{
+    text-align: left;
+}
 
 .memWrap{
     width: 100%;
     height: auto;
     max-width: 1200px;
     margin: auto;
-    input[type="number"]{
-        text-align: left;
-    }
+    
    
     form{
-        width: 94%;
+        width: 92%;
         // margin: 45% auto 10% auto;
         height: auto;
         padding: 45px;
@@ -45,7 +46,7 @@ span{
                 div{
                    margin: auto;
                    margin-top: 5%; 
-                    width: 250px;
+                    // width: 250px;
                     // border: 2px dotted #076baf;
                     // border-radius: 50%;
                      
@@ -106,7 +107,7 @@ span{
                     // padding: 1% ;
                     input{
                         color: #076baf;
-                        width: 160px;
+                        width: 125px;
                         background-color: transparent;
                         border: 1px solid #fff;
                         font-family: g2Font;
@@ -171,6 +172,11 @@ span{
                 
                 }
             }
+            tr:last-child{
+                .modify{
+                    text-align: center;
+                }
+            }
            
         } 
     }
@@ -232,9 +238,9 @@ span{
 .wrapTabPanel{
     position: relative;
     width: 100%;
-    height: 100vh;
+    // height: 100vh;
     .tabPanel{
-        width: 85%;
+        width: 92%;
         height: auto;
         background-color: #fff;
         border-radius: 15px;
@@ -420,14 +426,65 @@ span{
             #listMore{
                 text-align: center;
                 a{
-                    color: $tabColor; 
+                    color: $blue; 
                     font-family: g2Font;
                     line-height: 2;
                 }
-                
-                
     
             }
+            .line{
+                width: 80%;
+                margin: auto;
+                height: 2px;
+                border-bottom: 2px solid $blue;
+                margin-bottom: 10px;
+            }
+            .orderItem{
+                width: 100%;
+               .orderItemList{
+                   tr{
+                       th{
+                          line-height: 1.6;
+                           font-size: 17px;
+                           color: $blue;
+                        //    width: 50px;
+                           font-family: g2Med;
+                       }
+                   }
+               }
+
+            }
+        
+            .evaLightBox{
+                width: 320px;
+                background: rgb(241, 239, 239);
+                border-radius: 10px;
+                .proPic{
+                    width: 100%;
+                    text-align: center;
+                    img{
+                        width: 25%;
+                    }
+                    p{
+                        color: $tabColor;
+                        line-height: 1.6;
+                      }
+                }
+                .evaStars{
+                    ul{
+                        li{
+                            p{
+                                color: $tabColor;
+                                line-height: 1.6;
+                                padding: 0 5px;
+                            }
+                        }
+                    }
+                }
+                
+                
+            }
+            
             
     
         }
@@ -469,6 +526,7 @@ span{
                                     font-size: $p;
                                     line-height: 2;
                                     color: $tabColor;
+                                    margin-top: 20px;
                                     span{
                                         font-size: $p;
                                         padding: 0 5px;
@@ -478,7 +536,7 @@ span{
                                 
                             }
                             .citemBtns{
-                                margin-top: 30px;
+                                margin-top: 15px;
                             }
                             
                         }
@@ -523,21 +581,7 @@ span{
     
     
 } 
-.footer{
-    bottom: unset;
-    #floor {
-        position: relative;
-        text-align: center;
-        #copy {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-            font-size: 1.2vw;
-        }
-    }
-}  
+
       
 
 
@@ -548,6 +592,44 @@ span{
         form{
             margin: auto ;
             margin-top: 35%;
+            .col-1{
+                width: 100%;
+                height: 100px;
+                
+                tr{
+                    width: 100%;
+                    height: 80px;
+                    td{
+                        
+                        text-align: center;
+                        padding-top: 1%;
+                        p{
+        
+                            input{
+                                width: 160px;
+                                
+                            }
+        
+                    }
+                    div{
+                        margin: auto;
+                        margin-top: 5%; 
+                         width: 230px;
+                         // border: 2px dotted #076baf;
+                         // border-radius: 50%;
+                          
+                         img{
+                             width: 200px; 
+                             padding-top: 2%;
+                                                      
+                             }
+                     }
+                    
+                
+                }
+        
+            }
+            
             .col-3{
                 tr:last-child{
                     text-align: center;
@@ -596,16 +678,36 @@ span{
                 }
                 
             }
+            
         
         }
+        
+
+    }
+    footer{
+        display: none;
     }
     
     
-    
-}
+    }
+    .wrapTabPanel{
+        #tab-2{
+            .orderItem{
+                .orderItemList{
+                    tr{
+                        th{
+                            width: 50px;
+                           
+                        }
+                    }
+                }
+            }
+        }
+    }
+}    
 //------------------桌機ＲＷＤ--------------------------
 
-@media screen and(min-width:769px){
+@media screen and(min-width:992px){
     .memWrap{
         
         form{
@@ -648,7 +750,8 @@ span{
                     td{                          
                         p{
                             font-size: $p;                           
-                            input{                               
+                            input{ 
+                                width: 160px;                              
                                 font-size: 18px;                                
                             }
                             img{
@@ -659,44 +762,45 @@ span{
                         }                      
                     }              
                     
-                }  
+                }
+                .col-3{         
+                    tr{
+                        td{                      
+                            p{
+                                padding: 0 20px;
+                                font-size: $p;                       
+                                span{
+                                    font-size: $p;
+                                }
+                            }
+                        }  
+                        
+            
+                        }
+                        tr:nth-child(3){
+                            td{
+                                text-align: left;
+                                span{
+                                    padding: 0 20px;
+                                    font-size: 20px;
+                                }
+                            }
+                        }
+                        tr:last-child{
+                            text-align: left;
+                            padding: 0 20px;
+                            .modify{
+                                button{
+                                    height: 35px;
+                                    font-size: 20px;
+                                    margin: 20px;
+                                }
+                            }
+                        }     
+                    }   
             }
             //----------- 成就等級------------
-            .col-3{         
-                tr{
-                    td{                      
-                        p{
-                            padding: 0 20px;
-                            font-size: $p;                       
-                            span{
-                                font-size: $p;
-                            }
-                        }
-                    }  
-                    
-        
-                    }
-                    tr:nth-child(3){
-                        td{
-                            text-align: left;
-                            span{
-                                padding: 0 20px;
-                                font-size: 20px;
-                            }
-                        }
-                    }
-                    tr:last-child{
-                        text-align: left;
-                        padding: 0 20px;
-                        .modify{
-                            button{
-                                height: 35px;
-                                font-size: 20px;
-                                margin: 20px;
-                            }
-                        }
-                    }     
-                } 
+            
             }       
 
     .itemTab2{
@@ -796,6 +900,20 @@ span{
                             width: 35%;
                         }
                     }
+                    
+                }
+                .orderItem{
+                   .orderItemList{
+                       tr{
+                           th{
+                               font-size: 20px;
+                               color: $blue;
+                               width: 160px;
+                               font-family: g2Med;
+                           }
+                       }
+                   }
+    
                 }
             }
             #tab-3{
@@ -832,21 +950,21 @@ span{
 
 
         }
-        
-
-            
-        //  .floor{
-        //         position: relative;
-        //         display: block;
-        //         #copy{
-        //             position: absolute;
-        //             top:80%;
-        //             left: 0%;
-        //             right: 0;
-        //             text-align: center;
-                   
-        //         }
-        //   }
+        footer{
+            // bottom: unset;
+            #floor {
+                position: relative;
+                text-align: center;
+                #copy {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    font-size: 1.2vw;
+                }
+            }
+        }  
         
     
     

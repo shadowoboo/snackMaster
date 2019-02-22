@@ -15,7 +15,7 @@
         $coupon -> bindValue(':imgSRC', $_REQUEST['imgSRC']);
         $coupon -> bindValue(':getWay', $_REQUEST['getWay']);
         $coupon -> execute();
-        echo "<script>alert('新增優惠券成功！');location.href='back_coupon.php';</script>";
+        echo "true";
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";

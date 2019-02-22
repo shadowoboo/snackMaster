@@ -20,7 +20,7 @@
         $snack -> bindValue(':snackPrice', $_REQUEST['snackPrice']);
         $snack -> bindValue(':snackIngre', $_REQUEST['snackIngre']);
         $snack -> bindValue(':snackVending', $_REQUEST['snackVending']);
-        $boxDate = $_REQUEST['boxDate']."-01";
+        $boxDate = $boxDate == ''? null:$_REQUEST['boxDate']."-01";
         $snack -> bindValue(':boxDate', $boxDate);
         $snack -> execute();
         echo "<script>alert('新增商品成功！');location.href='back_snack.php';</script>";

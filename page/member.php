@@ -22,6 +22,7 @@
         header("Location: homePage.php");
       
     }
+    
     $errMsg = "";
     try{
         require_once('connectcd105g2.php');
@@ -50,13 +51,13 @@
         }else{
             $commentRight= "";
         }
-        //預設大頭貼
-        //成就等級
+        //---------預設大頭貼-------------
+        //---------成就等級---------------
         // $grade_sql = "select mem.grade,lev.grade,lev.gradeName,lev.gradePoint from member mem JOIN masterlevel lev on mem.grade = lev.grade";
-        $grade_sql=" SELECT * FROM `member` JOIN masterlevel on member.grade = masterlevel.grade " ;
-        $levels = $pdo->query($grade_sql);
+        // $grade_sql=" SELECT * FROM `member` JOIN masterlevel on member.grade = masterlevel.grade " ;
+        $sql = "select gradePic,gradeName from masterlevel where grade ={$memRow["grade"]}";
+        $levels = $pdo->query($sql);
         $levRow = $levels->fetch(PDO::FETCH_ASSOC);
-        // $level_rank = 
 
         
     
@@ -98,21 +99,27 @@
 
     <section class="memWrap">
 
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="memUpdate.php" method="post" enctype="multipart/form-data" id="memInfo">
             <table class="col-12 col-1">
                 <tr>
                     <td>
                         <div>
                             <img id="headPic"
-                                src="<?php 
-                                echo $levRow["gradePic"]; 
+                                src="../images/<?php 
+                                if(isset($_SESSION["memPic"])==true){
+                                    // echo "no picture";
+                                    echo $_SESSION["memPic"];
+                                }else {
+                                    echo $memRow["memPic"];
+                                }
+
                              ?>">
                         </div>
 
                         <label class="memPic" for="upFile">
                             <p>上傳大頭貼<img src="../images/tina/pen.png" alt="編輯"></p>
 
-                            <input type="file" name="file" id="upFile">
+                            <input type="file" name="upFile" id="upFile">
 
                         </label>
 
@@ -125,6 +132,7 @@
             <table class="col-12 col-2">
                 <tr>
                     <td>
+                        <input type="hidden" name="memNo" value="<?php echo $memRow["memNo"];?>">
                         <p>
                             會員編號：<span><?php echo $memRow["memNo"];?></span>
                             <!-- <input type="text" name="nickName" value="我是帥帥" maxlength="15">
@@ -136,7 +144,8 @@
                     <td>
                         <p>
                             帳號：
-                            <input type="text" name="memId" value="<?php echo $memRow["memId"];?>" maxlength="15">
+                            <input type="text" name="memId" value="<?php echo $memRow["memId"];?>" maxlength="15"
+                                id="memId">
                             <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
@@ -146,7 +155,7 @@
                         <p>
                             密碼：
                             <input type="password" name="memPsw" value="<?php echo $memRow["memPsw"];?>" maxlength="15"
-                                autofocus>
+                                autofocus id="memPsw">
                             <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
@@ -155,7 +164,8 @@
                     <td>
                         <p>
                             姓名：
-                            <input type="text" name="memName" value="<?php echo $memRow["memName"];?>" maxlength="12">
+                            <input type="text" name="memName" value="<?php echo $memRow["memName"];?>" maxlength="12"
+                                id="memName">
                             <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
@@ -164,7 +174,8 @@
                     <td>
                         <p>
                             電話：
-                            <input type="number" name="phone" value="<?php echo $memRow["memPhone"];?>" maxlength="10">
+                            <input type="number" name="phone" value="<?php echo $memRow["memPhone"];?>" maxlength="10"
+                                id="memPhone">
                             <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
@@ -173,7 +184,8 @@
                     <td>
                         <p>
                             信箱：
-                            <input type="email" name="email" value="<?php echo $memRow["email"];?>" maxlength="20">
+                            <input type="email" name="email" value="<?php echo $memRow["email"];?>" maxlength="20"
+                                id="email">
                             <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
@@ -204,7 +216,7 @@
                 <tr>
                     <td>
                         <div class="modify">
-                            <button class="action">確認修改</button>
+                            <button class="action" id="btnmodify">確認修改</button>
                         </div>
                     </td>
                 </tr>
@@ -369,12 +381,89 @@
                 <div id="listMore">
                     <p><a href="#">訂單明細v</a> </p>
                 </div>
+                <div class=line></div>
+                <div id="proEva" class="orderItem">
+                    <table class="orderItemList">
+                        <tr>
+                            <th>商品</th>
+                            <th>品名</th>
+                            <th>數量</th>
+                            <th>單價</th>
+                            <th>小計</th>
+                            <th>備註</th>
+                            <th>評價狀態</th>
+                        </tr>
+                        <form action="">
+                            <input type="hidden" name="psn" value="<?php echo $prodRow["psn"];?>">
+                            <input type="hidden" name="pname" value="<?php echo $prodRow["pname"];?>">
+                            <input type="hidden" name="price" value="<?php echo $prodRow["price"];?>">
+                            <tr>
+                                <td>
+                                    <img src="" alt="">
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <button id="evaStatus" ></button>
+                                </td>
+                            </tr>
+                        </form>
+                        
+                    </table>
+                    <div id="evaBox" class="evaLightBox">
+                        <span>X</span>
+                        <div class="evaLightBox_content">
+                            <div class="proPic">
+                                <img src="../images/index/co2.png" alt="">
+                                <p>Pocky 巧克力</p>
+                            </div>
+                            <div class="evaStars">
+                                <ul>
+                                    <li>
+                                        <p>
+                                           甜度： 
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            酸度：
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            辣度：
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            好評度：
+                                        </p>
+                                    </li>
+                        
+                                </ul>
+
+                            </div>
+
+
+                        </div>
+                        <div class="discuss">
+                            <textarea name="textDiscuss" id="textDiscuss" cols="30" rows="10"></textarea>
+                        </div>
+
+
+                    </div>
+                </div>
 
 
             </div>
             <!------------------收藏品--------------------  -->
             <div class="tabPanel " id="tab-3">
+
                 <div class="collect" id="getCollect">
+        
                 </div>
             </div>
 
@@ -403,34 +492,16 @@
 
 
     </section>
-
-    <!-- <div class="footer_ip">
-         <div class="ip_size">
-                <img src="../images/nnnnn/ipc.png" alt="ipPicture" class="floating">
-            </div>
-            <div class="ip_size">
-                <img src="../images/nnnnn/ipcho.png" alt="ipPicture" class="floatingReverse">
-            </div>
-            <div class="ip_size">
-                <img src="../images/nnnnn/ipf.png" alt="ipPicture" class="floating">
-            </div>
-            <div class="ip_size">
-                <img src="../images/nnnnn/ipcandy.png" alt="ipPicture" class="floatingReverse">
-            </div>
-            <div class="ip_size">
-                <img src="../images/nnnnn/ipcho.png" alt="ipPicture" class="floating">
-            </div>
-            <div class="ip_size ip_hi">
-                    <img src="../images/nnnnn/ipf.png" alt="ipPicture" class="floatingReverse">
-            </div>
-            
-        </div> -->
-    <footer class="footer">
-        <div id="floor">
+    <!-- <footer>
+       
+        
+        <div id="floor"> 
             <img src="../images/nnnnn/floor.png" alt="floor">
             <p id="copy">Copyright©2019 Snack Master</p>
         </div>
-    </footer>
+    
+    </footer> -->
+
 
 
 
