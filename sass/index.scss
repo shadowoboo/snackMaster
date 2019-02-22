@@ -18,11 +18,14 @@ body {
             // padding: 30px 0;
             // position: relative;
             // z-index: 100;
-            width: 25%;
+            width: 20%;
             margin: auto;
             position: relative;
             z-index: 100;
             margin: 20px auto;
+            @media screen and(min-width:768px) {
+              width: 10%;
+            }
         }
         .count {
             display: flex;
@@ -39,13 +42,15 @@ body {
             // background-size: 650px;
             // width: 100%;
             // padding-bottom: 50%;
+            @media screen and(min-width:768px) {
+              background-size: 690px;
+              height: 580px;
+            }
             .btns {
-                width: 20%;
+                width: 30%;
                 position: relative;
                 z-index: 2;
-                animation: jelly .5s infinite alternate;
-                &:hover{
-                }
+                // animation: jelly .7s infinite alternate;
                 &:before {
                     content: '';
                     display: block;
@@ -65,10 +70,10 @@ body {
                   position: absolute;
                   top: 0;
                   left: 0;
-                  font-size: 20px;
+                  font-size: 30px;
                   right: 0;
                   text-align: center;
-                  line-height: 42px;
+                  line-height: 65px;
                   color: #076baf;
                   letter-spacing: 1px;
                 }
@@ -83,17 +88,17 @@ body {
             img{vertical-align: bottom;}
         }
         .cuteIp{
-          animation: mounsterWalk 3s linear 0s infinite reverse;
-          width: 23%;
+          animation: mounsterWalk 5s linear 0s infinite reverse;
+          width: 52%;
           // position: absolute;
           top: 0;
           left: 0;
-          img{vertical-align: bottom;}
+          img{vertical-align: bottom;width: 52%;}
+          @media screen {
+            width: 52%;
+            img{width: 13%;}
+          }
         }
-    }
-    .animation-target {
-        -webkit-animation: jelly 10000ms linear both;
-        animation: jelly 10000ms linear both;
     }
     /* Generated with Bounce.js. Edit at https://goo.gl/y3FSYm */
     @-webkit-keyframes jelly {
@@ -313,66 +318,69 @@ body {
 // animation: mounsterWalk 3s linear 0s infinite;
 @keyframes mounsterWalk {
     0% {
-        -webkit-transform: translate3d(0%, 0%, 0) scaleX(1);
+        -webkit-transform: translate(0%, 0%) scaleX(1);
     }
     5% {
-        -webkit-transform: translate3d(10%, 10%, 0) scaleX(1);
+        -webkit-transform: translate(10%, 10%) scaleX(1);
     }
     10% {
-        -webkit-transform: translate3d(20%, 0%, 0) scaleX(1);
+        -webkit-transform: translate(20%, 0%) scaleX(1);
     }
     15% {
-        -webkit-transform: translate3d(30%, 10%, 0) scaleX(1);
+        -webkit-transform: translate(30%, 10%) scaleX(1);
     }
     20% {
-        -webkit-transform: translate3d(40%, 0%, 0) scaleX(1);
+        -webkit-transform: translate(40%, 0%) scaleX(1);
     }
     25% {
-        -webkit-transform: translate3d(50%, 10%, 0) scaleX(1);
+        -webkit-transform: translate(50%, 10%) scaleX(1);
     }
     30% {
-        -webkit-transform: translate3d(60%, 0%, 0) scaleX(1);
+        -webkit-transform: translate(60%, 0%) scaleX(1);
     }
     35% {
-        -webkit-transform: translate3d(70%, 10%, 0) scaleX(1);
+        -webkit-transform: translate(70%, 10%) scaleX(1);
     }
     40% {
-        -webkit-transform: translate3d(80%, 0%, 0) scaleX(1);
+        -webkit-transform: translate(80%, 0%) scaleX(1);
     }
     45% {
-        -webkit-transform: translate3d(90%, 10%, 0) scaleX(1);
+        -webkit-transform: translate(90%, 10%) scaleX(1);
     }
     50% {
-        -webkit-transform: translate3d(100%, 0%, 0) scaleX(1);
+        -webkit-transform: translate(100%, 0%) scaleX(1);
     }
     50.01% {
-        -webkit-transform: translate3d(90%, 10%, 0) scaleX(-1);
+        -webkit-transform: translate(90.5%, 10%) scaleX(-1);
+    }
+    55% {
+        -webkit-transform: translate(90%, 0%) scaleX(-1);
     }
     60% {
-        -webkit-transform: translate3d(80%, 0%, 0) scaleX(-1);
+        -webkit-transform: translate(80%, 10%) scaleX(-1);
     }
     65% {
-        -webkit-transform: translate3d(70%, 10%, 0) scaleX(-1);
+        -webkit-transform: translate(70%, 10%) scaleX(-1);
     }
     70% {
-        -webkit-transform: translate3d(60%, 0%, 0) scaleX(-1);
+        -webkit-transform: translate(60%, 0%) scaleX(-1);
     }
     75% {
-        -webkit-transform: translate3d(50%, 10%, 0) scaleX(-1);
+        -webkit-transform: translate(50%, 10%) scaleX(-1);
     }
     80% {
-        -webkit-transform: translate3d(40%, 0%, 0) scaleX(-1);
+        -webkit-transform: translate(40%, 0%) scaleX(-1);
     }
     85% {
-        -webkit-transform: translate3d(30%, 10%, 0) scaleX(-1);
+        -webkit-transform: translate(30%, 10%) scaleX(-1);
     }
     90% {
-        -webkit-transform: translate3d(20%, 0%, 0) scaleX(-1);
+        -webkit-transform: translate(20%, 0%) scaleX(-1);
     }
     95% {
-        -webkit-transform: translate3d(10%, 10%, 0) scaleX(-1);
+        -webkit-transform: translate(10%, 10%) scaleX(-1);
     }
     100% {
-        -webkit-transform: translate3d(0%, 0%, 0) scaleX(-1);
+        -webkit-transform: translate(0%, 0%) scaleX(-1);
     }
 }
