@@ -938,7 +938,7 @@ try {
         $(".cusPic").off("click").on("click",copyToSurface);
         //新增工作面控制
         $("#section_15 #ctrl_bar .btn").on("click",function(e){
-            $(e.target).removeClass("working");
+            $("#section_15 #ctrl_bar .btn").removeClass("working");
             $(e.target).addClass("working");
         })
         //點擊droped_img觸發的事情，委託給父元素
@@ -993,7 +993,7 @@ try {
                 if ( $(this).is('.ui-draggable-dragging') ) {
                     return;
                 }
-                if(getIsTouch()){
+                if(getIsTouch()){ //如果滑動距離太短，視為click。(針對安卓)
                     $(e.target).addClass("select");
                 }
             })
