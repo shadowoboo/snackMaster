@@ -165,12 +165,14 @@ try {
                                     <div class="pic">
                                         <img class="cusPic" id="image">
                                     </div>
-                                    <span>上傳您得圖片:</span>
-                                    <label for="theFile">
-                                        <input type="file" id="theFile" style="display:none">                                             
-                                        <p>選取檔案(png/jpg)</p>
-                                        <!-- <p>8M內，jpg、png之圖檔。</p> -->
-                                    </label>
+                                    <div class="upfile">
+                                        <span>上傳您得圖片:</span>
+                                        <label for="theFile">
+                                            <input type="file" id="theFile" style="display:none">                                             
+                                            <p>選取檔案(png/jpg)</p>
+                                            <!-- <p>8M內，jpg、png之圖檔。</p> -->
+                                        </label>
+                                    </div>
                                 </div>
                                                                                            
             <p>
