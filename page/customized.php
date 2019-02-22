@@ -165,9 +165,10 @@ try {
                                     <div class="pic">
                                         <img class="cusPic" id="image">
                                     </div>
+                                    <span>上傳您得圖片:</span>
                                     <label for="theFile">
-                                        <input type="file" id="theFile" style="display:none">     
-                                        <p>上傳您的圖案</p>
+                                        <input type="file" id="theFile" style="display:none">                                             
+                                        <p>選取檔案(png/jpg)</p>
                                         <!-- <p>8M內，jpg、png之圖檔。</p> -->
                                     </label>
                                 </div>
@@ -440,7 +441,7 @@ try {
         //===設定sendSnack.onclick 事件處理程序是 sendForm
         // $id('sendSnack').onclick = sendSnack;
     </script>     
-      <div id="stepLast" class="step-content-body out">Completed</div>
+      <!-- <div id="stepLast" class="step-content-body out">Completed</div> -->
     </div>
     
   </div>

@@ -32,7 +32,7 @@ $(function() {
   $('.step-content .step-content-foot button[name="prev"]').on('click', function() {
     var instance = $(this);
     $(stepItem[step]).removeClass('active');
-    if (step == (stepItem.length - 1)) {
+    if (step == (stepItem.length -2)) {
       instance.siblings('button[name="next"]').removeClass('out');
       instance.siblings('button[name="finish"]').addClass('out');
     }
