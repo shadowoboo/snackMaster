@@ -11,7 +11,7 @@
         $recPerPage = 12;
         $sql = 'select count(maSellNo) from masell';
         $countSta = $pdo -> query($sql);
-        $totalRec = ($countSta -> fetchColumn() )-1;
+        $totalRec = ($countSta -> fetchColumn());
         $pages = ceil($totalRec/$recPerPage);
         if( isset($_REQUEST['pageNum']) ){
             $pageNum = $_REQUEST['pageNum'];
@@ -40,51 +40,16 @@
 </head>
 <body>
     <div class="backstage">
-        <div id="menu">
-            <div id="logo">
-                <img src="../../images/tina/LOGO1.png" alt="">
-            </div>
-            <p>歡迎，管理員 <span id="manager"><?php echo $_SESSION['managerName'] ?></span></p>
-            <ul id="menuUl">
-                    <li>
-                        <a href="back_snack.php">商品資料管理</a>
-                    </li>
-                    <li>
-                        <a href="back_order.php">訂單管理</a>
-                    </li>
-                    <li>
-                        <a href="back_member.php">會員管理</a>
-                    </li>
-                    <li>
-                        <a href="back_coupon.php">優惠券管理</a>
-                    </li>
-                    <li>
-                        <a href="back_rank.php">排行榜管理</a>
-                    </li>
-                    <li>
-                        <a href="back_vending.php">販賣機管理</a>
-                    </li>
-                    <li>
-                        <a href="back_material.php">客製化用素材</a>
-                    </li>
-                    <li>
-                        <a href="back_clearance.php">即期品專案管理</a>
-                    </li>
-                    <li>
-                        <a href="back_report.php">審核檢舉</a>
-                    </li>
-                    <li>
-                        <a href="back_manager.php">後台帳號管理</a>
-                    </li>
-                    <a href="back_logout.php" id="logout">登出</a>
-            </ul>
-        </div>
+<?php
+    require_once('back_menu.php');
+?>
         <div id="contentWrap">
             <div id="content">
                 <h3>販賣機管理</h3>
                 <a href="back_addVending.php"><button class="step">新增</button></a>
                 <table>
                     <tr>
+                        <th width="60">編輯</th>
                         <th width="60">編號</th>
                         <th width="120">經度</th>
                         <th width="120">緯度</th>
@@ -99,6 +64,14 @@
     }
     while( $venRow = $vendings -> fetch() ){
 ?>
+                        <td>
+                            <form action="back_editVending.php">
+                                <input type="hidden" name="maSellNo" value="<?php echo $venRow['maSellNo']?>">
+                                <a href="">
+                                    <button type="submit" id="subBtn"><i class="fas fa-edit"></i></button>
+                                </a>
+                            </form>
+                        </td>
                         <td><?php echo $venRow['maSellNo']?></td>
                         <td><?php echo $venRow['maLnge']?></td>
                         <td><?php echo $venRow['maLat']?></td>
@@ -113,8 +86,9 @@
                 <div id="pagination">
                     <ul>
                         <?php
+                            $pagesP = $pages + 1;
                             $prev = $pageNum - 1 == 0? 1:$pageNum - 1;
-                            $next = $pageNum + 1 == 7? 6:$pageNum + 1;
+                            $next = $pageNum + 1 == $pagesP? $pages:$pageNum + 1;
                             echo '<li class="page-item"><a href="back_vending.php?pageNum='.$prev.'" id="last" class="page-link"><i class="fas fa-chevron-left"></i></a></li>';
                             for($i=1; $i<=$pages; $i++){
                                 if( $i == $pageNum ){
@@ -133,5 +107,10 @@
             </footer>
         </div>
     </div> 
+    <script>
+        document.getElementById('next').addEventListener('click', function (){
+            console.log( <?php echo $totalRec?> );
+        });
+    </script>
 </body>
 </html>

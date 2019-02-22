@@ -1,14 +1,14 @@
 <?php
     ob_start();
     session_start();
-
+    
     $errMsg = "";
     try {
         require_once("connectcd105g2.php");
         $recPerPage = 9;
         $sql = 'select count(snackNo) from snack';
         $countSta = $pdo -> query($sql);
-        $totalRec = ($countSta -> fetchColumn() )-1;
+        $totalRec = $countSta -> fetchColumn();
         $pages = ceil($totalRec/$recPerPage);
         if( isset($_REQUEST['pageNum']) ){
             $pageNum = $_REQUEST['pageNum'];
@@ -44,12 +44,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
     <title>大零食家 - 零食列表</title>
-    <link rel="stylesheet" href="../css/nnnnn.css">
-    <link rel="stylesheet" href="../css/shopping.css">
-    <!-- <link rel="stylesheet" href="../css/header.css"> -->
     <?php
         require_once("header.php");
     ?>
+    <link rel="stylesheet" href="../css/nnnnn.css">
+    <link rel="stylesheet" href="../css/shopping.css">
+    <!-- <link rel="stylesheet" href="../css/header.css"> -->
     <script src="../js/common.js"></script>
     <script src="../js/Chart.js"></script>
     <script src="../js/shopping.js"></script>
@@ -58,7 +58,8 @@
     <script src="../js/jquery-ui.min.js"></script>
     <script src="../js/showStar.js"></script>
     <script src="../js/findingIp.js"></script>
-    
+    <script src="../js/findingIp.js"></script>
+    <script src="../js/addCart.js"></script>
 </head>
 <body>
     <div class="shopping">
@@ -135,7 +136,7 @@
                     </div>
                     <p class="price">$<?php echo $snackRow['snackPrice']?></p>
                     <div class="itemBtns">
-                        <button class="cart">加入購物車</button>
+                        <button class="cart" id="<?php echo "{$snackRow['snackNo']}|{$snackRow['snackPrice']}|0" ?>">加入購物車</button>
                         <button class="heart" id="<?php echo $snackRow['snackNo'] ?>"><i class="far fa-heart"></i></button>
                     </div>
                 </div> 

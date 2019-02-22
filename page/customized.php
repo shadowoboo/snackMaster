@@ -88,10 +88,8 @@ try {
                                 <div class="camera">
                                     <div class="box boxBase" id="box_15">
                                         <div class="surface surface_top" id="cover_out_15">
-                                            <!-- <img src="ip2.png" id="a1" alt=""> -->
-                                        
-                                        <img id="cusImg_top" src="../images/tina/LOGO1.png" alt="" style="display:none;">
-                                       
+                                            <!-- <img src="ip2.png" id="a1" alt=""> -->                                      
+                                            <img id="cusImg_top" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
                                         <div class="surface surface_top_inner" id="cover_in_15">
                                         </div>
@@ -365,33 +363,32 @@ try {
                                     <li class="good">糖果</li>
                                 </ul>                   
             <?php 
-                $cusSnack=array("巧克力","洋芋片","餅乾","糖果");
+                $cusSnack=array("巧克力","巧克力","巧克力","巧克力","洋芋片","餅乾","糖果");
                 $ln=count($cusSnack);
                 $arr_row=array();
 
                 $i=0;
                 for($i=0; $i<$ln; $i++){
-                    $sql = "select snackNo,snackName,snackPic,snackPrice from snack WHERE snackGenre= ? ORDER BY snackNo in('1','8');";
+                    // $sql = "select snackNo,snackName,snackPic,snackPrice from snack WHERE snackGenre= ? ORDER BY snackNo in('1','8');";
+                    $sql = "select snackNo,snackName,snackPic,snackPrice from snack WHERE snackGenre= ? ORDER BY snackNo limit 0,8;";
                     $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
                     $prodRow -> bindValue(1, $cusSnack[$i]);
-
-                 
                     $prodRow -> execute(); 
-                    $row = $prodRow->fetch(); 
-                    array_push($arr_row,$row);
-                } 
+                    
+                
             ?>
                     <div class="good-content">
                         <?php
-                             for($i=0; $i<8; $i++){
+                             while($row = $prodRow->fetch()){
+                                 //array_push($arr_row,$row);
                         ?>
                             <div class="item">
                                 <div class="name">           
-                                        <img src="<?php echo $arr_row[3]['snackPic']; ?>" alt="">                                    
+                                        <img src="<?php echo $row['snackPic']; ?>" alt="">                                    
                                         <div class="price">
-                                        <p  class="snackNo" style="display:none;"><?php echo $arr_row[3]['snackNo']; ?></p>                   
-                                            <p class="snackName"><?php echo $arr_row[3]['snackName'];?></p>
-                                            <span>$<?php echo $arr_row[3]['snackPrice']; ?></span>
+                                        <p  class="snackNo" style="display:none;"><?php echo $row['snackNo']; ?></p>                   
+                                            <p class="snackName"><?php echo $row['snackName'];?></p>
+                                            <span>$<?php echo $row['snackPrice']; ?></span>
                                             <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
                                         </div>
                                     </div>
@@ -400,109 +397,11 @@ try {
                         <?php
                             }
                         ?> 
-                    </div>       
-                    <div class="good-content">
-                        <?php
-                             for($i=0; $i<8; $i++){
-                        ?>
-                            <div class="item">
-                                <div class="name">           
-                                        <img src="<?php echo $arr_row[3]['snackPic']; ?>" alt="">                                    
-                                        <div class="price">
-                                        <p class="snackNo" style="display:none;"><?php echo $arr_row[3]['snackNo']; ?></p>                   
-                                            <p class="snackName"><?php echo $arr_row[3]['snackName']; ?></p>
-                                            <span>$<?php echo $arr_row[3]['snackPrice']; ?></span>
-                                            <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
-                                        </div>
-                                    </div>
-                                    
-                            </div>
-                        <?php
-                            }
-                        ?> 
-                    </div>                                                 
-                    <div class="good-content">
-                        <?php
-                            for($i=0; $i<8; $i++){
-                        ?>
-                            <div class="item">
-                                <div class="name">           
-                                        <img src="<?php echo $arr_row[0]['snackPic']; ?>" alt="">                                    
-                                        <div class="price">
-                                        <p class="snackNo" style="display:none;"><?php echo $arr_row[0]['snackNo']; ?></p>                   
-                                            <p class="snackName"><?php echo $arr_row[0]['snackName']; ?></p>
-                                            <span>$<?php echo $arr_row[0]['snackPrice']; ?></span>
-                                            <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
-                                        </div>
-                                    </div>
-                                    
-                            </div>
-                        <?php
-                            }
-                        ?> 
-                    </div>                 
-                     <div class="good-content">
-                        <?php
-                            for($i=0; $i<8; $i++){
-                        ?>
-                            <div class="item">
-                                <div class="name">                                    
-                                        <img src="<?php echo $arr_row[1]['snackPic']; ?>" alt="">                                    
-                                        <div class="price">
-                                            <p class="snackNo" style="display:none;"><?php echo $arr_row[1]['snackNo']; ?></p> 
-                                            <p class="snackName"><?php echo $arr_row[1]['snackName']; ?></p>
-                                            <span>$<?php echo $arr_row[1]['snackPrice']; ?></span>
-                                            <button class="step addCart sendSnack" id="sendSnack">放入零食車</button>                        
-                                        </div>
-                                    </div>
-                                    
-                            </div>
-                        <?php
-                            }
-                        ?> 
-                    </div>  
-                    <div class="good-content">
-                        <?php
-                            for($i=0; $i<8; $i++){
-                        ?>
-                            <div class="item">
-                                <div class="name">          
-                                        <img src="<?php echo $arr_row[2]['snackPic']; ?>" alt="">                                    
-                                        <div class="price">
-                                            <p class="snackNo" style="display:none;"><?php echo $arr_row[2]['snackNo']; ?></p> 
-                                            <p class="snackName"><?php echo $arr_row[2]['snackName']; ?></p>
-                                            <span>$<?php echo $arr_row[2]['snackPrice']; ?></span>
-                                            <button class="step addCart sendSnack" id="sendSnack">放入零食車</button>                        
-                                        </div>
-                                    </div>
-                                    
-                            </div>
-                        <?php
-                            }
-                        ?> 
-                    </div> 
-                    <div class="good-content">
-                        <?php
-                            for($i=0; $i<8; $i++){
-                        ?>
-                            <div class="item">
-                                <div class="name">                                    
-                                        <img src="<?php echo $arr_row[3]['snackPic']; ?>" alt="">                                    
-                                        <div class="price">
-                                            <p class="snackNo" style="display:none;"><?php echo $arr_row[3]['snackNo']; ?></p> 
-                                            <p class="snackName"><?php echo $arr_row[3]['snackName']; ?></p>
-                                            <span>$<?php echo $arr_row[3]['snackPrice']; ?></span>
-                                            <button class="step addCart sendSnack" id="sendSnack">放入零食車</button>                        
-                                        </div>
-                                    </div>
-                                    
-                            </div>
-                        <?php
-                            }
-                        ?>
-                    </div> 
-                        </div>
                     </div>
+            <?php
+                }
+            ?>       
+
                 </div> 
                 </div>
                 </div>
@@ -527,7 +426,7 @@ try {
             if( xhr.responseText == "error"){
             alert("錯誤");
             }else{
-            alert(`xhr.responseText: ${xhr.responseText}`);
+            // alert(`xhr.responseText: ${xhr.responseText}`);
             }
         }
         xhr.open("Post", "sessionSnack.php", true);
@@ -539,14 +438,27 @@ try {
         // $id('sendSnack').onclick = sendSnack;
     </script>     
       <div id="stepLast" class="step-content-body out">Completed</div>
-      <div class="step-content-foot">
+      <!-- <div class="step-content-foot">
         <button type="button" class="active" name="prev">上一步</button>
         <button type="button" class="active" name="next">下一步</button>
         <button type="button" class="active out" name="finish"><a href="#">加入購物車</a></button>
-      </div>
+      </div> -->
     </div>
+    
   </div>
-  <footer style="position:relative;">
+  <div class="step-content-foot">
+        <button type="button" class="active" name="prev">上一步</button>
+        <button type="button" class="active" name="next">下一步</button>
+        <button type="button" class="active out" name="finish"><a href="#">加入購物車</a></button>
+  </div>
+
+  <input type="button" value="轉為圖檔" />
+  <fieldset>
+    <legend>圖檔</legend>
+    <div>
+    </div>
+  </fieldset>
+  <footer>
     <div class="footer_ip">
         <div class="ip_size">
             <img src="../images/nnnnn/ipc.png" alt="ipPicture" class="floating">
@@ -582,7 +494,24 @@ try {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" defer></script>
    <script src="../js/jquery.ui.touch-punch.js"></script>
+   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js "></script>
+<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js "></script>
+<script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     
+<script>
+    $(":button").click(function() {
+        for($i=49;$i<=50;$i++){
+            html2canvas($("div")[$i]).then(function(canvas) {
+                var $div = $("fieldset div");
+                $div.empty();
+                $("<img />", { src: canvas.toDataURL("image/png") }).appendTo-($div);
+            });
+        }
+      
+    });
+  </script>
+
+
   <script>
     const boxBases = document.querySelectorAll(".boxBase");
     const btns = document.querySelectorAll(".btn");
