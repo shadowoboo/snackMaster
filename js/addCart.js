@@ -37,11 +37,9 @@ function addCart(e){
             }else{
                 var note = '';
             }
-        
             var xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 if (xhr.status == 200) {
-                    alert(xhr.responseText);
                     alert('商品已加入購物車～');
                 } else {
                     alert(xhr.status);

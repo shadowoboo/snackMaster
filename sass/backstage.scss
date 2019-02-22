@@ -29,6 +29,7 @@ h1,h2,h3,h4,p,span{
         box-shadow: 2px 2px 5px #aaa;
         background-color: rgba($color: #fff, $alpha: 0.9);
         text-align: center;
+        overflow-y: scroll;
         #logo{
             width: 50%;
             margin: auto;
