@@ -395,7 +395,7 @@ fieldset,aside,main,picture,figure,article{
                 &.select{
                     //border會佔面積，不太方便
                     outline:#e26565 dashed 5px;
-                    transition: 0.3s;
+                    transition: transform 0.3s;
                 }
             }
             #a1{
