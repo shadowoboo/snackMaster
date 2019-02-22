@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="../css/boxModel.css">
     <link rel="stylesheet" href="../css/sale.css">
     <link rel="stylesheet" href="../css/homePage.css">
-    <link rel="stylesheet" href="../css/header.css">
+    <!-- <link rel="stylesheet" href="../css/header.css"> -->
     <title>Home Page</title>
 </head>
 
@@ -70,7 +70,7 @@
                                 <span class="leave">X</span>
                             </div>
                             <ul class="list">
-                                <li id="goRankBoard"><a href="rankBoard.html">零食排行榜</a></li>
+                                <li id="goRankBoard"><a href="rankBoard.php">零食排行榜</a></li>
                                 <li id="goCustomized"><a href="customized.php">客製零食箱</a> </li>
                                 <!-- 在手機上要關掉這個li的logo -->
                                 <li ><a href="homePage.php"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
@@ -1994,7 +1994,6 @@
             $('.LeaderboardCount').css({
                 'transform': 'translateY(0) scale(0)',
                 'transition': '0.3s',
-
             })
             setTimeout(() => {
                 $('.LeaderboardCount').css({
@@ -2055,9 +2054,9 @@
         // }
         
         $('.cart').click(function(){
-            var i = $('.cart').index(this) - 16;
+            var i = $('.cart').index(this) - 19;
             var thisQty = $('.stockQty').eq(i);
-            // console.log(aa);
+            console.log(i);
             var qty = $(thisQty).text();
             // console.log(qty);
             // var qty = aa.firstChild.nodeValue;
