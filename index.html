@@ -34,33 +34,126 @@
             </div>
             <div class="count">
                 <div class="btns front">
-                    <img src="images/index/blue-pack.png" alt="前端圖">
-                    <h2>前端</h2>
+                    <a href="page/homePage.php">
+                        <img src="images/index/blue-pack.png" alt="前端圖">
+                        <h2>前端</h2>
+                    </a>
                 </div>
                 <div class="btns back">
-                    <img src="images/index/red-pack.png" alt="前端圖">
-                    <h2>後端</h2>
+                    <a href="page/back/back_login.php">
+                        <img src="images/index/red-pack.png" alt="前端圖">
+                        <h2>後端</h2>
+                    </a>
                 </div>
+            </div>
+            <div class="left">
+                <img src="images/rankBoard/ipChips.png" alt="IP" class="chips">
+                <img src="images/rankBoard/ipChoco.png" alt="IP" class="choco">
+                <img src="images/rankBoard/ipCookie.png" alt="IP" class="cookie">
+                <img src="images/rankBoard/ipCandy.png" alt="IP" class="candy">
+            </div>
+            <div class="right">
+                <img src="images/rankBoard/ipChips.png" alt="IP" class="chips">
+                <img src="images/rankBoard/ipChoco.png" alt="IP" class="choco">
+                <img src="images/rankBoard/ipCookie.png" alt="IP" class="cookie">
+                <img src="images/rankBoard/ipCandy.png" alt="IP" class="candy">
             </div>
         </div>
 
-        <div class="footer">
-            <div class="cuteIp">
-                <img src="images/index/IP-1.png" alt="麻糬君">
-            </div>
-            <div id="floor">
-                <img src="images/nnnnn/floor.png" alt="floor">
-            </div>
+        <div class="cuteIp">
+            <img src="images/index/IP-1.png" alt="麻糬君">
+        </div>
+        <!-- <img src="images/index/IP-1.png" alt="麻糬君"> -->
+
+        <div id="floor">
+            <img src="images/nnnnn/floor.png" alt="floor">
         </div>
     </section>
 
     <script>
-        $('.btns').mouseover(function () {
-            $(this).addClass('animated rubberBand');
-        })
-        $('.btns').mouseout(function () {
-            $(this).removeClass('animated rubberBand');
-        })
+        if ($(window).width() > 768) {
+            $('.btns').removeClass('animated rubberBand');
+            $('.front').mouseover(function () {
+                $(this).addClass('animated rubberBand');
+                $('.left').css('display', 'block');
+
+            })
+            $('.front').mouseout(function () {
+                $(this).removeClass('animated rubberBand');
+                $('.left').css('display', 'none');
+            })
+
+            $('.back').mouseover(function () {
+                $(this).addClass('animated rubberBand');
+                $('.right').css('display', 'block');
+
+            })
+            $('.back').mouseout(function () {
+                $(this).removeClass('animated rubberBand');
+                $('.right').css('display', 'none');
+            })
+        } else {
+            setInterval(function () {
+                $('.back').toggleClass('animated rubberBand');
+            }, 1500);
+            setInterval(function () {
+                setTimeout(function () {
+                    $('.front').toggleClass('animated rubberBand');
+                }, 1500)
+            }, 1500);
+        }
+        $(window).resize(function () {
+            if ($(window).width() > 768) {
+                $('.btns').removeClass('animated rubberBand');
+                $('.front').mouseover(function () {
+                    $(this).addClass('animated rubberBand');
+                    $('.left').css('display', 'block');
+
+                })
+                $('.front').mouseout(function () {
+                    $(this).removeClass('animated rubberBand');
+                    $('.left').css('display', 'none');
+                })
+
+                $('.back').mouseover(function () {
+                    $(this).addClass('animated rubberBand');
+                    $('.right').css('display', 'block');
+
+                })
+                $('.back').mouseout(function () {
+                    $(this).removeClass('animated rubberBand');
+                    $('.right').css('display', 'none');
+                })
+            } else {
+                // setTimeout(function(){
+                //     $('.front').addClass('animated rubberBand'); 
+                // }, 3000);
+                setInterval(function () {
+                    $('.back').toggleClass('animated rubberBand');
+                    // $('left').toggleClass('snackFallL');
+                }, 1500);
+                setInterval(function () {
+                    setTimeout(function () {
+                        $('.front').toggleClass('animated rubberBand');
+                        // $('right').toggleClass('snackFallR');
+                    }, 1500)
+                }, 1500);
+                // $('.front').removeClass('animated rubberBand');  
+                // $('.front').reMoveClass('animated rubberBand'); 
+                // console.log(test());
+                // function test() {
+
+                // }
+                // $('.btns').mouseover(function () {
+                //     $(this).addClass('animated rubberBand');
+
+                // })
+                // $('.btns').mouseout(function () {
+                //     $(this).removeClass('animated rubberBand');
+                // })
+            }
+        });
+
     </script>
     <script src="js/header.js"></script>
 
