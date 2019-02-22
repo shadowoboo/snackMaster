@@ -396,6 +396,11 @@
                     font-family: g2Med;
                     word-wrap:break-word; 
                 }
+                .msgTime{
+                    color:#707071;
+                    margin-top: 1.5%;
+                    font-size: 12px;
+                }
 
                 .msgs {
                     overflow: hidden;
@@ -432,6 +437,11 @@
                         .msgCtx {
                             color: #737374;
                             margin-top: 3%;
+                        }
+                        .msgTime{
+                            color:#707071;
+                            margin-top: 1.5%;
+                            font-size: 12px;
                         }
                     }
                 }
