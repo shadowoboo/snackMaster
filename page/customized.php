@@ -89,10 +89,10 @@ try {
                                     <div class="box boxBase" id="box_15">
                                         <div class="surface surface_top" id="cover_out_15">
                                             <!-- <img src="ip2.png" id="a1" alt=""> -->                                      
-                                            <img id="cusImg_top" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+                                            <!-- <img id="cusImg_top" src="../images/tina/LOGO1.png" alt="" style="display:none;"> -->
                                         </div>
-                                        <div class="surface surface_top_inner" id="cover_in_15">
-                                        </div>
+                                        <!-- <div class="surface surface_top_inner" id="cover_in_15">
+                                        </div> -->
                                         <div class="surface surface_down" id="cover_down">
                                         <img id="cusImg_down" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
@@ -929,22 +929,33 @@ try {
         }
     }
 
-    //手機板拖曳事件 箱子與圖片
+    //JQ板拖曳事件 客製箱子與圖片 (含手機)
     $(function(){
-        $(".cusPic").on("click",copyToSurface);
-
-
-
-
+        //點擊新增圖片到箱子表面
+        $(".cusPic").off("click").on("click",copyToSurface);
+        //新增工作面控制
+        $("#section_15 #ctrl_bar .btn").on("click",function(e){
+            $(e.target).removeClass("working");
+            $(e.target).addClass("working");
+        })
+        //點擊droped_img觸發的事情，委託給父元素
+        $(".surface").on("click",".droped_img",function(e){
+                //如果拖曳中，不做事
+                if ( $(this).is('.ui-draggable-dragging') ) {
+                    return;
+                }
+                //新增個class="seclect"
+                $(e.target).addClass("select");
+        })
         function copyToSurface(e){
-            //如果不在工作面，就跳出，不做啦!!!!
-            if(!$("#section_15 .btn.btnSelect").length>0){
+            // 如果不在工作面，就跳出，不做啦!!!!
+            if($("#section_15 .btn.working").length<=0){
                 return;
             }
             //抓現在是哪一面，工作面才工作
-            var tarSurfaceId = $("#section_15 .btn.btnSelect").attr("id");
+            var tarSurfaceId = $("#section_15 .btn.working").attr("id");
             tarSurfaceClass = tarSurfaceId.replace("btn","surface");
-            //複製圖片`,更新屬性,塞進目標父層
+            //複製圖片,更新屬性,塞進目標父層
             var tarCusPic=$(e.target).clone();
             console.log(tarCusPic);
             tarCusPic.css({
@@ -955,28 +966,82 @@ try {
             });
             tarCusPic.attr("class","droped_img");
             tarCusPic.attr("id","a"+drop_count);
+            //jq抓到的元素都是神奇陣列，補0避免意外
+            arrDropedImg.push(tarCusPic[0]);//做一個陣列把動態添加元素的資料先存起來，之後統一操作
+            console.log(arrDropedImg);
+            //塞入指定父層
+            $("."+tarSurfaceClass).append($(tarCusPic));
             //設定JQ拖曳事件
             tarCusPic.draggable({
                 start: function(e) {
                     //拖曳開始時，zIndex等級++，確保在最上層
                     drop_count++;
                     $(e.target).css("zIndex",drop_count);
+                    $(".droped_img").removeClass("select");
                     $(e.target).addClass("select"); //增加class，有被選到的感覺
                 },
                 drag: function(e) {
                 },
-                stop: function(e) {
+                stop: function(e) { //結束拖曳
                     $(e.target).removeClass("select"); //移除class
                 }
-            });
-            $("."+tarSurfaceClass).append($(tarCusPic));
+            })
+            .on("touchend",function(e){
+                if ( $(this).is('.ui-draggable-dragging') ) {
+                    return;
+                }
+                if(getIsTouch()){
+                    $(e.target).addClass("select");
+                }
+            })
+            // .on("click tap",function(e){ //串點擊事件
+            //     //如果拖曳中，不做事
+            //     if ( $(this).is('.ui-draggable-dragging') ) {
+            //         return;
+            //     }
+            //     //新增個class="seclect"
+            //     $(e.target).addClass("select");
+            // });
+            
         }
     })
+    //android在JQ dragable之後click失效的問題
+    //JQ android touch太過靈敏蓋掉click的解決方案
+    //偵測滑動距離，太短的不滑，讓他觸發click。
+    var touchValue = {x:5,y:5,sx:0,sy:0,ex:0,ey:0}; //initialize the touch values
+    window.addEventListener("touchstart",function(){
+        var event=event || window.event;
+        touchValue.sx = event.targetTouches[0].pageX;
+        touchValue.sy = event.targetTouches[0].pageY;
+        touchValue.ex = touchValue.sx;
+        touchValue.ey = touchValue.sy;
+    });
+    window.addEventListener("touchmove", function(event){
+        var event=event || window.event;
+        event.preventDefault();
+        touchValue.ex = event.targetTouches[0].pageX;
+        touchValue.ey = event.targetTouches[0].pageY;
+    });
+    window.addEventListener("touchend", function(event){
+        var event=event || window.event;
+        var changeX = touchValue.ex - touchValue.sx;
+        var changeY = touchValue.ey - touchValue.sy;
+        //console.log("X:"+changeX+" Y:"+changeY);
+        window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty(); 
+    });
+    function getIsTouch(){
+        var changeX = touchValue.ex - touchValue.sx;
+        var changeY = touchValue.ey - touchValue.sy;
+        if(Math.abs(changeX)<=touchValue.x&&Math.abs(changeY)<=touchValue.y){
+            return true
+        }else return false
+    }
 
     //dropedImgCtrl
     function dropedCtrl(e) {
         switch (this.id) {
             case "btn_big":
+                //桌機板
                 arrDropedImg.forEach(el => {
                     if (el.classList.contains("select")) {
                         console.log("to be bigger");
@@ -991,6 +1056,17 @@ try {
                         el.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
                     }
                 })
+                // //手機板
+                // // document.getElementsByClassName("tip")[0]
+                // var tarPic=document.getElementsByClassName(".droped_img.select");
+                // console.log(`tarPic: ${tarPic}`);
+                // console.log(tarPic);
+                
+                // let arr = tarPic.style.transform.split(" ");
+                // let newScale = parseFloat(arr[3].replace("scale(", "").replace(")", "")) + 0.5;
+                // arr[3] = "scale(" + newScale + ")";
+                // tarPic.style.transform = `${arr[0]} ${arr[1]} ${arr[2]} ${arr[3]}`;
+            
                 break;
             case "btn_small":
                 arrDropedImg.forEach(el => {
