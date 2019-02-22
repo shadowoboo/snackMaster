@@ -19,14 +19,14 @@ try{
 
     //將登入者資料寫入session
     $_SESSION["memNo"] = $memRow["memNo"];
-    $_SESSION["grade"] = $memRow["grade"];
+    // $_SESSION["grade"] = $memRow["grade"];
     $_SESSION["memId"] = $memRow["memId"];
-    $_SESSION["email"] = $memRow["email"];
-    $_SESSION["memPic"] = $memRow["memPic"];
-    $_SESSION["memPhone"] = $memRow["memPhone"];
-    $_SESSION["commentRight"] = $memRow["commentRight"];
-    $_SESSION["reportTimes"] = $memRow["reportTimes"];
-    $_SESSION["memName"] = $memRow["memName"];
+    // $_SESSION["email"] = $memRow["email"];
+    // $_SESSION["memPic"] = $memRow["memPic"];
+    // $_SESSION["memPhone"] = $memRow["memPhone"];
+    // $_SESSION["commentRight"] = $memRow["commentRight"];
+    // $_SESSION["reportTimes"] = $memRow["reportTimes"];
+    // $_SESSION["memName"] = $memRow["memName"];
     
 
     //送出登入者的姓名資料

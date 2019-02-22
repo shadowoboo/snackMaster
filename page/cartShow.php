@@ -13,7 +13,7 @@
     // require("CartStepLoginCheck.php");
 
     //ENG 工程用檔案
-    require("CartProdAdd_ENG.php");
+    // require("CartProdAdd_ENG.php");
 
     // //檢查有沒有商品在session
     // if(isset($_SESSION["snackNo"])){
@@ -125,6 +125,7 @@ if(isset($_SESSION["snackName"])){
     }
     if(isset($_SESSION["snackName"][1]) && isset($_SESSION["snackName"][1][50])){
 ?>
+
                     <div class="prodCard prodCard_Group">
                         <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusBox">
                             <div class="prodImg">
@@ -231,11 +232,14 @@ if(isset($_SESSION["snackName"])){
                                 <!-- <button class="trash"><i class="far fa-trash-alt"></i></button> -->
                             </div>
                         </div>
+                        
             
 <?php            
             }
         }
 ?>
+                        
+
                         <div class="prodCard prodCard_Cus prodCard_CusPanel">
                             <div class="cusTotal">
                                 <p>
@@ -393,6 +397,7 @@ if(isset($_SESSION["snackName"])){
 }
 ?>
 
+                        
 
 <?php /////////////////////////// ?>
 

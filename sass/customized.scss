@@ -359,7 +359,13 @@ body{
     .surface_down{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important; background-repeat: no-repeat, no-repeat, no-repeat;}
     .surface_front{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important;background-repeat: no-repeat, no-repeat, no-repeat;}
     .surface_back{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#ffb600, #ffb600) !important;background-repeat: no-repeat, no-repeat, no-repeat;}
-    .surface_left{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#076baf, #91b8d3) !important;background-repeat: no-repeat, no-repeat, no-repeat;}
+    .surface_left{ background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#076baf, #91b8d3) !important;background-repeat: no-repeat, no-repeat, no-repeat;
+    #cusImg_left{
+        .redline{
+            outline:1px #f00 dot;
+        }
+    }
+    }
     .surface_right{background-image: url(../images/index/boxStyle1.png) ,linear-gradient(#076baf, #076baf) !important;background-repeat: no-repeat, no-repeat, no-repeat;}
 
 }

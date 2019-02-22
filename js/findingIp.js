@@ -1,6 +1,5 @@
  function byebye() {
    $('#findingIp').remove();
-
  }
 
  function byebye2() {
@@ -72,17 +71,17 @@
 
            // Close all the three boxes in a regular interval.
            box1.delay(500).queue(function (n) {
-             $(this).html("<img src='https://websiddu.github.com/3cups/img/box_c.png' alt='' />");
+             $(this).html("<img src='../images/rankBoard/box_c.png' alt='' />");
              if (ans == 1) kick.hide();
              n();
            });
            box2.delay(1000).queue(function (n) {
-             $(this).html("<img src='https://websiddu.github.com/3cups/img/box_c.png' alt='' />");
+             $(this).html("<img src='../images/rankBoard/box_c.png' alt='' />");
              if (ans == 2) kick.hide();
              n();
            });
            box3.delay(1500).queue(function (n) {
-             $(this).html("<img src='https://websiddu.github.com/3cups/img/box_c.png' alt='' />");
+             $(this).html("<img src='../images/rankBoard/box_c.png' alt='' />");
              if (ans == 3) kick.hide();
 
 
@@ -152,8 +151,8 @@
 
                box1.click(function () {
                  if (flag == 0) {
-                   $(this).html('<img src="https://websiddu.github.com/3cups/img/box_o_t.png" id="box_o_t" alt="">');
-                   $(this).append(' <img src="https://websiddu.github.com/3cups/img/box_o_b.png" id="box_o_b" alt="">');
+                   $(this).html('<img src="../images/rankBoard/box_o_t.png" id="box_o_t" alt="">');
+                   $(this).append(' <img src="../images/rankBoard/box_o_b.png" id="box_o_b" alt="">');
                    if (ans == 1) {
                      kick.css({
                        left: $(this).position().left + ajst + "px"
@@ -169,8 +168,8 @@
 
                box2.click(function () {
                  if (flag == 0) {
-                   $(this).html('<img src="https://websiddu.github.com/3cups/img/box_o_t.png" id="box_o_t" alt="">');
-                   $(this).append(' <img src="https://websiddu.github.com/3cups/img/box_o_b.png" id="box_o_b" alt="">');
+                   $(this).html('<img src="../images/rankBoard/box_o_t.png" id="box_o_t" alt="">');
+                   $(this).append(' <img src="../images/rankBoard/box_o_b.png" id="box_o_b" alt="">');
                    if (ans == 2) {
                      kick.css({
                        left: $(this).position().left + ajst + "px"
@@ -186,8 +185,8 @@
 
                $("#box3").click(function () {
                  if (flag == 0) {
-                   $(this).html('<img src="https://websiddu.github.com/3cups/img/box_o_t.png" id="box_o_t" alt="">');
-                   $(this).append(' <img src="https://websiddu.github.com/3cups/img/box_o_b.png" id="box_o_b" alt="">');
+                   $(this).html('<img src="../images/rankBoard/box_o_t.png" id="box_o_t" alt="">');
+                   $(this).append(' <img src="../images/rankBoard/box_o_b.png" id="box_o_b" alt="">');
                    if (ans == 3) {
                      kick.css({
                        left: $(this).position().left + ajst + "px"
@@ -302,16 +301,16 @@ $('document').ready(function(){
 
           <div id ="board" >
             <div class="boxes" id="box1" >
-                <img src="https://websiddu.github.com/3cups/img/box_o_t.png" id="box_o_t">
-                <img src="https://websiddu.github.com/3cups/img/box_o_b.png" id="box_o_b" >
+                <img src="../images/rankBoard/box_o_t.png" id="box_o_t">
+                <img src="../images/rankBoard/box_o_b.png" id="box_o_b" >
             </div> 
             <div class="boxes" id="box2" >
-                <img src="https://websiddu.github.com/3cups/img/box_o_t.png" id="box_o_t" >
-                <img src="https://websiddu.github.com/3cups/img/box_o_b.png" id="box_o_b" >
+                <img src="../images/rankBoard/box_o_t.png" id="box_o_t" >
+                <img src="../images/rankBoard/box_o_b.png" id="box_o_b" >
             </div> 
             <div class="boxes" id="box3" >
-                <img src="https://websiddu.github.com/3cups/img/box_o_t.png" id="box_o_t" >
-                <img src="https://websiddu.github.com/3cups/img/box_o_b.png" id="box_o_b" >
+                <img src="../images/rankBoard/box_o_t.png" id="box_o_t" >
+                <img src="../images/rankBoard/box_o_b.png" id="box_o_b" >
             </div>    
           </div>
 
@@ -320,9 +319,21 @@ $('document').ready(function(){
        </section>`
 
 
+if($(window).width()<768){
+  var gamebox =
+  `<link rel="stylesheet" href="../css/findingIp.css"><div class="gameBox" id="gameBox"> <img src="../images/index/boxgamePic.png" alt="遊戲圖"></div>`
 
-  var gamebox = `<link rel="stylesheet" href="../css/findingIp.css"><div class="gameBox"> <img src="../images/index/gameImgL.png" alt="遊戲圖">
+
+  
+}else{
+
+  var gamebox =
+  `<link rel="stylesheet" href="../css/findingIp.css"><div class="gameBox"> <img src="../images/index/gameImgL.png" alt="遊戲圖">
     <p> 玩小遊戲可獲得 <br> 折價優惠券哦！ </p> </div>`
+}
+
+
+
   $('body').append(gamebox);
   $('.gameBox').click(function () {
     $('body').append(findingIp);

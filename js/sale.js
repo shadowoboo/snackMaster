@@ -64,3 +64,5 @@ function sale() {
     };
 }
 window.addEventListener('load', sale);
+
+
