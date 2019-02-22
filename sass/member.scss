@@ -1,6 +1,6 @@
-// *{
-//     outline: 1px solid #ff0000;
-// }
+*{
+    outline: 1px solid #ff0000;
+}
 @import "reset";
 @import "common";
 $tabColor:#076baf;
@@ -443,12 +443,27 @@ input[type="number"]{
                 width: 100%;
                .orderItemList{
                    tr{
+                       width: 100%;
+                       text-align: center;
                        th{
+                        width: 15%;
                           line-height: 1.6;
                            font-size: 17px;
                            color: $blue;
                         //    width: 50px;
                            font-family: g2Med;
+                       }
+                       td{
+                           width: 15%;
+                           vertical-align: middle;
+                           font-size: 16px;
+                           color: $tabColor;
+                           font-family: g2Med;
+                           line-height: 1.6;
+                       }
+                       img{
+                           width: 45%;
+                           margin-top: 5px;
                        }
                    }
                }
@@ -456,9 +471,17 @@ input[type="number"]{
             }
         
             .evaLightBox{
-                width: 320px;
-                background: rgb(241, 239, 239);
+                width: 321px;
+                background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
                 border-radius: 10px;
+                margin: auto;
+                display: none;
+                span{
+                    display: block;
+                    text-align: right;
+                    padding: 10px;
+                    font-size: 22px;
+                }
                 .proPic{
                     width: 100%;
                     text-align: center;
@@ -481,7 +504,50 @@ input[type="number"]{
                         }
                     }
                 }
-                
+                .discuss{
+                    text-align: center;
+                    textarea{
+                        margin: 10px 0;
+                    }
+                }
+                .evaPro{
+                    width: 150px;
+                    margin: auto;
+                    margin-top: 10px;
+                    .proPicBox{
+                        margin-bottom: 10px;
+                        text-align: center;
+                        img{
+                            width: 30%;
+                        }
+                    }
+                    
+                    .evaproPic{
+                       
+
+                        .step{
+                            width: 120px;
+                            height: 35px;
+                            margin: auto;
+                            
+                        }
+                        input{
+                            display: none;
+                        }
+                    }
+
+                }
+                .evaSend{
+                    text-align: center;
+                    padding: 10px 0;
+                    .step{
+                        width: 120px;
+                        height: 35px;
+                        
+                        // margin-top: 10px;
+                        
+                         }
+                }
                 
             }
             
@@ -690,18 +756,20 @@ input[type="number"]{
     
     }
     .wrapTabPanel{
-        #tab-2{
-            .orderItem{
-                .orderItemList{
-                    tr{
-                        th{
-                            width: 50px;
+        // #tab-2{
+        //     .orderItem{
+        //         .orderItemList{
+        //             tr{
+        //                 th{
+        //                     width: 50px;
                            
-                        }
-                    }
-                }
-            }
-        }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        
+
     }
 }    
 //------------------桌機ＲＷＤ--------------------------
@@ -901,18 +969,101 @@ input[type="number"]{
                     }
                     
                 }
-                .orderItem{
-                   .orderItemList{
-                       tr{
-                           th{
-                               font-size: 20px;
-                               color: $blue;
-                               width: 160px;
-                               font-family: g2Med;
-                           }
-                       }
-                   }
+                // .orderItem{
+                    
+                //    .orderItemList{
+                //        tr{
+                           
+                //            th{
+                //                width: 160px;
+                //            }
+                //            td{
+                //                font-size: 20px;
+                //                vertical-align: middle;
+                //            }
+                //        }
+                //    }
     
+                // }
+                .evaLightBox{
+                    width: 321px;
+                    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+                    border-radius: 10px;
+                    margin: auto;
+                    display: none;
+                    span{
+                        display: block;
+                        text-align: right;
+                        padding: 10px;
+                        font-size: 22px;
+                    }
+                    .proPic{
+                        width: 100%;
+                        text-align: center;
+                        img{
+                            width: 25%;
+                        }
+                        p{
+                            color: $tabColor;
+                            line-height: 1.6;
+                          }
+                    }
+                    .evaStars{
+                        ul{
+                            li{
+                                p{
+                                    color: $tabColor;
+                                    line-height: 1.6;
+                                    padding: 0 5px;
+                                }
+                            }
+                        }
+                    }
+                    .discuss{
+                        text-align: center;
+                        textarea{
+                            margin: 10px 0;
+                        }
+                    }
+                    .evaPro{
+                        width: 150px;
+                        margin: auto;
+                        margin-top: 10px;
+                        .proPicBox{
+                            margin-bottom: 10px;
+                            text-align: center;
+                            img{
+                                width: 30%;
+                            }
+                        }
+                        
+                        .evaproPic{
+                           
+    
+                            .step{
+                                width: 120px;
+                                height: 35px;
+                                margin: auto;
+                                
+                            }
+                            input{
+                                display: none;
+                            }
+                        }
+    
+                    }
+                    .evaSend{
+                        text-align: center;
+                        padding: 10px 0;
+                        .step{
+                            width: 120px;
+                            height: 35px;
+                            
+                            // margin-top: 10px;
+                            
+                             }
+                    }
+                    
                 }
             }
             #tab-3{

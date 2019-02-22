@@ -250,14 +250,20 @@ function sendForm() {
 //             這是登出程式                    //
 //===========================================//
 function logout() {
+    // ?loglout=true
+    
+    // alert(location.href);
+    // location.href;
     var xhr = new XMLHttpRequest();
     xhr.onload = function () {
         $id('btnloglout').innerHTML = "&nbsp"
         $id('memLogin').style.color = "#737374";
         $id('loginMemId').value = "";
         $id('loginMemPsw').value = "";
+       
+    } 
+    location.href = location.href+"?loglout=true";
 
-    }
     xhr.open("get", "ajaxLogout.php", true);
     xhr.send(null);
 }
