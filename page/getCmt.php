@@ -53,7 +53,7 @@ if($page==0){//第一次進來 要回傳第0~2的評價 以及要產生多少頁
                 '.$cmt["evaCtx"].'
                 </p>
                 <div class="commentBtns">
-                    <button class="like"><i class="far fa-thumbs-up"></i>'.$cmt["like"].'</button>
+                    <button class="like" evaNo='.$cmt["evaNo"].'><i class="far fa-thumbs-up"></i>'.$cmt["like"].'</button>
                     <button class="share"><i class="fas fa-share"></i>分享</button>
                     <button class="btnMsg" evaNo='.$cmt["evaNo"].'><i class="fas fa-comment"></i>顯示留言</button>
                 </div>

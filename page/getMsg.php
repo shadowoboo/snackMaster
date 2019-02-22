@@ -9,7 +9,7 @@ $rspArr =[];
 $evaNo=$_REQUEST['evaNo'];
 try{
 require_once("connectcd105g2.php");
- $sql="SELECT `msgText`,`memPic`,`memId`,`msgTime` FROM `msg`,`member` WHERE msg.`evaNo`={$evaNo} AND msg.`memNo`=member.`memNo` ORDER by `msgTime` ASC";
+ $sql="SELECT `msgText`,`memPic`,`memId`,`msgTime` FROM `msg`,`member` WHERE msg.`evaNo`={$evaNo} AND msg.`memNo`=member.`memNo` ORDER by `msgTime` DESC";
 
  $feed=$pdo->query($sql);
   while($msgCtx=$feed->fetch()){
