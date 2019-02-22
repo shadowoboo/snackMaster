@@ -3,16 +3,13 @@ function showStar(){
 $('.star').each(function(){
     var avgG = $(this).attr('grad');
     var gap = avgG>Math.floor(avgG)?Math.floor(avgG):Math.floor(avgG)-1;
-    // console.log(gap);
     var starLength= avgG*11+gap*5+13;
-    $(this).css('background',`linear-gradient(to right, rgb(233, 125, 88) ${starLength}%, rgb(255, 255, 255)10%)`)
+    $(this).css('background',`linear-gradient(to right, rgb(233, 125, 88) ${starLength}%, rgb(255, 255, 255)10%)`);
+    console.log($(this));
 })
 
 }
-
 window.onload=showStar;
-
-
 {/*
     
 你的網頁結構會長這樣: 透過改變父層的漸層長度表達星星

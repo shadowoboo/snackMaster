@@ -1,3 +1,25 @@
+// $(document).ready(function(){
+//   $('#btnmodify').click(function(){
+//     //點擊按鈕，以字串形式打包表單資料
+//      memUPdata = $('#memInfo').serialize();
+//      console.log(memUPdata);
+     
+//     $.ajax({
+//       url: 'memUpdate.php',
+//       // type: 'POST',
+//       data:memUPdata,
+//       success: function(data){//PHP回傳的結果
+//         if(data=="memOK"){
+//           alert("修改完成");
+//         }else{
+//           alert("修改失敗");
+//           console.log(data);
+//         }
+//       }
+//     });
+//   });
+
+// });
 function $id(id){
   return document.getElementById(id);
 }

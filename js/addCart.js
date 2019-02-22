@@ -20,36 +20,38 @@
 // 商品編號|箱子價格|3|箱子備註
 
 function addCart(e){
-    if (document.getElementById("btnloglout").innerHTML == "&nbsp;") {
-        alert('請先登入會員唷～');
-        return;
-    }else{
-        var info = e.target.id;
-        var infoArr = info.split('|');
-        var snackNo = infoArr[0];
-        var snackPrice = infoArr[1];
-        var snackType = infoArr[2];
-        if ( snackType == 2 ){
-            var note = infoArr[3] + '|' + infoArr[4];
-        } else if ( snackType == 3 ){
-            var note = infoArr[3];
+    if(e.target.innerText == '加入購物車'){
+        if (document.getElementById("btnloglout").innerHTML == "&nbsp;") {
+            alert('請先登入會員唷～');
+            return;
         }else{
-            var note = '';
-        }
-    
-        var xhr = new XMLHttpRequest();
-        xhr.onload = function () {
-            if (xhr.status == 200) {
-                alert(xhr.responseText);
-                alert('商品已加入購物車～');
-            } else {
-                alert(xhr.status);
+            var info = e.target.id;
+            var infoArr = info.split('|');
+            var snackNo = infoArr[0];
+            var snackPrice = infoArr[1];
+            var snackType = infoArr[2];
+            if ( snackType == 2 ){
+                var note = infoArr[3] + '|' + infoArr[4];
+            } else if ( snackType == 3 ){
+                var note = infoArr[3];
+            }else{
+                var note = '';
             }
+        
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    alert(xhr.responseText);
+                    alert('商品已加入購物車～');
+                } else {
+                    alert(xhr.status);
+                }
+            }
+        
+            var url = 'addCart.php?snackNo=' + snackNo + '&snackPrice=' + snackPrice + '&snackType=' + snackType + '&note=' + note;
+            xhr.open('get', url, true);
+            xhr.send(null);
         }
-    
-        var url = 'addCart.php?snackNo=' + snackNo + '&snackPrice=' + snackPrice + '&snackType=' + snackType + '&note=' + note;
-        xhr.open('get', url, true);
-        xhr.send(null);
     }
 }
 window.addEventListener('load', function (){
