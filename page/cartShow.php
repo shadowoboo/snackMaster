@@ -112,7 +112,18 @@ if(isset($_SESSION["snackName"])){
                 <div class="prodCards" id="prodCards">
 <?php
     //如果有客製箱
-    if(isset($_SESSION["snackName"][1])){
+    //如果只有"客製關聯商品"但是沒有"客製箱本身"=>不是真的客製箱=>刪除"客製關聯商品"避免衝突
+    if(isset($_SESSION["snackName"][1][50])){
+        unset($_SESSION["snackName"][1]);
+        unset($_SESSION["snackPrice"][1]);
+        unset($_SESSION["note"][1]);
+        unset($_SESSION["snackQuan"][1]);
+        unset($_SESSION["snackPic"][1]);
+        unset($_SESSION["cusBox"]);
+        unset($_SESSION["cusCard"]);
+        unset($_SESSION["cusSound"]);
+    }
+    if(isset($_SESSION["snackName"][1]) && isset($_SESSION["snackName"][1][50])){
 ?>
                     <div class="prodCard prodCard_Group">
                         <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusBox">
@@ -183,6 +194,9 @@ if(isset($_SESSION["snackName"])){
                                 </div>
                             </div>
                         </div>
+
+
+
 <?php
         //客製商品
         foreach ($_SESSION["snackName"][1] as $snackNo => $snackName) {
