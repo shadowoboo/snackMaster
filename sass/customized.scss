@@ -12,6 +12,14 @@ body{
     }
 }
 
+fieldset,aside,main,picture,figure,article{
+    img{
+        width:300px;    
+        height: 150px;
+        // display: none;
+    }
+}
+
 .card {
     position: relative;
   }
@@ -1039,6 +1047,7 @@ $cardY:600px;
         height: calc(100% - #{$areaHead});
         width: 100%;
         overflow: hidden; //不要露出卷軸
+        font-family: g2Font;
         // font-size: 20px;
         // vertical-align: center;
         //文字框被使用中的時候，提示使用者還在輸入中

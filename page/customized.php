@@ -75,12 +75,12 @@ try {
                     
                     <div class="leftBox">
                         <div id="ctrl_bar">
-                            <div class="btn btn_front dimension" id="btn_front">前</div>
-                            <div class="btn btn_back dimension" id="btn_back">後</div>
-                            <div class="btn btn_top dimension" id="btn_top">上</div>
-                            <div class="btn btn_left dimension" id="btn_left">左</div>
-                            <div class="btn btn_right dimension" id="btn_right">右</div>
-                            <div class="btn rotateX dimension" id="rotateX">轉</div>
+                            <div class="btn btn_front dimension"  id="btn_front">前</div>
+                            <div class="btn btn_back dimension"  id="btn_back">後</div>
+                            <div class="btn btn_top dimension"  id="btn_top">上</div>
+                            <div class="btn btn_left dimension"  id="btn_left">左</div>
+                            <div class="btn btn_right dimension"  id="btn_right">右</div>
+                            <div class="btn rotateX dimension"  id="rotateX">轉</div>
                               <!-- <div class="btn rotateY" id="rotateY">Y軸轉轉</div>-->
                             <!-- <div class="btn rotateZ dimension" id="rotateZ">轉</div>  -->
                         </div>
@@ -93,17 +93,17 @@ try {
                                         </div>
                                         <div class="surface surface_top_inner" id="cover_in_15">
                                         </div>
-                                        <div class="surface surface_down">
+                                        <div class="surface surface_down" id="cover_down">
                                         <img id="cusImg_down" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
-                                        <div class="surface surface_back"></div>
-                                        <div class="surface surface_front">
+                                        <div class="surface surface_back" id="cover_back"></div>
+                                        <div class="surface surface_front" id="cover_front">
                                         <img id="cusImg_front" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
-                                        <div class="surface surface_left">
+                                        <div class="surface surface_left" id="cover_left">
                                         <img id="cusImg_left" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
-                                        <div class="surface surface_right">
+                                        <div class="surface surface_right" id="cover_right">
                                         <img id="cusImg_right" src="../images/tina/LOGO1.png" alt="" style="display:none;">
                                         </div>
                                     </div>
@@ -438,11 +438,6 @@ try {
         // $id('sendSnack').onclick = sendSnack;
     </script>     
       <div id="stepLast" class="step-content-body out">Completed</div>
-      <!-- <div class="step-content-foot">
-        <button type="button" class="active" name="prev">上一步</button>
-        <button type="button" class="active" name="next">下一步</button>
-        <button type="button" class="active out" name="finish"><a href="#">加入購物車</a></button>
-      </div> -->
     </div>
     
   </div>
@@ -451,13 +446,20 @@ try {
         <button type="button" class="active" name="next">下一步</button>
         <button type="button" class="active out" name="finish"><a href="#">加入購物車</a></button>
   </div>
+<!-- 
+  <input type="button" value="轉為圖檔" /> -->
+  <fieldset></fieldset>
+  <main></main>
+  <figure></figure>
+  <aside></aside>
+  <picture></picture>
+  <article></article>
 
-  <input type="button" value="轉為圖檔" />
-  <fieldset>
-    <legend>圖檔</legend>
-    <div>
-    </div>
-  </fieldset>
+  <form id="myForm">
+    <input type="hidden" name="myImage" id="myImage">
+  </form>  
+
+
   <footer>
     <div class="footer_ip">
         <div class="ip_size">
@@ -485,32 +487,181 @@ try {
         <p id="copy">Copyright©2019 Snack Master</p>
     </div>
 </footer>
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src="../js/customizedstep.js"></script>
-  <script src="../js/header.js"></script>
-    <!-- Draggable -->
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="../js/customizedstep.js"></script>
+    <script src="../js/header.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" defer></script>
-   <script src="../js/jquery.ui.touch-punch.js"></script>
-   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js "></script>
-<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js "></script>
-<script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-    
+    <script src="../js/jquery.ui.touch-punch.js"></script>
+  
 <script>
-    $(":button").click(function() {
-        for($i=49;$i<=50;$i++){
-            html2canvas($("div")[$i]).then(function(canvas) {
-                var $div = $("fieldset div");
-                $div.empty();
-                $("<img />", { src: canvas.toDataURL("image/png") }).appendTo-($div);
-            });
-        }
-      
-    });
-  </script>
+//前:50  後：49 上：48 左：51 右：52 
+    
+    //   $(":button").click(function() {
+    //   html2canvas($("#cover_front")[0]).then(function(canvas) {
+    //       var $div = $("fieldset");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
+            
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
+            
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
+                
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
 
+    //   $(":button").click(function() {
+    //   html2canvas($("#cover_down")[0]).then(function(canvas) {
+    //       var $div = $("aside");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
+            
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
+            
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
+                
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
+
+    
+    // $(":button").click(function() {
+    //   html2canvas($("#cover_back")[0]).then(function(canvas) {
+    //       var $div = $("main");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
+            
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
+            
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
+                
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
+    
+    // $(":button").click(function() {
+    //   html2canvas($("#cover_left")[0]).then(function(canvas) {
+    //       var $div = $("picture");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
+            
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
+            
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
+                
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
+    
+    // $(":button").click(function() {
+    //   html2canvas($("#cover_right")[0]).then(function(canvas) {
+    //       var $div = $("figure");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
+            
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
+            
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
+                
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
+
+    
+    // $(":button").click(function() {
+    //   html2canvas($("#section_7")[0]).then(function(canvas) {
+    //       var $div = $("article");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
+            
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
+            
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
+                
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
+  </script>
 
   <script>
     const boxBases = document.querySelectorAll(".boxBase");
