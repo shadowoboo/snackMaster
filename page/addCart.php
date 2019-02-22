@@ -23,7 +23,7 @@
         //即期的話是原價跟專案編號   //預購的話會是購買種類數量
         $_SESSION['snackQuan'][$type][$snackNo] = 1; 
         $_SESSION['snackPic'][$type][$snackNo] = $snack['snackPic'];
-        echo $_SESSION['snackName'][$snackNo].'|'.$_SESSION['snackPrice'][$snackNo].'|'.$_SESSION['cusType'][$snackNo].'|'.$_SESSION['snackQuan'][$snackNo].'|'.$_SESSION['snackPic'][$snackNo];
+        // echo $_SESSION['snackName'][$snackNo].'|'.$_SESSION['snackPrice'][$snackNo].'|'.$_SESSION['cusType'][$snackNo].'|'.$_SESSION['snackQuan'][$snackNo].'|'.$_SESSION['snackPic'][$snackNo];
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";
