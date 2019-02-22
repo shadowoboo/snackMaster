@@ -1,4 +1,6 @@
 <?php
+    ob_start();
+    session_start();
 //////////////////////////////////////////////////////////////
 // 0 一般
 // 1 客製
@@ -106,7 +108,7 @@
             </div>
 <?php
 //檢查有沒有商品在session
-if(isset($_SESSION["snackName"])){
+if(isset($_SESSION["snackName"])==true){ 
 ?>
             <div class="cartContent cartContent_prod">
                 <div class="prodCards" id="prodCards">
