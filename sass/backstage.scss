@@ -30,9 +30,10 @@ h1,h2,h3,h4,p,span{
         background-color: rgba($color: #fff, $alpha: 0.9);
         text-align: center;
         #logo{
-            width: 70%;
+            width: 50%;
             margin: auto;
-            margin-bottom: 30px;
+            margin-top: 10px;
+            margin-bottom: 26px;
         }
         #manager{
             color: $blue;
@@ -42,7 +43,7 @@ h1,h2,h3,h4,p,span{
             font-size: 22px;
             li{
                 display: block;
-                margin: 40px 0;
+                margin: 36px 0;
                 a{
                     color: $gray;
                     &:hover{

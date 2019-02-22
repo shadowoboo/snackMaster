@@ -376,14 +376,6 @@
             <div class="tabPanel " id="tab-3">
                 <div class="collect">
 
-<<<<<<< HEAD
-                    <div class="item citem1">
-                        <img class="country" src="../images/blair/jp-no2.png" alt="">
-                        <img class="itemImg" src="../images/blair/item3.png" alt="">
-                        <h4 class="itemName">[日本]Pure 草莓優格軟糖</h4>
-                        <div class="sellPrice">
-                            <p>價格<span>$80</span></p>
-=======
             </div>
             <!-------------------優惠券--------------------  -->
             <div class="tabPanel " id="tab-4">
@@ -407,7 +399,6 @@
                         <td>2019/05/20</td>
                     </tr>
                 </table>
->>>>>>> yingHan
 
                         </div>
                         <div class="citemBtns">

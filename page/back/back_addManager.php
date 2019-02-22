@@ -12,6 +12,8 @@
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";
     }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +31,7 @@
             margin-bottom: 30px;
         }
         .backstage #contentWrap #content table td{
-            width: 350px;
+            width: 180px;
         }
         .backstage #contentWrap #content button, #cancel, #submit{
             width: 120px;
@@ -52,7 +54,7 @@
 ?>
         <div id="contentWrap">
             <div id="content">
-                <h3>新增優惠券</h3>
+                <h3>新增後台帳號</h3>
 <?php
     if( $errMsg != ""){
         exit("<div><center>$errMsg</center></div>");
@@ -61,25 +63,23 @@
                 <form id="myForm">
                     <table>
                         <tr>
-                            <td>折價金額</td>
-                            <td><input type="text" name="discountPrice" size="10"></td>
+                            <td>姓名</td>
+                            <td><input type="text" name="managerName" size="15"></td>
                         </tr>
                         <tr>
-                            <td>圖片</td>
-                            <td><input type="text" name="imgSRC" size="30"></td>
+                            <td>帳號</td>
+                            <td><input type="text" name="managerId" size="15"></td>
                         </tr>
                         <tr>
-                            <td>名目</td>
-                            <td>
-                                <select name="getWay">
-                                    <option value="刮刮樂">刮刮樂</option>
-                                    <option value="猜箱子">猜箱子</option>
-                                    <option value="升等獎勵">升等獎勵</option>
-                                </select>
-                            </td>
+                            <td>密碼</td>
+                            <td><input type="password" id="managerPsw" name="managerPsw" size="15"></td>
+                        </tr>
+                        <tr>
+                            <td>確認密碼</td>
+                            <td><input type="password" id="checkPsw" size="15"></td>
                         </tr>
                     </table>
-                    <input type="button" class="cart" id="submit" value="新增優惠券">
+                    <input type="button" class="cart" id="submit" value="新增帳號">
                     <input type="button" class="cart" id="cancel" value="放棄新增">
                 </form>
             </div>
@@ -90,30 +90,33 @@
     </div> 
     <script>
         document.getElementById('submit').addEventListener('click', function (){
-            if(window.confirm('優惠券新增後，折價金額將不能再修改，確認要新增優惠券嗎？') == true){
+            if( document.getElementById('checkPsw').value == '' || document.getElementById('checkPsw').value != document.getElementById('managerPsw').value ){
+                document.getElementById('managerPsw').value = '';
+                document.getElementById('checkPsw').value = '';
+                alert('密碼與確認密碼內容不正確！請重新輸入')
+            }else{
                 var xhr = new XMLHttpRequest();
                 xhr.onload = function () {
                     if (xhr.status == 200) {
-                        if( xhr.responseText == 'true' ){
-                            alert('新增優惠券成功！');
-                            location.href='back_coupon.php';
+                        if( xhr.responseText == 'false' ){
+                            alert('已有重複帳號！請重新輸入');
                         }else{
-                            alert(xhr.responseText);
+                            alert('新增帳號成功！');
+                            location.href='back_manager.php';
                         }
                     } else {
                         alert(xhr.status);
                     }
                 } 
 
-                xhr.open("Post", "back_couponToDb.php", true);
+                xhr.open("Post", "back_managerToDb.php", true);
                 var myForm = new FormData( document.getElementById('myForm'));
-                xhr.send( myForm );  
+                xhr.send( myForm );    
             }
-              
-        })
+        });
         document.getElementById('cancel').addEventListener('click', function (){
-            if(window.confirm('確定要放棄新增優惠券嗎？') == true){
-                location.href = 'back_coupon.php';
+            if(window.confirm('確定要放棄新增帳號嗎？') == true){
+                location.href = 'back_manager.php';
             }
         })
     </script>

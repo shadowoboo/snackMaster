@@ -31,7 +31,7 @@
         .backstage #contentWrap #content table td{
             width: 350px;
         }
-        .backstage #contentWrap #content button, #cancel, #submit{
+        .backstage #contentWrap #content button, #cancel{
             width: 120px;
             height: 46px;
         }
@@ -52,34 +52,34 @@
 ?>
         <div id="contentWrap">
             <div id="content">
-                <h3>新增優惠券</h3>
+                <h3>客製化素材</h3>
 <?php
     if( $errMsg != ""){
         exit("<div><center>$errMsg</center></div>");
     }
 ?>
-                <form id="myForm">
+                <form action="back_materialToDb.php">
                     <table>
                         <tr>
-                            <td>折價金額</td>
-                            <td><input type="text" name="discountPrice" size="10"></td>
-                        </tr>
-                        <tr>
-                            <td>圖片</td>
-                            <td><input type="text" name="imgSRC" size="30"></td>
-                        </tr>
-                        <tr>
-                            <td>名目</td>
+                            <td>種類</td>
                             <td>
-                                <select name="getWay">
-                                    <option value="刮刮樂">刮刮樂</option>
-                                    <option value="猜箱子">猜箱子</option>
-                                    <option value="升等獎勵">升等獎勵</option>
+                                <select name="materialGenre">
+                                    <option value="img">img</option>
+                                    <option value="color">color</option>
+                                    <option value="cardstyle">cardstyle</option>
                                 </select>
                             </td>
                         </tr>
+                        <tr>
+                            <td>名稱</td>
+                            <td><input type="text" name="materialName" size="26"></td>
+                        </tr>
+                        <tr>
+                            <td>內容</td>
+                            <td><input type="text" name="materialPath" size="26"></td>
+                        </tr>
                     </table>
-                    <input type="button" class="cart" id="submit" value="新增優惠券">
+                    <button type="submit" class="cart" id="commit">新增素材</button>   
                     <input type="button" class="cart" id="cancel" value="放棄新增">
                 </form>
             </div>
@@ -89,31 +89,9 @@
         </div>
     </div> 
     <script>
-        document.getElementById('submit').addEventListener('click', function (){
-            if(window.confirm('優惠券新增後，折價金額將不能再修改，確認要新增優惠券嗎？') == true){
-                var xhr = new XMLHttpRequest();
-                xhr.onload = function () {
-                    if (xhr.status == 200) {
-                        if( xhr.responseText == 'true' ){
-                            alert('新增優惠券成功！');
-                            location.href='back_coupon.php';
-                        }else{
-                            alert(xhr.responseText);
-                        }
-                    } else {
-                        alert(xhr.status);
-                    }
-                } 
-
-                xhr.open("Post", "back_couponToDb.php", true);
-                var myForm = new FormData( document.getElementById('myForm'));
-                xhr.send( myForm );  
-            }
-              
-        })
         document.getElementById('cancel').addEventListener('click', function (){
-            if(window.confirm('確定要放棄新增優惠券嗎？') == true){
-                location.href = 'back_coupon.php';
+            if(window.confirm('確定要放棄新增素材嗎？') == true){
+                location.href = 'back_material.php';
             }
         })
     </script>
