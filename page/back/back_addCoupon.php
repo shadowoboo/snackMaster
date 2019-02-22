@@ -31,7 +31,7 @@
         .backstage #contentWrap #content table td{
             width: 350px;
         }
-        .backstage #contentWrap #content button, #cancel{
+        .backstage #contentWrap #content button, #cancel, #submit{
             width: 120px;
             height: 46px;
         }
@@ -47,45 +47,9 @@
 </head>
 <body>
     <div class="backstage">
-        <div id="menu">
-            <div id="logo">
-                <img src="../../images/tina/LOGO1.png" alt="">
-            </div>
-            <p>歡迎，管理員 <span id="manager"><?php echo $_SESSION['managerName'] ?></span></p>
-            <ul id="menuUl">
-                    <li>
-                        <a href="back_snack.php">商品資料管理</a>
-                    </li>
-                    <li>
-                        <a href="back_order.php">訂單管理</a>
-                    </li>
-                    <li>
-                        <a href="back_member.php">會員管理</a>
-                    </li>
-                    <li>
-                        <a href="back_coupon.php">優惠券管理</a>
-                    </li>
-                    <li>
-                        <a href="back_rank.php">排行榜管理</a>
-                    </li>
-                    <li>
-                        <a href="back_vending.php">販賣機管理</a>
-                    </li>
-                    <li>
-                        <a href="back_material.php">客製化用素材</a>
-                    </li>
-                    <li>
-                        <a href="back_clearance.php">即期品專案管理</a>
-                    </li>
-                    <li>
-                        <a href="back_report.php">審核檢舉</a>
-                    </li>
-                    <li>
-                        <a href="back_manager.php">後台帳號管理</a>
-                    </li>
-                    <a href="back_logout.php" id="logout">登出</a>
-            </ul>
-        </div>
+<?php
+    require_once('back_menu.php');
+?>
         <div id="contentWrap">
             <div id="content">
                 <h3>新增優惠券</h3>
@@ -94,7 +58,7 @@
         exit("<div><center>$errMsg</center></div>");
     }
 ?>
-                <form action="back_couponToDb.php">
+                <form id="myForm">
                     <table>
                         <tr>
                             <td>折價金額</td>
@@ -115,7 +79,7 @@
                             </td>
                         </tr>
                     </table>
-                    <button type="submit" class="cart" id="commit">新增優惠券</button>   
+                    <input type="button" class="cart" id="submit" value="新增優惠券">
                     <input type="button" class="cart" id="cancel" value="放棄新增">
                 </form>
             </div>
@@ -125,6 +89,28 @@
         </div>
     </div> 
     <script>
+        document.getElementById('submit').addEventListener('click', function (){
+            if(window.confirm('優惠券新增後，折價金額將不能再修改，確認要新增優惠券嗎？') == true){
+                var xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        if( xhr.responseText == 'true' ){
+                            alert('新增優惠券成功！');
+                            location.href='back_coupon.php';
+                        }else{
+                            alert(xhr.responseText);
+                        }
+                    } else {
+                        alert(xhr.status);
+                    }
+                } 
+
+                xhr.open("Post", "back_couponToDb.php", true);
+                var myForm = new FormData( document.getElementById('myForm'));
+                xhr.send( myForm );  
+            }
+              
+        })
         document.getElementById('cancel').addEventListener('click', function (){
             if(window.confirm('確定要放棄新增優惠券嗎？') == true){
                 location.href = 'back_coupon.php';

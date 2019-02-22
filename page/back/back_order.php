@@ -11,7 +11,7 @@
         $recPerPage = 12;
         $sql = 'select count(orderNo) from snackorder';
         $countSta = $pdo -> query($sql);
-        $totalRec = ($countSta -> fetchColumn() )-1;
+        $totalRec = $countSta -> fetchColumn();
         $pages = ceil($totalRec/$recPerPage);
         if( isset($_REQUEST['pageNum']) ){
             $pageNum = $_REQUEST['pageNum'];
@@ -40,45 +40,9 @@
 </head>
 <body>
     <div class="backstage">
-        <div id="menu">
-            <div id="logo">
-                <img src="../../images/tina/LOGO1.png" alt="">
-            </div>
-            <p>歡迎，管理員 <span id="manager"><?php echo $_SESSION['managerName'] ?></span></p>
-            <ul id="menuUl">
-                    <li>
-                        <a href="back_snack.php">商品資料管理</a>
-                    </li>
-                    <li>
-                        <a href="back_order.php">訂單管理</a>
-                    </li>
-                    <li>
-                        <a href="back_member.php">會員管理</a>
-                    </li>
-                    <li>
-                        <a href="back_coupon.php">優惠券管理</a>
-                    </li>
-                    <li>
-                        <a href="back_rank.php">排行榜管理</a>
-                    </li>
-                    <li>
-                        <a href="back_vending.php">販賣機管理</a>
-                    </li>
-                    <li>
-                        <a href="back_material.php">客製化用素材</a>
-                    </li>
-                    <li>
-                        <a href="back_clearance.php">即期品專案管理</a>
-                    </li>
-                    <li>
-                        <a href="back_report.php">審核檢舉</a>
-                    </li>
-                    <li>
-                        <a href="back_manager.php">後台帳號管理</a>
-                    </li>
-                    <a href="back_logout.php" id="logout">登出</a>
-            </ul>
-        </div>
+<?php
+    require_once('back_menu.php');
+?>
         <div id="contentWrap">
             <div id="content">
                 <h3>訂單管理</h3>
@@ -127,8 +91,9 @@
                 <div id="pagination">
                     <ul>
                         <?php
+                            $pagesP = $pages + 1;
                             $prev = $pageNum - 1 == 0? 1:$pageNum - 1;
-                            $next = $pageNum + 1 == 7? 6:$pageNum + 1;
+                            $next = $pageNum + 1 == $pagesP? $pages:$pageNum + 1;
                             echo '<li class="page-item"><a href="back_order.php?pageNum='.$prev.'" id="last" class="page-link"><i class="fas fa-chevron-left"></i></a></li>';
                             for($i=1; $i<=$pages; $i++){
                                 if( $i == $pageNum ){
