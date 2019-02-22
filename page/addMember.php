@@ -15,7 +15,7 @@
        }
        else{
            // echo "帳號可使用";
-           $sql_insert = "insert into member (memId, memPsw, email) values (:memId, :memPsw, :email) ";
+           $sql_insert = "insert into member (memId, memPsw, email, memPic) values (:memId, :memPsw, :email, '../images/Level/level0.png') ";
            $stmt = $pdo->prepare($sql_insert);
            $stmt-> bindValue(":memId",$_REQUEST["account"]);
            $stmt-> bindValue(":memPsw",$_REQUEST["password"]);
