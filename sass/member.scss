@@ -559,6 +559,8 @@ input[type="number"]{
         #tab-3{
                 .collect{
                     width: 100%;
+                    
+                    // margin: auto;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -572,8 +574,7 @@ input[type="number"]{
                             position: relative;
                             margin: auto;
                             text-align: center;
-                            margin-top: 20px;
-                            
+                            margin-top:20px;
                             .country{
                                 width: 40px;
                                 position: absolute;

@@ -23,7 +23,7 @@ try {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="../css/nnnnn.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../css/gsell.css" />
-    <link rel="stylesheet" href="../css/header.css">
+    <!-- <link rel="stylesheet" href="../css/header.css"> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -165,9 +165,10 @@ try {
         <!-- map api -->
         <div id="mapSearch">
             <div id="map"></div>
-            <script src="../js/gsell.js"></script>
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxP0uxcl_z9Y2bY7OkrWZg5TRhtkANEog&callback=initMap">
+            <scrip src="../js/gsell.js"></scrip>
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxP0uxcl_z9Y2bY7OkrWZg5TRhtkANEog">
             </script>        
+            <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxP0uxcl_z9Y2bY7OkrWZg5TRhtkANEog&callback=initMap"> -->
         </div>
     
         <!-- 地圖篩選 -->
@@ -377,8 +378,10 @@ try {
     }
 
     function succCallback(arg){
-        var lati = 24.967768;
-        var longi = 121.191705;
+        // var lati = 24.967768;
+        var lati = 23.853344;
+        // var longi = 121.191705;
+        var longi = 120.951841;
 
         var taiwan = {
             north: 25.46,
@@ -390,7 +393,7 @@ try {
         var xy = new google.maps.LatLng(lati, longi);
         // var mapBoard = document.getElementById('mapBoard');
         var options = {
-            zoom: 12,
+            zoom: 6,//設定遠近
             center: xy,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             restriction: {
@@ -409,52 +412,52 @@ try {
     }
 
     // marker 地標
-        function showInfo(num){
-            var value = selectMenu[num].value;
-            switch(value){
-                case '桃園區':
-                    getLocation(hate, '桃園區');
-                    break; 
-                case '中壢區':
-                    getLocation(power, '中壢區');
-                    break ; 
-                case '八德區':
-                    getLocation(eight, '八德區');
-                    break ;
-                case '龜山區':
-                    getLocation(mountain, '龜山區');
-                    break ;
-                case '大溪區':
-                    getLocation(river, '大溪區');
-                    break ;
-                case '平鎮區':
-                    getLocation(hori, '平鎮區');
-                    break ;
+    function showInfo(num){
+        var value = selectMenu[num].value;
+        switch(value){
+            case '桃園區':
+                getLocation(hate, '桃園區');
+                break; 
+            case '中壢區':
+                getLocation(power, '中壢區');
+                break ; 
+            case '八德區':
+                getLocation(eight, '八德區');
+                break ;
+            case '龜山區':
+                getLocation(mountain, '龜山區');
+                break ;
+            case '大溪區':
+                getLocation(river, '大溪區');
+                break ;
+            case '平鎮區':
+                getLocation(hori, '平鎮區');
+                break ;
             }
         }
 
 
-        var markers = new Array(); 
-        function getLocation(as,title){
-            var i = 0;
-            for(var k in markers){
-                markers[k].setVisible(false);
-            }
-            for(var k in as){
-                var lati = as[k].split(',')[0]; 
-                var longi = as[k].split(',')[1]; 
-                var xy = new google.maps.LatLng(lati, longi);
-                //加 icon
-                var image = '../images/nnnnn/masell.png';
-                var marker = new google.maps.Marker({ 
-                    position: xy, 
-                    map: map,
-                    icon: image
-                });
-                marker.setTitle(title); 
-                markers[i]  = marker;i++ ;           
-            }           
+    var markers = new Array(); 
+    function getLocation(as,title){
+        var i = 0;
+        for(var k in markers){
+            markers[k].setVisible(false);
         }
+        for(var k in as){
+            var lati = as[k].split(',')[0]; 
+            var longi = as[k].split(',')[1]; 
+            var xy = new google.maps.LatLng(lati, longi);
+            //加 icon
+            var image = '../images/nnnnn/masell.png';
+            var marker = new google.maps.Marker({ 
+                position: xy, 
+                map: map,
+                icon: image
+            });
+            marker.setTitle(title); 
+            markers[i]  = marker;i++ ;           
+        }           
+    }
 
         
 
@@ -487,8 +490,9 @@ try {
         var directionsService = new google.maps.DirectionsService;
 
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: {lat: 24.967768, lng: 121.191705}
+        //   zoom: 12,
+        //   center: {lat: 24.967768, lng: 121.191705}
+        center: {lat: 23.853344, lng: 120.951841}
         });
 
         // 為路線創建渲染器並將其綁定到地
@@ -533,7 +537,7 @@ try {
     }
 
 
-    // 首先，從地圖中刪除任何現有標記
+    //首先，從地圖中刪除任何現有標記
     function calculateAndDisplayRoute(directionsDisplay, directionsService,markerArray, stepDisplay, map) {
         for (var i = 0; i < markerArray.length; i++) {
             markerArray[i].setMap(null);
@@ -544,7 +548,7 @@ try {
             origin: {lat: 24.9650192, lng: 121.1909533},
             destination: endLnge+','+endLat,
             travelMode: 'DRIVING'
-            },function(response, status){
+            },  function(response, status){
                 //路線指示並將響應傳遞給要創建的功能
                 //每個步驟的標記
                 if (status === 'OK') {

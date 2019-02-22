@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "animate.css": "^3.7.0",
     "browser-sync": "^2.26.3",
     "gasp": "0.0.2",
     "gsap": "^2.0.2",
