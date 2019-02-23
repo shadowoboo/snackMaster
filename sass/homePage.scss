@@ -63,9 +63,14 @@ body {
             }
         }
         i {
-            font-size: 20px;
+            font-size: 22px;
             vertical-align: middle;
             color: $gray;
+            &:hover{
+                transform: scale(1.1);
+                transition: 0.5s;
+                color: $blue;
+            }
             @media screen and (max-width: 768px) {
                 vertical-align: unset;
                 font-size: 30px;
