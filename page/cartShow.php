@@ -104,7 +104,7 @@
 
             <div class="cartContent cartContent_none cartPageActive">
                 <h4>購物車暫無商品！</h4>
-                <a href="shopping.html"><button class="subscribe">繼續選GO</button></a>
+                <a href="shopping.php"><button class="subscribe">繼續選GO</button></a>
             </div>
 <?php
 //檢查有沒有商品在session
@@ -444,7 +444,7 @@ if(isset($_SESSION["snackName"])==true){
 
             <div class="cartContent cartFinishOrder ">
                 <h3>您已經成功下單!!</h3>
-                <a href="shopping.html"><button class="subscribe">繼續選GO</button></a>
+                <a href="shopping.php"><button class="subscribe">繼續選GO</button></a>
             </div>
 
             <div class="cartPanel">

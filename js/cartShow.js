@@ -455,7 +455,6 @@ $(document).ready(function () {
                 $(".cartTh").hide();
                 //顯示 "上一步" 按鈕
                 console.log(`btnBack`);
-
                 $(".btnBack").removeClass("btnBack_none");
                 //頁數+1
                 stepCount += 1;
@@ -467,7 +466,7 @@ $(document).ready(function () {
             $(".cartContent_prod").removeClass("cartPageActive");
             $(".cartFormZone").addClass("cartPageActive");
             //顯示 "上一步" 按鈕
-            $(".btnBack").removeClass(".btnBack_none");
+            $(".btnBack").removeClass("btnBack_none");
             stepCount += 1;
             console.log(`stepCount: ${stepCount}`);
         }
