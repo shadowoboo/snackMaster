@@ -69,14 +69,10 @@ $(function () {
     //減少
     $(".numMinus").bind("click", function (e) {
         var snackNo = e.target.dataset.snackno;
-<<<<<<< HEAD
         var snackType = e.target.dataset.snacktype;
         var val=$(this).next().val();
         console.log(`snackType: ${snackType}`);
         
-=======
-        var val = $(this).next().val();
->>>>>>> master
         // console.log(val);
         //因為直接取值會慢實際看到的value一次，故手動補正
         if (snackQuan == 1) {
@@ -120,11 +116,7 @@ $(function () {
         $.ajax({
             type: "get",
             url: "cartUpdate.php",
-<<<<<<< HEAD
             data: "updateType=numPlus&snackNo="+snackNo+"&snackQuan="+snackQuan+"&snackType="+snackType,
-=======
-            data: "updateType=numPlus&snackNo=" + snackNo + "&snackQuan=" + snackQuan,
->>>>>>> master
             success: function (response) {
                 console.log(`response:　${response}`);
             }
@@ -159,20 +151,12 @@ $(function () {
         var snackNo = e.target.dataset.snackno;
         var snackType = e.target.dataset.snacktype;
         console.log(snackNo);
-<<<<<<< HEAD
         console.log(snackType);
         
         $.ajax({
             type: "get",
             url: "cartUpdate.php",
             data: "updateType=normalDel&snackNo=" + snackNo + "&snackType=" + snackType,
-=======
-
-        $.ajax({
-            type: "get",
-            url: "cartUpdate.php",
-            data: "updateType=normalDel&snackNo=" + snackNo,
->>>>>>> master
             success: function (response) {
                 console.log(`response:　${response}`);
             }
