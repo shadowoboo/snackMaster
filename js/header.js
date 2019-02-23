@@ -226,6 +226,7 @@ function sendForm() {
         }
         else {//登入成功顯示“登出”
             $id('btnloglout').innerHTML = "登出"
+            $id("btnloglout").style.cursor='pointer';
             $id('memLogin').style.color = "#076baf";
             $id('loginMemId').value = "";
             $id('loginMemPsw').value = "";
@@ -256,6 +257,7 @@ function logout() {
         $id('memLogin').style.color = "#737374";
         $id('loginMemId').value = "";
         $id('loginMemPsw').value = "";
+        $id("btnloglout").style.cursor='auto';
 
     }
     xhr.open("get", "ajaxLogout.php", true);
@@ -476,6 +478,7 @@ function init3() {
         } else {
             $id("memLogin").style.color = "#076baf"
             $id("btnloglout").innerHTML = "登出";
+            $id("btnloglout").style.cursor='pointer';
         }
     }
     xhr.open("get", "alreadyLogin.php", true);
@@ -489,9 +492,10 @@ window.addEventListener("load", init3);
 
 
 
-$(document).ready(function(){
-    $('#store').click(function () {
-        // $('#store .subMenu').show();
-        $('#store .subMenu').stop(true).slideToggle();
-    });
-});
+
+// $(document).ready(function(){
+//     $('#store').click(function () {
+//         // $('#store .subMenu').show();
+//         $('#store .subMenu').stop(true).slideToggle();
+//     });
+// });
