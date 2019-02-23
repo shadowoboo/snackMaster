@@ -463,14 +463,14 @@ try {
         <button type="button" class="active" name="next">下一步</button>
         <button type="button" class="active out cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="test" data-cusCard="test" data-cusSound="test" >加入購物車</button>
   </div>
-<!-- 
-  <input type="button" value="轉為圖檔" /> -->
+
+  <input type="button" value="轉為圖檔" />
   <fieldset></fieldset>
-  <main></main>
+  <!-- <main></main>
   <figure></figure>
   <aside></aside>
   <picture></picture>
-  <article></article>
+  <article></article> -->
 
   <form id="myForm">
     <input type="hidden" name="myImage" id="myImage">
@@ -523,32 +523,32 @@ try {
 <script>
 //前:50  後：49 上：48 左：51 右：52 
     
-    //   $(":button").click(function() {
-    //   html2canvas($("#cover_front")[0]).then(function(canvas) {
-    //       var $div = $("fieldset");
-    //       $div.empty();
-    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-    //       //-------------------
-    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
-    //         var formData = new FormData(document.getElementById("myForm"));
+      $(":button").click(function() {
+      html2canvas($("#cover_front")[0]).then(function(canvas) {
+          var $div = $("fieldset");
+          $div.empty();
+          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+          //-------------------
+            document.getElementById('myImage').value = canvas.toDataURL("image/png");
+            var formData = new FormData(document.getElementById("myForm"));
             
-    //         var xhr = new XMLHttpRequest();
-    //         xhr.open('POST', 'canvas_load_save.php', true);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'canvas_load_save.php', true);
             
-    //         xhr.onreadystatechange = function() {
-    //             if (xhr.readyState == 4) {
-    //                     if( xhr.status == 200 ){
-    //                     // alert('Succesfully uploaded');  
-    //                     }else{
-    //                     alert(xhr.status);
-    //                     }
-    //             }
-    //         };
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                        if( xhr.status == 200 ){
+                        // alert('Succesfully uploaded');  
+                        }else{
+                        alert(xhr.status);
+                        }
+                }
+            };
                 
-    //         xhr.send(formData);  
-    //       //-------------------
-    //   });
-    // });
+            xhr.send(formData);  
+          //-------------------
+      });
+    });
 
     //   $(":button").click(function() {
     //   html2canvas($("#cover_down")[0]).then(function(canvas) {
@@ -760,7 +760,7 @@ try {
                 //改指定表面顏色
                 function surfaceColorChange(e) {
                         //取按鈕背景色
-                        var tarColor = window.getComputedStyle(e.target, null).getPropertyValue("background-color");
+                        var tarColor = window.getComputedStyle(e.target, null).getPropertyValue("background");
                         // console.log(`tarColor: ${tarColor}`);
                         // console.log(`tarColor type: ${typeof (tarColor)}`);
 
