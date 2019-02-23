@@ -120,10 +120,10 @@ try {
                                 </div>
             
                                 <div id="btns15">
-                                    <div class="btn" id="btn_big"><img src="../images/customized/zoom_in.svg" alt=""></div>
-                                    <div class="btn" id="btn_small"><img src="../images/customized/zoom_out.svg" alt=""></div>
-                                    <div class="btn" id="btn_clk"><img src="../images/customized/rotate.svg" alt=""></div>
-                                    <div class="btn" id="btn_clk_r"><img src="../images/customized/rotatereverse.png" alt=""></div>
+                                    <div class="btn" id="btn_big"><img src="../images/customized/zoom_in.png" alt=""></div>
+                                    <div class="btn" id="btn_small"><img src="../images/customized/zoom_out.png" alt=""></div>
+                                    <div class="btn" id="btn_clk"><img src="../images/customized/rotate.png" alt=""></div>
+                                    <div class="btn" id="btn_clk_r"><img src="../images/customized/rotate_r.png" alt=""></div>
                                     <div class="btn" id="btn_del"><i class="fa fa-trash"></i></div>
                                 </div>                        
                                 <!-- <div class="btn show action" id="show" style="line-height: 35px;margin:3px auto;">3D展示</div> -->
@@ -176,7 +176,7 @@ try {
                                         <img class="cusPic" id="image" style="width:53px;">
                                     </div>
                                     <div class="upfile">
-                                        <span>上傳您得圖片:</span>
+                                        <span>上傳圖片:</span>
                                         <label for="theFile">
                                             <input type="file" id="theFile" style="display:none">                                             
                                             <p>選取檔案(png/jpg)</p>
@@ -253,10 +253,10 @@ try {
                                 <div class="cardText"> 
                                     <div class="btn7 action" id="btn7_add" style="line-height:35px; margin:25px;">新增文字</div>                          
                                     <div id="btns7">
-                                            <div class="btn7" id="btn7_big"><img src="../images/customized/zoom_in.svg" alt=""></div>
-                                            <div class="btn7" id="btn7_small"><img src="../images/customized/zoom_out.svg" alt=""></div>
-                                            <div class="btn7" id="btn7_clk"><img src="../images/customized/rotate.svg" alt=""></div>
-                                            <div class="btn7" id="btn7_unclk"><img src="../images/customized/rotatereverse.png" alt=""></div>
+                                            <div class="btn7" id="btn7_big"><img src="../images/customized/zoom_in.png" alt=""></div>
+                                            <div class="btn7" id="btn7_small"><img src="../images/customized/zoom_out.png" alt=""></div>
+                                            <div class="btn7" id="btn7_clk"><img src="../images/customized/rotate.png" alt=""></div>
+                                            <div class="btn7" id="btn7_unclk"><img src="../images/customized/rotate_r.png" alt=""></div>
                                             <div class="btn7" id="btn7_del"><i class="fa fa-trash"></i></div>
                                     </div>     
                                     <div class="showCard">
@@ -264,7 +264,7 @@ try {
                                             <div class="cardCamera" id="cardCamera_7">
                                                 <div class="cardBase" id="cardBase_7">
                                                     <div class="cardBaseContent" id="cardBaseConten">
-                                                        <div class="cardSurfaceInner cardContentInner_7" id="cardContentInner_7">封底</div>
+                                                        <!-- <div class="cardSurfaceInner cardContentInner_7" id="cardContentInner_7"></div> -->
                                                         <div class="cardSurface cardContent_7" id="cardContent_7">
                                                             <!-- <div class="textTeam">
                                                                 <div class="ctrlPos">點擊拖曳</div>

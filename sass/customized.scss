@@ -440,6 +440,7 @@ body{
                 i{
                     font-size: 27px;
                     margin-top: 4px;
+                    color: #737374;
                 }
         }
         .purchaseDetail{
@@ -856,7 +857,7 @@ a {
                 justify-content: center;
                 align-items: center;
                 position: absolute;
-                top: -140px;
+                top: -132px;
                 left: -630px;
                 z-index: 3;
                 width: 500px;
@@ -944,14 +945,14 @@ $cardY:600px;
             width: $cardX;
             height: $cardY;
         } //控制背景色
-        .cardBaseCover {
-            .cardSurface {
-                background-color: #fff;
-            } //封面
-            .cardSurfaceInner {
-                background-color: #aaf;
-            } //封面(裡)
-        }
+        // .cardBaseCover {
+        //     .cardSurface {
+        //         background-color: #fff;
+        //     } //封面
+        //     .cardSurfaceInner {
+        //         background-color: #aaf;
+        //     } //封面(裡)
+        // }
         .cardBaseContent {
             .cardSurface {
                 background-color: #fff;
@@ -960,17 +961,17 @@ $cardY:600px;
                 background-color:#fbc84a;
             } 
         } //控制背景圖
-        .cardBaseCover {
-            .cardSurface {
-                // background-image: url("../code_testing/card_test_1.jpg");
-                background: url(../images/small/card01.png) no-repeat;
-                background-size: 100%;
-                // background-size: contain;
-            } //封面
-            .cardSurfaceInner {
-                background-image: url();
-            } //封面(裡)
-        }
+        // .cardBaseCover {
+        //     .cardSurface {
+        //         // background-image: url("../code_testing/card_test_1.jpg");
+        //         background: url(../images/small/card01.png) no-repeat;
+        //         background-size: 100%;
+        //         // background-size: contain;
+        //     } //封面
+        //     .cardSurfaceInner {
+        //         background-image: url();
+        //     } //封面(裡)
+        // }
         .cardBaseContent {
             .cardSurface {
                 background-image: url();
@@ -984,15 +985,15 @@ $cardY:600px;
             } //封底
         }
 
-        //陰影測試
-        .cardBaseContent{
-            box-shadow: 10px 5px 50px #999;
-            // box-shadow: 10px 10px 30px #333;
-        }
-        .cardBaseCover{
-            box-shadow: 10px 5px 50px #999;
-            // box-shadow: 10px 10px 50px #333;
-        }
+        // //陰影測試
+        // .cardBaseContent{
+        //     box-shadow: 10px 5px 50px #999;
+        //     // box-shadow: 10px 10px 30px #333;
+        // }
+        // .cardBaseCover{
+        //     box-shadow: 10px 5px 50px #999;
+        //     // box-shadow: 10px 10px 50px #333;
+        // }
     }
 }
 
@@ -1460,6 +1461,9 @@ $cardY:600px;
             }
             .cardBox{
                 width: 100%;
+                img{
+                    width: 372px;
+                }
             }
             .pickCard{
                 width: 90%;
@@ -1480,8 +1484,8 @@ $cardY:600px;
                     margin: auto;
                     .showCard{
                         position: absolute;
-                        top: -463px;
-                        left: 0;
+                        top: -461px;
+                        left: 43px;
                         bottom: 0;
                         right: 0;
                         z-index: 3;
@@ -1490,9 +1494,11 @@ $cardY:600px;
                         height:66vh;
                     }
                         .cardBaseContent{
-                            top: 8px !important;
-                            height: 275px !important;
-                        
+                            top:69px !important;
+                            .cardSurface{
+                                width: 318px;
+                                height: 210px;
+                            }                        
                         }
                         .cardBaseCover{
                             display: none;
