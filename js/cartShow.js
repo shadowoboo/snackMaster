@@ -315,7 +315,7 @@ $(document).ready(function () {
                     success: function (response) {
                         if (response == "error") {
                             console.log(response);
-                            alert(" 下單失敗 Q口Q ");
+                            // alert(" 下單失敗 Q口Q ");
                         } else {
                             // alert(response);
                             console.log(response);
@@ -418,11 +418,11 @@ $(document).ready(function () {
             url: "CartStepLoginCheck.php",
             success: function (response) {
                 if (response == "error") {
-                    alert("NO ONE login");
+                    // alert("NO ONE login");
                     // return false;
                     result(response);
                 } else {
-                    alert(response + " already login");
+                    // alert(response + " already login");
                     // return true;
                     result(response);
                 }
