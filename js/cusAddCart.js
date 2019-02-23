@@ -27,7 +27,7 @@ function cusAddCart(e){
 
 
     // console.log(`addCart fumc now`);
-    if(e.target.innerText == '放入零食車'){ //配合客製頁面，篩選對應按鈕 "放入零食車"
+    if(e.target.innerText == '放入零食箱'){ //配合客製頁面，篩選對應按鈕 "放入零食車"
         //沒登入就親切的提醒使用者，要登入喔鳩咪
         if (document.getElementById("btnloglout").innerHTML == "&nbsp;") {
             alert('請先登入會員唷～');
@@ -58,7 +58,7 @@ function cusAddCart(e){
             var xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 if (xhr.status == 200) {
-                    alert('商品已放入零食箱～');
+                    alert(`商品${snackNo}已放入零食箱～`);
                 } else {
                     alert(xhr.status);
                     console.log(this.responseText); //如果發生問題，把異常資訊印在主控台
@@ -91,7 +91,7 @@ function cusAddCart(e){
                     console.log(`responseText: ${xhr.responseText}`);
                     
                 }else if(xhr.status == 200 && xhr.responseText!="noProd"){
-                    alert('商品已全數加入購物車～');
+                    alert('零食箱的商品已全數加入購物車囉～');
                     console.log(`responseText: ${xhr.responseText}`);
 
                     //跳轉到購物車頁面(或是你想跳的其他頁面)

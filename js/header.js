@@ -226,6 +226,7 @@ function sendForm() {
         }
         else {//登入成功顯示“登出”
             $id('btnloglout').innerHTML = "登出"
+            $id("btnloglout").style.cursor='pointer';
             $id('memLogin').style.color = "#076baf";
             $id('loginMemId').value = "";
             $id('loginMemPsw').value = "";
@@ -260,10 +261,8 @@ function logout() {
         $id('memLogin').style.color = "#737374";
         $id('loginMemId').value = "";
         $id('loginMemPsw').value = "";
-       
-    } 
-    location.href = location.href+"?loglout=true";
-
+        $id("btnloglout").style.cursor='auto';
+    }
     xhr.open("get", "ajaxLogout.php", true);
     xhr.send(null);
 }
@@ -482,6 +481,7 @@ function init3() {
         } else {
             $id("memLogin").style.color = "#076baf"
             $id("btnloglout").innerHTML = "登出";
+            $id("btnloglout").style.cursor='pointer';
         }
     }
     xhr.open("get", "alreadyLogin.php", true);
@@ -495,9 +495,18 @@ window.addEventListener("load", init3);
 
 
 
-$(document).ready(function(){
-    $('#store').click(function () {
+if (window.screen.width < 768) {
+        $('#store').click(function () {
+            // $('#store .subMenu').show();
+            $('#Submenu').stop(true).slideToggle();
+        });
+}else{
+    $('#store').mouseover(function () {
         // $('#store .subMenu').show();
-        $('#store .subMenu').stop(true).slideToggle();
+        $('#Submenu').stop(true).slideDown();
     });
-});
+    $('#store,#Submenu').mouseout(function () {
+        // $('#store .subMenu').show();
+        $('#Submenu').stop(true).slideUp();
+    });
+}
