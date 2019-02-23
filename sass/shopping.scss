@@ -1,5 +1,6 @@
 @import 'reset';
 @import 'common';
+@import 'header.scss';
 $sm: 576px;
 
 body{
@@ -11,6 +12,9 @@ h1,h2,h3,h4,p,span{
 .clearfix{
     content: "";
     clear: both;
+}
+header nav .menu #list_appear .list #store{
+    color: $blue;
 }
 .shopping{
     margin-top: 120px;

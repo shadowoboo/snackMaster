@@ -31,6 +31,8 @@
     <script src="../js/findingIp.js"></script>
     <script src="../js/search.js"></script>
     <script src="../js/showStar.js"></script>
+    <script src="../js/addHeart.js"></script>
+    <script src="../js/addCart.js"></script>
     <link rel="stylesheet" href="../css/boxModel.css">
     <link rel="stylesheet" href="../css/sale.css">
     <link rel="stylesheet" href="../css/homePage.css">
@@ -330,161 +332,183 @@
             <div class="mapCount">
                 <div class="countryMap">
                     <img src="../images/index/map1.svg" id="testMap">
-                    <div class="countryImg">
-                        <?php
-                            // $sql = "select nation,snackName,snackWord,snackPic,snackPrice,MAX(snackNo) from snack GROUP by nation = '美國'";
-                            // $prodRow = $pdo->query($sql); //執行上面的指令傳回陣列
-                            // while ($row = $prodRow->fetch()) {
-                        ?>
-                        
-                        <img src="../images/index/US.png" alt="美國座標">
-                        <div class="countryInfoLg">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[0]["snackPic"];?>">
+                        <div class="countryImg">
+                            <img src="../images/index/US.png" alt="美國座標">
+                                <div class="countryInfoLg">
+                                    <a href="showItem.php?snackNo=<?php echo $arr_row[0]["snackNo"];?>">  
+                                        <div class="countryInfoHeader">
+                                            <div class="countryInfoImg">
+                                                <img src="<?php echo $arr_row[0]["snackPic"];?>">
+                                            </div>
+                                            <div class="countryInfoStar">
+                                                <ul>
+                                                    <li>新品上市！</li>
+                                                    <li>川普最愛</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="countryInfosection">
+                                            <h3>[<?php echo $arr_row[0]["nation"];?>] <?php echo $arr_row[0]["snackName"];?></h3>
+                                            <p><?php echo $arr_row[0]["snackWord"];?></p>
+                                        </div>
+                                    </a>
+                                    <div class="countryInfofooter">
+                                        <a href="showItem.php?snackNo=<?php echo $arr_row[0]["snackNo"];?>">
+                                            <div class="countryInfoPrice">
+                                                <h3>價格<span>$<?php echo $arr_row[0]["snackPrice"];?></span></h3>
+                                            </div>
+                                        </a>
+                                        <div class="countryInfoAddCart">
+                                            <button class="cart" id="<?php echo "{$arr_row[0]['snackNo']}|{$arr_row[0]['snackPrice']}|0" ?>">加入購物車</button>
+                                        </div>
+                                        <div class="countryInfoHeart">
+                                            <button class="heart" id="<?php echo $arr_row[0]['snackNo'];?>"><i class="far fa-heart"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="countryInfoStar">
-                                    <ul>
-                                        <li>新品上市！</li>
-                                        <li>川普最愛</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h3>[<?php echo $arr_row[0]["nation"];?>] <?php echo $arr_row[0]["snackName"];?></h3>
-                                <p><?php echo $arr_row[0]["snackWord"];?></p>
-                            </div>
-                            <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>價格<span>$<?php echo $arr_row[0]["snackPrice"];?></span></h3>
-                                </div>
-                                <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
-                                </div>
-                                <div class="countryInfoHeart">
-                                    <button class="heart" id="<?php echo $arr_row[0]['snackNo'];?>"><i class="far fa-heart"></i></button>
+                            
+                        </div>
+                    
+                    
+                        <div class="countryImg">
+                            <img src="../images/index/DE.png" alt="德國座標">
+                            <div class="countryInfoLg">
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[1]["snackNo"];?>">
+                                    <div class="countryInfoHeader">
+                                        <div class="countryInfoImg">
+                                            <img src="<?php echo $arr_row[1]["snackPic"];?>">
+                                        </div>
+                                        <div class="countryInfoStar">
+                                            <ul>
+                                                <li>新品上市！</li>
+                                                <li>德國人氣No.1</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="countryInfosection">
+                                        <h3>[<?php echo $arr_row[1]["nation"];?>] <?php echo $arr_row[1]["snackName"];?></h3>
+                                        <p><?php echo $arr_row[1]["snackWord"];?></p>
+                                    </div>
+                                </a>
+                                <div class="countryInfofooter">
+                                    <a href="showItem.php?snackNo=<?php echo $arr_row[1]["snackNo"];?>">
+                                        <div class="countryInfoPrice">
+                                            <h3>價格<span>$<?php echo $arr_row[1]["snackPrice"];?></span></h3>
+                                        </div>
+                                    </a>
+                                    <div class="countryInfoAddCart">
+                                        <button class="cart" id="<?php echo "{$arr_row[1]['snackNo']}|{$arr_row[1]['snackPrice']}|0" ?>">加入購物車</button>
+                                    </div>
+                                    <div class="countryInfoHeart">
+                                        <button class="heart" id="<?php echo $arr_row[1]['snackNo'];?>"><i class="far fa-heart"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <?php //} ?>
-                    </div>
-                    <div class="countryImg">
-                        <img src="../images/index/DE.png" alt="德國座標">
-                        <div class="countryInfoLg">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[1]["snackPic"];?>">
-                                </div>
-                                <div class="countryInfoStar">
-                                    <ul>
-                                        <li>新品上市！</li>
-                                        <li>德國人氣No.1</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h3>[<?php echo $arr_row[1]["nation"];?>] <?php echo $arr_row[1]["snackName"];?></h3>
-                                <p><?php echo $arr_row[1]["snackWord"];?></p>
-                            </div>
-                            <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>價格<span>$<?php echo $arr_row[1]["snackPrice"];?></span></h3>
-                                </div>
-                                <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
-                                </div>
-                                <div class="countryInfoHeart">
-                                    <button class="heart" id="<?php echo $arr_row[1]['snackNo'];?>"><i class="far fa-heart"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="countryImg">
-                        <img src="../images/index/BR.png" alt="巴西座標">
-                        <div class="countryInfoLg">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[2]["snackPic"];?>">
-                                </div>
-                                <div class="countryInfoStar">
-                                    <ul>
-                                        <li>新品上市！</li>
-                                        <li>南美平民零時榜冠軍</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h3>[<?php echo $arr_row[2]["nation"];?>] <?php echo $arr_row[2]["snackName"];?></h3>
-                                <p><?php echo $arr_row[2]["snackWord"];?></p>
-                            </div>
-                            <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>價格<span>$<?php echo $arr_row[2]["snackPrice"];?></span></h3>
-                                </div>
-                                <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
-                                </div>
-                                <div class="countryInfoHeart">
-                                    <button class="heart" id="<?php echo $arr_row[2]['snackNo'];?>"><i class="far fa-heart"></i></button>
+                    
+                    
+                        <div class="countryImg">
+                            <img src="../images/index/BR.png" alt="巴西座標">
+                            <div class="countryInfoLg">
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[2]["snackNo"];?>">
+                                    <div class="countryInfoHeader">
+                                        <div class="countryInfoImg">
+                                            <img src="<?php echo $arr_row[2]["snackPic"];?>">
+                                        </div>
+                                        <div class="countryInfoStar">
+                                            <ul>
+                                                <li>新品上市！</li>
+                                                <li>南美平民零時榜冠軍</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="countryInfosection">
+                                        <h3>[<?php echo $arr_row[2]["nation"];?>] <?php echo $arr_row[2]["snackName"];?></h3>
+                                        <p><?php echo $arr_row[2]["snackWord"];?></p>
+                                    </div>
+                                </a>
+                                <div class="countryInfofooter">
+                                    <a href="showItem.php?snackNo=<?php echo $arr_row[2]["snackNo"];?>">
+                                        <div class="countryInfoPrice">
+                                            <h3>價格<span>$<?php echo $arr_row[2]["snackPrice"];?></span></h3>
+                                        </div>
+                                    </a>
+                                    <div class="countryInfoAddCart">
+                                        <button class="cart" id="<?php echo "{$arr_row[2]['snackNo']}|{$arr_row[2]['snackPrice']}|0" ?>">加入購物車</button>
+                                    </div>
+                                    <div class="countryInfoHeart">
+                                        <button class="heart" id="<?php echo $arr_row[2]['snackNo'];?>"><i class="far fa-heart"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="countryImg">
-                        <img src="../images/index/UK.png" alt="英國座標">
-                        <div class="countryInfoLg">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[3]["snackPic"];?>">
+
+                    
+                        <div class="countryImg">
+                            <img src="../images/index/UK.png" alt="英國座標">
+                            <div class="countryInfoLg">
+                            <a href="showItem.php?snackNo=<?php echo $arr_row[3]["snackNo"];?>">
+                                <div class="countryInfoHeader">
+                                    <div class="countryInfoImg">
+                                        <img src="<?php echo $arr_row[3]["snackPic"];?>">
+                                    </div>
+                                    <div class="countryInfoStar">
+                                        <ul>
+                                            <li>新品上市！</li>
+                                            <li>英國皇室招待品</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="countryInfoStar">
-                                    <ul>
-                                        <li>新品上市！</li>
-                                        <li>英國皇室招待品</li>
-                                    </ul>
+                                <div class="countryInfosection">
+                                    <h3>[<?php echo $arr_row[3]["nation"];?>] <?php echo $arr_row[3]["snackName"];?></h3>
+                                    <p><?php echo $arr_row[3]["snackWord"];?></p>
                                 </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h3>[<?php echo $arr_row[3]["nation"];?>] <?php echo $arr_row[3]["snackName"];?></h3>
-                                <p><?php echo $arr_row[3]["snackWord"];?></p>
-                            </div>
+                            </a>
                             <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>價格<span>$<?php echo $arr_row[3]["snackPrice"];?></span></h3>
-                                </div>
-                                <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
-                                </div>
-                                <div class="countryInfoHeart">
-                                    <button class="heart" id="<?php echo $arr_row[3]['snackNo'];?>"><i class="far fa-heart"></i></button>
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[3]["snackNo"];?>">
+                                    <div class="countryInfoPrice">
+                                        <h3>價格<span>$<?php echo $arr_row[3]["snackPrice"];?></span></h3>
+                                    </div>
+                                </a>
+                                    <div class="countryInfoAddCart">
+                                        <button class="cart" id="<?php echo "{$arr_row[3]['snackNo']}|{$arr_row[3]['snackPrice']}|0" ?>">加入購物車</button>
+                                    </div>
+                                    <div class="countryInfoHeart">
+                                        <button class="heart" id="<?php echo $arr_row[3]['snackNo'];?>"><i class="far fa-heart"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                    
                     <div class="countryImg">
                         <img src="../images/index/EG.png" alt="埃及座標">
                         <div class="countryInfoLg">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[4]["snackPic"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $arr_row[4]["snackNo"];?>">
+                                <div class="countryInfoHeader">
+                                    <div class="countryInfoImg">
+                                        <img src="<?php echo $arr_row[4]["snackPic"];?>">
+                                    </div>
+                                    <div class="countryInfoStar">
+                                        <ul>
+                                            <li>新品上市！</li>
+                                            <li>觀光客最愛伴手禮</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="countryInfoStar">
-                                    <ul>
-                                        <li>新品上市！</li>
-                                        <li>觀光客最愛伴手禮</li>
-                                    </ul>
+                                <div class="countryInfosection">
+                                    <h3>[<?php echo $arr_row[4]["nation"];?>] <?php echo $arr_row[4]["snackName"];?></h3>
+                                    <p><?php echo $arr_row[4]["snackWord"];?></p>
                                 </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h3>[<?php echo $arr_row[4]["nation"];?>] <?php echo $arr_row[4]["snackName"];?></h3>
-                                <p><?php echo $arr_row[4]["snackWord"];?></p>
-                            </div>
+                            </a>
                             <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>價格<span>$<?php echo $arr_row[4]["snackPrice"];?></span></h3>
-                                </div>
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[4]["snackNo"];?>">
+                                    <div class="countryInfoPrice">
+                                        <h3>價格<span>$<?php echo $arr_row[4]["snackPrice"];?></span></h3>
+                                    </div>
+                                </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[4]['snackNo']}|{$arr_row[4]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[4]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -492,30 +516,36 @@
                             </div>
                         </div>
                     </div>
+                        
+                    
                     <div class="countryImg">
                         <img src="../images/index/KR.png" alt="韓國座標">
                         <div class="countryInfoLg">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[5]["snackPic"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $arr_row[5]["snackNo"];?>">
+                                <div class="countryInfoHeader">
+                                    <div class="countryInfoImg">
+                                        <img src="<?php echo $arr_row[5]["snackPic"];?>">
+                                    </div>
+                                    <div class="countryInfoStar">
+                                        <ul>
+                                            <li>新品上市！</li>
+                                            <li>歐爸推薦商品</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="countryInfoStar">
-                                    <ul>
-                                        <li>新品上市！</li>
-                                        <li>歐爸推薦商品</li>
-                                    </ul>
+                                <div class="countryInfosection">
+                                    <h3>[<?php echo $arr_row[5]["nation"];?>] <?php echo $arr_row[5]["snackName"];?></h3>
+                                    <p><?php echo $arr_row[5]["snackWord"];?></p>
                                 </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h3>[<?php echo $arr_row[5]["nation"];?>] <?php echo $arr_row[5]["snackName"];?></h3>
-                                <p><?php echo $arr_row[5]["snackWord"];?></p>
-                            </div>
+                            </a>
                             <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>價格<span>$<?php echo $arr_row[5]["snackPrice"];?></span></h3>
-                                </div>
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[5]["snackNo"];?>">
+                                    <div class="countryInfoPrice">
+                                        <h3>價格<span>$<?php echo $arr_row[5]["snackPrice"];?></span></h3>
+                                    </div>
+                                </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[5]['snackNo']}|{$arr_row[5]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[5]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -523,30 +553,36 @@
                             </div>
                         </div>
                     </div>
+                    
+                    
                     <div class="countryImg">
                         <img src="../images/index/JP.png" alt="日本座標">
                         <div class="countryInfoLg">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[6]["snackPic"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $arr_row[6]["snackNo"];?>">
+                                <div class="countryInfoHeader">
+                                    <div class="countryInfoImg">
+                                        <img src="<?php echo $arr_row[6]["snackPic"];?>">
+                                    </div>
+                                    <div class="countryInfoStar">
+                                        <ul>
+                                            <li>新品上市！</li>
+                                            <li>全國零食榜發燒商品</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="countryInfoStar">
-                                    <ul>
-                                        <li>新品上市！</li>
-                                        <li>全國零食榜發燒商品</li>
-                                    </ul>
+                                <div class="countryInfosection">
+                                    <h3>[<?php echo $arr_row[6]["nation"];?>] <?php echo $arr_row[6]["snackName"];?></h3>
+                                    <p><?php echo $arr_row[6]["snackWord"];?></p>
                                 </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h3>[<?php echo $arr_row[6]["nation"];?>] <?php echo $arr_row[6]["snackName"];?></h3>
-                                <p><?php echo $arr_row[6]["snackWord"];?></p>
-                            </div>
+                            </a>
                             <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>價格<span>$<?php echo $arr_row[6]["snackPrice"];?></span></h3>
-                                </div>
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[6]["snackNo"];?>">
+                                    <div class="countryInfoPrice">
+                                        <h3>價格<span>$<?php echo $arr_row[6]["snackPrice"];?></span></h3>
+                                    </div>
+                                </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[6]['snackNo']}|{$arr_row[6]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[6]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -554,30 +590,36 @@
                             </div>
                         </div>
                     </div>
+                    
+                    
                     <div class="countryImg">
                         <img src="../images/index/AU.png" alt="澳洲座標">
                         <div class="countryInfoLg">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[7]["snackPic"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $arr_row[7]["snackNo"];?>">
+                                <div class="countryInfoHeader">
+                                    <div class="countryInfoImg">
+                                        <img src="<?php echo $arr_row[7]["snackPic"];?>">
+                                    </div>
+                                    <div class="countryInfoStar">
+                                        <ul>
+                                            <li>新品上市！</li>
+                                            <li>賣場秒殺零食</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="countryInfoStar">
-                                    <ul>
-                                        <li>新品上市！</li>
-                                        <li>賣場秒殺零食</li>
-                                    </ul>
+                                <div class="countryInfosection">
+                                    <h3>[<?php echo $arr_row[7]["nation"];?>] <?php echo $arr_row[7]["snackName"];?></h3>
+                                    <p><?php echo $arr_row[7]["snackWord"];?></p>
                                 </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h3>[<?php echo $arr_row[7]["nation"];?>] <?php echo $arr_row[7]["snackName"];?></h3>
-                                <p><?php echo $arr_row[7]["snackWord"];?></p>
-                            </div>
+                            </a>
                             <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>價格<span>$<?php echo $arr_row[7]["snackPrice"];?></span></h3>
-                                </div>
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[7]["snackNo"];?>">
+                                    <div class="countryInfoPrice">
+                                        <h3>價格<span>$<?php echo $arr_row[7]["snackPrice"];?></span></h3>
+                                    </div>
+                                </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[7]['snackNo']}|{$arr_row[7]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[7]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -643,26 +685,30 @@
                 </div>
 
                 <div class="countryInfo">
-                    <div class="countryInfoReel">
+                    <div class="countryInfoReel"> 
                         <div class="countryInfoSm">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[0]["snackPic"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $arr_row[0]["snackNo"];?>">
+                                <div class="countryInfoHeader">
+                                    <div class="countryInfoImg">
+                                        <img src="<?php echo $arr_row[0]["snackPic"];?>">
+                                    </div>
+                                    <div class="countryInfoTitle">
+                                        <h3>新品上市！</h3>
+                                    </div>
                                 </div>
-                                <div class="countryInfoTitle">
-                                    <h3>新品上市！</h3>
+                                <div class="countryInfosection">
+                                    <h4>[<?php echo $arr_row[0]["nation"];?>] <?php echo $arr_row[0]["snackName"];?></h4>
+                                    <p><?php echo $arr_row[0]["snackWord"];?></p>
                                 </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h4>[<?php echo $arr_row[0]["nation"];?>] <?php echo $arr_row[0]["snackName"];?></h4>
-                                <p><?php echo $arr_row[0]["snackWord"];?></p>
-                            </div>
+                            </a>
                             <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>$<?php echo $arr_row[0]["snackPrice"];?></h3>
-                                </div>
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[0]["snackNo"];?>">
+                                    <div class="countryInfoPrice">
+                                        <h3>$<?php echo $arr_row[0]["snackPrice"];?></h3>
+                                    </div>
+                                </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[0]['snackNo']}|{$arr_row[0]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[0]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -670,24 +716,28 @@
                             </div>
                         </div>
                         <div class="countryInfoSm">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[1]["snackPic"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $arr_row[1]["snackNo"];?>">
+                                <div class="countryInfoHeader">
+                                    <div class="countryInfoImg">
+                                        <img src="<?php echo $arr_row[1]["snackPic"];?>">
+                                    </div>
+                                    <div class="countryInfoTitle">
+                                        <h3>新品上市！</h3>
+                                    </div>
                                 </div>
-                                <div class="countryInfoTitle">
-                                    <h3>新品上市！</h3>
+                                <div class="countryInfosection">
+                                    <h4>[<?php echo $arr_row[1]["nation"];?>] <?php echo $arr_row[1]["snackName"];?></h4>
+                                    <p><?php echo $arr_row[1]["snackWord"];?></p>
                                 </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h4>[<?php echo $arr_row[1]["nation"];?>] <?php echo $arr_row[1]["snackName"];?></h4>
-                                <p><?php echo $arr_row[1]["snackWord"];?></p>
-                            </div>
+                            </a>
                             <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>$<?php echo $arr_row[1]["snackPrice"];?></h3>
-                                </div>
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[1]["snackNo"];?>">
+                                    <div class="countryInfoPrice">
+                                        <h3>$<?php echo $arr_row[1]["snackPrice"];?></h3>
+                                    </div>
+                                </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[1]['snackNo']}|{$arr_row[1]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[1]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -695,24 +745,28 @@
                             </div>
                         </div>
                         <div class="countryInfoSm">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[2]["snackPic"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $arr_row[2]["snackNo"];?>">
+                                <div class="countryInfoHeader">
+                                    <div class="countryInfoImg">
+                                        <img src="<?php echo $arr_row[2]["snackPic"];?>">
+                                    </div>
+                                    <div class="countryInfoTitle">
+                                        <h3>新品上市！</h3>
+                                    </div>
                                 </div>
-                                <div class="countryInfoTitle">
-                                    <h3>新品上市！</h3>
+                                <div class="countryInfosection">
+                                    <h4>[<?php echo $arr_row[2]["nation"];?>] <?php echo $arr_row[2]["snackName"];?></h4>
+                                    <p><?php echo $arr_row[2]["snackWord"];?></p>
                                 </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h4>[<?php echo $arr_row[2]["nation"];?>] <?php echo $arr_row[2]["snackName"];?></h4>
-                                <p><?php echo $arr_row[2]["snackWord"];?></p>
-                            </div>
+                            </a>
                             <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>$<?php echo $arr_row[2]["snackPrice"];?></h3>
-                                </div>
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[2]["snackNo"];?>">
+                                    <div class="countryInfoPrice">
+                                        <h3>$<?php echo $arr_row[2]["snackPrice"];?></h3>
+                                    </div>
+                                </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[2]['snackNo']}|{$arr_row[2]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[2]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -720,24 +774,28 @@
                             </div>
                         </div>
                         <div class="countryInfoSm">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[3]["snackPic"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $arr_row[3]["snackNo"];?>">
+                                <div class="countryInfoHeader">
+                                    <div class="countryInfoImg">
+                                        <img src="<?php echo $arr_row[3]["snackPic"];?>">
+                                    </div>
+                                    <div class="countryInfoTitle">
+                                        <h3>新品上市！</h3>
+                                    </div>
                                 </div>
-                                <div class="countryInfoTitle">
-                                    <h3>新品上市！</h3>
+                                <div class="countryInfosection">
+                                    <h4>[<?php echo $arr_row[3]["nation"];?>] <?php echo $arr_row[3]["snackName"];?></h4>
+                                    <p><?php echo $arr_row[3]["snackWord"];?></p>
                                 </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h4>[<?php echo $arr_row[3]["nation"];?>] <?php echo $arr_row[3]["snackName"];?></h4>
-                                <p><?php echo $arr_row[3]["snackWord"];?></p>
-                            </div>
+                            </a>
                             <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>$<?php echo $arr_row[3]["snackPrice"];?></h3>
-                                </div>
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[3]["snackNo"];?>">
+                                    <div class="countryInfoPrice">
+                                        <h3>$<?php echo $arr_row[3]["snackPrice"];?></h3>
+                                    </div>
+                                </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[3]['snackNo']}|{$arr_row[3]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[3]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -745,24 +803,28 @@
                             </div>
                         </div>
                         <div class="countryInfoSm">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[4]["snackPic"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $arr_row[4]["snackNo"];?>">
+                                <div class="countryInfoHeader">
+                                    <div class="countryInfoImg">
+                                        <img src="<?php echo $arr_row[4]["snackPic"];?>">
+                                    </div>
+                                    <div class="countryInfoTitle">
+                                        <h3>新品上市！</h3>
+                                    </div>
                                 </div>
-                                <div class="countryInfoTitle">
-                                    <h3>新品上市！</h3>
+                                <div class="countryInfosection">
+                                    <h4>[<?php echo $arr_row[4]["nation"];?>] <?php echo $arr_row[4]["snackName"];?></h4>
+                                    <p><?php echo $arr_row[4]["snackWord"];?></p>
                                 </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h4>[<?php echo $arr_row[4]["nation"];?>] <?php echo $arr_row[4]["snackName"];?></h4>
-                                <p><?php echo $arr_row[4]["snackWord"];?></p>
-                            </div>
+                            </a>
                             <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>$<?php echo $arr_row[4]["snackPrice"];?></h3>
-                                </div>
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[4]["snackNo"];?>">
+                                    <div class="countryInfoPrice">
+                                        <h3>$<?php echo $arr_row[4]["snackPrice"];?></h3>
+                                    </div>
+                                </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[4]['snackNo']}|{$arr_row[4]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[4]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -770,24 +832,28 @@
                             </div>
                         </div>
                         <div class="countryInfoSm">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[5]["snackPic"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $arr_row[5]["snackNo"];?>">
+                                <div class="countryInfoHeader">
+                                    <div class="countryInfoImg">
+                                        <img src="<?php echo $arr_row[5]["snackPic"];?>">
+                                    </div>
+                                    <div class="countryInfoTitle">
+                                        <h3>新品上市！</h3>
+                                    </div>
                                 </div>
-                                <div class="countryInfoTitle">
-                                    <h3>新品上市！</h3>
+                                <div class="countryInfosection">
+                                    <h4>[<?php echo $arr_row[5]["nation"];?>] <?php echo $arr_row[5]["snackName"];?></h4>
+                                    <p><?php echo $arr_row[5]["snackWord"];?></p>
                                 </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h4>[<?php echo $arr_row[5]["nation"];?>] <?php echo $arr_row[5]["snackName"];?></h4>
-                                <p><?php echo $arr_row[5]["snackWord"];?></p>
-                            </div>
+                            </a>
                             <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>$<?php echo $arr_row[5]["snackPrice"];?></h3>
-                                </div>
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[5]["snackNo"];?>">
+                                    <div class="countryInfoPrice">
+                                        <h3>$<?php echo $arr_row[5]["snackPrice"];?></h3>
+                                    </div>
+                                </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[5]['snackNo']}|{$arr_row[5]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[5]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -795,24 +861,28 @@
                             </div>
                         </div>
                         <div class="countryInfoSm">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[6]["snackPic"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $arr_row[6]["snackNo"];?>">
+                                <div class="countryInfoHeader">
+                                    <div class="countryInfoImg">
+                                        <img src="<?php echo $arr_row[6]["snackPic"];?>">
+                                    </div>
+                                    <div class="countryInfoTitle">
+                                        <h3>新品上市！</h3>
+                                    </div>
                                 </div>
-                                <div class="countryInfoTitle">
-                                    <h3>新品上市！</h3>
+                                <div class="countryInfosection">
+                                    <h4>[<?php echo $arr_row[6]["nation"];?>] <?php echo $arr_row[6]["snackName"];?></h4>
+                                    <p><?php echo $arr_row[6]["snackWord"];?></p>
                                 </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h4>[<?php echo $arr_row[6]["nation"];?>] <?php echo $arr_row[6]["snackName"];?></h4>
-                                <p><?php echo $arr_row[6]["snackWord"];?></p>
-                            </div>
+                            </a>
                             <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>$<?php echo $arr_row[6]["snackPrice"];?></h3>
-                                </div>
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[6]["snackNo"];?>">
+                                    <div class="countryInfoPrice">
+                                        <h3>$<?php echo $arr_row[6]["snackPrice"];?></h3>
+                                    </div>
+                                </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[6]['snackNo']}|{$arr_row[6]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[6]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -820,24 +890,28 @@
                             </div>
                         </div>
                         <div class="countryInfoSm">
-                            <div class="countryInfoHeader">
-                                <div class="countryInfoImg">
-                                    <img src="<?php echo $arr_row[7]["snackPic"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $arr_row[7]["snackNo"];?>">
+                                <div class="countryInfoHeader">
+                                    <div class="countryInfoImg">
+                                        <img src="<?php echo $arr_row[7]["snackPic"];?>">
+                                    </div>
+                                    <div class="countryInfoTitle">
+                                        <h3>新品上市！</h3>
+                                    </div>
                                 </div>
-                                <div class="countryInfoTitle">
-                                    <h3>新品上市！</h3>
+                                <div class="countryInfosection">
+                                    <h4>[<?php echo $arr_row[7]["nation"];?>] <?php echo $arr_row[7]["snackName"];?></h4>
+                                    <p><?php echo $arr_row[7]["snackWord"];?></p>
                                 </div>
-                            </div>
-                            <div class="countryInfosection">
-                                <h4>[<?php echo $arr_row[7]["nation"];?>] <?php echo $arr_row[7]["snackName"];?></h4>
-                                <p><?php echo $arr_row[7]["snackWord"];?></p>
-                            </div>
+                            </a>
                             <div class="countryInfofooter">
-                                <div class="countryInfoPrice">
-                                    <h3>$<?php echo $arr_row[7]["snackPrice"];?></h3>
-                                </div>
+                                <a href="showItem.php?snackNo=<?php echo $arr_row[7]["snackNo"];?>">
+                                    <div class="countryInfoPrice">
+                                        <h3>$<?php echo $arr_row[7]["snackPrice"];?></h3>
+                                    </div>
+                                </a>
                                 <div class="countryInfoAddCart">
-                                    <button class="cart">加入購物車</button>
+                                    <button class="cart" id="<?php echo "{$arr_row[7]['snackNo']}|{$arr_row[7]['snackPrice']}|0" ?>">加入購物車</button>
                                 </div>
                                 <div class="countryInfoHeart">
                                     <button class="heart" id="<?php echo $arr_row[7]['snackNo'];?>"><i class="far fa-heart"></i></button>
@@ -874,7 +948,7 @@
                 <h4 class="itemName">[<?php echo $salesRow[0]['nation']?>]<?php echo $salesRow[0]['snackName']?></h4>
                 <p class="price">$<?php echo $salesRow[0]['salePrice']?></p>
                 <div class="itemBtns">
-                    <button class="cart">加入購物車</button>
+                    <button class="cart" id="<?php echo "{$salesRow[0]['snackNo']}|{$salesRow[0]['salePrice']}|2|{$salesRow[0]['snackPrice']}|{$salesRow[0]['clearanceNo']}" ?>">加入購物車</button>
                 </div>
                 <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[0]['quantity']?></span>&nbsp;件</p>
             </div>
@@ -885,7 +959,7 @@
                 <h4 class="itemName">[<?php echo $salesRow[1]['nation']?>]<?php echo $salesRow[1]['snackName']?></h4>
                 <p class="price">$<?php echo $salesRow[1]['salePrice']?></p>
                 <div class="itemBtns">
-                    <button class="cart">加入購物車</button>
+                    <button class="cart" id="<?php echo "{$salesRow[1]['snackNo']}|{$salesRow[1]['salePrice']}|2|{$salesRow[1]['snackPrice']}|{$salesRow[1]['clearanceNo']}" ?>">加入購物車</button>
                 </div>
                 <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[1]['quantity']?></span>&nbsp;件</p>
             </div>
@@ -896,7 +970,7 @@
                 <h4 class="itemName">[<?php echo $salesRow[2]['nation']?>]<?php echo $salesRow[2]['snackName']?></h4>
                 <p class="price">$<?php echo $salesRow[2]['salePrice']?></p>
                 <div class="itemBtns">
-                    <button class="cart">加入購物車</button>
+                    <button class="cart" id="<?php echo "{$salesRow[2]['snackNo']}|{$salesRow[2]['salePrice']}|2|{$salesRow[2]['snackPrice']}|{$salesRow[2]['clearanceNo']}" ?>">加入購物車</button>
                 </div>
                 <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[2]['quantity']?></span>&nbsp;件</p>
             </div>
@@ -1030,6 +1104,9 @@
                     <button class="category">糖果</button>
                     <button class="category">洋芋片</button>
                     <button class="category">巧克力</button>
+                </div>
+                <div class="goRankBtn">
+                    <a href="rankBoard.php"><button class="subscribe">看更多</button></a>
                 </div>
         </section>
         <!-- <div id="ctrl_bar">
@@ -1286,10 +1363,10 @@
             <img src="../images/index/gameImgL.png" alt="遊戲圖">
             <p>玩小遊戲可獲得<br>折價優惠券哦！</p>
         </div> -->
-        <div id="game" class="gameScratch">
+        <!-- <div id="game" class="gameScratch">
             <img src="../images/index/gameImgR.png" alt="遊戲圖">
             <p>限時刮刮樂<br>刮出優惠券！</p>
-        </div>
+        </div> -->
 
         <footer class="footer">
             <div id="floor">
@@ -1439,12 +1516,12 @@
             }
         }
 
-        function init() {
-            monthRotate();
-            window.addEventListener('resize', monthRotate);
-        }
+        // function init() {
+        //     monthRotate();
+        //     window.addEventListener('resize', monthRotate);
+        // }
 
-        window.addEventListener("load", init);
+        // window.addEventListener("load", init);
 
 
 
@@ -1923,7 +2000,8 @@
     </script>
 
 
-    <script>
+<!-- 刮刮樂遊戲動畫 -->
+    <!-- <script>
         function doFirst() {
             setInterval(showGame, 10000);
         }
@@ -1945,7 +2023,7 @@
         }
 
         window.addEventListener('load', doFirst);
-    </script>
+    </script> -->
 
     
 

@@ -1,4 +1,6 @@
 <?php
+    ob_start();
+    session_start();
 //////////////////////////////////////////////////////////////
 // 0 一般
 // 1 客製
@@ -57,7 +59,7 @@
     <!-- for cartShow   -->
     <link rel="stylesheet" href="../css/cartShow.css">
     <!-- for header -->
-    <link rel="stylesheet" href="../css/header.css">
+    <!-- <link rel="stylesheet" href="../css/header.css"> -->
     <!-- for footer -->
     <link rel="stylesheet" href="../css/nnnnn.css">
     <!-- for cartShow ENG 放在CSS最後面做修正-->
@@ -106,13 +108,29 @@
             </div>
 <?php
 //檢查有沒有商品在session
-if(isset($_SESSION["snackName"])){
+if(isset($_SESSION["snackName"])==true){ 
 ?>
             <div class="cartContent cartContent_prod">
                 <div class="prodCards" id="prodCards">
 <?php
     //如果有客製箱
-    if(isset($_SESSION["snackName"][1])){
+    //如果只有"客製關聯商品"但是沒有"客製箱本身"=>不是真的客製箱=>刪除"客製關聯商品"避免衝突
+    // isset($_SESSION["note"][1][50])==true && in_array("cus",$_SESSION["note"][1])==false
+    // if(isset($_SESSION["snackName"][1][50])==false && isset($_SESSION["snackName"][1])==true){
+    // if(isset($_SESSION["note"][1])){
+    //     if(in_array("box",$_SESSION["note"][1])==false && in_array("cus",$_SESSION["note"][1])==true){
+    //     //     unset($_SESSION["snackName"][1]);
+    //     //     unset($_SESSION["snackPrice"][1]);
+    //     //     unset($_SESSION["note"][1]);
+    //     //     unset($_SESSION["snackQuan"][1]);
+    //     //     unset($_SESSION["snackPic"][1]);
+    //     //     unset($_SESSION["cusBox"]);
+    //     //     unset($_SESSION["cusCard"]);
+    //     //     unset($_SESSION["cusSound"]);
+    //     }
+    // }else{
+    
+    if(isset($_SESSION["snackName"][1]) && isset($_SESSION["snackName"][1][50])){
 ?>
 
                     <div class="prodCard prodCard_Group">
@@ -184,6 +202,9 @@ if(isset($_SESSION["snackName"])){
                                 </div>
                             </div>
                         </div>
+
+
+
 <?php
         //客製商品
         foreach ($_SESSION["snackName"][1] as $snackNo => $snackName) {
@@ -239,7 +260,8 @@ if(isset($_SESSION["snackName"])){
                     </div>
 <?php
     
-    }
+        }
+    // }   
 ?>
 
 
@@ -275,7 +297,7 @@ if(isset($_SESSION["snackName"])){
                                     小計: <span class="priceSum" ><?php echo  $_SESSION["snackPrice"][3][$snackNo]?></span>
                                 </p>
                             </div>
-                            <div class="prodQty">
+                            <div class="prodQty" style="position: relative;z-index:-1;opacity:0;">
                                 <div class="numInput">
                                     <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][3][$snackNo]?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
                                         class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][3][$snackNo]?>">+</span>

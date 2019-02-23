@@ -112,17 +112,29 @@ header {
                     }
                     li:first-child {
                         &:hover a {
+<<<<<<< HEAD
                             color: #076baf;
+=======
+                            color: $blue;
+>>>>>>> master
                         }
                     }
                     li:nth-child(2) {
                         &:hover a {
+<<<<<<< HEAD
                             color:#076baf;
+=======
+                            color: $blue;
+>>>>>>> master
                         }
                     }
                     li:last-child {
                         &:hover a {
+<<<<<<< HEAD
                             color:#076baf;
+=======
+                            color: $blue;
+>>>>>>> master
                         }
                     } //-----零食小店鋪hover設定------                   
                     #store {
@@ -136,7 +148,11 @@ header {
                             }
                         }
                         a:hover {
+<<<<<<< HEAD
                             color: #076baf;
+=======
+                            color: $blue;
+>>>>>>> master
                         }
                         .subMenu {
                             width: 100%;
@@ -160,17 +176,19 @@ header {
         }
         .login {
             li {
+                &:hover i{
+                    color: $blue;
+                }
+                &:hover span{
+                    color: $blue;
+                }
                 color: #737374;
+                cursor: pointer;
             }
             li:first-child {
-                cursor: default;
                 span {
                     font-size: 20px;
                 }
-                
-            }
-            li:nth-child(2){
-                cursor: pointer;
             }
         }
     }
@@ -187,6 +205,9 @@ input[type="button"] {
 input {
     height: 30px;
     width: 150px;
+    vertical-align: middle;
+    padding-left: 10px;
+    font-size: 18px;
 }
 
 label[class="Box-name"] {
@@ -206,7 +227,7 @@ label.mail {
     width: 100%;
     height: 100%;
     position: fixed;
-    background: rgba(0, 0, 0, .1);
+    // background: rgba(0, 0, 0, .1);
     display: none;
     overflow-y: auto;
     z-index: 1000;
@@ -448,7 +469,7 @@ label.mail {
             }
             .menu {
                 max-width: 1200px;
-                margin: auto;
+                margin-left: 15px;
                 flex: 1;
                 .logo {
                     display: none;
@@ -551,7 +572,7 @@ label.mail {
                 .inputbar {
                     position: absolute;
                     right: 15px;
-                    bottom: 7px;
+                    bottom: 6px;
                     input {
                         font-family: g2Font;
                         width: 165px;
@@ -566,7 +587,7 @@ label.mail {
                     i {
                         font-weight: 900;
                         font-size: 23px;
-                        transform: translateY(3px);
+                        transform: translateY(1px);
                         cursor: pointer;
                     }
                 }

@@ -22,13 +22,14 @@
     <title>大零食家 - 預購商品頁</title>
     <link rel="stylesheet" href="../css/preOrder.css">
     <link rel="stylesheet" href="../css/nnnnn.css">
-    <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
     <script src="../js/preOrder.js"></script>
     <script src="../js/search.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/showStar.js"></script>
+    <script src="../js/addCart.js"></script>
+
 </head>
 <body> 
     <header>
@@ -39,7 +40,7 @@
             </div>
             <nav>
                 <label for="smlSearch" class="searchBtn" value="search">
-                    <img src="../images/tina/search-icon.svg" alt="" id="searchBtn">
+                    <img src="../images/tina/search-icon.svg" alt="search" id="searchBtn">
                 </label>
                 <div class="menu">
                     <!-------- -----手機漢堡----------- -->
@@ -82,7 +83,7 @@
             </nav>
             <div class="seachRegion" id="search_appear">
                 <div class="search">
-                    <img src="../images/blair/pocky.png" alt="">
+                    <img src="../images/blair/pocky.png" alt="search">
                     <div class="selectbar">
                         <select name="country" id="country">
                             <option value="0">國家</option>
@@ -135,7 +136,6 @@
             <div class="loginTab-content">
                 <!-----------------------------------登入表單------------------------------------  -->
                 <form id="Loginpage" class="tabContent">
-
                     <table class="loginBox">
                         <tr>
                             <td>
@@ -161,8 +161,6 @@
                     <div class="forgetPsw">
                         <p id="forgetPswLink" class="loginTab " onclick="changeway(event,'forgetPsw')"> 忘記密碼</p>
                     </div>
-
-
                 </form>
                 <!------------------------------------------------註冊表單------------------------------------------  -->
                 <form id="signup" class="tabContent">
@@ -174,7 +172,6 @@
                                     placeholder="不得少於2碼">
 
                             </td>
-
                         </tr>
                         <tr>
                             <td>
@@ -182,7 +179,6 @@
                                 <input type="password" name="signUpMemPsw" id="signUpMemPsw" size="12"
                                     placeholder="請輸入密碼">
                             </td>
-
                         </tr>
                         <tr>
                             <td>
@@ -190,14 +186,12 @@
                                 <input type="email" name="signUpMemEmail" id="signUpMemEmail" size="20"
                                     autocomplete="off">
                             </td>
-
                         </tr>
                         <tr>
                             <td class="formBtn">
                                 <input type="button" id="btnSignUp" value="註冊" class="cart">
                             </td>
                         </tr>
-
                     </table>
                 </form>
                 <!-- ---------------------------------------忘記密碼 -->
@@ -221,19 +215,11 @@
                             <td class="formBtn">
                                 <input type="button" id="forgetSend" value="寄送密碼" class="cart">
                             </td>
-
                         </tr>
-
                     </table>
-
-
                 </form>
-
             </div>
-
         </div>
-
-
     </div>
     <div class="preOrder">
         <div class="wrap">
@@ -242,31 +228,31 @@
             </div>
             <div class="steps">
                 <div class="lineContainer" id="lineContainer1">
-                    <img src="../images/blair/line.png" alt="">
+                    <img src="../images/blair/line.png" alt="line">
                 </div>
                 <div class="lineContainer" id="lineContainer2">
-                    <img src="../images/blair/line.png" alt="">
+                    <img src="../images/blair/line.png" alt="line">
                 </div>
                 <div class="clearfix"></div>
                 <div class="orderStep">
-                    <img src="../images/blair/step1.png" alt="">
-                    <img id="step1_2" src="../images/blair/step1_2.png" alt="">
-                    <img id="step1_3" src="../images/blair/step1_3.png" alt="">
-                    <img id="step1_4" src="../images/blair/step1_4.png" alt="">
+                    <img src="../images/blair/step1.png" alt="step1">
+                    <img id="step1_2" src="../images/blair/step1_2.png" alt="step1">
+                    <img id="step1_3" src="../images/blair/step1_3.png" alt="step1">
+                    <img id="step1_4" src="../images/blair/step1_4.png" alt="step1">
                     <h3>Step <span>1</span> </h3>
                     <h4>選擇預購幾個月的方案</h4>
                 </div>
                 <div class="orderStep">
-                    <img src="../images/blair/step2.png" alt="">
-                    <img id="step2_2" src="../images/blair/step2_2.png" alt="">
-                    <img id="step2_3" src="../images/blair/step2_3.png" alt="">
+                    <img src="../images/blair/step2.png" alt="step2">
+                    <img id="step2_2" src="../images/blair/step2_2.png" alt="step2">
+                    <img id="step2_3" src="../images/blair/step2_3.png" alt="step2">
                     <h3>Step <span>2</span> </h3>
                     <h4>選擇喜歡的零食種類數量</h4>
                 </div>
                 <div class="orderStep">
-                    <img src="../images/blair/step3.png" alt="">
-                    <img id="step3_2" src="../images/blair/step3_2.png" alt="">
-                    <img id="step3_3" src="../images/blair/step3_3.png" alt="">
+                    <img src="../images/blair/step3.png" alt="step3">
+                    <img id="step3_2" src="../images/blair/step3_2.png" alt="step3">
+                    <img id="step3_3" src="../images/blair/step3_3.png" alt="step3">
                     <h3>Step <span>3</span> </h3>
                     <h4>盡情享受最新的異國零食！</h4>
                 </div>
@@ -274,7 +260,7 @@
             </div>
             <div class="orderCards">
                 <div class="orderCard" id="orderCard1">
-                    <img src="../images/blair/card1.png" alt="">
+                    <img src="../images/blair/card1.png" alt="card1">
                     <h4>預購零食箱</h4>
                     <p>每月得到6種不同的零食，比別人搶先一步體驗世界零食，收到超驚喜！</p>
                     <button class="step" id="buy1">立即預購</button>
@@ -286,13 +272,13 @@
                     <div class="monthBox">
                         <div class="boxImgs">
                             <div class="boxImg boxImg1">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                             <div class="boxImg boxImg2">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                             <div class="boxImg boxImg3">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                         </div>
                         <h4>3個月</h4>
@@ -301,24 +287,24 @@
                     <div class="monthBox">
                         <div class="boxImgs">
                             <div class="boxImg boxImg1">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                             <div class="boxImg boxImg2">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                             <div class="boxImg boxImg3">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                         </div>
                         <div class="boxImgs boxImgs2">
                             <div class="boxImg boxImg1">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                             <div class="boxImg boxImg2">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                             <div class="boxImg boxImg3">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                         </div>
                         <h4>6個月</h4>
@@ -327,46 +313,46 @@
                     <div class="monthBox">
                         <div class="boxImgs">
                             <div class="boxImg boxImg1">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                             <div class="boxImg boxImg2">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                             <div class="boxImg boxImg3">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                         </div>
                         <div class="boxImgs boxImgs2">
                             <div class="boxImg boxImg1">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                             <div class="boxImg boxImg2">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                             <div class="boxImg boxImg3">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                         </div>
                         <div class="boxImgs boxImgs3">
                             <div class="boxImg boxImg1">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                             <div class="boxImg boxImg2">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                             <div class="boxImg boxImg3">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                         </div>
                         <div class="boxImgs boxImgs4">
                             <div class="boxImg boxImg1">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                             <div class="boxImg boxImg2">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                             <div class="boxImg boxImg3">
-                                <img src="../images/blair/box.png" alt="">
+                                <img src="../images/blair/box.png" alt="box">
                             </div>
                         </div>
                         <h4>12個月</h4>
@@ -380,8 +366,8 @@
                     <h4>選擇屬於你的預購零食箱</h4>
                     <div id="card3_1">
                         <div class="card3_img">
-                            <img src="../images/blair/card3.png" alt="">
-                            <img id="box_bottom" src="../images/blair/card3_2.png" alt="">
+                            <img src="../images/blair/card3.png" alt="card3">
+                            <img id="box_bottom" src="../images/blair/card3_2.png" alt="card3">
                             <div class="card3_box"><div class="boxChild1"><img src="../images/blair/chocolate.png" alt=""></div><div class="boxChild2"><img src="../images/blair/cookie.png" alt=""></div><div class="boxChild3"><img src="../images/blair/candy.png" alt=""></div><div class="boxChild4"><img src="../images/blair/candy.png" alt=""></div><div class="boxChild5"><img src="../images/blair/chips.png" alt=""></div><div class="boxChild6"><img src="../images/blair/chocolate.png" alt=""></div></div>
                         </div>
                     </div>
@@ -441,7 +427,7 @@
                             <div class="clearfix"></div>
                         </div>
                     </div>                    
-                    <button class="cart">加入購物車</button>
+                    <button class="cart" id="realCart">加入購物車</button>
                 </div>
             </div>
         </div>
@@ -501,28 +487,28 @@
                 </div>
             </div>
         </div>
-        <img id="bgChips" src="../images/blair/bgChips.png" alt="">
-        <img src="../images/blair/5-1.png" alt="" id="bgChips1">
-        <img src="../images/blair/5-2.png" alt="" id="bgChips2">
-        <img src="../images/blair/5-3.png" alt="" id="bgChips3">
-        <img src="../images/blair/5-4.png" alt="" id="bgChips4">
-        <img src="../images/blair/5-5.png" alt="" id="bgChips5">
-        <img src="../images/blair/5-6.png" alt="" id="bgChips6">
-        <img src="../images/blair/5-1.png" alt="" id="bgChips7">
-        <img src="../images/blair/5-2.png" alt="" id="bgChips8">
-        <img src="../images/blair/5-3.png" alt="" id="bgChips9">
-        <img src="../images/blair/5-4.png" alt="" id="bgChips10">
-        <img src="../images/blair/bgChips2.png" alt="" id="bgChips_2">
-        <img src="../images/blair/5-1.png" alt="" id="bgChips11">
-        <img src="../images/blair/5-2.png" alt="" id="bgChips12">
-        <img src="../images/blair/5-3.png" alt="" id="bgChips13">
-        <img src="../images/blair/5-4.png" alt="" id="bgChips14">
-        <img src="../images/blair/5-5.png" alt="" id="bgChips15">
-        <img src="../images/blair/5-6.png" alt="" id="bgChips16">
-        <img src="../images/blair/5-1.png" alt="" id="bgChips17">
-        <img src="../images/blair/5-2.png" alt="" id="bgChips18">
-        <img src="../images/blair/5-3.png" alt="" id="bgChips19">
-        <img src="../images/blair/5-4.png" alt="" id="bgChips20">
+        <img id="bgChips" src="../images/blair/bgChips.png" alt="chips">
+        <img src="../images/blair/5-1.png" alt="chips" id="bgChips1">
+        <img src="../images/blair/5-2.png" alt="chips" id="bgChips2">
+        <img src="../images/blair/5-3.png" alt="chips" id="bgChips3">
+        <img src="../images/blair/5-4.png" alt="chips" id="bgChips4">
+        <img src="../images/blair/5-5.png" alt="chips" id="bgChips5">
+        <img src="../images/blair/5-6.png" alt="chips" id="bgChips6">
+        <img src="../images/blair/5-1.png" alt="chips" id="bgChips7">
+        <img src="../images/blair/5-2.png" alt="chips" id="bgChips8">
+        <img src="../images/blair/5-3.png" alt="chips" id="bgChips9">
+        <img src="../images/blair/5-4.png" alt="chips" id="bgChips10">
+        <img src="../images/blair/bgChips2.png" alt="chips" id="bgChips_2">
+        <img src="../images/blair/5-1.png" alt="chips" id="bgChips11">
+        <img src="../images/blair/5-2.png" alt="chips" id="bgChips12">
+        <img src="../images/blair/5-3.png" alt="chips" id="bgChips13">
+        <img src="../images/blair/5-4.png" alt="chips" id="bgChips14">
+        <img src="../images/blair/5-5.png" alt="chips" id="bgChips15">
+        <img src="../images/blair/5-6.png" alt="chips" id="bgChips16">
+        <img src="../images/blair/5-1.png" alt="chips" id="bgChips17">
+        <img src="../images/blair/5-2.png" alt="chips" id="bgChips18">
+        <img src="../images/blair/5-3.png" alt="chips" id="bgChips19">
+        <img src="../images/blair/5-4.png" alt="chips" id="bgChips20">
     </div>
     <footer>
         <div class="footer_ip">
