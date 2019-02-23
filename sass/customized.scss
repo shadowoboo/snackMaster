@@ -418,7 +418,8 @@ fieldset,aside,main,picture,figure,article{
         // background-color:#fff;
        
             img{
-                width:60px;
+                width:37px;
+                margin: 5px;
                 flex: 5;
                 cursor: move;
             }
@@ -1418,6 +1419,7 @@ $cardY:600px;
             .pics{
                 img{
                     cursor: initial;
+                    margin: 6px;
                 }
             }
             .purchaseDetail{

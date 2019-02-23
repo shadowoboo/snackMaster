@@ -1,5 +1,6 @@
 @import "reset";
 @import "common";
+@import "header";
 * {
     color: $gray;
 }
@@ -30,7 +31,7 @@ body {
         margin: auto;
         background-image: url(../images/index/cookieBg.png), url(../images/index/cookieBg1.png), url(../images/index/cookieBg2.png);
         background-repeat: no-repeat;
-        background-position: right 300px, left 800px, left 2600px;
+        background-position: right 300px, left 880px, left 2600px;
     }
     .wrap {
         padding-left: 15px;
@@ -39,6 +40,7 @@ body {
             margin: auto;
             max-width: 1200px;
             width: 80%;
+            height: 720px;
         }
         .cartTop {
             //標題與說明區
@@ -145,6 +147,9 @@ body {
                 }
                 &.cartPageActive {
                     display: flex;
+                    @media screen and(min-width:768px){
+                        margin-top: 70px;
+                    }
                 }
             }
             &.cartContent_prod {
@@ -290,6 +295,7 @@ body {
                                         height: 100%;
                                         font-size: 0.5rem;
                                         line-height: 30px; // padding: 0px;
+                                        padding-left: unset;
                                     }
                                     @media screen and(min-width:768px) {
                                         width: 130px;
@@ -548,7 +554,7 @@ body {
             border-radius: 10px;
             @media screen and(min-width: 768px) {
                 width: 70%;
-                margin: auto;
+                margin: 70px auto;
                 max-width: 1200px;
             }
             #cartForm {
@@ -620,6 +626,9 @@ body {
             text-align: center;
             &.cartPageActive {
                 display: flex;
+                @media screen {
+                    margin-top: 70px; 
+                }
             }
             h3 {
                 margin-top: 20px;
@@ -642,7 +651,6 @@ body {
                 background-color: unset;
                 border-radius: 10px;
                 box-shadow: none;
-                width: 70%;
                 display: none;
                 flex-direction: row;
                 position: unset;
@@ -672,7 +680,8 @@ body {
                         width: 100%;
                         height: 100%;
                         display: flex;
-                        justify-content: flex-end;
+                        flex-wrap: wrap;
+                        justify-content: center;
                         align-items: center;
                         p {
                             vertical-align: bottom;
@@ -843,12 +852,12 @@ body {
     }
 }
 
-footer {
-    // display: none;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
+// footer {
+//     // display: none;
+//     // position: absolute;
+//     // bottom: 0;
+//     // left: 0;
+// }
 
 // * {
 //     // outline: red solid 1px;

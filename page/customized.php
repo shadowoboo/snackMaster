@@ -33,6 +33,7 @@ try {
    <!-- 錄音外掛。我想我跳下去玩一定會來不及。謝謝你 9527 -->
    <script src="../js/recorder.js"></script>
    <script src="../js/common.js"></script>
+   <script src="../js/findingIp.js"></script>
 </head>
 
 <body>
@@ -113,7 +114,7 @@ try {
                                     <div class="btn" id="btn_big"><img src="../images/customized/zoom_in.svg" alt=""></div>
                                     <div class="btn" id="btn_small"><img src="../images/customized/zoom_out.svg" alt=""></div>
                                     <div class="btn" id="btn_clk"><img src="../images/customized/rotate.svg" alt=""></div>
-                                    <div class="btn" id="btn_clk_r"><img src="../images/customized/rotate.svg" alt="" style="transform: rotate(175deg);"></div>
+                                    <div class="btn" id="btn_clk_r"><img src="../images/customized/rotatereverse.png" alt=""></div>
                                     <div class="btn" id="btn_del"><i class="fa fa-trash"></i></div>
                                 </div>                        
                                 <!-- <div class="btn show action" id="show" style="line-height: 35px;margin:3px auto;">3D展示</div> -->
@@ -142,28 +143,28 @@ try {
                             <div id="picBtn">   
                                 <div class="pics" id="picsRegion">
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/tina/LOGO1.png" alt="">
+                                        <img class="cusPic" src="../images/tina/LOGO1.png" alt="" style="width:65px;">
                                     </div>
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/customized/chips.svg" alt="">
+                                        <img class="cusPic" src="../images/nnnnn/ipf.png" alt="">
                                     </div>
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/customized/cookies.svg" alt="">
+                                        <img class="cusPic" src="../images//nnnnn/ipc.png" alt="" style="width:53px;">
                                     </div>
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/customized/chocolate.svg" alt="">
+                                        <img class="cusPic" src="../images//nnnnn/ipcho.png" alt="">
                                     </div>
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/customized/lollip.svg" alt="">
+                                        <img class="cusPic" src="../images//nnnnn/ipcandy.png" alt="">
                                     </div>                                    
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/customized/candy.svg" alt="">
+                                        <img class="cusPic" src="../images/index/IP-2.png" alt="" style="width:56px;">
                                     </div>                                    
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/customized/machi.svg" alt="">
+                                        <img class="cusPic" src="../images/index/IP-1.png" alt="" style="width:60px;">
                                     </div>
                                     <div class="pic">
-                                        <img class="cusPic" id="image">
+                                        <img class="cusPic" id="image" style="width:53px;">
                                     </div>
                                     <div class="upfile">
                                         <span>上傳您得圖片:</span>
@@ -395,7 +396,7 @@ try {
                                         <p  class="snackNo" style="display:none;"><?php echo $row['snackNo']; ?></p>                   
                                             <p class="snackName"><?php echo $row['snackName'];?></p>
                                             <span>$<?php echo $row['snackPrice']; ?></span>
-                                            <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
+                                            <button class="step addCart sendSnack cart" id="<?php echo "{$row['snackNo']}|{$row['snackPrice']}|1" ?>" >放入零食車</button>                        
                                         </div>
                                     </div>
                                     
@@ -415,7 +416,7 @@ try {
       
       <script>
         $(document).ready(function(){
-            $(".sendSnack").bind("click",sendSnack);
+            // $(".sendSnack").bind("click",sendSnack);
             
         });
 
@@ -447,10 +448,20 @@ try {
     </div>
     
   </div>
+  <?php 
+        $sql = "select * from snack";
+        $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
+        $prodRow -> execute(); 
+        $arr_row = $prodRow->fetchAll()   //陣列 
+?>
+<?php
+    //讓目標按鈕的 class 有 cart 使 js可以觸發後續動作
+    //$arr_row[49] 代表 客製箱 (sql中第50個)
+?>
   <div class="step-content-foot">
         <button type="button" class="active" name="prev">上一步</button>
         <button type="button" class="active" name="next">下一步</button>
-        <button type="button" class="active out" name="finish"><a href="#">加入購物車</a></button>
+        <button type="button" class="active out cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="test" data-cusCard="test" data-cusSound="test" >加入購物車</button>
   </div>
 <!-- 
   <input type="button" value="轉為圖檔" /> -->
@@ -506,6 +517,9 @@ try {
 
 <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js "></script>
 <script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<!-- <script src="../js/addCart.js" defer></script> -->
+<script src="../js/cusAddCart.js" defer></script>
+
 <script>
 //前:50  後：49 上：48 左：51 右：52 
     
@@ -825,6 +839,7 @@ try {
             //"箱子表面的圖片"的監聽事件
             arrDropedImg.forEach(elem => {
                 elem.addEventListener("dragstart", function dragStart_2(e) {//拉動起始
+                    e.target.classList.add("select");
                     console.log("這裡的圖片動起來!");
                     e.dataTransfer.setData("text", "onSurface");//dataTransfer.setData傳現在的座標
                     e.dataTransfer.setData("offsetx", e.offsetX);
@@ -900,6 +915,7 @@ try {
             srcItem.style.zIndex = drop_count + 1;
             srcItem.style.top = parseInt(mouseNow.y - mouseOffset.y) + "px";
             srcItem.style.left = parseInt(mouseNow.x - mouseOffset.x) + "px";
+            srcItem.classList.remove("select");
         } else {//如果是遠方的客人，就新生成一個子元素在目標區
             //接收來自dragstart的座標訊息
             let mouseOffset = { x: 0, y: 0 };
@@ -941,15 +957,31 @@ try {
             $("#section_15 #ctrl_bar .btn").removeClass("working");
             $(e.target).addClass("working");
         })
-        //點擊droped_img觸發的事情，委託給父元素
-        $(".surface").on("click",".droped_img",function(e){
-                //如果拖曳中，不做事
-                if ( $(this).is('.ui-draggable-dragging') ) {
-                    return;
+        ////點擊空白處取消 drop_img 的 select
+        $(".customized").on("click",function (e) {
+            var elem = e.target;
+            while (elem) { //循環判斷到節點，防止點到子元素   
+                if (elem.classList && (elem.classList.contains("droped_img")||elem.classList.contains("btn"))) { //如果該元素有class且有某某class的話就不動作
+                    return; //我就跳出
                 }
-                //新增個class="seclect"
-                $(e.target).addClass("select");
+                elem = elem.parentNode; //往上找找到最大的"不作用"的層
+            }
+            $('.droped_img').removeClass("select"); //沒被跳出就會走到這裡，可以隱藏跳窗
         })
+        //點擊空白處取消 drop_img 的 select
+        // let droped_img=document
+        // $(".customized").not(".droped_img").on("click",function(e){
+        //     $(".droped_img").removeClass("select");
+        // })
+        //點擊droped_img觸發的事情，委託給父元素
+        // $(".surface").on("click",".droped_img",function(e){
+        //         //如果拖曳中，不做事
+        //         if ( $(this).is('.ui-draggable-dragging') ) {
+        //             return;
+        //         }
+        //         //新增個class="seclect"
+        //         $(e.target).addClass("select");
+        // })
         function copyToSurface(e){
             // 如果不在工作面，就跳出，不做啦!!!!
             if($("#section_15 .btn.working").length<=0){
@@ -989,22 +1021,24 @@ try {
                     $(e.target).removeClass("select"); //移除class
                 }
             })
-            .on("touchend",function(e){
+            .on("touchend",function(e){ //手機touch事件轉變成click事件
                 if ( $(this).is('.ui-draggable-dragging') ) {
                     return;
                 }
                 if(getIsTouch()){ //如果滑動距離太短，視為click。(針對安卓)
+                    $(".droped_img").removeClass("select");
                     $(e.target).addClass("select");
                 }
             })
-            // .on("click tap",function(e){ //串點擊事件
-            //     //如果拖曳中，不做事
-            //     if ( $(this).is('.ui-draggable-dragging') ) {
-            //         return;
-            //     }
-            //     //新增個class="seclect"
-            //     $(e.target).addClass("select");
-            // });
+            .on("click tap",function(e){ //串點擊事件
+                //如果拖曳中，不做事
+                if ( $(this).is('.ui-draggable-dragging') ) {
+                    return;
+                }
+                $(".droped_img").removeClass("select");
+                //新增個class="seclect"
+                $(e.target).addClass("select");
+            });
             
         }
     })
