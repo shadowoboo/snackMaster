@@ -223,17 +223,20 @@ $(document).ready(function () {
     $.ajax({
         type: "get",
         url: "CartProdCheck.php",
+        async: true,
         success: function (response) {
             //畫面淨空
             $(".cartContent").removeClass("cartPageActive");
             if (response != "prodExist") { //如果商品還沒加入購物車
                 console.log(`response!="prodExist"`);
+                console.log(`response: ${response}`);
                 //顯示 "未購物提示" 
                 $(".cartContent_none").addClass("cartPageActive");
                 //顯示 footer
                 $("footer").show();
                 //預設不顯示其他區塊，所以不再動作
             } else {
+                console.log(`response: ${response}`);
                 //隱藏 "未購物提示" 
                 $(".cartContent_none").removeClass("cartPageActive");
                 //隱藏 footer

@@ -33,6 +33,7 @@ try {
    <!-- 錄音外掛。我想我跳下去玩一定會來不及。謝謝你 9527 -->
    <script src="../js/recorder.js"></script>
    <script src="../js/common.js"></script>
+   <script src="../js/findingIp.js"></script>
 </head>
 
 <body>
@@ -395,7 +396,7 @@ try {
                                         <p  class="snackNo" style="display:none;"><?php echo $row['snackNo']; ?></p>                   
                                             <p class="snackName"><?php echo $row['snackName'];?></p>
                                             <span>$<?php echo $row['snackPrice']; ?></span>
-                                            <button class="step addCart sendSnack" id="sendSnack" >放入零食車</button>                        
+                                            <button class="step addCart sendSnack cart" id="<?php echo "{$row['snackNo']}|{$row['snackPrice']}|1" ?>" >放入零食車</button>                        
                                         </div>
                                     </div>
                                     
@@ -415,7 +416,7 @@ try {
       
       <script>
         $(document).ready(function(){
-            $(".sendSnack").bind("click",sendSnack);
+            // $(".sendSnack").bind("click",sendSnack);
             
         });
 
@@ -447,10 +448,20 @@ try {
     </div>
     
   </div>
+  <?php 
+        $sql = "select * from snack";
+        $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
+        $prodRow -> execute(); 
+        $arr_row = $prodRow->fetchAll()   //陣列 
+?>
+<?php
+    //讓目標按鈕的 class 有 cart 使 js可以觸發後續動作
+    //$arr_row[49] 代表 客製箱 (sql中第50個)
+?>
   <div class="step-content-foot">
         <button type="button" class="active" name="prev">上一步</button>
         <button type="button" class="active" name="next">下一步</button>
-        <button type="button" class="active out" name="finish"><a href="#">加入購物車</a></button>
+        <button type="button" class="active out cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="test" data-cusCard="test" data-cusSound="test" >加入購物車</button>
   </div>
 <!-- 
   <input type="button" value="轉為圖檔" /> -->
@@ -506,6 +517,9 @@ try {
 
 <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js "></script>
 <script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<!-- <script src="../js/addCart.js" defer></script> -->
+<script src="../js/cusAddCart.js" defer></script>
+
 <script>
 //前:50  後：49 上：48 左：51 右：52 
     
