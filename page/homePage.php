@@ -1105,6 +1105,9 @@
                     <button class="category">洋芋片</button>
                     <button class="category">巧克力</button>
                 </div>
+                <div class="goRankBtn">
+                    <a href="rankBoard.php"><button class="subscribe">看更多</button></a>
+                </div>
         </section>
         <!-- <div id="ctrl_bar">
             <div class="btn btn_front" id="btn_front">前</div>
@@ -1513,12 +1516,12 @@
             }
         }
 
-        function init() {
-            monthRotate(e);
-            window.addEventListener('resize', monthRotate);
-        }
+        // function init() {
+        //     monthRotate();
+        //     window.addEventListener('resize', monthRotate);
+        // }
 
-        window.addEventListener("load", init);
+        // window.addEventListener("load", init);
 
 
 
