@@ -1,10 +1,10 @@
 function repBtnAdd(){
     $('.report').click(function(e){
         e.preventDefault();
-
+        console.log($(this));
         if($('#btnloglout').text()=='登出'){
             if(confirm("確定要檢舉這則言論嗎?")){
-        
+                console.log($(this));
                 var repNo=$(this).attr('repno');
                 var to=$(this).attr('to');
                 var xhr=new XMLHttpRequest();
@@ -241,6 +241,7 @@ function showStar(){
 
 
 function firstGet(){
+    snackNo=$('#item').attr('snackNo');
     var xhr =new XMLHttpRequest();
     xhr.open("Post", "getCmt.php", true);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
