@@ -1,6 +1,6 @@
-*{
-    outline: 1px solid #ff0000;
-}
+// *{
+//     outline: 1px solid #ff0000;
+// }
 @import "reset";
 @import "common";
 $tabColor:#076baf;
@@ -425,10 +425,11 @@ input[type="number"]{
             }
             #listMore{
                 text-align: center;
-                a{
+                p{
                     color: $blue; 
                     font-family: g2Font;
                     line-height: 2;
+                    cursor: pointer;
                 }
     
             }
@@ -439,8 +440,11 @@ input[type="number"]{
                 border-bottom: 2px solid $blue;
                 margin-bottom: 10px;
             }
-            .orderItem{
+            #proEva{
+                position: relative;
                 width: 100%;
+                display: none;
+        
                .orderItemList{
                    tr{
                        width: 100%;
@@ -448,15 +452,16 @@ input[type="number"]{
                        th{
                         width: 15%;
                           line-height: 1.6;
-                           font-size: 17px;
+                           font-size: 15px;
                            color: $blue;
                         //    width: 50px;
                            font-family: g2Med;
+                           padding: 0 10px;
                        }
                        td{
                            width: 15%;
                            vertical-align: middle;
-                           font-size: 16px;
+                           font-size: 14px;
                            color: $tabColor;
                            font-family: g2Med;
                            line-height: 1.6;
@@ -464,17 +469,23 @@ input[type="number"]{
                        img{
                            width: 45%;
                            margin-top: 5px;
+                           
+                       }
+                       .cart{
+                           font-size: 12px;
+                           width: 50px;
+                           height: 30px;
+                           margin: 0 5px;
                        }
                    }
                }
-
-            }
-        
-            .evaLightBox{
-                width: 321px;
+               #evaBox{
+                position: absolute;
+                top: 0;
+                width: 100%;
                 background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
                 border-radius: 10px;
-                margin: auto;
+                // margin: auto;
                 display: none;
                 span{
                     display: block;
@@ -482,74 +493,87 @@ input[type="number"]{
                     padding: 10px;
                     font-size: 22px;
                 }
-                .proPic{
+                .evaLightBox_content{
                     width: 100%;
-                    text-align: center;
-                    img{
-                        width: 25%;
+                    
+                    .proPic{
+                        text-align: center;
+                        img{
+                            width: 25%;
+                        }
+                        p{
+                            color: $tabColor;
+                            line-height: 1.6;
+                          }
                     }
-                    p{
-                        color: $tabColor;
-                        line-height: 1.6;
-                      }
-                }
-                .evaStars{
-                    ul{
-                        li{
-                            p{
-                                color: $tabColor;
-                                line-height: 1.6;
-                                padding: 0 5px;
+                    .evaStars{
+                        ul{
+                            li{
+                                p{
+                                    color: $tabColor;
+                                    line-height: 1.6;
+                                    padding: 0 5px;
+                                }
                             }
                         }
                     }
-                }
-                .discuss{
-                    text-align: center;
-                    textarea{
-                        margin: 10px 0;
-                    }
-                }
-                .evaPro{
-                    width: 150px;
-                    margin: auto;
-                    margin-top: 10px;
-                    .proPicBox{
-                        margin-bottom: 10px;
+                    .discuss{
                         text-align: center;
-                        img{
-                            width: 30%;
+                        textarea{
+                            margin: 10px 0;
                         }
                     }
-                    
-                    .evaproPic{
-                       
-
+                    .evaPro{
+                        width: 150px;
+                        margin: auto;
+                        margin-top: 10px;
+                        .proPicBox{
+                            margin-bottom: 10px;
+                            text-align: center;
+                            img{
+                                width: 30%;
+                            }
+                        }
+                        
+                        .evaproPic{
+                           
+    
+                            .step{
+                                width: 120px;
+                                height: 35px;
+                                margin: auto;
+                                
+                            }
+                            input{
+                                display: none;
+                            }
+                        }
+    
+                    }
+                    .evaSend{
+                        text-align: center;
+                        padding: 10px 0;
                         .step{
                             width: 120px;
                             height: 35px;
-                            margin: auto;
                             
-                        }
-                        input{
-                            display: none;
-                        }
+                            // margin-top: 10px;
+                            
+                             }
                     }
-
-                }
-                .evaSend{
-                    text-align: center;
-                    padding: 10px 0;
-                    .step{
-                        width: 120px;
-                        height: 35px;
-                        
-                        // margin-top: 10px;
-                        
-                         }
                 }
                 
+                
             }
+            #evaBox.jump{
+                display: block;
+            }
+            }
+            #proEva.expand{
+                display: block;
+            }
+        
+            
             
             
     
@@ -559,8 +583,6 @@ input[type="number"]{
         #tab-3{
                 .collect{
                     width: 100%;
-                    
-                    // margin: auto;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
@@ -574,7 +596,8 @@ input[type="number"]{
                             position: relative;
                             margin: auto;
                             text-align: center;
-                            margin-top:20px;
+                            margin-top: 20px;
+                            
                             .country{
                                 width: 40px;
                                 position: absolute;
@@ -756,22 +779,8 @@ input[type="number"]{
     
     
     }
-    .wrapTabPanel{
-        // #tab-2{
-        //     .orderItem{
-        //         .orderItemList{
-        //             tr{
-        //                 th{
-        //                     width: 50px;
-                           
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-        
 
-    }
+    
 }    
 //------------------桌機ＲＷＤ--------------------------
 
@@ -970,100 +979,47 @@ input[type="number"]{
                     }
                     
                 }
-                // .orderItem{
-                    
-                //    .orderItemList{
-                //        tr{
-                           
-                //            th{
-                //                width: 160px;
-                //            }
-                //            td{
-                //                font-size: 20px;
-                //                vertical-align: middle;
-                //            }
-                //        }
-                //    }
-    
-                // }
-                .evaLightBox{
-                    width: 321px;
-                    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-                    border-radius: 10px;
-                    margin: auto;
-                    display: none;
-                    span{
-                        display: block;
-                        text-align: right;
-                        padding: 10px;
-                        font-size: 22px;
-                    }
-                    .proPic{
-                        width: 100%;
-                        text-align: center;
-                        img{
-                            width: 25%;
-                        }
-                        p{
-                            color: $tabColor;
-                            line-height: 1.6;
-                          }
-                    }
-                    .evaStars{
-                        ul{
-                            li{
-                                p{
-                                    color: $tabColor;
-                                    line-height: 1.6;
-                                    padding: 0 5px;
-                                }
+               
+               #proEva{
+                   .orderItemList{
+                       tr{
+                           th{
+                               font-size: 18px;
+                           }
+                           td{
+                               font-size: 18px;
+                               img{
+                                 padding: 10px;
+                               }
+                               .cart{
+                                font-size: 16px;
+                                width: 80px;
+                                height: 30px;
+                                margin: 0 5px;
                             }
-                        }
-                    }
-                    .discuss{
-                        text-align: center;
-                        textarea{
-                            margin: 10px 0;
-                        }
-                    }
-                    .evaPro{
-                        width: 150px;
-                        margin: auto;
-                        margin-top: 10px;
-                        .proPicBox{
-                            margin-bottom: 10px;
-                            text-align: center;
-                            img{
-                                width: 30%;
-                            }
-                        }
-                        
-                        .evaproPic{
-                           
-    
-                            .step{
-                                width: 120px;
-                                height: 35px;
-                                margin: auto;
-                                
-                            }
-                            input{
-                                display: none;
-                            }
-                        }
-    
-                    }
-                    .evaSend{
-                        text-align: center;
-                        padding: 10px 0;
-                        .step{
-                            width: 120px;
-                            height: 35px;
-                            
-                            // margin-top: 10px;
-                            
-                             }
-                    }
+                           }
+                       }
+                   }
+                   #evaBox{
+                       .evaLightBox_content{
+                           width: 100%;
+                           display: flex;
+                           flex-direction: row;
+                           justify-content: space-around;
+                           align-items: center;
+                           .evaContent{
+                             margin: auto;
+                               width: 25%;
+                               height: 300px;
+                               .evaSend{
+                                   width: 100%;
+                                   height: 50px;
+                               }
+                           }
+                       }
+                   }
+               }
+       
                     
                 }
             }
@@ -1119,7 +1075,6 @@ input[type="number"]{
         
     
     
-}
 
 @media screen and(min-width:1200px){
     
