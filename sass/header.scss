@@ -130,11 +130,11 @@ header {
                         font-family: g2Font;
                         color: #737374;
                         height: auto;
-                        &:hover {
-                            .subMenu {
-                                display: block;
-                            }
-                        }
+                        // &:hover {
+                        //     .subMenu {
+                        //         display: block;
+                        //     }
+                        // }
                         a:hover {
                             color: $blue;
                         }

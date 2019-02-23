@@ -495,10 +495,18 @@ window.addEventListener("load", init3);
 
 
 
-
-// $(document).ready(function(){
-//     $('#store').click(function () {
-//         // $('#store .subMenu').show();
-//         $('#store .subMenu').stop(true).slideToggle();
-//     });
-// });
+if (window.screen.width < 768) {
+        $('#store').click(function () {
+            // $('#store .subMenu').show();
+            $('#Submenu').stop(true).slideToggle();
+        });
+}else{
+    $('#store').mouseover(function () {
+        // $('#store .subMenu').show();
+        $('#Submenu').stop(true).slideDown();
+    });
+    $('#store,#Submenu').mouseout(function () {
+        // $('#store .subMenu').show();
+        $('#Submenu').stop(true).slideUp();
+    });
+}
