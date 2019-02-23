@@ -67,7 +67,7 @@
     }
     $venRow = $vending -> fetch();
 ?>
-                <form action="back_editVendingToDb.php">
+                <form action="back_editVendingToDb.php" method="post" enctype="multipart/form-data">
                     <table id="editTable">
                         <tr>
                             <td>編號</td>
@@ -86,7 +86,10 @@
                         </tr>
                         <tr>
                             <td>圖片</td>
-                            <td><input type="text" name="maPic" size="26" value="<?php echo $venRow['maPic'] ?>"></td>
+                            <td>
+                                <img src="../<?php echo $venRow['maPic']?>" alt="" id="preview">
+                                <input type="file" name="upFile" id="upFile">
+                            </td>
                         </tr>
                         <tr>
                             <td>地區</td>
@@ -123,6 +126,14 @@
                 location.href = 'back_vending.php';
             }
         })
+        document.getElementById('upFile').onchange = function(e){
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(){
+                document.getElementById('preview').src = reader.result;
+            }
+            reader.readAsDataURL(file);
+        }
     </script>
 </body>
 </html>
