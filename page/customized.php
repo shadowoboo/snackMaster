@@ -1,13 +1,13 @@
 <?php
 $errMsg = "";
 try {
-	require_once("connectcd105g2.php");
-	// $sql = "select * from snack";
-    //  $snack = $pdo->query($sql); 
+    require_once("connectcd105g2.php");
+    // $sql = "select * from snack";
+    //  $snack = $pdo->query($sql);
     //  $snackRows = $snack -> fetchAll(PDO::FETCH_ASSOC);
     //  var_dump($snackRows);exit();
 } catch (PDOException $e) {
-	$errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
+    $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
     $errMsg .= "行號 : ".$e -> getLine()."<br>";
     exit($errMsg);
 }
@@ -37,7 +37,7 @@ try {
 </head>
 
 <body>
-    <?php 
+    <?php
     require_once("header.php")
     ?>
   <div class="card step-progress">
@@ -369,32 +369,28 @@ try {
                                     <li class="good">餅乾</li>
                                     <li class="good">糖果</li>
                                 </ul>                   
-            <?php 
+            <?php
                 $cusSnack=array("巧克力","洋芋片","餅乾","糖果");
                 $ln=count($cusSnack);
                 $arr_row=array();
 
                 $i=0;
-                for($i=0; $i<$ln; $i++){
+                for ($i=0; $i<$ln; $i++) {
                     // $sql = "select snackNo,snackName,snackPic,snackPrice from snack WHERE snackGenre= ? ORDER BY snackNo in('1','8');";
                     $sql = "select snackNo,snackName,snackPic,snackPrice from snack WHERE snackGenre= ? ORDER BY snackNo limit 0,8;";
                     $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
                     $prodRow -> bindValue(1, $cusSnack[$i]);
-                    $prodRow -> execute(); 
-                    
-                
-            ?>
+                    $prodRow -> execute(); ?>
                     <div class="good-content">
                         <?php
-                             while($row = $prodRow->fetch()){
-                                 //array_push($arr_row,$row);
-                        ?>
+                             while ($row = $prodRow->fetch()) {
+                                 //array_push($arr_row,$row); ?>
                             <div class="item">
                                 <div class="name">           
                                         <img src="<?php echo $row['snackPic']; ?>" alt="">                                    
                                         <div class="price">
                                         <p  class="snackNo" style="display:none;"><?php echo $row['snackNo']; ?></p>                   
-                                            <p class="snackName"><?php echo $row['snackName'];?></p>
+                                            <p class="snackName"><?php echo $row['snackName']; ?></p>
                                             <span>$<?php echo $row['snackPrice']; ?></span>
                                             <button class="step addCart sendSnack cart" id="<?php echo "{$row['snackNo']}|{$row['snackPrice']}|1" ?>" >放入零食車</button>                        
                                         </div>
@@ -402,8 +398,7 @@ try {
                                     
                             </div>
                         <?php
-                            }
-                        ?> 
+                             } ?> 
                     </div>
             <?php
                 }
@@ -448,11 +443,11 @@ try {
     </div>
     
   </div>
-  <?php 
+  <?php
         $sql = "select * from snack";
         $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
-        $prodRow -> execute(); 
-        $arr_row = $prodRow->fetchAll()   //陣列 
+        $prodRow -> execute();
+        $arr_row = $prodRow->fetchAll()   //陣列
 ?>
 <?php
     //讓目標按鈕的 class 有 cart 使 js可以觸發後續動作

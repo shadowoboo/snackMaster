@@ -232,8 +232,8 @@ if(isset($_SESSION["snackName"])==true){
                                 </div>
                                 <div class="prodQty">
                                     <div class="numInput">
-                                        <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][1][$snackNo]?>">-</span><input class="snackQty" type="number" value="1" readonly><span
-                                            class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][1][$snackNo]?>">+</span>
+                                        <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][1][$snackNo] ?>" data-snackType="<?php echo 1 ?>">-</span><input class="snackQty" type="number" value="1" readonly><span
+                                            class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][1][$snackNo]?>" data-snackType="<?php echo 1 ?>">+</span>
                                     </div>
                                 </div>
                                 <!-- <button class="trash"><i class="far fa-trash-alt"></i></button> -->
@@ -299,11 +299,11 @@ if(isset($_SESSION["snackName"])==true){
                             </div>
                             <div class="prodQty">
                                 <div class="numInput">
-                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][3][$snackNo]?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
-                                        class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][3][$snackNo]?>">+</span>
+                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][3][$snackNo]?>" data-snacktype="<?php echo 3 ?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" data-snackType="<?php echo 3 ?>" type="number" value="1" readonly><span
+                                        class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][3][$snackNo]?>" data-snacktype="<?php echo 3 ?>">+</span>
                                 </div>
                             </div>
-                            <button class="trash" data-snackno="<?php echo $snackNo;?>"><i class="far fa-trash-alt" data-snackno="<?php echo $snackNo;?>"></i></button>
+                            <button class="trash" data-snackno="<?php echo $snackNo;?>" data-snacktype="<?php echo 3 ?>"><i class="far fa-trash-alt" data-snackno="<?php echo $snackNo;?>" data-snacktype="<?php echo 3 ?>"></i></button>
                         </div>
                     </div>
 <?php
@@ -342,11 +342,11 @@ if(isset($_SESSION["snackName"])==true){
                             </div>
                             <div class="prodQty">
                                 <div class="numInput">
-                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][0][$snackNo]?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
-                                        class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][0][$snackNo]?>">+</span>
+                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][0][$snackNo]?>" data-snacktype="<?php echo 0 ?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
+                                        class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][0][$snackNo]?>" data-snacktype="<?php echo 0 ?>">+</span>
                                 </div>
                             </div>
-                            <button class="trash" data-snackno="<?php echo $snackNo;?>"><i class="far fa-trash-alt" data-snackno="<?php echo $snackNo;?>"></i></button>
+                            <button class="trash" data-snackno="<?php echo $snackNo;?>" data-snacktype="<?php echo 0 ?>"><i class="far fa-trash-alt" data-snackno="<?php echo $snackNo;?>" data-snacktype="<?php echo 0 ?>"></i></button>
                         </div>
                     </div>
 <?php
@@ -387,11 +387,11 @@ if(isset($_SESSION["snackName"])==true){
                             </div>
                             <div class="prodQty">
                                 <div class="numInput">
-                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][2][$snackNo]?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
-                                        class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][2][$snackNo]?>">+</span>
+                                    <span class="numMinus" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][2][$snackNo]?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
+                                        class="numPlus" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][2][$snackNo]?>">+</span>
                                 </div>
                             </div>
-                            <button class="trash" data-snackno="<?php echo $snackNo;?>"><i class="far fa-trash-alt" data-snackno="<?php echo $snackNo;?>"></i></button>
+                            <button class="trash" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo;?>"><i class="far fa-trash-alt" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo;?>"></i></button>
                         </div>
                     </div>
 <?php

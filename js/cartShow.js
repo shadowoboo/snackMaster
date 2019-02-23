@@ -143,12 +143,14 @@ $(function () {
     function clearNormalSession(e){
         //用 data-* 神秘西方力量取值 (我不想占用id之類的)
         var snackNo = e.target.dataset.snackno;
+        var snackType = e.target.dataset.snacktype;
         console.log(snackNo);
+        console.log(snackType);
         
         $.ajax({
             type: "get",
             url: "cartUpdate.php",
-            data: "updateType=normalDel&snackNo="+snackNo,
+            data: "updateType=normalDel&snackNo=" + snackNo + "&snackType=" + snackType,
             success: function (response) {
                 console.log(`response:　${response}`);
             }
@@ -312,10 +314,11 @@ $(document).ready(function () {
                     data: getterData,
                     success: function (response) {
                         if (response == "error") {
+                            console.log(response);
                             alert(" 下單失敗 Q口Q ");
                         } else {
                             // alert(response);
-                            console.log(response)
+                            console.log(response);
                         }
                     }
                 });
