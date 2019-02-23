@@ -159,6 +159,9 @@ header {
             }
         }
         .login {
+            #memLogin{
+                cursor: pointer;
+            }
             li {
                 &:hover i{
                     color: $blue;
@@ -167,7 +170,6 @@ header {
                     color: $blue;
                 }
                 color: #737374;
-                cursor: pointer;
             }
             li:first-child {
                 span {
@@ -516,7 +518,7 @@ label.mail {
                     }
                 }
                 li:first-child {
-                    width: 35%;
+                    width: 25%;
                     min-width: 40px;
                 }
             }
