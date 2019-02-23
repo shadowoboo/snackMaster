@@ -4,13 +4,14 @@ class rsp{
     public $memId;
     public $msgCtx;
     public $msgTime;
+    public $msgNo;
 }
 
 $rspArr =[];
 $evaNo=$_REQUEST['evaNo'];
 try{
 require_once("connectcd105g2.php");
- $sql="SELECT `msgText`,`memPic`,`memId`,`msgTime` FROM `msg`,`member` WHERE msg.`evaNo`={$evaNo} AND msg.`memNo`=member.`memNo` ORDER by `msgTime` DESC";
+ $sql="SELECT `msgText`,`memPic`,`memId`,`msgTime`,`msgNo` FROM `msg`,`member` WHERE msg.`evaNo`={$evaNo} AND msg.`memNo`=member.`memNo` ORDER by `msgTime` DESC";
 
  $feed=$pdo->query($sql);
   while($msgCtx=$feed->fetch()){
@@ -20,6 +21,7 @@ require_once("connectcd105g2.php");
     $rsp->memId=$msgCtx['memId'];
     $rsp->msgText=$msgCtx['msgText'];
     $rsp->msgTime=$msgCtx['msgTime'];
+    $rsp->msgNo=$msgCtx['msgNo'];
     $rspArr[]=$rsp;
   }  
 
