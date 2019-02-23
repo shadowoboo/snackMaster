@@ -58,7 +58,7 @@
         exit("<div><center>$errMsg</center></div>");
     }
 ?>
-                <form action="back_snackToDb.php">
+                <form action="back_snackToDb.php" method="post" enctype="multipart/form-data">
                     <table>
                         <tr>
                             <td>種類</td>
@@ -95,8 +95,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>圖片路徑</td>
-                            <td><input type="text" name="snackPic" size="28"></td>
+                            <td>圖片</td>
+                            <td>
+                                <img src="" alt="" id="preview">
+                                <input type="file" name="upFile" id="upFile">
+                            </td>
                         </tr>
                         <tr>
                             <td>上下架狀態</td>
@@ -146,6 +149,14 @@
                 location.href = 'back_snack.php';
             }
         })
+        document.getElementById('upFile').onchange = function(e){
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(){
+                document.getElementById('preview').src = reader.result;
+            }
+            reader.readAsDataURL(file);
+        }
     </script>
 </body>
 </html>

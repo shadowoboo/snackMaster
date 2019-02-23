@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // $snackNo = $_GET["snackNo"];
     $errMsg = "";
     try {
@@ -67,10 +67,14 @@
     
     <script src="../js/common.js"></script>
     <script src="../js/Chart.js"></script>
+    
     <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
     <script src="../js/header.js" defer></script>
-    <!-- <script src="../js/showStar.js"></script> -->
+    <script src="../js/findingIp.js"></script>
     <script src="../js/showMsg.js"></script>
+    <script src="../js/addHeart.js"></script>
+    <script src="../js/addcart.js"></script>
     
 </head>
 
@@ -162,7 +166,7 @@
                     <div class="numInput">
                         <span class="numMinus">-</span><input type="number" value="1"><span class="numPlus">+</span>
                     </div>
-                    <button class="cart">加入購物車</button>
+                    <button class="cart" id="<?php echo "{$snackRow['snackNo']}|{$snackRow['snackPrice']}|0"?>">加入購物車</button>
                     <button class="heart"><i class="far fa-heart"></i></button>
                 </div>
                 <p>

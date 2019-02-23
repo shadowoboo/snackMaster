@@ -251,7 +251,7 @@
                 <h2>零食列表</h2>
             </div>
             <div class="searchBar">
-                <img src="../images/blair/pocky.png" alt="">
+                <img src="../images/blair/pocky.png" alt="search">
                 <select name="country" id="country">
                     <option value="0">國家</option>
                     <option value="巴西">巴西</option>
@@ -311,8 +311,8 @@
                         echo "$good|$sour|$sweet|$spicy";
                     ?>">
                     <a href="showItem.php?snackNo=<?php echo $snackRow['snackNo'] ?>"></a>
-                    <img class="country" src="../images/blair/<?php echo $snackRow['nation'] ?>.png" alt="">
-                    <img class="itemImg" src="<?php echo $snackRow['snackPic']?>" alt="">
+                    <img class="country" src="../images/blair/<?php echo $snackRow['nation'] ?>.png" alt="nation">
+                    <img class="itemImg" src="<?php echo $snackRow['snackPic']?>" alt="snack">
                     <h4 class="itemName"><?php echo '['.$snackRow['nation'].']'.$snackRow['snackName']?></h4>
                     <div class="star" grad="<?php echo $good;?>">
                         <img src="../images/rankBoard/starMask.png" alt="星等">
@@ -363,21 +363,21 @@
                 <div class="radar">
                     <canvas id="radarCanvas"></canvas>
                 </div>
-                <img class="mintImg" src="../images/blair/mint.png" alt="">
+                <img class="mintImg" src="../images/blair/mint.png" alt="mint">
             </div> 
 
         </div>
-        <img id="bgChips" src="../images/blair/bgChips.png" alt="">
-        <img src="../images/blair/5-1.png" alt="" id="bgChips1">
-        <img src="../images/blair/5-2.png" alt="" id="bgChips2">
-        <img src="../images/blair/5-3.png" alt="" id="bgChips3">
-        <img src="../images/blair/5-4.png" alt="" id="bgChips4">
-        <img src="../images/blair/5-5.png" alt="" id="bgChips5">
-        <img src="../images/blair/5-6.png" alt="" id="bgChips6">
-        <img src="../images/blair/5-1.png" alt="" id="bgChips7">
-        <img src="../images/blair/5-2.png" alt="" id="bgChips8">
-        <img src="../images/blair/5-3.png" alt="" id="bgChips9">
-        <img src="../images/blair/5-4.png" alt="" id="bgChips10">
+        <img id="bgChips" src="../images/blair/bgChips.png" alt="chips">
+        <img src="../images/blair/5-1.png" alt="chips" id="bgChips1">
+        <img src="../images/blair/5-2.png" alt="chips" id="bgChips2">
+        <img src="../images/blair/5-3.png" alt="chips" id="bgChips3">
+        <img src="../images/blair/5-4.png" alt="chips" id="bgChips4">
+        <img src="../images/blair/5-5.png" alt="chips" id="bgChips5">
+        <img src="../images/blair/5-6.png" alt="chips" id="bgChips6">
+        <img src="../images/blair/5-1.png" alt="chips" id="bgChips7">
+        <img src="../images/blair/5-2.png" alt="chips" id="bgChips8">
+        <img src="../images/blair/5-3.png" alt="chips" id="bgChips9">
+        <img src="../images/blair/5-4.png" alt="chips" id="bgChips10">
     </div>
     <footer>
         <div class="footer_ip">

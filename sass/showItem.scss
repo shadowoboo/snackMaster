@@ -368,6 +368,24 @@
                     display: flex;
                     justify-content: space-between;
                     @include btn('report', 5%, auto, #c9c9c9, transparent, transparent, 0px, 0px, #737374, transparent, 16px);
+                    .report{
+                        position: relative;
+                        &::before{
+                            content:'檢舉';
+                            color: #737374;
+                            padding: 5px;
+                            background-color: #fff;
+                            border: solid 1x #737374;
+                            font-size: 14px;
+                            position: absolute;
+                            top: 0;
+                            left: -30px;
+                            display: none;
+                        }
+                        &:hover::before{
+                            display: block;
+                        }
+                    }
                 }
 
                 .star {
@@ -457,6 +475,7 @@
                    color: #076baf;
                    padding:5px 10px ; 
                    font-family:g2font;
+                   cursor: pointer;
                }
                .nowLoc,a:hover{
                    color: #fff;
@@ -528,8 +547,13 @@
             position: relative;
             border-radius: 10px;
             font-family: g2Font;
+            cursor: pointer;
             text-align: center;
-
+            &:hover{
+                background-color: #00457b;
+                border: 2px solid #00457b;
+            }
+           
             @media screen and (min-width: $moblie) {
                 font-size: 16px;
             }

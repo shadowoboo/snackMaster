@@ -72,7 +72,7 @@
                         </td>
                         <td><?php echo $coupRow['coupNo']?></td>
                         <td><?php echo $coupRow['discountPrice']?></td>
-                        <td><?php echo $coupRow['imgSRC']?></td>
+                        <td><img src="../<?php echo $coupRow['imgSRC']?>" alt="couponPic"></td>
                         <td><?php echo $coupRow['getWay']?></td>
                     </tr>
 <?php
