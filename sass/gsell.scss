@@ -196,10 +196,14 @@ body {
         #copy {
             position: absolute;
             bottom: 0;
+            @media screen and (max-width: 374px) {
+                bottom: 2px;
+            }
             left: 0;
             right: 0;
             margin: auto;
             font-size: 1.2vw;
+            color: #575757;
         }
     }
 }
