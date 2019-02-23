@@ -206,14 +206,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 
         @media screen and (min-width:$moblie){
-            width: 240px;
+            width: 180px;
     
         }
 
         p {
             position: absolute;
-            top: 22px;
-            left: 102px;
+            top: 29px;
+            left: 32px;
             color: $gray;
         }
     }

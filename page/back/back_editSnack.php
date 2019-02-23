@@ -67,7 +67,7 @@
     }
     $snackRow = $snack -> fetch();
 ?>
-                <form action="back_editSnackToDb.php">
+                <form action="back_editSnackToDb.php" method="post" enctype="multipart/form-data">
                     <table id="editTable">
                         <tr>
                             <td>編號</td>
@@ -125,9 +125,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>圖片路徑</td>
+                            <td>圖片</td>
                             <td>
-                                <input type="text" name="snackPic" value="<?php echo $snackRow['snackPic'] ?>" size="28">
+                                <img id="oldPic" src="../<?php echo $snackRow['snackPic'] ?>" alt="snack">
+                                <input type="file" name="upFile" id="upFile">
                             </td>
                         </tr>
                         <tr>
@@ -192,6 +193,14 @@
                 location.href = 'back_snack.php';
             }
         })
+        document.getElementById('upFile').onchange = function(e){
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(){
+                document.getElementById('oldPic').src = reader.result;
+            }
+            reader.readAsDataURL(file);
+        }
     </script>
 </body>
 </html>

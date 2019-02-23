@@ -59,7 +59,7 @@
     <!-- for cartShow   -->
     <link rel="stylesheet" href="../css/cartShow.css">
     <!-- for header -->
-    <link rel="stylesheet" href="../css/header.css">
+    <!-- <link rel="stylesheet" href="../css/header.css"> -->
     <!-- for footer -->
     <link rel="stylesheet" href="../css/nnnnn.css">
     <!-- for cartShow ENG 放在CSS最後面做修正-->
@@ -297,7 +297,7 @@ if(isset($_SESSION["snackName"])==true){
                                     小計: <span class="priceSum" ><?php echo  $_SESSION["snackPrice"][3][$snackNo]?></span>
                                 </p>
                             </div>
-                            <div class="prodQty">
+                            <div class="prodQty" style="position: relative;z-index:-1;opacity:0;">
                                 <div class="numInput">
                                     <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][3][$snackNo]?>" data-snacktype="<?php echo 3 ?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" data-snackType="<?php echo 3 ?>" type="number" value="1" readonly><span
                                         class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][3][$snackNo]?>" data-snacktype="<?php echo 3 ?>">+</span>

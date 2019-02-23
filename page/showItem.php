@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // $snackNo = $_GET["snackNo"];
     $errMsg = "";
     try {
@@ -8,7 +8,8 @@
 
         if(isset($_GET["snackNo"]) == false){
             //如果沒有給snackNo就跳轉回shopping.php
-            $snackNo=25;
+             header('Location:shopping.php');
+             exit();
         }else{
             $snackNo=$_GET["snackNo"];
         }
@@ -67,10 +68,14 @@
     
     <script src="../js/common.js"></script>
     <script src="../js/Chart.js"></script>
+    
     <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
     <script src="../js/header.js" defer></script>
-    <!-- <script src="../js/showStar.js"></script> -->
+    <script src="../js/findingIp.js"></script>
     <script src="../js/showMsg.js"></script>
+    <script src="../js/addHeart.js"></script>
+    <script src="../js/addcart.js"></script>
     
 </head>
 
@@ -158,12 +163,12 @@
             <div class="flexWrapR ctxWrap" >
                 <p id="price">價格<span>$<?php echo $snackRow['snackPrice']?></span></p>
                 <div id="itemNum">
-                    <p>數量</p>
+                    <!-- <p>數量</p>
                     <div class="numInput">
                         <span class="numMinus">-</span><input type="number" value="1"><span class="numPlus">+</span>
-                    </div>
-                    <button class="cart">加入購物車</button>
-                    <button class="heart"><i class="far fa-heart"></i></button>
+                    </div> -->
+                    <button class="cart" id="<?php echo "{$snackRow['snackNo']}|{$snackRow['snackPrice']}|0"?>">加入購物車</button>
+                    <button class="heart"id="<?php echo $snackRow['snackNo']?>" ><i class="far fa-heart"></i></button>
                 </div>
                 <p>
                     成分
@@ -189,41 +194,9 @@
 
             <div class="comment" id="cmtDiv">
 
-
-                        <!-- <div class="msgs">
-                            <div class="msg_num msg_1">
-                                <div class="memPic">
-                                    <img src="../images/rankBoard/memPic.png" alt="會員頭像" class="memImg">
-                                </div>
-                                <div class="msgCol">
-                                    <div class="memId">
-                                        <p>Apple12345678</p><button class="report">...</button>
-                                    </div>
-                                    <p class="msgCtx">太啦!</p>
-                                </div>
-                            </div>
-                            <div class="msg_num msg_2">
-                                <div class="memPic">
-                                    <img src="../images/rankBoard/memPic.png" alt="會員頭像" class="memImg">
-                                </div>
-                                <div class="msgCol">
-                                    <div class="memId">
-                                        <p>Apple12345678</p><button class="report">...</button>
-                                    </div>
-                                    <p class="msgCtx">再啦!</p>
-                                </div>
-                            </div>
-                        </div> -->
             </div>
         </div>
         <div id="pagination">
-            <!-- <ul>
-                <li class="page-item"><a href="#" id="last" class="page-link"><i class="fas fa-chevron-left"></i></a></li>
-                <li class="page-item"><a href="#" class="page-link nowLoc">01</a></li>
-                <li class="page-item"><a href="#" class="page-link">02</a></li>
-                <li class="page-item"><a href="#" class="page-link">03</a></li>
-                <li class="page-item"><a href="#" id="next" class="page-link"><i class="fas fa-chevron-right"></i></a></li>
-            </ul> -->
         </div>
     </section>
 

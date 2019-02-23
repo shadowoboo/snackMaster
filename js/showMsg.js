@@ -1,13 +1,93 @@
-// $('.btnMsg').click(function(e) {
-//         if($(this).text()=='顯示留言'){
-//             $(this).html('<i class="fas fa-comment"></i>隱藏留言');
-//         }else{
-//             $(this).html('<i class="fas fa-comment"></i>顯示留言');
-//         };
+function repBtnAdd(){
+    $('.report').click(function(e){
+        e.preventDefault();
+        console.log($(this));
+        if($('#btnloglout').text()=='登出'){
+            if(confirm("確定要檢舉這則言論嗎?")){
+                console.log($(this));
+                var repNo=$(this).attr('repno');
+                var to=$(this).attr('to');
+                var xhr=new XMLHttpRequest();
+                xhr.open("Post","sendRep.php",true);
+                xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                var data_info=`repNo=${repNo}&repTo=${to}`;
+                xhr.send(data_info);
+                xhr.onload=function(){
+                    if(xhr.responseText=='1'){
 
-//         var thisBox='msgBox'+snackNo;
-//         $('.'+thisBox).css('height','200px');
-//     });
+                        alert('請勿重複檢舉同一則言論。')
+                    }else{
+                        alert('感謝您的檢舉，將由系統管理員進行審核');
+                        console.log(xhr.responseText);
+                    }
+                    
+                }
+
+            }
+        }else{
+            alert('登入會員後才能進行檢舉');
+            showLightBox();            
+        }
+    });
+
+
+}
+function pageBtnAdd(){
+    snackNo=$('#item').attr('snackNo');
+
+    $('.page-link:eq(1)').addClass('nowLoc');
+    $('.page-link').click(function(){
+
+        if($(this).attr('id')=='next'){
+           var page = parseInt( $('.nowLoc').attr('page'))+1;
+           console.log($('.nowLoc').attr('page'));
+
+        }else if($(this).attr('id')=='last'){
+            var page = parseInt( $('.nowLoc').attr('page'))-1;
+        }else{
+            var page =parseInt($(this).attr('page'));
+        }
+
+        if(page > 0 && page < $('.page-link').length-1){
+            $('.page-link').removeClass('nowLoc');
+            $(`.page-link:eq(${page})`).addClass('nowLoc');
+            var xhr =new XMLHttpRequest();
+            xhr.open("Post", "getCmt.php", true);
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            var data_info=`snackNo=${snackNo}&page=${page}`;
+            xhr.send(data_info);
+            xhr.onload=function(){
+                var rsp=JSON.parse(xhr.responseText);
+                // class rsp{
+                //     public $pages;
+                //     public $cmtArr=[];
+                // }
+        
+                // setPagination(rsp.pages);
+                $('#cmtDiv').html(rsp.cmtArr);
+                showStar();
+                msgBtnAdd();
+                sendMsg();
+                likeBtnAdd();
+            }
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#comment").offset().top
+            }, 500);
+
+        }else{
+            if(page==0){
+                alert('這就是盡頭了');
+            }else{
+                alert('沒有下一頁了!');
+            }
+        }
+        
+        
+    });
+
+
+}
+
 function likeBtnAdd(){
 $('.like').click(function(){
     var likeBtn=$(this);
@@ -53,7 +133,7 @@ function sendMsg(){
        var data_info=`evaNo=${evaNo}&msgText=${msgText}`;
        xhr.send(data_info);
        xhr.onload=function(){
-            console.log('留言成功');
+            // console.log('留言成功');
             var xhr =new XMLHttpRequest();
             xhr.open("Post", "getMsg.php", true);
             xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -125,7 +205,7 @@ function msgBtnAdd(){
                             </div>
                             <div class="msgCol">
                                 <div class="memId">
-                                    <p>${msgArr[i].memId}</p><button class="report">...</button>
+                                    <p>${msgArr[i].memId}</p><button class="report" to="msg" repNo="${msgArr[i].msgNo}">...</button>
                                 </div>
                                 <p class="msgCtx">${msgArr[i].msgText}</p>
                                 <p class="msgTime">留言時間:${msgArr[i].msgTime}</p>
@@ -135,6 +215,7 @@ function msgBtnAdd(){
 
                 };
                 $('#msgBox'+evaNo).css('height','auto').html(msgBoxHTML);
+                repBtnAdd();
             }
 
             
@@ -153,13 +234,14 @@ function showStar(){
         var gap = avgG>Math.floor(avgG)?Math.floor(avgG):Math.floor(avgG)-1;
         var starLength= avgG*11+gap*5+13;
         $(this).css('background',`linear-gradient(to right, rgb(233, 125, 88) ${starLength}%, rgb(255, 255, 255)10%)`);
-        console.log($(this));
+        // console.log($(this));
     })
 }
 
 
 
 function firstGet(){
+    snackNo=$('#item').attr('snackNo');
     var xhr =new XMLHttpRequest();
     xhr.open("Post", "getCmt.php", true);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -179,6 +261,9 @@ function firstGet(){
         msgBtnAdd();
         sendMsg();
         likeBtnAdd();
+        pageBtnAdd();
+        repBtnAdd();
+        
     }
 
 

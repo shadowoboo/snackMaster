@@ -61,7 +61,8 @@
                 </div>
 
                 <ul class="login">
-                    <li><a href="?loglout=true"><span id="btnloglout">&nbsp</span></a></li>
+                    <!-- <li><a href="?loglout=true"><span id="btnloglout">&nbsp</span></a></li> -->
+                    <li><span id="btnloglout">&nbsp</span></li>
                     <li><i class="fas fa-user-circle" id="memLogin"></i></li>
                     <li id="goCartShow"><a href="cartShow.php"><i class="fas fa-shopping-cart" id="shopCart"></i></a></li>
                 </ul>

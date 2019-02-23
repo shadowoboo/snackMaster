@@ -27,6 +27,8 @@ try {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
     <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script src="../js/findingIp.js"></script>
     <script src="../js/search.js"></script>
 
 
@@ -41,96 +43,9 @@ try {
         }
     ?>
 <!-- header -->
-    <header>
-        <h1>大零食家</h1>
-        <div class="cloud">
-            <div class="doc doc--bg2">
-                <canvas id="canvas"></canvas>
-            </div>
-            <nav>
-                <label for="smlSearch" class="searchBtn" value="search">
-                    <img src="../images/tina/search-icon.svg" alt="search" id="searchBtn">
-                </label>
-                
-                <div class="menu">
-                    <!-------- -----手機漢堡----------- -->
-
-                    <div id="ham">
-                        <span class="btnTop"></span>
-                        <span class="btnMid"></span>
-                        <span class="btnBot"></span>
-                    </div>
-                    <!----    在手機上打開此logo;桌機上關掉此logo------ -->
-                    <div class="logo">
-                        <a href="index.html"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
-
-                    </div>
-                    <div id="list_appear">
-                        <!-- ----------手機選單離開-------- -->
-                        <div id="cros">
-                            <span class="leave">X</span>
-                        </div>
-                        <ul class="list">
-                            <li><a href="rankBoard.html">零食排行榜</a></li>
-                            <li><a href="customized.html">客製零食箱</a> </li>
-                            <!-- 在手機上要關掉這個li的logo -->
-                            <li><a href="index.html"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
-                            <li id="store"> <a href="shopping.html">零食商店街</a>
-                                <ul id="Submenu" class="subMenu">
-                                    <li><a href="showItem.html">零食單品</a></li>
-                                    <li id="snBox"><a href="preOrder.html">預購零食箱</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="gsell.php">尋找販賣機</a> </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <ul class="login">
-                    <li><i class="fas fa-shopping-cart"></i></li>
-                    <li><i class="fas fa-user-circle"></i></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="seachRegion" id="search_appear">
-                <div class="search">
-                    <img src="../images/blair/pocky.png" alt="">
-                    <div class="selectbar">
-                        <select name="country" id="country">
-                            <option value="0">國家</option>
-                            <option value='巴西'>巴西</option>
-                            <option value="日本">日本</option>
-                            <option value="美國">美國</option>
-                            <option value="英國">英國</option>
-                            <option value="埃及">埃及</option>
-                            <option value="德國">德國</option>
-                            <option value="澳洲">澳洲</option>
-                            <option value="韓國">韓國</option>
-                        </select>
-                        <select name="kind" id="kind">
-                            <option value="0">種類</option>
-                            <option value="巧克力">巧克力</option>
-                            <option value="糖果">糖果</option>
-                            <option value="餅乾">餅乾</option>
-                            <option value="洋芋片">洋芋片</option>
-                        </select>
-                        <select name="flavor" id="flavor">
-                            <option value="0">口味</option>
-                            <option value="sour">酸</option>
-                            <option value="sweet">甜</option>
-                            <option value="spicy">辣</option>
-                        </select>                        
-                    </div>
-                    <div class="inputbar">
-                        <input type="text"  id="searchName" placeholder="想找什麼零食呢？">
-                        <i class="fas fa-search"  id="searchClick"></i>
-                    </div>
-                </div>
-                    <div id="close">
-                        <span class="close"><i class="fas fa-times"></i></span>
-                    </div>
-        </div>
-    </header>
+    <?php
+        require_once('header.php');
+    ?>
 
 
  <!-- search_mobile -->
