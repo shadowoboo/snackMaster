@@ -66,7 +66,10 @@
                         </tr>
                         <tr>
                             <td>圖片</td>
-                            <td><input type="text" name="imgSRC" size="30"></td>
+                            <td>
+                                <img src="" alt="" id="preview">
+                                <input type="file" name="upFile" id="upFile">
+                            </td>
                         </tr>
                         <tr>
                             <td>名目</td>
@@ -109,13 +112,20 @@
                 var myForm = new FormData( document.getElementById('myForm'));
                 xhr.send( myForm );  
             }
-              
         })
         document.getElementById('cancel').addEventListener('click', function (){
             if(window.confirm('確定要放棄新增優惠券嗎？') == true){
                 location.href = 'back_coupon.php';
             }
         })
+        document.getElementById('upFile').onchange = function(e){
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(){
+                document.getElementById('preview').src = reader.result;
+            }
+            reader.readAsDataURL(file);
+        }
     </script>
 </body>
 </html>

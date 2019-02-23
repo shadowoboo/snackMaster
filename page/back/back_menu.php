@@ -2,7 +2,7 @@
             <div id="logo">
                 <img src="../../images/tina/LOGO1.png" alt="">
             </div>
-            <p>哈囉，管理員 <span id="manager"><?php echo $_SESSION['managerName'] ?></span></p>
+            <p>Hi~ 管理員 <span id="manager"><?php echo $_SESSION['managerName'] ?></span></p>
             <p>你今天過得好嗎？</p>
             <ul id="menuUl">
                     <li>

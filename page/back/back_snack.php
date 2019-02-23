@@ -90,7 +90,7 @@
                         <td><?php echo $snackRow['snackName']?></td>
                         <td><?php echo $snackRow['snackPrice']?></td>
                         <td><?php echo $snackRow['nation']?></td>
-                        <td><?php echo $snackRow['snackPic']?></td>
+                        <td><img src="../<?php echo $snackRow['snackPic']?>" alt="snack"></td>
                         <td><?php echo $snackRow['snackStatus'] == 1? '上架中':'下架中'; ?></td>
                         <td><?php echo $snackRow['snackVending'] == 1? '是':'否'; ?></td>
                         <td><?php echo $snackRow['boxDate']?></td>

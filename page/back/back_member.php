@@ -71,7 +71,7 @@
                         <td><?php echo $memberRow['memName']?></td>
                         <td><?php echo $memberRow['memPhone']?></td>
                         <td><?php echo $memberRow['email']?></td>
-                        <td><?php echo $memberRow['memPic']?></td>
+                        <td><img src="../<?php echo $memberRow['memPic']?>" alt="memPic"></td>
                         <td><?php echo $memberRow['grade']?></td>
                         <td><?php echo $memberRow['memPoint']?></td>
                         <form action="back_editMemberToDb.php">
