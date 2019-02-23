@@ -23,19 +23,36 @@ if(isset($_REQUEST["snackType"])){
 switch ($updateType) {
     case 'cusDel': //如果是cusDel
         //把所有跟客製有關聯的session清空
-        foreach((array)$_SESSION["snackQuan"][1] as $snackNo => $qty){
-                unset($_SESSION["snackName"][1][$snackNo]);
-                unset($_SESSION["snackPrice"][1][$snackNo]);
-                unset($_SESSION["snackQuan"][1][$snackNo]);
-                unset($_SESSION["snackPic"][1][$snackNo]);
-                unset($_SESSION["note"][1][$snackNo]);
-        }
+        unset($_SESSION["snackName"][1]);
+        unset($_SESSION["snackPrice"][1]);
+        unset($_SESSION["snackQuan"][1]);
+        unset($_SESSION["snackPic"][1]);
+        unset($_SESSION["note"][1]);
         //把客製箱圖片、客製卡片、聲音檔清掉
         unset($_SESSION["cusBox"]);
         unset($_SESSION["cusCard"]);
         unset($_SESSION["cusSound"]);
         echo "Done cus clear";
         unset($snackNo);
+        //如果session都沒有商品
+        if (count($_SESSION["snackQuan"])<1) {
+            unset($_SESSION["snackName"]);
+            unset($_SESSION["snackPrice"]);
+            unset($_SESSION["note"]);
+            unset($_SESSION["cusType"]);
+            unset($_SESSION["snackQuan"]);
+            unset($_SESSION["snackPic"]);
+        }
+
+        //////錯誤的刪除方法，會留下索引值，導致判斷出錯
+        // foreach((array)$_SESSION["snackQuan"][1] as $snackNo => $qty){
+        //         unset($_SESSION["snackName"][1][$snackNo]);
+        //         unset($_SESSION["snackPrice"][1][$snackNo]);
+        //         unset($_SESSION["snackQuan"][1][$snackNo]);
+        //         unset($_SESSION["snackPic"][1][$snackNo]);
+        //         unset($_SESSION["note"][1][$snackNo]);
+        // }
+
         break;
     case 'normalDel': //如果是 normalDel
         //清掉會寫入session的項目
@@ -45,6 +62,24 @@ switch ($updateType) {
         unset($_SESSION["cusType"][$snackType][$snackNo]);
         unset($_SESSION["snackQuan"][$snackType][$snackNo]);
         unset($_SESSION["snackPic"][$snackType][$snackNo]);
+        //如果該種類都沒有值，清空該種類
+        if(count($_SESSION["snackQuan"][$snackType])<1){
+            unset($_SESSION["snackName"][$snackType]);
+            unset($_SESSION["snackPrice"][$snackType]);
+            unset($_SESSION["note"][$snackType]);
+            unset($_SESSION["cusType"][$snackType]);
+            unset($_SESSION["snackQuan"][$snackType]);
+            unset($_SESSION["snackPic"][$snackType]);
+        }
+        //如果session都沒有商品
+        if(count($_SESSION["snackQuan"])<1){
+            unset($_SESSION["snackName"]);
+            unset($_SESSION["snackPrice"]);
+            unset($_SESSION["note"]);
+            unset($_SESSION["cusType"]);
+            unset($_SESSION["snackQuan"]);
+            unset($_SESSION["snackPic"]);
+        }
         echo "Done normal clear ".$snackNo;
         //清掉收到的變數
         unset($snackNo);

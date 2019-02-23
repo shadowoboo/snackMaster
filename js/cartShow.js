@@ -69,7 +69,10 @@ $(function () {
     //減少
     $(".numMinus").bind("click",function(e){
         var snackNo = e.target.dataset.snackno;
+        var snackType = e.target.dataset.snacktype;
         var val=$(this).next().val();
+        console.log(`snackType: ${snackType}`);
+        
         // console.log(val);
         //因為直接取值會慢實際看到的value一次，故手動補正
         if (snackQuan==1){
@@ -82,7 +85,7 @@ $(function () {
         $.ajax({
             type: "get",
             url: "cartUpdate.php",
-            data: "updateType=numMinus&snackNo=" + snackNo + "&snackQuan=" + snackQuan,
+            data: "updateType=numMinus&snackNo=" + snackNo + "&snackQuan=" + snackQuan + "&snackType=" + snackType,
             success: function (response) {
                 console.log(`response:　${response}`);
             }
@@ -97,6 +100,7 @@ $(function () {
     //增加
     $(".numPlus").bind("click", function (e) {
         var snackNo = e.target.dataset.snackno;
+        var snackType = e.target.dataset.snacktype;
         // var snackPrice = e.target.dataset.snackprice;
         // console.log($(this));
         //因為直接取值會慢實際看到的value一次，故手動補正
@@ -106,11 +110,13 @@ $(function () {
         // qty = val+parseInt(1);
         snackQuan = parseInt(val)+ 1;
         console.log(snackQuan);
+        console.log(`snackType: ${snackType}`);
+
         //改變session數量
         $.ajax({
             type: "get",
             url: "cartUpdate.php",
-            data: "updateType=numPlus&snackNo="+snackNo+"&snackQuan="+snackQuan,
+            data: "updateType=numPlus&snackNo="+snackNo+"&snackQuan="+snackQuan+"&snackType="+snackType,
             success: function (response) {
                 console.log(`response:　${response}`);
             }

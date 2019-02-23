@@ -38,7 +38,7 @@
                     $str2="預購";
                     break;
                 default:
-                    # code...
+                    $str2="TYPE";
                     break;
             }
             echo "------$str2----".$key2.$br;
@@ -68,19 +68,25 @@
 <script src="../js/jquery-ui.min.js"></script>
 <script>
     $(".aa").draggable();
-    $(".autoReload").on("click",function(e){
-        // window.location.reload();
-        if($(e.target).text()=="Auto Reload"){
-            $(e.target).text("Reloading~");
-            var re=self.setInterval(function(){
-                window.location.reload();
-            },1000);
-        }else{
-            $(e.target).text("Auto Reload");
-            re=window.clearInterval(re);
-        }
+    // $(".autoReload").on("click",function(e){
+    //     // window.location.reload();
+    //     if($(e.target).text()=="Auto Reload"){
+    //         $(e.target).text("Reloading~");
+    //         var re=self.setInterval(function(){
+    //             window.location.reload();
+    //         },1000);
+    //     }else{
+    //         $(e.target).text("Auto Reload");
+    //         re=window.clearInterval(re);
+    //     }
         
-    })
+    // })
+</script>
+<script language="JavaScript">
+    function myrefresh(){
+        window.location.reload();
+    }
+    setTimeout('myrefresh()',1000); //指定1秒刷新一次
 </script>
 <style>
     .wrap{

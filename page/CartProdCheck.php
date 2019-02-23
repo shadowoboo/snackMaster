@@ -14,7 +14,21 @@
                     unset($_SESSION["cusBox"]);
                     unset($_SESSION["cusCard"]);
                     unset($_SESSION["cusSound"]);
-                    echo "error";
+                    //如果session都沒有商品
+                    if (count($_SESSION["snackQuan"])<1) {
+                        unset($_SESSION["snackName"]);
+                        unset($_SESSION["snackPrice"]);
+                        unset($_SESSION["note"]);
+                        unset($_SESSION["cusType"]);
+                        unset($_SESSION["snackQuan"]);
+                        unset($_SESSION["snackPic"]);
+                    }
+                    //清空商品後再確認一次還有沒有商品
+                    if(isset($_SESSION["snackName"])){
+                        echo "prodExist";
+                    }else{
+                        echo "error";
+                    }
                 }else{
                     echo "prodExist";
                 }
