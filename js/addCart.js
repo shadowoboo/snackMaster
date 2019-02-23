@@ -23,6 +23,7 @@ function addCart(e){
     if(e.target.innerText == '加入購物車'){
         if (document.getElementById("btnloglout").innerHTML == "&nbsp;") {
             alert('請先登入會員唷～');
+            showLightBox();
             return;
         }else{
             var info = e.target.id;

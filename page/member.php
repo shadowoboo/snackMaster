@@ -7,21 +7,21 @@
     // }
     //點擊登出，會員資料要清空
     //跳轉回首頁
-    if (isset($_REQUEST["btnloglout"]) && ($_REQUEST["btnloglout"]=="true")) {
-        //登出資料要清空
-        unset ($_SESSION["memNo"]);
-        unset ($_SESSION["grade"]);
-        unset ($_SESSION["memId"]);
-        unset ($_SESSION["email"]);
-        unset ($_SESSION["memPic"]);
-        unset ($_SESSION["memPhone"]);
-        unset ($_SESSION["commentRight"]);
-        unset ($_SESSION["reportTimes"]);
-        unset ($_SESSION["memName"]);
-        //跳轉回首頁
-        header("Location: homePage.php");
+    // if (isset($_REQUEST["btnloglout"]) && ($_REQUEST["btnloglout"]=="true")) {
+    //     //登出資料要清空
+    //     unset ($_SESSION["memNo"]);
+    //     unset ($_SESSION["grade"]);
+    //     unset ($_SESSION["memId"]);
+    //     unset ($_SESSION["email"]);
+    //     unset ($_SESSION["memPic"]);
+    //     unset ($_SESSION["memPhone"]);
+    //     unset ($_SESSION["commentRight"]);
+    //     unset ($_SESSION["reportTimes"]);
+    //     unset ($_SESSION["memName"]);
+    //     //跳轉回首頁
+    //     header("Location: homePage.php");
       
-    }
+    // }
     
     $errMsg = "";
     try{
@@ -58,6 +58,21 @@
         $sql = "select gradePic,gradeName from masterlevel where grade ={$memRow["grade"]}";
         $levels = $pdo->query($sql);
         $levRow = $levels->fetch(PDO::FETCH_ASSOC);
+
+        //=======================訂單管理=================================
+
+        //用orderNo做連結
+        $order_sql = "select * from snackorder join orderitem on snackorder.orderNo = orderitem.orderNo join snack on orderitem.snackNo = snack.snackNo where memNo=:memNo";
+        $order = $pdo->prepare($order_sql);
+        $order->bindValue(":memNo",$memNo);
+        $order->execute();
+        $orderRow = $order->fetch(PDO::FETCH_ASSOC);
+        
+        if ($order->rowCount() ==0 ) {
+            echo "您目前尚無訂單！";
+        }
+    
+
 
         
     
@@ -336,125 +351,144 @@
             </div>
             <!----------------------- 訂單管理----------------------------- -->
             <div class="tabPanel " id="tab-2">
-                <div class="orderList">
-                    <table>
+                <div id="orderList">
+    
+                    <div class="orderList">
+                        <table>
 
-                        <tr>
-                            <th>訂單編號:</th>
-                            <td>01</td>
-                        </tr>
-                        <tr>
-                            <th>下單日期：</th>
-                            <td>2019/01/28</td>
-                        </tr>
-                        <tr>
-                            <th>付款方式：</th>
-                            <td>信用卡</td>
-                        </tr>
-                        <tr>
-                            <th>出貨狀態：</th>
-                            <td>未出貨</td>
-                        </tr>
-
-
-                    </table>
-                    <table>
-                        <tr>
-                            <th>收件人地址:</th>
-                            <td>台北市大安區羅斯福路三段227號9樓</td>
-                        </tr>
-                        <tr>
-                            <th>收件人電話：</th>
-                            <td>0911664587</td>
-                        </tr>
-                        <tr>
-                            <th>評價狀態：</th>
-                            <td>無法評價</td>
-                        </tr>
-
-                    </table>
-
-                </div>
-                <div class="total">
-                    <p>總額：<span>6000元</span></p>
-                </div>
-                <div id="listMore">
-                    <p><a href="#">訂單明細v</a> </p>
-                </div>
-                <div class=line></div>
-                <div id="proEva" class="orderItem">
-                    <table class="orderItemList">
-                        <tr>
-                            <th>商品</th>
-                            <th>品名</th>
-                            <th>數量</th>
-                            <th>單價</th>
-                            <th>小計</th>
-                            <th>備註</th>
-                            <th>評價狀態</th>
-                        </tr>
-                        <form action="">
-                            <input type="hidden" name="psn" value="<?php echo $prodRow["psn"];?>">
-                            <input type="hidden" name="pname" value="<?php echo $prodRow["pname"];?>">
-                            <input type="hidden" name="price" value="<?php echo $prodRow["price"];?>">
                             <tr>
-                                <td>
-                                    <img src="" alt="">
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <button id="evaStatus" ></button>
-                                </td>
+                                <th>訂單編號:</th>
+                                <td><?php echo $orderRow['orderNo'] ?></td>
                             </tr>
-                        </form>
-                        
-                    </table>
-                    <div id="evaBox" class="evaLightBox">
-                        <span>X</span>
-                        <div class="evaLightBox_content">
-                            <div class="proPic">
-                                <img src="../images/index/co2.png" alt="">
-                                <p>Pocky 巧克力</p>
-                            </div>
-                            <div class="evaStars">
-                                <ul>
-                                    <li>
-                                        <p>
-                                           甜度： 
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            酸度：
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            辣度：
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <p>
-                                            好評度：
-                                        </p>
-                                    </li>
-                        
-                                </ul>
-
-                            </div>
+                            <tr>
+                                <th>下單日期：</th>
+                                <td><?php echo $orderRow['orderTime'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>付款方式：</th>
+                                <td><?php echo $orderRow['payWay'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>出貨狀態：</th>
+                                <td><?php echo $orderRow['orderStatus'] ?></td>
+                            </tr>
 
 
-                        </div>
-                        <div class="discuss">
-                            <textarea name="textDiscuss" id="textDiscuss" cols="30" rows="10"></textarea>
-                        </div>
-
+                        </table>
+                        <table>
+                            <tr>
+                                <th>收件人地址:</th>
+                                <td><?php echo $orderRow['address'] ?></td>
+                            </tr>
+                            <tr>
+                                <th>收件人電話：</th>
+                                <td><?php echo $orderRow['phone'] ?></td>
+                            </tr>
+                            
+                             
+                        </table>
 
                     </div>
+                    <div class="total">
+                        <p>總額：<span><?php echo $orderRow['orderTotal'] ?></span></p>
+                    </div>
+                    <div id="listMore">
+                        <p id="listMorebtn">訂單明細v </p>
+                        <div class=line></div>
+                        <div id="proEva" class="orderItem">
+                            <table class="orderItemList">
+                                <tr>
+                                    <th>商品</th>
+                                    <th>品名</th>
+                                    <th>數量</th>
+                                    <th>單價</th>
+                                    <th>小計</th>
+                                    <th>備註</th>
+                                    <th>評價狀態</th>
+                                </tr>
+
+
+                                <tr>
+                                    <td>
+                                        <img src="<?php echo $orderRow['snackPic'] ?>" alt="">
+                                    </td>
+                                    <td><?php echo $orderRow['snackName'] ?></td>
+                                    <td><?php echo $orderRow['snackQuan'] ?></td>
+                                    <td><?php echo $orderRow['snackPrice'] ?></td>
+                                    <td><?php echo $orderRow['snackPrice']*$orderRow['snackQuan'] ?></td>
+                                    <td>客製化</td>
+                                    <td>
+                                        <button id="evaShow" class="cart">未評價</button>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                            <div id="evaBox" class="evaLightBox">
+                                <span id="evaLightBoxLeave">X</span>
+                                <div class="evaLightBox_content">
+                                    <div class="evaContent proPic">
+                                        <img src="../images/index/co2.png" alt="">
+                                        <p>Pocky 巧克力</p>
+                                    </div>
+                                    <div class="evaContent evaStars">
+                                        <ul>
+                                            <li>
+                                                <p>
+                                                    甜度：
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    酸度：
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    辣度：
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    好評度：
+                                                </p>
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+                                    <div class="evaContent discuss">
+                                        <textarea name="textDiscuss" id="textDiscuss" cols="30" rows="10"></textarea>
+                                    </div>
+                                    <div class="evaContent evaPro">
+
+                                        <div class="proPicBox">
+                                            <img id="proPic" src="../images/index/co2.png">
+                                        </div>
+
+
+
+                                        <label class="evaproPic" for="upFile">
+
+                                            <p class="step">上傳圖檔</p>
+                                            <input type="file" name="upFile" id="upFile">
+
+                                        </label>
+                                        <div class="evaContent evaSend">
+                                            <button class="step">確認送出</button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+ 
+
+
                 </div>
 
 
@@ -463,44 +497,46 @@
             <div class="tabPanel " id="tab-3">
 
                 <div class="collect" id="getCollect">
-        
-                </div>
-            </div>
-
-                <!------優惠券----->
-                <div class="tabPanel " id="tab-4">
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th>優惠券名目</th>
-                            <th>折扣金額</th>
-                            <th>使用期限</th>
-                        </tr>
-                    </table>
-        
-                    <table id="coupon">
-        
-
-                    </table>
 
                 </div>
             </div>
 
+            <!------優惠券----->
+            <div class="tabPanel " id="tab-4">
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>優惠券名目</th>
+                        <th>折扣金額</th>
+                        <th>使用期限</th>
+                    </tr>
+                </table>
+
+                <table id="coupon">
 
 
+                </table>
 
-
+            </div>
+        </div>
 
     </section>
+
+
+
+
+
+
+
+
     <!-- <footer>
-       
-        
+
         <div id="floor"> 
             <img src="../images/nnnnn/floor.png" alt="floor">
             <p id="copy">Copyright©2019 Snack Master</p>
         </div>
     
-    </footer> -->
+    </footer>  -->
 
 
 
@@ -508,107 +544,132 @@
 </body>
 
 <script>
-    //判斷點擊哪一個 tab
-    function tabClick(e){
-        var tab = e.target.parentNode.id;
+//判斷點擊哪一個 tab
+function tabClick(e) {
+    var tab = e.target.parentNode.id;
 
-        switch(tab){
-            case 'defaultOpen':
-                
-                break;
-            case 'tab22':
-                
-                break;
-            case 'tab33':
-                getCollection();
-                break;
-            case 'tab44':
-                getCoupon();
-                break;
-        }
+    switch (tab) {
+        case 'defaultOpen':
+
+            break;
+        case 'tab22':
+            
+            break;
+        case 'tab33':
+            getCollection();
+            break;
+        case 'tab44':
+            getCoupon();
+            break;
     }
-    //收藏清單
-    function getCollection(){
-        var xhr = new XMLHttpRequest();
-        xhr.onload = function(){
-            if( xhr.status == 200 ){
-                document.getElementById("getCollect").innerHTML = xhr.responseText;
-                //trash
-                var trash = document.getElementsByClassName('trash');
-                var length = trash.length;
-                for( var i=0; i<length; i++){
-                    trash[i].addEventListener('click', deletTrash);
-                }
-                var trashIcon = document.getElementsByClassName('fa-trash-alt');
-                var length2 = trashIcon.length;
-                for( var j=0; j<length2; j++){
-                    trashIcon[j].addEventListener('click', deletTrash);
-                }
-            }else{
-                alert( xhr.status );
-            }
-        }
-
-        var url = "memGetCollect.php";
-        xhr.open("Get", url, true);
-        xhr.send( null );
-    }
-
-    //deletTrash
-    function deletTrash(e){
-        if(e.target.className.indexOf('fa') == -1){
-            var snackNo = e.target.id;
-        }else{
-            e.stopPropagation();
-            var snackNo = e.target.parentNode.id;
-        }
+}
+//訂單管理
+// function orderList() {
+//     var xhr = new XMLHttpRequest();
+//     xhr.onload = function() {
+//         if (xhr.status == 200) {
         
-        var xhr = new XMLHttpRequest();
-        xhr.onload = function () {
-            if(xhr.status == 200){
-                if(xhr.responseText != 'true'){
-                    alert(xhr.responseText);
-                }else{
-                    getCollection();
-                }
-            }else{
-                alert(xhr.status);
-            }
-        }
-        var url = 'removeHeart.php?snackNo=' + snackNo;
-        xhr.open('get', url, true);
-        xhr.send(null);
-    }
-    //優惠眷
-    function getCoupon(){
-        var xhr = new XMLHttpRequest();
-        xhr.onload = function(){
-            if( xhr.status == 200 ){
-                document.getElementById("coupon").innerHTML = xhr.responseText;
-            }else{
-                alert( xhr.status );
-            }
-        }
-
-        var url = "memberGetCoupon.php";
-        xhr.open("Get", url, true);
-        xhr.send( null );
-    }
+            
 
 
+            
+//         }else {
+//             alert(xhr.status);
+//         }  
 
+        
+//         var url = "memOrderList.php";
+//         xhr.open("Get", url, true);
+//         xhr.send(null);
+
+//     }
     
-    function doFirst(){
-        tablinks = document.getElementsByClassName("tablinks");
-        for(var num = 0; num<tablinks.length; num++){
-           tablinks[num].addEventListener('click',tabClick); 
+
+
+//收藏清單
+function getCollection() {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        if (xhr.status == 200) {
+            document.getElementById("getCollect").innerHTML = xhr.responseText;
+            //trash
+            var trash = document.getElementsByClassName('trash');
+            var length = trash.length;
+            for (var i = 0; i < length; i++) {
+                trash[i].addEventListener('click', deletTrash);
+            }
+            var trashIcon = document.getElementsByClassName('fa-trash-alt');
+            var length2 = trashIcon.length;
+            for (var j = 0; j < length2; j++) {
+                trashIcon[j].addEventListener('click', deletTrash);
+            }
+        } else {
+            alert(xhr.status);
         }
-    }  
+    }
+
+    var url = "memGetCollect.php";
+    xhr.open("Get", url, true);
+    xhr.send(null);
+}
+
+//deletTrash
+function deletTrash(e) {
+    if (e.target.className.indexOf('fa') == -1) {
+        var snackNo = e.target.id;
+    } else {
+        e.stopPropagation();
+        var snackNo = e.target.parentNode.id;
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        if (xhr.status == 200) {
+            if (xhr.responseText != 'true') {
+                alert(xhr.responseText);
+            } else {
+                getCollection();
+            }
+        } else {
+            alert(xhr.status);
+        }
+    }
+    var url = 'removeHeart.php?snackNo=' + snackNo;
+    xhr.open('get', url, true);
+    xhr.send(null);
+}
+//優惠眷
+function getCoupon() {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+        if (xhr.status == 200) {
+            document.getElementById("coupon").innerHTML = xhr.responseText;
+        } else {
+            alert(xhr.status);
+        }
+    }
+
+    var url = "memberGetCoupon.php";
+    xhr.open("Get", url, true);
+    xhr.send(null);
+}
 
 
-    
-    window.addEventListener('load', doFirst, false);
+
+
+function doFirst() {
+    tablinks = document.getElementsByClassName("tablinks");
+    for (var num = 0; num < tablinks.length; num++) {
+        tablinks[num].addEventListener('click', tabClick);
+    }
+   
+
+
+}
+
+
+
+window.addEventListener('load', doFirst, false);
 </script>
 
 </html>
-

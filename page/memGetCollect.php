@@ -1,11 +1,12 @@
+
 <?php
      session_start();
      try{
         require_once("connectcd105g2.php");
         $sql = "SELECT * FROM favorite f JOIN snack s on s.snackNo = f.snackNo where memNo = :memNo";
         $favorite = $pdo->prepare( $sql );
-        // $favorite->bindValue(":memNo", $_SESSION["memNo"]);
-        $favorite->bindValue(":memNo", 2);
+        $favorite->bindValue(":memNo", $_SESSION["memNo"]);
+        // $favorite->bindValue(":memNo", 2);
         $favorite->execute();
 
         if( $favorite->rowCount() ==0 ){

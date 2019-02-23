@@ -23,9 +23,7 @@
 function $id(id){
   return document.getElementById(id);
 }
-function doFirst(){
-  $id('upFile').onchange = headChange;
-}
+
 function headChange(){
   var file = $id('upFile').files[0];
   var readFile = new FileReader();
@@ -36,6 +34,32 @@ function headChange(){
     bigHead.style.maxWidth = '200px';
     bigHead.style.maxHeight = '300px';
   });
+}
+//展開訂單明細
+function moreList(e){
+  if($id('listMorebtn').innerText=="訂單明細v"){
+    e.currentTarget.innerHTML = "訂單明細^";
+  }else{
+    e.currentTarget.innerHTML = "訂單明細v";
+  }
+  
+  $id('proEva').classList.toggle('expand');
+  
+}
+//跳出商品評價燈箱
+function evaBox(e){
+
+  e.currentTarget.style.color="red";
+  $id('#evaBox').classList.add('jump');
+}
+
+
+
+
+function doFirst(){
+  $id('upFile').onchange = headChange;
+  $id('listMorebtn').addEventListener('click',moreList);
+  $id("evaShow").addEventListener("click",evaBox);
 }
 window.addEventListener('load',doFirst);
 

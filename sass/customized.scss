@@ -4,7 +4,24 @@
 
 body{
     background-color:#fadfd4 !important;
+    position: relative;
+    overflow-x: hidden;
 }
+
+
+        .coco01{
+            width: 400px;
+            position: absolute;
+            top: 200px;
+            left:-130px;
+        }
+        .coco02{
+            width: 400px;
+            position: absolute;
+            top: 200px;
+            right: -157px;
+        }
+   
 
 #gocustomized{
     a {
@@ -12,14 +29,13 @@ body{
     }
 }
 
-fieldset,aside,main,picture,figure,article{
+.img1,.img2,.img3,.img4,.img5,.img6{
     img{
         width:300px;    
         height: 150px;
         // display: none;
     }
 }
-
 .card {
     position: relative;
   }
@@ -86,21 +102,9 @@ fieldset,aside,main,picture,figure,article{
             }
         }
       }
-      .step-content-foot button {
-        font-family: g2Font;
-        border: 0;
-        padding: 8px 16px;
-        margin: 0 10px;
-        background-color: #CFD8DC;
-        font-size: 14px;
-        border-radius:10px;
-        outline: 0;
-      }
   }
 
-  .step-content .step-content-foot button:active {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
+
   
   .step-content .step-content-foot button.out {
     display: none;
@@ -110,13 +114,7 @@ fieldset,aside,main,picture,figure,article{
     background-color: #ECEFF1;
   }
   
-  .step-content .step-content-foot button.active {
-    background-color: #076baf;
-    color: white;
-    font-size: 22px;
-    line-height: 4px;
-    height: 40px;
-  }
+ 
   
   .step-content .step-content-body {
     text-align: center;
@@ -153,9 +151,9 @@ fieldset,aside,main,picture,figure,article{
         flex-direction:column;
         justify-content:center;
         align-items: center;
-        width: 100%;
+        width:1200px;
         height:666px;
-        background-color: #fadfd4;
+        margin: auto;
         overflow: hidden;
         .makingStep{
             position: relative;
@@ -343,7 +341,7 @@ fieldset,aside,main,picture,figure,article{
         text-align: center;
         font-size: 60px;
         transform-origin: center center;
-        transition: .5s;
+        // transition: .5s;
         overflow: hidden;
     }
     
@@ -442,6 +440,7 @@ fieldset,aside,main,picture,figure,article{
                 i{
                     font-size: 27px;
                     margin-top: 4px;
+                    color: #737374;
                 }
         }
         .purchaseDetail{
@@ -699,7 +698,7 @@ a {
         cursor: pointer;
     }
     .color1{
-        background-color: #ff5050;
+        background: #ff5050;
     }
     .color2{
         background-color: #ff6600;
@@ -711,7 +710,7 @@ a {
         background-color: #99ff66;
     }
     .color5{
-        background-color: #66ccff;
+        background:#66ccff;
     }
     .color6{
         background-color: #000066;
@@ -840,6 +839,9 @@ a {
                 font-family: g2Font;
                 font-size: 22px;
                 padding: 15px;
+                img{
+                    width: 35px;
+                }
             }
         }
             #text{
@@ -855,7 +857,7 @@ a {
                 justify-content: center;
                 align-items: center;
                 position: absolute;
-                top: -140px;
+                top: -132px;
                 left: -630px;
                 z-index: 3;
                 width: 500px;
@@ -943,14 +945,14 @@ $cardY:600px;
             width: $cardX;
             height: $cardY;
         } //控制背景色
-        .cardBaseCover {
-            .cardSurface {
-                background-color: #fff;
-            } //封面
-            .cardSurfaceInner {
-                background-color: #aaf;
-            } //封面(裡)
-        }
+        // .cardBaseCover {
+        //     .cardSurface {
+        //         background-color: #fff;
+        //     } //封面
+        //     .cardSurfaceInner {
+        //         background-color: #aaf;
+        //     } //封面(裡)
+        // }
         .cardBaseContent {
             .cardSurface {
                 background-color: #fff;
@@ -959,17 +961,17 @@ $cardY:600px;
                 background-color:#fbc84a;
             } 
         } //控制背景圖
-        .cardBaseCover {
-            .cardSurface {
-                // background-image: url("../code_testing/card_test_1.jpg");
-                background: url(../images/small/card01.png) no-repeat;
-                background-size: 100%;
-                // background-size: contain;
-            } //封面
-            .cardSurfaceInner {
-                background-image: url();
-            } //封面(裡)
-        }
+        // .cardBaseCover {
+        //     .cardSurface {
+        //         // background-image: url("../code_testing/card_test_1.jpg");
+        //         background: url(../images/small/card01.png) no-repeat;
+        //         background-size: 100%;
+        //         // background-size: contain;
+        //     } //封面
+        //     .cardSurfaceInner {
+        //         background-image: url();
+        //     } //封面(裡)
+        // }
         .cardBaseContent {
             .cardSurface {
                 background-image: url();
@@ -983,15 +985,15 @@ $cardY:600px;
             } //封底
         }
 
-        //陰影測試
-        .cardBaseContent{
-            box-shadow: 10px 5px 50px #999;
-            // box-shadow: 10px 10px 30px #333;
-        }
-        .cardBaseCover{
-            box-shadow: 10px 5px 50px #999;
-            // box-shadow: 10px 10px 50px #333;
-        }
+        // //陰影測試
+        // .cardBaseContent{
+        //     box-shadow: 10px 5px 50px #999;
+        //     // box-shadow: 10px 10px 30px #333;
+        // }
+        // .cardBaseCover{
+        //     box-shadow: 10px 5px 50px #999;
+        //     // box-shadow: 10px 10px 50px #333;
+        // }
     }
 }
 
@@ -1224,18 +1226,13 @@ $cardY:600px;
                         justify-content: center;
                         align-items: center;  
                         p{
-                            font-size:24px;
+                            font-size:20px;
                         }
                         span{
                             font-size: 25px;
                             color: #076baf;
                         }
                     }
-                }
-                .addCart{
-                    width: 130px;
-                    height: 30px;
-                    font-size: 18px;
                 }
             }
         }
@@ -1336,13 +1333,26 @@ $cardY:600px;
       }
 }
 
+@media screen and (max-width:1200px){
+    .step-content {
+    .step-content-body {
+        .customized{
+            width: 100%;
+        }
+    }
+}
+}
 
 @media screen and (max-width:768px){
+.coco01,.coco02{
+    display: none;
+}
 .step-content {
     transform: translateY(5%);
     .step-content-body {
     .customized{
         height: auto !important;
+        width: 100%;
         .makingStep{
             justify-content:space-between;
             align-items: center;
@@ -1430,7 +1440,7 @@ $cardY:600px;
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: center;
-                height: 450px;
+                height: 400px;
                 .camera{
                     height: 250px;
                     .boxBase{
@@ -1451,9 +1461,13 @@ $cardY:600px;
             }
             .cardBox{
                 width: 100%;
+                img{
+                    width: 372px;
+                }
             }
             .pickCard{
-                width: 100%;
+                width: 90%;
+                margin-bottom: 6%;
                 .cardStyle{
                     display: flex;
                     flex-direction: row;
@@ -1461,7 +1475,7 @@ $cardY:600px;
                     width:80%;
                     margin: auto;
                     .small{
-                        width: 320px;
+                        width:285px;
                         height: 200px;
                     }
                 }
@@ -1470,8 +1484,8 @@ $cardY:600px;
                     margin: auto;
                     .showCard{
                         position: absolute;
-                        top: -463px;
-                        left: 0;
+                        top: -461px;
+                        left: 43px;
                         bottom: 0;
                         right: 0;
                         z-index: 3;
@@ -1480,9 +1494,11 @@ $cardY:600px;
                         height:66vh;
                     }
                         .cardBaseContent{
-                            top: 8px !important;
-                            height: 275px !important;
-                        
+                            top:69px !important;
+                            .cardSurface{
+                                width: 318px;
+                                height: 210px;
+                            }                        
                         }
                         .cardBaseCover{
                             display: none;
@@ -1501,8 +1517,9 @@ $cardY:600px;
         }
     }
     .form{
-        width:100%;
+        width:90%;
         height: 330px;
+        margin-bottom: 6%;
         .upfile{
             width: 100%;
             display: flex;
@@ -1514,11 +1531,16 @@ $cardY:600px;
         }
     }
     .shopping{
+        width: 90%;
         height: auto;
+        margin-bottom: 5%;
         .goodBox{
             ul{
                .good{
                    font-size: 18px;
+               }
+               li{
+                   border:5px solid #fbc84a
                }
             }
             .good-content{
@@ -1557,3 +1579,4 @@ $cardY:600px;
 
 }
 }
+
