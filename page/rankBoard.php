@@ -6,7 +6,7 @@ session_start();
         require_once("connectcd105g2.php");
 
         //撈出綜合前三資料
-        $sql = "SELECT * FROM snack,rank WHERE snack.snackNo=rank.snackNo and rank.rankGenre='綜合' ORDER BY ranking limit 0,6";
+        $sql = "SELECT * FROM `snack`,`rank` WHERE `snack`.`snackNo`=`rank`.`snackNo` and `rank`.`rankGenre`='綜合' ORDER BY `ranking` limit 0,6";
         $feed=$pdo->query($sql);
         $snackAllRow=$feed->fetchAll();
         for($i=0;$i<3;$i++){
