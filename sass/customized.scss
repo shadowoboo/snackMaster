@@ -5,9 +5,23 @@
 body{
     background-color:#fadfd4 !important;
     position: relative;
+    overflow-x: hidden;
 }
 
 
+        .coco01{
+            width: 400px;
+            position: absolute;
+            top: 200px;
+            left:-130px;
+        }
+        .coco02{
+            width: 400px;
+            position: absolute;
+            top: 200px;
+            right: -157px;
+        }
+   
 
 #gocustomized{
     a {
@@ -137,9 +151,9 @@ body{
         flex-direction:column;
         justify-content:center;
         align-items: center;
-        width: 100%;
+        width:1200px;
         height:666px;
-        background-color: #fadfd4;
+        margin: auto;
         overflow: hidden;
         .makingStep{
             position: relative;
@@ -1219,8 +1233,6 @@ $cardY:600px;
                         }
                     }
                 }
-                .addCart{
-                }
             }
         }
 
@@ -1320,13 +1332,26 @@ $cardY:600px;
       }
 }
 
+@media screen and (max-width:1200px){
+    .step-content {
+    .step-content-body {
+        .customized{
+            width: 100%;
+        }
+    }
+}
+}
 
 @media screen and (max-width:768px){
+.coco01,.coco02{
+    display: none;
+}
 .step-content {
     transform: translateY(5%);
     .step-content-body {
     .customized{
         height: auto !important;
+        width: 100%;
         .makingStep{
             justify-content:space-between;
             align-items: center;
@@ -1502,10 +1527,14 @@ $cardY:600px;
     .shopping{
         width: 90%;
         height: auto;
+        margin-bottom: 5%;
         .goodBox{
             ul{
                .good{
                    font-size: 18px;
+               }
+               li{
+                   border:5px solid #fbc84a
                }
             }
             .good-content{

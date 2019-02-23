@@ -37,10 +37,14 @@ try {
 </head>
 
 <body>
+    <img class="coco01" src="../images/customized/coco01.png" alt="">
+    <img class="coco02" src="../images/customized/coco02.png" alt="">
+
+</div>
     <?php 
     require_once("header.php")
     ?>
-  <div class="card step-progress">
+  <div class="card step-progress"">
     <div class="step-slider">
       <div data-id="step1" class="step-slider-item"></div>
       <div data-id="step2" class="step-slider-item"></div>
