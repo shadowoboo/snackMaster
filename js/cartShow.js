@@ -262,111 +262,136 @@ $(document).ready(function () {
     //流程控制
     var stepCount = 1;//預設為沒有商品
     //下一步的觸發流程
+    var isClick = true; //防止連點炸掉
     $(".panelBtn .btnNext").click(function () {
-        switch (stepCount) {
-            case 1:
-                //登入檢查，未登入則不給下一步
-                // console.log(CartStepLoginCheck(function (response){}));
-                CartStepLoginCheck(function (response) {
-                    console.log(`response: ${response}`);
-                    if (response == "error") {
-                        return;
-                    } else {
-                        step2();
-                    }
-                })
-                break;
-            case 2:
-                //點擊下一步，則送出表單資訊給php產生 訂單 + 訂單明細
-                //表單全部存起來
-                var getterData = $("#cartForm").serialize();
-                console.log(`getterData before: ${getterData}`);
-                console.log(`$("#boxPic").size() > 0: ${$("#boxPic").length > 0}`);
-                //取得總價(不想再php算)
-                var orderTotal = $("#priceTotalContent").text(); console.log(`orderTotal: ${orderTotal}`);
-                getterData += "&orderTotal=" + orderTotal;
-                //如果有優惠卷
-                if ($("option").length > 0) { //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式
-                    // var couponboxNo = $("#couponItem").data("couponboxno"); //這種選法是錯的!!!!選項很多，被選擇的才是我們要的
-                    var couponboxNo = $("#couponItem").find(":selected").data("couponboxno");
-                    getterData += "&couponboxNo=" + couponboxNo;
-                }
-                //如果有箱子
-                if ($("#boxPic").length > 0) { //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式
-                    var boxPic = $("#boxPic").attr("src");
-                    getterData += "&boxPic=" + boxPic;
-                }
-                //如果有卡片圖
-                if ($("#cardPic").length > 0) {
-                    var cardPic = $("#cardPic").attr("src");
-                    getterData += "&cardPic=" + cardPic;
-                }
-                //如果有卡片聲音
-                if ($("#au_player").length > 0) {
-                    var audioFile = $("#au_player").attr("src");
-                    getterData += "&audioFile=" + audioFile;
-                }
-                // var cardPic = $("#cardPic").attr("src");
-                console.log(`boxPic before: ${boxPic}`);
-                console.log(`cardPic before: ${cardPic}`);
-                // var audioFile = $("#au_player").attr("src");
-                console.log(`audioFile before: ${audioFile}`);
-                console.log(`getterData AFTER: ${getterData}`);
-
-                $.ajax({
-                    type: "post",
-                    url: "creatOrder.php",
-                    data: getterData,
-                    success: function (response) {
+        if (isClick) {//如果標記是true
+            isClick = false;//我就改成false
+            //判斷現在在哪個步驟，要做什麼事情
+            switch (stepCount) {
+                case 1:
+                    //登入檢查，未登入則不給下一步
+                    // console.log(CartStepLoginCheck(function (response){}));
+                    CartStepLoginCheck(function (response) {
+                        console.log(`response: ${response}`);
                         if (response == "error") {
-                            console.log(response);
-                            // alert(" 下單失敗 Q口Q ");
+                            return;
                         } else {
-                            // alert(response);
-                            console.log(response);
+                            step2();
                         }
+                    })
+                    break;
+                case 2:
+                    //點擊下一步，則送出表單資訊給php產生 訂單 + 訂單明細
+                    //表單驗證
+                    var getterName = $("#getterName");
+                    var getterPhone = $("#getterPhone");
+                    var getterAddr = $("#getterAddr");
+                    if (getterName.val() == "" || getterPhone.val == "" || getterAddr == ""){
+                        alert("資料錯誤: 請檢查資料是否完整。")
+                        break;
                     }
-                });
-                //隱藏表單
-                $(".cartFormZone").removeClass("cartPageActive");
-                //隱藏流程面板與小計
-                $(".cartPanel").removeClass("cartPageActive");
-                //顯示 footer
-                $("footer").show();
-                //顯示訂單完成提示
-                $(".cartFinishOrder").addClass("cartPageActive");
+                    //表單全部存起來
+                    var getterData = $("#cartForm").serialize();
+                    console.log(`getterData before: ${getterData}`);
+                    console.log(`$("#boxPic").size() > 0: ${$("#boxPic").length > 0}`);
+                    //取得總價(不想再php算)
+                    var orderTotal = $("#priceTotalContent").text(); console.log(`orderTotal: ${orderTotal}`);
+                    getterData += "&orderTotal=" + orderTotal;
+                    //如果有優惠卷
+                    if ($("option").length > 0) { //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式
+                        // var couponboxNo = $("#couponItem").data("couponboxno"); //這種選法是錯的!!!!選項很多，被選擇的才是我們要的
+                        var couponboxNo = $("#couponItem").find(":selected").data("couponboxno");
+                        getterData += "&couponboxNo=" + couponboxNo;
+                    }
+                    //如果有箱子
+                    if ($("#boxPic").length > 0) { //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式
+                        var boxPic = $("#boxPic").attr("src");
+                        getterData += "&boxPic=" + boxPic;
+                    }
+                    //如果有卡片圖
+                    if ($("#cardPic").length > 0) {
+                        var cardPic = $("#cardPic").attr("src");
+                        getterData += "&cardPic=" + cardPic;
+                    }
+                    //如果有卡片聲音
+                    if ($("#au_player").length > 0) {
+                        var audioFile = $("#au_player").attr("src");
+                        getterData += "&audioFile=" + audioFile;
+                    }
+                    // var cardPic = $("#cardPic").attr("src");
+                    console.log(`boxPic before: ${boxPic}`);
+                    console.log(`cardPic before: ${cardPic}`);
+                    // var audioFile = $("#au_player").attr("src");
+                    console.log(`audioFile before: ${audioFile}`);
+                    console.log(`getterData AFTER: ${getterData}`);
+                    // //防止被連點連續發送ajax請求
+                    // var theThis=$(e.target);
+                    // theThis.off("click");
+                    $.ajax({
+                        type: "post",
+                        url: "creatOrder.php",
+                        data: getterData,
+                        success: function (response) {
+                            if (response == "error") {
+                                console.log(response);
+                                // alert(" 下單失敗 Q口Q ");
+                            } else {
+                                // alert(response);
+                                console.log(response);
+                            }
+                        }
+                    });
+                    //隱藏表單
+                    $(".cartFormZone").removeClass("cartPageActive");
+                    //隱藏流程面板與小計
+                    $(".cartPanel").removeClass("cartPageActive");
+                    //顯示 footer
+                    $("footer").show();
+                    //顯示訂單完成提示
+                    $(".cartFinishOrder").addClass("cartPageActive");
 
-                break;
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
+            setTimeout(function () {
+                isClick = true;
+            }, 500);//固定時間內不重複，卡個一秒先
         }
-
     })
 
     //上一步的觸發流程
+    var isClick = true; //防止連點炸掉
     $(".panelBtn .btnBack").click(function () {
-        switch (stepCount) {
-            case 1:
-                //目前沒有第一步
-                break;
-            case 2:
-                //關掉表單
-                $(".cartFormZone").removeClass("cartPageActive");
-                //顯示購物頭頭
-                $(".cartTh").css("display", "flex");
-                //顯示購物清單
-                $(".cartContent_prod").addClass("cartPageActive");
-                //隱藏上一步按鈕
-                $(this).addClass("btnBack_none");
-                stepCount -= 1;
-                console.log(`stepCount: ${stepCount}`);
-                break;
-            case 3:
-                //送出訂單也沒有返回可用
-                break;
-            default:
-                break;
+        if (isClick) {//如果標記是true
+            isClick = false;//我就改成false
+            //判斷現在在哪個步驟，要做什麼事情
+            switch (stepCount) {
+                case 1:
+                    //目前沒有第一步
+                    break;
+                case 2:
+                    //關掉表單
+                    $(".cartFormZone").removeClass("cartPageActive");
+                    //顯示購物頭頭
+                    $(".cartTh").css("display", "flex");
+                    //顯示購物清單
+                    $(".cartContent_prod").addClass("cartPageActive");
+                    //隱藏上一步按鈕
+                    $(this).addClass("btnBack_none");
+                    stepCount -= 1;
+                    console.log(`stepCount: ${stepCount}`);
+                    break;
+                case 3:
+                    //送出訂單也沒有返回可用
+                    break;
+                default:
+                    break;
+            }
+            setTimeout(function () {
+                isClick = true;
+            }, 1000);//固定時間內不重複，卡個一秒先
         }
     })
 

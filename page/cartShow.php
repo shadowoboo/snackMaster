@@ -416,15 +416,15 @@ if(isset($_SESSION["snackName"])==true){
                 <form id="cartForm">
                     <label for="getterName" class="cartFormCard">
                         <h4>收件人姓名:</h4>
-                        <input type="text" id="getterName" name="getterName" maxlength="10">
+                        <input type="text" id="getterName" name="getterName" maxlength="10" required>
                     </label>
                     <label for="getterPhone" class="cartFormCard">
                         <h4>收件人電話:</h4>
-                        <input type="text" id="getterPhone" name="getterPhone" maxlength="10">
+                        <input type="text" id="getterPhone" name="getterPhone" maxlength="10" required>
                     </label>
                     <label for="getterAddr" class="cartFormCard">
                         <h4>收件人地址:</h4>
-                        <input type="text" id="getterAddr" name="getterAddr" >
+                        <input type="text" id="getterAddr" name="getterAddr" required>
                     </label>
                     <label class="cartFormCard">
                         <h4>付款方式:</h4>
