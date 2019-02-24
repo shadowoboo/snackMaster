@@ -642,12 +642,6 @@ function tabClick(e) {
     var tab = e.target.parentNode.id;
 
     switch (tab) {
-        case 'defaultOpen':
-
-            break;
-        case 'tab22':
-
-            break;
         case 'tab33':
             getCollection();
             break;
