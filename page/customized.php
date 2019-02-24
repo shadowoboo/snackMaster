@@ -29,9 +29,9 @@ try {
    crossorigin="anonymous">
     <script src="../js/search.js"></script>
    <script src="../js/jquery-3.3.1.min.js"></script>
-   <script src="../js/shadowLib.js"></script>
+   <!-- <script src="../js/shadowLib.js"></script> -->
    <!-- 錄音外掛。我想我跳下去玩一定會來不及。謝謝你 9527 -->
-   <script src="../js/recorder.js"></script>
+   <!-- <script src="../js/recorder.js"></script> -->
    <script src="../js/common.js"></script>
    <script src="../js/findingIp.js"></script>
    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -42,10 +42,6 @@ try {
 
     <img class="coco01" src="../images/customized/coco01.png" alt="">
     <img class="coco02" src="../images/customized/coco02.png" alt="">
-<<<<<<< HEAD
-
-=======
->>>>>>> jonathan
     <?php 
     require_once("header.php")
     ?>
@@ -291,7 +287,7 @@ try {
                             </div>
                             <div class="content" style=" align-items:flex-end;">
                                 
-                                <button class="next soundStepBtn"><</button>
+                                <button class="next soundStepBtn"><i class="fas fa-angle-left"></i></button>
                                 <div class="container">
                                     <div style="display: inline-block;">
                                         <p id="sound01">生日快樂</p>
@@ -320,7 +316,7 @@ try {
                                     </div>
                                 </div>
                                 
-                                <button class="prev soundStepBtn">></button>
+                                <button class="prev soundStepBtn"><i class="fas fa-angle-right"></i></button>
                                 <button class="action" style="margin-bottom:40px;">新增音效</button>
                         <!-- <div class="cardRecord">
                            撥放介面實體 
