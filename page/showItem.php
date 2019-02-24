@@ -76,6 +76,7 @@ session_start();
     <script src="../js/showMsg.js"></script>
     <script src="../js/addHeart.js"></script>
     <script src="../js/addcart.js"></script>
+    <script src="../js/search.js"></script>
     
 </head>
 
