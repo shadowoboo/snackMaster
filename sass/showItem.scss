@@ -9,12 +9,13 @@
     display: flex;
     position: absolute;
     top:110px;
-    left: 50px;
+    left: 25px;
     right: 0;
     margin: auto;
     max-width: 1200px;
     @media screen and (min-width:$moblie){
         top:160px;
+        left: 50px;
     }
     a,li{
         font-family: g2Med;
@@ -57,7 +58,10 @@
             }
             .notRank{
                 // background-color:rgb(173, 173, 173); 
-                visibility: hidden;
+                display: none;
+                @media screen and (min-width:$moblie){
+                    visibility: hidden;
+                }
             }
             #rank0{
                 background-color:rgb(173, 173, 173); 
@@ -179,7 +183,7 @@
             }
             h2 {
                 padding: 10px 0;
-                line-height: 30px;
+                line-height: 1.2em;
                 color: #737374;
 
                 p {
@@ -188,15 +192,23 @@
                     margin-bottom: 7px;
                 }
             }
-
             #price{
+                color: #737374;
                 padding: 10px 0;
-                span{
-                    margin-left: 9.5%;
-                    font-size: 36px;
-                    color: #076baf;
+                font-size: 20px;
+                // line-height: 30px;
+                // margin-bottom: 7px;
+            }
+            #pNum{
+                margin-left: -2.5%;
+                font-size: 28px;
+                color: #076baf;
+                @media screen and (min-width:$moblie){
+                    margin-left: -10.5%;
+                    font-size: 36px;  
                 }
             }
+            
             #itemNum{
                 width: 100%;
                 display: flex;
@@ -207,7 +219,7 @@
                 flex-flow: nowrap;
                 justify-content: space-around;
                 background-color: #fff;
-                
+                align-items: center;
                 z-index: 3;
                 @media screen and (min-width:$moblie){
                     position: relative;
@@ -244,13 +256,18 @@
                     }
                 }
             }
+            #inCtx{
+                font-size: 20px;
+                color: #737374;
+            }
             #ingre,#loc{
                 font-size: 20px;
+                color: #737374;
             }
             #ingre{
                 font-size: 18px;
                 font-family: g2Med;
-                margin-left: 8%;
+                margin-left: 6%;
             }
             #loc{
                 margin-left: 4%;
@@ -284,6 +301,7 @@
        }
        .ctxWrap{
            order: 4;
+           margin-top:3% ;
        }
        .map{
            margin-top: 15px;
@@ -319,6 +337,7 @@
 
             .ctxWrap {
                 order: 5;
+                margin-top:0% ;
             }
             .map{
                 margin-top: 0px;
@@ -667,7 +686,7 @@
 
 
         padding-bottom: 20px;
-        @media screen and (min-width:$moblie) {
+        @media screen and (min-width:768px) {
                 width: 100%;            
                 max-width: 1200px;
                 padding:20px;
@@ -677,10 +696,13 @@
             margin: auto;
             margin-top: 100px;
             padding-top: 25px;
-            @media screen and (min-width:$moblie) {
+            @media screen and (min-width:1024px) {
             margin: 150px auto;
             margin-bottom: 0px;
-            height: 1057px;
+            height: 1019px;
+            }
+            @media (min-width:768px) and(max-width:1023px){
+                height: 960px;
             }
         }
         #moreItem{

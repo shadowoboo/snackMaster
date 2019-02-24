@@ -238,7 +238,24 @@ function showStar(){
     })
 }
 
+function shareBtn(){
 
+   $('.share').click (function () {
+       alert("sharing");
+        FB.ui({
+        app_id: '你的appid',
+        method: 'feed',
+        link: 'http://140.115.236.71/demo-projects/CD105/cd105g2/page/showItem.php?snackNo=2',
+        // picture: 'http://87.87.87.87/talk/images/cover.jpg',
+        caption: '大零食家',
+        description: '什麼都好好吃'
+        },function (response) {
+                        console.log(response);
+                        });
+        
+        
+        });
+}
 
 function firstGet(){
     snackNo=$('#item').attr('snackNo');
@@ -263,6 +280,7 @@ function firstGet(){
         likeBtnAdd();
         pageBtnAdd();
         repBtnAdd();
+        // shareBtn();
         
     }
 
