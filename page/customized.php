@@ -1011,11 +1011,13 @@ try {
 
                     //上標籤
                     function addSelect(e) {
-                        if (e.target.classList.contains("rotateZ") || e.target.classList.contains("rotateX") ||
-                                e.target.classList.contains("rotateY")) return; //工程鈕跳過
+                        // console.log("add btnSelect!!!");
                         btns.forEach(el => {
                                 el.classList.remove("btnSelect");
+                                console.log(el.id + "remove .btnSelect")
                         })
+                        if (e.target.classList.contains("rotateZ") || e.target.classList.contains("rotateX") ||
+                        e.target.classList.contains("rotateY")) return; //工程鈕跳過
                         e.target.classList.add("btnSelect");
                 }
 
