@@ -95,8 +95,9 @@ function showLoc(position){ //抓使用者的位置
 
 function showErr(error){//使用者不同意開啟或是其他意外
     console.log('錯誤代碼:'+error.code);
-    // lat1=24.967768;
-    // lng1=121.191705;
+    lat1=24.967768;
+    lng1=121.191705;
+    getAllg( lat1,lng1);
 
     $('#map').html('<p id="errMsg">目前無法存取您的位置資訊</p>');
 }
