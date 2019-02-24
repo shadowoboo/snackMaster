@@ -512,7 +512,7 @@ try {
   <div class="step-content-foot">
         <button type="button" class="step" name="prev">上一步</button>
         <button type="button" class="step" name="next">下一步</button>
-        <button type="button" class="active out step cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="test" data-cusCard="test" data-cusSound="test" >加入購物車</button>
+        <button type="button" class="active out step cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="test" data-cusCard="../images/customized/card.png" data-cusSound="test" >加入購物車</button>
   </div>
 
 
