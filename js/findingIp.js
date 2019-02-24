@@ -224,23 +224,43 @@
                  switch (cpImg) {
                    case 1:
                      var cp = 'cp50';
-                     var price = '50';
+                    price = '50';
                      break;
                    case 2:
                      var cp = 'cp100';
-                     var price = '100';
+                     price = '100';
                      break;
                    case 3:
                      var cp = 'cp200';
-                     var price = '200';
+                     price = '200';
                      break;
                  }
                  $('#cImg').html(`<img src="../images/coupon/${cp}.png">`);
-                 $('#cJump p').html(`恭喜你獲得了${price}元優惠券！<br>
-                                (已自動存入優惠券夾)`);
+                 if($('#btnloglout').text()=='登出'){
+                    $('#cJump p').html(`恭喜你獲得了${price}元優惠券！<br>(已自動存入優惠券夾)`);
+                    $('#endGame').click(byebye);
+
+                 }else{
+                    $('#cJump p').html(`恭喜你獲得了${price}元優惠券！<br>(需要登入會員才能保留優惠券!)`);
+                    $('#endGame').text('去登入').click(function(){
+                      showLightBox();
+                      $('#endGame').off('click');
+                      checkLogin(price);
+                    });
+
+                 }
+                 
 
                }
-               $('#endGame').click(byebye);
+              function checkLogin(price){
+                if($('#btnloglout').text()=='登出'){
+                  $('#cJump p').html(`恭喜你獲得了${price}元優惠券！<br>(已自動存入優惠券夾)`);
+                  $('#endGame').text('確定').click(byebye);
+                }else{
+                  setTimeout(checkLogin,1000);
+                
+                }
+              }
 
                function print_error() {
 
