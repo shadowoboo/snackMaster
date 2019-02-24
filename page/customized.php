@@ -127,7 +127,7 @@ try {
                                     <div class="btn" id="btn_clk_r"><img src="../images/customized/rotate_r.png" alt=""></div>
                                     <div class="btn" id="btn_del"><i class="fa fa-trash"></i></div>
                                 </div>                        
-                                <!-- <div class="btn show action" id="show" style="line-height: 35px;margin:3px auto;">3D展示</div> -->
+                                <div class="btn show action" id="boxSureBtn" style="line-height: 35px;margin:3px auto;">設計完成</div> 
                         </div>
                     </div>  
                     <div class="form">
@@ -230,12 +230,12 @@ try {
                             <p>客製完成</p>   
                         </div> -->
                     </div>
-                <div class="section section_15" id="section_15">
+                <div class="section section_15" id="section_15" style="flex-wrap:wrap;">
                     <div class="lefCard" style="flex:2;">
                             <div class="cardBox">
                                     <img  id="large" src="../images/customized/card.png" alt="">
-                                </div>
-                    </div>
+                                </div>  
+                            </div>
                     <div class="pickCard">
                             <ul class="tab-content-2">
                                 <li class="tab yellow">樣式</li>
@@ -380,7 +380,8 @@ try {
                                 </div>
                             </div> -->
                         </div>
-                    </div>
+                    </div>            
+                    <div class="btn show action" id="cardSureBtn" style="line-height: 35px;">設計完成 </div> 
                   </div> 
              </div>
          </div>
@@ -524,6 +525,7 @@ try {
 
   <form id="myForm">
     <input type="hidden" name="myImage" id="myImage">
+    <input type="hidden" name="myCard" id="myCard">
   </form>  
 
 
@@ -569,6 +571,70 @@ try {
 <script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <!-- <script src="../js/addCart.js" defer></script> -->
 <script src="../js/cusAddCart.js" defer></script>
+
+<script>
+//前:50  後：49 上：48 左：51 右：52 
+    
+      $("#boxSureBtn").click(function() {
+          alert('成功將客製箱加入囉～');
+      html2canvas($(".leftBox")[0]).then(function(canvas) {
+          var $div = $(".img1");
+          $div.empty();
+          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+          //-------------------
+            document.getElementById('myImage').value = canvas.toDataURL("image/png");
+            var formData = new FormData(document.getElementById("myForm"));
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'canvas_load_save.php', true);
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                        if( xhr.status == 200 ){
+                        // alert('Succesfully uploaded');  
+                        }else{
+                        alert(xhr.status);
+                        }
+                }
+            };
+                
+            xhr.send(formData);  
+          //-------------------
+      });
+    });
+
+
+    $("#cardSureBtn").click(function() {
+          alert('成功將客製卡片加入囉～');
+      html2canvas($(".lefCard")[0]).then(function(canvas) {
+          var $div = $(".img3");
+          $div.empty();
+          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+          //-------------------
+            document.getElementById('myCard').value = canvas.toDataURL("image/png");
+            var formData = new FormData(document.getElementById("myForm"));
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'canvas_load_save.php', true);
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                        if( xhr.status == 200 ){
+                        // alert('Succesfully uploaded');  
+                        }else{
+                        alert(xhr.status);
+                        }
+                }
+            };
+                
+            xhr.send(formData);  
+          //-------------------
+      });
+    });
+    
+
+</script>
+
 
 <script>
       var music01 = document.getElementById("01");
@@ -792,171 +858,143 @@ try {
 <script>
 //前:50  後：49 上：48 左：51 右：52 
     
-      $("#cutImg").click(function() {
-      html2canvas($("#cover_front")[0]).then(function(canvas) {
-          var $div = $(".img1");
-          $div.empty();
-          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-          //-------------------
-            document.getElementById('myImage').value = canvas.toDataURL("image/png");
-            var formData = new FormData(document.getElementById("myForm"));
+    //   $("#cutImg").click(function() {
+    //   html2canvas($("#cover_front")[0]).then(function(canvas) {
+    //       var $div = $(".img1");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
             
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'canvas_load_save.php', true);
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
             
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                        if( xhr.status == 200 ){
-                        // alert('Succesfully uploaded');  
-                        }else{
-                        alert(xhr.status);
-                        }
-                }
-            };
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
                 
-            xhr.send(formData);  
-          //-------------------
-      });
-    });
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
 
-    $("#cutImg").click(function() {
-      html2canvas($("#cover_back")[0]).then(function(canvas) {
-          var $div = $(".img3");
-          $div.empty();
-          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-          //-------------------
-            document.getElementById('myImage').value = canvas.toDataURL("image/png");
-            var formData = new FormData(document.getElementById("myForm"));
+    //   $("#cutImg").click(function() {
+    //   html2canvas($("#cover_down")[0]).then(function(canvas) {
+    //       var $div = $(".img2");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
             
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'canvas_load_save.php', true);
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
             
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                        if( xhr.status == 200 ){
-                        // alert('Succesfully uploaded');  
-                        }else{
-                        alert(xhr.status);
-                        }
-                }
-            };
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
                 
-            xhr.send(formData);  
-          //-------------------
-      });
-    });
-    
-
-      $("#cutImg").click(function() {
-      html2canvas($("#cover_down")[0]).then(function(canvas) {
-          var $div = $(".img2");
-          $div.empty();
-          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-          //-------------------
-            document.getElementById('myImage').value = canvas.toDataURL("image/png");
-            var formData = new FormData(document.getElementById("myForm"));
-            
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'canvas_load_save.php', true);
-            
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                        if( xhr.status == 200 ){
-                        // alert('Succesfully uploaded');  
-                        }else{
-                        alert(xhr.status);
-                        }
-                }
-            };
-                
-            xhr.send(formData);  
-          //-------------------
-      });
-    });
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
 
     
    
-    $("#cutImg").click(function() {
-      html2canvas($("#cover_left")[0]).then(function(canvas) {
-          var $div = $(".img4");
-          $div.empty();
-          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-          //-------------------
-            document.getElementById('myImage').value = canvas.toDataURL("image/png");
-            var formData = new FormData(document.getElementById("myForm"));
+    // $("#cutImg").click(function() {
+    //   html2canvas($("#cover_left")[0]).then(function(canvas) {
+    //       var $div = $(".img4");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
             
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'canvas_load_save.php', true);
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
             
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                        if( xhr.status == 200 ){
-                        // alert('Succesfully uploaded');  
-                        }else{
-                        alert(xhr.status);
-                        }
-                }
-            };
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
                 
-            xhr.send(formData);  
-          //-------------------
-      });
-    });
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
     
-    $("#cutImg").click(function() {
-      html2canvas($("#cover_right")[0]).then(function(canvas) {
-          var $div = $(".img5");
-          $div.empty();
-          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-          //-------------------
-            document.getElementById('myImage').value = canvas.toDataURL("image/png");
-            var formData = new FormData(document.getElementById("myForm"));
+    // $("#cutImg").click(function() {
+    //   html2canvas($("#cover_right")[0]).then(function(canvas) {
+    //       var $div = $(".img5");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
             
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'canvas_load_save.php', true);
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
             
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                        if( xhr.status == 200 ){
-                        // alert('Succesfully uploaded');  
-                        }else{
-                        alert(xhr.status);
-                        }
-                }
-            };
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
                 
-            xhr.send(formData);  
-          //-------------------
-      });
-    });
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
 
     
-    $("#cutImg").click(function() {
-      html2canvas($("#section_7")[0]).then(function(canvas) {
-          var $div = $("img6");
-          $div.empty();
-          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-          //-------------------
-            document.getElementById('myImage').value = canvas.toDataURL("image/png");
-            var formData = new FormData(document.getElementById("myForm"));
+    // $("#cutImg").click(function() {
+    //   html2canvas($("#section_7")[0]).then(function(canvas) {
+    //       var $div = $("img6");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
             
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'canvas_load_save.php', true);
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
             
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                        if( xhr.status == 200 ){
-                        // alert('Succesfully uploaded');  
-                        }else{
-                        alert(xhr.status);
-                        }
-                }
-            };
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
                 
-            xhr.send(formData);  
-          //-------------------
-      });
-    });
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
   </script>
 
   <script>
@@ -2042,6 +2080,33 @@ try {
     })
     
     </script>
+    <script>
+function doFirst(){
+	document.getElementById('theFile').onchange = fileChange;
+}
+function fileChange(){
+	var file = document.getElementById('theFile').files[0];
+	var message = '';
 
+	message += 'File Name: '+file.name+'\n';
+	message += 'File Type: '+file.type+'\n';
+	message += 'File Size: '+file.size+' byte(s)\n';
+	message += 'Last Modified: '+file.lastModifiedDate+'\n';
+
+	document.getElementById('fileInfo').value = message;
+//===================
+
+	var readFile = new FileReader();
+	readFile.readAsDataURL(file);
+	readFile.addEventListener('load',function(){
+		var image = document.getElementById('image');
+		image.src = readFile.result;
+		image.style.maxWidth = '400px';
+		image.style.maxHeight = '300px';
+	});
+
+}
+window.addEventListener('load',doFirst);
+</script>
 </body>
 </html>

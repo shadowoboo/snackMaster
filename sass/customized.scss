@@ -36,7 +36,7 @@ audio{
     img{
         width:300px;    
         height: 150px;
-        // display: none;
+        display: none;
     }
 }
 .card {
@@ -388,8 +388,12 @@ audio{
     width: 1000px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items:center;
     position: relative;
+    #cardSureBtn{
+        margin-top: 22px;
+    }
     .surface{
             .droped_img{
                 display:block;
@@ -1631,7 +1635,11 @@ $cardY:600px;
             width: 100%;
             margin-top: 30px;
             flex-direction: column;
+            flex-wrap:initial !important;
             align-items: center;
+            #cardSureBtn{
+                margin: 0px auto 30px;
+            }
             .pics{
                 img{
                     cursor: initial;
@@ -1646,7 +1654,7 @@ $cardY:600px;
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: center;
-                height: 400px;
+                height:450px;
                 .camera{
                     height: 250px;
                     .boxBase{
