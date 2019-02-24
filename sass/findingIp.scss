@@ -192,26 +192,37 @@
     .flexWrap{
       margin-top: 15%;
           @media screen and(max-width:767px) {
-            margin-top: 10%;
+            margin-top: 15%;
           }
     }
 
   }
 
-  @include btn('sure', 50%, auto, #fff, $blue, transparent, 10px, 5px, #fff, $deepblue, 20px);
+  @include btn('sure', 60%, 34px, #fff, $blue, transparent, 10px, 0px, #fff, $deepblue, 20px);
   .sure{
     display: inline-block;
+    line-height: 1.6em;
     @media screen and(max-width:767px) {
       font-size: 14px;
-    width: 90%;
+      height: 22px;
+      width: 90%;
     }
   }
-  #cJump a{
-    font-size: 14px;
+  #endGame{
     cursor: pointer;
+    line-height: 28px;
+    margin-top: 5%;
+    font-size: 18px;
+    width: 50%;
+    height: 28px;
+    @media screen and(max-width:767px){
+      font-size: 14px;
+      line-height: 34px;
+    }
   }
   #cJump p{
         @media screen and(max-width:767px) {
+          margin-top: 3%;
           font-size: 14px;
         }
   }

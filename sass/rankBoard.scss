@@ -1,6 +1,8 @@
 @import 'reset';
 @import 'common';
-
+#gorankBoard a{
+    color: $blue;
+}
 .rankBoard{
     //body
     overflow-x: hidden;
@@ -84,12 +86,15 @@
             }
             .switch {
                 cursor: pointer;
+                font-size: 16px;
                 width: 100%;
                 padding: 10px 5px;
                 text-align: center;
                 margin: 0 auto;
                 color: #076baf;
-
+                @media screen and (min-width:$moblie){
+                    font-size: 22px;
+                }
                 &:hover {
                     color: #fff;
                     background-color: #076baf;
@@ -133,6 +138,7 @@
                 text-align: center;
                 line-height: 2.5;
                 position: absolute;
+
 
             }
 
@@ -255,7 +261,7 @@
 
             h2 {
                 padding: 10px 0;
-                line-height: 30px;
+                line-height: 1.2em;
                 color: #737374;
                 p {
                     font-size: 22px;
@@ -264,7 +270,7 @@
                 }
             }
 
-            .rank {
+            .rank{
                 font-family: g2Med;
                 font-size: 16px;
                 margin: 6.5px 0;
@@ -273,25 +279,37 @@
                 color: #fff;
                 letter-spacing: 2.8px;
             }
-
-            #allRank {
+            .notRank{
+                // background-color:rgb(173, 173, 173); 
+               display: none;
+            }
+            #rank0{
+                background-color:rgb(173, 173, 173); 
+            }
+            #rank1{
                 background-color: #ea5a5a;
             }
-
-            #catRank {
+            #rank2{
                 background-color: #00b96d;
             }
-
-            #flaRank {
+            #rank3{
                 background-color: #5cb3ff;
             }
-
+            #price{
+                // margin-left: 5%;
+                color: #076baf;
+                font-size: 34px;
+               
+                
+            }
             .itemBtns {
                 margin: 15px 0;
                 display: flex;
                 justify-content: space-around;
+                align-items: center;
+
                 .detail,.cart,.heart{
-                    font-size: 18px;
+                    font-size: 16px;
                 @media screen and (min-width:$moblie) {
                     font-size: 22px;
                 }
@@ -299,7 +317,7 @@
 
                 .detail,
                 .cart {
-                    width: 110px;
+                    width: 100px;
                     @media screen and (min-width:$moblie) {
                         width: 150px;
                     }
@@ -366,7 +384,7 @@
                     padding-bottom: 17.5px;
 
                     .memPic {
-                        width: 49.63%;
+                        width: 13.701%;
                         position: relative;
                         z-index: 2;
                         min-width: 40px;
@@ -378,11 +396,29 @@
 
                     .memCol {
                         margin-left: 10px;
+                        width: 86.209%;
                         .memId{
                             color: #737374;
                             display: flex;
                             justify-content: space-between;
                             @include btn('report', 5%, auto, #c9c9c9, transparent, transparent, 0px, 0px, #737374, transparent, 16px);
+                            .report{position: relative;
+                                &::before{
+                                    content:'檢舉';
+                                    color: #737374;
+                                    padding: 5px;
+                                    background-color: #fff;
+                                    border: solid 1x #737374;
+                                    font-size: 14px;
+                                    position: absolute;
+                                    top: 0;
+                                    left: -30px;
+                                    display: none;
+                                }
+                                &:hover::before{
+                                    display: block;
+                                }
+                            }
                         }
                         .star {
                             margin: 0 0 7px  0;
@@ -402,7 +438,11 @@
 
                             }
                         }
-
+                        .msgTime{
+                            color:#707071;
+                            margin-top: 1.5%;
+                            font-size: 12px;
+                        }
                         .commentCtx {
                             color: #737374;
                             font-family: g2Med;
@@ -446,6 +486,37 @@
                         }
                     }
                 }
+            }
+            #pagination ul{
+                display: flex;
+               justify-content: center;
+               li{
+                   margin: 0 7.5px;
+                   font-size: 20px;
+                   a{
+                       color: #076baf;
+                       padding:5px 10px ; 
+                       font-family:g2font;
+                       cursor: pointer;
+                   }
+                   .nowLoc,a:hover{
+                       color: #fff;
+                       background-color: #076baf;
+                   }
+                   .fas{
+                       color: #fff;
+                   }
+                   #next,#last{
+                       background-color: #076baf;
+                       padding: 5px 10px;
+                   }
+                   #last{
+                       border-radius: 8px 0 0 8px;
+                   }
+                   #next{
+                       border-radius: 0 8px 8px 0;
+                   }
+               }
             }
         }
         #mRankPanel{

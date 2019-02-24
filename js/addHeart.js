@@ -7,6 +7,7 @@ function addHeart(e){
     }
     if (document.getElementById("btnloglout").innerHTML == "&nbsp;") {
         alert('請先登入會員唷～');
+        showLightBox();
         return;
     }else {
         e.target.style.color = 'rgb(234, 90, 90)';

@@ -40,15 +40,22 @@
    var ajst2 = $(ansBox).width() * 0.231;
    var ajst3 = $(ansBox).width() * 0.042;
    kickInitialPosition = $(ansBox).position().left + ajst;
-   console.log(kickInitialPosition);
+  //  console.log(kickInitialPosition);
    // Move kick Under the relative box based on answer
    kick.css({
      left: kickInitialPosition + "px"
    });
 
    // Droping kick from the top into the box.
-
-   var dropPoint = $(ansBox).position().top;
+   console.log($(window).width());
+   if($(window).width()<768){
+     //手機
+     var dropPoint = $(ansBox).position().top-$(window).width()*10/100 ;
+   }else{
+     //捉雞
+     var dropPoint = $(ansBox).position().top;
+   }
+  
    kick.animate({
      top: dropPoint + "px"
    }, {
@@ -224,28 +231,80 @@
                  switch (cpImg) {
                    case 1:
                      var cp = 'cp50';
-                     var price = '50';
+                    price = '50';
                      break;
                    case 2:
                      var cp = 'cp100';
-                     var price = '100';
+                     price = '100';
                      break;
                    case 3:
                      var cp = 'cp200';
-                     var price = '200';
+                     price = '200';
                      break;
                  }
                  $('#cImg').html(`<img src="../images/coupon/${cp}.png">`);
-                 $('#cJump p').html(`恭喜你獲得了${price}元優惠券！<br>
-                                (已自動存入優惠券夾)`);
+                 $('#cImg').attr({'cp':cp,'price':price});
+                 if($('#btnloglout').text()=='登出'){
+                     sendCp();
+                    // $('#cJump p').html(`恭喜你獲得了${price}元優惠券！<br>(已自動存入優惠券夾)`);
+                    // $('#endGame').click(byebye);
+
+                 }else{
+                    $('#cJump p').html(`恭喜你獲得了${price}元優惠券！<br>(需要登入會員才能保留優惠券!)`);
+                    $('#endGame').text('去登入').click(function(){
+                      showLightBox();
+                      $('#endGame').off('click');
+                      checkLogin();
+                    });
+
+                 }
+                 
 
                }
-               $('#endGame').click(byebye);
+              function checkLogin(price){
+                if($('#btnloglout').text()=='登出'){
+                  $('#endGame').text('確定');
+                  sendCp();
+                }else{
+                  setTimeout(checkLogin,1000);
+                
+                }
+              }
+              function sendCp(){
+                var price = $('#cImg').attr('price');
+                switch(price){
+                  case '50':
+                  coupNo=4;
+                  break;
+                  case '100':
+                  coupNo=5;
+                  break;
+                  case '200':
+                  coupNo=7;
+                  break;
+                }
+                var xhr =new XMLHttpRequest();
+                xhr.open("Post", "sendCp.php", true);
+                xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                var data_info=`coupNo=${coupNo}`;
+                xhr.send(data_info);
+                xhr.onload=function(){
+                  if(xhr.responseText==1){
+                    //成功
+                    $('#cJump p').html(`恭喜你獲得了${price}元優惠券！<br>(已自動存入優惠券夾)`);
+                    $('#endGame').click(byebye);
+                  }else{
+                    //已經拿過
+                    $('#cJump p').html(`恭喜你完成遊戲，但是你已經領過同樣的優惠券囉！`);
+                    $('#endGame').click(byebye);
+                  }
+                }
 
+              }
                function print_error() {
 
                  setMessage("<span class='sure' id='start_game' > 答錯了 麻吉不在這個箱子！ <a id='again'> 再試一次 </a> </span >", "color_1");
-                  $('.sure').width('60%');
+                  // $('.sure').width('auto');
                  $('#again').click(function () {
                    $('#findingIp').html('').append(forReplay);
                    setting();
@@ -288,7 +347,7 @@ $('document').ready(function(){
 
           <div id="cJump" >
             <div class="flexWrap">
-              <div id="cImg" > </div>
+              <div  cp="" price="" id="cImg" > </div>
               <p> </p> 
               <a class='sure' id="endGame"> 確定 </a> 
             </div> 

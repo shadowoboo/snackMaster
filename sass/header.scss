@@ -38,8 +38,10 @@ header {
             span {
                 padding: 0 10px;
                 cursor: pointer;
-                &:hover {
-                    color: #fff;
+                i:hover{
+                    transform: scale(1.1);
+                    transition: 0.5s;
+                    color: $blue;
                 }
             }
         }
@@ -130,11 +132,11 @@ header {
                         font-family: g2Font;
                         color: #737374;
                         height: auto;
-                        &:hover {
-                            .subMenu {
-                                display: block;
-                            }
-                        }
+                        // &:hover {
+                        //     .subMenu {
+                        //         display: block;
+                        //     }
+                        // }
                         a:hover {
                             color: $blue;
                         }
@@ -159,6 +161,9 @@ header {
             }
         }
         .login {
+            #memLogin{
+                cursor: pointer;
+            }
             li {
                 &:hover i{
                     color: $blue;
@@ -167,7 +172,6 @@ header {
                     color: $blue;
                 }
                 color: #737374;
-                cursor: pointer;
             }
             li:first-child {
                 span {
@@ -516,7 +520,7 @@ label.mail {
                     }
                 }
                 li:first-child {
-                    width: 35%;
+                    width: 25%;
                     min-width: 40px;
                 }
             }
@@ -551,6 +555,7 @@ label.mail {
                         margin: 0px 20px;
                         font-size: 18px;
                         padding-left: 40px;
+                        color: $gray;
                     }
                 }
                 .inputbar {
@@ -573,6 +578,12 @@ label.mail {
                         font-size: 23px;
                         transform: translateY(1px);
                         cursor: pointer;
+                        color: $gray;
+                        &:hover{
+                            transform: scale(1.1);
+                            transition: 0.5s;
+                            color: $blue;
+                        }
                     }
                 }
             }

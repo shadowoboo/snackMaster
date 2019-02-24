@@ -8,7 +8,61 @@ function moveR() {
                 'opacity': '1',
                 'transform': 'translateX(0%)'
             })
-        }, 450);
+        }, 500);
+}
+
+function getRank(rankGenre){
+    var xhr =new XMLHttpRequest();
+    xhr.open("Post", "getRankBoard.php", true);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    var data_info=`rankGenre=${rankGenre}`;
+    xhr.send(data_info);
+    xhr.onload=function(){
+
+        //將回傳的snackNo塞入六名轉盤
+        var rsp=JSON.parse(xhr.responseText);
+        for(i=1;i<7;i++){
+            $(`#sw_${i}`).attr('snackNo',rsp[i-1].snackNo);
+            $(`.m_rk:eq(${i-1})`).attr('snackNo',rsp[i-1].snackNo);
+
+        }
+
+        //並且載入第一名detail
+        setTimeout(() => getSnack(rsp[0].snackNo) , 300);
+    }
+}
+
+function getSnack(snackNo){
+
+    var xhr =new XMLHttpRequest();
+    xhr.open("Post", "getSnack.php", true);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    var data_info=`snackNo=${snackNo}`;
+    xhr.send(data_info);
+    xhr.onload=function(){
+        var rsp=JSON.parse(xhr.responseText);
+
+        $('#item').attr('snackNo',rsp.snackNo);
+        $('#itemImg').attr('src',rsp.snackPic);
+        $('#nationName').html(`<p>[${rsp.nation}]</p>${rsp.snackName}`);
+        $('#rankWrap').html(rsp.rankHtml);
+        $('#price').text(`$ ${rsp.snackPrice}`);
+        $('.cart').attr('id',`${rsp.snackNo}|${rsp.snackPrice}|0`);
+        $('.heart').attr('id',rsp.snackNo);
+        $('#snackLink').attr('href',`../page/showItem.php?snackNo=${rsp.snackNo}`);
+        $('#evaTimes').text(`共${rsp.Etimes}次評價`);
+        $('#scoAvg').html(`${rsp.avgG}<span class="total">/5</span>`);
+        $('#detailAvgG').attr('grad',rsp.avgG);
+        $('.radar').attr({
+            's':rsp.avgS,
+            't':rsp.avgT,
+            'h':rsp.avgH,
+           
+        })
+        firstGet();
+        createRadar();
+    };
+
 }
 
 function isMobile() {
@@ -22,8 +76,8 @@ function isMobile() {
 }
 
 function allPanel(){
-    $('.sw_class').each(function () {
         $('.sw_class').click(function(e){
+            e.preventDefault();
             moveR();
             $('.sw_class').removeClass('catLoc');
             $('.m_rk').removeClass('catLoc');
@@ -67,7 +121,7 @@ function allPanel(){
                 }
 
 
-                $('#ipImg').attr('src',newIp);
+
                 $('#sw_ring').css('transform', 'translateY(-50%) rotate(0deg)');
                 $('#rankPanel').css({
                     'opacity': '0',
@@ -79,6 +133,7 @@ function allPanel(){
                         'transform': 'scale(1)'
                     });
                     $('#titleCatCtx').html(newTitleCtx);
+                    $('#ipImg').attr('src',newIp);
                 }, 400);
                 
                 setTimeout(() => {
@@ -89,15 +144,17 @@ function allPanel(){
                 }, 400);
 
             }
-
+            var rankGenre =$(this).attr('gNum');
+            getRank(rankGenre);
         });
-    });
 }
 
+
+
 function ringPanel() {
-    $('.sw_rk').each(function () {
         
         $('.sw_rk').click(function (e) {
+            e.preventDefault();
             moveR();
             $('.m_rk').removeClass('catLoc');
             $(this).addClass('catLoc');
@@ -131,8 +188,10 @@ function ringPanel() {
                 default:
                 break;
             }
+            var snackNo=$(this).attr('snackNo');
+            setTimeout(() => getSnack(snackNo) , 300);
+           ;
         })
-    });
     
 }
 
@@ -143,10 +202,11 @@ function createRadar() {
     //改字體大小
     Chart.defaults.global.defaultFontSize = 20;
     //因為畫完一次圖表之後希望可以再變動，所以用變數代表每個項目的值
-    good = 4.7;
-    sweet = 3;
-    sour = 3;
-    spicy = 3;
+    
+    good = $('#detailAvgG').attr('grad');
+    sweet = $('.radar').attr('t');
+    sour = $('.radar').attr('s');
+    spicy = $('.radar').attr('h');
     radarOptions = {
         scale: {
             ticks: {
@@ -188,7 +248,9 @@ function createRadar() {
         options: radarOptions
     });
 }
-    
+   
+
+
 function init(){
     createRadar();
     ringPanel();
