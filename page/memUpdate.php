@@ -5,7 +5,11 @@
 
     try{
         require_once('connectcd105g2.php');
-        $sql = "update member set  memId=:memId, memPsw=:memPsw, memName=:memName, memPhone=:memPhone, email=:email, memPic=:memPic where memNo=:memNo";
+        if($_FILES['upFile']["name"]==""){
+            $sql = "update member set  memId=:memId, memPsw=:memPsw, memName=:memName, memPhone=:memPhone, email=:email where memNo=:memNo";
+        }else{
+            $sql = "update member set  memId=:memId, memPsw=:memPsw, memName=:memName, memPhone=:memPhone, email=:email, memPic=:memPic where memNo=:memNo";
+        }
         $memUp = $pdo->prepare($sql);
         $memUp ->bindValue(":memNo",$_POST["memNo"]);
         $memUp ->bindValue(":memId",$_POST["memId"]);
@@ -15,7 +19,9 @@
         $memUp ->bindValue(":memName",$_POST["memName"]);
         $memUp ->bindValue(":memPhone",$_POST["phone"]);//$_POST["name"]->放input裡name="值"
         $memUp ->bindValue(":email",$_POST["email"]);
-        $memUp ->bindValue(":memPic",'../images/member/'.$_FILES['upFile']["name"]);
+        if($_FILES['upFile']["name"]!=""){
+            $memUp ->bindValue(":memPic",'../images/member/'.$_FILES['upFile']["name"]);
+        }
         $memUp ->execute();
 
         // $mdRow = $mdMem ->fetch(PDO::FETCH_ASSOC);  

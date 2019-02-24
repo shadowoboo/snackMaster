@@ -94,7 +94,7 @@ function showLoc(position){ //抓使用者的位置
 }
 
 function showErr(error){//使用者不同意開啟或是其他意外
-    console.log('錯誤代碼:'+error.code);
+    // console.log('錯誤代碼:'+error.code);
     lat1=24.967768;
     lng1=121.191705;
     getAllg( lat1,lng1);
@@ -107,8 +107,9 @@ function yesOrNoMap(){
     showMapdiv=document.getElementById('map');
     if(showMap==1){
         //顯示最近的販賣機
-        $('#map').html('<p id="errMsg">目前無法存取您的位置資訊</p>');
-        navigator.geolocation.getCurrentPosition(showLoc,showErr); 
+        // $('#map').html('<p id="errMsg">目前無法存取您的位置資訊</p>');
+        // navigator.geolocation.getCurrentPosition(showLoc,showErr); 
+        showErr();
     }else{
         $('#map').html('<p id="errMsg">本商品目前未於販賣機販售</p>');
     }   
