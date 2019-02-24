@@ -329,7 +329,7 @@ try {
                                     </div>
                                 </div>
                                 
-                                <button class="prev soundStepBtn"><i class="fas fa-angle-right"></i></button>
+                                <button class="prev soundStepBtn" id="stopRight"><i class="fas fa-angle-right"></i></button>
                                 <button class="action soundAdd" id="soundAdd" style="margin-bottom:40px;">新增音效</button>
                         <!-- <div class="cardRecord">
                            撥放介面實體 
