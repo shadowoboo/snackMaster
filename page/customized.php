@@ -584,20 +584,34 @@ try {
           //-------------------
             document.getElementById('myImage').value = canvas.toDataURL("image/png");
             var formData = new FormData(document.getElementById("myForm"));
-            
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'canvas_load_save.php', true);
             
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
                         if( xhr.status == 200 ){
-                        // alert('Succesfully uploaded');  
+                        // alert('Succesfully uploaded');
+                            //把資料寫入data- 等待送出到購物車
+                            var str=xhr.responseText;
+                            console.log(`截圖成功回復: ${str}`);
+                            var arr_str=str.split("//");
+                            console.log(`截圖成功回復: ${arr_str}`);
+                            //判斷回傳的是 有包含card還是box來決定是卡片還是盒子圖
+                            //如果回傳的是盒子
+                            if(arr_str.indexOf("box")!=-1){
+                                console.log(`儲存的是box圖`);
+                                console.log(`${str}`);
+                                //寫入data-
+                                let tar=$(".step-content-foot .step.cart");
+                                tar.attr("data-cusbox", str);
+                                $("#myImage").val("");
+                            }
                         }else{
                         alert(xhr.status);
                         }
                 }
             };
-                
+            formData.delete("myCard"); //銷毀其他欄位
             xhr.send(formData);  
           //-------------------
       });
@@ -612,21 +626,35 @@ try {
           $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
           //-------------------
             document.getElementById('myCard').value = canvas.toDataURL("image/png");
-            var formData = new FormData(document.getElementById("myForm"));
-            
+            var formData = new FormData(document.getElementById("myForm")); //沒有同時送資料的話，用form會讓其他欄位多夾帶資料，記得銷毀
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'canvas_load_save.php', true);
             
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4) {
                         if( xhr.status == 200 ){
-                        // alert('Succesfully uploaded');  
+                        // alert('Succesfully uploaded'); 
+                            //把資料寫入data- 等待送出到購物車
+                            var str=xhr.responseText;
+                            console.log(`截圖成功回復: ${str}`);
+                            var arr_str=str.split("//");
+                            console.log(`截圖成功回復: ${arr_str}`);
+                            //如果回傳的是卡片
+                            if(arr_str.indexOf("card")!=-1){
+                                console.log(`儲存的是card圖`);
+                                console.log(`${str}`);
+                                //寫入data-
+                                let tar=$(".step-content-foot .step.cart");
+                                tar.attr("data-cuscard", str);
+                                //銷毀
+                                $("#myCard").val("");
+                            }
                         }else{
                         alert(xhr.status);
                         }
                 }
             };
-                
+            formData.delete("myImage");//銷毀其他欄位
             xhr.send(formData);  
           //-------------------
       });
