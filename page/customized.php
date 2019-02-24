@@ -515,12 +515,12 @@ try {
   </div>
 
 
-  <!-- <div class="img1"></div>
+  <div class="img1"></div>
   <div class="img2"></div>
   <div class="img3"></div>
   <div class="img4"></div>
   <div class="img5"></div>
-  <div class="img6"></div> -->
+  <div class="img6"></div> 
 
   <form id="myForm">
     <input type="hidden" name="myImage" id="myImage">
@@ -2027,6 +2027,7 @@ try {
     $(function () {
         $("#soundAdd").on("click",addSound);
         function addSound(e){
+            alert('音效已加入卡片囉~');
             //選取目標聲音的路徑
             let src=$("#soundAdd").closest(".content").children(".container").children("div:visible").find("source").attr("src");
             console.log(src);
