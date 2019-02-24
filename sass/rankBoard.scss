@@ -1,6 +1,8 @@
 @import 'reset';
 @import 'common';
-
+#gorankBoard a{
+    color: $blue;
+}
 .rankBoard{
     //body
     overflow-x: hidden;
