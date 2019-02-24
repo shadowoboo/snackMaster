@@ -317,7 +317,7 @@ try {
                                 </div>
                                 
                                 <button class="prev soundStepBtn"><i class="fas fa-angle-right"></i></button>
-                                <button class="action" style="margin-bottom:40px;">新增音效</button>
+                                <button class="action soundAdd" id="soundAdd" style="margin-bottom:40px;">新增音效</button>
                         <!-- <div class="cardRecord">
                            撥放介面實體 
                             <div id="audioItem">
@@ -1860,6 +1860,25 @@ try {
                 //console.log(`$(this): ${$(this)}`); //jq
             })
         }
+    </script>
+
+    <script>
+    $(function () {
+        $("#soundAdd").on("click",addSound);
+        function addSound(e){
+            //選取目標聲音的路徑
+            let src=$("#soundAdd").closest(".content").children(".container").children("div:visible").find("source").attr("src");
+            console.log(src);
+            //加入按鈕"加入購物車"的data屬性
+            let tar=$(".step-content-foot .step.cart");
+            console.log("before:"+tar.data("cussound"));
+            // $.data(tar,"cussound",src);
+            // tar[0].dataset.cussound=src;
+            tar.attr("data-cussound",src);
+            console.log("after:"+tar.data("cussound"));
+        }
+    })
+    
     </script>
 
 </body>
