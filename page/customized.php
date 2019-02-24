@@ -1064,8 +1064,9 @@ try {
         $(".cusPic").off("click").on("click",copyToSurface);
         //新增工作面控制
         $("#section_15 #ctrl_bar .btn").on("click",function(e){
-            $("#section_15 #ctrl_bar .btn").removeClass("working");
-            $(e.target).addClass("working");
+                $("#section_15 #ctrl_bar .btn").removeClass("working");
+                if (e.target.id=="rotateX") {return;}
+                $(e.target).addClass("working");
         })
         ////點擊空白處取消 drop_img 的 select
         $(".customized").on("click",function (e) {
@@ -1098,8 +1099,10 @@ try {
                 return;
             }
             //抓現在是哪一面，工作面才工作
+
             var tarSurfaceId = $("#section_15 .btn.working").attr("id");
             tarSurfaceClass = tarSurfaceId.replace("btn","surface");
+
             //複製圖片,更新屬性,塞進目標父層
             var tarCusPic=$(e.target).clone();
             console.log(tarCusPic);
