@@ -58,7 +58,7 @@ function cusAddCart(e){
             var xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 if (xhr.status == 200) {
-                    alert(`商品${snackNo}已放入零食箱～`);
+                    alert(`商品已放入零食箱～`);
                 } else {
                     alert(xhr.status);
                     console.log(this.responseText); //如果發生問題，把異常資訊印在主控台
@@ -87,7 +87,7 @@ function cusAddCart(e){
             var xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 if (xhr.status == 200 && xhr.responseText=="noProd") {
-                    alert("請加入零食!!!");
+                    alert("請加入零食!");
                     console.log(`responseText: ${xhr.responseText}`);
                     
                 }else if(xhr.status == 200 && xhr.responseText!="noProd"){
