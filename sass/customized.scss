@@ -816,12 +816,13 @@ a {
         height: 230px;
         margin: auto;
         p{
-            width: 210px;
             cursor: pointer;
             font-size: 30px;
             border: 5px solid #737374;
             border-radius: 10px;
             padding: 5px 10px;
+            margin: 0 20px;
+            margin-top: 15px;
             &:hover{
                 background-color:#737374;
                 color: #fff;
@@ -833,7 +834,7 @@ a {
             color: #fff;
             background-color: #076baf;
             border: 2px solid transparent;
-            border-radius:50%;
+            border-radius:10px;
             padding: 0px 15px;
             font-family: g2Font;
             text-align: center;
