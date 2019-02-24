@@ -78,6 +78,7 @@
                     </div>
                     <!----    在手機上打開此logo;桌機上關掉此logo------ -->
                     <div class="logo">
+                        <a href="homePage.php"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
                     </div>
                     <div id="list_appear">
                         <!-- ----------手機選單離開-------- -->
