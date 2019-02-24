@@ -569,9 +569,9 @@ input[type="number"]{
 
             }
         }
-        // .orderLis_content.show{
-        //     display: block;
-        // }
+        .orderLis_content.show{
+            display: block;
+        }
     
         
 
@@ -613,6 +613,9 @@ input[type="number"]{
                     .itemImg{
                         width: 140px;
                         margin-top: 29px;
+                    }
+                    .itemName{
+                        padding: 0 15px;
                     }
                     .sellPrice{
                         width: 280px;
@@ -1002,12 +1005,13 @@ input[type="number"]{
                         .orderLis_content{
                             position: relative;
                             width: 100%;
-                            // display: none;
+                            display: none;
                             .orderList_items{
                                 tr{
                                     text-align: center;
                                    th{
                                        font-size: $p;
+                                       padding: 15px 28px;
                                    }
                                 }
                                 .orderList_moreItems{
@@ -1083,6 +1087,7 @@ input[type="number"]{
                                             }
                                             .eva_lightBox_textDics{
                                                 margin: 12px;
+                                                resize: none;
                                             }
                                             .proPicBox{
                                                 width: 65px;
@@ -1129,16 +1134,20 @@ input[type="number"]{
                         }
         
                     }
+
+                    // .eva_lightBox.show{
+                    //     display: block;
+                    // }
                 }
-                // .orderLis_content.show{
-                //     display: block;
-                // }
+                .orderLis_content.show{
+                    display: block;
+                }
             
                 
         
                     
             
-                }
+            }
             //-----------------收藏品---------------------
             
                 #tab-3{

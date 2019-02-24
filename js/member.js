@@ -32,32 +32,49 @@ function headChange(){
 $(document).ready(function(){
   // console.log(123);
   
-  $('.listplay').on('click',function(){
-    // console.log(321);
+  // $('.orderList_btn').on('click',function(){
+  //   console.log(321);
+  //   if($(this).text("訂單明細v")){
+  //     $('.orderLis_content').removeClass('show');
+  //     var tar = $(this).next().next();
+  //     tar.addClass('show');
+  //     $(this).text("訂單明細^");
+
+  //   }
+
+  
+
     
+  //   $('.orderItem').toggleClass('expand');
+  //   $('.textDics').val() ="";
+      
+  // });
+  // $('.evaShowbtn').on('click',function(){
+  //   var $tar=$(this).closest(".orderItemList").next();
+  //   $('.evaLightBox').removeClass('show');
+  //   $tar.addClass('show');
+  // });
+  // $('.evaLightBoxLeave').on('click',function(){
+  //   $('.evaLightBox').removeClass('show');
+    
+
+  // });
+  $('.orderList_btn').on('click',function(){
+    // console.log(321);
     if($(this).text()=="訂單明細v"){
       // console.log('oop');
-      
+      $('.orderLis_content').removeClass('show');
+      let tar = $(this).next().next(); //吃結構
+      tar.addClass('show');
+      // $('.textDics').value = "";
+      // $('.textDics').val() = "";
       $(this).text("訂單明細^");
     }else{
+      $('.orderLis_content').removeClass('show');
       $(this).text("訂單明細v");
-    }
+    }    
+  });
   
-    $('.orderItem').toggleClass('expand');
-    $('.textDics').value ="";
-      
-  });
-  $('.evaShowbtn').on('click',function(){
-    var $tar=$(this).closest(".orderItemList").next();
-    $('.evaLightBox').removeClass('show');
-    $tar.addClass('show');
-  });
-  $('.evaLightBoxLeave').on('click',function(){
-    $('.evaLightBox').removeClass('show');
-    
-
-  });
-
 
   
 });

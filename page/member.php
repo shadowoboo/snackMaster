@@ -348,29 +348,42 @@
             </div>
             <!----------------------- 訂單管理---------------------------->
             <div class="tabPanel " id="tab-2">
-    
+                <?php 
+            //先抓出訂單資料
+                $order_sql= "select * from snackOrder where memNo=:memNo";
+                $order = $pdo->prepare($order_sql);
+                $order->bindValue(":memNo", $memNo);
+                $order->execute();
+                if ($order->rowCount() ==0 ) {
+                        echo "您目前尚無訂單！";
+                 }else{
+                    while($orderRow = $order->fetch(PDO::FETCH_ASSOC)){
+                        $orderNo = $orderRow['orderNo'];
+                        
+
+    ?>
 
                 <div class="order">
-                                      
+
                     <!-- -------------------------訂單-------------------->
                     <div class="orderList">
                         <table>
 
                             <tr>
                                 <th>訂單編號:</th>
-                                <td>1</td>
+                                <td><?php echo $orderRow['orderNo'] ?></td>
                             </tr>
                             <tr>
                                 <th>下單日期：</th>
-                                <td>2019-02-01</td>
+                                <td><?php echo $orderRow['orderTime'] ?></td>
                             </tr>
                             <tr>
                                 <th>付款方式：</th>
-                                <td>貨到付款</td>
+                                <td><?php echo $orderRow['payWay'] ?></td>
                             </tr>
                             <tr>
                                 <th>出貨狀態：</th>
-                                <td>已送達</td>
+                                <td><?php echo $orderRow['orderStatus'] ?></td>
                             </tr>
 
 
@@ -378,11 +391,11 @@
                         <table>
                             <tr>
                                 <th>收件人地址:</th>
-                                <td>桃園中壢資策會</td>
+                                <td><?php echo $orderRow['address'] ?></td>
                             </tr>
                             <tr>
                                 <th>收件人電話：</th>
-                                <td>0</td>
+                                <td><?php echo $orderRow['phone'] ?></td>
                             </tr>
 
 
@@ -390,7 +403,7 @@
 
                     </div>
                     <div class="total">
-                        <p>總額：0</p>
+                        <p>總額：<?php echo $orderRow['orderTotal'] ?></p>
                     </div>
                     <!-----------------訂單明細------------------------  -->
                     <div class="orderitem">
@@ -409,43 +422,206 @@
                                     <th>評價狀態</th>
 
                                 </tr>
+
+         <?php 
+              $OL_sql= "select a.snackNo, a.snackName, a.snackPic, a.snackPrice, b.orderNo, b.snackQuan, b.customBoxItem, b.snackNo from snack a join orderItem b on a.snackNo = b.snackNo where orderNo=:orderNo";
+                          $order_list =$pdo->prepare($OL_sql);
+                          $order_list->bindValue(":orderNo",$orderNo);
+                          $order_list->execute();
+
+                          $order_listArr = $order_list->fetchAll(PDO::FETCH_ASSOC);
+                          $OLrowcount = $order_list->rowCount(); 
+                        //   print_r($order_listRow);
+                        //   print_r($order_listArr);
+                        //   echo $OLrowcount."<br>" ;
+                        //   echo count($order_listArr).$br;
+
+                      
+                        
+
+                          for($i=0;$i<$OLrowcount;$i++){
+        ?>
                                 <tr class="orderList_moreItems item01">
                                     <td>
-                                        <img src="../images/index/co2.png" alt="商品圖">
+                                        <img src="<?php echo $order_listArr[$i]['snackPic'] ?>" alt="商品圖">
                                     </td>
-                                    <td>pocky巧克力</td>
-                                    <td>1</td>
-                                    <td>70</td>
-                                    <td>70</td>
+                                    <td><?php echo $order_listArr[$i]['snackName'] ?></td>
+                                    <td><?php echo $order_listArr[$i]['snackQuan'] ?></td>
+                                    <td><?php echo $order_listArr[$i]['snackPrice'] ?></td>
+                                    <td><?php echo $order_listArr[$i]['snackQuan'] *$order_listArr[$i]['snackPrice']?></td>
                                     <td>一般</td>
                                     <td>
                                         <button class="orderList_eva cart">未評價</button>
                                     </td>
                                 </tr>
-                                <tr class="orderList_moreItems item02">
-                                    <td>
-                                        <img src="../images/index/co2.png" alt="商品圖">
-                                    </td>
-                                    <td>雷神巧克力</td>
-                                    <td>2</td>
-                                    <td>45</td>
-                                    <td>90</td>
-                                    <td>客製</td>
-                                    <td>
-                                        <button class="orderList_eva cart">未評價</button>
-                                    </td>
-                                </tr>
+                                <tr>
+                                <form action="" class="eva_lightBox">
+                                    
+                                    <span class="eva_lightBox_leave">x</span>
+                        
+                                    <table class="eva_lightBox_Box01">
+                    
+                                        <tr>
+                        
+                                            <td>
+                                                <div class="evaContent ">
+                                                    <img src="" alt="商品圖">
+                                                </div>
+                                                <p><</p>
 
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <ul class="eva_lightBox_stars">
+                                                    <li>
+                                                        <p>
+                                                            甜度：
+                                                            <ul class="eva_lightBox_swStars">
+                                                                <li>
+                                                                    1星 <input type="radio" name="swStar">
+                                                                </li>
+                                                                <li>
+                                                                    2星 <input type="radio" name="swStar">
+                                                                </li>
+                                                                <li>
+                                                                    3星 <input type="radio" name="swStar">
+                                                                </li>
+                                                                <li>
+                                                                    4星 <input type="radio" name="swStar">
+                                                                </li>
+                                                                <li>
+                                                                    5星 <input type="radio" name="swStar">
+                                                                </li>
+                                                            </ul>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>
+                                                            酸度：
+                                                            <ul class="eva_lightBox_suStars">
+                                                                <li>
+                                                                    1星 <input type="radio" name="suStar">
+                                                                </li>
+                                                                <li>
+                                                                    2星 <input type="radio" name="suStar">
+                                                                </li>
+                                                                <li>
+                                                                    3星 <input type="radio" name="suStar">
+                                                                </li>
+                                                                <li>
+                                                                    4星 <input type="radio" name="suStar">
+                                                                </li>
+                                                                <li>
+                                                                    5星 <input type="radio" name="suStar">
+                                                                </li>
+                                                            </ul>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>
+                                                            辣度：
+                                                            <ul class="eva_lightBox_spStars">
+                                                                <li>
+                                                                    1星 <input type="radio" name="spStar">
+                                                                </li>
+                                                                <li>
+                                                                    2星 <input type="radio" name="spStar">
+                                                                </li>
+                                                                <li>
+                                                                    3星 <input type="radio" name="spStar">
+                                                                </li>
+                                                                <li>
+                                                                    4星 <input type="radio" name="spStar">
+                                                                </li>
+                                                                <li>
+                                                                    5星 <input type="radio" name="spStar">
+                                                                </li>
+                                                            </ul>
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>
+                                                            好評度：
+                                                            <ul class="eva_lightBox_gdStars">
+                                                                <li>
+                                                                    1星 <input type="radio" name="gdStar">
+                                                                </li>
+                                                                <li>
+                                                                    2星 <input type="radio" name="gdStar">
+                                                                </li>
+                                                                <li>
+                                                                    3星 <input type="radio" name="gdStar">
+                                                                </li>
+                                                                <li>
+                                                                    4星 <input type="radio" name="gdStar">
+                                                                </li>
+                                                                <li>
+                                                                    5星 <input type="radio" name="gdStar">
+                                                                </li>
+                                                            </ul>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p>留言分享</p>
+                                                <textarea name="textDiscuss" cols="50" rows="10"
+                                                    class="eva_lightBox_textDics"></textarea>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="proPicBox">
+                                                    <img src="../images/index/co2.png">
+                                                </div>
+
+
+
+                                                <label class="evaproPic" for="upFile">
+
+                                                    <p class="cart">上傳圖檔
+                                                    </p>
+                                                    <input type="file" name="upFile" id="upFile">
+
+
+                                                </label>
+                                                <div class="evaContent evaSend">
+                                                    <button class="step">確認送出</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    
+                                
+                                    </table>
+                                </form>
+                                </tr>
+                                
+                    <?php 
+                               }  
+                        ?>
+                       
                             </table>
-                            <form action="" class="eva_lightBox">
+                
+
+                            <!-- <form action="" class="eva_lightBox">
+                         
                                 <span class="eva_lightBox_leave">x</span>
+                      
                                 <table class="eva_lightBox_Box01">
+               
                                     <tr>
+                    
                                         <td>
                                             <div class="evaContent ">
-                                                <img src="../images/index/co2.png" alt="商品圖">
+                                                <img src="<?php echo $eavCountRow['snackPic']?>" alt="商品圖">
                                             </div>
-                                            <p>uuu巧克力</p>
+                                            <p><?php echo $eavCountRow['snackName']?></p>
 
                                         </td>
                                     </tr>
@@ -574,18 +750,25 @@
                                             </div>
                                         </td>
                                     </tr>
-
+                                  
+                            
                                 </table>
-                            </form>
+                            </form> -->
+    
 
+               
                         </div>
 
                     </div>
 
+
                 </div>
 
+                <?php 
+                    }  
+                }
+            ?>
 
-    
 
 
             </div>
