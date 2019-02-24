@@ -34,6 +34,7 @@ try {
    <script src="../js/recorder.js"></script>
    <script src="../js/common.js"></script>
    <script src="../js/findingIp.js"></script>
+   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </head>
 
 <body>
@@ -41,7 +42,10 @@ try {
 
     <img class="coco01" src="../images/customized/coco01.png" alt="">
     <img class="coco02" src="../images/customized/coco02.png" alt="">
+<<<<<<< HEAD
 
+=======
+>>>>>>> jonathan
     <?php 
     require_once("header.php")
     ?>
@@ -240,7 +244,7 @@ try {
                             <ul class="tab-content-2">
                                 <li class="tab yellow">樣式</li>
                                 <li class="tab">文字</li>
-                                <li class="tab">語音</li>
+                                <li class="tab">音效</li>
                             </ul>
                             <div class="content">
                                 <div class="cardStyle">
@@ -286,54 +290,86 @@ try {
                                 </div>
                             </div>
                             <div class="content">
-                                <div class="cardRecord">
-                            <!-- 撥放介面實體 -->
+                                
+                                <button class="next soundStepBtn"><</button>
+                                <div class="container">
+                                    <div style="display: inline-block;">
+                                        <p id="sound01">生日快樂</p>
+                                    <audio controls preload="auto" id="01">
+                                        <source src="../images/customized/sounds/生日快樂音檔.m4a" type="audio/ogg">
+                                    </audio>
+                                    </div>
+                                    <div>
+                                        <p id="sound02">大零食家之聲</p>
+                                    <audio controls preload="auto" id="02">
+                                        <source src="../images/customized/sounds/大零食家之聲.mp3" type="audio/ogg">
+                                    </audio>
+                                    </div>
+                                    <div>
+                                        <p id="sound03">興奮哥</p>
+                                    <audio controls preload="auto" id="03">
+                                        <source src="../images/customized/sounds/興奮哥.wmv.mp3" type="audio/ogg">
+                                    </audio>
+                                    </div>
+                                    <div>
+                                    <p id="sound04">我們懷念他們</p>
+                                    <audio controls preload="auto" id="04">
+                                        
+                                        <source src="../images/customized/sounds/我們懷念他們.mp3" type="audio/ogg">
+                                    </audio>
+                                    </div>
+                                </div>
+                                
+                                <button class="prev soundStepBtn">></button>
+                                <button class="action">新增音效</button>
+                        <!-- <div class="cardRecord">
+                           撥放介面實體 
                             <div id="audioItem">
-                                    <!-- 一開始不給src，待錄音有值會自動增加 -->
+                                   一開始不給src，待錄音有值會自動增加
                                     <audio id="au_player"></audio>
-                                    <!-- 撥放控制按鈕們 -->
+                                    撥放控制按鈕們 
                                     <div class="au_btns" id="au_btns">
-                                        <!-- 撥放與暫停 -->
+                                         撥放與暫停 
                                         <button class="au_btn" id="au_btn_play"><i class="fas fa-play"></i></button>
-                                        <!-- 停止 -->
+                                         停止 
                                         <button class="au_btn" id="au_btn_stop"><i class="fas fa-stop"></i></button>
-                                        <!-- 靜音與否 -->
+                                        靜音與否 
                                         <button class="au_btn" id="au_btn_vol"><i class="fas fa-volume-up"></i></button>
-                                        <!-- 音量bar -->
+                                        <! 音量bar >
                                         <div class="volBar" id="volBar">
-                                            <!-- 會伸縮的bar -->
+                                            <! 會伸縮的bar >
                                             <div class="vol_proBar" id="vol_proBar"></div>
-                                            <!-- 拉桿 -->
+                                            <! 拉桿 >
                                             <div class="vol_barNote" id="vol_barNote"></div>
                                         </div>
-                                        <!-- 刪除 -->
+                                        <! 刪除 >
                                         <button id="audioDel" class="au_btn trash"><i class="far fa-trash-alt"></i></button>
                                     </div>
                             
-                                    <!-- 進度條與時間提示 -->
+                                    <! 進度條與時間提示 >
                                     <div class="au_ctrl">
-                                        <!-- 這是進度條 -->
+                                        <! 這是進度條 >
                                         <div class="defBar" id="defBar">
-                                            <!-- 伸縮bar -->
+                                            <! 伸縮bar >
                                             <div class="proBar" id="proBar"></div>
-                                            <!-- 拉桿 -->
+                                            <! 拉桿 >
                                             <div class="barNote" id="barNote"></div>
                                         </div>
-                                        <!-- 時間提示組 -->
+                                        <! 時間提示組 >
                                         <div class="au_time" id="au_time">
-                                            <!-- 當前時間 -->
+                                            <! 當前時間 >
                                             <span class="au_timeNow" id="au_timeNow">00:00</span>
                                             <span>/</span>
-                                            <!-- 總長 -->
+                                            <! 總長 >
                                             <span class="au_timeAll" id="au_timeAll">00:00</span>
                                         </div>
                                     </div>
                             
-                                    <!-- 錄音操作鈕 -->
-                                    <!-- 一下錄，一下不錄 -->
+                                    <! 錄音操作鈕 >
+                                    <! 一下錄，一下不錄 >
                                     <div id="recordBtn" class="recordBtn"><i class="fas fa-microphone"></i></div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                   </div> 
@@ -524,6 +560,77 @@ try {
 <script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <!-- <script src="../js/addCart.js" defer></script> -->
 <script src="../js/cusAddCart.js" defer></script>
+
+<script>
+      var sound01  = document.getElementById("sound01");
+      var sound02  = document.getElementById("sound02");
+      var sound03  = document.getElementById("sound03");
+      var sound04  = document.getElementById("sound04");
+      var music01 = document.getElementById("01");
+      var music02 = document.getElementById("02");
+      var music03 = document.getElementById("03");
+      var music04 = document.getElementById("04");
+
+
+      var sound01  = document.getElementById("sound01");
+      sound01.addEventListener("click",play01 );
+      function play01(){
+        music01.play();  
+      }
+      var sound02  = document.getElementById("sound02");
+      sound02.addEventListener("click",play02 );
+      function play02(){
+        music02.play();  
+      }
+      var sound03  = document.getElementById("sound03");
+      sound03.addEventListener("click",play03 );
+      function play03(){
+        music03.play();  
+      }
+      var sound04  = document.getElementById("sound04");
+      sound04.addEventListener("click",play04 );
+      function play04(){
+        music04.play();  
+      }
+
+</script>
+<script>
+    var currentIndex = 0,
+    items = $('.container div'),
+    itemAmt = items.length;
+
+    function cycleItems() {
+    var item = $('.container div').eq(currentIndex);
+    items.hide();
+    item.css('display','inline-block');
+    }
+
+    var autoSlide = setInterval(function() {
+    // currentIndex += 1;
+    // if (currentIndex > itemAmt - 1) {
+    //   currentIndex = 0;
+    // }
+    cycleItems();
+    }, 3000);
+
+    $('.next').click(function() {
+    clearInterval(autoSlide);
+    currentIndex += 1;
+    if (currentIndex > itemAmt - 1) {
+        currentIndex = 0;
+    }
+    cycleItems();
+    });
+
+    $('.prev').click(function() {
+    clearInterval(autoSlide);
+    currentIndex -= 1;
+    if (currentIndex < 0) {
+        currentIndex = itemAmt - 1;
+    }
+    cycleItems();
+    });
+</script>
 
 <script>
 //前:50  後：49 上：48 左：51 右：52 
