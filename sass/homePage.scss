@@ -694,6 +694,10 @@ body {
         .LeaderboardSort {
             margin: 60px 0 30px;
             text-align: center;
+            .showColor{
+                background-color: $blue;
+                color: #fff;
+            }
             :nth-child(2),
             :nth-child(3),
             :nth-child(4) {
@@ -1051,12 +1055,13 @@ body {
                             justify-content: space-around;
                             margin: auto;
                             p {
-                                border: 2px solid $blue;
+                                border: 2px dashed #076baf;
                                 padding: 23px 0;
-                                margin: 10px;
-                                width: 100px;
+                                margin: 10px 0;
+                                width: 107px;
                                 border-radius: 50%;
                                 vertical-align: middle;
+                                font-size: 18px;
                                 color: #e97d58;
                             }
                             @media screen and (max-width:768px) {
