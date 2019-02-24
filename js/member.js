@@ -38,11 +38,11 @@ $(document).ready(function(){
     if($(this).text()=="訂單明細v"){
       // console.log('oop');
       
-      $(this).text()=="訂單明細^";
+      $(this).text("訂單明細^");
     }else{
-      $(this).text()=="訂單明細v";
+      $(this).text("訂單明細v");
     }
-    
+  
     $('.orderItem').toggleClass('expand');
     $('.textDics').value ="";
       

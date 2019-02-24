@@ -374,355 +374,315 @@ input[type="number"]{
     }
     //----------------訂單管理--------------
     #tab-2{
-    
-        .orderList{
-            
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            text-align: left;
-            
-            table{
-                line-height: 1.6;
-                
-                th{
-                   
-                    color: $tabColor;
-                    font-size: 16px;
-                    font-family: g2Font;
+        .order{
+            width: 100%;
+            .orderList{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                text-align: left;
+                padding: 20px;
+                table{
+                    tr{
+                        line-height: 1.6;
+                        th{
+                            color: $tabColor;
+                            font-size: 20px;
+                            font-family: g2Font; 
+                        }
+                        td{
+                            color: $tabColor;
+                            font-size: 18px;
+                            font-family: g2Font;
+                            padding: 10px;
+                        }
+                    }
+                    
                 }
-                td{
-                    color: $tabColor;
-                    font-size: 15px;
-                    font-family: g2Font;
-                    padding: 10px;
-                }
-            }
-            table:first-child{
-                
-                th{
-                    width: 30%;
-                    padding: 1% 3%;
-                }   
-                
-    
-            }
-            table:last-child{
-                th{
-                    width: 33%;
-                    padding: 1% 3%;
-                }
-            }
-                        
-                
-                
             }
             .total{
                 text-align: right;
-                padding: 1% 2%; 
+                
                 p{
+                    font-size: 18px;
                     line-height: 1.6;
                     color: $tabColor;
                     font-family: g2Font;
+                    padding: 10px; 
                 }
             }
-            .line{
-                width: 80%;
-                margin: auto;
-                height: 2px;
-                border-bottom: 2px solid $blue;
-                margin-bottom: 10px;
-            }
-            #listMore{ 
-                position: relative;
-                text-align: center;
+            .orderitem{
+                width: 100%;
                 p{
-                    color: $blue; 
-                    font-family: g2Font;
+                    text-align: center;
+                    font-size: 18px;
+                    color: $tabColor;
                     line-height: 2;
                     cursor: pointer;
+                    
                 }
-                .orderItem{
-                   
+                .line{
+                    width: 88%;
+                    margin: auto;
+                    height: 2px;
+                    border-bottom: 2px solid $blue;
+                    margin-bottom: 10px;
+                }
+                .orderLis_content{
+                    position: relative;
                     width: 100%;
-                    display: none;
-            
-                   .orderItemList{
-                       tr{
-                           width: 100%;
-                           text-align: center;
+                    // display: none;
+                    .orderList_items{
+                        tr{
+                            text-align: center;
                            th{
-                            width: 15%;
+                                width: 15%;
                               line-height: 1.6;
                                font-size: 15px;
                                color: $blue;
-                            //    width: 50px;
-                               font-family: g2Med;
-                               padding: 0 10px;
+                               font-family: g2Font;
+                               padding: 10px;
                            }
-                           
-                       }
-                       .listeva{
-
+                        }
+                        .orderList_moreItems{
                             td{
-                                width: 15%;
                                 vertical-align: middle;
-                                font-size: 14px;
-                                color: $tabColor;
-                                font-family: g2Med;
-                                line-height: 1.6;
-                            }
-                            img{
-                                width: 73%;
-                                margin-top: 5px;
-                                
-                            }
-                            .cart{
-                                font-size: 12px;
-                                width: 50px;
-                                height: 30px;
-                                margin: 0 5px;
-                            }
-                       }
-                   }
-               
-                }
-                .orderItem.expand{
-                    display: block;
-                }
-                
-                .evaLightBox{
-                position: absolute;
-                top: 10%;
-                left: 9%;
-                width: 84%;
-                background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-                border-radius: 10px;
-                box-shadow: 5px 5px 10px 0px #aaa;
-                // margin: auto;
-                z-index: 20;
-                display: none;
-                span{
-                    cursor: pointer;
-                    display: block;
-                    text-align: right;
-                    padding: 10px;
-                    font-size: 25px;
-                }
-                .evaLightBox_content{
-                    width: 100%;
-                    
-                    .proPic{
-                        text-align: center;
-                        img{
-                            width: 25%;
-                        }
-                        p{
-                            color: $tabColor;
-                            line-height: 1.6;
-                          }
-                    }
-                    .evaStars{
-                        
-                        ul{
-                            li{
-                                p{
-                                    text-align: left;
-                                    color: $tabColor;
-                                    line-height: 1.6;
-                                    padding: 0 5px;
-                                    font-size: 18px;
-                                    
-                                }
-                            }
-                        }
-                        .swStars,.suStars,.spStars,.gdStars{
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: space-around;
-                            align-items: center;
-                            padding: 10px;
-                            li{
-                                color: $tabColor;
-                                font-family: g2Med;
                                 font-size: 16px;
-                                input{
-                                    width: 20px;
-                                    
-
+                                color: $tabColor;
+                                font-family:g2Med; 
+                                padding: 10px;
+                                img{
+                                    width: 100%;
+                                }
+                                .cart{
+                                    width: 70px;
+                                    height: 40px;
+                                    font-size: 16px;
                                 }
                             }
                         }
                         
+
                     }
-                    .discuss{
-                        text-align: center;
-                        p{
-                            color: $tabColor;
-                            font-size: 18px;
-                        }
-                        textarea{
-                            margin: 10px 0;
-                        }
-                    }
-                    .evaPro{
-                        width: 150px;
+                    //==========評價燈箱====================
+                    .eva_lightBox{
+                        display: none;
+                        position: absolute;
+                        top: -4%;
+                        width: 100%;
+                        background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+                        border-radius: 10px;
+                        box-shadow: 5px 5px 10px 0px #aaa;
                         margin: auto;
-                        margin-top: 10px;
-                        .proPicBox{
-                            margin-bottom: 10px;
-                            text-align: center;
-                            img{
-                                width: 30%;
-                            }
+                        .eva_lightBox_leave{
+                            text-align: right;
+                            display: block;
+                            font-size: 40px;
+                            padding: 8px;
+                        }
+                        .eva_lightBox_Box01{
+                            display: flex;
+                            flex-direction: column;
+                            width: 100%;
+                            
+                            tr{
+                                
+                                td{
+                                    // width: 25%;
+                                    padding: 15px;
+                                    .evaContent{
+                                        margin: auto;
+                                        width: 100px;
+                                        img{
+                                            width: 100%;
+                                            padding: 8px;
+                                        
+                                        }
+                                    }
+                                    .eva_lightBox_stars{
+                                       li{
+                                            p{
+                                                text-align: left;
+                                                padding: 4px;
+                                            }
+                                            .eva_lightBox_swStars,.eva_lightBox_suStars,.eva_lightBox_spStars,.eva_lightBox_gdStars{
+                                                display: flex;
+                                                flex-direction: row;
+                                                justify-content: space-evenly;
+                                                align-items: center;
+                                                li{
+                                                    font-size: 16px;
+                                                    color: $tabColor;
+                                                    font-family: g2Med;
+                                                    margin: 5px;
+                                                    input{
+                                                        width: 30px;
+                                                        text-align: center;
+                                                    }
+                                                }
+                                            }
+                                       } 
+                                        
+                                    }
+                                    .eva_lightBox_textDics{
+                                        margin: 12px;
+                                    }
+                                    .proPicBox{
+                                        width: 65px;
+                                        margin: auto;
+                                        img{
+                                            padding: 8px 0;
+                                        }
+                                    }
+                                    .evaproPic{
+                                        padding: 10px 0;
+                                        .cart{
+                                             width: 120px;
+                                             height: 35px;
+                                             margin: auto;
+                                             color: #fff;
+                                             line-height:1.6; 
+                                             font-size: 18px;
+                                                                    
+                                         }
+                                         input{
+                                               display: none; 
+                                               }
+                                    }
+                                    .evaSend{
+                                        text-align: center;
+                                        padding: 10px 0;
+                                        width: 150px;
+                                        .step{
+                                               width: 120px;
+                                               height: 35px;
+                                               font-size: 18px;
+                                                margin-top: 10px;                           
+                                            }
+                                
+                                    }
+                            
                         }
                         
-                        .evaproPic{
-                           
-                            .cart{
-                                width: 120px;
-                                height: 35px;
-                                margin: auto;
-                                color: #fff;
-                                line-height:1.6; 
-                                
-                            }
-                            input{
-                               display: none; 
-                            }
-                        }
-    
-                    }
-                    .evaSend{
-                        text-align: center;
-                        padding: 10px 0;
-                        .step{
-                            width: 120px;
-                            height: 35px;
-                            
-                            // margin-top: 10px;
-                            
-                             }
                     }
                 }
-                
-                
-                }
-                .evaLightBox.show{
-                    display: block;
-                }
-    
+
             }
-            
-            
-            
+        }
+        // .orderLis_content.show{
+        //     display: block;
+        // }
+    
         
-            
-            
+
             
     
         }
+
+        
+
+            }      
+        } 
     //-----------------收藏品---------------------
     
-        #tab-3{
-                .collect{
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-self: center;
-                        
-                        .item{
-                            background-color: rgb(228, 222, 222);
-                            width: 280px;
-                            height: 400px;
-                            border-radius: 10px;
-                            position: relative;
-                            margin: auto;
-                            text-align: center;
-                            margin-top: 20px;
-                            padding: 3px;
-                            
-                            .country{
-                                width: 40px;
-                                position: absolute;
-                                top: 10px;
-                                right: 15px;
-                            }
-                            .itemImg{
-                                width: 140px;
-                                margin-top: 29px;
-                            }
-                            .sellPrice{
-                                width: 280px;
-                                height: 50px;
-                                p{
-                                    font-size: $p;
-                                    line-height: 2;
-                                    color: $tabColor;
-                                    margin-top: 10px;
-                                    span{
-                                        font-size: $p;
-                                        padding: 0 5px;
-
-                                    }
-                                }
-                                
-                            }
-                            .citemBtns{
-                                margin-top: 0px;
-                            }
-                            
-                        }
+    #tab-3{
+        .collect{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-self: center;
                 
-                }
-            }
-        
-        
-    //---------------優惠券--------------------------    
-        #tab-4{
-            width: 85%;
-            table{
-                margin: auto;
-                width: 100%;
-                tr{
-                    
+                .item{
+                    background-color: rgb(228, 222, 222);
+                    width: 280px;
+                    height: 400px;
+                    border-radius: 10px;
+                    position: relative;
+                    margin: auto;
                     text-align: center;
-                    th{
-                        width: 20%;
-                        line-height: 3;
-                        color: $tabColor;
-                        font-family: g2Font;
-                        font-size: 16px;
-                        border-bottom: 2px solid #076baf;
+                    margin-top: 20px;
+                    padding: 3px;
+                    
+                    .country{
+                        width: 40px;
+                        position: absolute;
+                        top: 10px;
+                        right: 15px;
                     }
+                    .itemImg{
+                        width: 140px;
+                        margin-top: 29px;
+                    }
+                    .sellPrice{
+                        width: 280px;
+                        height: 50px;
+                        p{
+                            font-size: $p;
+                            line-height: 2;
+                            color: $tabColor;
+                            margin-top: 10px;
+                            span{
+                                font-size: $p;
+                                padding: 0 5px;
+
+                            }
+                        }
+                        
+                    }
+                    .citemBtns{
+                        margin-top: 0px;
+                    }
+                    
                 }
-                
-            }
-            #coupon{
-                tr{
-                    td{
-                        // text-align: center;
-                        width: 20%;
-                        vertical-align: middle;
-                        padding: 2%;
-                        font-family: g2Font;
-                        color: $tabColor;
-                        font-size: 14px;
-                        margin-right: 1%;
-                    }
-                    img{
-                        width: 65%;
-                    }
-                }
+        
+        }
+    }
+
+
+//---------------優惠券--------------------------    
+#tab-4{
+    width: 85%;
+    table{
+        margin: auto;
+        width: 100%;
+        tr{
+            
+            text-align: center;
+            th{
+                width: 20%;
+                line-height: 3;
+                color: $tabColor;
+                font-family: g2Font;
+                font-size: 16px;
+                border-bottom: 2px solid #076baf;
             }
         }
         
+    }
+    #coupon{
+        tr{
+            td{
+                // text-align: center;
+                width: 20%;
+                vertical-align: middle;
+                padding: 2%;
+                font-family: g2Font;
+                color: $tabColor;
+                font-size: 14px;
+                margin-right: 1%;
+            }
+            img{
+                width: 65%;
+            }
+        }
+    }
+}
 
-    }      
-    
-    
-} 
+
+    }
+}  
+
 
       
 
@@ -820,18 +780,9 @@ input[type="number"]{
                 }
                 
             }
-            #tab-2{
-                #orderList{
-                    .evaLightBox{
-                        .evaStars{
-                            padding: 0 5px;
-                            // img{
-                            //     width: 87%;
-                            // }
-                        }
-                    }
-                }
-            }
+            // #tab-2{
+               
+            // }
             
         
         }
@@ -1009,116 +960,286 @@ input[type="number"]{
                 
             }
             #tab-2{
-                .orderList{
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
+                .order{
                     
-                    table{
-                        width: 44%;
-                        tr{
-                            th{
-                                font-size: 25px;
+                    .orderList{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-around;
+                       
+                        table{
+                            width: 50%;
+                            tr{
+                              
+                                th{
+                                    font-size: 28px;
+                                    width: 34%;
+                                    padding: 10px;
+                                }
+                                td{
+                                    padding: 10px;
+                                    font-size: 20px;
+                                    padding: 10px;
+                                }
                             }
-                            td{
-                                padding-left: 1%;
-                                font-size: 22px;
-                            }
-    
-                        }
-                        
-                    }
-                    
-                    table:first-child{
-                    
-                        th{
-                            width: 35%;
                             
-                        }     
+                        }
+                    }
+                    .total{
+                        text-align: right;
+                        
+                        p{
+                            font-size: $p;
+                            padding: 20px; 
+                        }
+                    }
+                    .orderitem{
+                        width: 100%;
+                        p{
+                            font-size: $p;
+                            
+                        }
+                        .orderLis_content{
+                            position: relative;
+                            width: 100%;
+                            // display: none;
+                            .orderList_items{
+                                tr{
+                                    text-align: center;
+                                   th{
+                                       font-size: $p;
+                                   }
+                                }
+                                .orderList_moreItems{
+                                    td{
+                                        font-size: $p;
+                                        img{
+                                            width: 50%;
+                                        }
+                                    }
+                                }
+                                
+        
+                            }
+                            //==========評價燈箱====================
+                            .eva_lightBox{
+                                display: block;
+                                position: absolute;
+                                top: -4%;
+                                width: 100%;
+                                margin: 0;
+                                .eva_lightBox_leave{
+                                    text-align: right;
+                                    display: block;
+                                    font-size: 40px;
+                                    padding: 8px;
+                                }
+                                .eva_lightBox_Box01{
+                                    tbody{
+                                         // width: 100%;
+                                        display: flex;
+                                        flex-direction: row;
+                                        justify-content: center;
+                                        align-content: center;
+                                           
+                                    tr{
+                                       
+                                        // width: 100%;
+                                        td{
+                                            padding: 15px;
+                                            .evaContent{
+                                                margin: auto;
+                                                width: 100px;
+                                                img{
+                                                    width: 100%;
+                                                    padding: 8px;
+                                                
+                                                }
+                                            }
+                                            .eva_lightBox_stars{
+                                               li{
+                                                    p{
+                                                        text-align: left;
+                                                        padding: 4px;
+                                                    }
+                                                    .eva_lightBox_swStars,.eva_lightBox_suStars,.eva_lightBox_spStars,.eva_lightBox_gdStars{
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        justify-content: space-evenly;
+                                                        align-items: center;
+                                                        li{
+                                                            font-size: 16px;
+                                                            color: $tabColor;
+                                                            font-family: g2Med;
+                                                            margin: 5px;
+                                                            input{
+                                                                width: 30px;
+                                                                text-align: center;
+                                                            }
+                                                        }
+                                                    }
+                                               } 
+                                                
+                                            }
+                                            .eva_lightBox_textDics{
+                                                margin: 12px;
+                                            }
+                                            .proPicBox{
+                                                width: 65px;
+                                                margin: auto;
+                                                img{
+                                                    padding: 8px 0;
+                                                }
+                                            }
+                                            .evaproPic{
+                                                padding: 10px 0;
+                                                .cart{
+                                                     width: 120px;
+                                                     height: 35px;
+                                                     margin: auto;
+                                                     color: #fff;
+                                                     line-height:1.6; 
+                                                                            
+                                                 }
+                                                 input{
+                                                       display: none; 
+                                                       }
+                                            }
+                                            .evaSend{
+                                                text-align: center;
+                                                padding: 10px 0;
+                                                width: 150px;
+                                                .step{
+                                                       width: 120px;
+                                                       height: 35px;
+                                                       font-size: 18px;
+                                                        margin-top: 10px;                           
+                                                    }
+                                        
+                                            }
+                                    
+                                }
+                                
+                            }
+
+                                    }
+                                    
+                                   
+                                 
+                        }
         
                     }
-                    table:last-child{
-                        th{
-                            
-                            width: 35%;
-                        }
-                    }
+                }
+                // .orderLis_content.show{
+                //     display: block;
+                // }
+            
+                
+        
                     
+            
                 }
-                .total{
-                    p{
-                        font-size: 22px;
-                        span{
-                            font-size: 22px;
-                        }
-                    }
-                }
-                #listMore{
-                    p{
-                        font-size: 22px;
-                        span{
-                            font-size: 18px;
-                        }
-                    }
-                    .orderItem{
-                        .orderItemList{
-                            tr{
-                                th{
-                                    font-size: 25px;
-                                }
-                               
-                            }
-                            .listeva{
-                                td{
-                                    font-size: 22px;
-                                    img{
-                                      padding: 10px;
+            //-----------------收藏品---------------------
+            
+                #tab-3{
+                        .collect{
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-self: center;
+                                
+                                .item{
+                                    background-color: rgb(228, 222, 222);
+                                    width: 280px;
+                                    height: 400px;
+                                    border-radius: 10px;
+                                    position: relative;
+                                    margin: auto;
+                                    text-align: center;
+                                    margin-top: 20px;
+                                    padding: 3px;
+                                    
+                                    .country{
+                                        width: 40px;
+                                        position: absolute;
+                                        top: 10px;
+                                        right: 15px;
                                     }
-                                    .cart{
-                                     font-size: 16px;
-                                     width: 80px;
-                                     height: 30px;
-                                     margin: 0 5px;
-                                 }
+                                    .itemImg{
+                                        width: 140px;
+                                        margin-top: 29px;
+                                    }
+                                    .sellPrice{
+                                        width: 280px;
+                                        height: 50px;
+                                        p{
+                                            font-size: $p;
+                                            line-height: 2;
+                                            color: $tabColor;
+                                            margin-top: 10px;
+                                            span{
+                                                font-size: $p;
+                                                padding: 0 5px;
+        
+                                            }
+                                        }
+                                        
+                                    }
+                                    .citemBtns{
+                                        margin-top: 0px;
+                                    }
+                                    
                                 }
+                        
+                        }
+                    }
+                
+                
+            //---------------優惠券--------------------------    
+                #tab-4{
+                    width: 85%;
+                    table{
+                        margin: auto;
+                        width: 100%;
+                        tr{
+                            
+                            text-align: center;
+                            th{
+                                width: 20%;
+                                line-height: 3;
+                                color: $tabColor;
+                                font-family: g2Font;
+                                font-size: 16px;
+                                border-bottom: 2px solid #076baf;
                             }
                         }
                         
                     }
-                    .evaLightBox{
-                        height: 460px;
-                            top: 10px;
-                            .evaLightBox_content{
-                                width: 100%;
-                                display: flex;
-                                flex-direction: row;
-                                justify-content: space-around;
-                                align-items: center;
-                                   .evaContent{
-                                        margin: auto;
-                                        width: 25%;
-                                        height: 300px;
-                                        .evaSend{
-                                            width: 100%;
-                                            height: 50px;
-                                                 }
-                                             }
-                                    .proPic{
-                                        img{
-                                            width: 40%;
-                                        }
-                                    }         
-                                    .evaStars{
-                                        padding: 5px;
-                                    }         
-                                         }
-                                }
-                    
+                    #coupon{
+                        tr{
+                            td{
+                                // text-align: center;
+                                width: 20%;
+                                vertical-align: middle;
+                                padding: 2%;
+                                font-family: g2Font;
+                                color: $tabColor;
+                                font-size: 14px;
+                                margin-right: 1%;
+                            }
+                            img{
+                                width: 65%;
+                            }
+                        }
+                    }
                 }
                 
-              
-                    
-                }
+        
+            }      
+            
+            
+                } 
             #tab-3{
                     .collect{
                         display: flex;
@@ -1206,4 +1327,11 @@ input[type="number"]{
     
     
 
+}
+
+
+footer{
+    // position: absolute;
+    // bottom:0;
+    display: none;
 }
