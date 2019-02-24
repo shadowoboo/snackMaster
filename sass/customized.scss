@@ -512,6 +512,7 @@ audio{
     .upfile{
             display: flex;
             align-items: center;
+            margin-top: 10px;
         label{
             color: #fff;
             background-color: #076baf;
@@ -840,6 +841,10 @@ a {
             text-align: center;
             text-decoration: none;
             font-size: 22px;
+            cursor: pointer;
+            &:hover{
+                background-color:#00457b;
+            }
         }
         .cardStyle{
             // display: flex;
@@ -1556,6 +1561,7 @@ $cardY:600px;
             display: flex;
             flex-direction: row;
             justify-content:center;
+            margin-top: 24px;
             // span{
             //     width: 200px;
             // }
