@@ -18,7 +18,7 @@ try {
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>尋找販賣機</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="../css/nnnnn.css">
@@ -28,7 +28,7 @@ try {
         crossorigin="anonymous">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/findingIp.js"></script>
+    <!-- <script src="../js/findingIp.js"></script> -->
     <script src="../js/search.js"></script>
 
 
@@ -288,15 +288,15 @@ try {
 
 
     //限制地圖區域
-    function doFirst(){
-        navigator.geolocation.getCurrentPosition(succCallback);
-    }
+    // function doFirst(){
+    //     navigator.geolocation.getCurrentPosition(succCallback);
+    // }
 
     function succCallback(arg){
-        // var lati = 24.967768;
-        var lati = 23.853344;
-        // var longi = 121.191705;
-        var longi = 120.951841;
+        var lati = 24.967768;
+        // var lati = 23.853344;
+        var longi = 121.191705;
+        // var longi = 120.951841;
 
         var taiwan = {
             north: 25.46,
@@ -308,7 +308,7 @@ try {
         var xy = new google.maps.LatLng(lati, longi);
         // var mapBoard = document.getElementById('mapBoard');
         var options = {
-            zoom: 6,//設定遠近
+            zoom: 10,//設定遠近
             center: xy,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             restriction: {
@@ -501,7 +501,7 @@ try {
     }
     
 
-    window.addEventListener('load', doFirst, false);
+    window.addEventListener('load', succCallback, false);
     
     </script>
 

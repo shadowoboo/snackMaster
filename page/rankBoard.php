@@ -48,9 +48,12 @@ session_start();
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
+    
+           
+    
     <link rel="stylesheet" href="../css/rankBoard.css">
-    <link rel="stylesheet" href="../css/nnnnn.css">        
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/nnnnn.css"> 
     <script src="../js/common.js"></script>
     <script src="../js/Chart.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -61,6 +64,7 @@ session_start();
     <!-- <script src="../js/findingIp.js"></script> -->
     <!-- <script src="../js/showStar.js"></script> -->
     <script src="../js/showMsg.js"></script>
+    <script src="../js/search.js"></script>
 </head>
 <body class="rankBoard">
     <?php
@@ -207,9 +211,12 @@ session_start();
                                 }
                         ?>
                     </div>
-                        
+                    <div id="pFlex">
+                            <p id="price">$<?php echo $snackAllRow[0]['snackPrice']?></p>
+                    </div>
+
                     <div class="itemBtns">
-                        <span id="price">$<?php echo $snackAllRow[0]['snackPrice']?></span>
+                        
                         <button class="detail"> <a id='snackLink' href="../page/showItem.php?snackNo=<?php echo $snackAllRow[0]['snackNo']?>">商品詳細</a></button>
                         <button class="cart" id="<?php echo " {$snackAllRow[0]['snackNo']}|{$snackAllRow[0]['snackPrice']}|0"?>">加入購物車</button>
                         <button class="heart" id=<?php echo $snackAllRow[0]['snackNo']?>><i class="far fa-heart"></i></button>

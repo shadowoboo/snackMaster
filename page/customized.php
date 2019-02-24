@@ -1,13 +1,13 @@
 <?php
 $errMsg = "";
 try {
-	require_once("connectcd105g2.php");
-	// $sql = "select * from snack";
-    //  $snack = $pdo->query($sql); 
+    require_once("connectcd105g2.php");
+    // $sql = "select * from snack";
+    //  $snack = $pdo->query($sql);
     //  $snackRows = $snack -> fetchAll(PDO::FETCH_ASSOC);
     //  var_dump($snackRows);exit();
 } catch (PDOException $e) {
-	$errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
+    $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
     $errMsg .= "行號 : ".$e -> getLine()."<br>";
     exit($errMsg);
 }
@@ -29,22 +29,23 @@ try {
    crossorigin="anonymous">
     <script src="../js/search.js"></script>
    <script src="../js/jquery-3.3.1.min.js"></script>
-   <script src="../js/shadowLib.js"></script>
+   <!-- <script src="../js/shadowLib.js"></script> -->
    <!-- 錄音外掛。我想我跳下去玩一定會來不及。謝謝你 9527 -->
-   <script src="../js/recorder.js"></script>
+   <!-- <script src="../js/recorder.js"></script> -->
    <script src="../js/common.js"></script>
    <script src="../js/findingIp.js"></script>
+   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </head>
 
 <body>
+
+
     <img class="coco01" src="../images/customized/coco01.png" alt="">
     <img class="coco02" src="../images/customized/coco02.png" alt="">
-
-</div>
     <?php 
     require_once("header.php")
     ?>
-  <div class="card step-progress"">
+  <div class="card step-progress">
     <div class="step-slider">
       <div data-id="step1" class="step-slider-item"></div>
       <div data-id="step2" class="step-slider-item"></div>
@@ -239,7 +240,7 @@ try {
                             <ul class="tab-content-2">
                                 <li class="tab yellow">樣式</li>
                                 <li class="tab">文字</li>
-                                <li class="tab">語音</li>
+                                <li class="tab">音效</li>
                             </ul>
                             <div class="content">
                                 <div class="cardStyle">
@@ -284,55 +285,87 @@ try {
                                     <!-- <span class="action" style="line-height: 35px; margin: auto;">新增</span> -->
                                 </div>
                             </div>
-                            <div class="content">
-                                <div class="cardRecord">
-                            <!-- 撥放介面實體 -->
+                            <div class="content" style=" align-items:flex-end;">
+                                
+                                <button class="next soundStepBtn"><i class="fas fa-angle-left"></i></button>
+                                <div class="container">
+                                    <div style="display: inline-block;">
+                                        <p id="sound01">生日快樂</p>
+                                    <audio controls preload="auto" id="01">
+                                        <source src="../images/customized/sounds/01.mp3" type="audio/ogg">
+                                    </audio>
+                                    </div>
+                                    <div>
+                                        <p id="sound02">大零食家</p>
+                                    <audio controls preload="auto" id="02">
+                                        <source src="../images/customized/sounds/02.mp3" type="audio/ogg">
+                                    </audio>
+                                    </div>
+                                    <div>
+                                        <p id="sound03">大吃特吃</p>
+                                    <audio controls preload="auto" id="03">
+                                        <source src="../images/customized/sounds/03.mp3" type="audio/ogg">
+                                    </audio>
+                                    </div>
+                                    <div>
+                                    <p id="sound04">告白神曲</p>
+                                    <audio controls preload="auto" id="04">
+                                        
+                                        <source src="../images/customized/sounds/04.mp3" type="audio/ogg">
+                                    </audio>
+                                    </div>
+                                </div>
+                                
+                                <button class="prev soundStepBtn"><i class="fas fa-angle-right"></i></button>
+                                <button class="action soundAdd" id="soundAdd" style="margin-bottom:40px;">新增音效</button>
+                        <!-- <div class="cardRecord">
+                           撥放介面實體 
                             <div id="audioItem">
-                                    <!-- 一開始不給src，待錄音有值會自動增加 -->
+                                   一開始不給src，待錄音有值會自動增加
                                     <audio id="au_player"></audio>
-                                    <!-- 撥放控制按鈕們 -->
+                                    撥放控制按鈕們 
                                     <div class="au_btns" id="au_btns">
-                                        <!-- 撥放與暫停 -->
+                                         撥放與暫停 
                                         <button class="au_btn" id="au_btn_play"><i class="fas fa-play"></i></button>
-                                        <!-- 停止 -->
+                                         停止 
                                         <button class="au_btn" id="au_btn_stop"><i class="fas fa-stop"></i></button>
-                                        <!-- 靜音與否 -->
+                                        靜音與否 
                                         <button class="au_btn" id="au_btn_vol"><i class="fas fa-volume-up"></i></button>
-                                        <!-- 音量bar -->
+                                        <! 音量bar >
                                         <div class="volBar" id="volBar">
-                                            <!-- 會伸縮的bar -->
+                                            <! 會伸縮的bar >
                                             <div class="vol_proBar" id="vol_proBar"></div>
-                                            <!-- 拉桿 -->
+                                            <! 拉桿 >
                                             <div class="vol_barNote" id="vol_barNote"></div>
                                         </div>
-                                        <!-- 刪除 -->
+                                        <! 刪除 >
                                         <button id="audioDel" class="au_btn trash"><i class="far fa-trash-alt"></i></button>
                                     </div>
                             
-                                    <!-- 進度條與時間提示 -->
+                                    <! 進度條與時間提示 >
                                     <div class="au_ctrl">
-                                        <!-- 這是進度條 -->
+                                        <! 這是進度條 >
                                         <div class="defBar" id="defBar">
-                                            <!-- 伸縮bar -->
+                                            <! 伸縮bar >
                                             <div class="proBar" id="proBar"></div>
-                                            <!-- 拉桿 -->
+                                            <! 拉桿 >
                                             <div class="barNote" id="barNote"></div>
                                         </div>
-                                        <!-- 時間提示組 -->
+                                        <! 時間提示組 >
                                         <div class="au_time" id="au_time">
-                                            <!-- 當前時間 -->
+                                            <! 當前時間 >
                                             <span class="au_timeNow" id="au_timeNow">00:00</span>
                                             <span>/</span>
-                                            <!-- 總長 -->
+                                            <! 總長 >
                                             <span class="au_timeAll" id="au_timeAll">00:00</span>
                                         </div>
                                     </div>
                             
-                                    <!-- 錄音操作鈕 -->
-                                    <!-- 一下錄，一下不錄 -->
+                                    <! 錄音操作鈕 >
+                                    <! 一下錄，一下不錄 >
                                     <div id="recordBtn" class="recordBtn"><i class="fas fa-microphone"></i></div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                   </div> 
@@ -378,32 +411,28 @@ try {
                                     <li class="good">餅乾</li>
                                     <li class="good">糖果</li>
                                 </ul>                   
-            <?php 
+            <?php
                 $cusSnack=array("巧克力","洋芋片","餅乾","糖果");
                 $ln=count($cusSnack);
                 $arr_row=array();
 
                 $i=0;
-                for($i=0; $i<$ln; $i++){
+                for ($i=0; $i<$ln; $i++) {
                     // $sql = "select snackNo,snackName,snackPic,snackPrice from snack WHERE snackGenre= ? ORDER BY snackNo in('1','8');";
                     $sql = "select snackNo,snackName,snackPic,snackPrice from snack WHERE snackGenre= ? ORDER BY snackNo limit 0,8;";
                     $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
                     $prodRow -> bindValue(1, $cusSnack[$i]);
-                    $prodRow -> execute(); 
-                    
-                
-            ?>
+                    $prodRow -> execute(); ?>
                     <div class="good-content">
                         <?php
-                             while($row = $prodRow->fetch()){
-                                 //array_push($arr_row,$row);
-                        ?>
+                             while ($row = $prodRow->fetch()) {
+                                 //array_push($arr_row,$row); ?>
                             <div class="item">
                                 <div class="name">           
                                         <img src="<?php echo $row['snackPic']; ?>" alt="">                                    
                                         <div class="price">
                                         <p  class="snackNo" style="display:none;"><?php echo $row['snackNo']; ?></p>                   
-                                            <p class="snackName"><?php echo $row['snackName'];?></p>
+                                            <p class="snackName"><?php echo $row['snackName']; ?></p>
                                             <span>$<?php echo $row['snackPrice']; ?></span>
                                             <button class="addCart sendSnack cart" id="<?php echo "{$row['snackNo']}|{$row['snackPrice']}|1" ?>" >放入零食箱</button>                        
                                         </div>
@@ -411,8 +440,7 @@ try {
                                     
                             </div>
                         <?php
-                            }
-                        ?> 
+                             } ?> 
                     </div>
             <?php
                 }
@@ -457,11 +485,11 @@ try {
     </div>
     
   </div>
-  <?php 
+  <?php
         $sql = "select * from snack";
         $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
-        $prodRow -> execute(); 
-        $arr_row = $prodRow->fetchAll()   //陣列 
+        $prodRow -> execute();
+        $arr_row = $prodRow->fetchAll()   //陣列
 ?>
 <?php
     //讓目標按鈕的 class 有 cart 使 js可以觸發後續動作
@@ -528,6 +556,77 @@ try {
 <script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <!-- <script src="../js/addCart.js" defer></script> -->
 <script src="../js/cusAddCart.js" defer></script>
+
+<script>
+      var sound01  = document.getElementById("sound01");
+      var sound02  = document.getElementById("sound02");
+      var sound03  = document.getElementById("sound03");
+      var sound04  = document.getElementById("sound04");
+      var music01 = document.getElementById("01");
+      var music02 = document.getElementById("02");
+      var music03 = document.getElementById("03");
+      var music04 = document.getElementById("04");
+
+
+      var sound01  = document.getElementById("sound01");
+      sound01.addEventListener("click",play01 );
+      function play01(){
+        music01.play();  
+      }
+      var sound02  = document.getElementById("sound02");
+      sound02.addEventListener("click",play02 );
+      function play02(){
+        music02.play();  
+      }
+      var sound03  = document.getElementById("sound03");
+      sound03.addEventListener("click",play03 );
+      function play03(){
+        music03.play();  
+      }
+      var sound04  = document.getElementById("sound04");
+      sound04.addEventListener("click",play04 );
+      function play04(){
+        music04.play();  
+      }
+
+</script>
+<script>
+    var currentIndex = 0,
+    items = $('.container div'),
+    itemAmt = items.length;
+
+    function cycleItems() {
+    var item = $('.container div').eq(currentIndex);
+    items.hide();
+    item.css('display','inline-block');
+    }
+
+    var autoSlide = setInterval(function() {
+    // currentIndex += 1;
+    // if (currentIndex > itemAmt - 1) {
+    //   currentIndex = 0;
+    // }
+    cycleItems();
+    }, 3000);
+
+    $('.next').click(function() {
+    clearInterval(autoSlide);
+    currentIndex += 1;
+    if (currentIndex > itemAmt - 1) {
+        currentIndex = 0;
+    }
+    cycleItems();
+    });
+
+    $('.prev').click(function() {
+    clearInterval(autoSlide);
+    currentIndex -= 1;
+    if (currentIndex < 0) {
+        currentIndex = itemAmt - 1;
+    }
+    cycleItems();
+    });
+</script>
 
 <script>
 //前:50  後：49 上：48 左：51 右：52 
@@ -965,8 +1064,9 @@ try {
         $(".cusPic").off("click").on("click",copyToSurface);
         //新增工作面控制
         $("#section_15 #ctrl_bar .btn").on("click",function(e){
-            $("#section_15 #ctrl_bar .btn").removeClass("working");
-            $(e.target).addClass("working");
+                $("#section_15 #ctrl_bar .btn").removeClass("working");
+                if (e.target.id=="rotateX") {return;}
+                $(e.target).addClass("working");
         })
         ////點擊空白處取消 drop_img 的 select
         $(".customized").on("click",function (e) {
@@ -999,8 +1099,10 @@ try {
                 return;
             }
             //抓現在是哪一面，工作面才工作
+
             var tarSurfaceId = $("#section_15 .btn.working").attr("id");
             tarSurfaceClass = tarSurfaceId.replace("btn","surface");
+
             //複製圖片,更新屬性,塞進目標父層
             var tarCusPic=$(e.target).clone();
             console.log(tarCusPic);
@@ -1429,21 +1531,6 @@ try {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
     $('.tab-1 a').on('click', function (e) {
     
@@ -1774,410 +1861,25 @@ try {
             })
         }
     </script>
-<!-- record -->
-<script>
-        //ipad mini，chrome沒支援，還不說沒支援!!!等等。可能是getUserMedia過了但是後面有地方掛掉...
-        //可以操作，但是沒有反應。照理講...手機沒過localhost應該不能動啊，問號!!!
 
-        //確認瀏覽器有沒有支援影音功能
-        //聲音容器
-        window.AudioContext = window.AudioContext || window.webkitAudioContext;
-        //影音介面(?)應該是這種感覺
-        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
-        //navigator.getUserMedia(constraints, successCallback, errorCallback);
-        //constraints 可以設定 audio 或 video 的 true 或 false，聲音/影像各自的 開/關
-        //successCallback代表getUserMedia成功時，要做的事情
-        //errorCallback代表getUserMedia失敗時，要做的事情
-
-        //使用recorder.js(使用此套件解決好像很多麻煩的事情)
-        //建立錄音器
-        var recorder;
-        //抓存放播放條 跟 下載連結的容器
-        var audioItems = document.getElementById("audioItems");
-        //錄音按鈕
-        var recordBtn = document.getElementById("recordBtn");
-        //計時器
-        var timer;
-        //Web Audio API起手式：建一個聲音容器的物件
-        var context = new AudioContext();
-        //偷看一下設備能取得的採樣率
-        console.log(context.sampleRate)
-        // navigator.getUserMedia({ audio: true }, function (stream) {
-        //據說是比樓上更新版的介面，注意是用.then().catch()串接
-        navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
-            //建一個麥克風變數，代表我要接收的姻緣(X)因緣(X)...音源(O)
-            var mic = context.createMediaStreamSource(stream);
-
-            //按鈕觸發。
-            //若沒標籤，則添加標籤，開始錄音
-            //若有標籤，則移除標籤，停止錄音
-            recordBtn.onclick = function (e) {
-                if (e.target.classList.contains("recording") == true || e.target.parentNode.classList.contains("recording") == true) {
-                    clearTimeout(timer);
-                    //按鈕變身，變樣式
-                    if (e.target.id != "recordBtn") {
-                        e.target.parentNode.classList.remove("recording");
-                    } else {
-                        e.target.classList.remove("recording");
-                    }
-                    //停止錄音
-                    recorder.stop();
-                    //建立可被下載的物件
-                    createDownloadLink();
-                    //清空錄音器
-                    recorder.clean;
-                } else {
-                    //建立錄音物件，把mic串進來
-                    recorder = new Recorder(mic);
-                    //利用recorder.js開始錄音
-                    recorder.record();
-                    //按鈕變身，變樣式
-                    if (e.target.id != "recordBtn") {
-                        e.target.parentNode.classList.add("recording");
-                    } else {
-                        e.target.classList.add("recording");
-                    }
-
-                    //恢復正常效果
-                    $id("au_btns").style.opacity = 1;
-                    $id("defBar").style.opacity = 1;
-                    $id("au_time").style.opacity = 1;
-
-                    //播放器應該不可以撥放
-                    auStop();
-                }
-            }
-
-            //建立可以被下載的連結，之後要做上傳 
-            function createDownloadLink() {
-                recorder.exportWAV(function (blob) {
-                    //建立一個可以被下載(上傳?)的物件包，之後觀察看要怎麼上傳
-                    var url = URL.createObjectURL(blob);
-
-                    //改audio撥放器的src路徑，audio會活過來然後可以撥放
-                    $id("au_player").src = url;
-
-                });
-            }
-        }).catch(function (error) {
-            //抓不到錄音裝置、不給權限、http檔下來等等，心好累
-            //我就大喊是你的問題(絕對不可以啊!!!我們要好好幫客戶解決問題!!!)
-            //◢▆▅▄▃ 崩╰(〒皿〒)╯潰 ▃▄▅▆◣
-            console.log('error:' + error);
-            audioMsg.innerText = "你的裝置不支援錄音呦 Q口Q";
-        });
-
-
-        function auPlayAndPause(e) {
-            if (!$id("au_player").paused && !$id("au_player").ended) {
-                //撥放中被觸發
-                //暫停撥放
-                $id("au_player").pause();
-                //刪個狀態，改變color
-                $id("au_btn_play").classList.remove("select");
-                //切換icon成撥放符號
-                $id("au_btn_play").innerHTML = "<i class='fas fa-play'></i>";
-            } else {
-                //停止或暫停時被觸發
-                $id("au_player").play();
-                //加個狀態，改變color
-                $id("au_btn_play").classList.add("select");
-                //切換icon成暫停符號
-                $id("au_btn_play").innerHTML = "<i class='fas fa-pause'></i>";
-                //持續作用直到撥放結束
-                setInterval(() => {
-                    if (!$id("au_player").ended) {
-                        //撥放中
-                        //換算進度條應該要佔多少
-                        barSize = parseInt(window.getComputedStyle($id("defBar")).width);
-                        var size = barSize / $id("au_player").duration * $id("au_player").currentTime;
-                        //設定bar跟拉桿的位置
-                        $id("proBar").style.width = size + 'px';
-                        $id("barNote").style.left = size + "px";
-                    } else {
-                        //播到結束的瞬間
-                        //bar、拉桿及撥放時序歸零
-                        $id("proBar").style.width = '0px';
-                        $id("barNote").style.left = "0px";
-                        $id("au_player").currentTime = 0;
-                        $id("au_btn_play").classList.remove("select");
-                        //換回撥放鈕
-                        $id("au_btn_play").innerHTML = "<i class='fas fa-play'></i>";
-                    }
-                }, 100);
-            }
-        }
-
-        //停止撥放
-        function auStop(e) {
-            //暫停
-            $id("au_player").pause();
-            // $id("au_btn_play").innerText = "播";
-            $id("au_btn_play").classList.remove("select");
-            ////bar、拉桿及撥放時序歸零
-            $id("proBar").style.width = '0px';
-            $id("barNote").style.left = "0%";
-            $id("au_player").currentTime = 0;
-            //換回撥放鈕
-            $id("au_btn_play").innerHTML = "<i class='fas fa-play'></i>";
-        }
-
-        //靜音鈕
-        function auMute(e) {
-            //如果是靜音
-            if ($id("au_player").muted == true) {
-                // 那我就不靜音
-                $id("au_player").muted = false;
-                $id("au_btn_vol").innerHTML = "<i class='fas fa-volume-up'></i>";
-            } else {
-                //如果不是靜音
-                //那我就靜音
-                $id("au_player").muted = true;
-                $id("au_btn_vol").innerHTML = "<i class='fas fa-volume-mute'></i>";
-            }
-        }
-
-        //音量點擊控制
-        function auVol(e) {
-            var mouseX = e.clientX - $id("volBar").offsetLeft;
-            $id("vol_proBar").style.width = mouseX + "px";
-            $id("vol_barNote").style.left = mouseX + "px";
-
-            barSize = parseInt(window.getComputedStyle($id("volBar")).width);
-            var newVol = mouseX / barSize;
-            console.log(`newVol: ${newVol}`);
-            $id("au_player").volume = newVol;
-        }
-
-        //進度條點擊控制
-        function auJumpTo(e) {
-            var mouseX = e.clientX - $id("defBar").offsetLeft;
-            $id("proBar").style.width = mouseX + "px";
-            $id("barNote").style.left = mouseX + "px";
-
-            barSize = parseInt(window.getComputedStyle($id("defBar")).width);
-            var newTime = mouseX / (barSize / $id("au_player").duration);
-            $id("au_player").currentTime = newTime;
-        }
-
-        //讀完檔案把總長度塞進標籤裡
-        function auUpdateTimeAll(e) {
-            // console.log($id("au_player").duration);
-            $id("au_timeAll").innerText = formatTime($id("au_player").duration);
-        }
-
-        //把正在撥放的時間更新到標籤裡
-        function auUpdateTimeNow(e) {
-            console.log($id("au_player").currentTime);
-            $id("au_timeNow").innerText = formatTime($id("au_player").currentTime);
-        }
-
-
-
-        //刪除錄音....的src，這樣使用者就失去檔案惹
-        function removeAudioSrc(e) {
-            $id("au_player").src = "";
-            //上個半透效果`,表示沒作用
-            $id("au_btns").style.opacity = 0.5;
-            $id("defBar").style.opacity = 0.5;
-            $id("au_time").style.opacity = 0.5;
-        }
-
-        //移除事件監聽時傳入的參數 要等於 添加事件監聽時傳入的參數
-        //不然mousemove會一直跑!!!!!
-        function dragStartBarNote(e) {
-            //避免拖曳途中選到東西然後莫名無法 mouseup
-            var body = document.getElementsByTagName("body");
-            console.log(body[0]);
-            body[0].style.userSelect = "none";
-            //----------------------必定要確認mouseup後還原此屬性
-
-            console.log(e.target);
-            //滑鼠滑動的時候分三個部分討論：
-            //1. 超過進度條的最左側: 那就進度條歸零 //鄧不利少
-            //2. 超過進度條的最右側: 那就進度條百分百 //鄧不利多
-            //3. 在進度條中間: 依照滑鼠的x位置決定進度條的長度 //鄧不利剛剛好
-            window.addEventListener("mousemove", dragBarNote);
-
-            //左鍵放開時，恢復body可選狀態，解除mousemove監聽，解除mouseup監聽
-            window.addEventListener("mouseup", dragEndBarNote);
-        }
-
-        function dragStartVolBarNote(e) {
-            //避免拖曳途中選到東西然後莫名無法 mouseup
-            var body = document.getElementsByTagName("body");
-            console.log(body[0]);
-            body[0].style.userSelect = "none";
-            //----------------------必定要確認mouseup後還原此屬性
-
-            console.log(e.target);
-            //滑鼠滑動的時候分三個部分討論：
-            //1. 超過進度條的最左側: 那就音量條歸零 //鄧不利少
-            //2. 超過進度條的最右側: 那就音量條百分百 //鄧不利多
-            //3. 在進度條中間: 依照滑鼠的x位置決定音量條的長度 //鄧不利剛剛好
-            window.addEventListener("mousemove", dragVolBarNote);
-
-            //左鍵放開時，恢復body可選狀態，解除mousemove監聽，解除mouseup監聽
-            window.addEventListener("mouseup", dragEndVolBarNote);
-        }
-
-
-        //進度條拖曳--------------------------------------開始
-        function dragEndBarNote(e) {
-            var body = document.getElementsByTagName("body");
-            body[0].style.userSelect = "auto";
-            console.log("mouse UP UP UP");
-            window.removeEventListener("mousemove", dragBarNote);
-            console.log("remove EVENT mouse move !!");
-            //結束後聲音恢復
-            $id("au_player").muted = false;
-            window.removeEventListener("mouseup", dragEndBarNote);
-        }
-
-        function dragBarNote(e2) {
-            //拖曳時聲音mute掉
-            $id("au_player").muted = true;
-            //抓進度條長度
-            var barSize = parseInt(window.getComputedStyle($id("defBar")).width);
-            var minX = $id("defBar").offsetLeft; //進度條最左側離視窗距離
-            console.log(`minX: ${minX}`);
-            var maxX = minX + barSize; //進度條最右側離視窗距離
-            console.log(`maxX: ${maxX}`);
-            console.log(e2.target);
-            console.log("moving~~");
-            var x2 = e2.clientX; //移動中的x
-            var y2 = e2.clientY; //移動中的y
-            if (x2 <= minX) {//1. 超過進度條的最左側: 那就進度條歸零 //鄧不利少
-                //記得要把x2=minX的情況考慮進去
-                console.log("太小啦!!!");
-                $id("proBar").style.width = '0px';
-                $id("barNote").style.left = "0%";
-                $id("au_player").currentTime = 0;
-            } else if (x2 >= maxX) {//2. 超過進度條的最右側: 那就進度條百分百 //鄧不利多
-                //記得要把x2=maxX的情況考慮進去
-                console.log("太大啦!!!!!!");
-                $id("proBar").style.width = barSize + "px";
-                $id("barNote").style.left = barSize + "px";
-                $id("au_player").currentTime = $id("au_player").duration;
-            } else {//3. 在進度條中間: 依照滑鼠的x位置決定進度條的長度 //鄧不利剛剛好
-                console.log("剛剛好!!!!");
-                var mouseX = x2 - $id("defBar").offsetLeft;
-                $id("proBar").style.width = mouseX + "px";
-                $id("barNote").style.left = mouseX + "px";
-
-                barSize = parseInt(window.getComputedStyle($id("defBar")).width);
-                var newTime = mouseX / (barSize / $id("au_player").duration);
-                $id("au_player").currentTime = newTime;
-            }
-        }
-        //進度條拖曳--------------------------------------結束
-
-
-
-
-
-        //音量拖曳---------------------------------開始
-        function dragEndVolBarNote(e) {
-            //還原body跟所有子元素下可選狀態
-            var body = document.getElementsByTagName("body");
-            body[0].style.userSelect = "auto";
-            console.log("mouse UP UP UP");
-            window.removeEventListener("mousemove", dragVolBarNote);
-            console.log("remove EVENT mouse move !!");
-            window.removeEventListener("mouseup", dragEndVolBarNote);
-        }
-
-        function dragVolBarNote(e2) {
-            var barSize = parseInt(window.getComputedStyle($id("volBar")).width);
-            var minX = $id("volBar").offsetLeft; //音量條最左側離視窗距離
-            console.log(`minX: ${minX}`);
-            var maxX = minX + barSize; //音量條最右側離視窗距離
-            console.log(`maxX: ${maxX}`);
-            console.log(e2.target);
-            console.log("moving~~");
-            var x2 = e2.clientX; //移動中的x
-            var y2 = e2.clientY; //移動中的y
-            if (x2 <= minX) {//1. 超過音量條的最左側: 那就音量條歸零 //鄧不利少
-                //記得要把x2=minX的情況考慮進去
-                console.log("太小啦!!!");
-                $id("vol_proBar").style.width = '0px';
-                $id("vol_barNote").style.left = "0%";
-                $id("au_player").volume = 0;
-            } else if (x2 >= maxX) {//2. 超過音量條的最右側: 那就音量條百分百 //鄧不利多
-                //記得要把x2=maxX的情況考慮進去
-                console.log("太大啦!!!!!!");
-                $id("vol_proBar").style.width = barSize + "px";
-                $id("vol_barNote").style.left = barSize + "px";
-                $id("au_player").volume = 1;
-            } else {//3. 在進度條中間: 依照滑鼠的x位置決定音量條的長度 //鄧不利剛剛好
-                console.log("剛剛好!!!!");
-                var mouseX = x2 - $id("volBar").offsetLeft;
-                $id("vol_proBar").style.width = mouseX + "px";
-                $id("vol_barNote").style.left = mouseX + "px";
-
-                barSize = parseInt(window.getComputedStyle($id("volBar")).width);
-                var newVol = mouseX / barSize;
-                $id("au_player").volume = newVol;
-            }
-        }
-        //音量拖曳---------------------------------結束
-
-        // console.log(`$id("au_player").src: ${$id("au_player").src}`);
-
-        // 撥放/暫停
-        $id("au_btn_play").addEventListener("click", auPlayAndPause);
-        // 停止
-        $id("au_btn_stop").addEventListener("click", auStop);
-        // 靜音
-        $id("au_btn_vol").addEventListener("click", auMute);
-        // 進度條點擊跳轉
-        $id("defBar").addEventListener("click", auJumpTo);
-        // 音量點擊跳轉
-        $id("volBar").addEventListener("click", auVol);
-        // 撥放結束相關事宜
-        $id("au_player").addEventListener("ended", auStop);
-        // 緩衝完成可以撥放時相關事宜, ex:提供總長度等數據
-        $id("au_player").addEventListener("canplaythrough", auUpdateTimeAll);
-        // 更新當前秒數
-        $id("au_player").addEventListener("timeupdate", auUpdateTimeNow);
-        //拖曳進度條拉桿
-        $id("barNote").addEventListener("mousedown", dragStartBarNote);
-        //拖曳音量拉桿
-        $id("vol_barNote").addEventListener("mousedown", dragStartVolBarNote);
-        //移除音源
-        $id("audioDel").addEventListener("click", removeAudioSrc);
-
-        //load進來第一次讀值沒東西就提示使用者無法操作那些功能
-        if (($id("au_player").src == "") || ($id("au_player").id == undefined) || ($id("au_player").id == null)) {
-            //上個半透效果,表示沒作用
-            $id("au_btns").style.opacity = 0.5;
-            $id("defBar").style.opacity = 0.5;
-            $id("au_time").style.opacity = 0.5;
-        }
-    </script>
     <script>
-function doFirst(){
-	document.getElementById('theFile').onchange = fileChange;
-}
-function fileChange(){
-	var file = document.getElementById('theFile').files[0];
+    $(function () {
+        $("#soundAdd").on("click",addSound);
+        function addSound(e){
+            //選取目標聲音的路徑
+            let src=$("#soundAdd").closest(".content").children(".container").children("div:visible").find("source").attr("src");
+            console.log(src);
+            //加入按鈕"加入購物車"的data屬性
+            let tar=$(".step-content-foot .step.cart");
+            console.log("before:"+tar.data("cussound"));
+            // $.data(tar,"cussound",src);
+            // tar[0].dataset.cussound=src;
+            tar.attr("data-cussound",src);
+            console.log("after:"+tar.data("cussound"));
+        }
+    })
+    
+    </script>
 
-//===================
-
-	var readFile = new FileReader();
-	readFile.readAsDataURL(file);
-	readFile.addEventListener('load',function(){
-		var image = document.getElementById('image');
-		image.src = readFile.result;
-		// image.style.width = '400px';
-		image.style.maxHeight = '300px';
-	});
-
-}
-window.addEventListener('load',doFirst);
-
-
-
-</script>
 </body>
 </html>

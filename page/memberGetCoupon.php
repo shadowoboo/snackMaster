@@ -8,7 +8,7 @@
         // $coupon->bindValue(":memNo", $_SESSION["memNo"]);
         $coupon->execute();
         if( $coupon->rowCount() == 0){
-            echo "目前沒有優惠券~";
+            echo "<center>目前沒有優惠券~</center>";
         }else{
             $html='';
             while($couponRow = $coupon->fetch(PDO::FETCH_ASSOC)){

@@ -1,25 +1,4 @@
-// $(document).ready(function(){
-//   $('#btnmodify').click(function(){
-//     //點擊按鈕，以字串形式打包表單資料
-//      memUPdata = $('#memInfo').serialize();
-//      console.log(memUPdata);
-     
-//     $.ajax({
-//       url: 'memUpdate.php',
-//       // type: 'POST',
-//       data:memUPdata,
-//       success: function(data){//PHP回傳的結果
-//         if(data=="memOK"){
-//           alert("修改完成");
-//         }else{
-//           alert("修改失敗");
-//           console.log(data);
-//         }
-//       }
-//     });
-//   });
 
-// });
 function $id(id){
   return document.getElementById(id);
 }
@@ -36,30 +15,99 @@ function headChange(){
   });
 }
 //展開訂單明細
-function moreList(e){
-  if($id('listMorebtn').innerText=="訂單明細v"){
-    e.currentTarget.innerHTML = "訂單明細^";
-  }else{
-    e.currentTarget.innerHTML = "訂單明細v";
-  }
+// var listplay = document.getElementsByClassName('listplay');
+// function  listshow(e){
   
-  $id('proEva').classList.toggle('expand');
-  
-}
-//跳出商品評價燈箱
-function evaBox(e){
+//   if(listplay.innerText=="訂單明細v"){
+//     listplay.innerHTML  = "訂單明細^";
+//     document.getElementsByClassName('orderItem').classList.add('expand');
+//   }else{
+//     listplay.innerHTML = "訂單明細v";
+//     document.getElementsByClassName('orderItem').classList.remove('expand');
 
-  e.currentTarget.style.color="red";
-  $id('#evaBox').classList.add('jump');
-}
+//   }
+  
+// }
+
+$(document).ready(function(){
+  // console.log(123);
+  
+  $('.listplay').on('click',function(){
+    // console.log(321);
+    
+    if($(this).text()=="訂單明細v"){
+      // console.log('oop');
+      
+      $(this).text("訂單明細^");
+    }else{
+      $(this).text("訂單明細v");
+    }
+  
+    $('.orderItem').toggleClass('expand');
+    $('.textDics').value ="";
+      
+  });
+  $('.evaShowbtn').on('click',function(){
+    var $tar=$(this).closest(".orderItemList").next();
+    $('.evaLightBox').removeClass('show');
+    $tar.addClass('show');
+  });
+  $('.evaLightBoxLeave').on('click',function(){
+    $('.evaLightBox').removeClass('show');
+    
+
+  });
+
+
+  
+});
+//跳出商品評價燈箱
+// function showEvaBox(e){
+//   $id('evaBox').classList.add('show');
+// }
+// function leaveEva(e){
+//   $id('evaBox').classList.remove('show');
+//   $id('textDiscuss').value ="";
+
+
+// }
 
 
 
 
 function doFirst(){
   $id('upFile').onchange = headChange;
-  $id('listMorebtn').addEventListener('click',moreList);
-  $id("evaShow").addEventListener("click",evaBox);
+
+  //展開訂單明細
+  // var act_orderList = document.getElementsByClassName('listplay');
+  // for (var i = 0; i < act_orderList.length ; i++) {
+  //     act_orderList[i].addEventListener("click",function(e){
+  //       // alert(act_orderList[0].innerText);
+  //       if(act_orderList[i].innerText=="訂單明細v"){
+  //         alert(333);
+  //         var target = e.target;
+  //         target.innerHTML = "訂單明細^";
+  //       }else{
+  //         var target = e.target;
+  //         target.innerHTML = "訂單明細v";
+  //       }
+        
+  //       $id('proEva').classList.toggle('expand');
+  //     },false);
+  // }
+  // var act_evaBox = document.getElementsByName('evaShowbtn');
+  // for (var j = 0; j < act_evaBox.length; j++) {
+  //   act_evaBox[j].addEventListener('click',showEvaBox);
+  // }
+  // var act_leaveEva = document.getElementsByClassName('evaShowbtn');
+  // for (var x = 0; x < act_leaveEva.length; x++) {
+  //    act_leaveEva.addEventListener("click",leaveEva);
+    
+  // }
+  // $id('evaLightBoxLeave').addEventListener('click',leaveEva);
+  // $id('evaShow').addEventListener('click',showEvaBox);
+  // $id('listMorebtn').addEventListener('click',moreList);
+  
 }
 window.addEventListener('load',doFirst);
 

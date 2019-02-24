@@ -62,8 +62,12 @@
 		$sql = "INSERT INTO orderitem (orderItemNo, snackPrice, snackQuan, customBoxItem, snackNo, orderNo) 
                                     values( null , :snackPrice, :snackQuan, :customBoxItem, :snackNo, $orderNo)";
         $orderitem = $pdo->prepare($sql);
-        foreach ($_SESSION["snackQuan"] as $type) {
-            foreach( $_SESSION["snackQuan"][$type] as $snackNo => $qty){
+        // $snackQty=array();
+        // $snackQty=$_SESSION["snackQuan"];
+        // $qty=0;//初始化;
+        foreach ((array)$_SESSION["snackQuan"] as $type => $snackType) {
+            foreach( (array)$snackType as $snackNo => $qty){
+            // foreach( $_SESSION["snackQuan"][$type] as $snackNo => $qty){
                 $orderitem->bindValue(":snackPrice", $_SESSION["snackPrice"][$type][$snackNo]); //紀錄購入時價錢
                 $orderitem->bindValue(":snackQuan", $qty);
                 if($type==1){ //如果是客製
@@ -83,7 +87,8 @@
             //找出對應的即期品並扣掉本次購買的數量
             $sql = "UPDATE clearanceitem SET`quantity`=`quantity`-:quantity WHERE clearanceNo=:clearanceNo and snackNo=:snackNo";
             $clearanceitem = $pdo->prepare($sql);
-                foreach( $_SESSION["snackQuan"][2] as $snackNo => $qty){
+            // $snackType2=$_SESSION["snackQuan"][2];
+                foreach( (array)$_SESSION["snackQuan"][2] as $snackNo => $qty){
                     //字串處理，把clearanceNo分割出來
                     $str=$_SESSION["note"][2][$snackNo];
                     $arr_str=explode("|",$str);
@@ -135,6 +140,7 @@
     } catch (PDOException $e) {
         $errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
         $errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";
+        $errMsg .= '$_SESSION["snackQuan"]'.$_SESSION["snackQuan"]. "<br>";
         echo $errMsg;
         $pdo->rollBack();
     }
