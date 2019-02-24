@@ -5,7 +5,24 @@
 
     try{
         require_once('connectcd105g2.php');
+        if($_FILES['upFile']["name"]==""){
+            $sql = "update member set  memId=:memId, memPsw=:memPsw, memName=:memName, memPhone=:memPhone, email=:email where memNo=:memNo";
+        }else{
+            $sql = "update member set  memId=:memId, memPsw=:memPsw, memName=:memName, memPhone=:memPhone, email=:email, memPic=:memPic where memNo=:memNo";
+        }
+        $memUp = $pdo->prepare($sql);
+        $memUp ->bindValue(":memNo",$_POST["memNo"]);
+        $memUp ->bindValue(":memId",$_POST["memId"]);
 
+        // $memUp ->bindValue(":memPic",$_FILES["upFile"]);
+        $memUp ->bindValue(":memPsw",$_POST["memPsw"]);
+        $memUp ->bindValue(":memName",$_POST["memName"]);
+        $memUp ->bindValue(":memPhone",$_POST["phone"]);//$_POST["name"]->放input裡name="值"
+        $memUp ->bindValue(":email",$_POST["email"]);
+        if($_FILES['upFile']["name"]!=""){
+            $memUp ->bindValue(":memPic",'../images/member/'.$_FILES['upFile']["name"]);
+        }
+        $memUp ->execute();
 
         // $mdRow = $mdMem ->fetch(PDO::FETCH_ASSOC);  
         switch($_FILES["upFile"]["error"]){
@@ -19,18 +36,7 @@
 		$from = $_FILES['upFile']['tmp_name'];
 		$to = "../images/member/{$_FILES['upFile']['name']}";
 		copy($from, $to);        //新增修改後的資料
-        $sql = "update member set  memId=:memId, memPsw=:memPsw, memName=:memName, memPhone=:memPhone, email=:email, memPic=:memPic where memNo=:memNo";
-        $memUp = $pdo->prepare($sql);
-        $memUp ->bindValue(":memNo",$_POST["memNo"]);
-        $memUp ->bindValue(":memId",$_POST["memId"]);
-
-        // $memUp ->bindValue(":memPic",$_FILES["upFile"]);
-        $memUp ->bindValue(":memPsw",$_POST["memPsw"]);
-        $memUp ->bindValue(":memName",$_POST["memName"]);
-        $memUp ->bindValue(":memPhone",$_POST["phone"]);//$_POST["name"]->放input裡name="值"
-        $memUp ->bindValue(":email",$_POST["email"]);
-        $memUp ->bindValue(":memPic",'../images/member/'.$_FILES['upFile']["name"]);
-        $memUp ->execute();
+        
         echo "OK";
         $_SESSION["memPic"]= '../images/member/'.$_FILES['upFile']["name"];
 		break;

@@ -96,7 +96,6 @@ audio{
     transform: translateY(17%);
     .step-content-foot {
         text-align:center;
-        margin-bottom:20vh;
         background-color: #fadfd4;
         button{
             cursor: pointer;
@@ -187,6 +186,7 @@ audio{
                     top: 20px;
                     left: 54px;
                     font-size: 22px;
+                    color: $gray;
                 }
                 &:after {
                     content: "";
@@ -207,6 +207,7 @@ audio{
                     top: 20px;
                     left: 54px;
                     font-size: 22px;
+                    color: $gray;
                 }
                 &:after {
                     content: "";
@@ -227,6 +228,7 @@ audio{
                     top: 20px;
                     left: 54px;
                     font-size: 22px;
+                    color: $gray;
                 }
                 // &:after {
                 //     content: "";
@@ -807,6 +809,7 @@ a {
         }
     }
     .content{
+        position: relative;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -816,6 +819,173 @@ a {
         width: 300px;
         height: 230px;
         margin: auto;
+        .showMusic{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: -96px;
+            left: -600px;
+            z-index: 3;
+            width: 500px;
+            height: 350px;
+            img{
+                width: 150px;
+            }                      
+            .showDisplay{
+                display: block !important;
+                position: absolute;
+                top: 7px;
+                left: 0;
+            }                  
+            .showDisplay02{
+                display: block !important;
+                position: absolute;
+                top: 0;
+                left: 0;
+            } 
+            #birthdayParty{     
+                display: none;  
+                width: 500px;
+                height:335px;     
+                background-color: rgba(70, 70, 70, 0.8);
+                .cooker{                        
+                    position: relative;
+                    top: 0;
+                    animation: aaa 1.5s linear infinite alternate;
+                }
+                @keyframes aaa {
+                    0% {
+                        top: 0;
+                        transform: scale(0.6)
+                    }
+                    25% {
+                        top:50px;
+                        transform: rotate(30deg);
+                      
+                    }
+                    50% {
+                        top:100px;
+                        transform: rotate(0deg);
+                    }
+                    75% {
+                        top:150px;
+                        transform: rotate(-30deg);
+                    }
+                    100% {
+                        top:200px;
+                        transform: scale(0.8) rotate(0deg);
+                    }
+                    
+                }
+            }
+            #loveU{     
+                display: none;  
+                width: 500px;
+                height:335px;   
+                background-color: rgba(70, 70, 70, 0.8);  
+                .lover{                        
+                    position: relative;
+                    top: 0;
+                    animation: bbb 1.5s linear infinite alternate;
+                }
+                @keyframes bbb {
+                    0% {
+                        top: 0;
+                        transform: scale(0.6)
+                    }
+                    25% {
+                        top:50px;
+                        transform: rotate(30deg);
+                      
+                    }
+                    50% {
+                        top:100px;
+                        transform: rotate(0deg);
+                    }
+                    75% {
+                        top:150px;
+                        transform: rotate(-30deg);
+                    }
+                    100% {
+                        top:200px;
+                        transform: scale(0.8) rotate(0deg);
+                    }
+                    
+                }
+            }
+            #eatMax{     
+                display: none;  
+                width: 500px;
+                height: 335px;   
+                background-color:rgba(70, 70, 70, 0.8);  
+                .lover{                        
+                    position: relative;
+                    top: 0;
+                    animation: ccc 1.5s linear infinite alternate;
+                }
+                @keyframes ccc {
+                    0% {
+                        top: 0;
+                        transform: scale(0.6)
+                    }
+                    25% {
+                        top:50px;
+                        transform: rotate(30deg);
+                      
+                    }
+                    50% {
+                        top:100px;
+                        transform: rotate(0deg);
+                    }
+                    75% {
+                        top:150px;
+                        transform: rotate(-30deg);
+                    }
+                    100% {
+                        top:200px;
+                        transform: scale(0.8) rotate(0deg);
+                    }
+                    
+                }
+            }
+            #snackmaster{     
+                display: none;  
+                width: 500px;
+                height:335px;   
+                background-color: rgba(70, 70, 70, 0.8);  
+                .lover{                        
+                    position: relative;
+                    top: 0;
+                    animation: ddd 1.5s linear infinite alternate;
+                }
+                @keyframes ddd {
+                    0% {
+                        top: 0;
+                        transform: scale(0.6)
+                    }
+                    25% {
+                        top:50px;
+                        transform: rotate(30deg);
+                      
+                    }
+                    50% {
+                        top:100px;
+                        transform: rotate(0deg);
+                    }
+                    75% {
+                        top:150px;
+                        transform: rotate(-30deg);
+                    }
+                    100% {
+                        top:200px;
+                        transform: scale(0.8) rotate(0deg);
+                    }
+                    
+                }
+            }
+        }
         p{
             cursor: pointer;
             font-size: 30px;
@@ -1545,6 +1715,161 @@ $cardY:600px;
                     width:100%;
                     margin: auto;
                 }
+                .showMusic{
+                    width: 350px;
+                    height: 248px;
+                    top: -327px;
+                    left: -27px;
+                    img{
+                        width:120px;
+                    }    
+                    #birthdayParty{
+                        width: 400px;
+                        height: 250px;
+                        top: 0px;
+                        left: -10px;
+                        .cooker{                        
+                            position: relative;
+                            top: 0;
+                            right: 30px;
+                            animation: aaa1 1.5s linear infinite alternate;
+                        }
+                        @keyframes aaa1 {
+                            0% {
+                                top: 0;
+                                transform: scale(0.6)
+                            }
+                            25% {
+                                top:45px;
+                                transform: rotate(30deg);
+                              
+                            }
+                            50% {
+                                top:90px;
+                                transform: rotate(0deg);
+                            }
+                            75% {
+                                top:120px;
+                                transform: rotate(-30deg);
+                            }
+                            100% {
+                                top:150px;
+                                transform: scale(0.8) rotate(0deg);
+                            }
+                            
+                        }
+                    }
+                    #loveU{
+                        width: 400px;
+                        height: 250px;
+                        top: 0px;
+                        left: -10px;
+                        .lover{                        
+                            position: relative;
+                            top: 0;
+                            right: 30px;
+                            animation: bbb1 1.5s linear infinite alternate;
+                        }
+                        @keyframes bbb1 {
+                            0% {
+                                top: 0;
+                                transform: scale(0.6)
+                            }
+                            25% {
+                                top:45px;
+                                transform: rotate(30deg);
+                              
+                            }
+                            50% {
+                                top:90px;
+                                transform: rotate(0deg);
+                            }
+                            75% {
+                                top:120px;
+                                transform: rotate(-30deg);
+                            }
+                            100% {
+                                top:150px;
+                                transform: scale(0.8) rotate(0deg);
+                            }
+                            
+                        }
+                    }
+                    #eatMax{
+                        width: 400px;
+                        height: 250px;
+                        top: 0px;
+                        left: -10px;
+                        .lover{                        
+                            position: relative;
+                            top: 0;
+                            right: 30px;
+                            animation: ccc1 1.5s linear infinite alternate;
+                        }
+                        @keyframes ccc1 {
+                            0% {
+                                top: 0;
+                                transform: scale(0.6)
+                            }
+                            25% {
+                                top:45px;
+                                transform: rotate(30deg);
+                              
+                            }
+                            50% {
+                                top:90px;
+                                transform: rotate(0deg);
+                            }
+                            75% {
+                                top:120px;
+                                transform: rotate(-30deg);
+                            }
+                            100% {
+                                top:150px;
+                                transform: scale(0.8) rotate(0deg);
+                            }
+                            
+                        }
+                    }
+                    #snackmaster{
+                        width: 400px;
+                        height: 250px;
+                        top: 0px;
+                        left: -10px;
+                        .lover{                        
+                            position: relative;
+                            top: 0;
+                            right: 30px;
+                            animation: ddd1 1.5s linear infinite alternate;
+                        }
+                        @keyframes ddd1 {
+                            0% {
+                                top: 0;
+                                transform: scale(0.6)
+                            }
+                            25% {
+                                top:45px;
+                                transform: rotate(30deg);
+                              
+                            }
+                            50% {
+                                top:90px;
+                                transform: rotate(0deg);
+                            }
+                            75% {
+                                top:120px;
+                                transform: rotate(-30deg);
+                            }
+                            100% {
+                                top:150px;
+                                transform: scale(0.8) rotate(0deg);
+                            }
+                            
+                        }
+                    }
+                    }
+                    }               
+                }
             }
             .pics{
                 width: 100%;
@@ -1614,6 +1939,4 @@ $cardY:600px;
         }
     }
 
-}
-}
 

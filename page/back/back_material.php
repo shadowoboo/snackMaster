@@ -63,7 +63,7 @@
     while( $mateRow = $materials -> fetch() ){
 ?>
                         <td>
-                            <form action="back_editMaterial.php">
+                            <form action="back_editMaterial.php" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="materialNo" value="<?php echo $mateRow['materialNo']?>">
                                 <a href="">
                                     <button type="submit" id="subBtn"><i class="fas fa-edit"></i></button>
@@ -73,7 +73,20 @@
                         <td><?php echo $mateRow['materialNo']?></td>
                         <td><?php echo $mateRow['materialGenre']?></td>
                         <td><?php echo $mateRow['materialName']?></td>
-                        <td><?php echo $mateRow['materialPath']?></td>
+                        <td>
+                            <?php 
+                                if( $mateRow['materialGenre'] == 'img' || $mateRow['materialGenre'] =='cardstyle' ){
+                            ?>
+                                <img src="../<?php echo $mateRow['materialPath']?>" alt="material">
+                            <?php
+                                }else{
+                            ?>
+                                <div style="height: 80%;width: 80%;margin: auto; background-color: <?php echo $mateRow['materialPath']?>"></div>
+                            <?php
+                                }
+                            ?>
+                            
+                        </td>
                     </tr>
 <?php
     }
@@ -88,9 +101,9 @@
                             echo '<li class="page-item"><a href="back_material.php?pageNum='.$prev.'" id="last" class="page-link"><i class="fas fa-chevron-left"></i></a></li>';
                             for($i=1; $i<=$pages; $i++){
                                 if( $i == $pageNum ){
-                                    echo '<li class="page-item"><a href="back_material.php?pageNum='.$i.'" class="page-link nowLoc">0'.$i.'</a></li>';
+                                    echo '<li class="page-item"><a href="back_material.php?pageNum='.$i.'" class="page-link nowLoc">'.$i.'</a></li>';
                                 }else{
-                                    echo '<li class="page-item"><a href="back_material.php?pageNum='.$i.'" class="page-link">0'.$i.'</a></li>';
+                                    echo '<li class="page-item"><a href="back_material.php?pageNum='.$i.'" class="page-link">'.$i.'</a></li>';
                                 }
                             }
                             echo '<li class="page-item"><a href="back_material.php?pageNum='.$next.'" id="next" class="page-link"><i class="fas fa-chevron-right"></i></a></li>';

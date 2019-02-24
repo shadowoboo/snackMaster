@@ -1,3 +1,4 @@
+
 function repBtnAdd(){
     $('.report').click(function(e){
         e.preventDefault();
@@ -127,41 +128,48 @@ function sendMsg(){
         
        var evaNo=$(this).attr('evaNo');
        var msgText=  $(this).prev().val();
-       var xhr =new XMLHttpRequest(); 
-       xhr.open("Post", "sendMsg.php", true);
-       xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+       var xhr2 =new XMLHttpRequest(); 
+       xhr2.open("Post", "sendMsg.php", true);
+       xhr2.setRequestHeader("Content-type","application/x-www-form-urlencoded");
        var data_info=`evaNo=${evaNo}&msgText=${msgText}`;
-       xhr.send(data_info);
-       xhr.onload=function(){
-            // console.log('留言成功');
-            var xhr =new XMLHttpRequest();
-            xhr.open("Post", "getMsg.php", true);
-            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            var data_info=`evaNo=${evaNo}`;
-            xhr.send(data_info);
-            msgBoxHTML='';
-            xhr.onload=function(){
-                var msgArr=JSON.parse(xhr.responseText);
-                for(i=0;i<msgArr.length;i++){
-                    msgBoxHTML+=
-                    `<div class="msg_num">
-                        <div class="memPic">
-                            <img src="${msgArr[i].memPic}" alt="會員頭像" class="memImg">
-                        </div>
-                        <div class="msgCol">
-                            <div class="memId">
-                                <p>${msgArr[i].memId}</p><button class="report">...</button>
+       xhr2.send(data_info);
+       xhr2.onload=function(){
+            rsp = xhr2.responseText;
+            if(rsp==2){
+                alert('請勿留下空白訊息');
+                return false;
+            }else{
+                var xhr =new XMLHttpRequest();
+                xhr.open("Post", "getMsg.php", true);
+                xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                var data_info=`evaNo=${evaNo}`;
+                xhr.send(data_info);
+                msgBoxHTML='';
+                xhr.onload=function(){
+                    var msgArr=JSON.parse(xhr.responseText);
+                    for(i=0;i<msgArr.length;i++){
+                        msgBoxHTML+=
+                        `<div class="msg_num">
+                            <div class="memPic">
+                                <img src="${msgArr[i].memPic}" alt="會員頭像" class="memImg">
                             </div>
-                            <p class="msgCtx">${msgArr[i].msgText}</p>
-                            <p class="msgTime">留言時間:${msgArr[i].msgTime}</p>
-                        </div>
-                    </div>`
-                }
-                $('#msgBox'+evaNo).css('height','auto').html(msgBoxHTML);
+                            <div class="msgCol">
+                                <div class="memId">
+                                    <p>${msgArr[i].memId}</p><button class="report">...</button>
+                                </div>
+                                <p class="msgCtx">${msgArr[i].msgText}</p>
+                                <p class="msgTime">留言時間:${msgArr[i].msgTime}</p>
+                            </div>
+                        </div>`
+                    }
+                    $('#msgBox'+evaNo).css('height','auto').html(msgBoxHTML);
+                    $('#show'+evaNo).html('<i class="fas fa-comment"></i>隱藏留言');
+                    $('#ctx'+evaNo).val('');
+                    repBtnAdd();
+            }
+            // console.log('留言成功');
             }
         };
-        $(this).prev().val('');
-        $(this).parent().prev().children().last().html('<i class="fas fa-comment"></i>隱藏留言');
 
         }else{
         //登入false->把留言內容寫入secction後 等到確定登入了再送資料庫並重撈。    
@@ -238,7 +246,24 @@ function showStar(){
     })
 }
 
+function shareBtn(){
 
+   $('.share').click (function () {
+       alert("sharing");
+        FB.ui({
+        app_id: '你的appid',
+        method: 'feed',
+        link: 'http://140.115.236.71/demo-projects/CD105/cd105g2/page/showItem.php?snackNo=2',
+        // picture: 'http://87.87.87.87/talk/images/cover.jpg',
+        caption: '大零食家',
+        description: '什麼都好好吃'
+        },function (response) {
+                        console.log(response);
+                        });
+        
+        
+        });
+}
 
 function firstGet(){
     snackNo=$('#item').attr('snackNo');
@@ -263,6 +288,7 @@ function firstGet(){
         likeBtnAdd();
         pageBtnAdd();
         repBtnAdd();
+        // shareBtn();
         
     }
 
