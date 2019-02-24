@@ -66,6 +66,7 @@ body {
             font-size: 22px;
             vertical-align: middle;
             color: $gray;
+            cursor: pointer;
             &:hover{
                 transform: scale(1.1);
                 transition: 0.5s;
@@ -1609,6 +1610,7 @@ body {
                 right: 0;
                 margin: auto;
                 font-size: 1.2vw;
+                color: #575757;
                 @media screen and (max-width: 768px) {
                     bottom: 2px;
                 }
