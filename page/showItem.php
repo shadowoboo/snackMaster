@@ -40,9 +40,11 @@ session_start();
         
 
     } catch (PDOException $e) {
-        $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
-        $errMsg .= "行號 : ".$e -> getLine()."<br>";
-        echo $errMsg ;
+        // $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
+        // $errMsg .= "行號 : ".$e -> getLine()."<br>";
+        // echo $errMsg ;
+        header('Location:shopping.php');
+        
         exit();
     }
 ?>
@@ -80,7 +82,24 @@ session_start();
 </head>
 
 <body id="showItem">
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '1506155049515589',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v3.2'
+    });
+  };
 
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
     <?php
         require_once("header.php");
     ?>
@@ -161,8 +180,8 @@ session_start();
             <?php echo $snackRow['snackWord']?>
             </p>
             <div class="flexWrapR ctxWrap" >
-                <p id="price">價格<span>$<?php echo $snackRow['snackPrice']?></span></p>
                 <div id="itemNum">
+                    <span id="price">價格</span><span id="pNum">$<?php echo $snackRow['snackPrice']?></span>
                     <!-- <p>數量</p>
                     <div class="numInput">
                         <span class="numMinus">-</span><input type="number" value="1"><span class="numPlus">+</span>
@@ -170,10 +189,9 @@ session_start();
                     <button class="cart" id="<?php echo "{$snackRow['snackNo']}|{$snackRow['snackPrice']}|0"?>">加入購物車</button>
                     <button class="heart"id="<?php echo $snackRow['snackNo']?>" ><i class="far fa-heart"></i></button>
                 </div>
-                <p>
-                    成分
-                    <span id="ingre"><?php echo $snackRow['snackIngre']?></span>
-                </p>
+                <span id="inCtx">成分</span>
+                <span id="ingre"><?php echo $snackRow['snackIngre']?></span>
+                        
             </div>
             <div class="map flexWrapR" >
                 
