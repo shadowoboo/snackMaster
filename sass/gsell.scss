@@ -118,7 +118,11 @@ body {
 
     .map_serch_info_line span{
         color: $blue;
-        cursor: pointer
+        cursor: pointer;
+        &:hover{
+            transform: scale(1.1);
+            transition: 0.5s;
+        }
     }
 }
 
@@ -174,13 +178,21 @@ body {
                     }
                     select {
                         font-family: g2Font;
-                        padding: 5px 10px;
+                        padding: 2px 4px 6px 4px;
+                        border-radius: 10px;
+                        font-size: 16px;
+                        color: #737374;
                     }
                     .search_search_desk {
-                        color: $blue;
+                        color: $gray;
                         font-size: 25px;
                         padding-top: 21px;
                         cursor: pointer;
+                        &:hover{
+                            transform: scale(1.1);
+                            transition: 0.5s;
+                            color: $blue;
+                        }
                     }
                 }
             }
