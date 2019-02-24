@@ -1,6 +1,8 @@
 @import 'reset';
 @import 'common';
-
+#gorankBoard a{
+    color: $blue;
+}
 .rankBoard{
     //body
     overflow-x: hidden;
@@ -84,12 +86,15 @@
             }
             .switch {
                 cursor: pointer;
+                font-size: 16px;
                 width: 100%;
                 padding: 10px 5px;
                 text-align: center;
                 margin: 0 auto;
                 color: #076baf;
-
+                @media screen and (min-width:$moblie){
+                    font-size: 22px;
+                }
                 &:hover {
                     color: #fff;
                     background-color: #076baf;
@@ -133,6 +138,7 @@
                 text-align: center;
                 line-height: 2.5;
                 position: absolute;
+
 
             }
 
@@ -255,7 +261,7 @@
 
             h2 {
                 padding: 10px 0;
-                line-height: 30px;
+                line-height: 1.2em;
                 color: #737374;
                 p {
                     font-size: 22px;
@@ -275,7 +281,7 @@
             }
             .notRank{
                 // background-color:rgb(173, 173, 173); 
-                visibility: hidden;
+               display: none;
             }
             #rank0{
                 background-color:rgb(173, 173, 173); 
@@ -289,23 +295,21 @@
             #rank3{
                 background-color: #5cb3ff;
             }
-
+            #price{
+                // margin-left: 5%;
+                color: #076baf;
+                font-size: 34px;
+               
+                
+            }
             .itemBtns {
                 margin: 15px 0;
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
 
-                #price{
-                    
-                    font-size: 28px;
-                    color: #076baf;
-                    @media screen and (min-width:$moblie) {
-                        font-size: 34px;
-                    }
-                }
                 .detail,.cart,.heart{
-                    font-size: 18px;
+                    font-size: 16px;
                 @media screen and (min-width:$moblie) {
                     font-size: 22px;
                 }
@@ -313,7 +317,7 @@
 
                 .detail,
                 .cart {
-                    width: 110px;
+                    width: 100px;
                     @media screen and (min-width:$moblie) {
                         width: 150px;
                     }

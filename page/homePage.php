@@ -2058,7 +2058,6 @@
     <!-- //換排行榜動畫 -->
     <script>
         $('.category').click(function () {
-
             // console.log(`第 ${i} 次 點擊`)
             // var k = i ;
             // i++;
@@ -2081,6 +2080,19 @@
             }, 500);
         })
     </script>
+
+
+    <!-- 預設值給綜合亮 -->
+    <script>
+        var rankColor = document.getElementsByClassName('category');
+        rankColor[0].classList.add('showColor');
+        for(var i=1;i<rankColor.length;i++){
+            rankColor[i].addEventListener('click',function(){
+                rankColor[0].classList.remove('showColor');
+            });
+        }
+    </script>
+
 
 <!-- 點選排行分類撈出該分類的排行 -->
     <script>
