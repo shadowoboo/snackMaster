@@ -331,15 +331,17 @@ input[type="number"]{
             }
             
             .specify{
+                
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
                 .col4{
                     width: 50%;
+                    padding: 5px;
                     p{
                         font-size: 18px;
                         line-height: 2;
-                        padding-left: 2%;
+                        // padding-left: 2%;
                         color: $tabColor;
                         font-family: g2Font; 
                         
@@ -393,6 +395,7 @@ input[type="number"]{
                     color: $tabColor;
                     font-size: 15px;
                     font-family: g2Font;
+                    padding: 10px;
                 }
             }
             table:first-child{
@@ -423,16 +426,6 @@ input[type="number"]{
                     font-family: g2Font;
                 }
             }
-            #listMore{
-                text-align: center;
-                p{
-                    color: $blue; 
-                    font-family: g2Font;
-                    line-height: 2;
-                    cursor: pointer;
-                }
-    
-            }
             .line{
                 width: 80%;
                 margin: auto;
@@ -440,58 +433,81 @@ input[type="number"]{
                 border-bottom: 2px solid $blue;
                 margin-bottom: 10px;
             }
-            #proEva{
+            #listMore{ 
                 position: relative;
-                width: 100%;
-                display: none;
-        
-               .orderItemList{
-                   tr{
-                       width: 100%;
-                       text-align: center;
-                       th{
-                        width: 15%;
-                          line-height: 1.6;
-                           font-size: 15px;
-                           color: $blue;
-                        //    width: 50px;
-                           font-family: g2Med;
-                           padding: 0 10px;
-                       }
-                       td{
-                           width: 15%;
-                           vertical-align: middle;
-                           font-size: 14px;
-                           color: $tabColor;
-                           font-family: g2Med;
-                           line-height: 1.6;
-                       }
-                       img{
-                           width: 45%;
-                           margin-top: 5px;
+                text-align: center;
+                p{
+                    color: $blue; 
+                    font-family: g2Font;
+                    line-height: 2;
+                    cursor: pointer;
+                }
+                .orderItem{
+                   
+                    width: 100%;
+                    display: none;
+            
+                   .orderItemList{
+                       tr{
+                           width: 100%;
+                           text-align: center;
+                           th{
+                            width: 15%;
+                              line-height: 1.6;
+                               font-size: 15px;
+                               color: $blue;
+                            //    width: 50px;
+                               font-family: g2Med;
+                               padding: 0 10px;
+                           }
                            
                        }
-                       .cart{
-                           font-size: 12px;
-                           width: 50px;
-                           height: 30px;
-                           margin: 0 5px;
+                       .listeva{
+
+                            td{
+                                width: 15%;
+                                vertical-align: middle;
+                                font-size: 14px;
+                                color: $tabColor;
+                                font-family: g2Med;
+                                line-height: 1.6;
+                            }
+                            img{
+                                width: 73%;
+                                margin-top: 5px;
+                                
+                            }
+                            .cart{
+                                font-size: 12px;
+                                width: 50px;
+                                height: 30px;
+                                margin: 0 5px;
+                            }
                        }
                    }
-               }
-               #evaBox{
+               
+                }
+                .orderItem.expand{
+                    display: block;
+                }
+                
+                .evaLightBox{
                 position: absolute;
-                top: 0;
-                width: 100%;
+                top: 10%;
+                left: 9%;
+                width: 84%;
                 background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
                 border-radius: 10px;
+                box-shadow: 5px 5px 10px 0px #aaa;
                 // margin: auto;
+                z-index: 20;
                 display: none;
                 span{
+                    cursor: pointer;
                     display: block;
                     text-align: right;
                     padding: 10px;
-                    font-size: 22px;
+                    font-size: 25px;
                 }
                 .evaLightBox_content{
                     width: 100%;
@@ -507,18 +523,44 @@ input[type="number"]{
                           }
                     }
                     .evaStars{
+                        
                         ul{
                             li{
                                 p{
+                                    text-align: left;
                                     color: $tabColor;
                                     line-height: 1.6;
                                     padding: 0 5px;
+                                    font-size: 18px;
+                                    
                                 }
                             }
                         }
+                        .swStars,.suStars,.spStars,.gdStars{
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-around;
+                            align-items: center;
+                            padding: 10px;
+                            li{
+                                color: $tabColor;
+                                font-family: g2Med;
+                                font-size: 16px;
+                                input{
+                                    width: 20px;
+                                    
+
+                                }
+                            }
+                        }
+                        
                     }
                     .discuss{
                         text-align: center;
+                        p{
+                            color: $tabColor;
+                            font-size: 18px;
+                        }
                         textarea{
                             margin: 10px 0;
                         }
@@ -537,15 +579,16 @@ input[type="number"]{
                         
                         .evaproPic{
                            
-    
-                            .step{
+                            .cart{
                                 width: 120px;
                                 height: 35px;
                                 margin: auto;
+                                color: #fff;
+                                line-height:1.6; 
                                 
                             }
                             input{
-                                display: none;
+                               display: none; 
                             }
                         }
     
@@ -564,14 +607,15 @@ input[type="number"]{
                 }
                 
                 
+                }
+                .evaLightBox.show{
+                    display: block;
+                }
+    
             }
-            #evaBox.jump{
-                display: block;
-            }
-            }
-            #proEva.expand{
-                display: block;
-            }
+            
+            
+            
         
             
             
@@ -597,6 +641,7 @@ input[type="number"]{
                             margin: auto;
                             text-align: center;
                             margin-top: 20px;
+                            padding: 3px;
                             
                             .country{
                                 width: 40px;
@@ -615,7 +660,7 @@ input[type="number"]{
                                     font-size: $p;
                                     line-height: 2;
                                     color: $tabColor;
-                                    margin-top: 20px;
+                                    margin-top: 10px;
                                     span{
                                         font-size: $p;
                                         padding: 0 5px;
@@ -625,7 +670,7 @@ input[type="number"]{
                                 
                             }
                             .citemBtns{
-                                margin-top: 15px;
+                                margin-top: 0px;
                             }
                             
                         }
@@ -640,26 +685,34 @@ input[type="number"]{
             table{
                 margin: auto;
                 width: 100%;
-                tr:first-child{
-                    border-bottom: 2px solid #076baf;
+                tr{
+                    
                     text-align: center;
                     th{
-                        // width: 50%;
+                        width: 20%;
                         line-height: 3;
                         color: $tabColor;
                         font-family: g2Font;
                         font-size: 16px;
+                        border-bottom: 2px solid #076baf;
                     }
                 }
-                tr:last-child{
+                
+            }
+            #coupon{
+                tr{
                     td{
-                        text-align: center;
+                        // text-align: center;
+                        width: 20%;
                         vertical-align: middle;
                         padding: 2%;
                         font-family: g2Font;
                         color: $tabColor;
-                        font-size: 12px;
+                        font-size: 14px;
                         margin-right: 1%;
+                    }
+                    img{
+                        width: 65%;
                     }
                 }
             }
@@ -766,6 +819,18 @@ input[type="number"]{
                 
                 }
                 
+            }
+            #tab-2{
+                #orderList{
+                    .evaLightBox{
+                        .evaStars{
+                            padding: 0 5px;
+                            // img{
+                            //     width: 87%;
+                            // }
+                        }
+                    }
+                }
             }
             
         
@@ -892,6 +957,7 @@ input[type="number"]{
         .wrapTabPanel{
             .tabPanel{
                 max-width: 1200px;
+                width: 100%;
                 // height: auto;
             }
 
@@ -952,11 +1018,11 @@ input[type="number"]{
                         width: 44%;
                         tr{
                             th{
-                                font-size: 20px;
+                                font-size: 25px;
                             }
                             td{
                                 padding-left: 1%;
-                                font-size: 18px;
+                                font-size: 22px;
                             }
     
                         }
@@ -979,79 +1045,123 @@ input[type="number"]{
                     }
                     
                 }
-               
-               #proEva{
-                   .orderItemList{
-                       tr{
-                           th{
-                               font-size: 18px;
-                           }
-                           td{
-                               font-size: 18px;
-                               img{
-                                 padding: 10px;
-                               }
-                               .cart{
-                                font-size: 16px;
-                                width: 80px;
-                                height: 30px;
-                                margin: 0 5px;
+                .total{
+                    p{
+                        font-size: 22px;
+                        span{
+                            font-size: 22px;
+                        }
+                    }
+                }
+                #listMore{
+                    p{
+                        font-size: 22px;
+                        span{
+                            font-size: 18px;
+                        }
+                    }
+                    .orderItem{
+                        .orderItemList{
+                            tr{
+                                th{
+                                    font-size: 25px;
+                                }
+                               
                             }
-                           }
-                       }
-                   }
-                   #evaBox{
-                       .evaLightBox_content{
-                           width: 100%;
-                           display: flex;
-                           flex-direction: row;
-                           justify-content: space-around;
-                           align-items: center;
-                           .evaContent{
-                             margin: auto;
-                               width: 25%;
-                               height: 300px;
-                               .evaSend{
-                                   width: 100%;
-                                   height: 50px;
-                               }
-                           }
-                       }
-                   }
-               }
-       
+                            .listeva{
+                                td{
+                                    font-size: 22px;
+                                    img{
+                                      padding: 10px;
+                                    }
+                                    .cart{
+                                     font-size: 16px;
+                                     width: 80px;
+                                     height: 30px;
+                                     margin: 0 5px;
+                                 }
+                                }
+                            }
+                        }
+                        
+                    }
+                    .evaLightBox{
+                        height: 460px;
+                            top: 10px;
+                            .evaLightBox_content{
+                                width: 100%;
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: space-around;
+                                align-items: center;
+                                   .evaContent{
+                                        margin: auto;
+                                        width: 25%;
+                                        height: 300px;
+                                        .evaSend{
+                                            width: 100%;
+                                            height: 50px;
+                                                 }
+                                             }
+                                    .proPic{
+                                        img{
+                                            width: 40%;
+                                        }
+                                    }         
+                                    .evaStars{
+                                        padding: 5px;
+                                    }         
+                                         }
+                                }
                     
                 }
-            }
-            #tab-3{
-                .collect{
-                    flex-direction: row;
-                    justify-content: space-around;
-                    align-self: center;  
-                    .item{
-                        margin: 20px;
-                    }    
+                
+              
+                    
                 }
-            }
+            #tab-3{
+                    .collect{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-evenly;
+                        align-self: center;  
+                        .item{
+                            width: 260px;
+                            margin: 18px;
+                            padding: 5px;
+                        }    
+                    }
+                }
             #tab-4{
                 table{
-                    tr:first-child{
+                    margin: auto;
+                    width: 100%;
+                    tr{
+                        
+                        text-align: center;
                         th{
-                            font-size: 25px;
-                           }
-                           
+                            
+                            font-size: 28px;
+                            
+                        }
                     }
-                    tr:last-child{
+                    
+                }
+                #coupon{
+                    tr{
                         td{
-                            font-family: g2Font;
+                           
                             font-size: 20px;
-                           }
+                            
+                        }
+         
                     }
-                    
                 }
-                 
-                    
-                }
+                        
+                    } 
+            }
+            
+
 
          }
 

@@ -2,22 +2,19 @@
     ob_start();
     session_start();
     //未登入直接跳轉到首頁
-    // if( isset($_SESSION['memId']) == false ){
-    //     header('location:homePage.php');
-    // }
+    if( isset($_SESSION['memId']) == false ){
+        unset ($_SESSION["memNo"]);
+        unset ($_SESSION["memId"]);
+        unset ($_SESSION["memId"]);
+        header('location:homePage.php');
+    }
     //點擊登出，會員資料要清空
     //跳轉回首頁
     // if (isset($_REQUEST["btnloglout"]) && ($_REQUEST["btnloglout"]=="true")) {
     //     //登出資料要清空
     //     unset ($_SESSION["memNo"]);
-    //     unset ($_SESSION["grade"]);
     //     unset ($_SESSION["memId"]);
-    //     unset ($_SESSION["email"]);
-    //     unset ($_SESSION["memPic"]);
-    //     unset ($_SESSION["memPhone"]);
-    //     unset ($_SESSION["commentRight"]);
-    //     unset ($_SESSION["reportTimes"]);
-    //     unset ($_SESSION["memName"]);
+    //     unset ($_SESSION["memId"]);
     //     //跳轉回首頁
     //     header("Location: homePage.php");
       
@@ -66,11 +63,11 @@
         $order = $pdo->prepare($order_sql);
         $order->bindValue(":memNo",$memNo);
         $order->execute();
-        $orderRow = $order->fetch(PDO::FETCH_ASSOC);
+        // $orderRow = $order->fetch(PDO::FETCH_ASSOC);
         
-        if ($order->rowCount() ==0 ) {
-            echo "您目前尚無訂單！";
-        }
+        // if ($order->rowCount() ==0 ) {
+        //     echo "您目前尚無訂單！";
+        // }
     
 
 
@@ -351,8 +348,22 @@
             </div>
             <!----------------------- 訂單管理----------------------------- -->
             <div class="tabPanel " id="tab-2">
+                <?php 
+                //先抓出訂單資料
+                $order_sql= "select * from snackOrder where memNo=:memNo";
+                $order = $pdo->prepare($order_sql);
+                $order->bindValue(":memNo", $memNo);
+                $order->execute();
+                if ($order->rowCount() ==0 ) {
+                        echo "您目前尚無訂單！";
+                 }else{
+                    while($orderRow = $order->fetch(PDO::FETCH_ASSOC)){
+                        $orderNo = $orderRow['orderNo'];
+                 
+             ?>
+
                 <div id="orderList">
-    
+
                     <div class="orderList">
                         <table>
 
@@ -384,17 +395,20 @@
                                 <th>收件人電話：</th>
                                 <td><?php echo $orderRow['phone'] ?></td>
                             </tr>
-                            
-                             
+
+
                         </table>
 
                     </div>
                     <div class="total">
                         <p>總額：<span><?php echo $orderRow['orderTotal'] ?></span></p>
                     </div>
+
                     <div id="listMore">
-                        <p id="listMorebtn">訂單明細v </p>
+                        <p id="listMorebtn" class="listplay" >訂單明細v</p>
+
                         <div class=line></div>
+
                         <div id="proEva" class="orderItem">
                             <table class="orderItemList">
                                 <tr>
@@ -406,51 +420,175 @@
                                     <th>備註</th>
                                     <th>評價狀態</th>
                                 </tr>
+                        <?php 
+                            $br="<br>";
+                          $OL_sql= "select a.snackNo, a.snackName, a.snackPic, a.snackPrice, b.orderNo, b.snackQuan, b.customBoxItem, b.snackNo from snack a join orderItem b on a.snackNo = b.snackNo where orderNo=:orderNo";
+                          $order_list =$pdo->prepare($OL_sql);
+                          $order_list->bindValue(":orderNo",$orderNo);
+                          $order_list->execute();
 
+                          $order_listArr = $order_list->fetchAll(PDO::FETCH_ASSOC);
+                          $OLrowcount = $order_list->rowCount();
+                        //   print_r($order_listRow);
+                        //   print_r($order_listArr);
+                        //   echo $OLrowcount."<br>" ;
+                        //   echo count($order_listArr).$br;
 
-                                <tr>
+                        // for($i=0;$i<$OLrowcount;$i++){
+                        //     echo $order_listArr[$i]["snackName"].$br;
+                        // }
+                        
+
+                          for($i=0;$i<$OLrowcount;$i++){
+                            //   echo "$i: ".$i.$br;
+                                // echo print_r($val);
+                                // foreach((array)$val as $key){
+                                // echo print_r($val[$key]);
+
+                        //   }
+                        //   while($order_listRow = $order_list->fetch(PDO::FETCH_ASSOC)){
+                    ?>
+                                <tr class="listeva">
                                     <td>
-                                        <img src="<?php echo $orderRow['snackPic'] ?>" alt="">
+                                        <img src="<?php echo $order_listArr[$i]['snackPic'] ?>" alt="商品圖">
                                     </td>
-                                    <td><?php echo $orderRow['snackName'] ?></td>
-                                    <td><?php echo $orderRow['snackQuan'] ?></td>
-                                    <td><?php echo $orderRow['snackPrice'] ?></td>
-                                    <td><?php echo $orderRow['snackPrice']*$orderRow['snackQuan'] ?></td>
+                                    <td><?php echo $order_listArr[$i]['snackName'] ?></td>
+                                    <td><?php echo $order_listArr[$i]['snackQuan'] ?></td>
+                                    <td><?php echo $order_listArr[$i]['snackPrice'] ?></td>
+                                    <td><?php echo $order_listArr[$i]['snackPrice']*$order_listArr[$i]['snackQuan'] ?>
+                                    </td>
                                     <td>客製化</td>
                                     <td>
-                                        <button id="evaShow" class="cart">未評價</button>
+                                        <button id="evaShow" class="cart evaShowbtn">未評價</button>
                                     </td>
-                                </tr>
-
-
+                                </tr>  
+                            </div>  
+                                    <?php 
+                                // }
+                                    }
+                            // echo "end".$br; exit();
+                                    ?>
+                       
                             </table>
+                            <?php 
+                                $eva_sql = ""
+                             ?>
+                           
                             <div id="evaBox" class="evaLightBox">
-                                <span id="evaLightBoxLeave">X</span>
+                                <span class="evaLightBoxLeave">X</span>
                                 <div class="evaLightBox_content">
                                     <div class="evaContent proPic">
-                                        <img src="../images/index/co2.png" alt="">
-                                        <p>Pocky 巧克力</p>
+                                        <img src="<?php echo $order_listArr[$i]['snackPic']?>" alt="商品圖">
+                                        <p><?php echo $order_listArr[$i]['snackName']?></p>
                                     </div>
                                     <div class="evaContent evaStars">
                                         <ul>
                                             <li>
                                                 <p>
                                                     甜度：
+                                                    <ul class="swStars">
+                                                        <li>
+                                                            1星<input type="checkbox" name="swStar" id="swStar1">
+                                                        </li>
+                                                        <li>
+                                                            2星<input type="checkbox" name="swStar" id="swStar2">
+
+                                                        </li>
+                                                        <li>
+                                                            3星<input type="checkbox" name="swStar" id="swStar3">
+
+                                                        </li>
+                                                        <li>
+                                                            4星<input type="checkbox" name="swStar" id="swStar4">
+
+                                                        </li>
+                                                        <li>
+                                                            5星<input type="checkbox" name="swStar" id="swStar5">
+
+                                                        </li>
+                                                    </ul>
+                                                    <!-- <span><img src="../images/rankBoard/starMask3.png" alt="星等"></span> -->
                                                 </p>
                                             </li>
                                             <li>
                                                 <p>
                                                     酸度：
+                                                    <ul class="suStars">
+                                                        <li>
+                                                            1星<input type="checkbox" name="suStar" id="suStar1">
+                                                        </li>
+                                                        <li>
+                                                            2星<input type="checkbox" name="suStar" id="suStar2">
+
+                                                        </li>
+                                                        <li>
+                                                            3星<input type="checkbox" name="suStar" id="suStar3">
+
+                                                        </li>
+                                                        <li>
+                                                            4星<input type="checkbox" name="suStar" id="suStar4">
+
+                                                        </li>
+                                                        <li>
+                                                            5星<input type="checkbox" name="" id="suStar5">
+
+                                                        </li>
+                                                    </ul>
+                                                    <!-- <span><img src="../images/rankBoard/starMask3.png" alt="星等"></span> -->
                                                 </p>
                                             </li>
                                             <li>
                                                 <p>
                                                     辣度：
+                                                    <ul class="spStars">
+                                                        <li>
+                                                            1星<input type="checkbox" name="spStar" id="spStar1">
+                                                        </li>
+                                                        <li>
+                                                            2星<input type="checkbox" name="spStar" id="spStar2">
+
+                                                        </li>
+                                                        <li>
+                                                            3星<input type="checkbox" name="spStar" id="spStar3">
+
+                                                        </li>
+                                                        <li>
+                                                            4星<input type="checkbox" name="spStar" id="spStar4">
+
+                                                        </li>
+                                                        <li>
+                                                            5星<input type="checkbox" name="spStar" id="spStar5">
+
+                                                        </li>
+                                                    </ul>
+                                                    <!-- <span><img src="../images/rankBoard/starMask3.png" alt="星等"></span> -->
                                                 </p>
                                             </li>
                                             <li>
                                                 <p>
                                                     好評度：
+                                                    <ul class="gdStars">
+                                                        <li>
+                                                            1星<input type="checkbox" name="gdStar" id="gdStar1">
+                                                        </li>
+                                                        <li>
+                                                            2星<input type="checkbox" name="gdStar" id="gdStar2">
+
+                                                        </li>
+                                                        <li>
+                                                            3星<input type="checkbox" name="gdStar" id="gdStar3">
+
+                                                        </li>
+                                                        <li>
+                                                            4星<input type="checkbox" name="gdStar" id="gdStar4">
+
+                                                        </li>
+                                                        <li>
+                                                            5星<input type="checkbox" name="gdStar" id="gdStar5">
+
+                                                        </li>
+                                                    </ul>
+                                                    <!-- <span><img src="../images/rankBoard/starMask3.png" alt="星等"></span> -->
                                                 </p>
                                             </li>
 
@@ -458,7 +596,8 @@
 
                                     </div>
                                     <div class="evaContent discuss">
-                                        <textarea name="textDiscuss" id="textDiscuss" cols="30" rows="10"></textarea>
+                                        <p>留言分享</p>
+                                        <textarea name="textDiscuss" id="textDiscuss" cols="30" rows="10" class="textDics"></textarea>
                                     </div>
                                     <div class="evaContent evaPro">
 
@@ -470,27 +609,30 @@
 
                                         <label class="evaproPic" for="upFile">
 
-                                            <p class="step">上傳圖檔</p>
+                                            <p class="cart">上傳圖檔
+                                            </p>
                                             <input type="file" name="upFile" id="upFile">
+
 
                                         </label>
                                         <div class="evaContent evaSend">
                                             <button class="step">確認送出</button>
                                         </div>
                                     </div>
-
-
                                 </div>
-
-
-                            </div>
+                            
                         </div>
+
+
+                           
                     </div>
- 
-
-
+                   
                 </div>
+                <?php 
 
+                   }  
+                }
+                ?>
 
             </div>
             <!------------------收藏品--------------------  -->
@@ -553,7 +695,7 @@ function tabClick(e) {
 
             break;
         case 'tab22':
-            
+
             break;
         case 'tab33':
             getCollection();
@@ -568,22 +710,22 @@ function tabClick(e) {
 //     var xhr = new XMLHttpRequest();
 //     xhr.onload = function() {
 //         if (xhr.status == 200) {
-        
-            
 
 
-            
+
+
+
 //         }else {
 //             alert(xhr.status);
 //         }  
 
-        
+
 //         var url = "memOrderList.php";
 //         xhr.open("Get", url, true);
 //         xhr.send(null);
 
 //     }
-    
+
 
 
 //收藏清單
@@ -662,7 +804,7 @@ function doFirst() {
     for (var num = 0; num < tablinks.length; num++) {
         tablinks[num].addEventListener('click', tabClick);
     }
-   
+
 
 
 }
