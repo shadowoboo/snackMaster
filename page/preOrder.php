@@ -455,10 +455,12 @@
         $evaRow  = $eva -> fetch();
 ?>
                         <div class="carousel item<?php echo $i?>">
+                            <a href="showItem.php?snackNo=<?php echo $snackRow['snackNo'] ?>">
                             <div class="cardImg">
                                 <img src="<?php echo $snackRow['snackPic']?>" alt="snack">
                             </div>
                             <h4><?php echo '['.$snackRow['nation'].']'.$snackRow['snackName']?></h4>
+                            </a>
                             <div class="review">
                                 <div class="profile">
                                     <img src="<?php echo $evaRow['memPic'] ?>" alt="profile">

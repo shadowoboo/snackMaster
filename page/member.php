@@ -147,7 +147,7 @@
                             <li id="goGsell"><a href="gsell.php">尋找販賣機</a> </li>
                         </ul>
                     </div>
-                </div>
+                </div> 
 
                 <ul class="login">
                     <li><a href="?loglout=true"><span id="btnloglout">&nbsp</span></a></li>
