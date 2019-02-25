@@ -269,7 +269,7 @@
 <?php
     $memRow["memPoint"] 
 ?>
-                        <div class="colorBar">
+                        <div class="colorBar" style="overflow: hidden">
                             <div class="nowPro"></div>
                         </div>
                         <div class="kid">
