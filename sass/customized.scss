@@ -16,13 +16,13 @@ audio{
     width: 400px;
     position: absolute;
     top: 200px;
-    left:-130px;
+    left:0px;
 }
 .coco02{
     width: 400px;
     position: absolute;
     top: 200px;
-    right: -157px;
+    right:0px;
 }
    
 
@@ -676,19 +676,22 @@ a {
 .tab-content-2 > div:last-child {
     display:none;
   }
-
-.form {
-    flex:1;
-    height: 300px;
-    background:rgba($form-bg,.9);
-    max-width:600px;
-    border-radius:10px;
-    margin:0 40px;
-    border:10px solid #fbc849;
-    a{
-        font-family: g2Font;
+.formBody{
+    width:400px;
+    height: 400px;
+    .form {
+        flex:1;
+        height: 300px;
+        background:rgba($form-bg,.9);
+        max-width:600px;
+        border-radius:10px;
+        margin:0 40px;
+        border:10px solid #fbc849;
+        a{
+            font-family: g2Font;
+        }
     }
-  }
+}
 
 .top-row {
  .pickColor{
@@ -784,7 +787,6 @@ a {
     // max-width: 600px;
     border-radius: 10px;
     margin: 0 40px;
-    margin-top: 20px;
     border: 10px solid #fbc849;
     ul{
         position: relative;
@@ -1637,6 +1639,13 @@ $cardY:600px;
             flex-direction: column;
             flex-wrap:initial !important;
             align-items: center;
+            .formBody{
+                width: 100%;
+                margin:auto;
+                .form{
+                    margin: auto;
+                }
+            }
             #cardSureBtn{
                 margin: 0px auto 30px;
             }
@@ -1673,15 +1682,21 @@ $cardY:600px;
                 flex-direction: row;
                 justify-content: center;
             }
+            #boxSureBtn{
+                margin: 40px auto 15px !important;
+            }
             .cardBox{
                 width: 100%;
                 img{
                     width: 372px;
                 }
             }
+            .cardBody{
+                margin-top: 55px;
             .pickCard{
-                width: 90%;
+                width:100%;
                 margin-bottom: 6%;
+                margin:auto;
                 .cardStyle{
                     display: flex;
                     flex-direction: row;
@@ -1719,6 +1734,7 @@ $cardY:600px;
                         }
                     }
                 }
+            }
                 .cardRecord{
                     width:100%;
                     margin: auto;
