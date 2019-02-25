@@ -97,6 +97,7 @@
     <link rel="stylesheet" href="../css/header.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/header.js" defer></script>
+    <script src="../js/upgrade.js"></script>
 
     <title>會員專區</title>
 
@@ -208,14 +209,14 @@
                 <tr>
                     <td>
                         <p>
-                            成就：<span><?php echo $levRow["gradeName"];?></span>
+                            成就：<span id="gradeName"><?php echo $levRow["gradeName"];?></span>
                         </p>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <p>
-                            積分：<span><?php echo $memRow["memPoint"];?></span>
+                            積分：<span id="memPoint"><?php echo $memRow["memPoint"];?></span>
                         </p>
                     </td>
                 </tr>
@@ -273,16 +274,16 @@
                         <span>12385分</span>
                     </div>
                     <div class="procBar">
-                        <div class="baby">
+                        <!-- <div class="baby">
                             <img src="../images/tina/大頭貼.png" alt="零食寶寶">
-                        </div>
+                        </div> -->
 
-                        <div class="colorBar">
+                        <div class="colorBar" style="overflow: hidden">
                             <div class="nowPro"></div>
                         </div>
-                        <div class="kid">
+                        <!-- <div class="kid">
                             <img src="../images/tina/kid.png" alt="零食小鬼">
-                        </div>
+                        </div> -->
 
                     </div>
                     <div class="bottumLevel">
@@ -340,7 +341,25 @@
 
                     </div>
                     <div class="btnn">
-                        <button class="goToCustom">領取升等獎勵</button>
+<?php 
+    $sql = "select grade, memPoint from member where memNo = {$_SESSION['memNo']}";
+    $members = $pdo -> query($sql);
+    $member = $members -> fetch();
+    if( $member['grade'] == 6 ){
+        $check = 'disabled style="cursor: no-drop;"';
+    }else{
+        $nextGrade = $member['grade'] + 1;
+        $sql = "select * from masterlevel where grade = {$nextGrade}";
+        $grades = $pdo -> query($sql);
+        $grade = $grades -> fetch(); 
+        if( $member['memPoint'] < $grade['gradePoint'] ){
+            $check = 'disabled style="cursor: no-drop;"';
+        }else{
+            $check = '';
+        }
+    }
+?>
+                        <button class="goToCustom" <?php echo $check ?>>領取升等獎勵</button>
                     </div>
 
                 </div>
