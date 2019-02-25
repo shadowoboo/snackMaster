@@ -937,7 +937,7 @@
             </div>
             <?php
                 require_once("connectcd105g2.php");
-                $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo";
+                $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo ORDER by c.clearanceNo desc limit 3";
                 $sales = $pdo->query( $sql );
                 $salesRow = $sales->fetchAll();
             ?>
@@ -2243,12 +2243,12 @@
 
 <!-- 即期品特賣 -->
     <script>
-        <?php
-            require_once("connectcd105g2.php");
-            $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo ORDER by a.clearanceNo desc limit 3";
-            $sales = $pdo->query( $sql );
-            $salesRow = $sales->fetchAll();
-        ?>
+        // <?php
+        //     require_once("connectcd105g2.php");
+        //     $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo ORDER by a.clearanceNo desc limit 3";
+        //     $sales = $pdo->query( $sql );
+        //     $salesRow = $sales->fetchAll();
+        // ?>
         var slideIndex = 1;
         function showSlides(n) {
             var i;
