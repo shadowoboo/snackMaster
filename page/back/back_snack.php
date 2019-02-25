@@ -19,8 +19,20 @@
             $pageNum = 1;
         }
         $start = ($pageNum - 1) * $recPerPage;
-        $sql = "select * from snack limit $start, $recPerPage";
+
+        if( isset($_REQUEST['search']) == false ){
+            $sql = "select * from snack limit $start, $recPerPage";
+        }else{
+            $search= $_REQUEST['search'];
+            $sql = "select * from snack where $search limit $start, $recPerPage";
+        }
         $snacks = $pdo -> query($sql); 
+        if( $snacks -> rowCount() == 0){
+            $searchMsg = 'oops';
+            $sql = "select * from snack limit $start, $recPerPage";
+            $snacks = $pdo -> query($sql); 
+        }
+
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";
@@ -47,6 +59,47 @@
             <div id="content">
                 <h3>商品資料管理</h3>
                 <a href="back_addSnack.php"><button class="step">新增</button></a>
+                <div class="searchBar">
+                    <select name="country" id="country">
+                        <option value="0">國家</option>
+                        <option value="巴西">巴西</option>
+                        <option value="日本">日本</option>
+                        <option value="美國">美國</option>
+                        <option value="英國">英國</option>
+                        <option value="埃及">埃及</option>
+                        <option value="德國">德國</option>
+                        <option value="澳洲">澳洲</option>
+                        <option value="韓國">韓國</option>
+                    </select>
+                    <select name="kind" id="kind">
+                        <option value="0">種類</option>
+                        <option value="巧克力">巧克力</option>
+                        <option value="糖果">糖果</option>
+                        <option value="餅乾">餅乾</option>
+                        <option value="洋芋片">洋芋片</option>
+                    </select>
+                    <select name="flavor" id="flavor">
+                        <option value="0">口味</option>
+                        <option value="sour">酸</option>
+                        <option value="sweet">甜</option>
+                        <option value="spicy">辣</option>
+                    </select>
+                    <input type="text" id="searchName" placeholder="搜尋" size="10">
+                    <i class="fas fa-search" id="searchClick"></i>
+                </div>
+<?php
+    if( $errMsg != ""){
+        exit("<div><center>$errMsg</center></div>");
+    }
+    if( isset($searchMsg) ){
+?>
+                <div id="searchNone">
+                    <p id="searchMsg">哎呀! 目前沒有符合搜尋條件的商品，以下是所有商品</p>
+                    <img id="searchImg" src="../../images/blair/oops.png" alt="oops">
+                </div>
+ <?php
+    }
+?>               
                 <table id="snack">
                     <tr>
                         <th width="55">編輯</th>
@@ -72,9 +125,6 @@
                     </tr>
                     <tr>
 <?php
-    if( $errMsg != ""){
-        exit("<div><center>$errMsg</center></div>");
-    }
     while( $snackRow = $snacks -> fetch() ){
 ?>
                         <td>
@@ -118,9 +168,9 @@
                             echo '<li class="page-item"><a href="back_snack.php?pageNum='.$prev.'" id="last" class="page-link"><i class="fas fa-chevron-left"></i></a></li>';
                             for($i=1; $i<=$pages; $i++){
                                 if( $i == $pageNum ){
-                                    echo '<li class="page-item"><a href="back_snack.php?pageNum='.$i.'" class="page-link nowLoc">0'.$i.'</a></li>';
+                                    echo '<li class="page-item"><a href="back_snack.php?pageNum='.$i.'" class="page-link nowLoc">'.$i.'</a></li>';
                                 }else{
-                                    echo '<li class="page-item"><a href="back_snack.php?pageNum='.$i.'" class="page-link">0'.$i.'</a></li>';
+                                    echo '<li class="page-item"><a href="back_snack.php?pageNum='.$i.'" class="page-link">'.$i.'</a></li>';
                                 }
                             }
                             echo '<li class="page-item"><a href="back_snack.php?pageNum='.$next.'" id="next" class="page-link"><i class="fas fa-chevron-right"></i></a></li>';
@@ -133,5 +183,28 @@
             </footer>
         </div>
     </div> 
+    <script>
+        function searchBar() {
+            var country = document.getElementById('country').value;
+            var kind = document.getElementById('kind').value;
+            var flavor = document.getElementById('flavor').value;
+            var name = document.getElementById('searchName').value;
+            if (country != 0) {
+                country = "'" + country + "'";
+            }
+            if (kind != 0) {
+                kind = "'" + kind + "'";
+            }
+            if (flavor == 0) {
+                var search = " nation = " + country + " and snackGenre = " + kind + " and snackName like '%" + name + "%'";
+            } else {
+                var search = " nation = " + country + " and snackGenre = " + kind + " and " + flavor + "Stars > 0" + " and snackName like '%" + name + "%'";
+            }
+            location.href = 'back_snack.php?search=' + search;
+        }
+        window.addEventListener('load', function () {
+            document.getElementById('searchClick').addEventListener('click', searchBar);
+        });
+    </script>
 </body>
 </html>

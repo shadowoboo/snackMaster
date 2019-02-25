@@ -288,9 +288,9 @@ try {
 
 
     //限制地圖區域
-    function doFirst(){
-        navigator.geolocation.getCurrentPosition(succCallback);
-    }
+    // function doFirst(){
+    //     navigator.geolocation.getCurrentPosition(succCallback);
+    // }
 
     function succCallback(arg){
         var lati = 24.967768;
@@ -501,7 +501,7 @@ try {
     }
     
 
-    window.addEventListener('load', doFirst, false);
+    window.addEventListener('load', succCallback, false);
     
     </script>
 

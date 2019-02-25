@@ -25,8 +25,6 @@
             case UPLOAD_ERR_PARTIAL:
                 echo "未上傳檔案 <br>";
                 break;
-            // default : 
-                // echo "['error']: " , $_FILES['upFile']['error'] , "<br>";
         }
         if( $_FILES['upFile']['tmp_name'] == null ){
             echo "<script>alert('未上傳圖片，新增商品失敗');location.href='back_snack.php';</script>";

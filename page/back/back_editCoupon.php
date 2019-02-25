@@ -67,7 +67,7 @@
     }
     $coupRow = $coupon -> fetch();
 ?>
-                <form action="back_editCouponToDb.php">
+                <form action="back_editCouponToDb.php" method="post" enctype="multipart/form-data">
                     <table id="editTable">
                         <tr>
                             <td>編號</td>
@@ -82,7 +82,10 @@
                         </tr>
                         <tr>
                             <td>圖片</td>
-                            <td><input type="text" name="imgSRC" size="26" value="<?php echo $coupRow['imgSRC'] ?>"></td>
+                            <td>
+                                <img src="../<?php echo $coupRow['imgSRC']?>" alt="" id="preview">
+                                <input type="file" name="upFile" id="upFile">
+                            </td>
                         </tr>
                         <tr>
                             <td>名目</td>
@@ -106,6 +109,14 @@
                 location.href = 'back_coupon.php';
             }
         })
+        document.getElementById('upFile').onchange = function(e){
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(){
+                document.getElementById('preview').src = reader.result;
+            }
+            reader.readAsDataURL(file);
+        }
     </script>
 </body>
 </html>

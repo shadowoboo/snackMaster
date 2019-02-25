@@ -58,7 +58,7 @@
         exit("<div><center>$errMsg</center></div>");
     }
 ?>
-                <form id="myForm">
+                <form id="myForm" method="post" enctype="multipart/form-data">
                     <table>
                         <tr>
                             <td>折價金額</td>

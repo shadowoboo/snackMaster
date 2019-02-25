@@ -90,9 +90,9 @@
                             echo '<li class="page-item"><a href="back_msgReport.php?pageNum='.$prev.'" id="last" class="page-link"><i class="fas fa-chevron-left"></i></a></li>';
                             for($i=1; $i<=$pages; $i++){
                                 if( $i == $pageNum ){
-                                    echo '<li class="page-item"><a href="back_msgReport.php?pageNum='.$i.'" class="page-link nowLoc">0'.$i.'</a></li>';
+                                    echo '<li class="page-item"><a href="back_msgReport.php?pageNum='.$i.'" class="page-link nowLoc">'.$i.'</a></li>';
                                 }else{
-                                    echo '<li class="page-item"><a href="back_msgReport.php?pageNum='.$i.'" class="page-link">0'.$i.'</a></li>';
+                                    echo '<li class="page-item"><a href="back_msgReport.php?pageNum='.$i.'" class="page-link">'.$i.'</a></li>';
                                 }
                             }
                             echo '<li class="page-item"><a href="back_msgReport.php?pageNum='.$next.'" id="next" class="page-link"><i class="fas fa-chevron-right"></i></a></li>';

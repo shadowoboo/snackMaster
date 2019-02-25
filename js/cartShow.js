@@ -22,6 +22,9 @@ $(function () {
     //總計初始化
     priceTotal();
 
+    //撥放按鈕初始化
+    audioInit();
+
     //刪除按鈕們控制
     //刪除客製箱
     $(".cusBtnDel").bind("click", function (e) {
@@ -216,6 +219,24 @@ $(function () {
                 }
             }
         });
+    }
+    //撥放器初始化
+    function audioInit(){
+        var $au_player=$("#au_player");
+        console.log(`$au_player.attr("src"): ${$au_player.attr("src")}`);
+        //如果沒吃到 src 就改變樣式成 不給點 的樣子
+        ////之前用js寫監聽，所以 addEventListener 在 function init(){} 控制
+        if ($au_player.attr("src")=="test"){
+            $("#audioItem").css({
+                "opacity":"0.4",
+            })
+            $("#au_btn_play").css({
+                "cursor":"default",
+            })
+            $("#au_btn_stop").css({
+                "cursor": "default",
+            })
+        }
     }
 })
 
@@ -542,7 +563,8 @@ $(document).ready(function () {
 function init() {
     console.log($(window).width());
     var au_player = document.getElementById("au_player");
-    if (au_player) {
+    au_playerSrc = au_player.getAttribute("src");
+    if (au_player && au_playerSrc != "test" && au_playerSrc != "" ) {
         // 撥放/暫停
         $id("au_btn_play").addEventListener("click", auPlayAndPause);
         // 停止
@@ -596,18 +618,18 @@ function auPlayAndPause(e) {
                 if (!$id("au_player").ended) {
                     //撥放中
                     //換算進度條應該要佔多少
-                    barSize = parseInt(window.getComputedStyle($id("defBar")).width);
-                    var size = barSize / $id("au_player").duration * $id("au_player").currentTime;
+                    // barSize = parseInt(window.getComputedStyle($id("defBar")).width);
+                    // var size = barSize / $id("au_player").duration * $id("au_player").currentTime;
                     //設定bar跟拉桿的位置
-                    $id("proBar").style.width = size + 'px';
-                    $id("barNote").style.left = size + "px";
+                    // $id("proBar").style.width = size + 'px';
+                    // $id("barNote").style.left = size + "px";
                 } else {
                     //播到結束的瞬間
                     //bar、拉桿及撥放時序歸零
-                    $id("proBar").style.width = '0px';
-                    $id("barNote").style.left = "0px";
+                    // $id("proBar").style.width = '0px';
+                    // $id("barNote").style.left = "0px";
                     $id("au_player").currentTime = 0;
-                    $id("au_btn_play").classList.remove("select");
+                    // $id("au_btn_play").classList.remove("select");
                     //換回撥放鈕
                     $id("au_btn_play").innerHTML = "<i class='fas fa-play'></i>";
                 }
@@ -629,8 +651,8 @@ function auStop(e) {
     $id("au_btn_play").classList.remove("select");
     if ($(window).width() > 768) {
         ////bar、拉桿及撥放時序歸零
-        $id("proBar").style.width = '0px';
-        $id("barNote").style.left = "0%";
+        // $id("proBar").style.width = '0px';
+        // $id("barNote").style.left = "0%";
     }
     $id("au_player").currentTime = 0;
     //換回撥放鈕
