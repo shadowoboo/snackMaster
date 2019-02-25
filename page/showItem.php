@@ -17,7 +17,14 @@ session_start();
         //撈出商品資料
         $sql = "SELECT * FROM snack WHERE snackNo={$snackNo}";
         $feed=$pdo->query($sql);
+        if($feed->rowCount()==0){
+            header('Location:shopping.php');
+            exit();
+        }        
         $snackRow=$feed->fetch();
+
+
+
         //撈出評價分數資料
         $sql ="SELECT 
                 COUNT(snackNo) as Etimes,
@@ -106,8 +113,8 @@ session_start();
     ?>
 
     <ol aria-label="breadcrumb" class="breadcrumb">
-        <li class="breadcrumb-item"><a href="index.html"> 首頁 / </a></li>
-        <li class="breadcrumb-item"><a href="shopping.html"> 零食列表 / </a></li>
+        <li class="breadcrumb-item"><a href="homePage.php"> 首頁 / </a></li>
+        <li class="breadcrumb-item"><a href="shopping.php"> 零食列表 / </a></li>
         <li class="breadcrumb-item active" aria-current="page"> <?php echo '['.$snackRow['nation'].']'.$snackRow['snackName']?></li>
     </ol>
 
