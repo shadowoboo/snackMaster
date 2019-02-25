@@ -109,7 +109,7 @@ function getBoxSnack(month){
     xhr.open('get', url, true);
     xhr.send(null);
 }
-function forCart(e){
+function forCart(){
     var chips = parseInt(document.getElementById('chips').value);
     var candy = parseInt(document.getElementById('candy').value);
     var cookie = parseInt(document.getElementById('cookie').value);

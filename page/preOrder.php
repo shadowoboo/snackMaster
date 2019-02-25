@@ -24,8 +24,8 @@
     <link rel="stylesheet" href="../css/nnnnn.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
-    <script src="../js/addCart.js"></script>
     <script src="../js/preOrder.js"></script>
+    <script src="../js/addCart.js"></script>
     <script src="../js/search.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/showStar.js"></script>
@@ -455,10 +455,12 @@
         $evaRow  = $eva -> fetch();
 ?>
                         <div class="carousel item<?php echo $i?>">
+                            <a href="showItem.php?snackNo=<?php echo $snackRow['snackNo'] ?>">
                             <div class="cardImg">
                                 <img src="<?php echo $snackRow['snackPic']?>" alt="snack">
                             </div>
                             <h4><?php echo '['.$snackRow['nation'].']'.$snackRow['snackName']?></h4>
+                            </a>
                             <div class="review">
                                 <div class="profile">
                                     <img src="<?php echo $evaRow['memPic'] ?>" alt="profile">
