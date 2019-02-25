@@ -77,7 +77,7 @@ try{
 //   }else{
 
     //   $sql = "select * from snack where snackGenre = :category order by goodStars desc limit 3";
-      $sql = "SELECT  s.`snackNo` snackNo,s.`nation` nation,s.`snackName` snackName,s.`snackPic` snackPic,r.`ranking` ranking, AVG(`goodstar`) avg from `snack` s,`rank` r, `eva` e WHERE s.snackNo=r.snackNo AND r.`rankGenre`=:category AND s.`snackNo`=e.`snackNo` GROUP BY e.snackNo";
+      $sql = "SELECT * FROM `rank`,`snack` WHERE `rankGenre` LIKE :category AND `rank`.`snackNo`=`snack`.`snackNo` ORDER BY ranking limit 0,3";
       $prodRow = $pdo->prepare( $sql );
       $prodRow->bindValue(":category", $_REQUEST["category"]);
       $prodRow->execute();
@@ -90,20 +90,29 @@ try{
         //送出html結構字串
         $html = '';
         $row = $prodRow->fetchAll();
-  
-        $rank0 = round($row[0]['avg'],1);
-        $rank1 = round($row[1]['avg'],1);
-        $rank2 = round($row[2]['avg'],1);
+        $sql0="SELECT * FROM `snack` WHERE `snackNo`='{$row[0]['snackNo']}' ";
+        $sql1="SELECT * FROM `snack` WHERE `snackNo`='{$row[1]['snackNo']}' ";
+        $sql2="SELECT * FROM `snack` WHERE `snackNo`='{$row[2]['snackNo']}' ";
+        $prodRow = $pdo->query($sql0);
+        $row0=$prodRow->fetch();
+        $prodRow = $pdo->query($sql1);
+        $row1=$prodRow->fetch();
+        $prodRow = $pdo->query($sql2);
+        $row2=$prodRow->fetch();
+
+        $rank0 = round($row0['goodStars']/$row0['goodTimes'],1);
+        $rank1 = round($row1['goodStars']/$row1['goodTimes'],1);
+        $rank2 = round($row2['goodStars']/$row2['goodTimes'],1);
         
         $html .= "<div class='LeaderboardNo2'>
-                        <a href='showItem.php?snackNo={$row[1]["snackNo"]}'>
+                        <a href='showItem.php?snackNo={$row1["snackNo"]}'>
                             <div class='Leaderboarditem No2'>
                                 <div class='LeaderboarCountry'>
-                                    <img src='../images/blair/{$row[1]["nation"]}.png' alt='排行國家'>
+                                    <img src='../images/blair/{$row1["nation"]}.png' alt='排行國家'>
                                 </div>
                                 <div class='commodity'>
-                                    <img src='{$row[1]["snackPic"]}' alt='產品圖'>
-                                    <h4 class='commodityTitle'>[{$row[1]["nation"]}]{$row[1]["snackName"]}</h4>
+                                    <img src='{$row1["snackPic"]}' alt='產品圖'>
+                                    <h4 class='commodityTitle'>[{$row1["nation"]}]{$row1["snackName"]}</h4>
                                     <div class='flexMid'>
                                         <p class='score'>{$rank1}<span class='total'>/5</span></p>
                                     </div>
@@ -115,14 +124,14 @@ try{
                         </a>
                   </div>"; 
         $html .= "<div class='LeaderboardNo1'>
-                        <a href='showItem.php?snackNo={$row[0]["snackNo"]}'>
+                        <a href='showItem.php?snackNo={$row0["snackNo"]}'>
                         <div class='Leaderboarditem No1'>
                             <div class='LeaderboarCountry'>
-                                <img src='../images/blair/{$row[0]["nation"]}.png' alt='排行國家'>
+                                <img src='../images/blair/{$row0["nation"]}.png' alt='排行國家'>
                             </div>
                             <div class='commodity'>
-                                <img src='{$row[0]["snackPic"]}' alt='產品圖'>
-                                <h4 class='commodityTitle'>[{$row[0]["nation"]}]{$row[0]["snackName"]}</h4>
+                                <img src='{$row0["snackPic"]}' alt='產品圖'>
+                                <h4 class='commodityTitle'>[{$row0["nation"]}]{$row0["snackName"]}</h4>
                                 <div class='flexMid'>
                                     <p class='score'>{$rank0}<span class='total'>/5</span></p>
                                 </div>
@@ -134,14 +143,14 @@ try{
                     </a>
                 </div>";
         $html .= "<div class='LeaderboardNo3'>
-                    <a href='showItem.php?snackNo={$row[2]["snackNo"]}'>
+                    <a href='showItem.php?snackNo={$row2["snackNo"]}'>
                         <div class='Leaderboarditem No3'>
                             <div class='LeaderboarCountry'>
-                                <img src='../images/blair/{$row[2]["nation"]}.png' alt='排行國家'>
+                                <img src='../images/blair/{$row2["nation"]}.png' alt='排行國家'>
                             </div>
                             <div class='commodity'>
-                                <img src='{$row[2]["snackPic"]}' alt='產品圖'>
-                                <h4 class='commodityTitle'>[{$row[2]["nation"]}]{$row[2]["snackName"]}</h4>
+                                <img src='{$row2["snackPic"]}' alt='產品圖'>
+                                <h4 class='commodityTitle'>[{$row2["nation"]}]{$row2["snackName"]}</h4>
                                 <div class='flexMid'>
                                     <p class='score'>{$rank2}<span class='total'>/5</span></p>
                                 </div>
