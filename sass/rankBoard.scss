@@ -452,6 +452,9 @@
                             height: 0;
                             overflow: hidden;
                             transition: .3s;
+                            .noMsg{
+                                color: #737374;
+                            }
                         }
 
                         .msgsShow {
@@ -591,6 +594,7 @@
             border-radius: 10px;
             font-family: g2Font;
             text-align: center;
+            cursor: pointer;
             @media screen and (min-width:$moblie){
                 font-size: 16px;
             }
