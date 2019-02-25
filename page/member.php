@@ -10,7 +10,7 @@
     }
     //點擊登出，會員資料要清空
     //跳轉回首頁
-    // if (isset($_REQUEST["btnloglout"]) && ($_REQUEST["btnloglout"]=="true")) {
+    // if ($_REQUEST["btnloglout"]=="&nbsp") {
     //     //登出資料要清空
     //     unset ($_SESSION["memNo"]);
     //     unset ($_SESSION["memId"]);
@@ -455,6 +455,9 @@
                                     </td>
                                 </tr>
                                 <tr class="eva_lightBox_Box01 eva_lightBox" name="snackNo<?php echo $order_listArr[$i]['snackNo'] ?>">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                             <td>
                                             <span class="eva_lightBox_leave">x</span>
                                                 <div class="evaContent ">

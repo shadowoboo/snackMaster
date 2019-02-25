@@ -36,30 +36,30 @@ $(document).ready(function () {
   });
 
 });
-var clmem = false;
-  function changeInfo(e) {
-    // console.log($id('memInfon').readOnly);
-    // console.log("123");
-    // $("#memInfon").attr("readonly");
-    // console.log($("#memInfon").attr("readonly"));
+// var clmem = false;
+//   function changeInfo(e) {
+//     // console.log($id('memInfon').readOnly);
+//     // console.log("123");
+//     // $("#memInfon").attr("readonly");
+//     // console.log($("#memInfon").attr("readonly"));
 
-    // var valt = $("#memInfon").text();
-    // var val = $("#memInfon").val();
-    // if(!clmem){
-    //   // console.log("開");
-    //   clmem = true;
-    //   document.getElementById("memIfon-p").innerHTML= "帳號：<input type='text' name='memId' value='"+val+"' maxlength='15' id='memIfon'>  <img src='../images/tina/pen.png' alt='編輯' id='infoChange'>";
-    //   $id('infoChange').addEventListener('click', changeInfo);
-    // }else if(clmem){
-    //   clmem = false;
-    //   // console.log("關");
-    //   document.getElementById("memIfon-p").innerHTML = "帳號：<input type='text' name='memId' value='"+val+"' maxlength='15' id='memIfon' readonly>  <img src='../images/tina/pen.png' alt='編輯' id='infoChange'>";
-    //   $id('infoChange').addEventListener('click', changeInfo);
-    // }
+//     // var valt = $("#memInfon").text();
+//     // var val = $("#memInfon").val();
+//     // if(!clmem){
+//     //   // console.log("開");
+//     //   clmem = true;
+//     //   document.getElementById("memIfon-p").innerHTML= "帳號：<input type='text' name='memId' value='"+val+"' maxlength='15' id='memIfon'>  <img src='../images/tina/pen.png' alt='編輯' id='infoChange'>";
+//     //   $id('infoChange').addEventListener('click', changeInfo);
+//     // }else if(clmem){
+//     //   clmem = false;
+//     //   // console.log("關");
+//     //   document.getElementById("memIfon-p").innerHTML = "帳號：<input type='text' name='memId' value='"+val+"' maxlength='15' id='memIfon' readonly>  <img src='../images/tina/pen.png' alt='編輯' id='infoChange'>";
+//     //   $id('infoChange').addEventListener('click', changeInfo);
+//     // }
     
 
 
-  }
+//   }
   function addBtnEva(){
 
     $('.sendEva').click(function(){
