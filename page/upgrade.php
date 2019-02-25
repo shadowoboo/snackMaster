@@ -37,7 +37,7 @@
         }
 
         $pdo -> exec($sql);
-        $sql = "insert into couponbox values(:memNo, :coupNo, :startDate, :endDate, :cUse)";
+        $sql = "insert into couponbox (memNo, coupNo, startDate, endDate, status) values(:memNo, :coupNo, :startDate, :endDate, :status)";
         $coupon = $pdo -> prepare($sql);
         $coupon -> bindValue(":memNo", $memNo);
         $coupon -> bindValue(":coupNo", 8);
@@ -45,7 +45,7 @@
         $coupon -> bindValue(":startDate", $startDate.' 00.00.00' );
         $endDate = date("Y-m-d", strtotime("+1 month"));
         $coupon -> bindValue(":endDate", $endDate.' 00.00.00' );
-        $coupon -> bindValue(":cUse", 1);
+        $coupon -> bindValue(":status", 1);
         $coupon -> execute();
 
         if(strpos($member['memPic'], '\Level\level') != false){
