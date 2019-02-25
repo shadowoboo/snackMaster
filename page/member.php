@@ -91,7 +91,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/nnnnn.css">
-    <link rel="stylesheet" href="../css/member.css">
+    <link rel="stylesheet" href="../css/memberEva.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/header.css">
@@ -454,24 +454,15 @@
                                         <button class="orderList_eva cart">未評價</button>
                                     </td>
                                 </tr>
-                                <tr>
-                                <form id="eva<?php echo  order_listArr[$i]['snackNo']?>"action="" class="eva_lightBox">
-                                    
-                                    <span class="eva_lightBox_leave">x</span>
-                        
-                                    <table class="eva_lightBox_Box01">
-                    
-                                        <tr>
-                        
+                                <tr class="eva_lightBox_Box01 eva_lightBox" name="snackNo<?php echo $order_listArr[$i]['snackNo'] ?>">
                                             <td>
+                                            <span class="eva_lightBox_leave">x</span>
                                                 <div class="evaContent ">
-                                                    <img src="" alt="商品圖">
+                                                    <img src="<?php echo $order_listArr[$i]['snackPic'] ?>" alt="商品圖">
                                                 </div>
-                                                <p><</p>
+                                                <p><?php echo $order_listArr[$i]['snackName'] ?></p>
 
                                             </td>
-                                        </tr>
-                                        <tr>
                                             <td>
                                                 <ul class="eva_lightBox_stars">
                                                     <li>
@@ -479,19 +470,19 @@
                                                             甜度：
                                                             <ul class="eva_lightBox_swStars">
                                                                 <li>
-                                                                    1星 <input type="radio" name="swStar">
+                                                                    1星 <input type="radio" name="swStar" value="1">
                                                                 </li>
                                                                 <li>
-                                                                    2星 <input type="radio" name="swStar">
+                                                                    2星 <input type="radio" name="swStar" value="2">
                                                                 </li>
                                                                 <li>
-                                                                    3星 <input type="radio" name="swStar">
+                                                                    3星 <input type="radio" name="swStar" value="3">
                                                                 </li>
                                                                 <li>
-                                                                    4星 <input type="radio" name="swStar">
+                                                                    4星 <input type="radio" name="swStar" value="4">
                                                                 </li>
                                                                 <li>
-                                                                    5星 <input type="radio" name="swStar">
+                                                                    5星 <input type="radio" name="swStar" value="5">
                                                                 </li>
                                                             </ul>
                                                         </p>
@@ -501,19 +492,19 @@
                                                             酸度：
                                                             <ul class="eva_lightBox_suStars">
                                                                 <li>
-                                                                    1星 <input type="radio" name="suStar">
+                                                                    1星 <input type="radio" name="suStar" value="1">
                                                                 </li>
                                                                 <li>
-                                                                    2星 <input type="radio" name="suStar">
+                                                                    2星 <input type="radio" name="suStar" value="2">
                                                                 </li>
                                                                 <li>
-                                                                    3星 <input type="radio" name="suStar">
+                                                                    3星 <input type="radio" name="suStar" value="3">
                                                                 </li>
                                                                 <li>
-                                                                    4星 <input type="radio" name="suStar">
+                                                                    4星 <input type="radio" name="suStar" value="4">
                                                                 </li>
                                                                 <li>
-                                                                    5星 <input type="radio" name="suStar">
+                                                                    5星 <input type="radio" name="suStar" value="5">
                                                                 </li>
                                                             </ul>
                                                         </p>
@@ -523,19 +514,19 @@
                                                             辣度：
                                                             <ul class="eva_lightBox_spStars">
                                                                 <li>
-                                                                    1星 <input type="radio" name="spStar">
+                                                                    1星 <input type="radio" name="spStar" value="1">
                                                                 </li>
                                                                 <li>
-                                                                    2星 <input type="radio" name="spStar">
+                                                                    2星 <input type="radio" name="spStar" value="2">
                                                                 </li>
                                                                 <li>
-                                                                    3星 <input type="radio" name="spStar">
+                                                                    3星 <input type="radio" name="spStar" value="3">
                                                                 </li>
                                                                 <li>
-                                                                    4星 <input type="radio" name="spStar">
+                                                                    4星 <input type="radio" name="spStar" value="4">
                                                                 </li>
                                                                 <li>
-                                                                    5星 <input type="radio" name="spStar">
+                                                                    5星 <input type="radio" name="spStar" value="5">
                                                                 </li>
                                                             </ul>
                                                         </p>
@@ -545,19 +536,19 @@
                                                             好評度：
                                                             <ul class="eva_lightBox_gdStars">
                                                                 <li>
-                                                                    1星 <input type="radio" name="gdStar">
+                                                                    1星 <input type="radio" name="gdStar" value="1">
                                                                 </li>
                                                                 <li>
-                                                                    2星 <input type="radio" name="gdStar">
+                                                                    2星 <input type="radio" name="gdStar" value="2">
                                                                 </li>
                                                                 <li>
-                                                                    3星 <input type="radio" name="gdStar">
+                                                                    3星 <input type="radio" name="gdStar" value="3">
                                                                 </li>
                                                                 <li>
-                                                                    4星 <input type="radio" name="gdStar">
+                                                                    4星 <input type="radio" name="gdStar" value="4">
                                                                 </li>
                                                                 <li>
-                                                                    5星 <input type="radio" name="gdStar">
+                                                                    5星 <input type="radio" name="gdStar" value="5">
                                                                 </li>
                                                             </ul>
                                                         </p>
@@ -565,202 +556,25 @@
                                                 </ul>
 
                                             </td>
-
-                                        </tr>
-                                        <tr>
                                             <td>
                                                 <p>留言分享</p>
                                                 <textarea name="textDiscuss" cols="50" rows="10"
                                                     class="eva_lightBox_textDics"></textarea>
                                             </td>
-
-                                        </tr>
-                                        <tr>
                                             <td>
-                                                <div class="proPicBox">
-                                                    <img src="../images/index/co2.png">
-                                                </div>
-
-
-
-                                                <label class="evaproPic" for="upFile">
-
-                                                    <p class="cart">上傳圖檔
-                                                    </p>
-                                                    <input type="file" name="upFile" id="upFile">
-
-
-                                                </label>
                                                 <div class="evaContent evaSend">
-                                                    <button class="step">確認送出</button>
+                                                    <input type='button' id="<?php echo $order_listArr[$i]['snackNo'] ?>" class="step sendEva" value="送出表單" >
                                                 </div>
                                             </td>
-                                        </tr>
-                                    
-                                
-                                    </table>
-                                </form>
-                                </tr>
+                                    </tr>
                                 
                     <?php 
                                }  
                         ?>
                        
                             </table>
-                
-
-                            <!-- <form action="" class="eva_lightBox">
-                         
-                                <span class="eva_lightBox_leave">x</span>
-                      
-                                <table class="eva_lightBox_Box01">
-               
-                                    <tr>
-                    
-                                        <td>
-                                            <div class="evaContent ">
-                                                <img src="<?php echo $eavCountRow['snackPic']?>" alt="商品圖">
-                                            </div>
-                                            <p><?php echo $eavCountRow['snackName']?></p>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <ul class="eva_lightBox_stars">
-                                                <li>
-                                                    <p>
-                                                        甜度：
-                                                        <ul class="eva_lightBox_swStars">
-                                                            <li>
-                                                                1星 <input type="radio" name="swStar">
-                                                            </li>
-                                                            <li>
-                                                                2星 <input type="radio" name="swStar">
-                                                            </li>
-                                                            <li>
-                                                                3星 <input type="radio" name="swStar">
-                                                            </li>
-                                                            <li>
-                                                                4星 <input type="radio" name="swStar">
-                                                            </li>
-                                                            <li>
-                                                                5星 <input type="radio" name="swStar">
-                                                            </li>
-                                                        </ul>
-                                                    </p>
-                                                </li>
-                                                <li>
-                                                    <p>
-                                                        酸度：
-                                                        <ul class="eva_lightBox_suStars">
-                                                            <li>
-                                                                1星 <input type="radio" name="suStar">
-                                                            </li>
-                                                            <li>
-                                                                2星 <input type="radio" name="suStar">
-                                                            </li>
-                                                            <li>
-                                                                3星 <input type="radio" name="suStar">
-                                                            </li>
-                                                            <li>
-                                                                4星 <input type="radio" name="suStar">
-                                                            </li>
-                                                            <li>
-                                                                5星 <input type="radio" name="suStar">
-                                                            </li>
-                                                        </ul>
-                                                    </p>
-                                                </li>
-                                                <li>
-                                                    <p>
-                                                        辣度：
-                                                        <ul class="eva_lightBox_spStars">
-                                                            <li>
-                                                                1星 <input type="radio" name="spStar">
-                                                            </li>
-                                                            <li>
-                                                                2星 <input type="radio" name="spStar">
-                                                            </li>
-                                                            <li>
-                                                                3星 <input type="radio" name="spStar">
-                                                            </li>
-                                                            <li>
-                                                                4星 <input type="radio" name="spStar">
-                                                            </li>
-                                                            <li>
-                                                                5星 <input type="radio" name="spStar">
-                                                            </li>
-                                                        </ul>
-                                                    </p>
-                                                </li>
-                                                <li>
-                                                    <p>
-                                                        好評度：
-                                                        <ul class="eva_lightBox_gdStars">
-                                                            <li>
-                                                                1星 <input type="radio" name="gdStar">
-                                                            </li>
-                                                            <li>
-                                                                2星 <input type="radio" name="gdStar">
-                                                            </li>
-                                                            <li>
-                                                                3星 <input type="radio" name="gdStar">
-                                                            </li>
-                                                            <li>
-                                                                4星 <input type="radio" name="gdStar">
-                                                            </li>
-                                                            <li>
-                                                                5星 <input type="radio" name="gdStar">
-                                                            </li>
-                                                        </ul>
-                                                    </p>
-                                                </li>
-                                            </ul>
-
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>留言分享</p>
-                                            <textarea name="textDiscuss" cols="50" rows="10"
-                                                class="eva_lightBox_textDics"></textarea>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="proPicBox">
-                                                <img src="../images/index/co2.png">
-                                            </div>
-
-
-
-                                            <label class="evaproPic" for="upFile">
-
-                                                <p class="cart">上傳圖檔
-                                                </p>
-                                                <input type="file" name="upFile" id="upFile">
-
-
-                                            </label>
-                                            <div class="evaContent evaSend">
-                                                <button class="step">確認送出</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                  
-                            
-                                </table>
-                            </form> -->
-    
-
-               
                         </div>
-
                     </div>
-
 
                 </div>
 
