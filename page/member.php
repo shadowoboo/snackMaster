@@ -91,7 +91,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/nnnnn.css">
-    <link rel="stylesheet" href="../css/memberEva.css">
+    <link rel="stylesheet" href="../css/member.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/header.css">
@@ -473,7 +473,8 @@
                                         <button class="orderList_eva cart">未評價</button>
                                     </td>
                                 </tr>
-                                <tr class="eva_lightBox_Box01 eva_lightBox" name="snackNo<?php echo $order_listArr[$i]['snackNo'] ?>">
+                                <tr class="eva_lightBox_Box01 eva_lightBox" style="display: none;" name="snackNo
+                                <?php echo $order_listArr[$i]['snackNo'] ?>">
                                             <td>
                                             <span class="eva_lightBox_leave">x</span>
                                                 <div class="evaContent ">
