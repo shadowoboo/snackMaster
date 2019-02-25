@@ -65,6 +65,7 @@ session_start();
     <!-- <script src="../js/showStar.js"></script> -->
     <script src="../js/showMsg.js"></script>
     <script src="../js/search.js"></script>
+    <script src="../js/addHeart.js"></script>
 </head>
 <body class="rankBoard">
     <?php
@@ -173,7 +174,7 @@ session_start();
 
 
                 <div id="ipIcon">
-                    <img src="../images/rankBoard/ipCookie.png" alt="各類別圖片" id="ipImg">
+                    <img src="../images/rankBoard/ipAll.png" alt="各類別圖片" id="ipImg">
                     <img src="../images/rankBoard/ipGlow.png" alt="背景光" id="C">
                 </div>
 

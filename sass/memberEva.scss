@@ -467,8 +467,7 @@ input[type="number"]{
                     //==========評價燈箱====================
                     .eva_lightBox{
                         display: none;
-                        position: absolute;
-                        top: -4%;
+                        overflow: hidden;
                         width: 100%;
                         background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
                         border-radius: 10px;
@@ -480,13 +479,6 @@ input[type="number"]{
                             font-size: 40px;
                             padding: 8px;
                         }
-                        .eva_lightBox_Box01{
-                            display: flex;
-                            flex-direction: column;
-                            width: 100%;
-                            
-                            tr{
-                                
                                 td{
                                     // width: 25%;
                                     padding: 15px;
@@ -561,10 +553,11 @@ input[type="number"]{
                                             }
                                 
                                     }
+                                    
                             
-                        }
                         
-                    }
+                        
+                    
                 }
 
             }
@@ -595,7 +588,7 @@ input[type="number"]{
                 
                 .item{
                     background-color: rgb(228, 222, 222);
-                    width: 330px;
+                    width: 280px;
                     height: 400px;
                     border-radius: 10px;
                     position: relative;
@@ -1022,112 +1015,114 @@ input[type="number"]{
                                         }
                                     }
                                 }
-
-                             .eva_lightBox{
-                                 
-                             }
-                        //         .eva_lightBox{
-                        //             display: none;
-                        //             overflow: hidden;
-                        //             width: 100%;
-                        //             background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-                        //             border-radius: 10px;
-                        //             box-shadow: 5px 5px 10px 0px #aaa;
-                        //             margin: auto;
-                        //             .eva_lightBox_leave{
-                        //                 text-align: right;
-                        //                 display: block;
-                        //                 font-size: 40px;
-                        //                 padding: 8px;
-                        //             }
-                        //                     td{
-                        //                         // width: 25%;
-                        //                         padding: 15px;
-                        //                         .evaContent{
-                        //                             margin: auto;
-                        //                             width: 100px;
-                        //                             img{
-                        //                                 width: 100%;
-                        //                                 padding: 8px;
-                                                    
-                        //                             }
-                        //                         }
-                        //                         .eva_lightBox_stars{
-                        //                            li{
-                        //                                 p{
-                        //                                     text-align: left;
-                        //                                     padding: 4px;
-                        //                                 }
-                        //                                 .eva_lightBox_swStars,.eva_lightBox_suStars,.eva_lightBox_spStars,.eva_lightBox_gdStars{
-                        //                                     display: flex;
-                        //                                     flex-direction: row;
-                        //                                     justify-content: space-evenly;
-                        //                                     align-items: center;
-                        //                                     li{
-                        //                                         font-size: 16px;
-                        //                                         color: $tabColor;
-                        //                                         font-family: g2Med;
-                        //                                         margin: 5px;
-                        //                                         input{
-                        //                                             width: 30px;
-                        //                                             text-align: center;
-                        //                                         }
-                        //                                     }
-                        //                                 }
-                        //                            } 
-                                                    
-                        //                         }
-                        //                         .eva_lightBox_textDics{
-                        //                             margin: 12px;
-                        //                         }
-                        //                         .proPicBox{
-                        //                             width: 65px;
-                        //                             margin: auto;
-                        //                             img{
-                        //                                 padding: 8px 0;
-                        //                             }
-                        //                         }
-                        //                         .evaproPic{
-                        //                             padding: 10px 0;
-                        //                             .cart{
-                        //                                  width: 120px;
-                        //                                  height: 35px;
-                        //                                  margin: auto;
-                        //                                  color: #fff;
-                        //                                  line-height:1.6; 
-                        //                                  font-size: 18px;
-                                                                                
-                        //                              }
-                        //                              input{
-                        //                                    display: none; 
-                        //                                    }
-                        //                         }
-                        //                         .evaSend{
-                        //                             text-align: center;
-                        //                             padding: 10px 0;
-                        //                             width: 150px;
-                        //                             .step{
-                        //                                    width: 120px;
-                        //                                    height: 35px;
-                        //                                    font-size: 18px;
-                        //                                     margin-top: 10px;                           
-                        //                                 }
-                                            
-                        //                         }
-                                                
-                                        
-                                    
-                                    
-                                
-                        //     }
-            
-                        // } 
                                 
         
                             }
                             //==========評價燈箱====================
-                           
-                    
+                            .eva_lightBox{
+                                display: block;
+                                // position: absolute;
+                                top: -4%;
+                                width: 100%;
+                                margin: 0;
+                                .eva_lightBox_leave{
+                                    text-align: right;
+                                    display: block;
+                                    font-size: 40px;
+                                    padding: 8px;
+                                }
+ 
+
+                                           
+                                        td{
+                                            padding: 15px;
+                                            .evaContent{
+                                                margin: auto;
+                                                width: 100px;
+                                                img{
+                                                    width: 100%;
+                                                    padding: 8px;
+                                                
+                                                }
+                                            }
+                                            .eva_lightBox_stars{
+                                               li{
+                                                    p{
+                                                        text-align: left;
+                                                        padding: 4px;
+                                                    }
+                                                    .eva_lightBox_swStars,.eva_lightBox_suStars,.eva_lightBox_spStars,.eva_lightBox_gdStars{
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        justify-content: space-evenly;
+                                                        align-items: center;
+                                                        li{
+                                                            font-size: 16px;
+                                                            color: $tabColor;
+                                                            font-family: g2Med;
+                                                            margin: 5px;
+                                                            input{
+                                                                width: 30px;
+                                                                text-align: center;
+                                                            }
+                                                        }
+                                                    }
+                                               } 
+                                                
+                                            }
+                                            .eva_lightBox_textDics{
+                                                margin: 12px;
+                                                resize: none;
+                                            }
+                                            .proPicBox{
+                                                width: 65px;
+                                                margin: auto;
+                                                img{
+                                                    padding: 8px 0;
+                                                }
+                                            }
+                                            .evaproPic{
+                                                padding: 10px 0;
+                                                .cart{
+                                                     width: 120px;
+                                                     height: 35px;
+                                                     margin: auto;
+                                                     color: #fff;
+                                                     line-height:1.6; 
+                                                                            
+                                                 }
+                                                 input{
+                                                       display: none; 
+                                                       }
+                                            }
+                                            .evaSend{
+                                                text-align: center;
+                                                padding: 10px 0;
+                                                width: 150px;
+                                                .step{
+                                                       width: 120px;
+                                                       height: 35px;
+                                                       font-size: 18px;
+                                                        margin-top: 10px;                           
+                                                    }
+                                        
+                                            }
+                                    
+                            
+                                
+                            
+
+                                    }
+                                    
+                                   
+                                 
+                        
+        
+                    }
+
+                    // .eva_lightBox.show{
+                    //     display: block;
+                    // }
                 }
                 .orderLis_content.show{
                     display: block;
@@ -1193,6 +1188,7 @@ input[type="number"]{
                         
                         }
                     }
+                
                 
             //---------------優惠券--------------------------    
                 #tab-4{

@@ -97,6 +97,8 @@
     <link rel="stylesheet" href="../css/header.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/header.js" defer></script>
+    <script src="../js/member.js" defer></script>
+    <script src="../js/sendEva.js"></script>
 
     <title>會員專區</title>
 
@@ -130,7 +132,7 @@
                         <label class="memPic" for="upFile">
                             <p>上傳大頭貼<img src="../images/tina/pen.png" alt="編輯"></p>
 
-                            <input type="file" name="upFile" id="upFile" =>
+                            <input type="file" name="upFile" id="upFile">
 
                         </label>
 
@@ -153,12 +155,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <p id="memIfon-p">
+                        <p>
                             帳號：
                             <input type="text" name="memId" value="<?php echo $memRow["memId"];?>" maxlength="15"
-                                id="memIfon" > 
-                                <!-- 還未增加readonly，修改input樣式要改變css未調 -->
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                                id="memId">
+                            <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
                 </tr>
@@ -167,8 +168,8 @@
                         <p>
                             密碼：
                             <input type="password" name="memPsw" value="<?php echo $memRow["memPsw"];?>" maxlength="15"
-                                autofocus id="memInfon" >
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                                autofocus id="memPsw">
+                            <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
                 </tr>
@@ -177,8 +178,8 @@
                         <p>
                             姓名：
                             <input type="text" name="memName" value="<?php echo $memRow["memName"];?>" maxlength="12"
-                                id="memInfon" >
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                                id="memName">
+                            <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
                 </tr>
@@ -187,8 +188,8 @@
                         <p>
                             電話：
                             <input type="number" name="phone" value="<?php echo $memRow["memPhone"];?>" maxlength="10"
-                                id="memInfon" >
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                                id="memPhone">
+                            <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
                 </tr>
@@ -197,8 +198,8 @@
                         <p>
                             信箱：
                             <input type="email" name="email" value="<?php echo $memRow["email"];?>" maxlength="20"
-                                id="memInfon">
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                                id="email">
+                            <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
                 </tr>
@@ -454,7 +455,12 @@
                                         <button class="orderList_eva cart">未評價</button>
                                     </td>
                                 </tr>
-                                <tr class="eva_lightBox_Box01 eva_lightBox" name="snackNo<?php echo $order_listArr[$i]['snackNo'] ?>">
+                                
+                               
+                                    <tr class="eva_lightBox_Box01 eva_lightBox" name="snackNo<?php echo $order_listArr[$i]['snackNo'] ?>">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                             <td>
                                             <span class="eva_lightBox_leave">x</span>
                                                 <div class="evaContent ">
@@ -567,15 +573,13 @@
                                                 </div>
                                             </td>
                                     </tr>
-                                
-                    <?php 
-                               }  
-                        ?>
-                       
-                            </table>
+                               
+                               
+                          
+                    <?php  }  ?>
+                    </table>
                         </div>
                     </div>
-
                 </div>
 
                 <?php 
@@ -763,4 +767,3 @@ window.addEventListener('load', doFirst, false);
 </script>
 
 </html>
-    <script src="../js/member.js" defer></script>
