@@ -96,7 +96,7 @@ function allPanel(){
                 switch ($(this).attr('id')) {
                     case 'sw_all':
                         newTitleCtx = "本月<br>綜合排行";
-                        newIp = "../images/rankBoard/ipCookie.png";
+                        newIp = "../images/rankBoard/ipAll.png";
                         break;
 
                     case 'sw_cookie':

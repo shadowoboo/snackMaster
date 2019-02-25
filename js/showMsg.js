@@ -123,17 +123,18 @@ $('.like').click(function(){
 function sendMsg(){
     $('.sendMsg').click(function(e){
         //檢查登入狀態
+        // $('.sendMsg').off('click');
         if($('#btnloglout').text()=='登出'){
         //登入true->將留言內容送入資料庫並重撈一次全部留言    
         
-       var evaNo=$(this).attr('evaNo');
-       var msgText=  $(this).prev().val();
-       var xhr2 =new XMLHttpRequest(); 
-       xhr2.open("Post", "sendMsg.php", true);
-       xhr2.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-       var data_info=`evaNo=${evaNo}&msgText=${msgText}`;
-       xhr2.send(data_info);
-       xhr2.onload=function(){
+            var evaNo=$(this).attr('evaNo');
+            var msgText=  $(this).prev().val();
+            var xhr2 =new XMLHttpRequest(); 
+            xhr2.open("Post", "sendMsg.php", true);
+            xhr2.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            var data_info=`evaNo=${evaNo}&msgText=${msgText}`;
+            xhr2.send(data_info);
+            xhr2.onload=function(){
             rsp = xhr2.responseText;
             if(rsp==2){
                 alert('請勿留下空白訊息');
@@ -166,6 +167,7 @@ function sendMsg(){
                     $('#show'+evaNo).html('<i class="fas fa-comment"></i>隱藏留言');
                     $('#ctx'+evaNo).val('');
                     repBtnAdd();
+                    // $('.sendMsg').on('click');
             }
             // console.log('留言成功');
             }
@@ -200,7 +202,7 @@ function msgBtnAdd(){
                 var msgArr=JSON.parse(xhr.responseText);
 
                 if(msgArr==''){
-                    msgBoxHTML='<p>本評價尚無任何留言</p>';
+                    msgBoxHTML='<p class="noMsg">本評價尚無任何留言</p>';
                 }else{
                   
                 msgBoxHTML='';
