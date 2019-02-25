@@ -127,7 +127,7 @@ try {
                                     <div class="btn" id="btn_clk_r"><img src="../images/customized/rotate_r.png" alt=""></div>
                                     <div class="btn" id="btn_del"><i class="fa fa-trash"></i></div>
                                 </div>                        
-                                <!-- <div class="btn show action" id="show" style="line-height: 35px;margin:3px auto;">3D展示</div> -->
+                                <div class="btn show action" id="boxSureBtn" style="line-height: 35px;margin:3px auto;">設計完成</div> 
                         </div>
                     </div>  
                     <div class="form">
@@ -230,12 +230,12 @@ try {
                             <p>客製完成</p>   
                         </div> -->
                     </div>
-                <div class="section section_15" id="section_15">
+                <div class="section section_15" id="section_15" style="flex-wrap:wrap;">
                     <div class="lefCard" style="flex:2;">
                             <div class="cardBox">
                                     <img  id="large" src="../images/customized/card.png" alt="">
-                                </div>
-                    </div>
+                                </div>  
+                            </div>
                     <div class="pickCard">
                             <ul class="tab-content-2">
                                 <li class="tab yellow">樣式</li>
@@ -286,37 +286,50 @@ try {
                                 </div>
                             </div>
                             <div class="content" style=" align-items:flex-end;">
-                                
-                                <button class="next soundStepBtn"><i class="fas fa-angle-left"></i></button>
+                                <div class="showMusic">
+                                    <div id="birthdayParty">
+                                        <img class="cooker" src="../images/Level/level2.png" alt="">
+                                    </div>
+                                    <div id="loveU">
+                                        <img class="lover" src="../images/Level/level3.png" alt="">
+                                    </div>
+                                    <div id="eatMax">
+                                        <img class="lover" src="../images/Level/level4.png" alt="">
+                                    </div>
+                                    <div id="snackmaster">
+                                        <img class="lover" src="../images/Level/level6.png" alt="">
+                                    </div>
+                                </div>
+                                <button class="next soundStepBtn" id="stopLeft"><i class="fas fa-angle-left"></i></button>
                                 <div class="container">
                                     <div style="display: inline-block;">
                                         <p id="sound01">生日快樂</p>
-                                    <audio controls preload="auto" id="01">
+                                    <audio loop controls preload="auto" id="01">
                                         <source src="../images/customized/sounds/01.mp3" type="audio/ogg">
                                     </audio>
                                     </div>
                                     <div>
                                         <p id="sound02">大零食家</p>
-                                    <audio controls preload="auto" id="02">
+                                    <audio loop controls preload="auto" id="02">
                                         <source src="../images/customized/sounds/02.mp3" type="audio/ogg">
                                     </audio>
                                     </div>
                                     <div>
                                         <p id="sound03">大吃特吃</p>
-                                    <audio controls preload="auto" id="03">
+                                    <audio loop controls preload="auto" id="03">
                                         <source src="../images/customized/sounds/03.mp3" type="audio/ogg">
                                     </audio>
                                     </div>
                                     <div>
                                     <p id="sound04">告白神曲</p>
-                                    <audio controls preload="auto" id="04">
+                                    <audio loop controls preload="auto" id="04">
                                         
                                         <source src="../images/customized/sounds/04.mp3" type="audio/ogg">
                                     </audio>
                                     </div>
                                 </div>
                                 
-                                <button class="prev soundStepBtn"><i class="fas fa-angle-right"></i></button>
+                                <button class="prev soundStepBtn" id="stopRight"><i class="fas fa-angle-right"></i></button>
                                 <button class="action soundAdd" id="soundAdd" style="margin-bottom:40px;">新增音效</button>
                         <!-- <div class="cardRecord">
                            撥放介面實體 
@@ -367,7 +380,8 @@ try {
                                 </div>
                             </div> -->
                         </div>
-                    </div>
+                    </div>            
+                    <div class="btn show action" id="cardSureBtn" style="line-height: 35px;">設計完成 </div> 
                   </div> 
              </div>
          </div>
@@ -498,19 +512,20 @@ try {
   <div class="step-content-foot">
         <button type="button" class="step" name="prev">上一步</button>
         <button type="button" class="step" name="next">下一步</button>
-        <button type="button" class="active out step cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="test" data-cusCard="test" data-cusSound="test" >加入購物車</button>
+        <button type="button" class="active out step cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="test" data-cusCard="../images/customized/card.png" data-cusSound="test" >加入購物車</button>
   </div>
 
 
-  <!-- <div class="img1"></div>
+  <div class="img1"></div>
   <div class="img2"></div>
   <div class="img3"></div>
   <div class="img4"></div>
   <div class="img5"></div>
-  <div class="img6"></div> -->
+  <div class="img6"></div> 
 
   <form id="myForm">
     <input type="hidden" name="myImage" id="myImage">
+    <input type="hidden" name="myCard" id="myCard">
   </form>  
 
 
@@ -558,35 +573,275 @@ try {
 <script src="../js/cusAddCart.js" defer></script>
 
 <script>
-      var sound01  = document.getElementById("sound01");
-      var sound02  = document.getElementById("sound02");
-      var sound03  = document.getElementById("sound03");
-      var sound04  = document.getElementById("sound04");
+//前:50  後：49 上：48 左：51 右：52 
+    
+      $("#boxSureBtn").click(function() {
+          alert('成功將客製箱加入囉～');
+      html2canvas($(".leftBox")[0]).then(function(canvas) {
+          var $div = $(".img1");
+          $div.empty();
+          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+          //-------------------
+            document.getElementById('myImage').value = canvas.toDataURL("image/png");
+            var formData = new FormData(document.getElementById("myForm"));
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'canvas_load_save.php', true);
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                        if( xhr.status == 200 ){
+                        // alert('Succesfully uploaded');
+                            //把資料寫入data- 等待送出到購物車
+                            var str=xhr.responseText;
+                            console.log(`截圖成功回復: ${str}`);
+                            var arr_str=str.split("//");
+                            console.log(`截圖成功回復: ${arr_str}`);
+                            //判斷回傳的是 有包含card還是box來決定是卡片還是盒子圖
+                            //如果回傳的是盒子
+                            if(arr_str.indexOf("box")!=-1){
+                                console.log(`儲存的是box圖`);
+                                console.log(`${str}`);
+                                //寫入data-
+                                let tar=$(".step-content-foot .step.cart");
+                                tar.attr("data-cusbox", str);
+                                $("#myImage").val("");
+                            }
+                        }else{
+                        alert(xhr.status);
+                        }
+                }
+            };
+            formData.delete("myCard"); //銷毀其他欄位
+            xhr.send(formData);  
+          //-------------------
+      });
+    });
+
+
+    $("#cardSureBtn").click(function() {
+          alert('成功將客製卡片加入囉～');
+      html2canvas($(".lefCard")[0]).then(function(canvas) {
+          var $div = $(".img3");
+          $div.empty();
+          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+          //-------------------
+            document.getElementById('myCard').value = canvas.toDataURL("image/png");
+            var formData = new FormData(document.getElementById("myForm")); //沒有同時送資料的話，用form會讓其他欄位多夾帶資料，記得銷毀
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'canvas_load_save.php', true);
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                        if( xhr.status == 200 ){
+                        // alert('Succesfully uploaded'); 
+                            //把資料寫入data- 等待送出到購物車
+                            var str=xhr.responseText;
+                            console.log(`截圖成功回復: ${str}`);
+                            var arr_str=str.split("//");
+                            console.log(`截圖成功回復: ${arr_str}`);
+                            //如果回傳的是卡片
+                            if(arr_str.indexOf("card")!=-1){
+                                console.log(`儲存的是card圖`);
+                                console.log(`${str}`);
+                                //寫入data-
+                                let tar=$(".step-content-foot .step.cart");
+                                tar.attr("data-cuscard", str);
+                                //銷毀
+                                $("#myCard").val("");
+                            }
+                        }else{
+                        alert(xhr.status);
+                        }
+                }
+            };
+            formData.delete("myImage");//銷毀其他欄位
+            xhr.send(formData);  
+          //-------------------
+      });
+    });
+    
+
+</script>
+
+
+<script>
       var music01 = document.getElementById("01");
+      var a1=false;
       var music02 = document.getElementById("02");
+      var a2=false;
       var music03 = document.getElementById("03");
+      var a3=false;
       var music04 = document.getElementById("04");
-
-
+      var a4=false;
+        
       var sound01  = document.getElementById("sound01");
       sound01.addEventListener("click",play01 );
+      
       function play01(){
-        music01.play();  
+        if(a1){
+            music01.pause()
+        }else{
+            music01.play()
+        }
       }
+        music01.onplaying = function() {
+            a1 = true;
+        };
+
+        music01.onpause = function() {
+            a1 = false;
+        };
+
       var sound02  = document.getElementById("sound02");
       sound02.addEventListener("click",play02 );
+     
+
       function play02(){
-        music02.play();  
+        if(a2){
+            music02.pause()
+        }else{
+            music02.play()
+        }
       }
+        music02.onplaying = function() {
+            a2 = true;
+        };
+
+        music02.onpause = function() {
+            a2 = false;
+        };
+
+
+
       var sound03  = document.getElementById("sound03");
       sound03.addEventListener("click",play03 );
+        
       function play03(){
-        music03.play();  
+        if(a3){
+            music03.pause()
+        }else{
+            music03.play()
+        }
       }
+        music03.onplaying = function() {
+            a3 = true;
+        };
+
+        music03.onpause = function() {
+            a3 = false;
+        };
+
+        
       var sound04  = document.getElementById("sound04");
       sound04.addEventListener("click",play04 );
+
+            
       function play04(){
-        music04.play();  
+        if(a4){
+            music04.pause()
+        }else{
+            music04.play()
+        }
+      }
+        music04.onplaying = function() {
+            a4 = true;
+        };
+
+        music04.onpause = function() {
+            a4 = false;
+        };
+  
+    
+      btp=document.getElementById("birthdayParty")
+      sound01.addEventListener("click",showMusic01 );
+    function showMusic01(){
+        btp.classList.toggle("showDisplay");
+        snackmaster.classList.remove("showDisplay");
+        eatMax.classList.remove("showDisplay");
+        loveuu.classList.remove("showDisplay");
+      }
+
+ 
+     var loveuu=document.getElementById("loveU")
+      sound04.addEventListener("click",showMusic04);
+    function showMusic04(){
+        loveuu.classList.toggle("showDisplay");
+        snackmaster.classList.remove("showDisplay");
+        eatMax.classList.remove("showDisplay");
+        btp.classList.remove("showDisplay");
+      }
+      var eatMax=document.getElementById("eatMax")
+      sound03.addEventListener("click",showMusic03);
+    function showMusic03(){
+        eatMax.classList.toggle("showDisplay");
+        snackmaster.classList.remove("showDisplay");
+        loveuu.classList.remove("showDisplay");
+        btp.classList.remove("showDisplay");
+      }
+      var snackmaster=document.getElementById("snackmaster")
+      sound02.addEventListener("click",showMusic02);
+    function showMusic02(){
+        snackmaster.classList.toggle("showDisplay");
+        eatMax.classList.remove("showDisplay");
+        loveuu.classList.remove("showDisplay");
+        btp.classList.remove("showDisplay");
+      }
+    //   function showMusic01(){
+    //     loveuu.classList.toogle("showDisplay");
+    //   }
+
+
+
+      
+
+      
+//leftBtn 左邊按鈕事件
+      var stopMusicL = document.getElementById("stopLeft");
+      stopMusicL.addEventListener("click",stopThis );
+      function stopThis(e){
+          console.log("123")
+        music01.pause();
+        music01.currentTime = 0; 
+        music02.pause(); 
+        music01.currentTime = 0; 
+        music03.pause();
+        music01.currentTime = 0;  
+        music04.pause(); 
+        music01.currentTime = 0; 
+      }
+      
+      var stopMusicLeft = document.getElementById("stopLeft");
+      stopMusicLeft.addEventListener("click",removeSM01 );
+      function removeSM01(){
+        snackmaster.classList.remove("showDisplay");
+        eatMax.classList.remove("showDisplay");
+        loveuu.classList.remove("showDisplay");
+        btp.classList.remove("showDisplay");
+      }
+
+
+
+//leftBtn 左邊按鈕事件
+      var stopMusicR = document.getElementById("stopRight");
+      stopMusicR.addEventListener("click",stopThis );
+      function stopThis(e){
+          console.log("123")
+        music01.pause();
+        music01.currentTime = 0; 
+        music02.pause(); 
+        music01.currentTime = 0; 
+        music03.pause();
+        music01.currentTime = 0;  
+        music04.pause(); 
+        music01.currentTime = 0; 
+      }
+      var stopMusicRight = document.getElementById("stopRight");
+      stopMusicRight.addEventListener("click",removeSM01 );
+      function removeSM01(){
+        snackmaster.classList.remove("showDisplay");
+        eatMax.classList.remove("showDisplay");
+        loveuu.classList.remove("showDisplay");
+        btp.classList.remove("showDisplay");
       }
 
 </script>
@@ -631,171 +886,143 @@ try {
 <script>
 //前:50  後：49 上：48 左：51 右：52 
     
-      $("#cutImg").click(function() {
-      html2canvas($("#cover_front")[0]).then(function(canvas) {
-          var $div = $(".img1");
-          $div.empty();
-          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-          //-------------------
-            document.getElementById('myImage').value = canvas.toDataURL("image/png");
-            var formData = new FormData(document.getElementById("myForm"));
+    //   $("#cutImg").click(function() {
+    //   html2canvas($("#cover_front")[0]).then(function(canvas) {
+    //       var $div = $(".img1");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
             
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'canvas_load_save.php', true);
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
             
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                        if( xhr.status == 200 ){
-                        // alert('Succesfully uploaded');  
-                        }else{
-                        alert(xhr.status);
-                        }
-                }
-            };
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
                 
-            xhr.send(formData);  
-          //-------------------
-      });
-    });
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
 
-    $("#cutImg").click(function() {
-      html2canvas($("#cover_back")[0]).then(function(canvas) {
-          var $div = $(".img3");
-          $div.empty();
-          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-          //-------------------
-            document.getElementById('myImage').value = canvas.toDataURL("image/png");
-            var formData = new FormData(document.getElementById("myForm"));
+    //   $("#cutImg").click(function() {
+    //   html2canvas($("#cover_down")[0]).then(function(canvas) {
+    //       var $div = $(".img2");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
             
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'canvas_load_save.php', true);
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
             
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                        if( xhr.status == 200 ){
-                        // alert('Succesfully uploaded');  
-                        }else{
-                        alert(xhr.status);
-                        }
-                }
-            };
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
                 
-            xhr.send(formData);  
-          //-------------------
-      });
-    });
-    
-
-      $("#cutImg").click(function() {
-      html2canvas($("#cover_down")[0]).then(function(canvas) {
-          var $div = $(".img2");
-          $div.empty();
-          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-          //-------------------
-            document.getElementById('myImage').value = canvas.toDataURL("image/png");
-            var formData = new FormData(document.getElementById("myForm"));
-            
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'canvas_load_save.php', true);
-            
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                        if( xhr.status == 200 ){
-                        // alert('Succesfully uploaded');  
-                        }else{
-                        alert(xhr.status);
-                        }
-                }
-            };
-                
-            xhr.send(formData);  
-          //-------------------
-      });
-    });
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
 
     
    
-    $("#cutImg").click(function() {
-      html2canvas($("#cover_left")[0]).then(function(canvas) {
-          var $div = $(".img4");
-          $div.empty();
-          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-          //-------------------
-            document.getElementById('myImage').value = canvas.toDataURL("image/png");
-            var formData = new FormData(document.getElementById("myForm"));
+    // $("#cutImg").click(function() {
+    //   html2canvas($("#cover_left")[0]).then(function(canvas) {
+    //       var $div = $(".img4");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
             
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'canvas_load_save.php', true);
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
             
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                        if( xhr.status == 200 ){
-                        // alert('Succesfully uploaded');  
-                        }else{
-                        alert(xhr.status);
-                        }
-                }
-            };
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
                 
-            xhr.send(formData);  
-          //-------------------
-      });
-    });
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
     
-    $("#cutImg").click(function() {
-      html2canvas($("#cover_right")[0]).then(function(canvas) {
-          var $div = $(".img5");
-          $div.empty();
-          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-          //-------------------
-            document.getElementById('myImage').value = canvas.toDataURL("image/png");
-            var formData = new FormData(document.getElementById("myForm"));
+    // $("#cutImg").click(function() {
+    //   html2canvas($("#cover_right")[0]).then(function(canvas) {
+    //       var $div = $(".img5");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
             
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'canvas_load_save.php', true);
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
             
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                        if( xhr.status == 200 ){
-                        // alert('Succesfully uploaded');  
-                        }else{
-                        alert(xhr.status);
-                        }
-                }
-            };
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
                 
-            xhr.send(formData);  
-          //-------------------
-      });
-    });
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
 
     
-    $("#cutImg").click(function() {
-      html2canvas($("#section_7")[0]).then(function(canvas) {
-          var $div = $("img6");
-          $div.empty();
-          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-          //-------------------
-            document.getElementById('myImage').value = canvas.toDataURL("image/png");
-            var formData = new FormData(document.getElementById("myForm"));
+    // $("#cutImg").click(function() {
+    //   html2canvas($("#section_7")[0]).then(function(canvas) {
+    //       var $div = $("img6");
+    //       $div.empty();
+    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+    //       //-------------------
+    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
+    //         var formData = new FormData(document.getElementById("myForm"));
             
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'canvas_load_save.php', true);
+    //         var xhr = new XMLHttpRequest();
+    //         xhr.open('POST', 'canvas_load_save.php', true);
             
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                        if( xhr.status == 200 ){
-                        // alert('Succesfully uploaded');  
-                        }else{
-                        alert(xhr.status);
-                        }
-                }
-            };
+    //         xhr.onreadystatechange = function() {
+    //             if (xhr.readyState == 4) {
+    //                     if( xhr.status == 200 ){
+    //                     // alert('Succesfully uploaded');  
+    //                     }else{
+    //                     alert(xhr.status);
+    //                     }
+    //             }
+    //         };
                 
-            xhr.send(formData);  
-          //-------------------
-      });
-    });
+    //         xhr.send(formData);  
+    //       //-------------------
+    //   });
+    // });
   </script>
 
   <script>
@@ -850,11 +1077,13 @@ try {
 
                     //上標籤
                     function addSelect(e) {
-                        if (e.target.classList.contains("rotateZ") || e.target.classList.contains("rotateX") ||
-                                e.target.classList.contains("rotateY")) return; //工程鈕跳過
+                        // console.log("add btnSelect!!!");
                         btns.forEach(el => {
                                 el.classList.remove("btnSelect");
+                                console.log(el.id + "remove .btnSelect")
                         })
+                        if (e.target.classList.contains("rotateZ") || e.target.classList.contains("rotateX") ||
+                        e.target.classList.contains("rotateY")) return; //工程鈕跳過
                         e.target.classList.add("btnSelect");
                 }
 
@@ -1866,6 +2095,7 @@ try {
     $(function () {
         $("#soundAdd").on("click",addSound);
         function addSound(e){
+            alert('音效已加入卡片囉~');
             //選取目標聲音的路徑
             let src=$("#soundAdd").closest(".content").children(".container").children("div:visible").find("source").attr("src");
             console.log(src);
@@ -1880,6 +2110,33 @@ try {
     })
     
     </script>
+    <script>
+function doFirst(){
+	document.getElementById('theFile').onchange = fileChange;
+}
+function fileChange(){
+	var file = document.getElementById('theFile').files[0];
+	var message = '';
 
+	message += 'File Name: '+file.name+'\n';
+	message += 'File Type: '+file.type+'\n';
+	message += 'File Size: '+file.size+' byte(s)\n';
+	message += 'Last Modified: '+file.lastModifiedDate+'\n';
+
+	document.getElementById('fileInfo').value = message;
+//===================
+
+	var readFile = new FileReader();
+	readFile.readAsDataURL(file);
+	readFile.addEventListener('load',function(){
+		var image = document.getElementById('image');
+		image.src = readFile.result;
+		image.style.maxWidth = '400px';
+		image.style.maxHeight = '300px';
+	});
+
+}
+window.addEventListener('load',doFirst);
+</script>
 </body>
 </html>

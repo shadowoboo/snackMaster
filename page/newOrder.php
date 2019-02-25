@@ -539,14 +539,25 @@
                 <?php 
 
                    }  
+
+
+        
                 }
                 ?>
 
             </div> 
 
-             <div class="tabPanel " id="tab-2">
-        <div class="order">
-
+             
 </body>
 
 </html>
+
+
+<?php 
+                        $eva_sql = "select * from snack where orderNo=:orderNo";
+                        $eavCount = $pdo->prepare($eva_sql);
+                        $eavCount->bindValue(':orderNo',$orderNo);
+                        $eavCount->execute();
+
+                       while($eavCountRow = $eavCount-> fetch(PDO::FETCH_ASSOC)){    $orderNo = $orderRow['orderNo'];
+                    ?>        

@@ -1,122 +1,112 @@
 
-function $id(id){
+function $id(id) {
   return document.getElementById(id);
 }
 
-function headChange(){
+function headChange() {
   var file = $id('upFile').files[0];
   var readFile = new FileReader();
-  readFile .readAsDataURL(file);
-  readFile.addEventListener('load',function(){
+  readFile.readAsDataURL(file);
+  readFile.addEventListener('load', function () {
     var bigHead = $id('headPic');
     bigHead.src = readFile.result;
     bigHead.style.maxWidth = '200px';
     bigHead.style.maxHeight = '300px';
   });
 }
-//展開訂單明細
-// var listplay = document.getElementsByClassName('listplay');
-// function  listshow(e){
-  
-//   if(listplay.innerText=="訂單明細v"){
-//     listplay.innerHTML  = "訂單明細^";
-//     document.getElementsByClassName('orderItem').classList.add('expand');
-//   }else{
-//     listplay.innerHTML = "訂單明細v";
-//     document.getElementsByClassName('orderItem').classList.remove('expand');
 
-//   }
-  
-// }
-
-$(document).ready(function(){
+$(document).ready(function () {
   // console.log(123);
-  
-  $('.listplay').on('click',function(){
+  //展開訂單明細
+  $('.orderList_btn').on('click', function () {
     // console.log(321);
-    
-    if($(this).text()=="訂單明細v"){
+    if($(this).text() == "訂單明細v") {
       // console.log('oop');
-      
+      $('.orderLis_content').removeClass('show');
+      let tar = $(this).next().next(); //吃結構
+      tar.addClass('show');
       $(this).text("訂單明細^");
-    }else{
+    } else {
+      $('.orderLis_content').removeClass('show');
       $(this).text("訂單明細v");
     }
-  
-    $('.orderItem').toggleClass('expand');
-    $('.textDics').value ="";
-      
-  });
-  $('.evaShowbtn').on('click',function(){
-    var $tar=$(this).closest(".orderItemList").next();
-    $('.evaLightBox').removeClass('show');
-    $tar.addClass('show');
-  });
-  $('.evaLightBoxLeave').on('click',function(){
-    $('.evaLightBox').removeClass('show');
-    
+
+
 
   });
 
-
-  
 });
-//跳出商品評價燈箱
-// function showEvaBox(e){
-//   $id('evaBox').classList.add('show');
-// }
-// function leaveEva(e){
-//   $id('evaBox').classList.remove('show');
-//   $id('textDiscuss').value ="";
+var clmem = false;
+  function changeInfo(e) {
+    // console.log($id('memInfon').readOnly);
+    // console.log("123");
+    // $("#memInfon").attr("readonly");
+    // console.log($("#memInfon").attr("readonly"));
 
-
-// }
-
-
-
-
-function doFirst(){
-  $id('upFile').onchange = headChange;
-
-  //展開訂單明細
-  // var act_orderList = document.getElementsByClassName('listplay');
-  // for (var i = 0; i < act_orderList.length ; i++) {
-  //     act_orderList[i].addEventListener("click",function(e){
-  //       // alert(act_orderList[0].innerText);
-  //       if(act_orderList[i].innerText=="訂單明細v"){
-  //         alert(333);
-  //         var target = e.target;
-  //         target.innerHTML = "訂單明細^";
-  //       }else{
-  //         var target = e.target;
-  //         target.innerHTML = "訂單明細v";
-  //       }
-        
-  //       $id('proEva').classList.toggle('expand');
-  //     },false);
-  // }
-  // var act_evaBox = document.getElementsByName('evaShowbtn');
-  // for (var j = 0; j < act_evaBox.length; j++) {
-  //   act_evaBox[j].addEventListener('click',showEvaBox);
-  // }
-  // var act_leaveEva = document.getElementsByClassName('evaShowbtn');
-  // for (var x = 0; x < act_leaveEva.length; x++) {
-  //    act_leaveEva.addEventListener("click",leaveEva);
+    // var valt = $("#memInfon").text();
+    // var val = $("#memInfon").val();
+    // if(!clmem){
+    //   // console.log("開");
+    //   clmem = true;
+    //   document.getElementById("memIfon-p").innerHTML= "帳號：<input type='text' name='memId' value='"+val+"' maxlength='15' id='memIfon'>  <img src='../images/tina/pen.png' alt='編輯' id='infoChange'>";
+    //   $id('infoChange').addEventListener('click', changeInfo);
+    // }else if(clmem){
+    //   clmem = false;
+    //   // console.log("關");
+    //   document.getElementById("memIfon-p").innerHTML = "帳號：<input type='text' name='memId' value='"+val+"' maxlength='15' id='memIfon' readonly>  <img src='../images/tina/pen.png' alt='編輯' id='infoChange'>";
+    //   $id('infoChange').addEventListener('click', changeInfo);
+    // }
     
-  // }
-  // $id('evaLightBoxLeave').addEventListener('click',leaveEva);
-  // $id('evaShow').addEventListener('click',showEvaBox);
-  // $id('listMorebtn').addEventListener('click',moreList);
-  
-}
-window.addEventListener('load',doFirst);
 
-//-----------------------頁籤切換------------------------//
-function changeTabs(evt, tabList) {
-    var i,tablinks,tabPanel;
+
+  }
+  function addBtnEva(){
+
+    $('.sendEva').click(function(){
+        var snackNo=$(this).attr('id');
+        
+        var evaCtx=$(`tr[name=snackNo${snackNo}] textarea`).val();
+        var sweetStar=$(`tr[name=snackNo${snackNo}] input[name=swStar]:checked`).val();
+        var sourStar=$(`tr[name=snackNo${snackNo}] input[name=suStar]:checked`).val();
+        var spicyStar=$(`tr[name=snackNo${snackNo}] input[name=spStar]:checked`).val();
+        var goodStar=$(`tr[name=snackNo${snackNo}] input[name=gdStar]:checked`).val();
+
+        var data_info=`snackNo=${snackNo}&evaCtx=${evaCtx}&goodStar=${goodStar}&sourStar=${sourStar}&sweetStar=${sweetStar}&spicyStar=${spicyStar}`;
+        var xhr= new XMLHttpRequest();
+        xhr.open("Post", "sendEva.php", true);
+        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xhr.send(data_info);
+        xhr.onload=function(){
+            alert("感謝您提供的意見，加100分");
+
+        }
+        console.log(data_info);
+    });
+   
+
+
+}
+
+window.addEventListener('load',addBtnEva,false);
+
+
+
+
+  function doFirst() {
+    // console.log("aa");
+    $id('upFile').onchange = headChange;
+    // $id('infoChange').addEventListener('click', changeInfo);
+
+
+  }
+  window.addEventListener('load', doFirst);
+
+  // -----------------------頁籤切換------------------------//
+  function changeTabs(evt, tabList) {
+    var i, tablinks, tabPanel;
     tabPanel = document.getElementsByClassName("tabPanel");
     for (i = 0; i < tabPanel.length; i++) {
-        tabPanel[i].style.display = "none";
+      tabPanel[i].style.display = "none";
     }
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
@@ -124,15 +114,10 @@ function changeTabs(evt, tabList) {
 
     }
     document.getElementById(tabList).style.display = "block";
-    
+
     evt.currentTarget.className += " active";
   }
-  
+
   // Get the element with id="defaultOpen" and click on it
   document.getElementById("defaultOpen").click();
-//-----------------------頁籤切換結束------------------------//
-
-
-
-
-
+// -----------------------頁籤切換結束------------------------

@@ -13,7 +13,6 @@ $moblie: 768px;
 @font-face {
   font-family: g2Font;
   src: url(../GenJyuuGothicX-Bold.ttf);
-
 }
 @font-face {
   font-family: g2Med;
@@ -211,10 +210,15 @@ input[type=number]::-webkit-outer-spin-button {
         }
 
         p {
-            position: absolute;
-            top: 29px;
-            left: 32px;
-            color: $gray;
+            font-size: 0;
+            @media screen and (min-width:$moblie){
+               position: absolute;
+                top: 29px;
+                left: 32px;
+                color: $gray; 
+                font-size: 16px;
+            }
+            
         }
     }
 
