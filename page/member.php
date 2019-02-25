@@ -97,7 +97,6 @@
     <link rel="stylesheet" href="../css/header.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/header.js" defer></script>
-    <script src="../js/member.js" defer></script>
 
     <title>會員專區</title>
 
@@ -131,7 +130,7 @@
                         <label class="memPic" for="upFile">
                             <p>上傳大頭貼<img src="../images/tina/pen.png" alt="編輯"></p>
 
-                            <input type="file" name="upFile" id="upFile">
+                            <input type="file" name="upFile" id="upFile" =>
 
                         </label>
 
@@ -154,11 +153,12 @@
                 </tr>
                 <tr>
                     <td>
-                        <p>
+                        <p id="memIfon-p">
                             帳號：
                             <input type="text" name="memId" value="<?php echo $memRow["memId"];?>" maxlength="15"
-                                id="memId">
-                            <img src="../images/tina/pen.png" alt="編輯">
+                                id="memIfon" > 
+                                <!-- 還未增加readonly，修改input樣式要改變css未調 -->
+                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
                         </p>
                     </td>
                 </tr>
@@ -167,8 +167,8 @@
                         <p>
                             密碼：
                             <input type="password" name="memPsw" value="<?php echo $memRow["memPsw"];?>" maxlength="15"
-                                autofocus id="memPsw">
-                            <img src="../images/tina/pen.png" alt="編輯">
+                                autofocus id="memInfon" >
+                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
                         </p>
                     </td>
                 </tr>
@@ -177,8 +177,8 @@
                         <p>
                             姓名：
                             <input type="text" name="memName" value="<?php echo $memRow["memName"];?>" maxlength="12"
-                                id="memName">
-                            <img src="../images/tina/pen.png" alt="編輯">
+                                id="memInfon" >
+                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
                         </p>
                     </td>
                 </tr>
@@ -187,8 +187,8 @@
                         <p>
                             電話：
                             <input type="number" name="phone" value="<?php echo $memRow["memPhone"];?>" maxlength="10"
-                                id="memPhone">
-                            <img src="../images/tina/pen.png" alt="編輯">
+                                id="memInfon" >
+                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
                         </p>
                     </td>
                 </tr>
@@ -197,8 +197,8 @@
                         <p>
                             信箱：
                             <input type="email" name="email" value="<?php echo $memRow["email"];?>" maxlength="20"
-                                id="email">
-                            <img src="../images/tina/pen.png" alt="編輯">
+                                id="memInfon">
+                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
                         </p>
                     </td>
                 </tr>
@@ -455,7 +455,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                <form action="" class="eva_lightBox">
+                                <form id="eva<?php echo  order_listArr[$i]['snackNo']?>"action="" class="eva_lightBox">
                                     
                                     <span class="eva_lightBox_leave">x</span>
                         
@@ -949,3 +949,4 @@ window.addEventListener('load', doFirst, false);
 </script>
 
 </html>
+    <script src="../js/member.js" defer></script>
