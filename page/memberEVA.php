@@ -10,15 +10,15 @@
     }
     //點擊登出，會員資料要清空
     //跳轉回首頁
-    if (isset($_REQUEST["btnloglout"]) && ($_REQUEST["btnloglout"]=="true")) {
-        //登出資料要清空
-        unset ($_SESSION["memNo"]);
-        unset ($_SESSION["memId"]);
-        unset ($_SESSION["memId"]);
-        //跳轉回首頁
-        header("Location: homePage.php");
+    // if (isset($_REQUEST["btnloglout"]) && ($_REQUEST["btnloglout"]=="true")) {
+    //     //登出資料要清空
+    //     unset ($_SESSION["memNo"]);
+    //     unset ($_SESSION["memId"]);
+    //     unset ($_SESSION["memId"]);
+    //     //跳轉回首頁
+    //     header("Location: homePage.php");
       
-    }
+    // }
     
     $errMsg = "";
     try{
@@ -91,227 +91,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/nnnnn.css">
-    <link rel="stylesheet" href="../css/member.css">
+    <link rel="stylesheet" href="../css/memberEva.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/header.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/header.js" defer></script>
-    <script src="../js/upgrade.js"></script>
+    <script src="../js/member.js" defer></script>
+    <script src="../js/sendEva.js"></script>
 
     <title>會員專區</title>
 
 </head>
 
 <body>
-    <header>
-        <h1>大零食家</h1>
-        <div class="cloud">
-            <div class="doc doc--bg2">
-                <canvas id="canvas"></canvas>
-            </div>
-            <nav>
-                <label for="smlSearch" class="searchBtn" value="search">
-                    <img src="../images/tina/search-icon.svg" alt="" id="searchBtn">
-                </label>
-
-                <div class="menu">
-                    <!-------- -----手機漢堡----------- -->
-
-                    <div id="ham">
-                        <span class="btnTop"></span>
-                        <span class="btnMid"></span>
-                        <span class="btnBot"></span>
-                    </div>
-                    <!----    在手機上打開此logo;桌機上關掉此logo------ -->
-                    <div class="logo">
-                        <a href="homePage.php"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
-
-                    </div>
-                    <div id="list_appear">
-                        <!-- ----------手機選單離開-------- -->
-                        <div id="cros">
-                            <span class="leave">X</span>
-                        </div>
-                        <ul class="list">
-                            <li id="gorankBoard"><a href="rankBoard.php">零食排行榜</a></li>
-                            <li id="gocustomized"><a href="customized.php">客製零食箱</a> </li>
-                            <!-- 在手機上要關掉這個li的logo -->
-                            <li><a href="homePage.php"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
-                            <li id="store"> 零食商店街
-                                <ul id="Submenu" class="subMenu">
-                                    <li id="snBox"><a href="preOrder.php">預購零食箱</a></li>
-                                    <li><a href="shopping.php">零食列表</a></li>
-                                </ul>
-                            </li>
-                            <li id="goGsell"><a href="gsell.php">尋找販賣機</a> </li>
-                        </ul>
-                    </div>
-                </div> 
-
-                <ul class="login">
-                    <li><a href="?loglout=true"><span id="btnloglout">&nbsp</span></a></li>
-                    <!-- <li><span id="btnloglout">&nbsp</span></li> -->
-                    <li><i class="fas fa-user-circle" id="memLogin"></i></li>
-                    <li id="goCartShow"><a href="cartShow.php"><i class="fas fa-shopping-cart" id="shopCart"></i></a></li>
-                </ul>
-            </nav>
-            <div class="seachRegion" id="search_appear">
-                <div class="search">
-                    <img src="../images/blair/pocky.png" alt="">
-                    <div class="selectbar">
-                        <select name="country" id="country">
-                            <option value="0">國家</option>
-                            <option value="巴西">巴西</option>
-                            <option value="日本">日本</option>
-                            <option value="美國">美國</option>
-                            <option value="英國">英國</option>
-                            <option value="埃及">埃及</option>
-                            <option value="德國">德國</option>
-                            <option value="澳洲">澳洲</option>
-                            <option value="韓國">韓國</option>
-                        </select>
-                        <select name="kind" id="kind">
-                            <option value="0">種類</option>
-                            <option value="巧克力">巧克力</option>
-                            <option value="糖果">糖果</option>
-                            <option value="餅乾">餅乾</option>
-                            <option value="洋芋片">洋芋片</option>
-                        </select>
-                        <select name="flavor" id="flavor">
-                            <option value="0">口味</option>
-                            <option value="sour">酸</option>
-                            <option value="sweet">甜</option>
-                            <option value="spicy">辣</option>
-                        </select>
-                    </div>
-                    <div class="inputbar">
-                        <input type="text" id="searchName" placeholder="想找什麼零食呢？">
-                        <i class="fas fa-search" id="searchClick"></i>
-                    </div>
-                </div>
-                <div id="close">
-                    <span class="close"><i class="fas fa-times"></i></span>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- //-------------------------------------------------------//
------------------------       這是燈箱        ------------------ -->
-    <!-- //-------------------------------------------------------// -->
-    <div id="lightBox-wrap">
-        <div id="lightBox">
-            <div class="loginLeave">
-                <span id="lightBoxLeave">X</span>
-            </div>
-            <ul class="tab-group">
-                <li class="loginTab" id="open" onclick="changeway(event,'Loginpage')">登入</li>
-                <li class="loginTab" onclick="changeway(event,'signup')">註冊</li>
-            </ul>
-            <div class="loginTab-content">
-                <!-----------------------------------登入表單------------------------------------  -->
-                <form id="Loginpage" class="tabContent">
-
-                    <table class="loginBox">
-                        <tr>
-                            <td>
-                                <label class="Box-name" for="loginMemId">帳號</label>
-                                <input type="text" name="loginMemId" id="loginMemId" size="12" autocomplete="off"
-                                    placeholder="請輸入帳號">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="Box-name" for="loginMemPsw">密碼</label>
-                                <input type="password" name="loginMemPsw" id="loginMemPsw" size="12"
-                                    placeholder="請輸入密碼">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="button" id="btnLogin" value="登入" class="cart">
-
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="forgetPsw">
-                        <p id="forgetPswLink" class="loginTab " onclick="changeway(event,'forgetPsw')"> 忘記密碼</p>
-                    </div>
-
-
-                </form>
-                <!------------------------------------------------註冊表單------------------------------------------  -->
-                <form id="signup" class="tabContent">
-                    <table class="signUpBox">
-                        <tr>
-                            <td>
-                                <label class="Box-name" for="signUpMemId">帳號</label>
-                                <input type="text" name="signUpMemId" id="signUpMemId" size="12" autocomplete="off"
-                                    placeholder="不得少於2碼">
-
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="Box-name" for="signUpMemPsw">密碼</label>
-                                <input type="password" name="signUpMemPsw" id="signUpMemPsw" size="12"
-                                    placeholder="請輸入密碼">
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="Box-name mail" for="signUpMemEmail">信箱</label>
-                                <input type="email" name="signUpMemEmail" id="signUpMemEmail" size="20"
-                                    autocomplete="off">
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td class="formBtn">
-                                <input type="button" id="btnSignUp" value="註冊" class="cart">
-                            </td>
-                        </tr>
-
-                    </table>
-                </form>
-                <!-- ---------------------------------------忘記密碼 -->
-                <form id="forgetPsw" class="tabContent">
-                    <table class="forgetPswBox">
-                        <tr>
-                            <td>
-                                <label class="Box-name" for="forgetMemId">帳號</label>
-                                <input type="text" name="forgetMemId" id="forgetMemId" size="12" autocomplete="off"
-                                    placeholder="請輸入帳號">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="Box-name mail" for="forgetMemEmail">信箱</label>
-                                <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" size="20"
-                                    autocomplete="off">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="formBtn">
-                                <input type="button" id="forgetSend" value="寄送密碼" class="cart">
-                            </td>
-
-                        </tr>
-
-                    </table>
-
-
-                </form>
-
-            </div>
-
-        </div>
-
-
-    </div>    
-    
+    <?php
+    require_once("header.php");
+?>
 
 
     <section class="memWrap">
@@ -336,7 +132,7 @@
                         <label class="memPic" for="upFile">
                             <p>上傳大頭貼<img src="../images/tina/pen.png" alt="編輯"></p>
 
-                            <input type="file" name="upFile" id="upFile" =>
+                            <input type="file" name="upFile" id="upFile">
 
                         </label>
 
@@ -359,12 +155,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <p id="memIfon-p">
+                        <p>
                             帳號：
                             <input type="text" name="memId" value="<?php echo $memRow["memId"];?>" maxlength="15"
-                                id="memIfon" > 
-                                <!-- 還未增加readonly，修改input樣式要改變css未調 -->
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                                id="memId">
+                            <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
                 </tr>
@@ -372,8 +167,9 @@
                     <td>
                         <p>
                             密碼：
-                            <input type="password" name="memPsw" value="<?php echo $memRow["memPsw"];?>" maxlength="15" autofocus>
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                            <input type="password" name="memPsw" value="<?php echo $memRow["memPsw"];?>" maxlength="15"
+                                autofocus id="memPsw">
+                            <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
                 </tr>
@@ -381,8 +177,9 @@
                     <td>
                         <p>
                             姓名：
-                            <input type="text" name="memName" value="<?php echo $memRow["memName"];?>" maxlength="12">
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                            <input type="text" name="memName" value="<?php echo $memRow["memName"];?>" maxlength="12"
+                                id="memName">
+                            <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
                 </tr>
@@ -390,8 +187,9 @@
                     <td>
                         <p>
                             電話：
-                            <input type="number" name="phone" value="<?php echo $memRow["memPhone"];?>" maxlength="10">
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                            <input type="number" name="phone" value="<?php echo $memRow["memPhone"];?>" maxlength="10"
+                                id="memPhone">
+                            <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
                 </tr>
@@ -399,8 +197,9 @@
                     <td>
                         <p>
                             信箱：
-                            <input type="email" name="email" value="<?php echo $memRow["email"];?>" maxlength="20">
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                            <input type="email" name="email" value="<?php echo $memRow["email"];?>" maxlength="20"
+                                id="email">
+                            <img src="../images/tina/pen.png" alt="編輯">
                         </p>
                     </td>
                 </tr>
@@ -410,14 +209,14 @@
                 <tr>
                     <td>
                         <p>
-                            成就：<span id="gradeName"><?php echo $levRow["gradeName"];?></span>
+                            成就：<span><?php echo $levRow["gradeName"];?></span>
                         </p>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <p>
-                            積分：<span id="memPoint"><?php echo $memRow["memPoint"];?></span>
+                            積分：<span><?php echo $memRow["memPoint"];?></span>
                         </p>
                     </td>
                 </tr>
@@ -475,16 +274,16 @@
                         <span>12385分</span>
                     </div>
                     <div class="procBar">
-                        <!-- <div class="baby">
+                        <div class="baby">
                             <img src="../images/tina/大頭貼.png" alt="零食寶寶">
-                        </div> -->
+                        </div>
 
-                        <div class="colorBar" style="overflow: hidden">
+                        <div class="colorBar">
                             <div class="nowPro"></div>
                         </div>
-                        <!-- <div class="kid">
+                        <div class="kid">
                             <img src="../images/tina/kid.png" alt="零食小鬼">
-                        </div> -->
+                        </div>
 
                     </div>
                     <div class="bottumLevel">
@@ -542,25 +341,7 @@
 
                     </div>
                     <div class="btnn">
-<?php 
-    $sql = "select grade, memPoint from member where memNo = {$_SESSION['memNo']}";
-    $members = $pdo -> query($sql);
-    $member = $members -> fetch();
-    if( $member['grade'] == 6 ){
-        $check = 'disabled style="cursor: no-drop;"';
-    }else{
-        $nextGrade = $member['grade'] + 1;
-        $sql = "select * from masterlevel where grade = {$nextGrade}";
-        $grades = $pdo -> query($sql);
-        $grade = $grades -> fetch(); 
-        if( $member['memPoint'] < $grade['gradePoint'] ){
-            $check = 'disabled style="cursor: no-drop;"';
-        }else{
-            $check = '';
-        }
-    }
-?>
-                        <button class="goToCustom" <?php echo $check ?>>領取升等獎勵</button>
+                        <button class="goToCustom">領取升等獎勵</button>
                     </div>
 
                 </div>
@@ -674,8 +455,12 @@
                                         <button class="orderList_eva cart">未評價</button>
                                     </td>
                                 </tr>
-                                <tr class="eva_lightBox_Box01 eva_lightBox" style="display: none;" name="snackNo
-                                <?php echo $order_listArr[$i]['snackNo'] ?>">
+                                
+                               
+                                    <tr class="eva_lightBox_Box01 eva_lightBox" name="snackNo<?php echo $order_listArr[$i]['snackNo'] ?>">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                             <td>
                                             <span class="eva_lightBox_leave">x</span>
                                                 <div class="evaContent ">
@@ -788,15 +573,13 @@
                                                 </div>
                                             </td>
                                     </tr>
-                                
-                    <?php 
-                               }  
-                        ?>
-                       
-                            </table>
+                               
+                               
+                          
+                    <?php  }  ?>
+                    </table>
                         </div>
                     </div>
-
                 </div>
 
                 <?php 
@@ -860,6 +643,12 @@ function tabClick(e) {
     var tab = e.target.parentNode.id;
 
     switch (tab) {
+        case 'defaultOpen':
+
+            break;
+        case 'tab22':
+
+            break;
         case 'tab33':
             getCollection();
             break;
@@ -968,16 +757,7 @@ function doFirst() {
         tablinks[num].addEventListener('click', tabClick);
     }
 
-    var trash = document.getElementsByClassName('trash');
-    var length = trash.length;
-    for (var i = 0; i < length; i++) {
-        trash[i].addEventListener('click', deletTrash);
-    }
-    var trashIcon = document.getElementsByClassName('fa-trash-alt');
-    var length2 = trashIcon.length;
-    for (var j = 0; j < length2; j++) {
-        trashIcon[j].addEventListener('click', deletTrash);
-    }
+
 
 }
 
@@ -987,4 +767,3 @@ window.addEventListener('load', doFirst, false);
 </script>
 
 </html>
-    <script src="../js/member.js" defer></script>

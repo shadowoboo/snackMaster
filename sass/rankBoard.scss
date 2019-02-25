@@ -452,6 +452,9 @@
                             height: 0;
                             overflow: hidden;
                             transition: .3s;
+                            .noMsg{
+                                color: #737374;
+                            }
                         }
 
                         .msgsShow {
@@ -559,6 +562,13 @@
                 font-size: 16px;
             }
         }
+        .btnMsg{
+            width: 31.5%;
+            @media screen and (min-width:$moblie) {
+                font-size: 16px;
+                width: 28.5%;
+            }
+        }
     }
     .msgBox {
         width: 100%;
@@ -582,7 +592,7 @@
 
         .sendMsg {
             font-size: 14px;
-            width: 28.5%;
+            width: 31.5%;
             height: 30px;
             color: #fff;
             background-color: $blue;
@@ -591,8 +601,10 @@
             border-radius: 10px;
             font-family: g2Font;
             text-align: center;
+            cursor: pointer;
             @media screen and (min-width:$moblie){
                 font-size: 16px;
+                width: 28.5%
             }
 
         }

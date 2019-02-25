@@ -442,6 +442,9 @@
                 .msgs {
                     overflow: hidden;
                     transition: .8s;
+                    .noMsg{
+                        color: #737374;
+                    }
                 }
 
                 .msgsShow {
@@ -532,6 +535,13 @@
             @media screen and (min-width: $moblie) {
                 font-size: 16px;
             }
+        
+        }
+        .btnMsg{
+            width: 31.5%;
+            @media screen and (min-width: $moblie) {
+                width: 28.5%;
+            }
         }
     }
 
@@ -558,7 +568,7 @@
 
         .sendMsg {
             font-size: 14px;
-            width: 28.5%;
+            width: 31.5%;
             height: 30px;
             color: #fff;
             background-color: $blue;
@@ -575,6 +585,7 @@
            
             @media screen and (min-width: $moblie) {
                 font-size: 16px;
+                width: 28.5%;
             }
 
         }
