@@ -11,17 +11,17 @@
             echo "<center>目前沒有優惠券~</center>";
         }else{
             $html='';
-            while($couponRow = $coupon->fetch(PDO::FETCH_ASSOC)){
+            while($couponRow = $coupon->fetch()){
     
                 $html .="
                 <tr>
-                <td><img src='{$couponRow['imgSRC']}'></td>
+                <td id='{$couponRow['coupNo']}'><img src='{$couponRow['imgSRC']}'></td>
                 <td>{$couponRow['getWay']}</td>
                 <td>{$couponRow['discountPrice']}</td>
                 <td>{$couponRow['endDate']}</td>
                 </tr>";
-                echo $html;
             }
+            echo $html;
     }
 
     
