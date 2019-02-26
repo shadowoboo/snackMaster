@@ -109,27 +109,43 @@ $(function () {
         //因為直接取值會慢實際看到的value一次，故手動補正
         //小心!! 這個input取出的值是字串!!! 相加務必檢查!!
         var val = $(this).prev().val();
+        val = parseInt(val);
+        var max = $(this).prev().attr("max");
+        max = parseInt(max);
+        console.log(`val= ${val}`);
+        
+        console.log(`max= ${max}`);
+        
         // console.log(val);
         // qty = val+parseInt(1);
-        snackQuan = parseInt(val) + 1;
-        console.log(snackQuan);
-        console.log(`snackType: ${snackType}`);
+        if ((val + 1) <= max){
+            snackQuan = parseInt(val) + 1;
+            console.log(snackQuan);
+            console.log(`snackType: ${snackType}`);
+            //改變session數量
+            $.ajax({
+                type: "get",
+                url: "cartUpdate.php",
+                data: "updateType=numPlus&snackNo=" + snackNo + "&snackQuan=" + snackQuan + "&snackType=" + snackType,
+                success: function (response) {
+                    console.log(`response:　${response}`);
+                }
+            });
+            //變更小計
+            priceSum(e, snackQuan);
+            //變更總計
+            priceTotal();
+            //變更客製箱的總計
+            priceTotalCus();
+        }else{
+            alert("已達庫存上限");
+            val=max;
+            console.log(`val=max: ${val}`);
+            $(this).attr("disabled",true);
+        }
+        
 
-        //改變session數量
-        $.ajax({
-            type: "get",
-            url: "cartUpdate.php",
-            data: "updateType=numPlus&snackNo="+snackNo+"&snackQuan="+snackQuan+"&snackType="+snackType,
-            success: function (response) {
-                console.log(`response:　${response}`);
-            }
-        });
-        //變更小計
-        priceSum(e, snackQuan);
-        //變更總計
-        priceTotal();
-        //變更客製箱的總計
-        priceTotalCus();
+
     })
     //優惠卷變更時，重新計算總價
     $("#couponItem").bind("change", priceTotal);
@@ -710,3 +726,85 @@ function auUpdateTimeNow(e) {
 }
 
 //撥放器-------------------------------結束
+
+
+//-------------common.js 無法覆蓋 只好拿進來修改-------
+
+
+//根據點擊的是加或減來修改number input 的 value
+function updateNum(e, num, type) {
+    //為了方便絕對定位，HTML結構中按鈕是在input的前與後
+    //所以要根據按鈕的類型來決定如何取得input物件
+    if (type == 'minus') {
+        var input = e.target.nextSibling;
+    } else {
+        var input = e.target.previousSibling;
+    }
+    console.log(`commom input max= ${input.getAttribute("max")}`);
+    var val = parseInt(input.value);
+    var max = parseInt(input.getAttribute("max"));
+    //將input的value控制在1~99以內，根據按鈕類型做+1或-1
+    if (parseInt(input.value) == 1 && num == -1) {
+        input.value = 1;
+    } else if (parseInt(input.value) == 99 && num == 1) {
+        input.value = 99;
+    } else {
+        //為即期品卡關上限值
+        if(val+1<=max && type=="plus"){
+            input.value = parseInt(input.value) + parseInt(num);
+        }else if(type=="minus"){
+            input.value = parseInt(input.value) + parseInt(num);
+        }
+    }
+}
+
+function doFirst() {
+
+    //取得number input左右的加減按鈕們的物件關聯
+    var numMinus = document.getElementsByClassName('numMinus');
+    var numPlus = document.getElementsByClassName('numPlus');
+    //兩種按鈕共用一個事件處理器updateNum，但回傳的值不同
+    for (var j = 0; j < numMinus.length; j++) {
+        numMinus[j].addEventListener('click', function (e) {
+            updateNum(e, -1, 'minus');
+        });
+        numPlus[j].addEventListener('click', function (e) {
+            updateNum(e, 1, 'plus');
+        });
+    }
+
+    //取得箱子前後左右上按鈕們的物件關聯
+    var dimensions = document.getElementsByClassName('dimension');
+    for (var k = 0; k < dimensions.length; k++) {
+        dimensions[k].addEventListener('click', function (e) {
+            //因為被點擊到的要換色，其他要恢復原狀
+            //所以有按鈕被點擊時先一律全部恢復原狀，再讓被點擊的那個換色
+            for (k = 0; k < dimensions.length; k++) {
+                dimensions[k].style.color = '';
+                dimensions[k].style.backgroundColor = '';
+            }
+            e.target.style.color = '#076baf';
+            e.target.style.backgroundColor = '#fbc84a';
+        });
+    }
+
+    //取得口味種類按鈕們的物件關聯
+    var categories = document.getElementsByClassName('category');
+    for (var m = 0; m < categories.length; m++) {
+        categories[m].addEventListener('click', function (e) {
+            //因為被點擊到的要換色，其他要恢復原狀
+            //所以有按鈕被點擊時先一律全部恢復原狀，再讓被點擊的那個換色
+            for (m = 0; m < categories.length; m++) {
+                categories[m].style.color = '';
+                categories[m].style.backgroundColor = '';
+            }
+            e.target.style.color = '#fff';
+            e.target.style.backgroundColor = '#076baf';
+        });
+    }
+
+}
+window.addEventListener('load', doFirst);
+
+
+//---------------------common.js-----------------

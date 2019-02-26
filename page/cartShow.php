@@ -76,7 +76,7 @@
     <!-- for header -->
     <script src="../js/header.js" defer></script>
     <!-- for common -->
-    <script src="../js/common.js" defer></script>
+    <!-- <script src="../js/common.js" defer></script> -->
     <!-- for shadowLib -->
     <script src="../js/shadowLib.js"></script>
     <!-- ------------------js-------------- -->
@@ -232,7 +232,7 @@ if(isset($_SESSION["snackName"])==true){
                                 </div>
                                 <div class="prodQty">
                                     <div class="numInput">
-                                        <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][1][$snackNo] ?>" data-snackType="<?php echo 1 ?>">-</span><input class="snackQty" type="number" value="1" readonly><span
+                                        <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][1][$snackNo] ?>" data-snackType="<?php echo 1 ?>">-</span><input class="snackQty" type="number" value="1" readonly max="99"><span
                                             class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][1][$snackNo]?>" data-snackType="<?php echo 1 ?>">+</span>
                                     </div>
                                 </div>
@@ -268,7 +268,7 @@ if(isset($_SESSION["snackName"])==true){
 <?php
     //如果是預購商品
     if(isset($_SESSION["snackName"][3])){
-    //即期品喔即期品
+    //預購品喔預購品
         foreach ($_SESSION["snackName"][3] as $snackNo => $snackName) {
             // if($cusType=="n" || $cusType=="c" ){
 ?>
@@ -299,7 +299,7 @@ if(isset($_SESSION["snackName"])==true){
                             </div>
                             <div class="prodQty" style="position: relative;z-index:-1;opacity:0;">
                                 <div class="numInput">
-                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][3][$snackNo]?>" data-snacktype="<?php echo 3 ?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" data-snackType="<?php echo 3 ?>" type="number" value="1" readonly><span
+                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][3][$snackNo]?>" data-snacktype="<?php echo 3 ?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" data-snackType="<?php echo 3 ?>" type="number" value="1" readonly max="99"><span
                                         class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][3][$snackNo]?>" data-snacktype="<?php echo 3 ?>">+</span>
                                 </div>
                             </div>
@@ -342,7 +342,7 @@ if(isset($_SESSION["snackName"])==true){
                             </div>
                             <div class="prodQty">
                                 <div class="numInput">
-                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][0][$snackNo]?>" data-snacktype="<?php echo 0 ?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
+                                    <span class="numMinus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][0][$snackNo]?>" data-snacktype="<?php echo 0 ?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly max="99"><span
                                         class="numPlus" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][0][$snackNo]?>" data-snacktype="<?php echo 0 ?>">+</span>
                                 </div>
                             </div>
@@ -364,6 +364,25 @@ if(isset($_SESSION["snackName"])==true){
             $arr_str=explode("|",$str);
             //分割出字串
             $priceOrigin=$arr_str[0];
+
+            try {
+                require_once("connectcd105g2.php");
+                //撈即期品庫存量
+                //在優惠期間內，最新的優惠方案
+                $cl_sql = "SELECT clearanceNo,snackNo,salePrice,quantity, startTime, endTime FROM `clearanceitem`NATURAL JOIN clearance"
+                    . "   WHERE snackNo=:snackNo and (now() BETWEEN startTime and endTime) AND clearanceNo ="
+                    . "          (SELECT MAX(clearanceNo) from clearanceitem)";
+                $cl= $pdo->prepare($cl_sql);
+                $cl -> bindValue(":snackNo", $snackNo); //從foreach迴圈取得當前的snackNo
+                $cl -> execute();
+                $row = $cl-> fetch();
+                print_r($row["quantity"]);
+            } catch (PDOException $e) {
+                echo "失敗,原因:",$e -> getMessage();
+                echo "行號:",$e -> getLine();
+            }
+            //也許重複呼叫資料庫不是好主意，一種感覺
+
 ?>
                     <div class="prodCard prodCard_normal prodCard_single">
                         <input type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
@@ -387,8 +406,8 @@ if(isset($_SESSION["snackName"])==true){
                             </div>
                             <div class="prodQty">
                                 <div class="numInput">
-                                    <span class="numMinus" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][2][$snackNo]?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly><span
-                                        class="numPlus" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][2][$snackNo]?>">+</span>
+                                    <span class="numMinus" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][2][$snackNo]?>" data-max="<?php echo $row["quantity"] ?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly max="<?php echo $row["quantity"] ?>"><span
+                                        class="numPlus" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][2][$snackNo]?>" data-max="<?php echo $row["quantity"] ?>">+</span>
                                 </div>
                             </div>
                             <button class="trash" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo;?>"><i class="far fa-trash-alt" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo;?>"></i></button>
