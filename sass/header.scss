@@ -228,7 +228,7 @@ label.mail {
         top: calc(50% - 160px);
         right: 0;
         left: 0;
-        width: 350px;
+        width: 320px;
         height: 320px;
         background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
         display: block;
@@ -253,7 +253,7 @@ label.mail {
             form{
                 table{
                     width: 300px;
-                    margin-bottom: 24px;
+                    margin-bottom: 10px;
                     tr {
                         td {
                             padding: 5px 5px;
@@ -262,13 +262,17 @@ label.mail {
                 }
             }
             #Loginpage{
-                span{
+                p{
                     font-size: 18px;
                     cursor: pointer;
                     text-decoration: underline;
                 }
                 #forgetPswLink{
-                    margin-right: 144px;
+                    margin-left: 126px;
+                    margin-top: 4px;
+                }
+                #signUpBtn{
+                    text-align: right;
                 }
             }
             @include btn('loginBoxBtn', 90px, 40px, #fff, $blue, transparent, 10px, 0px, #fff, $deepblue, 22px);

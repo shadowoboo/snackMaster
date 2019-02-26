@@ -92,12 +92,5 @@
             </footer>
         </div>
     </div> 
-    <script>
-        document.getElementById('cancel').addEventListener('click', function (){
-            if(window.confirm('確定要放棄修改商品嗎？') == true){
-                location.href = 'back_snack.php';
-            }
-        })
-    </script>
 </body>
 </html>

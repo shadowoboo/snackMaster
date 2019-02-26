@@ -6,17 +6,19 @@ function addHeart(e){
         var snackNo = e.target.parentNode.id;
     }
     if (document.getElementById("btnloglout").innerHTML == "&nbsp;") {
-        alert('請先登入會員唷～');
-        showLightBox();
+        alertBox('請先登入會員唷～');
+        document.getElementById('sure').addEventListener('click', function () {
+            showLightBox();
+        });
         return;
     }else {
         e.target.style.color = 'rgb(234, 90, 90)';
         var xhr = new XMLHttpRequest();
         xhr.onload = function () {
             if (xhr.status == 200) {
-                alert('已將商品加入收藏～');
+                alertBox('商品已加入收藏～');
             } else {
-                alert(xhr.status);
+                alertBox(xhr.status);
             }
         }
 

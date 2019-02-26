@@ -39,7 +39,7 @@
                     <div id="list_appear">
                         <!-- ----------手機選單離開-------- -->
                         <div id="cros">
-                            <span class="leave">X</span>
+                            <span class="leave"><i class="fas fa-times"></i></span>
                         </div>
                         <ul class="list">
                             <li id="gorankBoard"><a href="rankBoard.php">零食排行榜</a></li>
@@ -126,6 +126,7 @@
                             <td>
                                 <label class="Box-name" for="loginMemPsw">密碼</label>
                                 <input type="password" name="loginMemPsw" id="loginMemPsw">
+                                <p id="forgetPswLink" onclick="changeway(event,'forgetPsw')"> 忘記密碼?</p>
                             </td>
                         </tr>
                         <tr>
@@ -134,8 +135,7 @@
                             </td>
                         </tr>
                     </table>
-                    <span id="forgetPswLink" onclick="changeway(event,'forgetPsw')"> 忘記密碼</span>
-                    <span onclick="changeway(event,'signup')">註冊會員</span>
+                    <p id="signUpBtn" onclick="changeway(event,'signup')">註冊會員</p>
                 </form>
                 <!------------------------------------------------註冊表單------------------------------------------  -->
                 <form id="signup" class="tabContent">

@@ -15,7 +15,7 @@
         $material -> bindValue(':materialPath', $_REQUEST['materialPath']);
         $material -> bindValue(':materialNo', $_REQUEST['materialNo']);
         $material -> execute();
-        echo "<script>alert('修改素材成功！');location.href='back_material.php';</script>";
+        echo "true";
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";
