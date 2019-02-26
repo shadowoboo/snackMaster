@@ -180,9 +180,9 @@ try {
                                         <img class="cusPic" src="../<?php echo $mateRow['materialPath']?>" alt="">
                                     </div>
 
-    <?php
-        }
-    ?>
+<?php
+    }
+?>
                                      <div class="pic">
                                         <img class="cusPic" id="image" style="width:53px;">
                                     </div>
@@ -216,7 +216,7 @@ try {
                     }
                 }
              </script>                    -->
-      <div id="step2" class="step-content-body out">
+      <div id="step2" class="step-content-body done">
         <div class="customized">
             <!-- <div class="priceSign">$150</div> -->
             <div class="snackHouse">
@@ -241,12 +241,29 @@ try {
                             <p>客製完成</p>   
                         </div> -->
                     </div>
+ <?php
+    $errMsg = "";
+        try {
+            require_once("connectcd105g2.php");
+            $sql = "select * from material ORDER BY materialNo limit 18,19";
+            $material = $pdo->query($sql);
+        } catch (PDOException $e){
+            $errMsg .= "錯誤 :".$e -> getMessage()."<br>";
+            $errMsg .= "行號 :".$e -> getLine()."<br>";
+        }
+?>                            
+<?php
+  while( $mateRow = $material -> fetch() ){
+?>                      
                 <div class="section section_15" id="section_15" style="flex-wrap:wrap;">
                     <div class="lefCard" style="flex:2;">
                             <div class="cardBox">
-                                    <img  id="large" src="../images/customized/card.png" alt="">
+                                    <img  id="large" src="../<?php echo $mateRow['materialPath']?>" alt="">
                                 </div>  
                             </div>
+<?php
+}
+?>                            
                 <div class="cardBody">
                     <div class="pickCard">
                             <ul class="tab-content-2">
@@ -390,7 +407,7 @@ try {
              </div>
          </div>
       </div>
-      <div id="step3" class="step-content-body out">
+      <div id="step3" class="step-content-body done">
         <div class="customized">
             <!-- <div class="priceSign">$150</div> -->
             <div class="snackHouse">
@@ -514,11 +531,40 @@ try {
     //$arr_row[49] 代表 客製箱 (sql中第50個)
 ?>
   <div class="step-content-foot">
-        <button type="button" class="step" name="prev">上一步</button>
-        <button type="button" class="step" name="next">下一步</button>
+        <button type="button" class="step none"  id="btn1">上一步</button>
+        <button type="button" class="step"  id="btn2" disabled="true">下一步</button>
         <button type="button" class="active out step cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="test" data-cusCard="../images/customized/card.png" data-cusSound="test" >加入購物車</button>
   </div>
+<script>
+var steps = $(".step-content-body"), i = 0;
 
+$("#btn2").click(function(){
+  
+  if(i < steps.length) {
+    console.log("btn2 - "+i); steps.eq(i).removeClass('active').addClass('done').next().addClass('active')
+    i++;
+  }
+  if(i+1 < steps.length) {
+    $("#btn1").removeClass('none');
+  }
+
+//   if( i+1< steps.length) {
+//     $('button[name="finish"]').removeClass('none');
+//   }
+
+});
+
+
+$("#btn1").click(function(){
+  
+  if(i <= steps.length && i > 0) {
+    
+    console.log("btn1 - "+i); steps.eq(i).removeClass('active').prev().addClass('active');
+    i--;
+    
+  }
+});
+</script>
 
   <div class="img1"></div>
   <div class="img2"></div>
@@ -578,7 +624,16 @@ try {
 
 <script>
 //前:50  後：49 上：48 左：51 右：52 
-    
+$( "#boxSureBtn" ).click(function() {
+    $(this).css({"background-color":"rgb(204, 204, 204)","color": "rgb(170, 170, 170)"});
+    $('#btn2').attr('disabled', false);
+});    
+$( "#cardSureBtn" ).click(function() {
+    $(this).css({"background-color":"rgb(204, 204, 204)","color": "rgb(170, 170, 170)"});
+});    
+
+
+
       $("#boxSureBtn").click(function() {
           alert('成功將客製箱加入囉～');
       html2canvas($(".leftBox")[0]).then(function(canvas) {
