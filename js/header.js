@@ -196,7 +196,7 @@ function changeway(e, tabchange) {
     if( tabchange == 'signup' ){
         $id('open').innerText = '註冊會員';
     }else if ( tabchange == 'forgetPsw' ){
-        $id('open').innerText = '忘記密碼';
+        $id('open').innerText = '取回密碼';
     }
 }
 // $id('open').click();

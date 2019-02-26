@@ -81,7 +81,7 @@
                     <div id="list_appear">
                         <!-- ----------手機選單離開-------- -->
                         <div id="cros">
-                            <span class="leave">X</span>
+                            <span class="leave"><i class="fas fa-times"></i></span>
                         </div>
                         <ul class="list">
                             <li id="gorankBoard"><a href="rankBoard.php">零食排行榜</a></li>
