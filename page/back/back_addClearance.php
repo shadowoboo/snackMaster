@@ -62,7 +62,7 @@
         exit("<div><center>$errMsg</center></div>");
     }
 ?>
-                <form action="back_clearanceToDb.php">
+                <form id="myForm">
                     <table>
                         <tr>
                             <td>開始時間</td>
@@ -77,13 +77,16 @@
                         <tr>
                             <th>明細編號</th>
                             <th>商品編號</th>
+                            <th>商品名稱</th>
+                            <th>商品原價</th>
                             <th>出清價格</th>
                             <th>出清數量</th>
                         </tr>
                         <tr>
                             <td>1</td>
                             <td>
-                                <select name="item1No">
+                                <select name="item1No" id="snackNo1" >
+                                    <option value="1"></option>
                                     <?php
                                         while( $snackRow = $snacks -> fetch() ){
                                     ?>
@@ -93,13 +96,16 @@
                                     ?>
                                 </select>
                             </td>
+                            <td id="snackName1"></td>
+                            <td id="snackPrice1"></td>
                             <td><input type="text" name="item1Price" size="10"></td>
                             <td><input type="text" name="item1Qty" size="10"></td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>
-                                <select name="item2No">
+                                <select name="item2No" id="snackNo2" >
+                                    <option value="1"></option>
                                     <?php
                                         $snacks = $pdo -> query($sql);
                                         while( $snackRow = $snacks -> fetch() ){
@@ -110,13 +116,16 @@
                                     ?>
                                 </select>
                             </td>
+                            <td id="snackName2"></td>
+                            <td id="snackPrice2"></td>
                             <td><input type="text" name="item2Price" size="10"></td>
                             <td><input type="text" name="item2Qty" size="10"></td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>
-                                <select name="item3No">
+                                <select name="item3No" id="snackNo3" >
+                                    <option value="1"></option>
                                     <?php
                                         $snacks = $pdo -> query($sql);
                                         while( $snackRow = $snacks -> fetch() ){
@@ -127,6 +136,8 @@
                                     ?>
                                 </select>
                             </td>
+                            <td id="snackName3"></td>
+                            <td id="snackPrice3"></td>
                             <td><input type="text" name="item3Price" size="10"></td>
                             <td><input type="text" name="item3Qty" size="10"></td>
                         </tr>
@@ -141,6 +152,53 @@
         </div>
     </div> 
     <script>
+        function getName(num){
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    var name = xhr.responseText.split('|')[0];
+                    var price = xhr.responseText.split('|')[1];
+                    document.getElementById('snackName' + num).innerText = name;
+                    document.getElementById('snackPrice' + num).innerText = price;
+                } else {
+                    alert(xhr.status);
+                }
+            } 
+
+            var snackNo = document.getElementById('snackNo' + num).value;
+            xhr.open("get", "back_getName.php?snackNo=" + snackNo, true);
+            xhr.send( null ); 
+        }
+        document.getElementById('snackNo1').addEventListener('change', function (){
+            getName(1);
+        });
+        document.getElementById('snackNo2').addEventListener('change', function (){
+            getName(2);
+        });
+        document.getElementById('snackNo3').addEventListener('change', function (){
+            getName(3);
+        });
+        document.getElementById('commit').addEventListener('click', function (){
+            if(window.confirm('新增即期品專案後就不能再修改商品，確定要新增嗎？') == true){
+                var xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        if( xhr.responseText == 'true' ){
+                            alert('新增即期品專案成功！');
+                            location.href='back_clearance.php';
+                        }else{
+                            alert(xhr.responseText);
+                        }
+                    } else {
+                        alert(xhr.status);
+                    }
+                } 
+
+                xhr.open("Post", "back_clearanceToDb.php", true);
+                var myForm = new FormData( document.getElementById('myForm'));
+                xhr.send( myForm ); 
+            }
+        })
         document.getElementById('cancel').addEventListener('click', function (){
             if(window.confirm('確定要放棄新增即期品專案嗎？') == true){
                 location.href = 'back_clearance.php';
