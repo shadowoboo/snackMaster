@@ -2156,8 +2156,29 @@
             
         //     $('.stockQty').eq(2).text(sessionStorage['cutQty']);
         // }
+        $(function(){
+            $stockQty=$(".stockQty");
+            console.log($stockQty);
+            
+            $stockQty.each(function(){
+                let qty = $(this).text();
+                console.log(`stock qty: ${qty}`);
+                if(qty<=0){
+                    let $tarBtn=$(this).closest(".stock").prev(".itemBtns").children(".cart");
+                    $tarBtn.css({
+                        "backgroundColor":"#ccc",
+                        "color":"#aaa",
+                        "cursor":"default",
+                    })
+                    $tarBtn.attr('disabled',true);
+                    $tarBtn.addClass("zero");
+                }
+            })
+        })
         
-        $('.cart').click(function(){
+        
+
+        $(".cart").click(function(){
             var i = $('.cart').index(this) - 19;
             var thisQty = $('.stockQty').eq(i);
             console.log(i);
@@ -2165,18 +2186,19 @@
             // console.log(qty);
             // var qty = aa.firstChild.nodeValue;
             cutQty = qty - 1;
-            if(cutQty==0){
-                $(thisQty).text(0);
+            // if(cutQty==0){
+                // $(thisQty).text(0);
+                $(thisQty).text(cutQty);
                 $(this).css({backgroundColor:'#ccc',color:'#aaa'});
                 $(this).attr('disabled',true);
-            }else{
+            // }else{
                 // fCutQty = sessionStorage['cutQty'];
-                console.log(cutQty);//9 8 7....
-                $(thisQty).text(cutQty);
+                // console.log(cutQty);//9 8 7....
+                // $(thisQty).text(cutQty);
                 // sessionStorage['cutQty'] = cutQty;
                 // console.log($(aa).text(fCutQty));
                 // console.log(fCutQty);
-            }
+            // }
         })
     </script>
 
