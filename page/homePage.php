@@ -2253,22 +2253,26 @@
 
 <!-- 即期品特賣 -->
     <script>
-        // <?php
+            <?php
         //     require_once("connectcd105g2.php");
         //     $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo ORDER by a.clearanceNo desc limit 3";
         //     $sales = $pdo->query( $sql );
         //     $salesRow = $sales->fetchAll();
-        // ?>
+            ?>
         var slideIndex = 1;
         function showSlides(n) {
+            // console.log(`showSlide start, slideIndex= ${slideIndex}`);
+            
             var i;
             var slides = document.getElementsByClassName('item');
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
+            if (n > slides.length) { slideIndex = 1;}
+            if (n < 1) { slideIndex = slides.length;}
             for (i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
             }
             slides[slideIndex - 1].style.display = "block";
+            console.log(`display = "block" , slides [${slideIndex-1}]`);
+
         }
         function plusSlides(n) {
             showSlides(slideIndex += n);
