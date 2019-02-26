@@ -215,99 +215,68 @@ label.mail {
     width: 100%;
     height: 100%;
     position: fixed;
-    // background: rgba(0, 0, 0, .1);
+    top: 0;
     display: none;
     overflow-y: auto;
     z-index: 1000;
+    color: $gray;
+    background-color: rgba(#000, 0.5);
     #lightBox {
         margin: auto;
         position: absolute;
         z-index: 1000;
-        top: 14%;
+        top: calc(50% - 160px);
         right: 0;
         left: 0;
         width: 350px;
+        height: 320px;
         background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-        height: 450px;
         display: block;
         order: 1px solid #aaa;
-        border-radius: 10px;
+        border-radius: 14px;
         box-shadow: 5px 5px 20px -3px #999;
+        text-align: center;
         .loginLeave {
-            padding: 5px;
+            text-align: right;
             span {
                 font-size: 28px;
-                display: block;
-                width: 30px;
-                text-align: center;
-                transform: translateX(1000%);
+                margin-right: 12px;
                 cursor: pointer;
-            }
-        }
-        .tab-group {
-            display: flex;
-            justify-content: center;
-            padding: 10px;
-            margin: 0 20px;
-            li {
-                width: 100%;
-                text-align: center;
-                font-family: g2Font;
-                font-size: 28px;
-                cursor: pointer;
-                transition: .5s ease;
-                line-height: 2;
-                transition: .5s ease;
-                padding: 0 20px;
-                background-color: $yellow;
-                color: $gray;
-            }
-            .loginTab.active {
-                background-color: $deepyellow;
-                color: #fff;
             }
         }
         .loginTab-content {
             margin: auto;
             width: 300px;
-            margin-top: 30px;
+            h3{
+                color: $blue;
+            }
             form{
-                
-                position: absolute;
-                // display: none;
                 table{
-                    text-align: center;
                     width: 300px;
+                    margin-bottom: 24px;
                     tr {
                         td {
                             padding: 5px 5px;
                         }
-                        .formBtn {
-                            text-align: center;
-                        }
                     }
                 }
-
-                
-
-                    
             }
             #Loginpage{
-                .forgetPsw{
-                       
-                    #forgetPswLink{
-                          display: block;
-                          font-size: 18px;
-                          text-align: right;
-                           color: $coral;
-                           padding: 5px;
-                            cursor: pointer;
-                            text-decoration: underline;
-                            
-                       }
-                  }
+                span{
+                    font-size: 18px;
+                    cursor: pointer;
+                    text-decoration: underline;
+                }
+                #forgetPswLink{
+                    margin-right: 144px;
+                }
             }
+            @include btn('loginBoxBtn', 90px, 40px, #fff, $blue, transparent, 10px, 0px, #fff, $deepblue, 22px);
         }
+    }
+    input{
+        border: transparent;
+        border-radius: 8px;
     }
 }
 

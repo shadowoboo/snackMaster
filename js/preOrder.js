@@ -109,7 +109,7 @@ function getBoxSnack(month){
     xhr.open('get', url, true);
     xhr.send(null);
 }
-function forCart(){
+function forCart(e){
     var chips = parseInt(document.getElementById('chips').value);
     var candy = parseInt(document.getElementById('candy').value);
     var cookie = parseInt(document.getElementById('cookie').value);
@@ -131,10 +131,28 @@ function forCart(){
             var price = 3600;
         }
         var note = '洋芋片' + chips + ' 糖果' + candy + ' 餅乾' + cookie + ' 巧克力' + chocolate;
-        var cartId = snackNo + '|' + price + '|3|' + note;
-        cart.id = cartId; 
-    }
+        
+        if (e.target.innerText == '加入購物車') {
+            if (document.getElementById("btnloglout").innerHTML == "&nbsp;") {
+                alert('請先登入會員唷～');
+                showLightBox();
+                return;
+            } else {
+                var xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        alert('商品已加入購物車～');
+                    } else {
+                        alert(xhr.status);
+                    }
+                }
 
+                var url = 'addCart.php?snackNo=' + snackNo + '&snackPrice=' + price + '&snackType=3&note=' + note;
+                xhr.open('get', url, true);
+                xhr.send(null);
+            }
+        }
+    }
 }
 function init() {
     //取得加減符號的物件關聯並設定事件處理器

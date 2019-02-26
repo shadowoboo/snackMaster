@@ -159,6 +159,8 @@ function showLightBox(e) {
         // alert(123);
     } else {
         $id('lightBox-wrap').classList.toggle('show');
+        changeway(event,'Loginpage');
+        $id('open').innerText = '登入';
     }
 
 
@@ -190,19 +192,14 @@ function changeway(e, tabchange) {
     for (i = 0; i < tabContent.length; i++) {
         tabContent[i].style.display = "none";
     }
-    loginTab = document.getElementsByClassName('loginTab');
-    //   console.log('bbb');
-
-    for (i = 0; i < loginTab.length; i++) {
-        loginTab[i].classList.remove("active");
-        loginTab.className = loginTab[i].className.replace('active', "");
-    }
     document.getElementById(tabchange).style.display = "block";
-    e.target.classList.add("active");
-    //   e.currentTarget.className += " active";
-
+    if( tabchange == 'signup' ){
+        $id('open').innerText = '註冊會員';
+    }else if ( tabchange == 'forgetPsw' ){
+        $id('open').innerText = '忘記密碼';
+    }
 }
-$id('open').click();
+// $id('open').click();
 //-----------關閉燈箱---------------------------------------
 function cancelLogin() {
     $id('lightBox-wrap').classList.remove('show');

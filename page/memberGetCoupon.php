@@ -2,7 +2,7 @@
     session_start();
     try{
         require_once("connectcd105g2.php");
-        $sql ="SELECT * from couponbox join coupon on coupon.coupNo = couponbox.coupNo where memNo = :memNo";
+        $sql ="SELECT * from couponbox join coupon on coupon.coupNo = couponbox.coupNo where memNo = :memNo and status = 1";
         $coupon = $pdo->prepare( $sql );
         $coupon->bindValue(":memNo", $_SESSION['memNo']);
         // $coupon->bindValue(":memNo", $_SESSION["memNo"]);
