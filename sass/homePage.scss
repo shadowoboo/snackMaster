@@ -60,6 +60,9 @@ body {
                 width: 80%;
                 font-size: 20px;
                 margin: 30px 0;
+                height: 35px;
+                top: -3px;
+
             }
         }
         i {
@@ -321,7 +324,7 @@ body {
                     position: absolute;
                 }
                 >:nth-child(1) {
-                    top: 430px;
+                    top: 150px;
                     left: 110px;
                     animation: bbb 3s infinite alternate;
                 }
@@ -1115,30 +1118,49 @@ body {
                             margin: auto;
                             transform: rotateX(-20deg);
                             >:nth-child(1) {
+                                &:hover{
+                                    p{display: block;}
+                                }
                                 transform: rotateY(0deg);
                                 animation: roSnack1 10s linear infinite;
                             }
                             >:nth-child(2) {
+                                &:hover{
+                                    p{display: block;}
+                                }
                                 transform: rotateY(60deg);
                                 animation: roSnack2 10s linear infinite;
                             }
                             >:nth-child(3) {
+                                &:hover{
+                                    p{display: block;}
+                                }
                                 transform: rotateY(120deg);
                                 animation: roSnack3 10s linear infinite;
                             }
                             >:nth-child(4) {
+                                &:hover{
+                                    p{display: block;}
+                                }
                                 transform: rotateY(180deg);
                                 animation: roSnack4 10s linear infinite;
                             }
                             >:nth-child(5) {
+                                &:hover{
+                                    p{display: block;}
+                                }
                                 transform: rotateY(240deg);
                                 animation: roSnack5 10s linear infinite;
                             }
                             >:nth-child(6) {
+                                &:hover{
+                                    p{display: block;}
+                                }
                                 transform: rotateY(300deg);
                                 animation: roSnack6 10s linear infinite;
                             }
                             .snacksRunImg {
+                                // animation-play-state:paused;
                                 width: 25%;
                                 position: absolute;
                                 top: 0;
@@ -1146,6 +1168,32 @@ body {
                                 right: 0;
                                 bottom: 0;
                                 margin: auto;
+                                p{
+                                    display: none;
+                                    background-color: #fff;
+                                    width: 210%;
+                                    position: absolute;
+                                    margin: auto;
+                                    top: -110px;
+                                    left: -20px;
+                                    right: 0;
+                                    border-radius: 10px;
+                                    text-align: center;
+                                    padding: 5px 10px;
+                                    color: #737374;
+                                    span{
+                                        color: $blue;
+                                    }
+                                    @media screen and(max-width:768px) {
+                                        display: block;
+                                        width: 160%;
+                                        font-size: 14px;
+                                    }
+                                }
+                                // @media screen and(max-width:768px) {
+                                //     &:hover{unset};
+                                // }
+
                             }
                             @keyframes roSnack1 {
                                 0% {
@@ -1548,57 +1596,59 @@ body {
             }
         }
     }
-    // .gameBox {
+    #saleSm {
+        position: fixed;
+        top: 15%;
+        right: 1%;
+        width: 100px;
+        // animation: float 1s linear infinite alternate;
+        z-index: 999;
+        cursor: pointer;
+        box-shadow: 0 0 30px 2px #fff;
+        display: none;
+        p {
+            position: absolute;
+            top: 16px;
+            left: 13px;
+            color: #fff;
+        }
+    }
+    // .gameScratch {
     //     position: fixed;
     //     bottom: 2%;
-    //     left: 1%;
-    //     width: 240px;
-    //     animation: float 1s linear infinite alternate;
+    //     right: -200px;
+    //     width: 190px;
     //     z-index: 999;
     //     cursor: pointer;
     //     p {
     //         position: absolute;
     //         top: 22px;
-    //         left: 102px;
-    //         color: $gray;
+    //         left: 35px;
+    //         color: #737374;
     //     }
     // }
-    .gameScratch {
-        position: fixed;
-        bottom: 2%;
-        right: -200px;
-        width: 190px;
-        z-index: 999;
-        cursor: pointer;
-        p {
-            position: absolute;
-            top: 22px;
-            left: 35px;
-            color: #737374;
-        }
-    }
-    .fadeIn {
-        animation: fadeIn 1s both;
-    }
-    .fadeOut {
-        animation: fadeOut 1s;
-    }
-    @keyframes fadeIn {
-        0% {
-            transform: translateX(0)
-        }
-        100% {
-            transform: translateX(-200px)
-        }
-    }
-    @keyframes fadeOut {
-        0% {
-            transform: translateX(-200px)
-        }
-        100% {
-            transform: translateX(0)
-        }
-    }
+    // .fadeIn {
+    //     animation: fadeIn 1s both;
+    // }
+    // .fadeOut {
+    //     animation: fadeOut 1s;
+    // }
+    // @keyframes fadeIn {
+    //     0% {
+    //         transform: translateX(0)
+    //     }
+    //     100% {
+    //         transform: translateX(-200px)
+    //     }
+    // }
+    // @keyframes fadeOut {
+    //     0% {
+    //         transform: translateX(-200px)
+    //     }
+    //     100% {
+    //         transform: translateX(0)
+    //     }
+    // }
     .footer {
         #floor {
             position: relative;
