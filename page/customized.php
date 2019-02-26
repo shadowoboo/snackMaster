@@ -137,42 +137,53 @@ try {
                         <div class="tab-content-1">
                             <div id="colorBtn">   
                                 <div class="top-row">
-                                    <div class="pickColor">
-                                        <div class="colorBtn color1"></div>
-                                        <div class="colorBtn color2"></div>
-                                        <div class="colorBtn color3"></div>
-                                        <div class="colorBtn color4"></div>
-                                        <div class="colorBtn color5"></div>
-                                        <div class="colorBtn color6"></div>
-                                        <div class="colorBtn color7"></div>
-                                        <div class="colorBtn color8"></div>
+<?php
+    $errMsg = "";
+        try {
+            require_once("connectcd105g2.php");
+            $sql = "select * from material ORDER BY materialNo limit 11,18";
+            $material = $pdo->query($sql);
+        } catch (PDOException $e){
+            $errMsg .= "錯誤 :".$e -> getMessage()."<br>";
+            $errMsg .= "行號 :".$e -> getLine()."<br>";
+        }
+?>                            
+ <div class="pickColor">
+<?php
+  while( $mateRow = $material -> fetch() ){
+?>                                                                         
+            <div class="colorBtn" style="background-color:<?php echo $mateRow['materialPath']?>;"></div>
+<?php
+    }
+?>     
+    </div>                               
+        </div>
+    </div>
+                        
+    <div id="picBtn">   
+        <div class="pics" id="picsRegion">
+<?php
+    $errMsg = "";
+        try {
+            require_once("connectcd105g2.php");
+            $sql = "select * from material ORDER BY materialNo limit 0,8";
+            $material = $pdo->query($sql);
+        } catch (PDOException $e){
+            $errMsg .= "錯誤 :".$e -> getMessage()."<br>";
+            $errMsg .= "行號 :".$e -> getLine()."<br>";
+        }
+?>                            
+<?php
+  while( $mateRow = $material -> fetch() ){
+?>                                          
+                                    <div class="pic">
+                                        <img class="cusPic" src="../<?php echo $mateRow['materialPath']?>" alt="">
                                     </div>
-                                </div>
-                            </div>
-                            <div id="picBtn">   
-                                <div class="pics" id="picsRegion">
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images/customized/logo.png" alt="" style="width:65px;">
-                                    </div>
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images/customized/ip1.png" alt="">
-                                    </div>
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images/customized/ip2.png" alt="" style="width:53px;">
-                                    </div>
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images/customized/ip3.png" alt="">
-                                    </div>
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images/customized/ip4.png" alt="">
-                                    </div>                                    
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images/customized/ip5.png" alt="" style="width:56px;">
-                                    </div>                                    
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images/customized/ip6.png" alt="" style="width:60px;">
-                                    </div>
-                                    <div class="pic">
+
+    <?php
+        }
+    ?>
+                                     <div class="pic">
                                         <img class="cusPic" id="image" style="width:53px;">
                                     </div>
                                     <div class="upfile">
