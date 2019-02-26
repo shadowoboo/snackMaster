@@ -1423,7 +1423,7 @@
                 slides[i].style.display = "none";
             }
             slides[slideIndex - 1].style.display = "block";
-            console.log(`display = "block" , slides [${slideIndex-1}]`);
+            console.log(`display = "block" , slides [${slideIndex-1}]`);    
 
         }
         function plusSlides(n) {
@@ -1471,6 +1471,7 @@
             // document.getElementById('close').addEventListener('click', test);
             document.getElementById('closeSale').addEventListener('click', function (){
                 document.getElementById('sale').style.display = 'none';
+                document.getElementById('saleSm').style.display = 'block';
             });
             window.addEventListener('resize', function (){
                 if (window.screen.width < 768){
@@ -2391,46 +2392,6 @@
     </script>
 
 
-            //依序將毫秒轉換成幾天幾時幾分幾秒
-            var leftSecond = parseInt(leftTime / 1000); //毫秒-秒
-            var hour = Math.floor(leftSecond / 3600); //
-            // console.log(hour);
-            var minute = Math.floor((leftSecond - hour * 3600) / 60);
-            var second = Math.floor(leftSecond - hour * 3600 - minute * 60);
-            document.getElementById('hour').innerText = hour + '時 : ';
-            document.getElementById('minute').innerText = minute + '分 : ';
-            document.getElementById('second').innerText = second + '秒';
-        }
-        // function test(){
-        //     console.log('here');
-        // }
-        function sale() {
-            //先呼叫一次呈現倒數的函數，不然一進畫面會是空白
-            countdown();
-            //設定計時器讓倒數函式countdown每秒被呼叫一次
-            setInterval(countdown, 1000);
-            // document.getElementById('close').addEventListener('click', test);
-            document.getElementById('closeSale').addEventListener('click', function (){
-                document.getElementById('sale').style.display = 'none';
-                document.getElementById('saleSm').style.display = 'block';
-            });
-            window.addEventListener('resize', function (){
-                if (window.screen.width < 768){
-                    showSlides(slideIndex);
-                }else{
-                    var slides = document.getElementsByClassName('item');
-                    for (i = 0; i < slides.length; i++) {
-                        slides[i].style.display = "block";
-                    }
-                }
-            });
-            if (window.screen.width < 768) {
-                showSlides(slideIndex);
-            };
-        }
-        window.addEventListener('load', sale);
-    </script>
-
     <script>
         $('#saleSm').click(function(){
             $(this).css('display','none');
@@ -2488,6 +2449,7 @@
             //     console.log('here');
             // }
             function sale() {
+                console.log("init sale-----in the in the")
                 //先呼叫一次呈現倒數的函數，不然一進畫面會是空白
                 countdown();
                 //設定計時器讓倒數函式countdown每秒被呼叫一次
