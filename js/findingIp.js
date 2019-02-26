@@ -19,7 +19,7 @@
    messageBar = $("#msg_bd"),
    kickDropDownAnimationDelay = 1500,
    shuffleSpeed = 500,
-   nuberOfShuffels = 1,
+   nuberOfShuffels = 4,
    z = 0;
 
  var ans = Math.floor(Math.random() * 3) + 1;
@@ -28,6 +28,7 @@
 
  $('#cancel').click(byebye);
  startButton.on("click", function (event) {
+
    event.preventDefault();
    var kickInitialPosition = 0;
    //Show the character fist
@@ -40,6 +41,7 @@
    var ajst2 = $(ansBox).width() * 0.231;
    var ajst3 = $(ansBox).width() * 0.042;
    kickInitialPosition = $(ansBox).position().left + ajst;
+   kickFinalPosition= box2.position().left + ajst;
   //  console.log(kickInitialPosition);
    // Move kick Under the relative box based on answer
    kick.css({
@@ -50,9 +52,9 @@
    console.log($(window).width());
    if($(window).width()<768){
      //手機
-     var dropPoint = $(ansBox).position().top-$(window).width()*10/100 ;
+     var dropPoint = $(ansBox).position().top-$(window).width()*7/100 ;
    }else{
-     //捉雞
+     //桌機
      var dropPoint = $(ansBox).position().top;
    }
   
@@ -211,21 +213,52 @@
                function slide_out() {
                  setMessage("<span class='sure' id='start_game' >恭喜你  找到了!</span >", "color_2");
                  kick.show();
-                 kick.animate({
+                 kick.animate({//從箱子跑出來 0-0.6Ss完成
                    top: dropPoint - ajst3 + "px"
                  }, {
-                   duration: 500,
+                   duration: 600,
                    specialEasing: {
                      top: 'easeInQuint'
                    }
                  });
+                 setTimeout(() => {//飛向宇宙 0.6-1.2s
+                    kick.animate({//飛向宇宙
+                      top: -500},
+                      {
+                      duration:400, //0.6-1s
+                      specialEasing: {top: 'easeInQuint'} });
+                    kick.html("<img src='../images/game/findingIp-01.png' />");
+                  },600);
+
+
+                  setTimeout(() => {//飛回來 1.2-1.6s
+                    kick.css('z-index','999');
+                    kick.animate({//
+                        top: dropPoint - ajst3 + "px",
+                        left:kickFinalPosition+ "px" },
+                      {
+                        duration:1000, //0.6-1s
+                        specialEasing: {top: 'easeOutBounce'}}
+                    )},1200);
+
                  setTimeout(() => {
-                   $('#cJump').css({
-                     'display': 'block',
-                     'opacity': '1',
-                     'top': '25%'
+                   $('#cancel').css('z-index','1000');
+                  kick.css('animation','shake-slow 32s ease-in-out infinite');
+                  if($(window).width()<768){
+                     $('#cJump').css({
+                     'top': '-40%',
+                     'transform':'scale(1)'
                    })
-                 }, 800);
+                  }else{
+                    $('#cJump').css({
+                      'top': '26%',
+                      'transform':'scale(1)'
+                    })
+
+                  }
+
+                  
+                 }, 2300);
 
                  var cpImg = Math.floor(Math.random() * 3) + 1;
                  switch (cpImg) {
@@ -242,7 +275,7 @@
                      price = '200';
                      break;
                  }
-                 $('#cImg').html(`<img src="../images/coupon/${cp}.png">`);
+                 $('#cImg').html(`<img class='shake-slow' src="../images/coupon/${cp}.png">`);
                  $('#cImg').attr({'cp':cp,'price':price});
                  if($('#btnloglout').text()=='登出'){
                      sendCp();
@@ -250,7 +283,7 @@
                     // $('#endGame').click(byebye);
 
                  }else{
-                    $('#cJump p').html(`恭喜你獲得了${price}元優惠券！<br>(需要登入會員才能保留優惠券!)`);
+                    $('#cJump p').html(`恭喜你獲得了${price}元優惠券！<br>(請登入會員才能領取優惠券)`);
                     $('#endGame').text('去登入').click(function(){
                       showLightBox();
                       $('#endGame').off('click');
@@ -342,11 +375,12 @@ $('document').ready(function(){
             </div>
 
           <div id="kick_jump" >
-            <img src = "../images/game/findingIp-01.png"alt = "" >
+            <img src = "../images/game/findingIp-01.png" >
           </div> 
 
           <div id="cJump" >
             <div class="flexWrap">
+            <img  id="bgGlow" src= "../images/rankBoard/cpGlow.svg" >
               <div  cp="" price="" id="cImg" > </div>
               <p> </p> 
               <a class='sure' id="endGame"> 確定 </a> 
@@ -375,7 +409,7 @@ $('document').ready(function(){
 
         </div>
 
-       </section>`
+       </section>`;
 
 
 if($(window).width()<768){
@@ -391,11 +425,22 @@ if($(window).width()<768){
     <p> 玩小遊戲可獲得 <br> 折價優惠券哦！ </p> </div>`
 }
 
-
-
+if($(window).width()<768){
+  if( $(document).attr('title')!='大零食家 每月排行'){
+    $('body').append(gamebox);
+    $('.gameBox').click(function () {
+      $('body').append(findingIp);
+      setting();
+    })
+  }
+}else{
   $('body').append(gamebox);
   $('.gameBox').click(function () {
-    $('body').append(findingIp);
-    setting();
-  })
+      $('body').append(findingIp);
+      setting();
+    });
+
+}
+
+  
   });
