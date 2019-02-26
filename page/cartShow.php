@@ -77,6 +77,8 @@
     <script src="../js/header.js" defer></script>
     <!-- for common -->
     <!-- <script src="../js/common.js" defer></script> -->
+    <!-- for alert.js -->
+    <script src="../js/alert.js"></script>
     <!-- for shadowLib -->
     <script src="../js/shadowLib.js"></script>
     <!-- ------------------js-------------- -->

@@ -138,7 +138,7 @@ $(function () {
             //變更客製箱的總計
             priceTotalCus();
         }else{
-            alert("已達庫存上限");
+            alertBox("已達庫存上限");
             val=max;
             console.log(`val=max: ${val}`);
             $(this).attr("disabled",true);
@@ -292,7 +292,7 @@ $(document).ready(function () {
             }
         },
         fail: function () {
-            alert("ajax fail event");
+            alertBox("ajax fail event");
         }
     });
 
@@ -311,6 +311,11 @@ $(document).ready(function () {
                     CartStepLoginCheck(function (response) {
                         console.log(`response: ${response}`);
                         if (response == "error") {
+                            alertBox("請先登入會員喔~");
+                            //跳出燈箱，請訪客登入
+                            $("#sure").on("click",function(){
+                                showLightBox();
+                            });
                             return;
                         } else {
                             step2();
@@ -324,7 +329,7 @@ $(document).ready(function () {
                     var getterPhone = $("#getterPhone");
                     var getterAddr = $("#getterAddr");
                     if (getterName.val() == "" || getterPhone.val == "" || getterAddr == ""){
-                        alert("資料錯誤: 請檢查資料是否完整。")
+                        alertBox("請確認資料是否完整")
                         break;
                     }
                     //表單全部存起來
@@ -371,9 +376,9 @@ $(document).ready(function () {
                         success: function (response) {
                             if (response == "error") {
                                 console.log(response);
-                                // alert(" 下單失敗 Q口Q ");
+                                // alertBox(" 下單失敗 Q口Q ");
                             } else {
-                                // alert(response);
+                                // alertBox(response);
                                 console.log(response);
                             }
                         }
@@ -462,7 +467,7 @@ $(document).ready(function () {
     })
     $(".engBtn:not(#clearSession)").click(function (e) {
         let tar = e.target.innerText;
-        // alert(tar);
+        // alertBox(tar);
         $("." + tar).toggle();
         $(".engBtnList").removeClass("show");
 
@@ -485,11 +490,11 @@ $(document).ready(function () {
             url: "CartStepLoginCheck.php",
             success: function (response) {
                 if (response == "error") {
-                    // alert("NO ONE login");
+                    // alertBox("NO ONE login");
                     // return false;
                     result(response);
                 } else {
-                    // alert(response + " already login");
+                    // alertBox(response + " already login");
                     // return true;
                     result(response);
                 }
@@ -507,7 +512,7 @@ $(document).ready(function () {
             //燈箱 "繼續結帳" 被點擊，則顯示下一頁面
             //使用unbind避免重複綁定點擊事件，造成stepCount錯誤
             $(".step.stepNext").unbind("click").bind("click", function () {
-                // alert("0.0")
+                // alertBox("0.0")
                 //關閉燈箱
                 $('.lightBoxes').removeClass("cartPageActive");
                 //內容切換到表格
@@ -523,7 +528,7 @@ $(document).ready(function () {
                 console.log(`stepCount: ${stepCount}`);
             })
         } else {
-            // alert("下一步~");
+            // alertBox("下一步~");
             //內容切換到表格
             $(".cartContent_prod").removeClass("cartPageActive");
             $(".cartFormZone").addClass("cartPageActive");
