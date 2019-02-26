@@ -1,5 +1,6 @@
 
 <?php
+    ob_start();
     session_start();
 	//判斷有無例外，沒有例外則執行try，有例外則執行catch
 	try{
@@ -33,6 +34,7 @@
     <script src="../js/showStar.js"></script>
     <script src="../js/addHeart.js"></script>
     <script src="../js/addCart.js"></script>
+    <link rel="stylesheet" href="../css/animate.min.css">
     <link rel="stylesheet" href="../css/boxModel.css">
     <link rel="stylesheet" href="../css/sale.css">
     <link rel="stylesheet" href="../css/homePage.css">
@@ -134,115 +136,91 @@
             </div>  
         </header>
 
-        <!-- //-------------------------------------------------------//
-        -----------------------       這是燈箱        ------------------ -->
-        <!-- //-------------------------------------------------------// -->
         <div id="lightBox-wrap">
-            <div id="lightBox">
-                <div class="loginLeave">
-                    <span id="lightBoxLeave">X</span>
-                </div>
-                <ul class="tab-group">
-                    <li class="loginTab"  id="open" onclick="changeway(event,'Loginpage')">登入</li>
-                    <li class="loginTab"   onclick="changeway(event,'signup')">註冊</li>
-                </ul>
-                <div class="loginTab-content">
-                    <!-----------------------------------登入表單------------------------------------  -->
-                    <form  id="Loginpage" class="tabContent">
-                        <table class="loginBox">
-                            <table class="loginBox">
-                                <tr>
-                                    <td>
-                                        <label class="Box-name" for="loginMemId">帳號</label>
-                                        <input type="text" name="loginMemId" id="loginMemId" size="12" autocomplete="off"
-                                            placeholder="請輸入帳號">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="Box-name" for="loginMemPsw">密碼</label>
-                                        <input type="password" name="loginMemPsw" id="loginMemPsw" size="12" placeholder="請輸入密碼">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="button" id="btnLogin" value="登入" class="cart">
-
-                                    </td>
-                                </tr>
-                            </table>
-                            <div class="forgetPsw">
-                                <p id="forgetPswLink" class="loginTab " onclick="changeway(event,'forgetPsw')"> 忘記密碼</p>
-                            </div>
-
-                        </table>
-                    </form>
-            <!------------------------------------------------註冊表單------------------------------------------  -->
-                    <form  id="signup" class="tabContent">
-                        <table class="signUpBox">
-                            <tr>
-                                <td>
-                                    <label class="Box-name" for="signUpMemId">帳號</label>
-                                    <input type="text" name="signUpMemId" id="signUpMemId" size="12" autocomplete="off"
-                                        placeholder="不得少於2碼">
-
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="Box-name" for="signUpMemPsw">密碼</label>
-                                    <input type="password" name="signUpMemPsw" id="signUpMemPsw" size="12" placeholder="請輸入密碼">
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="Box-name mail" for="signUpMemEmail">信箱</label>
-                                    <input type="email" name="signUpMemEmail" id="signUpMemEmail" size="20" autocomplete="off">
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td class="formBtn">
-                                    <input type="button" id="btnSignUp" value="註冊" class="cart">
-                                </td>
-                            </tr>
-
-                        </table>
-                    </form>
-                    <!-- ---------------------------------------忘記密碼 -->
-                    <form  id="forgetPsw" class="tabContent">
-                        <table class="forgetPswBox">
-                            <tr>
-                                <td>
-                                    <label class="Box-name" for="forgetMemId">帳號</label>
-                                    <input type="text" name="forgetMemId" id="forgetMemId" size="12" autocomplete="off"
-                                        placeholder="請輸入帳號">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="Box-name mail" for="forgetMemEmail">信箱</label>
-                                    <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" size="20" autocomplete="off">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="formBtn">
-                                    <input type="button" id="forgetSend" value="寄送密碼" class="cart">
-                                </td>
-
-                            </tr>
-
-                        </table>
-
-
-                    </form>
-
-                </div>
-
+        <div id="lightBox">
+            <div class="loginLeave">
+                <span id="lightBoxLeave"><i class="fas fa-times"></i></span>
+            </div>
+            <div class="loginTab-content">
+                <h3 id="open">登入</h3>
+                <!-----------------------------------登入表單------------------------------------  -->
+                <form id="Loginpage" class="tabContent">
+                    <table class="loginBox">
+                        <tr>
+                            <td>
+                                <label class="Box-name" for="loginMemId">帳號</label>
+                                <input type="text" name="loginMemId" id="loginMemId" autocomplete="off">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="Box-name" for="loginMemPsw">密碼</label>
+                                <input type="password" name="loginMemPsw" id="loginMemPsw">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" id="btnLogin" value="登入" class="loginBoxBtn">
+                            </td>
+                        </tr>
+                    </table>
+                    <span id="forgetPswLink" onclick="changeway(event,'forgetPsw')"> 忘記密碼</span>
+                    <span onclick="changeway(event,'signup')">註冊會員</span>
+                </form>
+                <!------------------------------------------------註冊表單------------------------------------------  -->
+                <form id="signup" class="tabContent">
+                    <table class="signUpBox">
+                        <tr>
+                            <td>
+                                <label class="Box-name" for="signUpMemId">帳號</label>
+                                <input type="text" name="signUpMemId" id="signUpMemId" autocomplete="off"
+                                    placeholder="英數字2~10碼">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="Box-name" for="signUpMemPsw">密碼</label>
+                                <input type="password" name="signUpMemPsw" id="signUpMemPsw" placeholder="英數字2~10碼">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="Box-name mail" for="signUpMemEmail">信箱</label>
+                                <input type="email" name="signUpMemEmail" id="signUpMemEmail" autocomplete="off">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="formBtn">
+                                <input type="button" id="btnSignUp" value="註冊" class="loginBoxBtn">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <!-- ---------------------------------------忘記密碼 -->
+                <form id="forgetPsw" class="tabContent">
+                    <table class="forgetPswBox">
+                        <tr>
+                            <td>
+                                <label class="Box-name" for="forgetMemId">帳號</label>
+                                <input type="text" name="forgetMemId" id="forgetMemId" autocomplete="off">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="Box-name mail" for="forgetMemEmail">信箱</label>
+                                <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" autocomplete="off">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="formBtn">
+                                <input type="button" id="forgetSend" value="寄送" class="loginBoxBtn">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
             </div>
         </div>
+    </div>
 
         
         <div class="searchBar">
@@ -418,7 +396,7 @@
                                         <div class="countryInfoStar">
                                             <ul>
                                                 <li>新品上市！</li>
-                                                <li>南美平民零時榜冠軍</li>
+                                                <li>南美平民零食榜冠軍</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -694,6 +672,7 @@
                                     </div>
                                     <div class="countryInfoTitle">
                                         <h3>新品上市！</h3>
+                                        <h3>川普最愛</h3>
                                     </div>
                                 </div>
                                 <div class="countryInfosection">
@@ -723,6 +702,7 @@
                                     </div>
                                     <div class="countryInfoTitle">
                                         <h3>新品上市！</h3>
+                                        <h3>德國人氣No.1</h3>
                                     </div>
                                 </div>
                                 <div class="countryInfosection">
@@ -752,6 +732,7 @@
                                     </div>
                                     <div class="countryInfoTitle">
                                         <h3>新品上市！</h3>
+                                        <h3>南美平民零食榜冠軍</h3>
                                     </div>
                                 </div>
                                 <div class="countryInfosection">
@@ -781,6 +762,7 @@
                                     </div>
                                     <div class="countryInfoTitle">
                                         <h3>新品上市！</h3>
+                                        <h3>英國皇室招待品</h3>
                                     </div>
                                 </div>
                                 <div class="countryInfosection">
@@ -810,6 +792,7 @@
                                     </div>
                                     <div class="countryInfoTitle">
                                         <h3>新品上市！</h3>
+                                        <h3>觀光客最愛伴手禮</h3>
                                     </div>
                                 </div>
                                 <div class="countryInfosection">
@@ -839,6 +822,7 @@
                                     </div>
                                     <div class="countryInfoTitle">
                                         <h3>新品上市！</h3>
+                                        <h3>歐爸推薦商品</h3>
                                     </div>
                                 </div>
                                 <div class="countryInfosection">
@@ -868,6 +852,7 @@
                                     </div>
                                     <div class="countryInfoTitle">
                                         <h3>新品上市！</h3>
+                                        <h3>全國零食榜發燒商品</h3>
                                     </div>
                                 </div>
                                 <div class="countryInfosection">
@@ -897,6 +882,7 @@
                                     </div>
                                     <div class="countryInfoTitle">
                                         <h3>新品上市！</h3>
+                                        <h3>賣場秒殺零食</h3>
                                     </div>
                                 </div>
                                 <div class="countryInfosection">
@@ -946,7 +932,11 @@
                 <img class="country" src="../images/blair/<?php echo $salesRow[0]['nation']?>.png" alt="國家圖">
                 <img class="itemImg" src="<?php echo $salesRow[0]['snackPic']?>" alt="商品圖">
                 <h4 class="itemName">[<?php echo $salesRow[0]['nation']?>]<?php echo $salesRow[0]['snackName']?></h4>
-                <p class="price">$<?php echo $salesRow[0]['salePrice']?></p>
+                <div class="spread">
+                    <a href=""></a>
+                    <p class="ogPrice">$<?php echo $salesRow[0]['snackPrice']?></p>
+                    <p class="price">$<?php echo $salesRow[0]['salePrice']?></p>
+                </div>
                 <div class="itemBtns">
                     <button class="cart" id="<?php echo "{$salesRow[0]['snackNo']}|{$salesRow[0]['salePrice']}|2|{$salesRow[0]['snackPrice']}|{$salesRow[0]['clearanceNo']}" ?>">加入購物車</button>
                 </div>
@@ -957,7 +947,10 @@
                 <img class="country" src="../images/blair/<?php echo $salesRow[1]['nation']?>.png" alt="">
                 <img class="itemImg" src="<?php echo $salesRow[1]['snackPic']?>" alt="">
                 <h4 class="itemName">[<?php echo $salesRow[1]['nation']?>]<?php echo $salesRow[1]['snackName']?></h4>
-                <p class="price">$<?php echo $salesRow[1]['salePrice']?></p>
+                <div class="spread">
+                    <p class="ogPrice">$<?php echo $salesRow[0]['snackPrice']?></p>
+                    <p class="price">$<?php echo $salesRow[0]['salePrice']?></p>
+                </div>
                 <div class="itemBtns">
                     <button class="cart" id="<?php echo "{$salesRow[1]['snackNo']}|{$salesRow[1]['salePrice']}|2|{$salesRow[1]['snackPrice']}|{$salesRow[1]['clearanceNo']}" ?>">加入購物車</button>
                 </div>
@@ -968,7 +961,10 @@
                 <img class="country" src="../images/blair/<?php echo $salesRow[2]['nation']?>.png" alt="">
                 <img class="itemImg" src="<?php echo $salesRow[2]['snackPic']?>" alt="">
                 <h4 class="itemName">[<?php echo $salesRow[2]['nation']?>]<?php echo $salesRow[2]['snackName']?></h4>
-                <p class="price">$<?php echo $salesRow[2]['salePrice']?></p>
+                <div class="spread">
+                    <p class="ogPrice">$<?php echo $salesRow[0]['snackPrice']?></p>
+                    <p class="price">$<?php echo $salesRow[0]['salePrice']?></p>
+                </div>
                 <div class="itemBtns">
                     <button class="cart" id="<?php echo "{$salesRow[2]['snackNo']}|{$salesRow[2]['salePrice']}|2|{$salesRow[2]['snackPrice']}|{$salesRow[2]['clearanceNo']}" ?>">加入購物車</button>
                 </div>
@@ -1262,32 +1258,51 @@
                                     <div class="surface surface_right"></div>
                                 </div>
                             </div>
-                            
+
                             <?php
-                                $sql = "SELECT snackPic FROM `snack` WHERE boxDate = '2019-01-01'";
+                                $sql = "SELECT * FROM `snack` WHERE boxDate = '2019-01-01'";
                                 $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
                                 // $prodRow -> bindValue(':snackGenre', 0 );
                                 $prodRow -> execute(); 
                                 while($row = $prodRow->fetchAll()){ //需求送出去，資料抓回來，阿凱發大財                            
                             ?>
+                                
                                 <div id="snacksRun">
                                     <div class="snacksRunImg">
+                                    <a href="showItem.php?snackNo=<?php echo $row[0]["snackNo"];?>">
+                                        <p><?php echo $row[0]["snackName"];?><span><?php echo $row[0]["snackPrice"];?></span></p>
                                         <img src="<?php echo $row[0]["snackPic"];?>" alt="零食">
+                                    </a>
                                     </div>
                                     <div class="snacksRunImg">
+                                    <a href="showItem.php?snackNo=<?php echo $row[1]["snackNo"];?>">
+                                        <p><?php echo $row[1]["snackName"];?><span><?php echo $row[1]["snackPrice"];?></span></p>
                                         <img src="<?php echo $row[1]["snackPic"];?>" alt="零食">
+                                    </a>
                                     </div>
                                     <div class="snacksRunImg">
+                                    <a href="showItem.php?snackNo=<?php echo $row[2]["snackNo"];?>">
+                                        <p><?php echo $row[2]["snackName"];?><span><?php echo $row[2]["snackPrice"];?></span></p>
                                         <img src="<?php echo $row[2]["snackPic"];?>" alt="零食">
+                                    </a>
                                     </div>
                                     <div class="snacksRunImg">
+                                    <a href="showItem.php?snackNo=<?php echo $row[3]["snackNo"];?>">
+                                        <p><?php echo $row[3]["snackName"];?><span><?php echo $row[3]["snackPrice"];?></span></p>
                                         <img src="<?php echo $row[3]["snackPic"];?>" alt="零食">
+                                    </a>
                                     </div>
                                     <div class="snacksRunImg">
+                                    <a href="showItem.php?snackNo=<?php echo $row[4]["snackNo"];?>">
+                                        <p><?php echo $row[4]["snackName"];?><span><?php echo $row[4]["snackPrice"];?></span></p>
                                         <img src="<?php echo $row[4]["snackPic"];?>" alt="零食">
+                                    </a>
                                     </div>
                                     <div class="snacksRunImg">
+                                    <a href="showItem.php?snackNo=<?php echo $row[5]["snackNo"];?>">
+                                        <p><?php echo $row[5]["snackName"];?><span><?php echo $row[5]["snackPrice"];?></span></p>
                                         <img src="<?php echo $row[5]["snackPic"];?>" alt="零食">
+                                    </a>
                                     </div>
                                 </div>
                             <?php };?>
@@ -1369,10 +1384,10 @@
             </div>
         </section>
 
-        <!-- <div class="gameBox">
-            <img src="../images/index/gameImgL.png" alt="遊戲圖">
-            <p>玩小遊戲可獲得<br>折價優惠券哦！</p>
-        </div> -->
+        <div id="saleSm" class="animated infinite swing">
+            <img src="../images/index/itemR.png" alt="遊戲圖">
+            <p>限時特賣！</p>
+        </div>
         <!-- <div id="game" class="gameScratch">
             <img src="../images/index/gameImgR.png" alt="遊戲圖">
             <p>限時刮刮樂<br>刮出優惠券！</p>
@@ -1388,7 +1403,92 @@
     </div>
 
 
+<!-- 即期品特賣 -->
+    <script>
+        // 
+        //     require_once("connectcd105g2.php");
+        //     $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo ORDER by a.clearanceNo desc limit 3";
+        //     $sales = $pdo->query( $sql );
+        //     $salesRow = $sales->fetchAll();
+        // 
+        var slideIndex = 1;
+        function showSlides(n) {
+            // console.log(`showSlide start, slideIndex= ${slideIndex}`);
+            
+            var i;
+            var slides = document.getElementsByClassName('item');
+            if (n > slides.length) { slideIndex = 1;}
+            if (n < 1) { slideIndex = slides.length;}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+            console.log(`display = "block" , slides [${slideIndex-1}]`);    
 
+        }
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+        function countdown() {
+            //取得現在的時間
+            var now = String( new Date());
+            // console.log(now);
+            var newNow = new Date(now.replace(/-/g, "/"));
+            // console.log(newNow);
+            //取得活動結束的時間(第一次專題先寫死而不是從資料庫撈資料)
+            // var oneDay = now.getDate() + 1;
+            var endTime = String('<?php echo $salesRow[0]["endTime"]?>') ;
+            var newEndTime = new Date(endTime.replace(/-/g, "/"));
+            // console.log(endTime); //2019-02-20
+            // var end = new Date(`${endTime} 00:00:00`);
+            // var end = new Date(newEndTime);
+            // console.log(end);
+            //算出目前時間到結束時間中間有多少秒            
+            var leftTime = newEndTime.getTime() - newNow.getTime();  //1552752000-1550378890=2372984
+            // console.log(leftTime); 
+
+            //依序將毫秒轉換成幾天幾時幾分幾秒
+            var leftSecond = parseInt(leftTime / 1000); //毫秒-秒
+            var hour = Math.floor(leftSecond / 3600); //
+            // console.log(hour);
+            var minute = Math.floor((leftSecond - hour * 3600) / 60);
+            var second = Math.floor(leftSecond - hour * 3600 - minute * 60);
+            document.getElementById('hour').innerText = hour + '時 : ';
+            document.getElementById('minute').innerText = minute + '分 : ';
+            document.getElementById('second').innerText = second + '秒';
+        }
+        // function test(){
+        //     console.log('here');
+        // }
+        function sale() {
+            //先呼叫一次呈現倒數的函數，不然一進畫面會是空白
+            countdown();
+            //設定計時器讓倒數函式countdown每秒被呼叫一次
+            setInterval(countdown, 1000);
+            // document.getElementById('close').addEventListener('click', test);
+            document.getElementById('closeSale').addEventListener('click', function (){
+                document.getElementById('sale').style.display = 'none';
+                document.getElementById('saleSm').style.display = 'block';
+            });
+            window.addEventListener('resize', function (){
+                if (window.screen.width < 768){
+                    showSlides(slideIndex);
+                }else{
+                    var slides = document.getElementsByClassName('item');
+                    for (i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "block";
+                    }
+                }
+            });
+            if (window.screen.width < 768) {
+                showSlides(slideIndex);
+            };
+        }
+        window.addEventListener('load', sale);
+    </script>
 
     <script>
         //函式內容都是直接從codepen抓的，所以我也看不太懂XDDDDDDDD
@@ -2156,8 +2256,29 @@
             
         //     $('.stockQty').eq(2).text(sessionStorage['cutQty']);
         // }
+        $(function(){
+            $stockQty=$(".stockQty");
+            console.log($stockQty);
+            
+            $stockQty.each(function(){
+                let qty = $(this).text();
+                console.log(`stock qty: ${qty}`);
+                if(qty<=0){
+                    let $tarBtn=$(this).closest(".stock").prev(".itemBtns").children(".cart");
+                    $tarBtn.css({
+                        "backgroundColor":"#ccc",
+                        "color":"#aaa",
+                        "cursor":"default",
+                    })
+                    $tarBtn.attr('disabled',true);
+                    $tarBtn.addClass("zero");
+                }
+            })
+        })
         
-        $('.cart').click(function(){
+        
+
+        $(".cart").click(function(){
             var i = $('.cart').index(this) - 19;
             var thisQty = $('.stockQty').eq(i);
             console.log(i);
@@ -2165,18 +2286,19 @@
             // console.log(qty);
             // var qty = aa.firstChild.nodeValue;
             cutQty = qty - 1;
-            if(cutQty==0){
-                $(thisQty).text(0);
+            // if(cutQty==0){
+                // $(thisQty).text(0);
+                $(thisQty).text(cutQty);
                 $(this).css({backgroundColor:'#ccc',color:'#aaa'});
                 $(this).attr('disabled',true);
-            }else{
+            // }else{
                 // fCutQty = sessionStorage['cutQty'];
-                console.log(cutQty);//9 8 7....
-                $(thisQty).text(cutQty);
+                // console.log(cutQty);//9 8 7....
+                // $(thisQty).text(cutQty);
                 // sessionStorage['cutQty'] = cutQty;
                 // console.log($(aa).text(fCutQty));
                 // console.log(fCutQty);
-            }
+            // }
         })
     </script>
 
@@ -2212,6 +2334,17 @@
             showGoods('2019-03-01');
         });
         
+    </script>
+
+
+    <!-- 摸到零食秀資訊 -->
+    <script>
+        $('#snacksRun').mousemove(function(){
+            $('.snacksRunImg').css('animation-play-state','paused');
+        })
+        $('#snacksRun').mouseout(function(){
+            $('.snacksRunImg').css('animation-play-state','unset');
+        })
     </script>
 
     <!-- 點販賣機提示點到哪一台 -->
@@ -2258,86 +2391,89 @@
 
     </script>
 
-<!-- 即期品特賣 -->
-    <script>
-        // 
-        //     require_once("connectcd105g2.php");
-        //     $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo ORDER by a.clearanceNo desc limit 3";
-        //     $sales = $pdo->query( $sql );
-        //     $salesRow = $sales->fetchAll();
-        // 
-        var slideIndex = 1;
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName('item');
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slides[slideIndex - 1].style.display = "block";
-        }
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-        function countdown() {
-            //取得現在的時間
-            var now = String( new Date());
-            // console.log(now);
-            var newNow = new Date(now.replace(/-/g, "/"));
-            // console.log(newNow);
-            //取得活動結束的時間(第一次專題先寫死而不是從資料庫撈資料)
-            // var oneDay = now.getDate() + 1;
-            var endTime = String('<?php echo $salesRow[0]["endTime"]?>') ;
-            var newEndTime = new Date(endTime.replace(/-/g, "/"));
-            // console.log(endTime); //2019-02-20
-            // var end = new Date(`${endTime} 00:00:00`);
-            // var end = new Date(newEndTime);
-            // console.log(end);
-            //算出目前時間到結束時間中間有多少秒            
-            var leftTime = newEndTime.getTime() - newNow.getTime();  //1552752000-1550378890=2372984
-            // console.log(leftTime); 
 
-            //依序將毫秒轉換成幾天幾時幾分幾秒
-            var leftSecond = parseInt(leftTime / 1000); //毫秒-秒
-            var hour = Math.floor(leftSecond / 3600); //
-            // console.log(hour);
-            var minute = Math.floor((leftSecond - hour * 3600) / 60);
-            var second = Math.floor(leftSecond - hour * 3600 - minute * 60);
-            document.getElementById('hour').innerText = hour + '時 : ';
-            document.getElementById('minute').innerText = minute + '分 : ';
-            document.getElementById('second').innerText = second + '秒';
-        }
-        // function test(){
-        //     console.log('here');
-        // }
-        function sale() {
-            //先呼叫一次呈現倒數的函數，不然一進畫面會是空白
-            countdown();
-            //設定計時器讓倒數函式countdown每秒被呼叫一次
-            setInterval(countdown, 1000);
-            // document.getElementById('close').addEventListener('click', test);
-            document.getElementById('closeSale').addEventListener('click', function (){
-                document.getElementById('sale').style.display = 'none';
-            });
-            window.addEventListener('resize', function (){
-                if (window.screen.width < 768){
-                    showSlides(slideIndex);
-                }else{
-                    var slides = document.getElementsByClassName('item');
-                    for (i = 0; i < slides.length; i++) {
-                        slides[i].style.display = "block";
-                    }
+    <script>
+        $('#saleSm').click(function(){
+            $(this).css('display','none');
+            document.getElementById('sale').style.display = 'block';
+            document.getElementById('sale').style.animation = 'unset';
+            document.getElementById('sale').style.left = '0';
+            document.getElementById('sale').style.right = '0';
+            document.getElementById('sale').style.margin = 'auto';
+            var slideIndex = 1;
+            function showSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName('item');
+                if (n > slides.length) { slideIndex = 1 }
+                if (n < 1) { slideIndex = slides.length }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
                 }
-            });
-            if (window.screen.width < 768) {
-                showSlides(slideIndex);
-            };
-        }
-        window.addEventListener('load', sale);
+                slides[slideIndex - 1].style.display = "block";
+            }
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+            function countdown() {
+                //取得現在的時間
+                var now = String( new Date());
+                // console.log(now);
+                var newNow = new Date(now.replace(/-/g, "/"));
+                // console.log(newNow);
+                //取得活動結束的時間(第一次專題先寫死而不是從資料庫撈資料)
+                // var oneDay = now.getDate() + 1;
+                var endTime = String('<?php echo $salesRow[0]["endTime"]?>') ;
+                var newEndTime = new Date(endTime.replace(/-/g, "/"));
+                // console.log(endTime); //2019-02-20
+                // var end = new Date(`${endTime} 00:00:00`);
+                // var end = new Date(newEndTime);
+                // console.log(end);
+                //算出目前時間到結束時間中間有多少秒            
+                var leftTime = newEndTime.getTime() - newNow.getTime();  //1552752000-1550378890=2372984
+                // console.log(leftTime); 
+
+                //依序將毫秒轉換成幾天幾時幾分幾秒
+                var leftSecond = parseInt(leftTime / 1000); //毫秒-秒
+                var hour = Math.floor(leftSecond / 3600); //
+                // console.log(hour);
+                var minute = Math.floor((leftSecond - hour * 3600) / 60);
+                var second = Math.floor(leftSecond - hour * 3600 - minute * 60);
+                document.getElementById('hour').innerText = hour + '時 : ';
+                document.getElementById('minute').innerText = minute + '分 : ';
+                document.getElementById('second').innerText = second + '秒';
+            }
+            // function test(){
+            //     console.log('here');
+            // }
+            function sale() {
+                console.log("init sale-----in the in the")
+                //先呼叫一次呈現倒數的函數，不然一進畫面會是空白
+                countdown();
+                //設定計時器讓倒數函式countdown每秒被呼叫一次
+                setInterval(countdown, 1000);
+                // document.getElementById('close').addEventListener('click', test);
+                document.getElementById('closeSale').addEventListener('click', function (){
+                    document.getElementById('sale').style.display = 'none';
+                    document.getElementById('saleSm').style.display = 'block';
+                });
+                window.addEventListener('resize', function (){
+                    if (window.screen.width < 768){
+                        showSlides(slideIndex);
+                    }else{
+                        var slides = document.getElementsByClassName('item');
+                        for (i = 0; i < slides.length; i++) {
+                            slides[i].style.display = "block";
+                        }
+                    }
+                });
+                if (window.screen.width < 768) {
+                    showSlides(slideIndex);
+                };
+            }
+        })
     </script>
 
     

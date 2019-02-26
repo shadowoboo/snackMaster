@@ -107,6 +107,9 @@ audio{
   }
 
 
+  .step-content-foot button.none{
+    display: none;
+}
   
   .step-content .step-content-foot button.out {
     display: none;
@@ -307,10 +310,15 @@ audio{
     
 }
   
-  .step-content .step-content-body.out {
-    display: none;
+.step-content-body.done {
+display: none;
+}
+  
+.step-content-body.active {
+    display:block;
   }
   
+
 
 //六面體，上蓋預留轉動空間，上蓋擁有內側div
 @mixin box3D_cover( $boxI:100px,$boxJ:100px,$boxK:100px){

@@ -73,7 +73,7 @@
     display: flex;
     flex-flow: nowrap ;
     justify-content: space-around;
-    align-items: center;
+    // align-items: center;
   }
 
   #box1,#box2,#box3 {
@@ -160,7 +160,7 @@
     display: none;
   }
   #cJump{
-    background-color: #e7e7e7;
+    // background-color: #e7e7e7;
     width: 30%;
     height: 0;
     padding-bottom: 30%;
@@ -172,11 +172,12 @@
     margin: auto;
     z-index: 500 ;
     border-radius:25px; 
-    box-shadow:0px 0px 10px rgba(0,0,0,.7);
-    transition: .8s;
-    overflow: hidden;
-    opacity: 0;
-    display: none;
+    transform: scale(0);
+    // box-shadow:0px 0px 10px rgba(0,0,0,.7);
+    transition: .5s;
+    overflow: visible;
+    // opacity: 0;
+    // display: none;
         @media screen and(max-width:767px) {
           width: 60%;
           padding-bottom: 60%;
@@ -185,6 +186,7 @@
       width: 50%;
       margin: auto;
       margin-bottom: 20px;
+      
           @media screen and(max-width:767px) {
             margin-bottom: 0;
           }
@@ -196,6 +198,137 @@
           }
     }
 
+    #bgGlow{
+      position: absolute;
+      top: -36%;
+      left: -74%;
+      z-index: -1;
+      width: 250%;
+      animation: rollGlow 33s infinite linear;
+        @media screen and(max-width:767px) {
+          top: -18%;
+          left: -33%;
+          width: 170%;
+        }
+    }
+    @keyframes rollGlow {
+      0% {
+          transform: rotate(0deg);
+      }
+
+      100% {
+          transform: rotate(360deg);
+      }
+  }
+  .shake-slow {
+    display: inherit;
+    transform-origin: center center; 
+    animation: shake-slow 15s ease-in-out infinite;
+  }
+
+  @keyframes shake-slow {
+      2% {
+        transform: translate(2px, 1px) rotate(-0.5deg); }
+      4% {
+        transform: translate(-5px, -9px) rotate(-2.5deg); }
+      6% {
+        transform: translate(5px, 3px) rotate(2.5deg); }
+      8% {
+        transform: translate(5px, 4px) rotate(1.5deg); }
+      10% {
+        transform: translate(-4px, -8px) rotate(-0.5deg); }
+      12% {
+        transform: translate(-2px, -9px) rotate(1.5deg); }
+      14% {
+        transform: translate(0px, 6px) rotate(3.5deg); }
+      16% {
+        transform: translate(8px, 2px) rotate(2.5deg); }
+      18% {
+        transform: translate(-4px, -1px) rotate(1.5deg); }
+      20% {
+        transform: translate(10px, 2px) rotate(-2.5deg); }
+      22% {
+        transform: translate(-2px, -4px) rotate(1.5deg); }
+      24% {
+        transform: translate(-8px, 5px) rotate(-0.5deg); }
+      26% {
+        transform: translate(-3px, -5px) rotate(3.5deg); }
+      28% {
+        transform: translate(6px, 2px) rotate(2.5deg); }
+      30% {
+        transform: translate(-5px, -2px) rotate(2.5deg); }
+      32% {
+        transform: translate(5px, -6px) rotate(-2.5deg); }
+      34% {
+        transform: translate(5px, -7px) rotate(-1.5deg); }
+      36% {
+        transform: translate(3px, -9px) rotate(0.5deg); }
+      38% {
+        transform: translate(6px, -2px) rotate(-0.5deg); }
+      40% {
+        transform: translate(-4px, -2px) rotate(0.5deg); }
+      42% {
+        transform: translate(7px, -8px) rotate(1.5deg); }
+      44% {
+        transform: translate(-4px, 10px) rotate(-1.5deg); }
+      46% {
+        transform: translate(-3px, 8px) rotate(-1.5deg); }
+      48% {
+        transform: translate(3px, 6px) rotate(-0.5deg); }
+      50% {
+        transform: translate(4px, -1px) rotate(-2.5deg); }
+      52% {
+        transform: translate(1px, 5px) rotate(-0.5deg); }
+      54% {
+        transform: translate(-3px, 7px) rotate(-2.5deg); }
+      56% {
+        transform: translate(3px, 3px) rotate(-2.5deg); }
+      58% {
+        transform: translate(-8px, -5px) rotate(-1.5deg); }
+      60% {
+        transform: translate(1px, -9px) rotate(3.5deg); }
+      62% {
+        transform: translate(0px, -3px) rotate(-0.5deg); }
+      64% {
+        transform: translate(4px, 2px) rotate(2.5deg); }
+      66% {
+        transform: translate(4px, 10px) rotate(1.5deg); }
+      68% {
+        transform: translate(1px, 2px) rotate(-2.5deg); }
+      70% {
+        transform: translate(-9px, 10px) rotate(0.5deg); }
+      72% {
+        transform: translate(-5px, -8px) rotate(0.5deg); }
+      74% {
+        transform: translate(-3px, -8px) rotate(3.5deg); }
+      76% {
+        transform: translate(-1px, 8px) rotate(3.5deg); }
+      78% {
+        transform: translate(-5px, -4px) rotate(0.5deg); }
+      80% {
+        transform: translate(-6px, 1px) rotate(1.5deg); }
+      82% {
+        transform: translate(-5px, -7px) rotate(1.5deg); }
+      84% {
+        transform: translate(1px, -6px) rotate(-0.5deg); }
+      86% {
+        transform: translate(-8px, -4px) rotate(3.5deg); }
+      88% {
+        transform: translate(-6px, 7px) rotate(-1.5deg); }
+      90% {
+        transform: translate(9px, 6px) rotate(-2.5deg); }
+      92% {
+        transform: translate(9px, -8px) rotate(3.5deg); }
+      94% {
+        transform: translate(3px, 3px) rotate(2.5deg); }
+      96% {
+        transform: translate(-6px, -7px) rotate(2.5deg); }
+      98% {
+        transform: translate(5px, -2px) rotate(-0.5deg); }
+      0%, 100% {
+        transform: translate(0, 0) rotate(0); } 
+    }
+    
   }
 
   @include btn('sure', 60%, 34px, #fff, $blue, transparent, 10px, 0px, #fff, $deepblue, 20px);
@@ -211,18 +344,25 @@
   #endGame{
     cursor: pointer;
     line-height: 28px;
-    margin-top: 5%;
+    margin-top: 6%;
     font-size: 18px;
     width: 50%;
     height: 28px;
     @media screen and(max-width:767px){
       font-size: 14px;
       line-height: 34px;
+      margin-top: 3%;
     }
   }
   #cJump p{
+    color: #737374;
+    margin-top: 80%;
+    background-color: #e7e7e7;
+    padding: 3%;
+    border-radius: 10px;
+    box-shadow:0px 0px 10px rgba(0,0,0,.7);
         @media screen and(max-width:767px) {
-          margin-top: 3%;
+          margin-top: 44%;
           font-size: 14px;
         }
   }

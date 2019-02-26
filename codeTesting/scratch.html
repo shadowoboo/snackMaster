@@ -1,12 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="../css/scratch.css">
 </head>
+
 <body>
+
+    <!-- <canvas id="canvas" width="1400" height="800" style="border: 1px solid #aaa;"></canvas> -->
+
+    <!-- <script>
+        var isMousemove = false,
+            mouseX,
+            mouseY;
+
+        document.body.addEventListener('mousemove', function (e) {
+            mouseX = e.clientX;//滑鼠x位置
+            mouseY = e.clientY;//滑鼠y位置
+
+            // console.log(mouseX);
+            // console.log(mouseY);
+            // console.log(" ");
+
+            if (isMousemove) {
+                whitePointDown();
+            }
+        });
+
+        document.body.addEventListener('touchmove', function (e) {
+            var touch = e.touches[0]; //獲取第一個觸點  
+            var x = Number(touch.clientX); //頁面觸點X座標  
+            var y = Number(touch.clientY); //頁面觸點Y座標  
+            //記錄觸點初始位置  
+            mouseX = x;//滑鼠x位置
+            mouseY = y;//滑鼠y位置
+
+            // console.log(touch);
+            // console.log(mouseX);
+            // console.log(mouseY);
+            // console.log(" ");
+
+            if (isMousemove) {
+                whitePointDown();
+            }
+        }, true);
+
+        var whitePoint = document.querySelector('.white-Point'),
+            childList = whitePoint.children[0].children,
+            whitePointLock = true;
+
+        whitePoint.addEventListener('mousedown', function () { // 按下鼠標左鍵時
+            whitePointDown();
+        });
+
+        whitePoint.addEventListener('touchstart', function () { //觸摸元素時
+            whitePointDown();
+        });
+
+
+        function whitePointDown() {
+
+            if (!isOpen) {
+
+                whitePoint.style.transition = "0.05s";
+                whitePoint.style.top = mouseY - 5 + 'px';
+                whitePoint.style.left = mouseX - 5 + 'px';
+                isMousemove = true; //處於按壓拖移小白點狀態
+            }
+        }
+
+
+        // function whitePointDown(){
+
+        // 	if(!isOpen){
+
+        // 		whitePoint.style.transition = "0.05s";
+        // 		whitePoint.style.top = mouseY - 25 + 'px';
+        // 		whitePoint.style.left = mouseX - 25 + 'px';
+        // 		isMousemove = true; //處於按壓拖移小白點狀態
+        // 	}
+        // }
+        // document.body.addEventListener('mouseup', whitePointClose, false); //在body釋放鼠標左鍵時
+        // document.body.addEventListener('touchend', whitePointClose, false); //從body元素移除手指時
+
+        // function whitePointClose(e){
+
+        // 	// e.preventDefault();
+
+        // 	var w = window.innerWidth,
+        // 		h = window.innerHeight;
+
+        // 	if(w<1024){
+        // 		whitePoint.style.width = "50px";
+        // 		whitePoint.style.height = "50px";
+
+        // 		whitePointBeforeY = mouseY - 25;
+
+        // 		whitePoint.style.left = w-50 + "px";
+        // 		whitePointBeforeX = w-50;
+
+        // 		for(i=0;i<childList.length;i++){
+        // 			childList[i].style.display = 'none';
+        // 		}
+        // 	}else{
+
+        // 		whitePoint.style.transition = "0s";
+        // 		whitePoint.style.width = '14.28571428%';
+        // 		whitePoint.style.height = "100px";
+        // 		whitePoint.style.display = 'static';
+
+        // 		for(i=0;i<childList.length;i++){
+        // 			childList[i].style.display = 'none';
+        // 		}
+
+        // 		for(i=0;i<3;i++){
+        // 			childList[i].style.display = 'inline-block';
+        // 		}
+        // 	}
+        // }
+
+        whitePoint.addEventListener('mouseup', function () {//釋放鼠標左鍵時
+
+            isOpen = !isOpen; //現在是否打開小白點
+            whitePointUp();
+
+        }, false);
+
+        whitePoint.addEventListener('touchend', function () {//從元素移除手指時
+
+            isOpen = !isOpen; //現在是否打開小白點
+            whitePointUp();
+
+        }, false);
+
+        var isOpen = false,
+            whitePointBeforeX = 0;
+        whitePointBeforeY = 75;
+
+        function whitePointUp() {
+
+            // e.preventDefault();
+
+            var w = window.innerWidth,
+                h = window.innerHeight,
+                minwh = w > h ? h : w;
+
+            isMousemove = false; //離開按壓拖移小白點狀態
+
+            //取得小白點前後位置,判斷使用者想要開啟或拖移小白點
+            whitePointLock = Math.abs(whitePointBeforeX - mouseX) < 50 && Math.abs(whitePointBeforeY - mouseY) < 50;
+
+
+            if (w < 1024) {
+                whitePoint.style.display = 'fixed';
+                whitePoint.style.transition = "0.5s";
+
+                if (isOpen && whitePointLock) {
+
+                    whitePoint.style.width = minwh * 0.7 + 'px';
+                    whitePoint.style.height = minwh * 0.7 + 'px';
+                    whitePoint.style.backgroundImage = "none";
+                    whitePoint.style.backgroundColor = "#BB7232";
+
+                    whitePoint.style.top = (h / 2) - (minwh * 0.35) + 'px';
+                    whitePoint.style.left = (w / 2) - (minwh * 0.35) + 'px';
+
+                    for (i = 0; i < childList.length; i++) {
+                        childList[i].style.display = 'inline-block';
+                    }
+
+                } else {
+
+                    whitePoint.style.width = "50px";
+                    whitePoint.style.height = "50px";
+                    whitePoint.style.backgroundColor = "#fff0";
+                    whitePoint.style.backgroundImage = "url('images/whitepoint.svg')";
+
+                    whitePointBeforeY = mouseY - 25;
+
+                    if (mouseX < w / 2) {
+                        whitePoint.style.left = 0;
+                        whitePointBeforeX = 0;
+                    } else {
+                        whitePoint.style.left = w - 50 + "px";
+                        whitePointBeforeX = w - 50;
+                    }
+
+                    for (i = 0; i < childList.length; i++) {
+                        childList[i].style.display = 'none';
+                    }
+                }
+            } else {
+
+                whitePoint.style.transition = "0s";
+                whitePoint.style.width = '14.28571428%';
+                whitePoint.style.height = "100px";
+                whitePoint.style.backgroundColor = "#fff0";
+                whitePoint.style.backgroundImage = "none";
+                whitePoint.style.display = 'static';
+
+                for (i = 0; i < childList.length; i++) {
+                    childList[i].style.display = 'none';
+                }
+
+                for (i = 0; i < 3; i++) {
+                    childList[i].style.display = 'inline-block';
+                }
+            }
+        }
+
+        whitePoint.addEventListener('mousemove', whitePointMove, false); //在元素內移動時
+        whitePoint.addEventListener('Touchmove', whitePointMove, false); //移動手指時
+
+        function whitePointMove() {
+        }
+
+        window.addEventListener("resize", function () {
+            whitePointUp();
+        });
+
+    </script>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="https://jennamolby.com/scratch-and-win/js/wScratchPad.min.js"></script>
+
+    <script src="../js/scratch.js"></script> -->
+
+
+
+
+    <!-- ---------------------------------- -->
+
+
+
+
+
+
+
+    <div class="scratch" id="scratch">
+        <div class="scratchWrap">
+            <div class="scratchWrapCoupon">
+                <img src="../images/coupon/d200.png" alt="優惠券">
+            </div>
+            <div class="scratchWrapCount">
+                <h3>恭喜獲得！</h3>
+                <h4>200元優惠券</h4>
+            </div>
+            <div class="scratchWrapIp">
+                <img src="../images/game/scratchIp.png" alt="零食怪">
+                <img src="../images/game/scratchIp1.png" alt="零食怪">
+                <img src="../images/game/scratchIp2.png" alt="零食怪">
+                <img src="../images/game/scratchIp3.png" alt="零食怪">
+                <img src="../images/game/scratchIp4.png" alt="零食怪">
+            </div>
+        </div>
+        <canvas class="gameGanvas " id="gameCanvas" width="370" height="600"></canvas>
+    </div>
+
     
+    <script src="../js/scratch.js"></script>
 </body>
+
 </html>
