@@ -416,20 +416,24 @@ audio{
     // }
     .pics{
         width:300px;
-        height:150px;
+        height: 222px;
         margin-top: 10px;
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
         align-items: center;
         // background-color:#fff;
-       
+       .pic{
             img{
-                width:37px;
+                width:51px;
                 margin: 5px;
                 flex: 5;
                 cursor: move;
             }
+            #image{
+                outline: 1px dotted;
+            }
+       }
         }
         #btns15{
         position: relative;
@@ -538,6 +542,9 @@ audio{
 .cardBox{
     width:500px;
     margin:auto;
+    img{
+        margin-bottom:30px;
+    }
 }
 
 .leftBox{
@@ -560,8 +567,7 @@ audio{
             text-align: center;
             cursor: pointer;
         }
-}
-
+    }
 }
 .showBox{
     width: 100%;
@@ -710,30 +716,6 @@ a {
         background-color: #fff;
         cursor: pointer;
     }
-    .color1{
-        background: #ff5050;
-    }
-    .color2{
-        background-color: #ff6600;
-    }
-    .color3{
-        background-color: #ffff00;
-    }
-    .color4{
-        background-color: #99ff66;
-    }
-    .color5{
-        background:#66ccff;
-    }
-    .color6{
-        background-color: #000066;
-    }
-    .color7{
-        background-color: #cc33ff;
-    }
-    .color8{
-        background-color: #000;
-    }
  }
   &:after {
     content: "";
@@ -787,6 +769,7 @@ a {
     // max-width: 600px;
     border-radius: 10px;
     margin: 0 40px;
+    margin-top: 1px;
     border: 10px solid #fbc849;
     ul{
         position: relative;
@@ -804,7 +787,7 @@ a {
             color:#737374;
             font-size: 20px;
             float: left;
-            width: 33.333%;
+            width:50%;
             text-align: center;
             cursor: pointer;
             transition: .5s ease;
@@ -831,7 +814,7 @@ a {
             justify-content: center;
             align-items: center;
             position: absolute;
-            top: -96px;
+            top: -42px;
             left: -600px;
             z-index: 3;
             width: 500px;
@@ -907,15 +890,15 @@ a {
                       
                     }
                     50% {
-                        top:100px;
+                        top:80px;
                         transform: rotate(0deg);
                     }
                     75% {
-                        top:150px;
+                        top:100px;
                         transform: rotate(-30deg);
                     }
                     100% {
-                        top:200px;
+                        top:150px;
                         transform: scale(0.8) rotate(0deg);
                     }
                     
@@ -1069,7 +1052,7 @@ a {
                 justify-content: center;
                 align-items: center;
                 position: absolute;
-                top: -132px;
+                top: -80px;
                 left: -630px;
                 z-index: 3;
                 width: 500px;
@@ -1311,7 +1294,6 @@ $cardY:600px;
 
 
 .sectionCard{
-
     //卡片控制
     @include card3D(400px,265px);
     .cardBase {
@@ -1329,8 +1311,8 @@ $cardY:600px;
     }
     @keyframes cardCome{
         //卡片工作面不是 rotateX(0deg) 時，文字框hover會壞掉 
-        0%{transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(100px);}
-        100%{transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg) translateZ(-300px);}
+        0%{transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(100px) scale(1);}
+        100%{transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg) translateZ(-300px) scale(0);}
     } 
 
     .cardBaseCover {
@@ -1559,6 +1541,9 @@ $cardY:600px;
 .coco01,.coco02{
     display: none;
 }
+.gameBox{
+    display: none;
+}
 .step-content {
     transform: translateY(5%);
     .step-content-body {
@@ -1644,12 +1629,18 @@ $cardY:600px;
                 margin:auto;
                 .form{
                     margin: auto;
+                    .pics{
+                        height: 206px;
+                    }
                 }
             }
             #cardSureBtn{
                 margin: 0px auto 30px;
             }
             .pics{
+                #image{
+                    width: 44px !important;
+                }
                 img{
                     cursor: initial;
                     margin: 6px;
@@ -1688,10 +1679,12 @@ $cardY:600px;
             .cardBox{
                 width: 100%;
                 img{
-                    width: 372px;
+                    width:350px;    
+                    margin: inherit;
                 }
             }
             .cardBody{
+                width: 90%;
                 margin-top: 55px;
             .pickCard{
                 width:100%;
@@ -1725,6 +1718,8 @@ $cardY:600px;
                         .cardBaseContent{
                             top:69px !important;
                             .cardSurface{
+                                position: relative;
+                                top: -28px;
                                 width: 318px;
                                 height: 210px;
                             }                        
@@ -1750,12 +1745,11 @@ $cardY:600px;
                     #birthdayParty{
                         width: 400px;
                         height: 250px;
-                        top: 0px;
-                        left: -10px;
+                        top: -27px;
+                        left: -20px;
                         .cooker{                        
                             position: relative;
                             top: 0;
-                            right: 30px;
                             animation: aaa1 1.5s linear infinite alternate;
                         }
                         @keyframes aaa1 {
@@ -1786,12 +1780,11 @@ $cardY:600px;
                     #loveU{
                         width: 400px;
                         height: 250px;
-                        top: 0px;
-                        left: -10px;
+                        top: -27px;
+                        left: -20px;
                         .lover{                        
                             position: relative;
                             top: 0;
-                            right: 30px;
                             animation: bbb1 1.5s linear infinite alternate;
                         }
                         @keyframes bbb1 {
@@ -1800,34 +1793,34 @@ $cardY:600px;
                                 transform: scale(0.6)
                             }
                             25% {
-                                top:45px;
+                                top:30px;
                                 transform: rotate(30deg);
                               
                             }
                             50% {
-                                top:90px;
+                                top:50px;
                                 transform: rotate(0deg);
                             }
                             75% {
-                                top:120px;
+                                top:80px;
                                 transform: rotate(-30deg);
                             }
                             100% {
-                                top:150px;
+                                top:100px;
                                 transform: scale(0.8) rotate(0deg);
                             }
+                            
                             
                         }
                     }
                     #eatMax{
                         width: 400px;
                         height: 250px;
-                        top: 0px;
-                        left: -10px;
+                        top: -27px;
+                        left: -20px;
                         .lover{                        
                             position: relative;
                             top: 0;
-                            right: 30px;
                             animation: ccc1 1.5s linear infinite alternate;
                         }
                         @keyframes ccc1 {
@@ -1858,12 +1851,11 @@ $cardY:600px;
                     #snackmaster{
                         width: 400px;
                         height: 250px;
-                        top: 0px;
-                        left: -10px;
+                        top: -27px;
+                        left: -20px;
                         .lover{                        
                             position: relative;
                             top: 0;
-                            right: 30px;
                             animation: ddd1 1.5s linear infinite alternate;
                         }
                         @keyframes ddd1 {
@@ -1910,7 +1902,7 @@ $cardY:600px;
             display: flex;
             flex-direction: row;
             justify-content:center;
-            margin-top: 24px;
+            margin-top:-10px;
             // span{
             //     width: 200px;
             // }
