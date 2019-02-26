@@ -26,26 +26,22 @@
                 echo "未上傳檔案 <br>";
                 break;
         }
-        if( $_FILES['upFile']['tmp_name'] == null ){
-            echo "<script>alert('未上傳圖片，新增商品失敗');location.href='back_snack.php';</script>";
-        }else{
-            $sql = "insert into snack(snackGenre, nation, snackName, snackStatus, snackWord, snackPic, snackPrice, snackIngre, snackVending, boxDate)
-             values(:snackGenre, :nation, :snackName, :snackStatus, :snackWord, :snackPic, :snackPrice, :snackIngre, :snackVending, :boxDate)";
-            $snack = $pdo -> prepare($sql); 
-            $snack -> bindValue(':snackGenre', $_REQUEST['genre']);
-            $snack -> bindValue(':nation', $_REQUEST['nation']);
-            $snack -> bindValue(':snackName', $_REQUEST['snackName']);
-            $snack -> bindValue(':snackStatus', $_REQUEST['snackStatus']);
-            $snack -> bindValue(':snackWord', $_REQUEST['snackWord']);
-            $snack -> bindValue(':snackPic', $to);
-            $snack -> bindValue(':snackPrice', $_REQUEST['snackPrice']);
-            $snack -> bindValue(':snackIngre', $_REQUEST['snackIngre']);
-            $snack -> bindValue(':snackVending', $_REQUEST['snackVending']);
-            $boxDate = $_REQUEST['boxDate'] == ''? null:$_REQUEST['boxDate']."-01";
-            $snack -> bindValue(':boxDate', $boxDate);
-            $snack -> execute();
-            echo "<script>alert('新增商品成功！');location.href='back_snack.php';</script>";
-        }
+        $sql = "insert into snack(snackGenre, nation, snackName, snackStatus, snackWord, snackPic, snackPrice, snackIngre, snackVending, boxDate)
+            values(:snackGenre, :nation, :snackName, :snackStatus, :snackWord, :snackPic, :snackPrice, :snackIngre, :snackVending, :boxDate)";
+        $snack = $pdo -> prepare($sql); 
+        $snack -> bindValue(':snackGenre', $_REQUEST['genre']);
+        $snack -> bindValue(':nation', $_REQUEST['nation']);
+        $snack -> bindValue(':snackName', $_REQUEST['snackName']);
+        $snack -> bindValue(':snackStatus', $_REQUEST['snackStatus']);
+        $snack -> bindValue(':snackWord', $_REQUEST['snackWord']);
+        $snack -> bindValue(':snackPic', $to);
+        $snack -> bindValue(':snackPrice', $_REQUEST['snackPrice']);
+        $snack -> bindValue(':snackIngre', $_REQUEST['snackIngre']);
+        $snack -> bindValue(':snackVending', $_REQUEST['snackVending']);
+        $boxDate = $_REQUEST['boxDate'] == ''? null:$_REQUEST['boxDate']."-01";
+        $snack -> bindValue(':boxDate', $boxDate);
+        $snack -> execute();
+        echo "true";
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";

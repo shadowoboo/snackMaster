@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="../../css/backstage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
+    <script src="../../js/alert.js"></script>
     <style>
         .backstage #contentWrap #content table{
             margin: auto;
@@ -108,13 +109,15 @@
             xhr.onload = function () {
                 if (xhr.status == 200) {
                     if( xhr.responseText == 'false' ){
-                        alert('密碼錯誤！請重新輸入');
+                        alertBox('密碼錯誤！請重新輸入');
                     }else{
-                        alert('修改帳號成功！');
-                        location.href='back_manager.php';
+                        alertBox('修改帳號成功！');
+                        document.getElementById('sure').addEventListener('click', function (){
+                            location.href='back_manager.php';
+                        });
                     }
                 } else {
-                    alert(xhr.status);
+                    alertBox(xhr.status);
                 }
             } 
 
@@ -123,9 +126,9 @@
             xhr.send( myForm );    
         })
         document.getElementById('cancel').addEventListener('click', function (){
-            if(window.confirm('確定要放棄修改帳號嗎？') == true){
+            confirmBox('確定要放棄修改帳號嗎？', function (){
                 location.href = 'back_manager.php';
-            }
+            });
         })
     </script>
 </body>

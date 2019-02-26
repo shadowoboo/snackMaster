@@ -22,8 +22,10 @@
 function addCart(e){
     if(e.target.innerText == '加入購物車'){
         if (document.getElementById("btnloglout").innerHTML == "&nbsp;") {
-            alert('請先登入會員唷～');
-            showLightBox();
+            alertBox('請先登入會員唷～');
+            document.getElementById('sure').addEventListener('click', function () {
+                showLightBox();
+            });
             return;
         }else{
             var info = e.target.id;
@@ -41,9 +43,9 @@ function addCart(e){
             var xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 if (xhr.status == 200) {
-                    alert('商品已加入購物車～');
+                    alertBox('商品已加入購物車～');
                 } else {
-                    alert(xhr.status);
+                    alertBox(xhr.status);
                 }
             }
         

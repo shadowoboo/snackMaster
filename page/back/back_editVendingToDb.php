@@ -33,8 +33,6 @@
             case UPLOAD_ERR_PARTIAL:
                 echo "未上傳檔案 <br>";
                 break;
-            default : 
-                echo "['error']: " , $_FILES['upFile']['error'] , "<br>";
         }
         if( $_FILES['upFile']['tmp_name'] == null ){
             $to = $oldPic;
@@ -49,7 +47,7 @@
         $vending -> bindValue(':maAdd', $_REQUEST['maAdd']);
         $vending -> bindValue(':maSellNo', $_REQUEST['maSellNo']);
         $vending -> execute();
-        echo "<script>alert('修改販賣機成功！');location.href='back_vending.php';</script>";
+        echo "true";
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";

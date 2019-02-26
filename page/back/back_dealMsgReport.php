@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="../../css/backstage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
+    <script src="../../js/alert.js"></script>
     <style>
         .backstage #contentWrap #content table{
             margin: auto;
@@ -103,47 +104,49 @@
         msgReportNo = document.getElementById('msgReportNo').innerText;
         msgNo = document.getElementById('msgNo').innerText;
         document.getElementById('sustain').addEventListener('click', function (){
-            if(window.confirm('檢舉成立後，留言將會被刪除，確定檢舉成立嗎？') == true){
+            confirmBox('檢舉成立後，留言將會被刪除，確定檢舉成立嗎？', function (){
                 var xhr = new XMLHttpRequest();
                 xhr.onload = function () {
                     if (xhr.status == 200) {
                         if( xhr.responseText == 'true' ){
-                            alert('檢舉審核已完成！');
-                            location.href='back_msgReport.php';
+                            alertBox('檢舉審核已完成！');
+                            document.getElementById('sure').addEventListener('click', function (){
+                                location.href='back_msgReport.php';
+                            });
                         }else{
-                            alert(xhr.responseText);
+                            alertBox(xhr.responseText);
                         }
                     } else {
-                        alert(xhr.status);
+                        alertBox(xhr.status);
                     }
                 } 
                 var url = 'back_dealMsgReportToDb.php?status=sustain&msgReportNo=' + msgReportNo + '&msgNo=' + msgNo;
                 xhr.open("Get", url, true);
                 xhr.send( null );
-            }
+            })
         })
         document.getElementById('overrule').addEventListener('click', function (){
-            if(window.confirm('確定後將無法再改變審核結果，確定檢舉不成立嗎？') == true){
+            confirmBox('確定後將無法再改變審核結果，確定檢舉不成立嗎？', function (){
                 var xhr = new XMLHttpRequest();
                 xhr.onload = function () {
                     if (xhr.status == 200) {
                         if( xhr.responseText == 'true' ){
-                            alert('檢舉審核已完成！');
-                            location.href='back_msgReport.php';
+                            alertBox('檢舉審核已完成！');
+                            document.getElementById('sure').addEventListener('click', function (){
+                                location.href='back_msgReport.php';
+                            });
                         }else{
-                            alert(xhr.responseText);
+                            alertBox(xhr.responseText);
                         }
                     } else {
-                        alert(xhr.status);
+                        alertBox(xhr.status);
                     }
                 } 
                 var url = 'back_dealMsgReportToDb.php?status=overrule&msgReportNo=' + msgReportNo + '&msgNo=' + msgNo;;
                 xhr.open("Get", url, true);
                 xhr.send( null );
-            }
+            })
         })
-        
-    
     </script>
 </body>
 </html>

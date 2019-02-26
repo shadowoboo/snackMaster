@@ -27,18 +27,14 @@
                 echo "未上傳檔案 <br>";
                 break;
         }
-        if( $_FILES['upFile']['tmp_name'] == null ){
-            echo "<script>alert('未上傳圖片，新增優惠券失敗');location.href='back_snack.php';</script>";
-        }else{
-            $sql = "insert into coupon(discountPrice, imgSRC, getWay)
-            values(:discountPrice, :imgSRC, :getWay)";
-            $coupon = $pdo -> prepare($sql); 
-            $coupon -> bindValue(':discountPrice', $_REQUEST['discountPrice']);
-            $coupon -> bindValue(':imgSRC', $to);
-            $coupon -> bindValue(':getWay', $_REQUEST['getWay']);
-            $coupon -> execute();
-            echo "true";
-        }
+        $sql = "insert into coupon(discountPrice, imgSRC, getWay)
+        values(:discountPrice, :imgSRC, :getWay)";
+        $coupon = $pdo -> prepare($sql); 
+        $coupon -> bindValue(':discountPrice', $_REQUEST['discountPrice']);
+        $coupon -> bindValue(':imgSRC', $to);
+        $coupon -> bindValue(':getWay', $_REQUEST['getWay']);
+        $coupon -> execute();
+        echo "true";
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";

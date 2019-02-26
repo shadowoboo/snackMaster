@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="../../css/backstage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
+    <script src="../../js/alert.js"></script>
     <style>
         .backstage #contentWrap #content table{
             margin: auto;
@@ -93,30 +94,36 @@
     </div> 
     <script>
         document.getElementById('submit').addEventListener('click', function (){
-            if(window.confirm('優惠券新增後，折價金額將不能再修改，確認要新增優惠券嗎？') == true){
-                var xhr = new XMLHttpRequest();
-                xhr.onload = function () {
-                    if (xhr.status == 200) {
-                        if( xhr.responseText == 'true' ){
-                            alert('新增優惠券成功！');
-                            location.href='back_coupon.php';
-                        }else{
-                            alert(xhr.responseText);
+            if( document.getElementById('upFile').value == '' ){
+                alertBox('未上傳圖片');
+            }else{
+                confirmBox('優惠券新增後，折價金額將不能再修改，確認要新增優惠券嗎？', function (){
+                    var xhr = new XMLHttpRequest();
+                    xhr.onload = function () {
+                        if (xhr.status == 200) {
+                            if( xhr.responseText == 'true' ){
+                                alertBox('新增優惠券成功！');
+                                document.getElementById('sure').addEventListener('click', function (){
+                                    location.href='back_coupon.php';
+                                });
+                            }else{
+                                alertBox(xhr.responseText);
+                            }
+                        } else {
+                            alertBox(xhr.status);
                         }
-                    } else {
-                        alert(xhr.status);
-                    }
-                } 
-
-                xhr.open("Post", "back_couponToDb.php", true);
-                var myForm = new FormData( document.getElementById('myForm'));
-                xhr.send( myForm );  
+                    } 
+    
+                    xhr.open("Post", "back_couponToDb.php", true);
+                    var myForm = new FormData( document.getElementById('myForm'));
+                    xhr.send( myForm );  
+                });
             }
         })
         document.getElementById('cancel').addEventListener('click', function (){
-            if(window.confirm('確定要放棄新增優惠券嗎？') == true){
+            confirmBox('確定要放棄新增優惠券嗎？', function (){
                 location.href = 'back_coupon.php';
-            }
+            });
         })
         document.getElementById('upFile').onchange = function(e){
             var file = e.target.files[0];

@@ -10,7 +10,7 @@ function showKind(e, kind, num) {
 
     if (num == 1) {
         if (total == 6) {
-            alert('零食箱裡已經有6個零食了喔～');
+            alertBox('零食箱裡已經有6個零食喔～');
         } else {
             kindItem.value = parseInt(kindItem.value) + parseInt(num);
             var arr = [];
@@ -33,7 +33,7 @@ function showKind(e, kind, num) {
         }
     } else if (num == -1) {
         if (total == 0) {
-            alert('零食箱裡已經沒有零食了喔~');
+            alertBox('零食箱裡已經沒有零食了喔~');
         } else if (parseInt(kindItem.value) == 0) {
             parseInt(kindItem.value) == 0;
         } else {
@@ -101,7 +101,7 @@ function getBoxSnack(month){
             document.getElementsByClassName("carousels")[0].innerHTML = xhr.responseText;
             showStar();
         } else {
-            alert(xhr.status);
+            alertBox(xhr.status);
         }
     }
 
@@ -115,7 +115,7 @@ function forCart(e){
     var cookie = parseInt(document.getElementById('cookie').value);
     var chocolate = parseInt(document.getElementById('chocolate').value);
     if( chips + candy + cookie + chocolate != 6 ){
-        alert('零食箱裡沒有6個零食耶～');
+        alertBox('零食箱裡沒有6個零食耶～');
     }else{
         var cart = document.getElementById('realCart');
         if (document.getElementById('month_3').hasAttribute('checked') == true ){
@@ -134,16 +134,18 @@ function forCart(e){
         
         if (e.target.innerText == '加入購物車') {
             if (document.getElementById("btnloglout").innerHTML == "&nbsp;") {
-                alert('請先登入會員唷～');
-                showLightBox();
+                alertBox('請先登入會員～');
+                document.getElementById('sure').addEventListener('click', function () {
+                    showLightBox();
+                });
                 return;
             } else {
                 var xhr = new XMLHttpRequest();
                 xhr.onload = function () {
                     if (xhr.status == 200) {
-                        alert('商品已加入購物車～');
+                        alertBox('商品已加入購物車～');
                     } else {
-                        alert(xhr.status);
+                        alertBox(xhr.status);
                     }
                 }
 

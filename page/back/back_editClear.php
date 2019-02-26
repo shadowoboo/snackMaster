@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="../../css/backstage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
+    <script src="../../js/alert.js"></script>
     <style>
         .backstage #contentWrap #content table{
             margin: auto;
@@ -36,7 +37,7 @@
         .backstage #contentWrap #content table td{
             width: 180px;
         }
-        .backstage #contentWrap #content button, #cancel{
+        .backstage #contentWrap #content button, #cancel, #submit{
             width: 120px;
             height: 46px;
         }
@@ -70,7 +71,7 @@
     }
     $clearRow = $clears -> fetch();
 ?>
-                <form action="back_editClearToDb.php">
+                <form id="myForm">
                     <table>
                         <tr>
                             <th width="60">編號</th>
@@ -118,7 +119,7 @@
     }
 ?>                    
                     </table>
-                    <button type="submit" class="cart">修改專案</button>   
+                    <input type="button" class="cart" id="submit" value="修改專案">
                     <input type="button" class="cart" id="cancel" value="放棄修改">
                 </form>
             </div>
@@ -129,9 +130,30 @@
     </div> 
     <script>
         document.getElementById('cancel').addEventListener('click', function (){
-            if(window.confirm('確定要放棄修改即期品專案嗎？') == true){
+            confirmBox('確定要放棄修改即期品專案嗎？', function (){
                 location.href = 'back_clearance.php';
-            }
+            });
+        })
+        document.getElementById('submit').addEventListener('click', function (){
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    if( xhr.responseText == 'true' ){
+                        alertBox('修改即期品專案成功！');
+                        document.getElementById('sure').addEventListener('click', function (){
+                        location.href='back_clearance.php';
+                        });
+                    }else{
+                        alertBox(xhr.responseText);
+                    }
+                } else {
+                    alertBox(xhr.status);
+                }
+            } 
+
+            xhr.open("Post", "back_editClearToDb.php", true);
+            var myForm = new FormData( document.getElementById('myForm'));
+            xhr.send( myForm );  
         })
     </script>
 </body>

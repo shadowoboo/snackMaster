@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../../css/backstage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
+    <script src="../../js/alert.js"></script>
     <style>
         .backstage #contentWrap #content table{
             margin: auto;
@@ -35,7 +36,7 @@
         .backstage #contentWrap #content table td{
             width: 180px;
         }
-        .backstage #contentWrap #content button, #cancel{
+        .backstage #contentWrap #content button, #cancel, #submit{
             width: 120px;
             height: 46px;
         }
@@ -142,7 +143,8 @@
                             <td><input type="text" name="item3Qty" size="10"></td>
                         </tr>
                     </table>
-                    <button type="submit" class="cart" id="commit">新增專案</button>   
+                    <!-- <button type="submit" class="cart" id="commit">新增專案</button>    -->
+                    <input type="button" class="cart" id="submit" value="新增專案">
                     <input type="button" class="cart" id="cancel" value="放棄新增">
                 </form>
             </div>
@@ -161,7 +163,7 @@
                     document.getElementById('snackName' + num).innerText = name;
                     document.getElementById('snackPrice' + num).innerText = price;
                 } else {
-                    alert(xhr.status);
+                    alertBox(xhr.status);
                 }
             } 
 
@@ -178,31 +180,33 @@
         document.getElementById('snackNo3').addEventListener('change', function (){
             getName(3);
         });
-        document.getElementById('commit').addEventListener('click', function (){
-            if(window.confirm('新增即期品專案後就不能再修改商品，確定要新增嗎？') == true){
+        document.getElementById('submit').addEventListener('click', function (){
+            confirmBox('新增即期品專案後就不能再修改商品，確定要新增嗎？', function (){
                 var xhr = new XMLHttpRequest();
                 xhr.onload = function () {
                     if (xhr.status == 200) {
                         if( xhr.responseText == 'true' ){
-                            alert('新增即期品專案成功！');
-                            location.href='back_clearance.php';
+                            alertBox('新增即期品專案成功！');
+                            document.getElementById('sure').addEventListener('click', function (){
+                                location.href='back_clearance.php';
+                            });
                         }else{
-                            alert(xhr.responseText);
+                            alertBox(xhr.responseText);
                         }
                     } else {
-                        alert(xhr.status);
+                        alertBox(xhr.status);
                     }
                 } 
 
                 xhr.open("Post", "back_clearanceToDb.php", true);
                 var myForm = new FormData( document.getElementById('myForm'));
                 xhr.send( myForm ); 
-            }
+            });
         })
         document.getElementById('cancel').addEventListener('click', function (){
-            if(window.confirm('確定要放棄新增即期品專案嗎？') == true){
+            confirmBox('確定要放棄新增即期品專案嗎？', function (){
                 location.href = 'back_clearance.php';
-            }
+            });
         })
     </script>
 </body>

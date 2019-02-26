@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="../../css/backstage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
+    <script src="../../js/alert.js"></script>
     <style>
         .backstage #contentWrap #content table{
             margin: auto;
@@ -31,7 +32,7 @@
         .backstage #contentWrap #content table td{
             width: 350px;
         }
-        .backstage #contentWrap #content button, #cancel{
+        .backstage #contentWrap #content button, #cancel, #submit{
             width: 120px;
             height: 46px;
         }
@@ -58,7 +59,7 @@
         exit("<div><center>$errMsg</center></div>");
     }
 ?>
-                <form action="back_snackToDb.php" method="post" enctype="multipart/form-data">
+                <form id="myForm" method="post" enctype="multipart/form-data">
                     <table>
                         <tr>
                             <td>種類</td>
@@ -134,7 +135,7 @@
                             <td><textarea name="snackIngre" rows="2" cols="40"></textarea></td>
                         </tr>
                     </table>
-                    <button type="submit" class="cart" id="commit">新增商品</button>   
+                    <input type="button" class="cart" id="submit" value="新增商品">
                     <input type="button" class="cart" id="cancel" value="放棄新增">
                 </form>
             </div>
@@ -145,8 +146,33 @@
     </div> 
     <script>
         document.getElementById('cancel').addEventListener('click', function (){
-            if(window.confirm('確定要放棄新增商品嗎？') == true){
+            confirmBox('確定要放棄新增商品嗎？', function (){
                 location.href = 'back_snack.php';
+            });
+        })
+        document.getElementById('submit').addEventListener('click', function (){
+            if( document.getElementById('upFile').value == '' ){
+                alertBox('未上傳圖片');
+            }else{
+                var xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        if( xhr.responseText == 'true' ){
+                            alertBox('新增商品成功！');
+                            document.getElementById('sure').addEventListener('click', function (){
+                                location.href='back_snack.php';
+                            });
+                        }else{
+                            alertBox(xhr.responseText);
+                        }
+                    } else {
+                        alertBox(xhr.status);
+                    }
+                } 
+
+                xhr.open("Post", "back_snackToDb.php", true);
+                var myForm = new FormData( document.getElementById('myForm'));
+                xhr.send( myForm );  
             }
         })
         document.getElementById('upFile').onchange = function(e){
