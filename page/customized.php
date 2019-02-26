@@ -99,23 +99,22 @@ try {
                                 <div class="camera">
                                     <div class="box boxBase" id="box_15">
                                         <div class="surface surface_top" id="cover_out_15">
-                                            <!-- <img src="ip2.png" id="a1" alt=""> -->                                      
-                                            <!-- <img id="cusImg_top" src="../images/tina/LOGO1.png" alt="" style="display:none;"> -->
+                                          
                                         </div>
                                         <!-- <div class="surface surface_top_inner" id="cover_in_15">
                                         </div> -->
                                         <div class="surface surface_down" id="cover_down">
-                                        <img id="cusImg_down" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+    
                                         </div>
                                         <div class="surface surface_back" id="cover_back"></div>
                                         <div class="surface surface_front" id="cover_front">
-                                        <img id="cusImg_front" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+                                       
                                         </div>
                                         <div class="surface surface_left" id="cover_left">
-                                        <img id="cusImg_left" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+                                       
                                         </div>
                                         <div class="surface surface_right" id="cover_right">
-                                        <img id="cusImg_right" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+                                       
                                         </div>
                                     </div>
                                 </div>
@@ -126,10 +125,10 @@ try {
                                     <div class="btn" id="btn_clk"><img src="../images/customized/rotate.png" alt=""></div>
                                     <div class="btn" id="btn_clk_r"><img src="../images/customized/rotate_r.png" alt=""></div>
                                     <div class="btn" id="btn_del"><i class="fa fa-trash"></i></div>
-                                </div>                        
-                                <div class="btn show action" id="boxSureBtn" style="line-height: 35px;margin:3px auto;">設計完成</div> 
+                                </div>                                                       
                         </div>
                     </div>  
+                <div class="formBody">
                     <div class="form">
                         <ul class="tab-group-1">
                             <li class="tab-1 active"><a href="#colorBtn">顏色</a></li>
@@ -137,43 +136,54 @@ try {
                         </ul>
                         <div class="tab-content-1">
                             <div id="colorBtn">   
-                            <div class="top-row">
-                                <div class="pickColor">
-                                    <div class="colorBtn color1"></div>
-                                    <div class="colorBtn color2"></div>
-                                    <div class="colorBtn color3"></div>
-                                    <div class="colorBtn color4"></div>
-                                    <div class="colorBtn color5"></div>
-                                    <div class="colorBtn color6"></div>
-                                    <div class="colorBtn color7"></div>
-                                    <div class="colorBtn color8"></div>
-                                </div>
-                            </div>
-                                </div>
-                            <div id="picBtn">   
-                                <div class="pics" id="picsRegion">
+                                <div class="top-row">
+<?php
+    $errMsg = "";
+        try {
+            require_once("connectcd105g2.php");
+            $sql = "select * from material ORDER BY materialNo limit 11,18";
+            $material = $pdo->query($sql);
+        } catch (PDOException $e){
+            $errMsg .= "錯誤 :".$e -> getMessage()."<br>";
+            $errMsg .= "行號 :".$e -> getLine()."<br>";
+        }
+?>                            
+ <div class="pickColor">
+<?php
+  while( $mateRow = $material -> fetch() ){
+?>                                                                         
+            <div class="colorBtn" style="background-color:<?php echo $mateRow['materialPath']?>;"></div>
+<?php
+    }
+?>     
+    </div>                               
+        </div>
+    </div>
+                        
+    <div id="picBtn">   
+        <div class="pics" id="picsRegion">
+<?php
+    $errMsg = "";
+        try {
+            require_once("connectcd105g2.php");
+            $sql = "select * from material ORDER BY materialNo limit 0,8";
+            $material = $pdo->query($sql);
+        } catch (PDOException $e){
+            $errMsg .= "錯誤 :".$e -> getMessage()."<br>";
+            $errMsg .= "行號 :".$e -> getLine()."<br>";
+        }
+?>                            
+<?php
+  while( $mateRow = $material -> fetch() ){
+?>                                          
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/tina/LOGO1.png" alt="" style="width:65px;">
+                                        <img class="cusPic" src="../<?php echo $mateRow['materialPath']?>" alt="">
                                     </div>
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images/nnnnn/ipf.png" alt="">
-                                    </div>
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images//nnnnn/ipc.png" alt="" style="width:53px;">
-                                    </div>
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images//nnnnn/ipcho.png" alt="">
-                                    </div>
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images//nnnnn/ipcandy.png" alt="">
-                                    </div>                                    
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images/index/IP-2.png" alt="" style="width:56px;">
-                                    </div>                                    
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images/index/IP-1.png" alt="" style="width:60px;">
-                                    </div>
-                                    <div class="pic">
+
+    <?php
+        }
+    ?>
+                                     <div class="pic">
                                         <img class="cusPic" id="image" style="width:53px;">
                                     </div>
                                     <div class="upfile">
@@ -184,14 +194,15 @@ try {
                                             <!-- <p>8M內，jpg、png之圖檔。</p> -->
                                         </label>
                                     </div>
-                                </div>
-                                                                                           
-            <p>
-                <textarea id="fileInfo" rows="5" cols="70" style="display:none;"></textarea>
-            </p>
+                                </div>                                                                                           
+                                <p>
+                                    <textarea id="fileInfo" rows="5" cols="70" style="display:none;"></textarea>
+                                </p>
                             </div>
                         </div><!-- tab-content -->
+                        <div class="btn show action" id="boxSureBtn" style="margin:47px auto 15px;line-height: 35px;">編輯完成</div> 
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -236,20 +247,12 @@ try {
                                     <img  id="large" src="../images/customized/card.png" alt="">
                                 </div>  
                             </div>
+                <div class="cardBody">
                     <div class="pickCard">
                             <ul class="tab-content-2">
-                                <li class="tab yellow">樣式</li>
-                                <li class="tab">文字</li>
+                                <li class="tab yellow">文字</li>
                                 <li class="tab">音效</li>
                             </ul>
-                            <div class="content">
-                                <div class="cardStyle">
-                                    <img src="../images/customized/card.png" class="small" id="i_0">
-                                    <!-- <img src="../images/small/card02.png" class="small" id="i_1">
-                                    <img src="../images/small/card03.png" class="small" id="i_1">
-                                    <img src="../images/small/card04.png" class="small" id="i_1">                           -->
-                                </div>
-                            </div>
                             <div class="content">
                                 <div class="cardText"> 
                                     <div class="btn7 action" id="btn7_add" style="line-height:35px; margin:25px;">新增文字</div>                          
@@ -379,9 +382,10 @@ try {
                                     <div id="recordBtn" class="recordBtn"><i class="fas fa-microphone"></i></div>
                                 </div>
                             </div> -->
-                        </div>
+                        </div>                    
                     </div>            
-                    <div class="btn show action" id="cardSureBtn" style="line-height: 35px;">設計完成 </div> 
+                    <div class="btn show action" id="cardSureBtn" style="line-height: 35px;margin:39px auto">編輯完成 </div> 
+                </div>
                   </div> 
              </div>
          </div>
