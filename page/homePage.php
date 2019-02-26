@@ -937,7 +937,7 @@
             </div>
             <?php
                 require_once("connectcd105g2.php");
-                $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo";
+                $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo ORDER by c.clearanceNo desc limit 3";
                 $sales = $pdo->query( $sql );
                 $salesRow = $sales->fetchAll();
             ?>
@@ -2143,6 +2143,10 @@
         
     </script>
 
+
+
+
+
     <!-- 點擊購物車增減數量傳回資料庫 -->
     <script>
         
@@ -2175,6 +2179,9 @@
             }
         })
     </script>
+
+
+
 
     <!-- 點選前幾期預購商品 -->
     <script>
@@ -2253,12 +2260,12 @@
 
 <!-- 即期品特賣 -->
     <script>
-        <?php
-            require_once("connectcd105g2.php");
-            $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo ORDER by a.clearanceNo desc limit 3";
-            $sales = $pdo->query( $sql );
-            $salesRow = $sales->fetchAll();
-        ?>
+        // 
+        //     require_once("connectcd105g2.php");
+        //     $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo ORDER by a.clearanceNo desc limit 3";
+        //     $sales = $pdo->query( $sql );
+        //     $salesRow = $sales->fetchAll();
+        // 
         var slideIndex = 1;
         function showSlides(n) {
             var i;
@@ -2332,14 +2339,7 @@
         }
         window.addEventListener('load', sale);
     </script>
-    <?php
-        // $country=$_GET[]
-        // $sql = "select nation,snackName,snackWord,snackPic,snackPrice,MAX(snackNo) from snack where nation=:country";
-        // $prodRow = $pdo->prepare($sql); //執行上面的指令傳回陣列
-        // $prodRow -> bindValue(":country", $country);
-        // $prodRow -> excute(); 
-        // while ($row = $prodRow->fetch()) {}
-    ?>
+
     
 </body>
 

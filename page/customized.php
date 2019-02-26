@@ -126,10 +126,10 @@ try {
                                     <div class="btn" id="btn_clk"><img src="../images/customized/rotate.png" alt=""></div>
                                     <div class="btn" id="btn_clk_r"><img src="../images/customized/rotate_r.png" alt=""></div>
                                     <div class="btn" id="btn_del"><i class="fa fa-trash"></i></div>
-                                </div>                        
-                                <div class="btn show action" id="boxSureBtn" style="line-height: 35px;margin:3px auto;">設計完成</div> 
+                                </div>                                                       
                         </div>
                     </div>  
+                <div class="formBody">
                     <div class="form">
                         <ul class="tab-group-1">
                             <li class="tab-1 active"><a href="#colorBtn">顏色</a></li>
@@ -137,19 +137,19 @@ try {
                         </ul>
                         <div class="tab-content-1">
                             <div id="colorBtn">   
-                            <div class="top-row">
-                                <div class="pickColor">
-                                    <div class="colorBtn color1"></div>
-                                    <div class="colorBtn color2"></div>
-                                    <div class="colorBtn color3"></div>
-                                    <div class="colorBtn color4"></div>
-                                    <div class="colorBtn color5"></div>
-                                    <div class="colorBtn color6"></div>
-                                    <div class="colorBtn color7"></div>
-                                    <div class="colorBtn color8"></div>
+                                <div class="top-row">
+                                    <div class="pickColor">
+                                        <div class="colorBtn color1"></div>
+                                        <div class="colorBtn color2"></div>
+                                        <div class="colorBtn color3"></div>
+                                        <div class="colorBtn color4"></div>
+                                        <div class="colorBtn color5"></div>
+                                        <div class="colorBtn color6"></div>
+                                        <div class="colorBtn color7"></div>
+                                        <div class="colorBtn color8"></div>
+                                    </div>
                                 </div>
                             </div>
-                                </div>
                             <div id="picBtn">   
                                 <div class="pics" id="picsRegion">
                                     <div class="pic">
@@ -184,14 +184,15 @@ try {
                                             <!-- <p>8M內，jpg、png之圖檔。</p> -->
                                         </label>
                                     </div>
-                                </div>
-                                                                                           
-            <p>
-                <textarea id="fileInfo" rows="5" cols="70" style="display:none;"></textarea>
-            </p>
+                                </div>                                                                                           
+                                <p>
+                                    <textarea id="fileInfo" rows="5" cols="70" style="display:none;"></textarea>
+                                </p>
                             </div>
                         </div><!-- tab-content -->
+                        <div class="btn show action" id="boxSureBtn" style="margin:47px auto 15px;line-height: 35px;">編輯完成</div> 
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -236,6 +237,7 @@ try {
                                     <img  id="large" src="../images/customized/card.png" alt="">
                                 </div>  
                             </div>
+                <div class="cardBody">
                     <div class="pickCard">
                             <ul class="tab-content-2">
                                 <li class="tab yellow">樣式</li>
@@ -381,7 +383,8 @@ try {
                             </div> -->
                         </div>
                     </div>            
-                    <div class="btn show action" id="cardSureBtn" style="line-height: 35px;">設計完成 </div> 
+                    <div class="btn show action" id="cardSureBtn" style="line-height: 35px;margin:40px auto">編輯完成 </div> 
+                </div>
                   </div> 
              </div>
          </div>
