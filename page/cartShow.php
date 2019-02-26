@@ -376,12 +376,14 @@ if(isset($_SESSION["snackName"])==true){
                 $cl -> bindValue(":snackNo", $snackNo); //從foreach迴圈取得當前的snackNo
                 $cl -> execute();
                 $row = $cl-> fetch();
-                print_r($row["quantity"]);
+                // print_r($row["quantity"]);
             } catch (PDOException $e) {
                 echo "失敗,原因:",$e -> getMessage();
                 echo "行號:",$e -> getLine();
             }
             //也許重複呼叫資料庫不是好主意，一種感覺
+            //好處: 方便對應到該商品，解決 snackNo 只存在陣列編號中的問題
+            //壞處: 依照迴圈數呼叫很多次，連線很多次(?)
 
 ?>
                     <div class="prodCard prodCard_normal prodCard_single">

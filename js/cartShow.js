@@ -729,6 +729,9 @@ function auUpdateTimeNow(e) {
 
 
 //-------------common.js 無法覆蓋 只好拿進來修改-------
+// 即期品卡關需要卡關按鈕本身作動 + ajax送出前的相關判斷(現在一邊一隻程式，各卡關一次)
+// 目前cartShow.php 和 cartShow.js 對一般商品最大上限卡關99
+// 即期品依照資料庫給定上限值
 
 
 //根據點擊的是加或減來修改number input 的 value
