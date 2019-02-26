@@ -98,6 +98,7 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/header.js" defer></script>
     <script src="../js/upgrade.js"></script>
+    <script src="../js/addCart.js"></script>
 
     <title>會員專區</title>
 
@@ -868,28 +869,6 @@ function tabClick(e) {
             break;
     }
 }
-//訂單管理
-// function orderList() {
-//     var xhr = new XMLHttpRequest();
-//     xhr.onload = function() {
-//         if (xhr.status == 200) {
-
-
-
-
-
-//         }else {
-//             alert(xhr.status);
-//         }  
-
-
-//         var url = "memOrderList.php";
-//         xhr.open("Get", url, true);
-//         xhr.send(null);
-
-//     }
-
-
 
 //收藏清單
 function getCollection() {
@@ -907,6 +886,11 @@ function getCollection() {
             var length2 = trashIcon.length;
             for (var j = 0; j < length2; j++) {
                 trashIcon[j].addEventListener('click', deletTrash);
+            }
+            var carts = document.getElementsByClassName('cart');
+            var length = carts.length;
+            for(var i =0; i < length; i++){
+                carts[i].addEventListener('click', addCart);
             }
         } else {
             alert(xhr.status);
@@ -926,24 +910,25 @@ function deletTrash(e) {
         e.stopPropagation();
         var snackNo = e.target.parentNode.id;
     }
-
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-        if (xhr.status == 200) {
-            if (xhr.responseText != 'true') {
-                alert(xhr.responseText);
+    if(window.confirm('確定要刪除收藏嗎？') == true ){
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                if (xhr.responseText != 'true') {
+                    alert(xhr.responseText);
+                } else {
+                    getCollection();
+                }
             } else {
-                getCollection();
+                alert(xhr.status);
             }
-        } else {
-            alert(xhr.status);
         }
+        var url = 'removeHeart.php?snackNo=' + snackNo;
+        xhr.open('get', url, true);
+        xhr.send(null);
     }
-    var url = 'removeHeart.php?snackNo=' + snackNo;
-    xhr.open('get', url, true);
-    xhr.send(null);
 }
-//優惠眷
+//優惠券
 function getCoupon() {
     var xhr = new XMLHttpRequest();
     xhr.onload = function() {

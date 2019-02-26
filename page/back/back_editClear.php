@@ -11,7 +11,7 @@
         $snackSql = "select snackNo from snack where snackGenre != '客製箱' and snackGenre != '預購箱'";
         $sql = "select * from clearance where clearanceNo = {$_REQUEST['clearanceNo']}";
         $clears = $pdo -> query($sql); 
-        $sql = "select * from clearanceitem where clearanceNo = {$_REQUEST['clearanceNo']}";
+        $sql = "select * from clearanceitem c join snack s on c.snackNo = s.snackNo where c.clearanceNo = {$_REQUEST['clearanceNo']}";
         $clearItems = $pdo -> query($sql);
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
@@ -94,6 +94,8 @@
                         <tr>
                         <th width='120'>明細編號</th>
                         <th width='120'>商品編號</th>
+                        <th width='120'>商品名稱</th>
+                        <th width='120'>商品原價</th>
                         <th width='120'>出清價格</th>
                         <th width='120'>出清數量</th>
                     </tr>
@@ -105,23 +107,14 @@
                     <td>
                         <?php echo $i?>
                     </td>
-                    <td>
-                        <select name="item<?php echo $i?>No">
-                            <?php
-                                $snacks = $pdo -> query($snackSql);
-                                while( $snackRow = $snacks -> fetch() ){
-                            ?>
-                                <option value="<?php echo $snackRow['snackNo'] ?>" <?php echo $itemRow['snackNo'] == $snackRow['snackNo']? 'selected':''?> ><?php echo $snackRow['snackNo'] ?></option>                                    
-                            <?php        
-                                }
-                            ?>
-                        </select>
-                    </td>
+                    <td><?php echo $itemRow['snackNo']?></td>
+                    <td><?php echo $itemRow['snackName']?></td>
+                    <td><?php echo $itemRow['snackPrice']?></td>
                     <td><input type="text" name="item<?php echo $i?>Price" value="<?php echo $itemRow['salePrice']?>"></td>
                     <td><input type="text" name="item<?php echo $i?>Qty" value="<?php echo $itemRow['quantity']?>"></td>
                     </tr>
 <?php
-    $i++;
+        $i++;
     }
 ?>                    
                     </table>
