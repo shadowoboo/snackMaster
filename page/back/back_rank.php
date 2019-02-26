@@ -8,8 +8,6 @@
     $errMsg = "";
     try {
         require_once("../connectcd105g2.php");
-        $sql = "select * from rank order by rankGenre, ranking";
-        $ranks = $pdo -> query($sql); 
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";
@@ -30,7 +28,7 @@
         table{
             display: inline-block;
             vertical-align: top;
-            margin-right: 40px;
+            margin-right: 20px;
         }
     </style>
 </head>
@@ -41,14 +39,13 @@
 ?>
         <div id="contentWrap">
             <div id="content">
-                <h3>排行榜管理</h3>
-                <button class="step" id="update">更新</button>
-                <div></div>
+                <h3>排行榜列表</h3>
                 <table>
                     <tr>
-                        <th width="100">種類</th>
-                        <th width="100">排名</th>
-                        <th width="100">商品編號</th>
+                        <th width="60">種類</th>
+                        <th width="60">排名</th>
+                        <th width="62">商品編號</th>
+                        <th width="80">商品名稱</th>
                     </tr>
                     <tr>
 <?php
@@ -56,52 +53,92 @@
         exit("<div><center>$errMsg</center></div>");
     }
 
-    for( $i = 1; $i < 13; $i++ ){
-        $rankRow = $ranks -> fetch();
+    $sql = "select * from snack where snackGenre = '巧克力' order by goodStars/goodTimes desc limit 6";
+    $choco = $pdo -> query($sql);
+    $i = 1;
+    while( $chocoRow = $choco -> fetch() ){
 ?>
-                        <td><?php echo $rankRow['rankGenre']?></td>
-                        <td><?php echo $rankRow['ranking']?></td>
-                        <td><?php echo $rankRow['snackNo']?></td>
+                        <td><?php echo $chocoRow['snackGenre']?></td>
+                        <td><?php echo $i?></td>
+                        <td><?php echo $chocoRow['snackNo']?></td>
+                        <td><?php echo $chocoRow['snackName']?></td>
                     </tr>
 <?php
+        $i++;
+    }
+    $sql = "select * from snack where snackGenre = '餅乾' order by goodStars/goodTimes desc limit 6";
+    $cookie = $pdo -> query($sql);
+    $i = 1;
+    while($cookieRow = $cookie -> fetch() ){
+?>
+                        <td><?php echo $cookieRow['snackGenre']?></td>
+                        <td><?php echo $i?></td>
+                        <td><?php echo $cookieRow['snackNo']?></td>
+                        <td><?php echo $cookieRow['snackName']?></td>
+                    </tr>
+<?php
+        $i++;
     }
 ?>
                 </table>
                 <table>
                     <tr>
-                        <th width="100">種類</th>
-                        <th width="100">排名</th>
-                        <th width="100">商品編號</th>
+                        <th width="60">種類</th>
+                        <th width="60">排名</th>
+                        <th width="62">商品編號</th>
+                        <th width="80">商品名稱</th>
                     </tr>
                     <tr>
 <?php
-    for( $i = 1; $i < 13; $i++ ){
-        $rankRow = $ranks -> fetch();
+    $sql = "select * from snack where snackGenre = '糖果' order by goodStars/goodTimes desc limit 6";
+    $candy = $pdo -> query($sql);
+    $i = 1;
+    while($candyRow = $candy -> fetch() ){
 ?>
-                        <td><?php echo $rankRow['rankGenre']?></td>
-                        <td><?php echo $rankRow['ranking']?></td>
-                        <td><?php echo $rankRow['snackNo']?></td>
+                        <td><?php echo $candyRow['snackGenre']?></td>
+                        <td><?php echo $i?></td>
+                        <td><?php echo $candyRow['snackNo']?></td>
+                        <td><?php echo $candyRow['snackName']?></td>
                     </tr>
 <?php
+        $i++;
+    }
+    $sql = "select * from snack where snackGenre = '洋芋片' order by goodStars/goodTimes desc limit 6";
+    $chip = $pdo -> query($sql);
+    $i = 1;
+    while($chipRow = $chip -> fetch() ){
+?>
+                        <td><?php echo $chipRow['snackGenre']?></td>
+                        <td><?php echo $i?></td>
+                        <td><?php echo $chipRow['snackNo']?></td>
+                        <td><?php echo $chipRow['snackName']?></td>
+                    </tr>
+<?php
+        $i++;
     }
 ?>
                 </table>
                 <table>
                     <tr>
-                        <th width="100">種類</th>
-                        <th width="100">排名</th>
-                        <th width="100">商品編號</th>
+                        <th width="60">種類</th>
+                        <th width="60">排名</th>
+                        <th width="62">商品編號</th>
+                        <th width="80">商品名稱</th>
                     </tr>
                     <tr>
 <?php
-    for( $i = 1; $i < 7; $i++ ){
-        $rankRow = $ranks -> fetch();
+    $sql = "select * from snack order by goodStars/goodTimes desc limit 6";
+    $all = $pdo -> query($sql);
+    $i = 1;
+    while($allRow = $all -> fetch() ){
 ?>
-                        <td><?php echo $rankRow['rankGenre']?></td>
-                        <td><?php echo $rankRow['ranking']?></td>
-                        <td><?php echo $rankRow['snackNo']?></td>
+                        <td>綜合</td>
+                        <td><?php echo $i?></td>
+                        <td><?php echo $allRow['snackNo']?></td>
+                        <td><?php echo $allRow['snackName']?></td>
                     </tr>
 <?php
+        $i++;
     }
 ?>                </table>
             </div>
@@ -110,27 +147,5 @@
             </footer>
         </div>
     </div> 
-    <script>
-        document.getElementById('update').addEventListener('click', function (){
-            if(window.confirm('排行榜更新後，舊的排行榜資料將會消失，網站內容也會更新，確認要更新排行榜嗎？') == true){
-                var xhr = new XMLHttpRequest();
-                xhr.onload = function () {
-                    if (xhr.status == 200) {
-                        if( xhr.responseText == 'true' ){
-                            alert('更新排行榜成功！');
-                            location.href='back_rank.php';
-                        }else{
-                            alert(xhr.responseText);
-                        }
-                    } else {
-                        alert(xhr.status);
-                    }
-                } 
-                xhr.open("Get", "back_rankToDb.php", true);
-                xhr.send( null );
-            }
-        })
-    
-    </script>
 </body>
 </html>

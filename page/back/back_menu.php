@@ -18,7 +18,7 @@
                         <a href="back_coupon.php">優惠券管理</a>
                     </li>
                     <li>
-                        <a href="back_rank.php">排行榜管理</a>
+                        <a href="back_rank.php">排行榜列表</a>
                     </li>
                     <li>
                         <a href="back_vending.php">販賣機管理</a>

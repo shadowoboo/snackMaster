@@ -10,7 +10,7 @@
         require_once("../connectcd105g2.php");
         $sql = "select * from clearance where clearanceNo = {$_REQUEST['clearanceNo']}";
         $clears = $pdo -> query($sql); 
-        $sql = "select * from clearanceitem where clearanceNo = {$_REQUEST['clearanceNo']}";
+        $sql = "select * from clearanceitem c join snack s on c.snackNo = s.snackNo where c.clearanceNo = {$_REQUEST['clearanceNo']}";
         $clearItems = $pdo -> query($sql);
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
@@ -64,6 +64,8 @@
                     <tr>
                         <th width='120'>明細編號</th>
                         <th width='120'>商品編號</th>
+                        <th width='120'>商品名稱</th>
+                        <th width='120'>商品原價</th>
                         <th width='120'>出清價格</th>
                         <th width='120'>出清數量</th>
                     </tr>
@@ -74,6 +76,8 @@
 ?>
                     <td><?php echo $i?></td>
                     <td><?php echo $itemRow['snackNo']?></td>
+                    <td><?php echo $itemRow['snackName']?></td>
+                    <td><?php echo $itemRow['snackPrice']?></td>
                     <td><?php echo $itemRow['salePrice']?></td>
                     <td><?php echo $itemRow['quantity']?></td>
                     </tr>
