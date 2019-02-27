@@ -184,9 +184,9 @@ try {
 <?php
     }
 ?>
-                                     <div class="pic">
+                                     <!-- <div class="pic">
                                         <img class="cusPic" id="image" style="width:53px;">
-                                    </div>
+                                    </div> -->
                                     <div class="upfile">
                                         <span>上傳圖片:</span>
                                         <label for="theFile">
