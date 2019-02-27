@@ -1,3 +1,6 @@
+
+
+
 function addBtnEva(){
 
     $('.sendEva').click(function(){
@@ -16,6 +19,7 @@ function addBtnEva(){
         xhr.send(data_info);
         xhr.onload=function(){
             alert("感謝您提供的意見，加100分");
+            $(`div[name=snackNo${snackNo}]`).remove();
 
         }
         console.log(data_info);

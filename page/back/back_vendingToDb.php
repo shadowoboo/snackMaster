@@ -26,20 +26,16 @@
                 echo "未上傳檔案 <br>";
                 break;
         }
-        if( $_FILES['upFile']['tmp_name'] == null ){
-            echo "<script>alert('未上傳圖片，新增販賣機失敗');location.href='back_vending.php';</script>";
-        }else{
-            $sql = "insert into masell(maPic, maLnge, maLat, maArea, maAdd)
-            values(:maPic, :maLnge, :maLat, :maArea, :maAdd)";
-            $vending = $pdo -> prepare($sql); 
-            $vending -> bindValue(':maPic', $to);
-            $vending -> bindValue(':maLnge', $_REQUEST['maLnge']);
-            $vending -> bindValue(':maLat', $_REQUEST['maLat']);
-            $vending -> bindValue(':maArea', $_REQUEST['maArea']);
-            $vending -> bindValue(':maAdd', $_REQUEST['maAdd']);
-            $vending -> execute();
-            echo "<script>alert('新增販賣機成功！');location.href='back_vending.php';</script>";
-        }
+        $sql = "insert into masell(maPic, maLnge, maLat, maArea, maAdd)
+        values(:maPic, :maLnge, :maLat, :maArea, :maAdd)";
+        $vending = $pdo -> prepare($sql); 
+        $vending -> bindValue(':maPic', $to);
+        $vending -> bindValue(':maLnge', $_REQUEST['maLnge']);
+        $vending -> bindValue(':maLat', $_REQUEST['maLat']);
+        $vending -> bindValue(':maArea', $_REQUEST['maArea']);
+        $vending -> bindValue(':maAdd', $_REQUEST['maAdd']);
+        $vending -> execute();
+        echo "true";
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";

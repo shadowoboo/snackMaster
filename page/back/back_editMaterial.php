@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="../../css/backstage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
+    <script src="../../js/alert.js"></script>
     <style>
         .backstage #contentWrap #content table{
             margin: auto;
@@ -67,7 +68,7 @@
     }
     $mateRow = $material -> fetch();
 ?>
-                <form action="back_editMaterialToDb.php">
+                <form id="myForm">
                     <table id="editTable">
                         <tr>
                             <td>編號</td>
@@ -106,7 +107,7 @@
                             </td>
                         </tr>
                     </table>
-                    <button type="submit" class="cart">修改商品</button>   
+                    <input type="button" class="cart" id="submit" value="修改素材">
                     <input type="button" class="cart" id="cancel" value="放棄修改">
                 </form>
             </div>
@@ -117,9 +118,30 @@
     </div> 
     <script>
         document.getElementById('cancel').addEventListener('click', function (){
-            if(window.confirm('確定要放棄修改商品嗎？') == true){
-                location.href = 'back_snack.php';
-            }
+            confirmBox('確定要放棄修改商品嗎？', function (){
+                location.href = 'back_coupon.php';
+            });
+        })
+        document.getElementById('submit').addEventListener('click', function (){
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    if( xhr.responseText == 'true' ){
+                        alertBox('修改素材成功！');
+                        document.getElementById('sure').addEventListener('click', function (){
+                            location.href='back_material.php';
+                        });
+                    }else{
+                        alertBox(xhr.responseText);
+                    }
+                } else {
+                    alertBox(xhr.status);
+                }
+            } 
+
+            xhr.open("Post", "back_editMaterialToDb.php", true);
+            var myForm = new FormData( document.getElementById('myForm'));
+            xhr.send( myForm );  
         })
     </script>
 </body>

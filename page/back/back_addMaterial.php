@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="../../css/backstage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
+    <script src="../../js/alert.js"></script>
     <style>
         .backstage #contentWrap #content table{
             margin: auto;
@@ -58,7 +59,7 @@
         exit("<div><center>$errMsg</center></div>");
     }
 ?>
-                <form action="back_materialToDb.php">
+                <form id="myForm">
                     <table>
                         <tr>
                             <td>種類</td>
@@ -79,7 +80,7 @@
                             <td><input type="text" name="materialPath" size="26"></td>
                         </tr>
                     </table>
-                    <button type="submit" class="cart" id="commit">新增素材</button>   
+                    <input type="button" class="cart" id="submit" value="新增素材">
                     <input type="button" class="cart" id="cancel" value="放棄新增">
                 </form>
             </div>
@@ -90,9 +91,30 @@
     </div> 
     <script>
         document.getElementById('cancel').addEventListener('click', function (){
-            if(window.confirm('確定要放棄新增素材嗎？') == true){
+            confirmBox('確定要放棄新增素材嗎？', function (){
                 location.href = 'back_material.php';
-            }
+            });
+        })
+        document.getElementById('submit').addEventListener('click', function (){
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    if( xhr.responseText == 'true' ){
+                        alertBox('新增素材成功！');
+                        document.getElementById('sure').addEventListener('click', function (){
+                            location.href='back_material.php';
+                        });
+                    }else{
+                        alertBox(xhr.responseText);
+                    }
+                } else {
+                    alertBox(xhr.status);
+                }
+            } 
+
+            xhr.open("Post", "back_materialToDb.php", true);
+            var myForm = new FormData( document.getElementById('myForm'));
+            xhr.send( myForm );  
         })
     </script>
 </body>

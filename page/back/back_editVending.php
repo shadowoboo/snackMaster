@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="../../css/backstage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
+    <script src="../../js/alert.js"></script>
     <style>
         .backstage #contentWrap #content table{
             margin: auto;
@@ -67,7 +68,7 @@
     }
     $venRow = $vending -> fetch();
 ?>
-                <form action="back_editVendingToDb.php" method="post" enctype="multipart/form-data">
+                <form id="myForm" method="post" enctype="multipart/form-data">
                     <table id="editTable">
                         <tr>
                             <td>編號</td>
@@ -111,7 +112,7 @@
                             </td>
                         </tr>
                     </table>
-                    <button type="submit" class="cart">修改販賣機</button>   
+                    <input type="button" class="cart" id="submit" value="修改販賣機">
                     <input type="button" class="cart" id="cancel" value="放棄修改">
                 </form>
             </div>
@@ -122,9 +123,30 @@
     </div> 
     <script>
         document.getElementById('cancel').addEventListener('click', function (){
-            if(window.confirm('確定要放棄修改販賣機嗎？') == true){
+            confirmBox('確定要放棄修改販賣機嗎？', function (){
                 location.href = 'back_vending.php';
-            }
+            });
+        })
+        document.getElementById('submit').addEventListener('click', function (){
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    if( xhr.responseText == 'true' ){
+                        alertBox('修改販賣機成功！');
+                        document.getElementById('sure').addEventListener('click', function (){
+                            location.href='back_vending.php';
+                        });
+                    }else{
+                        alertBox(xhr.responseText);
+                    }
+                } else {
+                    alertBox(xhr.status);
+                }
+            } 
+
+            xhr.open("Post", "back_editVendingToDb.php", true);
+            var myForm = new FormData( document.getElementById('myForm'));
+            xhr.send( myForm );  
         })
         document.getElementById('upFile').onchange = function(e){
             var file = e.target.files[0];

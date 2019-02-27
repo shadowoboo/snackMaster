@@ -14,7 +14,7 @@
     //     //登出資料要清空
     //     unset ($_SESSION["memNo"]);
     //     unset ($_SESSION["memId"]);
-    //     unset ($_SESSION["memId"]);
+    //     unset ($_SESSION["memPsw"]);
     //     //跳轉回首頁
     //     header("Location: homePage.php");
       
@@ -97,8 +97,9 @@
     <link rel="stylesheet" href="../css/header.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/header.js" defer></script>
-    <script src="../js/member.js" defer></script>
     <script src="../js/sendEva.js"></script>
+    <script src="../js/member.js" defer></script>
+   
 
     <title>會員專區</title>
 
@@ -187,7 +188,7 @@
                     <td>
                         <p>
                             電話：
-                            <input type="number" name="phone" value="<?php echo $memRow["memPhone"];?>" maxlength="10"
+                            <input type="text" name="phone" value="<?php echo $memRow["memPhone"];?>" maxlength="10"
                                 id="memPhone">
                             <img src="../images/tina/pen.png" alt="編輯">
                         </p>
@@ -432,14 +433,7 @@
 
                           $order_listArr = $order_list->fetchAll(PDO::FETCH_ASSOC);
                           $OLrowcount = $order_list->rowCount(); 
-                        //   print_r($order_listRow);
-                        //   print_r($order_listArr);
-                        //   echo $OLrowcount."<br>" ;
-                        //   echo count($order_listArr).$br;
-
-                      
-                        
-
+                    
                           for($i=0;$i<$OLrowcount;$i++){
         ?>
                                 <tr class="orderList_moreItems item01">
@@ -458,7 +452,10 @@
                                 
                                
                                     <tr class="eva_lightBox_Box01 eva_lightBox" name="snackNo<?php echo $order_listArr[$i]['snackNo'] ?>">
-                                            <td></td>
+                                            <td>
+        
+
+                                            </td>
                                             <td></td>
                                             <td></td>
                                             <td>
@@ -571,7 +568,8 @@
                                                 <div class="evaContent evaSend">
                                                     <input type='button' id="<?php echo $order_listArr[$i]['snackNo'] ?>" class="step sendEva" value="送出表單" >
                                                 </div>
-                                            </td>
+                                         </td> 
+                                         
                                     </tr>
                                
                                
@@ -765,5 +763,6 @@ function doFirst() {
 
 window.addEventListener('load', doFirst, false);
 </script>
+ 
 
 </html>

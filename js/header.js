@@ -159,6 +159,8 @@ function showLightBox(e) {
         // alert(123);
     } else {
         $id('lightBox-wrap').classList.toggle('show');
+        changeway(event,'Loginpage');
+        $id('open').innerText = '登入';
     }
 
 
@@ -190,19 +192,14 @@ function changeway(e, tabchange) {
     for (i = 0; i < tabContent.length; i++) {
         tabContent[i].style.display = "none";
     }
-    loginTab = document.getElementsByClassName('loginTab');
-    //   console.log('bbb');
-
-    for (i = 0; i < loginTab.length; i++) {
-        loginTab[i].classList.remove("active");
-        loginTab.className = loginTab[i].className.replace('active', "");
-    }
     document.getElementById(tabchange).style.display = "block";
-    e.target.classList.add("active");
-    //   e.currentTarget.className += " active";
-
+    if( tabchange == 'signup' ){
+        $id('open').innerText = '註冊會員';
+    }else if ( tabchange == 'forgetPsw' ){
+        $id('open').innerText = '取回密碼';
+    }
 }
-$id('open').click();
+// $id('open').click();
 //-----------關閉燈箱---------------------------------------
 function cancelLogin() {
     $id('lightBox-wrap').classList.remove('show');
@@ -354,32 +351,21 @@ function add_member() {
                 $id('signUpMemEmail').value = "";
                 $id('btnloglout').innerHTML = "登出"
                 $id('memLogin').style.color = "#076baf";
-
-
             }
 
         } else {
             alert(xhr.status);
-
         }
-
     }
     //php$_REQUEST代入以下變數
     var account = $id("signUpMemId").value;
     var password = $id("signUpMemPsw").value;
     var email = $id("signUpMemEmail").value;
-
+    
     var url = "addMember.php?account=" + account + "&password=" + password + "&email=" + email;
     xhr.open("Get", url, true);
     xhr.send(null);
-    //     regInfo = {
-    //     memId :$id("signUpMemId").value,
-    //     memPsw:$id("signUpMemPsw").value,
-    //     email:$id('signUpMemEmail').value
-    // }
-
-    //  xhr.send( "regInfo="+ JSON.stringify(regInfo) );
-
+    
 }
 //===========================================//
 //             這是忘記密碼                   //

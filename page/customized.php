@@ -34,6 +34,7 @@ try {
    <!-- <script src="../js/recorder.js"></script> -->
    <script src="../js/common.js"></script>
    <script src="../js/findingIp.js"></script>
+   <script src="../js/alert.js"></script>
    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </head>
 
@@ -99,23 +100,22 @@ try {
                                 <div class="camera">
                                     <div class="box boxBase" id="box_15">
                                         <div class="surface surface_top" id="cover_out_15">
-                                            <!-- <img src="ip2.png" id="a1" alt=""> -->                                      
-                                            <!-- <img id="cusImg_top" src="../images/tina/LOGO1.png" alt="" style="display:none;"> -->
+                                          
                                         </div>
                                         <!-- <div class="surface surface_top_inner" id="cover_in_15">
                                         </div> -->
                                         <div class="surface surface_down" id="cover_down">
-                                        <img id="cusImg_down" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+    
                                         </div>
                                         <div class="surface surface_back" id="cover_back"></div>
                                         <div class="surface surface_front" id="cover_front">
-                                        <img id="cusImg_front" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+                                       
                                         </div>
                                         <div class="surface surface_left" id="cover_left">
-                                        <img id="cusImg_left" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+                                       
                                         </div>
                                         <div class="surface surface_right" id="cover_right">
-                                        <img id="cusImg_right" src="../images/tina/LOGO1.png" alt="" style="display:none;">
+                                       
                                         </div>
                                     </div>
                                 </div>
@@ -126,10 +126,10 @@ try {
                                     <div class="btn" id="btn_clk"><img src="../images/customized/rotate.png" alt=""></div>
                                     <div class="btn" id="btn_clk_r"><img src="../images/customized/rotate_r.png" alt=""></div>
                                     <div class="btn" id="btn_del"><i class="fa fa-trash"></i></div>
-                                </div>                        
-                                <div class="btn show action" id="boxSureBtn" style="line-height: 35px;margin:3px auto;">設計完成</div> 
+                                </div>                                                       
                         </div>
                     </div>  
+                <div class="formBody">
                     <div class="form">
                         <ul class="tab-group-1">
                             <li class="tab-1 active"><a href="#colorBtn">顏色</a></li>
@@ -137,45 +137,56 @@ try {
                         </ul>
                         <div class="tab-content-1">
                             <div id="colorBtn">   
-                            <div class="top-row">
-                                <div class="pickColor">
-                                    <div class="colorBtn color1"></div>
-                                    <div class="colorBtn color2"></div>
-                                    <div class="colorBtn color3"></div>
-                                    <div class="colorBtn color4"></div>
-                                    <div class="colorBtn color5"></div>
-                                    <div class="colorBtn color6"></div>
-                                    <div class="colorBtn color7"></div>
-                                    <div class="colorBtn color8"></div>
-                                </div>
-                            </div>
-                                </div>
-                            <div id="picBtn">   
-                                <div class="pics" id="picsRegion">
+                                <div class="top-row">
+<?php
+    $errMsg = "";
+        try {
+            require_once("connectcd105g2.php");
+            $sql = "select * from material ORDER BY materialNo limit 11,18";
+            $material = $pdo->query($sql);
+        } catch (PDOException $e){
+            $errMsg .= "錯誤 :".$e -> getMessage()."<br>";
+            $errMsg .= "行號 :".$e -> getLine()."<br>";
+        }
+?>                            
+ <div class="pickColor">
+<?php
+  while( $mateRow = $material -> fetch() ){
+?>                                                                         
+            <div class="colorBtn" style="background-color:<?php echo $mateRow['materialPath']?>;"></div>
+<?php
+    }
+?>     
+    </div>                               
+        </div>
+    </div>
+                        
+    <div id="picBtn">   
+        <div class="pics" id="picsRegion">
+<?php
+    $errMsg = "";
+        try {
+            require_once("connectcd105g2.php");
+            $sql = "select * from material ORDER BY materialNo limit 0,8";
+            $material = $pdo->query($sql);
+        } catch (PDOException $e){
+            $errMsg .= "錯誤 :".$e -> getMessage()."<br>";
+            $errMsg .= "行號 :".$e -> getLine()."<br>";
+        }
+?>                            
+<?php
+  while( $mateRow = $material -> fetch() ){
+?>                                          
                                     <div class="pic">
-                                        <img class="cusPic" src="../images/tina/LOGO1.png" alt="" style="width:65px;">
+                                        <img class="cusPic" src="<?php echo $mateRow['materialPath']?>" alt="">
                                     </div>
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images/nnnnn/ipf.png" alt="">
-                                    </div>
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images//nnnnn/ipc.png" alt="" style="width:53px;">
-                                    </div>
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images//nnnnn/ipcho.png" alt="">
-                                    </div>
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images//nnnnn/ipcandy.png" alt="">
-                                    </div>                                    
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images/index/IP-2.png" alt="" style="width:56px;">
-                                    </div>                                    
-                                    <div class="pic">
-                                        <img class="cusPic" src="../images/index/IP-1.png" alt="" style="width:60px;">
-                                    </div>
-                                    <div class="pic">
+
+<?php
+    }
+?>
+                                     <!-- <div class="pic">
                                         <img class="cusPic" id="image" style="width:53px;">
-                                    </div>
+                                    </div> -->
                                     <div class="upfile">
                                         <span>上傳圖片:</span>
                                         <label for="theFile">
@@ -184,14 +195,15 @@ try {
                                             <!-- <p>8M內，jpg、png之圖檔。</p> -->
                                         </label>
                                     </div>
-                                </div>
-                                                                                           
-            <p>
-                <textarea id="fileInfo" rows="5" cols="70" style="display:none;"></textarea>
-            </p>
+                                </div>                                                                                           
+                                <p>
+                                    <textarea id="fileInfo" rows="5" cols="70" style="display:none;"></textarea>
+                                </p>
                             </div>
                         </div><!-- tab-content -->
+                        <div class="btn show action" id="boxSureBtn" style="margin:47px auto 15px;line-height: 35px;">編輯完成</div> 
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -205,7 +217,7 @@ try {
                     }
                 }
              </script>                    -->
-      <div id="step2" class="step-content-body out">
+      <div id="step2" class="step-content-body done">
         <div class="customized">
             <!-- <div class="priceSign">$150</div> -->
             <div class="snackHouse">
@@ -230,26 +242,35 @@ try {
                             <p>客製完成</p>   
                         </div> -->
                     </div>
+ <?php
+    $errMsg = "";
+        try {
+            require_once("connectcd105g2.php");
+            $sql = "select * from material ORDER BY materialNo limit 18,19";
+            $material = $pdo->query($sql);
+        } catch (PDOException $e){
+            $errMsg .= "錯誤 :".$e -> getMessage()."<br>";
+            $errMsg .= "行號 :".$e -> getLine()."<br>";
+        }
+?>                            
+<?php
+  while( $mateRow = $material -> fetch() ){
+?>                      
                 <div class="section section_15" id="section_15" style="flex-wrap:wrap;">
                     <div class="lefCard" style="flex:2;">
                             <div class="cardBox">
-                                    <img  id="large" src="../images/customized/card.png" alt="">
+                                    <img  id="large" src="<?php echo $mateRow['materialPath']?>" alt="">
                                 </div>  
                             </div>
+<?php
+}
+?>                            
+                <div class="cardBody">
                     <div class="pickCard">
                             <ul class="tab-content-2">
-                                <li class="tab yellow">樣式</li>
-                                <li class="tab">文字</li>
+                                <li class="tab yellow">文字</li>
                                 <li class="tab">音效</li>
                             </ul>
-                            <div class="content">
-                                <div class="cardStyle">
-                                    <img src="../images/customized/card.png" class="small" id="i_0">
-                                    <!-- <img src="../images/small/card02.png" class="small" id="i_1">
-                                    <img src="../images/small/card03.png" class="small" id="i_1">
-                                    <img src="../images/small/card04.png" class="small" id="i_1">                           -->
-                                </div>
-                            </div>
                             <div class="content">
                                 <div class="cardText"> 
                                     <div class="btn7 action" id="btn7_add" style="line-height:35px; margin:25px;">新增文字</div>                          
@@ -379,14 +400,15 @@ try {
                                     <div id="recordBtn" class="recordBtn"><i class="fas fa-microphone"></i></div>
                                 </div>
                             </div> -->
-                        </div>
+                        </div>                    
                     </div>            
-                    <div class="btn show action" id="cardSureBtn" style="line-height: 35px;">設計完成 </div> 
+                    <div class="btn show action" id="cardSureBtn" style="line-height: 35px;margin:39px auto">編輯完成 </div> 
+                </div>
                   </div> 
              </div>
          </div>
       </div>
-      <div id="step3" class="step-content-body out">
+      <div id="step3" class="step-content-body done">
         <div class="customized">
             <!-- <div class="priceSign">$150</div> -->
             <div class="snackHouse">
@@ -510,11 +532,40 @@ try {
     //$arr_row[49] 代表 客製箱 (sql中第50個)
 ?>
   <div class="step-content-foot">
-        <button type="button" class="step" name="prev">上一步</button>
-        <button type="button" class="step" name="next">下一步</button>
-        <button type="button" class="active out step cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="test" data-cusCard="../images/customized/card.png" data-cusSound="test" >加入購物車</button>
+        <button type="button" class="step none"  id="btn1">上一步</button>
+        <button type="button" class="step"  id="btn2" disabled="true">下一步</button>
+        <button type="button" class="active out step cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="../images/blair/customized.png" data-cusCard="../images/customized/card.png" data-cusSound="test" >加入購物車</button>
   </div>
+<script>
+var steps = $(".step-content-body"), i = 0;
 
+$("#btn2").click(function(){
+  
+  if(i < steps.length) {
+    console.log("btn2 - "+i); steps.eq(i).removeClass('active').addClass('done').next().addClass('active')
+    i++;
+  }
+  if(i+1 < steps.length) {
+    $("#btn1").removeClass('none');
+  }
+
+//   if( i+1< steps.length) {
+//     $('button[name="finish"]').removeClass('none');
+//   }
+
+});
+
+
+$("#btn1").click(function(){
+  
+  if(i <= steps.length && i > 0) {
+    
+    console.log("btn1 - "+i); steps.eq(i).removeClass('active').prev().addClass('active');
+    i--;
+    
+  }
+});
+</script>
 
   <div class="img1"></div>
   <div class="img2"></div>
@@ -574,9 +625,18 @@ try {
 
 <script>
 //前:50  後：49 上：48 左：51 右：52 
-    
+$( "#boxSureBtn" ).click(function() {
+    $(this).css({"background-color":"rgb(204, 204, 204)","color": "rgb(170, 170, 170)"});
+    $('#btn2').attr('disabled', false);
+});    
+$( "#cardSureBtn" ).click(function() {
+    $(this).css({"background-color":"rgb(204, 204, 204)","color": "rgb(170, 170, 170)"});
+});    
+
+
+
       $("#boxSureBtn").click(function() {
-          alert('成功將客製箱加入囉～');
+          alertBox('成功將客製箱加入囉～');
       html2canvas($(".leftBox")[0]).then(function(canvas) {
           var $div = $(".img1");
           $div.empty();
@@ -607,7 +667,7 @@ try {
                                 $("#myImage").val("");
                             }
                         }else{
-                        alert(xhr.status);
+                        alertBox(xhr.status);
                         }
                 }
             };
@@ -619,7 +679,7 @@ try {
 
 
     $("#cardSureBtn").click(function() {
-          alert('成功將客製卡片加入囉～');
+          alertBox('成功將客製卡片加入囉～');
       html2canvas($(".lefCard")[0]).then(function(canvas) {
           var $div = $(".img3");
           $div.empty();
@@ -650,7 +710,7 @@ try {
                                 $("#myCard").val("");
                             }
                         }else{
-                        alert(xhr.status);
+                        alertBox(xhr.status);
                         }
                 }
             };
@@ -1101,6 +1161,24 @@ try {
                         //取按鈕背景色
                         var tarColor = window.getComputedStyle(e.target, null).getPropertyValue("background-color");
                         // console.log(`tarColor: ${tarColor}`);
+                        //調暗
+                        var edit = tarColor.replace("rgb","").replace("(","").replace(")","");
+                        var newArr=[];
+                        var per=0.15; //趴數，越小越暗
+                        edit=edit.split(", ");
+                        // console.log(`edit: ${edit}`);
+                        edit.forEach(el => {
+                            el=parseInt(el*per);
+                            // console.log(`el= ${el}`);
+                            newArr.push(el);
+                        });
+                        // console.log(`edit: ${edit}`);
+                        // console.log(`newArr: ${newArr}`);
+                        tarColor=`rgb(${newArr[0]},${newArr[1]},${newArr[2]})`;
+                        // console.log(`tarColor: ${tarColor}`);
+                        
+
+                        
                         // console.log(`tarColor type: ${typeof (tarColor)}`);
 
                         //更換目標背景色
@@ -2090,7 +2168,7 @@ try {
             })
         }
     </script>
-
+<!-- 卡片音效 src 傳到data-cussound鈕 -->
     <script>
     $(function () {
         $("#soundAdd").on("click",addSound);

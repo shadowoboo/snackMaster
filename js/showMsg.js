@@ -1,11 +1,11 @@
 
 function repBtnAdd(){
     $('.report').click(function(e){
-        e.preventDefault();
-        console.log($(this));
+        $('.report').attr('disable',true);
+        // console.log($(this));
         if($('#btnloglout').text()=='登出'){
             if(confirm("確定要檢舉這則言論嗎?")){
-                console.log($(this));
+                // console.log($(this));
                 var repNo=$(this).attr('repno');
                 var to=$(this).attr('to');
                 var xhr=new XMLHttpRequest();
@@ -14,20 +14,26 @@ function repBtnAdd(){
                 var data_info=`repNo=${repNo}&repTo=${to}`;
                 xhr.send(data_info);
                 xhr.onload=function(){
-                    if(xhr.responseText=='1'){
+                    if(xhr.responseText=='already'){
 
-                        alert('請勿重複檢舉同一則言論。')
+                        alert('您已經檢舉過這則評價了。')
+                    }else if(xhr.responseText=='already2'){
+
+                        alert('您已經檢舉過這則留言了。')
                     }else{
-                        alert('感謝您的檢舉，將由系統管理員進行審核');
-                        console.log(xhr.responseText);
+                        alert('感謝您的檢舉，將由管理員進行審核');
+                        // console.log(xhr.responseText);
                     }
-                    
+                    $('.report').attr('disable',false);  
                 }
 
+            }else{
+                $('.report').attr('disable',false);  
             }
         }else{
             alert('登入會員後才能進行檢舉');
-            showLightBox();            
+            showLightBox();  
+            $('.report').attr('disable',false);          
         }
     });
 
