@@ -1,154 +1,59 @@
-// // function doFirst(){
-// // 	var canvas = document.getElementById('canvas');
-// // 	context = canvas.getContext('2d');
-
-// // 	canvas.addEventListener('mousedown',usePen);
-// // 	//要先有一個滑鼠事件，每當滑鼠移動就執行usePen的函式
-	
-// // }
-// // function usePen(e){
-// // 	context.fillStyle = 'red';
-
-// // 	context.beginPath(); //每次移動就要從新開始
-// // 	context.arc(e.pageX,e.pageY,5,0,2*Math.PI,true);//圓心要偵測page的x.y座標
-// // 	context.fill();
-// // }
-// // window.addEventListener('load',doFirst);
-
-// function $id(id) {
-//     return document.getElementById(id);
-//   }
-//   function $class(className) {
-//     return document.getElementsByClassName(className);
-//   }
-//   function $all(all) {
-//     return document.querySelectorAll(all);
-//   }
-// //   document.getElementById("close-search").addEventListener("click", function() {
-// //     searchImg();
-// //     //   searchAjax();
-// //   });
-  
-// //   function searchImg() {
-// //     var grouponTagName = document.getElementsByName("groupon-TagName");
-// //     var N = "images/icon/tag_N.svg";
-// //     var Y = "images/icon/tag_Y.svg";
-// //     grouponTagName[0].checked = true;
-// //     document.querySelectorAll('.groupon-TagName img')[0].src=Y;
-// //     for (let i = 0; i < grouponTagName.length; i++) {
-// //       grouponTagName[i].addEventListener("input", function() {
-// //         var b = $(this)
-// //           .parent()
-// //           .find($(".groupon-TagName")[i])
-// //           .find($("img"));
-// //         if ((grouponTagName[i].checked = true)) {
-// //           $(".groupon-TagName")
-// //             .find($("img"))
-// //             .attr("src", N);
-// //           b.attr("src", Y);
-// //         }
-// //       });
-// //     }
-// //   }
-  
-// //   var markGroupon = document.getElementById("bookmark-animation-groupon");
-// //   var markMeal = document.getElementById("bookmark-animation-meal");
-// //   var markGrouponText = $id("bookmark-animation-groupon").innerText;
-// //   var markMealText = $id("bookmark-animation-meal").innerText;
-// //   // var markSearchValue = markSearch.placeholder;
-// //   markGroupon.addEventListener("click", function() {
-// //     $id("input-search").placeholder="請輸入" + markGrouponText + "關鍵字";
-// //   });
-// //   markMeal.addEventListener("click", function() {
-// //     $id("input-search").placeholder="請輸入" + markMealText + "關鍵字";
-// //   });
-// //   $id('start-search').addEventListener('click',function () {
-// //     var searchText = [];
-// //     inputText = $id('input-search').innerText;
-// //     searchText =  inputText.split(" ");
-// //     // startSearch(searchText); 
-// //   },false);
-  
-// //   function startSearch(searchGO) {
-  
-// //     if($id('bookmark-meal').checked==true){
-  
-// //       var xhr = new XMLHttpRequest();
-// //       xhr.onload = function(){
-// //         if( xhr.status == 200){
-// //           window.alert(xhr.responseText);
-// //           location.href = 'searchToMealUpshot.php';
-// //         }else{
-// //           alert(xhr.status);
-// //         }
-// //       }
-// //       xhr.open("post","searchToMeal.php",true);
-// //       var GOsearch = new FormData(document.getElementById("GOsearch"))
-// //       xhr.send(GOsearch);
-  
-// //     }else if($id('bookmark-groupon').checked==true){
-// //       var xhr = new XMLHttpRequest();
-// //       xhr.onload = function(){
-// //         if( xhr.status == 200){
-// //           window.alert(xhr.responseText);
-// //           location.href = 'searchToGrouponUpshot.php';
-// //         }else{
-// //           alert(xhr.status);
-// //         }
-// //       }
-// //       xhr.open("post","searchToGroupon.php",true);
-// //       var GOsearch = new FormData(document.getElementById("GOsearch"))
-// //       xhr.send(GOsearch);
-// //     }
-  
-// //   function searchAjax() {
-// //     //傳PHP端
-// //     var obj = {};
-// //     obj.meal_Genre = "meal_Genre";
-// //     obj.grouponTag = "grouponTag";
-// //     var jsonStr = JSON.stringify(obj);
-  
-// //     //=====使用Ajax 回server端,取回關鍵字內容, 放到頁面上
-// //     var xhr = new XMLHttpRequest();
-// //     xhr.onload = function() {
-// //       if (xhr.status == 200) {
-// //         if (xhr.responseText.indexOf("not found") != -1) {
-// //           //回傳的資料中有not found
-// //           // return "";
-// //           alert("not found");
-// //         } else {
-// //           //查有此keyword
-// //           alert("OK");
-// //         }
-// //       } else {
-// //         alert(xhr.status);
-// //       }
-// //     };
-// //     xhr.open("post", "searchAjax.php", true);
-// //     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-// //     var data_info = "jsonStr=" + jsonStr;
-// //     xhr.send(data_info);
-// //   }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // --------------------------------------------
-(function() {
-    "use strict";
-  
+
+
+
+function doFirst() {
+  setInterval(showGame, 10000);
+}
+function showGame() {
+  var random = (Math.floor(Math.random() * 10) + 1) * 1000;
+  randomTimer = setInterval(randomGame, random);
+}
+function randomGame() {
+  var game = document.getElementById('game');
+  game.classList.remove('fadeOut');
+  game.classList.add('fadeIn');
+  clearInterval(randomTimer);
+  catchTimer = setInterval(gameCountdown, 5000);
+}
+function gameCountdown() {
+  game.classList.add('fadeOut');
+  game.classList.remove('fadeIn');
+  clearInterval(catchTimer);
+}
+
+
+
+function pickCp(){
+  var cpImg = Math.floor(Math.random() * 3) + 1;
+  switch (cpImg) {
+    case 1:
+      var d = 'd50';
+      price = '50';
+      break;
+    case 2:
+      var d = 'd100';
+      price = '100';
+      break;
+    case 3:
+      var d = 'd200';
+      price = '200';
+      break;
+  }
+  $('#scratchWrapCoupon').html(`<img class='shake-slow' src="../images/coupon/${d}.png">`);
+  $('#scratchWrapCount').html(`<h3>${price}元優惠券</h3>`);
+  $('#scratchWrapCoupon').attr({'d':d,'price':price});
+
+
+}
+
+function scratchSetting(){
+
+  pickCp()
+
+
+
     var isDrawing, lastPoint;
     var container = document.getElementById("scratch"),
       canvas = document.getElementById("gameCanvas"),
@@ -207,25 +112,91 @@
         mx,
         my;
   
-      if (canvas.offsetParent !== undefined) {
-        do {
-          offsetX += canvas.offsetLeft;
-          offsetY += canvas.offsetTop;
-        } while ((canvas = canvas.offsetParent));
-      }
+      // if (canvas.offsetParent !== undefined) {
+      //   do {
+      //     offsetX += canvas.offsetLeft;
+      //     offsetY += canvas.offsetTop;
+      //   } while ((canvas = canvas.offsetParent));
+      // }
+
+          // offsetX += canvas.offsetLeft;
+          // offsetY += canvas.offsetTop;
+          mx = offsetX = e.offsetX;
+          my = offsetY = e.offsetY;
   
-      mx = (e.pageX || e.touches[0].clientX) - offsetX;
-      my = (e.pageY || e.touches[0].clientY) - offsetY;
-  
+      // mx = (e.pageX || e.touches[0].clientX) - offsetX;
+      // my = (e.pageY || e.touches[0].clientY) - offsetY;
+      // console.log( "currentPoint :", { x: mx, y: my })
       return { x: mx, y: my };
     }
   
     function handlePercentage(filledInPixels) {
       filledInPixels = filledInPixels || 0;
-    //   console.log(filledInPixels + "%");
-      if (filledInPixels > 80) {
+      // console.log(filledInPixels + "%");
+      if (filledInPixels > 50) {
         //範圍
         canvas.parentNode.removeChild(canvas);
+        $('.scratchWrapIp img').addClass('rotate')
+        //1.刮完之後 ip會動
+        //2.開始偵測是否登入
+        // if($('#btnloglout').text()=='登出'){}
+        if($('#btnloglout').text()=='登出'){
+          sendCp();
+         // $('#cJump p').html(`恭喜你獲得了${price}元優惠券！<br>(已自動存入優惠券夾)`);
+         $('#endGame').click(byebye);
+
+        }else{
+          $('#scratchWrapCount').html(`<h4>恭喜你獲得了${price}元優惠券！<br>(請登入會員才能領取優惠券)</h4>`);
+          $('#endGame').text('去登入').click(function(){
+            showLightBox();
+            $('#endGame').off('click');
+            checkLogin();
+          });
+
+        }
+        //2-1.登入了 把優惠券寫進資料庫
+        //2-2.沒登入 打開登入燈箱 開始監聽登入動作 直到登入後 跳回2-1;
+        //3-1.沒拿過 成功寫入 
+        //3-2.拿過 告訴她只能拿一張
+      }
+      function checkLogin(price){
+        if($('#btnloglout').text()=='登出'){
+          $('#endGame').text('確定');
+          sendCp();
+        }else{
+          setTimeout(checkLogin,1000);
+        }
+      }
+      function sendCp(){
+        var price = $('#scratchWrapCoupon').attr('price');
+        switch(price){
+          case '50':
+          coupNo=1;
+          break;
+          case '100':
+          coupNo=2;
+          break;
+          case '200':
+          coupNo=3;
+          break;
+        }
+        var xhr =new XMLHttpRequest();
+        xhr.open("Post", "sendCp.php", true);
+        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        var data_info=`coupNo=${coupNo}`;
+        xhr.send(data_info);
+        xhr.onload=function(){
+          if(xhr.responseText==1){
+            //成功
+            $('#scratchWrapCount').html(`<h4>恭喜你獲得了${price}元優惠券！<br>(已自動存入優惠券夾)</h4>`);
+            $('#endGame').click(byebye);
+          }else{
+            //已經拿過
+            $('#scratchWrapCount').html(`<h4>恭喜你完成遊戲，但是你已經領過同樣的優惠券囉！</h4>`);
+            $('#endGame').click(byebye);
+          }
+        }
+
       }
     }
   
@@ -240,12 +211,18 @@
       }
   
       e.preventDefault();
-  
+      // console.log( "y :",e.offsetY);
+      // console.log( "x : ",e.offsetX);
+      // console.log( e.clientY);
+      // console.log( e.clientX);
+
       var currentPoint = getMouse(e, canvas),
         dist = distanceBetween(lastPoint, currentPoint),
         angle = angleBetween(lastPoint, currentPoint),
         x,
         y;
+
+        // console.log( "currentPoint :", currentPoint)
   
       for (var i = 0; i < dist; i++) {
         x = lastPoint.x + Math.sin(angle) * i - 25;
@@ -261,5 +238,45 @@
     function handleMouseUp(e) {
       isDrawing = false;
     }
-  })();
-  
+    
+    function byebye() {
+      $('.fullPage').remove();
+    }
+
+}  
+
+
+  $(document).ready(function(){
+
+    var chocoR=`<div id="game" class="gameScratch"><img src="../images/index/gameImgR.png" alt="遊戲圖"><p>限時刮刮樂<br>刮出優惠券！</p></div>`;
+    var scratch =`
+      <link rel="stylesheet" href="../css/scratch.css">
+          <section class="fullPage">
+              <div class="scratch" id="scratch">
+                  <img id="bgGlow" src="../images/rankBoard/cpGlow.svg">
+                  <div class="scratchWrap">
+                      <div id="scratchWrapCoupon">
+                      </div>
+                      <div id="scratchWrapCount">
+                      </div>
+                      <div class="scratchWrapIp">
+                          <img src="../images/game/scratchIp.png" alt="零食怪">
+                          <img src="../images/game/scratchIp1.png" alt="零食怪">
+                          <img src="../images/game/scratchIp2.png" alt="零食怪">
+                          <img src="../images/game/scratchIp3.png" alt="零食怪">
+                          <img src="../images/game/scratchIp4.png" alt="零食怪">
+                      </div>
+                      <button class='step' id="endGame"> 確定 </button>
+                  </div>
+                  <canvas class="gameGanvas " id="gameCanvas" width="370" height="600"></canvas>
+              </div>
+          </section>`;
+    $('body').append(chocoR);
+    doFirst();
+    $('.gameScratch').click(function(){
+      // alert('true');
+      $('body').append(scratch);
+      scratchSetting();
+    });
+
+  })
