@@ -28,8 +28,8 @@ try {
         crossorigin="anonymous">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
-    <!-- <script src="../js/findingIp.js"></script> -->
     <script src="../js/search.js"></script>
+    <!-- <script src="../js/scratch.js"></script> -->
 
 
 </head>
@@ -132,7 +132,7 @@ try {
                             <span id="maAdd"><?php echo $sellRow["maAdd"];?></span>
                         </div>
                         <div class="map_serch_item_info_distance">
-                            <span>距離: 100公尺</span>
+                            <span class="distance" data-lnge="<?php echo $sellRow["maLnge"] ?>" data-lat="<?php echo $sellRow["maLat"];?>">距離: 100公尺</span>
                         </div>
                         <div class="map_serch_info_line" id="<?php echo $sellRow["maLnge"]."|".$sellRow["maLat"];?>">
                             <span>規劃路線
@@ -188,7 +188,17 @@ try {
                             endLat = item.id.split('|')[1];
                             initialize(); 
                             });
-                        }
+                    }
+                    //distance
+                    var distances = document.getElementsByClassName("distance");
+                    for(var i=0; i<distances.length; i++){
+                        var x = parseFloat(distances[i].dataset.lnge);
+                        var y = parseFloat(distances[i].dataset.lat);
+                        var a = Math.abs(x - 24.967768)*111;
+                        var b = Math.abs(y - 121.191705)*111;
+                        var cc = Math.pow(a,2) + Math.pow(b,2);
+                        distances[i].innerText = "距離：" + Math.sqrt(cc).toFixed(3) + "公里";
+                    }
                 }else{
                     alert( xhr.status );
                 }
@@ -287,6 +297,11 @@ try {
     ?>
 
 
+   
+
+    
+
+
     //限制地圖區域
     // function doFirst(){
     //     navigator.geolocation.getCurrentPosition(succCallback);
@@ -324,6 +339,17 @@ try {
             map: map
         });
         marker.setTitle('目前位置'); 
+
+         //distance
+        var distances = document.getElementsByClassName("distance");
+        for(var i=0; i<distances.length; i++){
+            var x = parseFloat(distances[i].dataset.lnge);
+            var y = parseFloat(distances[i].dataset.lat);
+            var a = Math.abs(x - 24.967768)*111;
+            var b = Math.abs(y - 121.191705)*111;
+            var cc = Math.pow(a,2) + Math.pow(b,2);
+            distances[i].innerText = "距離：" + Math.sqrt(cc).toFixed(3) + "公里";
+        }
     }
 
     // marker 地標
