@@ -52,7 +52,7 @@
             $i++;
         }
 
-        $sql = "select snackNo from snack where snackGenre = '綜合' order by goodStars/goodTimes desc limit 6";
+        $sql = "select snackNo from snack order by goodStars/goodTimes desc limit 6";
         $all = $pdo -> query($sql);
         $i = 1;
         while($allRow = $all -> fetch() ){

@@ -354,32 +354,21 @@ function add_member() {
                 $id('signUpMemEmail').value = "";
                 $id('btnloglout').innerHTML = "登出"
                 $id('memLogin').style.color = "#076baf";
-
-
             }
 
         } else {
             alert(xhr.status);
-
         }
-
     }
     //php$_REQUEST代入以下變數
     var account = $id("signUpMemId").value;
     var password = $id("signUpMemPsw").value;
     var email = $id("signUpMemEmail").value;
-
+    
     var url = "addMember.php?account=" + account + "&password=" + password + "&email=" + email;
     xhr.open("Get", url, true);
     xhr.send(null);
-    //     regInfo = {
-    //     memId :$id("signUpMemId").value,
-    //     memPsw:$id("signUpMemPsw").value,
-    //     email:$id('signUpMemEmail').value
-    // }
-
-    //  xhr.send( "regInfo="+ JSON.stringify(regInfo) );
-
+    
 }
 //===========================================//
 //             這是忘記密碼                   //

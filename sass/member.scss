@@ -1023,9 +1023,7 @@ input[type="number"]{
                                     }
                                 }
 
-                             .eva_lightBox{
-                                 
-                             }
+                            
                         //         .eva_lightBox{
                         //             display: none;
                         //             overflow: hidden;
@@ -1242,6 +1240,7 @@ input[type="number"]{
                     .collect{
                         display: flex;
                         flex-direction: row;
+                        flex-wrap: wrap;
                         justify-content: space-evenly;
                         align-self: center;  
                         .item{
