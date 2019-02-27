@@ -93,93 +93,93 @@
 </head>
 
 <body>
-<header>
-        <h1>大零食家</h1>
-        <div class="cloud">
-            <div class="doc doc--bg2">
-                <canvas id="canvas"></canvas>
-            </div>
-            <nav>
-                <label for="smlSearch" class="searchBtn" value="search">
-                    <img src="../images/tina/search-icon.svg" alt="" id="searchBtn">
-                </label>
-                <div class="menu">
-                    <!-------- -----手機漢堡----------- -->
-                    <div id="ham">
-                        <span class="btnTop"></span>
-                        <span class="btnMid"></span>
-                        <span class="btnBot"></span>
-                    </div>
-                    <!----    在手機上打開此logo;桌機上關掉此logo------ -->
-                    <div class="logo">
-                        <a href="homePage.php"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
-                    </div>
-                    <div id="list_appear">
-                        <!-- ----------手機選單離開-------- -->
-                        <div id="cros">
-                            <span class="leave"><i class="fas fa-times"></i></span>
+    <header>
+            <h1>大零食家</h1>
+            <div class="cloud">
+                <div class="doc doc--bg2">
+                    <canvas id="canvas"></canvas>
+                </div>
+                <nav>
+                    <label for="smlSearch" class="searchBtn" value="search">
+                        <img src="../images/tina/search-icon.svg" alt="" id="searchBtn">
+                    </label>
+                    <div class="menu">
+                        <!-------- -----手機漢堡----------- -->
+                        <div id="ham">
+                            <span class="btnTop"></span>
+                            <span class="btnMid"></span>
+                            <span class="btnBot"></span>
                         </div>
-                        <ul class="list">
-                            <li id="gorankBoard"><a href="rankBoard.php">零食排行榜</a></li>
-                            <li id="gocustomized"><a href="customized.php">客製零食箱</a> </li>
-                            <!-- 在手機上要關掉這個li的logo -->
-                            <li><a href="homePage.php"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
-                            <li id="store"> 零食商店街
-                                <ul id="Submenu" class="subMenu">
-                                    <li id="snBox"><a href="preOrder.php">預購零食箱</a></li>
-                                    <li><a href="shopping.php">零食列表</a></li>
-                                </ul>
-                            </li>
-                            <li id="goGsell"><a href="gsell.php">尋找販賣機</a> </li>
-                        </ul>
+                        <!----    在手機上打開此logo;桌機上關掉此logo------ -->
+                        <div class="logo">
+                            <a href="homePage.php"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
+                        </div>
+                        <div id="list_appear">
+                            <!-- ----------手機選單離開-------- -->
+                            <div id="cros">
+                                <span class="leave"><i class="fas fa-times"></i></span>
+                            </div>
+                            <ul class="list">
+                                <li id="gorankBoard"><a href="rankBoard.php">零食排行榜</a></li>
+                                <li id="gocustomized"><a href="customized.php">客製零食箱</a> </li>
+                                <!-- 在手機上要關掉這個li的logo -->
+                                <li><a href="homePage.php"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
+                                <li id="store"> 零食商店街
+                                    <ul id="Submenu" class="subMenu">
+                                        <li id="snBox"><a href="preOrder.php">預購零食箱</a></li>
+                                        <li><a href="shopping.php">零食列表</a></li>
+                                    </ul>
+                                </li>
+                                <li id="goGsell"><a href="gsell.php">尋找販賣機</a> </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <ul class="login">
-                    <li><a href="?loglout=true"><span id="btnloglout">&nbsp</span></a></li>
-                    <!-- <li><span id="btnloglout">&nbsp</span></li> -->
-                    <li><i class="fas fa-user-circle" id="memLogin"></i></li>
-                    <li id="goCartShow"><a href="cartShow.php"><i class="fas fa-shopping-cart" id="shopCart"></i></a></li>
-                </ul>
-            </nav>
-            <div class="seachRegion" id="search_appear">
-                <div class="search">
-                    <img src="../images/blair/pocky.png" alt="">
-                    <div class="selectbar">
-                        <select name="country" id="country">
-                            <option value="0">國家</option>
-                            <option value="巴西">巴西</option>
-                            <option value="日本">日本</option>
-                            <option value="美國">美國</option>
-                            <option value="英國">英國</option>
-                            <option value="埃及">埃及</option>
-                            <option value="德國">德國</option>
-                            <option value="澳洲">澳洲</option>
-                            <option value="韓國">韓國</option>
-                        </select>
-                        <select name="kind" id="kind">
-                            <option value="0">種類</option>
-                            <option value="巧克力">巧克力</option>
-                            <option value="糖果">糖果</option>
-                            <option value="餅乾">餅乾</option>
-                            <option value="洋芋片">洋芋片</option>
-                        </select>
-                        <select name="flavor" id="flavor">
-                            <option value="0">口味</option>
-                            <option value="sour">酸</option>
-                            <option value="sweet">甜</option>
-                            <option value="spicy">辣</option>
-                        </select>
+                    <ul class="login">
+                        <li><a href="?loglout=true"><span id="btnloglout">&nbsp</span></a></li>
+                        <!-- <li><span id="btnloglout">&nbsp</span></li> -->
+                        <li><i class="fas fa-user-circle" id="memLogin"></i></li>
+                        <li id="goCartShow"><a href="cartShow.php"><i class="fas fa-shopping-cart" id="shopCart"></i></a></li>
+                    </ul>
+                </nav>
+                <div class="seachRegion" id="search_appear">
+                    <div class="search">
+                        <img src="../images/blair/pocky.png" alt="">
+                        <div class="selectbar">
+                            <select name="country" id="country">
+                                <option value="0">國家</option>
+                                <option value="巴西">巴西</option>
+                                <option value="日本">日本</option>
+                                <option value="美國">美國</option>
+                                <option value="英國">英國</option>
+                                <option value="埃及">埃及</option>
+                                <option value="德國">德國</option>
+                                <option value="澳洲">澳洲</option>
+                                <option value="韓國">韓國</option>
+                            </select>
+                            <select name="kind" id="kind">
+                                <option value="0">種類</option>
+                                <option value="巧克力">巧克力</option>
+                                <option value="糖果">糖果</option>
+                                <option value="餅乾">餅乾</option>
+                                <option value="洋芋片">洋芋片</option>
+                            </select>
+                            <select name="flavor" id="flavor">
+                                <option value="0">口味</option>
+                                <option value="sour">酸</option>
+                                <option value="sweet">甜</option>
+                                <option value="spicy">辣</option>
+                            </select>
+                        </div>
+                        <div class="inputbar">
+                            <input type="text" id="searchName" placeholder="想找什麼零食呢？">
+                            <i class="fas fa-search" id="searchClick"></i>
+                        </div>
                     </div>
-                    <div class="inputbar">
-                        <input type="text" id="searchName" placeholder="想找什麼零食呢？">
-                        <i class="fas fa-search" id="searchClick"></i>
+                    <div id="close">
+                        <span class="close"><i class="fas fa-times"></i></span>
                     </div>
-                </div>
-                <div id="close">
-                    <span class="close"><i class="fas fa-times"></i></span>
                 </div>
             </div>
-        </div>
     </header>
     <!-- //-------------------------------------------------------//
 -----------------------       這是燈箱        ------------------ -->
@@ -271,10 +271,9 @@
     </div>
 
 
-    </div>
+    
 
     <section class="memWrap">
-
         <form action="memUpdate.php" method="post" enctype="multipart/form-data" id="memInfo">
             <table class="col-12 col-1">
                 <tr>
@@ -397,7 +396,6 @@
 
             </table>
         </form>
-
     </section>
 
     <!-- -------------------功能區------------------- -->

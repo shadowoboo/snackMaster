@@ -25,7 +25,7 @@
                             <span id='maAdd'>{$sellRow["maAdd"]}</span>
                         </div>
                         <div class='map_serch_item_info_distance'>
-                            <span>距離: 100公尺</span>
+                            <span class='distance' data-lnge='{$sellRow['maLnge']}' data-lat='{$sellRow['maLat']}'></span>
                         </div>
                         <div class='map_serch_info_line' id='{$sellRow["maLnge"]}|{$sellRow["maLat"]}'>
                             <span>規劃路線
