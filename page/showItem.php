@@ -86,6 +86,7 @@ session_start();
     <script src="../js/addHeart.js"></script>
     <script src="../js/addcart.js"></script>
     <script src="../js/search.js"></script>
+    <script src="../js/alert.js"></script>
     
 </head>
 
