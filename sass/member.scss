@@ -243,7 +243,7 @@ input[type="number"]{
         width: 92%;
         height: auto;
         background-color: #fff;
-        border-radius: 15px;
+        border-radius: 10px;
         margin: auto;
         position: absolute;
         left: 0;
@@ -337,7 +337,7 @@ input[type="number"]{
                 flex-wrap: wrap;
                 .col4{
                     width: 50%;
-                    padding: 5px;
+                    padding: 10px;
                     p{
                         font-size: 18px;
                         line-height: 2;
@@ -393,7 +393,7 @@ input[type="number"]{
                         td{
                             color: $tabColor;
                             font-size: 18px;
-                            font-family: g2Font;
+                            font-family: g2Med;
                             padding: 10px;
                         }
                     }
@@ -408,7 +408,8 @@ input[type="number"]{
                     line-height: 1.6;
                     color: $tabColor;
                     font-family: g2Font;
-                    padding: 10px; 
+                    padding: 20px;
+                    margin-top: -30px; 
                 }
             }
             .orderitem{
@@ -422,7 +423,7 @@ input[type="number"]{
                     
                 }
                 .line{
-                    width: 88%;
+                    width: 95%;
                     margin: auto;
                     height: 2px;
                     border-bottom: 2px solid $blue;
@@ -437,11 +438,12 @@ input[type="number"]{
                             text-align: center;
                            th{
                                 width: 15%;
-                              line-height: 1.6;
-                               font-size: 15px;
-                               color: $blue;
-                               font-family: g2Font;
-                               padding: 10px;
+                            // line-height: 1.6;
+                                line-height: 1.2;
+                                font-size: 15px;
+                                color: $blue;
+                                font-family: g2Font;
+                                padding: 10px;
                            }
                         }
                         .orderList_moreItems{
@@ -450,7 +452,8 @@ input[type="number"]{
                                 font-size: 16px;
                                 color: $tabColor;
                                 font-family:g2Med; 
-                                padding: 10px;
+                                padding: 5px;
+                                line-height: 1.2;
                                 img{
                                     width: 100%;
                                 }
@@ -589,13 +592,14 @@ input[type="number"]{
         .collect{
             width: 100%;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-self: center;
+            flex-wrap: wrap;
+            // flex-direction: column;
+            // justify-content: center;
+            // align-self: center;
                 
                 .item{
                     background-color: rgb(228, 222, 222);
-                    width: 330px;
+                    width: 280px;
                     height: 400px;
                     border-radius: 10px;
                     position: relative;
@@ -645,7 +649,8 @@ input[type="number"]{
 
 //---------------優惠券--------------------------    
 #tab-4{
-    width: 85%;
+    width: 92%;
+    max-width: 1200px;
     table{
         margin: auto;
         width: 100%;
@@ -658,7 +663,7 @@ input[type="number"]{
                 color: $tabColor;
                 font-family: g2Font;
                 font-size: 16px;
-                border-bottom: 2px solid #076baf;
+                // border-bottom: 2px solid #076baf;
             }
         }
         
@@ -670,7 +675,7 @@ input[type="number"]{
                 width: 20%;
                 vertical-align: middle;
                 padding: 2%;
-                font-family: g2Font;
+                font-family: g2Med;
                 color: $tabColor;
                 font-size: 14px;
                 margin-right: 1%;
@@ -792,9 +797,9 @@ input[type="number"]{
         
 
     }
-    footer{
-        display: none;
-    }
+    // footer{
+    //     display: none;
+    // }
     
     
     }
@@ -911,7 +916,7 @@ input[type="number"]{
         .wrapTabPanel{
             .tabPanel{
                 max-width: 1200px;
-                width: 100%;
+                width: 92%;
                 // height: auto;
             }
 
@@ -971,12 +976,12 @@ input[type="number"]{
                         justify-content: space-around;
                        
                         table{
-                            width: 50%;
+                            width: 40%;
                             tr{
                               
                                 th{
-                                    font-size: 28px;
-                                    width: 34%;
+                                    font-size: 22px;
+                                    width: 35%;
                                     padding: 10px;
                                 }
                                 td{
@@ -989,11 +994,13 @@ input[type="number"]{
                         }
                     }
                     .total{
-                        text-align: right;
-                        
+                        // text-align: right;
+                        position: relative;
                         p{
                             font-size: $p;
-                            padding: 20px; 
+                            // padding: 20px;
+                            padding: 80px;
+                            margin-top: -100px; 
                         }
                     }
                     .orderitem{
@@ -1017,15 +1024,17 @@ input[type="number"]{
                                 .orderList_moreItems{
                                     td{
                                         font-size: $p;
+                                        line-height: 1.6;
+                                        padding: 10px;
                                         img{
                                             width: 50%;
                                         }
                                     }
                                 }
 
-                             .eva_lightBox{
+                            //  .eva_lightBox{
                                  
-                             }
+                            //  }
                         //         .eva_lightBox{
                         //             display: none;
                         //             overflow: hidden;
@@ -1241,11 +1250,13 @@ input[type="number"]{
             #tab-3{
                     .collect{
                         display: flex;
-                        flex-direction: row;
-                        justify-content: space-evenly;
-                        align-self: center;  
+                        // flex-direction: row;
+                        // justify-content: space-evenly;
+                        // align-self: center;  
+                        flex-wrap: wrap;
+                        justify-content: space-around;
                         .item{
-                            width: 260px;
+                            width: 280px;
                             margin: 18px;
                             padding: 5px;
                         }    
@@ -1260,7 +1271,7 @@ input[type="number"]{
                         text-align: center;
                         th{
                             
-                            font-size: 28px;
+                            font-size: 22px;
                             
                         }
                     }
@@ -1286,21 +1297,21 @@ input[type="number"]{
 
 
         }
-        footer{
-            // bottom: unset;
-            #floor {
-                position: relative;
-                text-align: center;
-                #copy {
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    margin: auto;
-                    font-size: 1.2vw;
-                }
-            }
-        }  
+        // footer{
+        //     // bottom: unset;
+        //     #floor {
+        //         position: relative;
+        //         text-align: center;
+        //         #copy {
+        //             position: absolute;
+        //             bottom: 0;
+        //             left: 0;
+        //             right: 0;
+        //             margin: auto;
+        //             font-size: 1.2vw;
+        //         }
+        //     }
+        // }  
         
     
     
@@ -1328,8 +1339,29 @@ input[type="number"]{
 }
 
 
-footer{
-    // position: absolute;
-    // bottom:0;
-    display: none;
+// footer{
+//     // position: absolute;
+//     // bottom:0;
+//     display: none;
+// }
+
+
+//footer
+.footer{
+    #floor {
+        position: relative;
+        text-align: center;
+        #copy {
+            position: absolute;
+            bottom: 2px;
+            @media screen and (min-width: 992px) {
+                bottom:0; 
+            }
+            left: 0;
+            right: 0;
+            margin: auto;
+            font-size: 1.2vw;
+            color: #575757;
+        }
+    }
 }
