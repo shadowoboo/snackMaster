@@ -49,7 +49,7 @@ function pickCp(){
 }
 
 function scratchSetting(){
-  "use strict";
+  // "use strict";
   pickCp()
 
 
