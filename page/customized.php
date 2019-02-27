@@ -142,7 +142,7 @@ try {
     $errMsg = "";
         try {
             require_once("connectcd105g2.php");
-            $sql = "select * from material ORDER BY materialNo limit 11,18";
+            $sql = "select * from material ORDER BY materialNo limit 10,17";
             $material = $pdo->query($sql);
         } catch (PDOException $e){
             $errMsg .= "錯誤 :".$e -> getMessage()."<br>";
@@ -167,7 +167,7 @@ try {
     $errMsg = "";
         try {
             require_once("connectcd105g2.php");
-            $sql = "select * from material ORDER BY materialNo limit 0,8";
+            $sql = "select * from material ORDER BY materialNo limit 0,7";
             $material = $pdo->query($sql);
         } catch (PDOException $e){
             $errMsg .= "錯誤 :".$e -> getMessage()."<br>";
@@ -184,9 +184,9 @@ try {
 <?php
     }
 ?>
-                                     <!-- <div class="pic">
+                                     <div class="pic">
                                         <img class="cusPic" id="image" style="width:53px;">
-                                    </div> -->
+                                    </div>
                                     <div class="upfile">
                                         <span>上傳圖片:</span>
                                         <label for="theFile">
@@ -533,7 +533,8 @@ try {
 ?>
   <div class="step-content-foot">
         <button type="button" class="step none"  id="btn1">上一步</button>
-        <button type="button" class="step"  id="btn2" disabled="true">下一步</button>
+        <button type="button" class="step"  id="btn2">下一步</button>
+        <!-- <button type="button" class="step"  id="btn2" disabled="true">下一步</button> -->
         <button type="button" class="active out step cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="../images/blair/customized.png" data-cusCard="../images/customized/card.png" data-cusSound="test" >加入購物車</button>
   </div>
 <script>
@@ -627,7 +628,7 @@ $("#btn1").click(function(){
 //前:50  後：49 上：48 左：51 右：52 
 $( "#boxSureBtn" ).click(function() {
     $(this).css({"background-color":"rgb(204, 204, 204)","color": "rgb(170, 170, 170)"});
-    $('#btn2').attr('disabled', false);
+    // $('#btn2').attr('disabled', false);
 });    
 $( "#cardSureBtn" ).click(function() {
     $(this).css({"background-color":"rgb(204, 204, 204)","color": "rgb(170, 170, 170)"});

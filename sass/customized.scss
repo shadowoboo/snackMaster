@@ -438,9 +438,6 @@ display: none;
                 flex: 5;
                 cursor: move;
             }
-            #image{
-                outline: 1px dotted;
-            }
        }
         }
         #btns15{
@@ -723,6 +720,9 @@ a {
         border-radius: 50%;
         background-color: #fff;
         cursor: pointer;
+        &:last-child{
+            display: none;
+        }
     }
  }
   &:after {
@@ -1650,6 +1650,7 @@ $cardY:600px;
                     width: 44px !important;
                 }
                 img{
+                    width: 58px;
                     cursor: initial;
                     margin: 6px;
                 }
