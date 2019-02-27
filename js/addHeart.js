@@ -6,7 +6,7 @@ function addHeart(e){
         var snackNo = e.target.parentNode.id;
     }
     if (document.getElementById("btnloglout").innerHTML == "&nbsp;") {
-        alertBox('請先登入會員唷～');
+        alertBox('請先登入會員喔～');
         document.getElementById('sure').addEventListener('click', function () {
             showLightBox();
         });

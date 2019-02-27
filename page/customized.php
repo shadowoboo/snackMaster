@@ -34,6 +34,7 @@ try {
    <!-- <script src="../js/recorder.js"></script> -->
    <script src="../js/common.js"></script>
    <script src="../js/findingIp.js"></script>
+   <script src="../js/alert.js"></script>
    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </head>
 
