@@ -1602,7 +1602,7 @@ body {
         right: 1%;
         width: 100px;
         // animation: float 1s linear infinite alternate;
-        z-index: 999;
+        z-index: 100;
         cursor: pointer;
         box-shadow: 0 0 30px 2px #fff;
         display: none;
@@ -1613,42 +1613,7 @@ body {
             color: #fff;
         }
     }
-    // .gameScratch {
-    //     position: fixed;
-    //     bottom: 2%;
-    //     right: -200px;
-    //     width: 190px;
-    //     z-index: 999;
-    //     cursor: pointer;
-    //     p {
-    //         position: absolute;
-    //         top: 22px;
-    //         left: 35px;
-    //         color: #737374;
-    //     }
-    // }
-    // .fadeIn {
-    //     animation: fadeIn 1s both;
-    // }
-    // .fadeOut {
-    //     animation: fadeOut 1s;
-    // }
-    // @keyframes fadeIn {
-    //     0% {
-    //         transform: translateX(0)
-    //     }
-    //     100% {
-    //         transform: translateX(-200px)
-    //     }
-    // }
-    // @keyframes fadeOut {
-    //     0% {
-    //         transform: translateX(-200px)
-    //     }
-    //     100% {
-    //         transform: translateX(0)
-    //     }
-    // }
+   
     .footer {
         #floor {
             position: relative;

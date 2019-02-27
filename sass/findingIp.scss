@@ -39,25 +39,30 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    background: #076baf;
-    color:#fff;
-    font-size: 34px;
+    background: #fff;
+    color:#737374;
     text-align: center;
-    line-height: 40px;
     cursor: pointer;
-    &:hover{
-      background:#00457b;
-    }
-    @media screen and(max-width:767px) {
-      top:-10%;
-      width: 35px;
-      height: 35px;
+    i{
       font-size: 24px;
-      line-height: 35px;
+      line-height: 30px;
+      &:hover{
+        color:#076baf;
+        transform: scale(1.1);
+        transition: 0.5s;
+
+      }
     }
+    // @media screen and(max-width:767px) {
+    //   // top:-10%;
+    //   // width: 30px;
+    //   // height: 35px;
+    //   // font-size: 24px;
+    //   // line-height: 35px;
+    // }
   }
 #fbg{
   width: 100%;
@@ -335,6 +340,7 @@
   .sure{
     display: inline-block;
     line-height: 1.6em;
+    font-family: g2font;
     @media screen and(max-width:767px) {
       font-size: 14px;
       height: 22px;

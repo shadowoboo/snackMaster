@@ -349,6 +349,7 @@
         height:auto;
         border-radius: 100px;
         margin: 50px auto;
+        transition: 1s;
         @media screen and (min-width: $moblie) {
             height: auto;
         }
@@ -363,7 +364,12 @@
         }
         .mem {
             display: flex;
+            padding-top: 17.5px;
             padding-bottom: 17.5px;
+            border-bottom:#737374 solid 1.2px;
+            &:last-child{
+                border-bottom: none;
+            }
 
             .memPic {
                 width: 6.33%;
@@ -393,16 +399,19 @@
                             content:'檢舉';
                             color: #737374;
                             padding: 5px;
-                            background-color: #fff;
+                            // background-color: #fff;
                             border: solid 1x #737374;
                             font-size: 14px;
                             position: absolute;
                             top: 0;
-                            left: -30px;
+                            left: -40px;
                             display: none;
                         }
-                        &:hover::before{
-                            display: block;
+
+                        @media screen and (min-width: $moblie) {
+                            &:hover::before{
+                                display: block;
+                            }
                         }
                     }
                 }
@@ -441,7 +450,7 @@
 
                 .msgs {
                     overflow: hidden;
-                    transition: .8s;
+                    transition: 1s;
                     .noMsg{
                         color: #737374;
                     }
@@ -454,8 +463,11 @@
                 .msg_num {
                     display: flex;
                     padding: 17.5px 0;
-                    border-bottom: #076baf solid 1px;
+                    border-bottom: #737374 solid 1.2px;
                     position: relative;
+                    &:last-child{
+                        border-bottom: none;
+                    }
 
                     .memPic {
                         width: 7.33%;
@@ -477,6 +489,7 @@
                         .msgCtx {
                             color: #737374;
                             margin-top: 3%;
+                            font-family: g2Med;
                         }
                         .msgTime{
                             color:#707071;
@@ -523,22 +536,32 @@
         display: flex;
         justify-content: space-between;
         padding-top: 10px;
-        @include btn('like', 28.5%, 30px, #fff, $blue, transparent, 10px, 0px, #fff, $deepblue, 16px);
-        @include btn('share', 28.5%, 30px, $blue, #fff, $blue, 10px, 0px, #fff, $blue, 16px);
-        @include btn('btnMsg', 28.5%, 30px, #fff, $blue, transparent, 10px, 0px, #fff, $deepblue, 16px);
+        @include btn('like', 48%, 30px, #737374, #fff, #737374, 10px, 0px, #fff, $blue, 16px);
+        @include btn('btnMsg', 48%, 30px, #737374, #fff, #737374, 10px, 0px, #fff, $blue, 16px);
 
         .like,
-        .share,
         .btnMsg {
             font-size: 14px;
+            border:1px solid #737374;
+            letter-spacing: 1px;
+            
 
             @media screen and (min-width: $moblie) {
                 font-size: 16px;
+                &:hover{
+                border:1px solid $blue;
+            }
             }
         
         }
+        .like{
+            @media screen and (min-width: $moblie){
+                width: 8.5%;
+            }
+
+        }
         .btnMsg{
-            width: 31.5%;
+
             @media screen and (min-width: $moblie) {
                 width: 28.5%;
             }
@@ -555,12 +578,15 @@
             width: calc(63.95% + 2px);
             height: 30px;
             padding:0 5px;
-            border: solid 2px #076baf;
+            border: solid 1px #737374;
             border-radius: 10px;
             font-size: 14px;
             resize: none;
             font-family: g2Med;
-
+            color: #737374;
+            &:focus{
+                border: solid 2px #076baf;
+            }
             @media screen and (min-width: $moblie) {
                 font-size: 16px;
             }
@@ -571,16 +597,18 @@
             width: 31.5%;
             height: 30px;
             color: #fff;
-            background-color: $blue;
-            border: 2px solid $blue;
+            background-color: #737374;
+            border: 1px solid #737374;
             position: relative;
             border-radius: 10px;
             font-family: g2Font;
             cursor: pointer;
             text-align: center;
+            letter-spacing: 1px;
             &:hover{
-                background-color: #00457b;
-                border: 2px solid #00457b;
+                color: #fff;
+                border: 1px solid $blue;
+                background-color: $blue;
             }
            
             @media screen and (min-width: $moblie) {

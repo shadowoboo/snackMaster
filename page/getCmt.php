@@ -55,12 +55,12 @@ if($page==0){//第一次進來 要回傳第0~2的評價 以及要產生多少頁
                 <p class="msgTime">留言時間:'.$cmt["evaDate"].'</p>
                 <div class="commentBtns">
                     <button class="like" evaNo='.$cmt["evaNo"].'><i class="far fa-thumbs-up"></i>'.$cmt["like"].'</button>
-                    <button class="share"><i class="fas fa-share"></i>分享</button>
+  
                     <button class="btnMsg" id="show'.$cmt["evaNo"].'" evaNo='.$cmt["evaNo"].'><i class="fas fa-comment"></i>顯示留言</button>
                 </div>
 
                 <div class="msgBox">
-                    <input type="text" id="ctx'.$cmt["evaNo"].'" class="msg" name="msg" placeholder="留言......">
+                    <input type="text" id="ctx'.$cmt["evaNo"].'" class="msg" name="msg" autocomplete="off" placeholder="留言......">
                     <input type="submit" class="sendMsg" evaNo='.$cmt["evaNo"].' value="送出">
                 </div>
                 <div class="msgs" id="msgBox'.$cmt["evaNo"].'">
@@ -96,7 +96,6 @@ if($page==0){//第一次進來 要回傳第0~2的評價 以及要產生多少頁
         <p class="msgTime">留言時間:'.$cmt["evaDate"].'</p>
         <div class="commentBtns">
             <button class="like" evaNo='.$cmt["evaNo"].'><i class="far fa-thumbs-up"></i>'.$cmt["like"].'</button>
-            <button class="share"><i class="fas fa-share"></i>分享</button>
             <button class="btnMsg" evaNo='.$cmt["evaNo"].'><i class="fas fa-comment"></i>顯示留言</button>
         </div>
 

@@ -34,6 +34,8 @@
     <script src="../js/showStar.js"></script>
     <script src="../js/addHeart.js"></script>
     <script src="../js/addCart.js"></script>
+    <script src="../js/alert.js"></script>
+        <script src="../js/scratch.js"></script>
     <link rel="stylesheet" href="../css/animate.min.css">
     <link rel="stylesheet" href="../css/boxModel.css">
     <link rel="stylesheet" href="../css/sale.css">
@@ -136,6 +138,8 @@
             </div>  
         </header>
 
+        
+
         <div id="lightBox-wrap">
         <div id="lightBox">
             <div class="loginLeave">
@@ -156,6 +160,7 @@
                             <td>
                                 <label class="Box-name" for="loginMemPsw">密碼</label>
                                 <input type="password" name="loginMemPsw" id="loginMemPsw">
+                                <p id="forgetPswLink" onclick="changeway(event,'forgetPsw')"> 忘記密碼?</p>
                             </td>
                         </tr>
                         <tr>
@@ -164,8 +169,7 @@
                             </td>
                         </tr>
                     </table>
-                    <span id="forgetPswLink" onclick="changeway(event,'forgetPsw')"> 忘記密碼</span>
-                    <span onclick="changeway(event,'signup')">註冊會員</span>
+                    <p id="signUpBtn" onclick="changeway(event,'signup')">註冊會員</p>
                 </form>
                 <!------------------------------------------------註冊表單------------------------------------------  -->
                 <form id="signup" class="tabContent">
@@ -2111,7 +2115,7 @@
 
 
 <!-- 刮刮樂遊戲動畫 -->
-    <!-- <script>
+    <script>
         function doFirst() {
             setInterval(showGame, 10000);
         }
@@ -2133,7 +2137,7 @@
         }
 
         window.addEventListener('load', doFirst);
-    </script> -->
+    </script>
 
     
 

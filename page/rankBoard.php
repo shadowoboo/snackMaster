@@ -66,6 +66,8 @@ session_start();
     <script src="../js/showMsg.js"></script>
     <script src="../js/search.js"></script>
     <script src="../js/addHeart.js"></script>
+    <script src="../js/alert.js"></script>
+    <script src="../js/addCart.js"></script>
 </head>
 <body class="rankBoard">
     <?php
