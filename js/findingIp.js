@@ -368,7 +368,7 @@ $('document').ready(function(){
   <section id="findingIp" >
         <div id="content" >
             <div id="cancel">
-              X 
+            <i class="fas fa-times"></i> 
             </div> 
             <div id="fbg" >
               <img src = "../images/rankBoard/findingIp.svg" >
