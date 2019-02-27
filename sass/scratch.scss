@@ -1,82 +1,129 @@
-@import "reset.scss";
+// @import "reset.scss";
 @import "common.scss";
 
 body{
     background-color: #b8f1ed;
 }
-.scratch{
-    width: 370px;
-    height: 600px;
-    position: relative;
-    margin: 50px auto;
-    .gameGanvas{
+.fullPage{
+    position: fixed;
+    z-index: 900;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.3);
+    .scratch{
         width: 370px;
         height: 600px;
-        position: absolute;
-        top: 0;
-    }
-    .scratchWrap{
-        width: 100%;
-        max-width: 330px;
-        height: 100%;
-        max-height: 580px;
-        background-color: rgba(255,255,255,0.9);
-        box-shadow: 2px 2px 10px 2px #ddd; 
-        border-radius: 20px;
-        backface-visibility: hidden;
-        overflow: hidden;
-        margin: auto;
-        position: absolute;
+        position: relative;
         left: 0;
         right: 0;
-        top: 0;
+        top: 180px;
         bottom: 0;
-        .scratchWrapCoupon{
-            width: 60%;
-            margin: 140px auto 30px;
-            text-align: center;
+        margin: auto;
+        #bgGlow{
+            position: absolute;
+            top: -16%;
+            left: -60%;
+            z-index: -1;
+            width: 220%;
+            animation: rollGlow 33s infinite linear;
+              @media screen and(max-width:767px) {
+                top: -18%;
+                left: -33%;
+                width: 170%;
+              }
+          }
+          @keyframes rollGlow {
+            0% {
+                transform: rotate(0deg);
+            }
+      
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        .scratchWrapCount{
-            letter-spacing: 2px;
-            text-align: center;
-            line-height: 1.6em;
-            margin: 10px;
-            color: $gray;
+        .gameGanvas{
+            width: 370px;
+            height: 600px;
+            position: absolute;
+            z-index: 999;
+            top: 0;
         }
-        .scratchWrapIp{
-            width: 50%;
-            // margin: 10px;
-            // text-align: center;
-            img{
-                display: block;
-                position: absolute;
+        .scratchWrap{
+            text-align: center;
+            width: 100%;
+            max-width: 330px;
+            height: 100%;
+            max-height: 580px;
+            background-image: url(../images/game/scratchBg.png);
+            background-repeat: no-repeat;
+            box-shadow: 2px 2px 15px 0px #fff;
+            border-radius: 20px;
+            backface-visibility: hidden;
+            overflow: hidden;
+            margin: auto;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            #scratchWrapCoupon{
+                width: 60%;
+                margin: 140px auto 30px;
+                text-align: center;
+            }
+            #scratchWrapCount{
+                letter-spacing: 2px;
+                text-align: center;
+                line-height: 1.6em;
+                margin: 10px;
+                color: $gray;
+            }
+            .scratchWrapIp{
                 width: 50%;
+                // margin: 10px;
+                // text-align: center;
+                img{
+                    display: block;
+                    position: absolute;
+                    width: 45%;
+                }
+                :nth-child(1){
+                    bottom: -80px;
+                    left: 85px;
+                }
+                :nth-child(2){
+                    top: -40px;
+                    left: -40px;
+                }
+                :nth-child(3){
+                    bottom: 40px;
+                    left: -90px;
+                }
+                :nth-child(4){
+                    bottom: 25px;
+                    right: -90px;
+                }
+                :nth-child(5){
+                    top: -40px;
+                    right: -60px;
+                }
             }
-            :nth-child(1){
-                bottom: -80px;
-                left: 85px;
+            .step{
+                margin: 20px auto;
             }
-            :nth-child(2){
-                top: -40px;
-                left: -40px;
-                transform: rotate(160deg);
-            }
-            :nth-child(3){
-                bottom: 40px;
-                left: -90px;
-                transform: rotate(40deg);
-            }
-            :nth-child(4){
-                bottom: 40px;
-                right: -90px;
-                transform: rotate(-40deg);
-            }
-            :nth-child(5){
-                top: -40px;
-                right: -60px;
-                transform: rotate(270deg);
+    
+        }
+        .rotate{
+            animation: aaa 0.5s infinite alternate;
+            @keyframes aaa {
+                0%{
+                    transform: rotate(10deg);
+                }
+                100%{
+                    transform: rotate(-10deg);
+                }
             }
         }
-
     }
 }

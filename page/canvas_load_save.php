@@ -7,7 +7,7 @@ if(isset($_POST['myImage'])  && $_POST['myImage']!=""){
   $img = str_replace('data:image/png;base64,', '', $img);
   // $img = str_replace(' ', '+', $img);
   $data = base64_decode($img);
-  $fileName = date("Ymd");
+  $fileName = date("Ymdhisa");
   $file = $upload_dir . $fileName . ".png";
   $success = file_put_contents($file, $data);
   echo $success ? $file : 'Unable to save the file.';
@@ -24,7 +24,7 @@ if(isset($_POST['myCard']) && $_POST['myCard']!=""){
   $img = str_replace('data:image/png;base64,', '', $img);
   // $img = str_replace(' ', '+', $img);
   $data = base64_decode($img);
-  $fileName = date("Ymd");
+  $fileName = date("Ymdhisa");
   $file = $upload_dir . $fileName . ".png";
   $success = file_put_contents($file, $data);
   // echo $success ? $file : 'Unable to save the file.';

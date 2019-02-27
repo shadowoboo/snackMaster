@@ -703,12 +703,12 @@ $( "#cardSureBtn" ).click(function() {
 
 
     $("#cardSureBtn").click(function() {
-          alertBox('成功將客製卡片加入囉～');
-      html2canvas($(".lefCard")[0]).then(function(canvas) {
-          var $div = $(".img3");
-          $div.empty();
-          $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-          //-------------------
+        alertBox('成功將客製卡片加入囉～');
+        html2canvas($(".lefCard")[0]).then(function(canvas) {
+            var $div = $(".img3");
+            $div.empty();
+            $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
+            //-------------------
             document.getElementById('myCard').value = canvas.toDataURL("image/png");
             var formData = new FormData(document.getElementById("myForm")); //沒有同時送資料的話，用form會讓其他欄位多夾帶資料，記得銷毀
             var xhr = new XMLHttpRequest();

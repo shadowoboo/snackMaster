@@ -18,8 +18,8 @@
    startButton = $("#start_game"),
    messageBar = $("#msg_bd"),
    kickDropDownAnimationDelay = 1500,
-   shuffleSpeed = 500,
-   nuberOfShuffels = 4,
+   shuffleSpeed = 750,
+   nuberOfShuffels = 3,
    z = 0;
 
  var ans = Math.floor(Math.random() * 3) + 1;
@@ -368,7 +368,7 @@ $('document').ready(function(){
   <section id="findingIp" >
         <div id="content" >
             <div id="cancel">
-              X 
+            <i class="fas fa-times"></i> 
             </div> 
             <div id="fbg" >
               <img src = "../images/rankBoard/findingIp.svg" >
