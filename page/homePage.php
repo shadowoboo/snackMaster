@@ -981,25 +981,25 @@
 
         <section class="section_12" id="section_12">
             <?php
-                // $sql = "select * from snack order by goodStars desc limit 3";
-                $sql = "SELECT * FROM `rank`,`snack` WHERE `rankGenre` LIKE :category AND `rank`.`snackNo`=`snack`.`snackNo` ORDER BY ranking limit 0,3";
+                $sql = "select * from snack order by goodStars/goodTimes desc limit 3";
+                // $sql = "SELECT * FROM `rank`,`snack` WHERE `rankGenre` LIKE :category AND `rank`.`snackNo`=`snack`.`snackNo` ORDER BY ranking limit 0,3";
                 $prodRow = $pdo->prepare( $sql );
-                $prodRow->bindValue(":category", '綜合');
+                // $prodRow->bindValue(":category", '綜合');
                 $prodRow->execute();
                 $row = $prodRow->fetchAll(); //需求送出去，資料抓回來，阿凱發大財  
-                $sql0="SELECT * FROM `snack` WHERE `snackNo`='{$row[0]['snackNo']}' ";
-                $sql1="SELECT * FROM `snack` WHERE `snackNo`='{$row[1]['snackNo']}' ";
-                $sql2="SELECT * FROM `snack` WHERE `snackNo`='{$row[2]['snackNo']}' ";
-                $prodRow = $pdo->query($sql0);
-                $row0=$prodRow->fetch();
-                $prodRow = $pdo->query($sql1);
-                $row1=$prodRow->fetch();
-                $prodRow = $pdo->query($sql2);
-                $row2=$prodRow->fetch();
+                // $sql0="SELECT * FROM `snack` WHERE `snackNo`='{$row[0]['snackNo']}' ";
+                // $sql1="SELECT * FROM `snack` WHERE `snackNo`='{$row[1]['snackNo']}' ";
+                // $sql2="SELECT * FROM `snack` WHERE `snackNo`='{$row[2]['snackNo']}' ";
+                // $prodRow = $pdo->query($sql0);
+                // $row0=$prodRow->fetch();
+                // $prodRow = $pdo->query($sql1);
+                // $row1=$prodRow->fetch();
+                // $prodRow = $pdo->query($sql2);
+                // $row2=$prodRow->fetch();
         
-                $rank0 = round($row0['goodStars']/$row0['goodTimes'],1);
-                $rank1 = round($row1['goodStars']/$row1['goodTimes'],1);
-                $rank2 = round($row2['goodStars']/$row2['goodTimes'],1);         
+                $rank0 = round($row[0]['goodStars']/$row[0]['goodTimes'],1);
+                $rank1 = round($row[1]['goodStars']/$row[1]['goodTimes'],1);
+                $rank2 = round($row[2]['goodStars']/$row[2]['goodTimes'],1);         
             ?>
                 <div class="camera">
                     <div class="box boxBase" id="box_12">
@@ -1021,14 +1021,14 @@
                 <div class="LeaderboardCount">
                     <div id="lbReel">
                         <div class="LeaderboardNo2">
-                            <a href="showItem.php?snackNo=<?php echo $row1["snackNo"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $row[1]["snackNo"];?>">
                                 <div class="Leaderboarditem No2">
                                     <div class="LeaderboarCountry">
-                                        <img src="../images/blair/<?php echo $row1["nation"];?>.png" alt="排行國家">
+                                        <img src="../images/blair/<?php echo $row[1]["nation"];?>.png" alt="排行國家">
                                     </div>
                                     <div class="commodity">
-                                        <img src="<?php echo $row1["snackPic"];?>" alt="產品圖">
-                                        <h4 class="commodityTitle">[<?php echo $row1["nation"];?>]<?php echo $row1["snackName"];?></h4>
+                                        <img src="<?php echo $row[1]["snackPic"];?>" alt="產品圖">
+                                        <h4 class="commodityTitle">[<?php echo $row[1]["nation"];?>]<?php echo $row[1]["snackName"];?></h4>
                                         <div class="flexMid">
                                             <p class="score"><?php echo ($rank1);?><span class="total">/5</span></p>
                                         </div>
@@ -1040,14 +1040,14 @@
                             </a>
                         </div>
                         <div class="LeaderboardNo1">
-                            <a href="showItem.php?snackNo=<?php echo $row0["snackNo"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $row[0]["snackNo"];?>">
                                 <div class="Leaderboarditem No1">
                                     <div class="LeaderboarCountry">
-                                        <img src="../images/blair/<?php echo $row0["nation"];?>.png" alt="排行國家">
+                                        <img src="../images/blair/<?php echo $row[0]["nation"];?>.png" alt="排行國家">
                                     </div>
                                     <div class="commodity">
-                                        <img src="<?php echo $row0["snackPic"];?>" alt="產品圖">
-                                        <h4 class="commodityTitle">[<?php echo $row0["nation"];?>]<?php echo $row0["snackName"];?></h4>
+                                        <img src="<?php echo $row[0]["snackPic"];?>" alt="產品圖">
+                                        <h4 class="commodityTitle">[<?php echo $row[0]["nation"];?>]<?php echo $row[0]["snackName"];?></h4>
                                         <div class="flexMid">
                                             <p class="score"><?php echo ($rank0);?><span class="total">/5</span></p>
                                         </div>
@@ -1059,14 +1059,14 @@
                             </a>
                         </div>
                         <div class="LeaderboardNo3">
-                            <a href="showItem.php?snackNo=<?php echo $row2["snackNo"];?>">
+                            <a href="showItem.php?snackNo=<?php echo $row[2]["snackNo"];?>">
                                 <div class="Leaderboarditem No3">
                                     <div class="LeaderboarCountry">
-                                        <img src="../images/blair/<?php echo $row2["nation"];?>.png" alt="排行國家">
+                                        <img src="../images/blair/<?php echo $row[2]["nation"];?>.png" alt="排行國家">
                                     </div>
                                     <div class="commodity">
-                                        <img src="<?php echo $row2["snackPic"];?>" alt="產品圖">
-                                        <h4 class="commodityTitle">[<?php echo $row2["nation"];?>]<?php echo $row2["snackName"];?></h4>
+                                        <img src="<?php echo $row[2]["snackPic"];?>" alt="產品圖">
+                                        <h4 class="commodityTitle">[<?php echo $row[2]["nation"];?>]<?php echo $row[2]["snackName"];?></h4>
                                         <div class="flexMid">
                                             <p class="score"><?php echo ($rank2);?><span class="total">/5</span></p>
                                         </div>
