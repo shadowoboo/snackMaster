@@ -30,7 +30,10 @@ function cusAddCart(e){
     if(e.target.innerText == '放入零食箱'){ //配合客製頁面，篩選對應按鈕 "放入零食車"
         //沒登入就親切的提醒使用者，要登入喔鳩咪
         if (document.getElementById("btnloglout").innerHTML == "&nbsp;") {
-            alert('請先登入會員唷～');
+            alertBox('請先登入會員喔～');
+            document.getElementById('sure').addEventListener('click', function () {
+                showLightBox();
+            });
             return;
         }else{
             //如果有登入就把選重的商品加入購物車
@@ -58,9 +61,9 @@ function cusAddCart(e){
             var xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 if (xhr.status == 200) {
-                    alert(`商品已放入零食箱～`);
+                    alertBox(`商品已放入零食箱～`);
                 } else {
-                    alert(xhr.status);
+                    alertBox(xhr.status);
                     console.log(this.responseText); //如果發生問題，把異常資訊印在主控台
                     
                 }
@@ -73,7 +76,10 @@ function cusAddCart(e){
         }
     }else{
         if (document.getElementById("btnloglout").innerHTML == "&nbsp;") {
-            alert('請先登入會員唷～');
+            alertBox('請先登入會員喔～');
+            document.getElementById('sure').addEventListener('click', function () {
+                showLightBox();
+            });
             return;
         }else{
             //如果是按到 客製箱頁面 的 "加入購物車"，會把額外送 箱子 / 卡片 / 聲音的訊息到 php session
@@ -87,18 +93,18 @@ function cusAddCart(e){
             var xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 if (xhr.status == 200 && xhr.responseText=="noProd") {
-                    alert("請加入零食!");
+                    alertBox("請加入零食!");
                     console.log(`responseText: ${xhr.responseText}`);
                     
                 }else if(xhr.status == 200 && xhr.responseText!="noProd"){
-                    alert('零食箱的商品已全數加入購物車囉～');
+                    alertBox('零食箱的商品已全數加入購物車囉～');
                     console.log(`responseText: ${xhr.responseText}`);
 
                     //跳轉到購物車頁面(或是你想跳的其他頁面)
                     document.location.replace("cartShow.php");
                 } 
                 else {
-                    alert(xhr.status);
+                    alertBox(xhr.status);
                 }
             }
             var url = 'cusAddCart.php?cusBox=' + cusBox + '&cusCard=' + cusCard + '&cusSound=' + cusSound

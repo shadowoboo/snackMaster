@@ -61,7 +61,7 @@ session_start();
     <script src="../js/header.js" defer></script>
     <!-- <script src="../js/showMsg.js"></script> -->
     <script src="../js/rankBoard.js"></script>
-    <!-- <script src="../js/findingIp.js"></script> -->
+    <script src="../js/findingIp.js"></script>
     <!-- <script src="../js/showStar.js"></script> -->
     <script src="../js/showMsg.js"></script>
     <script src="../js/search.js"></script>

@@ -26,7 +26,7 @@
 
                     </div>
                     <div class='citemBtns'>
-                        <button class='cart'>加入購物車</button>
+                        <button class='cart' id='{$favoriteRow['snackNo']}|{$favoriteRow['snackPrice']}|0' >加入購物車</button>
                         <button class='trash' id='{$favoriteRow['snackNo']}'><i class='far fa-trash-alt'></i></button>
                     </div>
                 </div>";

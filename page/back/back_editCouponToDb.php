@@ -33,8 +33,6 @@
             case UPLOAD_ERR_PARTIAL:
                 echo "未上傳檔案 <br>";
                 break;
-            default : 
-                echo "['error']: " , $_FILES['upFile']['error'] , "<br>";
         }
         if( $_FILES['upFile']['tmp_name'] == null ){
             $to = $oldPic;
@@ -45,7 +43,7 @@
         $coupon -> bindValue(':imgSRC', $to);
         $coupon -> bindValue(':coupNo', $_REQUEST['coupNo']);
         $coupon -> execute();
-        echo "<script>alert('修改優惠券成功！');location.href='back_coupon.php';</script>";
+        echo "true";
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";

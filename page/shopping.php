@@ -48,6 +48,7 @@
     <link rel="stylesheet" href="../css/shopping.css">
     <script src="../js/common.js"></script>
     <script src="../js/Chart.js"></script>
+    <script src="../js/alert.js"></script>
     <script src="../js/shopping.js"></script>
     <script src="../js/addHeart.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -55,7 +56,6 @@
     <script src="../js/showStar.js"></script>
     <script src="../js/findingIp.js"></script>
     <script src="../js/addCart.js"></script>
-
 </head>
 <body>
     <header>
@@ -66,7 +66,6 @@
             </div>
             <nav>
                 <label for="smlSearch" class="searchBtn" value="search">
-                    <!-- <img src="../images/tina/search-icon.svg" alt="" id="searchBtn"> -->
                     <img src="" alt="" id="searchBtn">
                 </label>
                 <div class="menu">
@@ -83,11 +82,11 @@
                     <div id="list_appear">
                         <!-- ----------手機選單離開-------- -->
                         <div id="cros">
-                            <span class="leave">X</span>
+                            <span class="leave"><i class="fas fa-times"></i></span>
                         </div>
                         <ul class="list">
-                            <li><a href="rankBoard.php">零食排行榜</a></li>
-                            <li><a href="customized.php">客製零食箱</a> </li>
+                            <li id="gorankBoard"><a href="rankBoard.php">零食排行榜</a></li>
+                            <li id="gocustomized"><a href="customized.php">客製零食箱</a> </li>
                             <!-- 在手機上要關掉這個li的logo -->
                             <li><a href="homePage.php"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
                             <li id="store"> 零食商店街
@@ -101,90 +100,49 @@
                     </div>
                 </div>
                 <ul class="login">
-                    <li><a href="?loglout=true"><span id="btnloglout">&nbsp</span></a></li>
+                    <!-- <li><a href="?loglout=true"><span id="btnloglout">&nbsp</span></a></li> -->
+                    <li><span id="btnloglout">&nbsp</span></li>
                     <li><i class="fas fa-user-circle" id="memLogin"></i></li>
                     <li id="goCartShow"><a href="cartShow.php"><i class="fas fa-shopping-cart" id="shopCart"></i></a></li>
                 </ul>
             </nav>
-            <!-- <div class="seachRegion" id="search_appear">
-                <div class="search">
-                    <img src="../images/blair/pocky.png" alt="">
-                    <div class="selectbar">
-                        <select name="country" id="country">
-                            <option value="0">國家</option>
-                            <option value="巴西">巴西</option>
-                            <option value="日本">日本</option>
-                            <option value="美國">美國</option>
-                            <option value="英國">英國</option>
-                            <option value="埃及">埃及</option>
-                            <option value="德國">德國</option>
-                            <option value="澳洲">澳洲</option>
-                            <option value="韓國">韓國</option>
-                        </select>
-                        <select name="kind" id="kind">
-                            <option value="0">種類</option>
-                            <option value="巧克力">巧克力</option>
-                            <option value="糖果">糖果</option>
-                            <option value="餅乾">餅乾</option>
-                            <option value="洋芋片">洋芋片</option>
-                        </select>
-                        <select name="flavor" id="flavor">
-                            <option value="0">口味</option>
-                            <option value="sour">酸</option>
-                            <option value="sweet">甜</option>
-                            <option value="spicy">辣</option>
-                        </select>
-                    </div>
-                    <div class="inputbar">
-                        <input type="text" id="searchName" placeholder="想找什麼零食呢？">
-                        <i class="fas fa-search" id="searchClick"></i>
-                    </div>
-                </div>
+            <div class="seachRegion" id="search_appear">
                 <div id="close">
                     <span class="close"><i class="fas fa-times"></i></span>
                 </div>
-            </div> -->
+            </div>
         </div>
     </header>
-    <!-- //-------------------------------------------------------//
------------------------       這是燈箱        ------------------ -->
-    <!-- //-------------------------------------------------------// -->
     <div id="lightBox-wrap">
         <div id="lightBox">
             <div class="loginLeave">
-                <span id="lightBoxLeave">X</span>
+                <span id="lightBoxLeave"><i class="fas fa-times"></i></span>
             </div>
-            <ul class="tab-group">
-                <li class="loginTab" id="open" onclick="changeway(event,'Loginpage')">登入</li>
-                <li class="loginTab" onclick="changeway(event,'signup')">註冊</li>
-            </ul>
             <div class="loginTab-content">
+                <h3 id="open">登入</h3>
                 <!-----------------------------------登入表單------------------------------------  -->
                 <form id="Loginpage" class="tabContent">
                     <table class="loginBox">
                         <tr>
                             <td>
                                 <label class="Box-name" for="loginMemId">帳號</label>
-                                <input type="text" name="loginMemId" id="loginMemId" size="12" autocomplete="off"
-                                    placeholder="請輸入帳號">
+                                <input type="text" name="loginMemId" id="loginMemId" autocomplete="off">
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name" for="loginMemPsw">密碼</label>
-                                <input type="password" name="loginMemPsw" id="loginMemPsw" size="12"
-                                    placeholder="請輸入密碼">
+                                <input type="password" name="loginMemPsw" id="loginMemPsw">
+                                <p id="forgetPswLink" onclick="changeway(event,'forgetPsw')"> 忘記密碼?</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="button" id="btnLogin" value="登入" class="cart">
+                                <input type="button" id="btnLogin" value="登入" class="loginBoxBtn">
                             </td>
                         </tr>
                     </table>
-                    <div class="forgetPsw">
-                        <p id="forgetPswLink" class="loginTab " onclick="changeway(event,'forgetPsw')"> 忘記密碼</p>
-                    </div>
+                    <p id="signUpBtn" onclick="changeway(event,'signup')">註冊會員</p>
                 </form>
                 <!------------------------------------------------註冊表單------------------------------------------  -->
                 <form id="signup" class="tabContent">
@@ -192,28 +150,25 @@
                         <tr>
                             <td>
                                 <label class="Box-name" for="signUpMemId">帳號</label>
-                                <input type="text" name="signUpMemId" id="signUpMemId" size="12" autocomplete="off"
-                                    placeholder="不得少於2碼">
-
+                                <input type="text" name="signUpMemId" id="signUpMemId" autocomplete="off"
+                                    placeholder="英數字2~10碼">
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name" for="signUpMemPsw">密碼</label>
-                                <input type="password" name="signUpMemPsw" id="signUpMemPsw" size="12"
-                                    placeholder="請輸入密碼">
+                                <input type="password" name="signUpMemPsw" id="signUpMemPsw" placeholder="英數字2~10碼">
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name mail" for="signUpMemEmail">信箱</label>
-                                <input type="email" name="signUpMemEmail" id="signUpMemEmail" size="20"
-                                    autocomplete="off">
+                                <input type="email" name="signUpMemEmail" id="signUpMemEmail" autocomplete="off">
                             </td>
                         </tr>
                         <tr>
                             <td class="formBtn">
-                                <input type="button" id="btnSignUp" value="註冊" class="cart">
+                                <input type="button" id="btnSignUp" value="註冊" class="loginBoxBtn">
                             </td>
                         </tr>
                     </table>
@@ -224,28 +179,25 @@
                         <tr>
                             <td>
                                 <label class="Box-name" for="forgetMemId">帳號</label>
-                                <input type="text" name="forgetMemId" id="forgetMemId" size="12" autocomplete="off"
-                                    placeholder="請輸入帳號">
+                                <input type="text" name="forgetMemId" id="forgetMemId" autocomplete="off">
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name mail" for="forgetMemEmail">信箱</label>
-                                <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" size="20"
-                                    autocomplete="off">
+                                <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" autocomplete="off">
                             </td>
                         </tr>
                         <tr>
                             <td class="formBtn">
-                                <input type="button" id="forgetSend" value="寄送密碼" class="cart">
+                                <input type="button" id="forgetSend" value="寄送" class="loginBoxBtn">
                             </td>
                         </tr>
                     </table>
                 </form>
             </div>
         </div>
-    </div>
-
+    </div>    
     <div class="shopping">
         <div class="wrap">
             <div class="title">

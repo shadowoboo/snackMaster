@@ -25,10 +25,8 @@
                 <label for="smlSearch" class="searchBtn" value="search">
                     <img src="../images/tina/search-icon.svg" alt="" id="searchBtn">
                 </label>
-
                 <div class="menu">
                     <!-------- -----手機漢堡----------- -->
-
                     <div id="ham">
                         <span class="btnTop"></span>
                         <span class="btnMid"></span>
@@ -37,12 +35,11 @@
                     <!----    在手機上打開此logo;桌機上關掉此logo------ -->
                     <div class="logo">
                         <a href="homePage.php"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
-
                     </div>
                     <div id="list_appear">
                         <!-- ----------手機選單離開-------- -->
                         <div id="cros">
-                            <span class="leave">X</span>
+                            <span class="leave"><i class="fas fa-times"></i></span>
                         </div>
                         <ul class="list">
                             <li id="gorankBoard"><a href="rankBoard.php">零食排行榜</a></li>
@@ -59,7 +56,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <ul class="login">
                     <!-- <li><a href="?loglout=true"><span id="btnloglout">&nbsp</span></a></li> -->
                     <li><span id="btnloglout">&nbsp</span></li>
@@ -113,43 +109,33 @@
     <div id="lightBox-wrap">
         <div id="lightBox">
             <div class="loginLeave">
-                <span id="lightBoxLeave">X</span>
+                <span id="lightBoxLeave"><i class="fas fa-times"></i></span>
             </div>
-            <ul class="tab-group">
-                <li class="loginTab" id="open" onclick="changeway(event,'Loginpage')">登入</li>
-                <li class="loginTab" onclick="changeway(event,'signup')">註冊</li>
-            </ul>
             <div class="loginTab-content">
+                <h3 id="open">登入</h3>
                 <!-----------------------------------登入表單------------------------------------  -->
                 <form id="Loginpage" class="tabContent">
-
                     <table class="loginBox">
                         <tr>
                             <td>
                                 <label class="Box-name" for="loginMemId">帳號</label>
-                                <input type="text" name="loginMemId" id="loginMemId" size="12" autocomplete="off"
-                                    placeholder="請輸入帳號">
+                                <input type="text" name="loginMemId" id="loginMemId" autocomplete="off">
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name" for="loginMemPsw">密碼</label>
-                                <input type="password" name="loginMemPsw" id="loginMemPsw" size="12"
-                                    placeholder="請輸入密碼">
+                                <input type="password" name="loginMemPsw" id="loginMemPsw">
+                                <p id="forgetPswLink" onclick="changeway(event,'forgetPsw')"> 忘記密碼?</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="button" id="btnLogin" value="登入" class="cart">
-
+                                <input type="button" id="btnLogin" value="登入" class="loginBoxBtn">
                             </td>
                         </tr>
                     </table>
-                    <div class="forgetPsw">
-                        <p id="forgetPswLink" class="loginTab " onclick="changeway(event,'forgetPsw')"> 忘記密碼</p>
-                    </div>
-
-
+                    <p id="signUpBtn" onclick="changeway(event,'signup')">註冊會員</p>
                 </form>
                 <!------------------------------------------------註冊表單------------------------------------------  -->
                 <form id="signup" class="tabContent">
@@ -157,34 +143,27 @@
                         <tr>
                             <td>
                                 <label class="Box-name" for="signUpMemId">帳號</label>
-                                <input type="text" name="signUpMemId" id="signUpMemId" size="12" autocomplete="off"
-                                    placeholder="不得少於2碼">
-
+                                <input type="text" name="signUpMemId" id="signUpMemId" autocomplete="off"
+                                    placeholder="英數字2~10碼">
                             </td>
-
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name" for="signUpMemPsw">密碼</label>
-                                <input type="password" name="signUpMemPsw" id="signUpMemPsw" size="12"
-                                    placeholder="請輸入密碼">
+                                <input type="password" name="signUpMemPsw" id="signUpMemPsw" placeholder="英數字2~10碼">
                             </td>
-
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name mail" for="signUpMemEmail">信箱</label>
-                                <input type="email" name="signUpMemEmail" id="signUpMemEmail" size="20"
-                                    autocomplete="off">
+                                <input type="email" name="signUpMemEmail" id="signUpMemEmail" autocomplete="off">
                             </td>
-
                         </tr>
                         <tr>
                             <td class="formBtn">
-                                <input type="button" id="btnSignUp" value="註冊" class="cart">
+                                <input type="button" id="btnSignUp" value="註冊" class="loginBoxBtn">
                             </td>
                         </tr>
-
                     </table>
                 </form>
                 <!-- ---------------------------------------忘記密碼 -->
@@ -193,37 +172,25 @@
                         <tr>
                             <td>
                                 <label class="Box-name" for="forgetMemId">帳號</label>
-                                <input type="text" name="forgetMemId" id="forgetMemId" size="12" autocomplete="off"
-                                    placeholder="請輸入帳號">
+                                <input type="text" name="forgetMemId" id="forgetMemId" autocomplete="off">
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name mail" for="forgetMemEmail">信箱</label>
-                                <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" size="20"
-                                    autocomplete="off">
+                                <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" autocomplete="off">
                             </td>
                         </tr>
                         <tr>
                             <td class="formBtn">
-                                <input type="button" id="forgetSend" value="寄送密碼" class="cart">
+                                <input type="button" id="forgetSend" value="寄送" class="loginBoxBtn">
                             </td>
-
                         </tr>
-
                     </table>
-
-
                 </form>
-
             </div>
-
         </div>
-
-
     </div>
-
-
+<!-- 
 </body>
-
-</html> 
+</html> -->

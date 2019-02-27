@@ -80,17 +80,20 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/loginBox.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/header.js" defer></script>
     <script src="../js/member.js" defer></script>
     <script src="../js/upgrade.js"></script>
+    <script src="../js/addCart.js"></script>
+    <script src="../js/alert.js"></script>
 
     <title>會員專區</title>
 
 </head>
 
 <body>
-    <header>
+<header>
         <h1>大零食家</h1>
         <div class="cloud">
             <div class="doc doc--bg2">
@@ -100,10 +103,8 @@
                 <label for="smlSearch" class="searchBtn" value="search">
                     <img src="../images/tina/search-icon.svg" alt="" id="searchBtn">
                 </label>
-
                 <div class="menu">
                     <!-------- -----手機漢堡----------- -->
-
                     <div id="ham">
                         <span class="btnTop"></span>
                         <span class="btnMid"></span>
@@ -112,12 +113,11 @@
                     <!----    在手機上打開此logo;桌機上關掉此logo------ -->
                     <div class="logo">
                         <a href="homePage.php"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
-
                     </div>
                     <div id="list_appear">
                         <!-- ----------手機選單離開-------- -->
                         <div id="cros">
-                            <span class="leave">X</span>
+                            <span class="leave"><i class="fas fa-times"></i></span>
                         </div>
                         <ul class="list">
                             <li id="gorankBoard"><a href="rankBoard.php">零食排行榜</a></li>
@@ -134,13 +134,11 @@
                         </ul>
                     </div>
                 </div>
-
                 <ul class="login">
                     <li><a href="?loglout=true"><span id="btnloglout">&nbsp</span></a></li>
                     <!-- <li><span id="btnloglout">&nbsp</span></li> -->
                     <li><i class="fas fa-user-circle" id="memLogin"></i></li>
-                    <li id="goCartShow"><a href="cartShow.php"><i class="fas fa-shopping-cart" id="shopCart"></i></a>
-                    </li>
+                    <li id="goCartShow"><a href="cartShow.php"><i class="fas fa-shopping-cart" id="shopCart"></i></a></li>
                 </ul>
             </nav>
             <div class="seachRegion" id="search_appear">
@@ -189,43 +187,33 @@
     <div id="lightBox-wrap">
         <div id="lightBox">
             <div class="loginLeave">
-                <span id="lightBoxLeave">X</span>
+                <span id="lightBoxLeave"><i class="fas fa-times"></i></span>
             </div>
-            <ul class="tab-group">
-                <li class="loginTab" id="open" onclick="changeway(event,'Loginpage')">登入</li>
-                <li class="loginTab" onclick="changeway(event,'signup')">註冊</li>
-            </ul>
             <div class="loginTab-content">
+                <h3 id="open">登入</h3>
                 <!-----------------------------------登入表單------------------------------------  -->
                 <form id="Loginpage" class="tabContent">
-
                     <table class="loginBox">
                         <tr>
                             <td>
                                 <label class="Box-name" for="loginMemId">帳號</label>
-                                <input type="text" name="loginMemId" id="loginMemId" size="12" autocomplete="off"
-                                    placeholder="請輸入帳號">
+                                <input type="text" name="loginMemId" id="loginMemId" autocomplete="off">
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name" for="loginMemPsw">密碼</label>
-                                <input type="password" name="loginMemPsw" id="loginMemPsw" size="12"
-                                    placeholder="請輸入密碼">
+                                <input type="password" name="loginMemPsw" id="loginMemPsw">
+                                <p id="forgetPswLink" onclick="changeway(event,'forgetPsw')"> 忘記密碼?</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="button" id="btnLogin" value="登入" class="cart">
-
+                                <input type="button" id="btnLogin" value="登入" class="loginBoxBtn">
                             </td>
                         </tr>
                     </table>
-                    <div class="forgetPsw">
-                        <p id="forgetPswLink" class="loginTab " onclick="changeway(event,'forgetPsw')"> 忘記密碼</p>
-                    </div>
-
-
+                    <p id="signUpBtn" onclick="changeway(event,'signup')">註冊會員</p>
                 </form>
                 <!------------------------------------------------註冊表單------------------------------------------  -->
                 <form id="signup" class="tabContent">
@@ -233,34 +221,27 @@
                         <tr>
                             <td>
                                 <label class="Box-name" for="signUpMemId">帳號</label>
-                                <input type="text" name="signUpMemId" id="signUpMemId" size="12" autocomplete="off"
-                                    placeholder="不得少於2碼">
-
+                                <input type="text" name="signUpMemId" id="signUpMemId" autocomplete="off"
+                                    placeholder="英數字2~10碼">
                             </td>
-
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name" for="signUpMemPsw">密碼</label>
-                                <input type="password" name="signUpMemPsw" id="signUpMemPsw" size="12"
-                                    placeholder="請輸入密碼">
+                                <input type="password" name="signUpMemPsw" id="signUpMemPsw" placeholder="英數字2~10碼">
                             </td>
-
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name mail" for="signUpMemEmail">信箱</label>
-                                <input type="email" name="signUpMemEmail" id="signUpMemEmail" size="20"
-                                    autocomplete="off">
+                                <input type="email" name="signUpMemEmail" id="signUpMemEmail" autocomplete="off">
                             </td>
-
                         </tr>
                         <tr>
                             <td class="formBtn">
-                                <input type="button" id="btnSignUp" value="註冊" class="cart">
+                                <input type="button" id="btnSignUp" value="註冊" class="loginBoxBtn">
                             </td>
                         </tr>
-
                     </table>
                 </form>
                 <!-- ---------------------------------------忘記密碼 -->
@@ -269,34 +250,24 @@
                         <tr>
                             <td>
                                 <label class="Box-name" for="forgetMemId">帳號</label>
-                                <input type="text" name="forgetMemId" id="forgetMemId" size="12" autocomplete="off"
-                                    placeholder="請輸入帳號">
+                                <input type="text" name="forgetMemId" id="forgetMemId" autocomplete="off">
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name mail" for="forgetMemEmail">信箱</label>
-                                <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" size="20"
-                                    autocomplete="off">
+                                <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" autocomplete="off">
                             </td>
                         </tr>
                         <tr>
                             <td class="formBtn">
-                                <input type="button" id="forgetSend" value="寄送密碼" class="cart">
+                                <input type="button" id="forgetSend" value="寄送" class="loginBoxBtn">
                             </td>
-
                         </tr>
-
                     </table>
-
-
                 </form>
-
             </div>
-
         </div>
-
-
     </div>
 
 
@@ -324,7 +295,7 @@
                         <label class="memPic" for="upFile">
                             <p>上傳大頭貼<img src="../images/tina/pen.png" alt="編輯"></p>
 
-                            <input type="file" name="upFile" id="upFile"=>
+                            <input type="file" name="upFile" id="upFile">
 
                         </label>
 
@@ -349,10 +320,9 @@
                     <td>
                         <p id="memIfon-p">
                             帳號：
-                            <input type="text" name="memId" value="<?php echo $memRow["memId"];?>" maxlength="15"
-                                id="memIfon">
-                            <!-- 還未增加readonly，修改input樣式要改變css未調 -->
-                            <img src="../images/tina/pen.png" alt="編輯">
+                            <input type="text"  name="memId" value="<?php echo $memRow["memId"];?>" maxlength="15"  id="memId"
+                           readonly >
+                            <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon1()" >
                         </p>
                     </td>
                 </tr>
@@ -361,8 +331,8 @@
                         <p>
                             密碼：
                             <input type="password" name="memPsw" value="<?php echo $memRow["memPsw"];?>" maxlength="15"
-                                autofocus>
-                            <img src="../images/tina/pen.png" alt="編輯">
+                                readonly id="password">
+                            <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon2()">
                         </p>
                     </td>
                 </tr>
@@ -370,8 +340,8 @@
                     <td>
                         <p>
                             姓名：
-                            <input type="text" name="memName" value="<?php echo $memRow["memName"];?>" maxlength="12">
-                            <img src="../images/tina/pen.png" alt="編輯">
+                            <input type="text" name="memName" value="<?php echo $memRow["memName"];?>" maxlength="12" readonly id="memName">
+                            <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon3()">
                         </p>
                     </td>
                 </tr>
@@ -379,8 +349,8 @@
                     <td>
                         <p>
                             電話：
-                            <input type="text" name="phone" value="<?php echo $memRow["memPhone"];?>" maxlength="10">
-                            <img src="../images/tina/pen.png" alt="編輯">
+                            <input type="text" name="phone" value="<?php echo $memRow["memPhone"];?>" maxlength="10" readonly id="memPhone">
+                            <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon4()">
                         </p>
                     </td>
                 </tr>
@@ -388,8 +358,8 @@
                     <td>
                         <p>
                             信箱：
-                            <input type="email" name="email" value="<?php echo $memRow["email"];?>" maxlength="20">
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                            <input type="email" name="email" value="<?php echo $memRow["email"];?>" maxlength="20" readonly id="email">
+                            <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon5()">
                         </p>
                     </td>
                 </tr>
@@ -641,7 +611,8 @@
                 ?>
                              <ul class="orderList_moreItems">
                                  <li>
-                                    <?php echo $order_listArr[$i]['snackPic'] ?> 
+                                     <img src="<?php echo $order_listArr[$i]['snackPic'] ?> " alt="">
+                                    
                                  </li>
                                 <li>
                                     <?php echo $order_listArr[$i]['snackName'] ?>
@@ -879,12 +850,6 @@ function tabClick(e) {
     var tab = e.target.parentNode.id;
 
     switch (tab) {
-        case 'defaultOpen':
-
-            break;
-        case 'tab22':
-
-            break;
         case 'tab33':
             getCollection();
             break;
@@ -914,7 +879,7 @@ $('.sendEva').click(function(){
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhr.send(data_info);
     xhr.onload=function(){
-        alert("感謝您提供的意見，加100分");
+        alertBox("感謝您提供的意見，加100分");
         var tarBtn=$(`div[name=snackNo${snackNo}]`).prev("ul").find("button");
         // console.log(tarBtn);
         tarBtn.text("已評價");
@@ -951,6 +916,11 @@ function getCollection() {
             for (var j = 0; j < length2; j++) {
                 trashIcon[j].addEventListener('click', deletTrash);
             }
+            var carts = document.getElementsByClassName('cart');
+            var length = carts.length;
+            for(var i =0; i < length; i++){
+                carts[i].addEventListener('click', addCart);
+            }
         } else {
             alert(xhr.status);
         }
@@ -969,24 +939,25 @@ function deletTrash(e) {
         e.stopPropagation();
         var snackNo = e.target.parentNode.id;
     }
-
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-        if (xhr.status == 200) {
-            if (xhr.responseText != 'true') {
-                alert(xhr.responseText);
+    if(window.confirm('確定要刪除收藏嗎？') == true ){
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                if (xhr.responseText != 'true') {
+                    alert(xhr.responseText);
+                } else {
+                    getCollection();
+                }
             } else {
-                getCollection();
+                alert(xhr.status);
             }
-        } else {
-            alert(xhr.status);
         }
+        var url = 'removeHeart.php?snackNo=' + snackNo;
+        xhr.open('get', url, true);
+        xhr.send(null);
     }
-    var url = 'removeHeart.php?snackNo=' + snackNo;
-    xhr.open('get', url, true);
-    xhr.send(null);
 }
-//優惠眷
+//優惠券
 function getCoupon() {
     var xhr = new XMLHttpRequest();
     xhr.onload = function() {

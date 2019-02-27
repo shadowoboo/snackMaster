@@ -565,20 +565,26 @@ header nav .menu #list_appear .list #store{
                     }
                 }
                 #h4_1{
-                    margin: 20px 0 18px 0;
+                    margin: 20px 0 10px 0;
+                    @media only screen and (min-width: 500px){
+                        margin: 20px 0 18px 0;
+                    }
                 }
                 #h4_2{
-                    margin-top: 20px;
+                    margin-top: 10px;
+                    @media only screen and (min-width: 500px){
+                        margin-top: 20px;
+                    }
                 }
                 input[type=radio]{
                     display: none;
                 }
                 label{
-                    margin: 6px 10px;
+                    margin: 12px 30px 12px 30px;
                     display: inline-block;
                     cursor: pointer;
                     @media only screen and (min-width: 500px){
-                        margin: 0 20px;
+                        margin: 0 24px;
                     }
                 }
                 form span{
@@ -667,6 +673,12 @@ header nav .menu #list_appear .list #store{
         @media only screen and (min-width: 375px) {
             height: 380px;    
         }
+        @media only screen and (min-width: 400px) {
+            height: 400px;    
+        }
+        @media only screen and (min-width: 432px) {
+            height: 450px;    
+        }
         @media only screen and (min-width: 576px) {
             height: 460px;    
         }
@@ -739,11 +751,15 @@ header nav .menu #list_appear .list #store{
                         content: '';
                         display: block;
                         border-style: solid;
-                        border-width: 22px 18px 0 18px;
-                        border-color: #fff transparent transparent transparent;
+                        border-width: 12px 22px 12px 0;
+                        border-color: transparent #fff transparent transparent;
                         position: absolute;
                         bottom: 10px;
                         left: -12px;
+                        @media only screen and (min-width: $moblie) {
+                            border-width: 16px 22px 16px 0;
+                            left: -16px;
+                        }
                     }
                 }
                 @media only screen and (min-width: $moblie) {

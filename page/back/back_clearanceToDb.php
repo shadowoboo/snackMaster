@@ -31,7 +31,7 @@
         $clearItems -> bindValue(':price3', $_REQUEST['item3Price']);
         $clearItems -> bindValue(':qty3', $_REQUEST['item3Qty']);
         $clearItems -> execute();
-        echo "<script>alert('新增即期品專案成功！');location.href='back_clearance.php';</script>";
+        echo "true";
     } catch (PDOException $e) {
         $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
         $errMsg .= "行號 : ".$e -> getLine()."<br>";

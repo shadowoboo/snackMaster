@@ -33,31 +33,22 @@ $(document).ready(function () {
   });
 
 });
-// var clmem = false;
-//   function changeInfo(e) {
-//     // console.log($id('memInfon').readOnly);
-//     // console.log("123");
-//     // $("#memInfon").attr("readonly");
-//     // console.log($("#memInfon").attr("readonly"));
-
-//     // var valt = $("#memInfon").text();
-//     // var val = $("#memInfon").val();
-//     // if(!clmem){
-//     //   // console.log("開");
-//     //   clmem = true;
-//     //   document.getElementById("memIfon-p").innerHTML= "帳號：<input type='text' name='memId' value='"+val+"' maxlength='15' id='memIfon'>  <img src='../images/tina/pen.png' alt='編輯' id='infoChange'>";
-//     //   $id('infoChange').addEventListener('click', changeInfo);
-//     // }else if(clmem){
-//     //   clmem = false;
-//     //   // console.log("關");
-//     //   document.getElementById("memIfon-p").innerHTML = "帳號：<input type='text' name='memId' value='"+val+"' maxlength='15' id='memIfon' readonly>  <img src='../images/tina/pen.png' alt='編輯' id='infoChange'>";
-//     //   $id('infoChange').addEventListener('click', changeInfo);
-//     // }
-    
-
-
-//   }
- //========================手機版評價=========================== 
+function modInfon1(){
+  document.getElementById("memId").readOnly = false;
+  }
+function modInfon2(){
+  document.getElementById("memPsw").readOnly = false;
+  }
+function modInfon3(){
+    document.getElementById("memName").readOnly = false;
+   } 
+  function modInfon4(){
+    document.getElementById("memPhone").readOnly = false;
+    } 
+  function modInfon5(){
+      document.getElementById("email").readOnly = false;
+     }   
+ //========================評價燈箱=========================== 
 function showBox(){
 
   var evaBox = document.querySelectorAll('button.orderList_eva');
@@ -74,9 +65,8 @@ function showBox(){
     }
 } 
 window.addEventListener('load',showBox,false);
-//========================手機版結束=========================== 
 
-//========================手機版燈箱離開=========================== 
+//========================評價燈箱離開=========================== 
 function closeBox(){
   var leavEva = document.getElementsByClassName('eva_lightBox_leave');
   // console.log(leavEva.length);
@@ -93,7 +83,7 @@ function closeBox(){
 }
 
 window.addEventListener("load",closeBox,false);
-//========================手機版燈箱結束=========================== 
+//========================評價燈箱結束=========================== 
 
 
   function doFirst() {

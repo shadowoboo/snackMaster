@@ -1,6 +1,6 @@
-*{
-    outline: 1px solid #ff0000;
-}
+// *{
+//     outline: 1px solid #ff0000;
+// }
 @import "reset";
 @import "common";
 $tabColor:#076baf;
@@ -136,17 +136,18 @@ input[type="number"]{
                     color: #076baf;
                     font-size: $p;
                     // padding: 1% ;
-                    input:read-only{
+                    input{
                         color: #076baf;
                         width: 125px;
                         background-color: transparent;
-                        border: 1px solid #fff;
                         font-family: g2Font;
                         font-size: 16px;
-                        
-                        // &:focus{
-                        //     outline: none;
-                        // }
+                        &:focus{
+                            outline: 1px solid $tabColor;
+                            background-color: #f2f4f5;
+                           
+                            
+                        }
                     }
                     
                     span{
@@ -156,7 +157,8 @@ input[type="number"]{
                     }
                     img{
                         width: 5%; 
-                        vertical-align: unset;                 
+                        vertical-align: unset;  
+                        cursor: pointer;               
                     }
                 }
             }
@@ -1028,7 +1030,7 @@ input[type="number"]{
                         
         //=======================桌機版的明細和燈箱==================
                         .orderLis_content{
-                            position: relative;
+                            // position: relative;
                             .orderList_items_title{
                                 display: flex;
                                 flex-direction: row;
@@ -1084,10 +1086,10 @@ input[type="number"]{
                                     }
                                 }
                             .eva_lightBox{
-                                position: absolute;
+                                position: fixed;
                                 // display: none;
                                 // top: 0;
-                                bottom: 0;
+                                bottom: 15%;
                                 left: 0;
                                 right: 0;
                                 margin: auto;
@@ -1101,53 +1103,54 @@ input[type="number"]{
                                     line-height: 1.6;
                                     padding: 0 15px;
                                 }
-                                
-                                .evaContent{
-                                    width: 100px;
-                                    margin: auto;
-                                    img{
-                                        width: 100%;
+                                .eva_Boxing{
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: space-around;
+                                    .evaContent{
+                                        width: 180px;
                                         margin: auto;
-                                        padding: 10px;
-                                    }
-                                    p{
-                                        font-size: 16px;
-                                        padding: 5px;
-                                        line-height: 1.6;
-                                    }
-                                }
-                                .eva_lightBox_Starts{
-                                  ul{
-                                      li{
-                                          p{
-                                            text-align: left;  
+                                        img{
+                                            width: 100%;
+                                            margin: auto;
                                             padding: 10px;
-                                          }
-                                          .eva_lightBox_swStars,.eva_lightBox_spStars,.eva_lightBox_suStars,.eva_lightBox_gdStars{
-                                              font-size: 16px;
-                                              color: $tabColor;
-                                              font-family:g2Med; 
-                                              display: flex;
-                                              justify-content: space-around;
-                                              align-items: center;
-                                              padding: 5px;
-                                              li{
-                                                 text-align: center;
-                                                input{
-                                                    width: 20px;
-                                                } 
+                                        }
+                                        p{
+                                            font-size: 18px;
+                                        }
+                                    }
+                                    .eva_lightBox_Starts{
+                                      ul{
+                                          li{
+                                              p{
+                                                line-height: 1.6;
                                               }
-                                              
-        
+                                              .eva_lightBox_swStars,.eva_lightBox_spStars,.eva_lightBox_suStars,.eva_lightBox_gdStars{
+                                                
+                                                  padding: 10px;
+                                                  li{
+                                                     text-align: center;
+                                                    input{
+                                                        width: 20px;
+                                                    } 
+                                                  }
+                                                  
+            
+                                              }
                                           }
-                                      }
-                                  }  
+                                      }  
+                                    }
+                                    .eva_lightBox_msg{
+                                         width: 300px;
+                                         .eva_lightBox_textDics{
+                                            margin-top: 20px;
+                                            
+                                        }
+                                    }
+                                    
                                 }
-                                .eva_lightBox_textDics{
-                                    padding: 5px;
-                                    margin-left: 12%;
-                                    resize: none;
-                                }
+                                
+                                
                                 .evaSend{
                                     text-align: center;
                                     .sendEva{
