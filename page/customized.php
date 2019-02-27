@@ -178,7 +178,7 @@ try {
   while( $mateRow = $material -> fetch() ){
 ?>                                          
                                     <div class="pic">
-                                        <img class="cusPic" src="../<?php echo $mateRow['materialPath']?>" alt="">
+                                        <img class="cusPic" src="<?php echo $mateRow['materialPath']?>" alt="">
                                     </div>
 
 <?php
@@ -259,7 +259,7 @@ try {
                 <div class="section section_15" id="section_15" style="flex-wrap:wrap;">
                     <div class="lefCard" style="flex:2;">
                             <div class="cardBox">
-                                    <img  id="large" src="../<?php echo $mateRow['materialPath']?>" alt="">
+                                    <img  id="large" src="<?php echo $mateRow['materialPath']?>" alt="">
                                 </div>  
                             </div>
 <?php
@@ -534,7 +534,7 @@ try {
   <div class="step-content-foot">
         <button type="button" class="step none"  id="btn1">上一步</button>
         <button type="button" class="step"  id="btn2" disabled="true">下一步</button>
-        <button type="button" class="active out step cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="test" data-cusCard="../images/customized/card.png" data-cusSound="test" >加入購物車</button>
+        <button type="button" class="active out step cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="../images/blair/customized.png" data-cusCard="../images/customized/card.png" data-cusSound="test" >加入購物車</button>
   </div>
 <script>
 var steps = $(".step-content-body"), i = 0;
@@ -636,7 +636,7 @@ $( "#cardSureBtn" ).click(function() {
 
 
       $("#boxSureBtn").click(function() {
-          alert('成功將客製箱加入囉～');
+          alertBox('成功將客製箱加入囉～');
       html2canvas($(".leftBox")[0]).then(function(canvas) {
           var $div = $(".img1");
           $div.empty();
@@ -667,7 +667,7 @@ $( "#cardSureBtn" ).click(function() {
                                 $("#myImage").val("");
                             }
                         }else{
-                        alert(xhr.status);
+                        alertBox(xhr.status);
                         }
                 }
             };
@@ -679,7 +679,7 @@ $( "#cardSureBtn" ).click(function() {
 
 
     $("#cardSureBtn").click(function() {
-          alert('成功將客製卡片加入囉～');
+          alertBox('成功將客製卡片加入囉～');
       html2canvas($(".lefCard")[0]).then(function(canvas) {
           var $div = $(".img3");
           $div.empty();
@@ -710,7 +710,7 @@ $( "#cardSureBtn" ).click(function() {
                                 $("#myCard").val("");
                             }
                         }else{
-                        alert(xhr.status);
+                        alertBox(xhr.status);
                         }
                 }
             };
@@ -1161,6 +1161,24 @@ $( "#cardSureBtn" ).click(function() {
                         //取按鈕背景色
                         var tarColor = window.getComputedStyle(e.target, null).getPropertyValue("background-color");
                         // console.log(`tarColor: ${tarColor}`);
+                        //調暗
+                        var edit = tarColor.replace("rgb","").replace("(","").replace(")","");
+                        var newArr=[];
+                        var per=0.15; //趴數，越小越暗
+                        edit=edit.split(", ");
+                        // console.log(`edit: ${edit}`);
+                        edit.forEach(el => {
+                            el=parseInt(el*per);
+                            // console.log(`el= ${el}`);
+                            newArr.push(el);
+                        });
+                        // console.log(`edit: ${edit}`);
+                        // console.log(`newArr: ${newArr}`);
+                        tarColor=`rgb(${newArr[0]},${newArr[1]},${newArr[2]})`;
+                        // console.log(`tarColor: ${tarColor}`);
+                        
+
+                        
                         // console.log(`tarColor type: ${typeof (tarColor)}`);
 
                         //更換目標背景色
@@ -2150,7 +2168,7 @@ $( "#cardSureBtn" ).click(function() {
             })
         }
     </script>
-
+<!-- 卡片音效 src 傳到data-cussound鈕 -->
     <script>
     $(function () {
         $("#soundAdd").on("click",addSound);
