@@ -49,7 +49,7 @@ function pickCp(){
 }
 
 function scratchSetting(){
-
+  "use strict";
   pickCp()
 
 
@@ -67,7 +67,7 @@ function scratchSetting(){
     image.onload = function() {
       ctx2.drawImage(image, 0, 0);
     };
-    brush.src = "../images/index/indexScratch_brush.png";
+    brush.src = "../images/game/scratchBrush.png";
   
     canvas.addEventListener("mousedown", handleMouseDown, false);
     canvas.addEventListener("touchstart", handleMouseDown, false);
@@ -133,7 +133,7 @@ function scratchSetting(){
     function handlePercentage(filledInPixels) {
       filledInPixels = filledInPixels || 0;
       // console.log(filledInPixels + "%");
-      if (filledInPixels > 50) {
+      if (filledInPixels > 75) {
         //範圍
         canvas.parentNode.removeChild(canvas);
         $('.scratchWrapIp img').addClass('rotate')
@@ -275,6 +275,7 @@ function scratchSetting(){
     doFirst();
     $('.gameScratch').click(function(){
       // alert('true');
+      // e.preventDefault();
       $('body').append(scratch);
       scratchSetting();
     });

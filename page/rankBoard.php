@@ -50,22 +50,23 @@ session_start();
         crossorigin="anonymous">
     
            
-    
-    <link rel="stylesheet" href="../css/rankBoard.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/nnnnn.css"> 
-    <script src="../js/common.js"></script>
-    <script src="../js/Chart.js"></script>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/header.js" defer></script>
-    <!-- <script src="../js/showMsg.js"></script> -->
-    <script src="../js/rankBoard.js"></script>
-    <script src="../js/findingIp.js"></script>
-    <!-- <script src="../js/showStar.js"></script> -->
-    <script src="../js/showMsg.js"></script>
-    <script src="../js/search.js"></script>
-    <script src="../js/addHeart.js"></script>
+
+        <script src="../js/common.js"></script>
+        <script src="../js/Chart.js"></script>
+        <script src="../js/TweenMax.min.js"></script>
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/jquery-ui.min.js"></script>
+        <script src="../js/header.js" defer></script>
+        <!-- <script src="../js/showMsg.js"></script> -->
+        <script src="../js/rankBoard.js"></script>
+        <script src="../js/findingIp.js"></script>
+        <!-- <script src="../js/showStar.js"></script> -->
+        <script src="../js/showMsg.js"></script>
+        <script src="../js/search.js"></script>
+        <script src="../js/addHeart.js"></script>
+        <link rel="stylesheet" href="../css/rankBoard.css">
+        <link rel="stylesheet" href="../css/header.css">
+        <link rel="stylesheet" href="../css/nnnnn.css"> 
 </head>
 <body class="rankBoard">
     <?php
