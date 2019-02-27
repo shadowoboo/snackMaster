@@ -57,7 +57,10 @@ footer {
         }
         #copy {
             position: absolute;
-            bottom: 0;
+            bottom: 6px;
+            @media screen and (min-width: 992px) {
+                bottom: 0;
+            }
             left: 0;
             right: 0;
             margin: auto;
