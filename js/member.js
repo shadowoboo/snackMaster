@@ -30,73 +30,67 @@ $(document).ready(function () {
       $('.orderLis_content').removeClass('show');
       $(this).text("訂單明細v");
     }
-
-
-
   });
 
 });
-var clmem = false;
-  function changeInfo(e) {
-    // console.log($id('memInfon').readOnly);
-    // console.log("123");
-    // $("#memInfon").attr("readonly");
-    // console.log($("#memInfon").attr("readonly"));
-
-    // var valt = $("#memInfon").text();
-    // var val = $("#memInfon").val();
-    // if(!clmem){
-    //   // console.log("開");
-    //   clmem = true;
-    //   document.getElementById("memIfon-p").innerHTML= "帳號：<input type='text' name='memId' value='"+val+"' maxlength='15' id='memIfon'>  <img src='../images/tina/pen.png' alt='編輯' id='infoChange'>";
-    //   $id('infoChange').addEventListener('click', changeInfo);
-    // }else if(clmem){
-    //   clmem = false;
-    //   // console.log("關");
-    //   document.getElementById("memIfon-p").innerHTML = "帳號：<input type='text' name='memId' value='"+val+"' maxlength='15' id='memIfon' readonly>  <img src='../images/tina/pen.png' alt='編輯' id='infoChange'>";
-    //   $id('infoChange').addEventListener('click', changeInfo);
-    // }
-    
-
-
+function modInfon1(){
+  document.getElementById("memId").readOnly = false;
   }
-  function addBtnEva(){
+function modInfon2(){
+  document.getElementById("memPsw").readOnly = false;
+  }
+function modInfon3(){
+    document.getElementById("memName").readOnly = false;
+   } 
+  function modInfon4(){
+    document.getElementById("memPhone").readOnly = false;
+    } 
+  function modInfon5(){
+      document.getElementById("email").readOnly = false;
+     }   
+ //========================評價燈箱=========================== 
+function showBox(){
 
-    $('.sendEva').click(function(){
-        var snackNo=$(this).attr('id');
+  var evaBox = document.querySelectorAll('button.orderList_eva');
+    // console.log(evaBox.length);
+    for (var i = 0; i < evaBox.length; i++) {
+      evaBox[i].addEventListener("click",function(e){
+        let lightBox = e.target.parentNode.parentNode.nextElementSibling;
+        // console.log(e.target);
+        // console.log(e.target.parentNode);
+        // console.log(lightBox);
+        lightBox.classList.add("appear");
         
-        var evaCtx=$(`tr[name=snackNo${snackNo}] textarea`).val();
-        var sweetStar=$(`tr[name=snackNo${snackNo}] input[name=swStar]:checked`).val();
-        var sourStar=$(`tr[name=snackNo${snackNo}] input[name=suStar]:checked`).val();
-        var spicyStar=$(`tr[name=snackNo${snackNo}] input[name=spStar]:checked`).val();
-        var goodStar=$(`tr[name=snackNo${snackNo}] input[name=gdStar]:checked`).val();
+      });
+    }
+} 
+window.addEventListener('load',showBox,false);
 
-        var data_info=`snackNo=${snackNo}&evaCtx=${evaCtx}&goodStar=${goodStar}&sourStar=${sourStar}&sweetStar=${sweetStar}&spicyStar=${spicyStar}`;
-        var xhr= new XMLHttpRequest();
-        xhr.open("Post", "sendEva.php", true);
-        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xhr.send(data_info);
-        xhr.onload=function(){
-            alert("感謝您提供的意見，加100分");
+//========================評價燈箱離開=========================== 
+function closeBox(){
+  var leavEva = document.getElementsByClassName('eva_lightBox_leave');
+  // console.log(leavEva.length);
+  for (var i= 0; i < leavEva.length; i++) {
+     leavEva[i].addEventListener('click',function(e){
+        let lightEvaBox = e.target.parentNode.parentNode;
+        // console.log(e.target);
+        lightEvaBox.classList.toggle('appear');
 
-        }
-        console.log(data_info);
-    });
-   
-
+     });
+    
+  }
 
 }
 
-window.addEventListener('load',addBtnEva,false);
-
-
+window.addEventListener("load",closeBox,false);
+//========================評價燈箱結束=========================== 
 
 
   function doFirst() {
     // console.log("aa");
     $id('upFile').onchange = headChange;
     // $id('infoChange').addEventListener('click', changeInfo);
-
+    
 
   }
   window.addEventListener('load', doFirst);

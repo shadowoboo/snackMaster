@@ -28,7 +28,7 @@
            // $stmt-> bindValue(":memPsw",$regInfo->memPsw);
            // $stmt-> bindValue(":email",$regInfo->email);
            // $stmt-> execute();
-           // header("Location: member.html");
+           header("Location: member.php");
 
            // echo json_encode($regInfo);
 

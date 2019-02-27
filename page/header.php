@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!-- <!-- <!DOCTYPE html> -->
 <html lang="en">
 
 <head>
@@ -14,7 +14,7 @@
     <title>Document</title>
 </head>
 
-<body> -->
+<body> 
     <header>
         <h1>大零食家</h1>
         <div class="cloud">

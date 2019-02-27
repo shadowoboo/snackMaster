@@ -3,18 +3,16 @@
     session_start();
     //未登入直接跳轉到首頁
     if( isset($_SESSION['memId']) == false ){
-        unset ($_SESSION["memNo"]);
-        unset ($_SESSION["memId"]);
         unset ($_SESSION["memId"]);
         header('location:homePage.php');
     }
-    //點擊登出，會員資料要清空
-    //跳轉回首頁
+    // 點擊登出，會員資料要清空
+    // 跳轉回首頁
     if (isset($_REQUEST["btnloglout"]) && ($_REQUEST["btnloglout"]=="true")) {
         //登出資料要清空
         unset ($_SESSION["memNo"]);
         unset ($_SESSION["memId"]);
-        unset ($_SESSION["memId"]);
+        unset ($_SESSION["memPsw"]);
         //跳轉回首頁
         header("Location: homePage.php");
       
@@ -30,14 +28,6 @@
         $sql = "select * from member where memNo=:memNo";        
         $members = $pdo->prepare($sql);
         $members ->bindValue(":memNo", $memNo);
-        // $members ->bindValue(":grade", $grade);
-        // $members ->bindValue(":memId", $memId);
-        // $members ->bindValue(":memPsw", $memPsw);
-        // $members ->bindValue(":email", $email);
-        // $members ->bindValue(":memPic", $memPic);
-        // $members ->bindValue(":memPhone", $memPhone);
-        // $members ->bindValue(":memPoint", $memPoint);
-        // $members ->bindValue(":memName", $memName);
         $members->execute();
         //抓出一筆資料(1行)
         $memRow = $members->fetch(PDO::FETCH_ASSOC);          
@@ -68,11 +58,6 @@
         // if ($order->rowCount() ==0 ) {
         //     echo "您目前尚無訂單！";
         // }
-    
-
-
-        
-    
 
     }catch(PDOException $e){
         echo "失敗",$e->getMessage();
@@ -91,21 +76,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/nnnnn.css">
-    <link rel="stylesheet" href="../css/member.css">
+    <link rel="stylesheet" href="../css/memberEva.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/loginBox.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/header.js" defer></script>
+    <script src="../js/member.js" defer></script>
     <script src="../js/upgrade.js"></script>
     <script src="../js/addCart.js"></script>
+    <script src="../js/alert.js"></script>
 
     <title>會員專區</title>
 
 </head>
 
 <body>
-    <header>
+<header>
         <h1>大零食家</h1>
         <div class="cloud">
             <div class="doc doc--bg2">
@@ -115,10 +103,8 @@
                 <label for="smlSearch" class="searchBtn" value="search">
                     <img src="../images/tina/search-icon.svg" alt="" id="searchBtn">
                 </label>
-
                 <div class="menu">
                     <!-------- -----手機漢堡----------- -->
-
                     <div id="ham">
                         <span class="btnTop"></span>
                         <span class="btnMid"></span>
@@ -127,12 +113,11 @@
                     <!----    在手機上打開此logo;桌機上關掉此logo------ -->
                     <div class="logo">
                         <a href="homePage.php"><img src="../images/tina/LOGO2.png" alt="大零食家"></a>
-
                     </div>
                     <div id="list_appear">
                         <!-- ----------手機選單離開-------- -->
                         <div id="cros">
-                            <span class="leave">X</span>
+                            <span class="leave"><i class="fas fa-times"></i></span>
                         </div>
                         <ul class="list">
                             <li id="gorankBoard"><a href="rankBoard.php">零食排行榜</a></li>
@@ -148,8 +133,7 @@
                             <li id="goGsell"><a href="gsell.php">尋找販賣機</a> </li>
                         </ul>
                     </div>
-                </div> 
-
+                </div>
                 <ul class="login">
                     <li><a href="?loglout=true"><span id="btnloglout">&nbsp</span></a></li>
                     <!-- <li><span id="btnloglout">&nbsp</span></li> -->
@@ -203,43 +187,33 @@
     <div id="lightBox-wrap">
         <div id="lightBox">
             <div class="loginLeave">
-                <span id="lightBoxLeave">X</span>
+                <span id="lightBoxLeave"><i class="fas fa-times"></i></span>
             </div>
-            <ul class="tab-group">
-                <li class="loginTab" id="open" onclick="changeway(event,'Loginpage')">登入</li>
-                <li class="loginTab" onclick="changeway(event,'signup')">註冊</li>
-            </ul>
             <div class="loginTab-content">
+                <h3 id="open">登入</h3>
                 <!-----------------------------------登入表單------------------------------------  -->
                 <form id="Loginpage" class="tabContent">
-
                     <table class="loginBox">
                         <tr>
                             <td>
                                 <label class="Box-name" for="loginMemId">帳號</label>
-                                <input type="text" name="loginMemId" id="loginMemId" size="12" autocomplete="off"
-                                    placeholder="請輸入帳號">
+                                <input type="text" name="loginMemId" id="loginMemId" autocomplete="off">
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name" for="loginMemPsw">密碼</label>
-                                <input type="password" name="loginMemPsw" id="loginMemPsw" size="12"
-                                    placeholder="請輸入密碼">
+                                <input type="password" name="loginMemPsw" id="loginMemPsw">
+                                <p id="forgetPswLink" onclick="changeway(event,'forgetPsw')"> 忘記密碼?</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="button" id="btnLogin" value="登入" class="cart">
-
+                                <input type="button" id="btnLogin" value="登入" class="loginBoxBtn">
                             </td>
                         </tr>
                     </table>
-                    <div class="forgetPsw">
-                        <p id="forgetPswLink" class="loginTab " onclick="changeway(event,'forgetPsw')"> 忘記密碼</p>
-                    </div>
-
-
+                    <p id="signUpBtn" onclick="changeway(event,'signup')">註冊會員</p>
                 </form>
                 <!------------------------------------------------註冊表單------------------------------------------  -->
                 <form id="signup" class="tabContent">
@@ -247,34 +221,27 @@
                         <tr>
                             <td>
                                 <label class="Box-name" for="signUpMemId">帳號</label>
-                                <input type="text" name="signUpMemId" id="signUpMemId" size="12" autocomplete="off"
-                                    placeholder="不得少於2碼">
-
+                                <input type="text" name="signUpMemId" id="signUpMemId" autocomplete="off"
+                                    placeholder="英數字2~10碼">
                             </td>
-
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name" for="signUpMemPsw">密碼</label>
-                                <input type="password" name="signUpMemPsw" id="signUpMemPsw" size="12"
-                                    placeholder="請輸入密碼">
+                                <input type="password" name="signUpMemPsw" id="signUpMemPsw" placeholder="英數字2~10碼">
                             </td>
-
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name mail" for="signUpMemEmail">信箱</label>
-                                <input type="email" name="signUpMemEmail" id="signUpMemEmail" size="20"
-                                    autocomplete="off">
+                                <input type="email" name="signUpMemEmail" id="signUpMemEmail" autocomplete="off">
                             </td>
-
                         </tr>
                         <tr>
                             <td class="formBtn">
-                                <input type="button" id="btnSignUp" value="註冊" class="cart">
+                                <input type="button" id="btnSignUp" value="註冊" class="loginBoxBtn">
                             </td>
                         </tr>
-
                     </table>
                 </form>
                 <!-- ---------------------------------------忘記密碼 -->
@@ -283,37 +250,28 @@
                         <tr>
                             <td>
                                 <label class="Box-name" for="forgetMemId">帳號</label>
-                                <input type="text" name="forgetMemId" id="forgetMemId" size="12" autocomplete="off"
-                                    placeholder="請輸入帳號">
+                                <input type="text" name="forgetMemId" id="forgetMemId" autocomplete="off">
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label class="Box-name mail" for="forgetMemEmail">信箱</label>
-                                <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" size="20"
-                                    autocomplete="off">
+                                <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" autocomplete="off">
                             </td>
                         </tr>
                         <tr>
                             <td class="formBtn">
-                                <input type="button" id="forgetSend" value="寄送密碼" class="cart">
+                                <input type="button" id="forgetSend" value="寄送" class="loginBoxBtn">
                             </td>
-
                         </tr>
-
                     </table>
-
-
                 </form>
-
             </div>
-
         </div>
+    </div>
 
 
-    </div>    
-    
-
+    </div>
 
     <section class="memWrap">
 
@@ -337,7 +295,7 @@
                         <label class="memPic" for="upFile">
                             <p>上傳大頭貼<img src="../images/tina/pen.png" alt="編輯"></p>
 
-                            <input type="file" name="upFile" id="upFile" =>
+                            <input type="file" name="upFile" id="upFile">
 
                         </label>
 
@@ -362,10 +320,9 @@
                     <td>
                         <p id="memIfon-p">
                             帳號：
-                            <input type="text" name="memId" value="<?php echo $memRow["memId"];?>" maxlength="15"
-                                id="memIfon" > 
-                                <!-- 還未增加readonly，修改input樣式要改變css未調 -->
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                            <input type="text"  name="memId" value="<?php echo $memRow["memId"];?>" maxlength="15"  id="memId"
+                           readonly >
+                            <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon1()" >
                         </p>
                     </td>
                 </tr>
@@ -373,8 +330,9 @@
                     <td>
                         <p>
                             密碼：
-                            <input type="password" name="memPsw" value="<?php echo $memRow["memPsw"];?>" maxlength="15" autofocus>
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                            <input type="password" name="memPsw" value="<?php echo $memRow["memPsw"];?>" maxlength="15"
+                                readonly id="password">
+                            <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon2()">
                         </p>
                     </td>
                 </tr>
@@ -382,8 +340,8 @@
                     <td>
                         <p>
                             姓名：
-                            <input type="text" name="memName" value="<?php echo $memRow["memName"];?>" maxlength="12">
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                            <input type="text" name="memName" value="<?php echo $memRow["memName"];?>" maxlength="12" readonly id="memName">
+                            <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon3()">
                         </p>
                     </td>
                 </tr>
@@ -391,8 +349,8 @@
                     <td>
                         <p>
                             電話：
-                            <input type="number" name="phone" value="<?php echo $memRow["memPhone"];?>" maxlength="10">
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                            <input type="text" name="phone" value="<?php echo $memRow["memPhone"];?>" maxlength="10" readonly id="memPhone">
+                            <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon4()">
                         </p>
                     </td>
                 </tr>
@@ -400,8 +358,8 @@
                     <td>
                         <p>
                             信箱：
-                            <input type="email" name="email" value="<?php echo $memRow["email"];?>" maxlength="20">
-                            <img src="../images/tina/pen.png" alt="編輯" id="infoChange">
+                            <input type="email" name="email" value="<?php echo $memRow["email"];?>" maxlength="20" readonly id="email">
+                            <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon5()">
                         </p>
                     </td>
                 </tr>
@@ -431,17 +389,14 @@
                 <tr>
                     <td>
                         <div class="modify">
-                            <button class="action" id="btnmodify">確認修改</button>
+                            <button class="subscribe" id="btnmodify">確認修改</button>
                         </div>
                     </td>
                 </tr>
 
 
             </table>
-
-
         </form>
-
 
     </section>
 
@@ -450,7 +405,7 @@
     <section class="itemTab2">
         <div class="tabContainer">
             <ul class="tabs">
-                <li class="tablinks" id="defaultOpen" onclick="changeTabs(event,'tab-1')">
+                <li class="tablinks " id="defaultOpen" onclick="changeTabs(event,'tab-1')">
                     <h4 class="detail">累積成就</h4>
                 </li>
                 <li class="tablinks" onclick="changeTabs(event,'tab-2')" id="tab22">
@@ -502,24 +457,24 @@
                         <div class="col4 col4-1">
                             <p>等級制度</p>
                             <ul>
-                                <li>Level0-零食寶寶</li>
-                                <li>Level1-零食小鬼</li>
-                                <li>Level2-零食練習生</li>
-                                <li>Level3-零食學霸</li>
-                                <li>Level4-零食科學家</li>
-                                <li>Level5-零食博士</li>
-                                <li>Level6-大零食家</li>
+                                <li>Level 0 - 零食寶寶</li>
+                                <li>Level 1 - 零食小鬼</li>
+                                <li>Level 2 - 零食練習生</li>
+                                <li>Level 3 - 零食學霸</li>
+                                <li>Level 4 - 零食科學家</li>
+                                <li>Level 5 - 零食博士</li>
+                                <li>Level 6 - 大零食家</li>
                             </ul>
                         </div>
                         <div class="col4 col4-2">
                             <p>升等條件</p>
                             <ul>
-                                <li>Level0-Level1:100積分</li>
-                                <li>Level1-Level2:1200積分</li>
-                                <li>Level2-Level3:3600積分</li>
-                                <li>Level3-Level4:7200積分</li>
-                                <li>Level4-Level5:12000積分</li>
-                                <li>Level5-Level6:1800積分</li>
+                                <li>Level 1 : 100積分</li>
+                                <li>Level 2 : 1200積分</li>
+                                <li>Level 3 : 3600積分</li>
+                                <li>Level 4 : 7200積分</li>
+                                <li>Level 5 : 12000積分</li>
+                                <li>Level 6 : 18000積分</li>
                             </ul>
 
                         </div>
@@ -539,11 +494,9 @@
                             </ul>
 
                         </div>
-
-
                     </div>
                     <div class="btnn">
-<?php 
+                        <?php 
     $sql = "select grade, memPoint from member where memNo = {$_SESSION['memNo']}";
     $members = $pdo -> query($sql);
     $member = $members -> fetch();
@@ -563,87 +516,73 @@
 ?>
                         <button class="goToCustom" <?php echo $check ?>>領取升等獎勵</button>
                     </div>
-
                 </div>
-
             </div>
             <!----------------------- 訂單管理---------------------------->
             <div class="tabPanel " id="tab-2">
-                <?php 
+         <?php 
             //先抓出訂單資料
                 $order_sql= "select * from snackOrder where memNo=:memNo";
                 $order = $pdo->prepare($order_sql);
                 $order->bindValue(":memNo", $memNo);
                 $order->execute();
                 if ($order->rowCount() ==0 ) {
-                        echo "您目前尚無訂單！";
+                        echo "<center>您目前尚無訂單！</center>";
                  }else{
                     while($orderRow = $order->fetch(PDO::FETCH_ASSOC)){
                         $orderNo = $orderRow['orderNo'];
-                        
-
-    ?>
-
+        ?>
                 <div class="order">
-
                     <!-- -------------------------訂單-------------------->
                     <div class="orderList">
                         <table>
-
                             <tr>
-                                <th>訂單編號:</th>
+                                <th>訂單編號 :</th>
                                 <td><?php echo $orderRow['orderNo'] ?></td>
                             </tr>
                             <tr>
-                                <th>下單日期：</th>
+                                <th>下單日期 :</th>
                                 <td><?php echo $orderRow['orderTime'] ?></td>
                             </tr>
                             <tr>
-                                <th>付款方式：</th>
+                                <th>付款方式 :</th>
                                 <td><?php echo $orderRow['payWay'] ?></td>
                             </tr>
                             <tr>
-                                <th>出貨狀態：</th>
+                                <th>出貨狀態 :</th>
                                 <td><?php echo $orderRow['orderStatus'] ?></td>
                             </tr>
-
-
                         </table>
                         <table>
                             <tr>
-                                <th>收件人地址:</th>
+                                <th>收件人地址 :</th>
                                 <td><?php echo $orderRow['address'] ?></td>
                             </tr>
                             <tr>
-                                <th>收件人電話：</th>
+                                <th>收件人電話 :</th>
                                 <td><?php echo $orderRow['phone'] ?></td>
                             </tr>
-
-
                         </table>
-
                     </div>
                     <div class="total">
-                        <p>總額：<?php echo $orderRow['orderTotal'] ?></p>
+                        <p>總額 : <?php echo $orderRow['orderTotal'] ?></p>
                     </div>
                     <!-----------------訂單明細------------------------  -->
                     <div class="orderitem">
                         <p class="orderList_btn">訂單明細v</p>
                         <div class=line></div>
 
-                        <div class="orderLis_content">
-                            <table class="orderList_items">
-                                <tr>
-                                    <th>商品</th>
-                                    <th>品名</th>
-                                    <th>數量</th>
-                                    <th>單價</th>
-                                    <th>小計</th>
-                                    <th>備註</th>
-                                    <th>評價狀態</th>
-
-                                </tr>
-
+                        <!-- ------------------------手機版html-------------------------------------- -->
+                       <div class="orderLis_content">
+                            <ul class="orderList_items_title">
+                                    <li>商品</li>
+                                    <li>品名</li>
+                                    <li>數量</li>
+                                    <li>單價</li>
+                                    <li>小計</li>
+                                    <li>備註</li>
+                                    <li>評價狀態</li>
+                                </ul>
          <?php 
               $OL_sql= "select a.snackNo, a.snackName, a.snackPic, a.snackPrice, b.orderNo, b.snackQuan, b.customBoxItem, b.snackNo from snack a join orderItem b on a.snackNo = b.snackNo where orderNo=:orderNo";
                           $order_list =$pdo->prepare($OL_sql);
@@ -652,206 +591,240 @@
 
                           $order_listArr = $order_list->fetchAll(PDO::FETCH_ASSOC);
                           $OLrowcount = $order_list->rowCount(); 
-                        //   print_r($order_listRow);
-                        //   print_r($order_listArr);
-                        //   echo $OLrowcount."<br>" ;
-                        //   echo count($order_listArr).$br;
 
-                      
-                        
+                          for($i=0;$i<$OLrowcount;$i++){ 
+                              $snackNo=$order_listArr[$i]['snackNo'] ;  
+                              $orderNo = $order_listArr[$i]['orderNo'];
+                ?>
+                             <ul class="orderList_moreItems">
+                                 <li>
+                                     <img src="<?php echo $order_listArr[$i]['snackPic'] ?> " alt="">
+                                    
+                                 </li>
+                                <li>
+                                    <?php echo $order_listArr[$i]['snackName'] ?>
+                                </li>
+                                <li>
+                                    <?php echo $order_listArr[$i]['snackQuan'] ?>
+                                </li>
+                                <li>
+                                    <?php echo $order_listArr[$i]['snackPrice'] ?>
+                                </li>
+                                <li>
+                                 <?php echo $order_listArr[$i]['snackPrice']*$order_listArr[$i]['snackQuan'] ?>
+                                </li>
+                                <li>
+                                    <?php 
+                                        $note_msg="";
+                                        try{
+                                            $note_sql ="select customBoxItem from orderitem where orderNo=:orderNo";
+                                            $note =$pdo->prepare($note_sql);
+                                            $note->bindValue(":orderNo",$orderNo);
+                                            $note->execute();
 
-                          for($i=0;$i<$OLrowcount;$i++){
-        ?>
-                                <tr class="orderList_moreItems item01">
-                                    <td>
+                                            $noteCount = $note->rowCount();
+                                            
+                                            if($noteCount !==0){
+                                                echo "一般";
+                                            }else{
+                                                echo "客製";
+                                            }
+                                        }catch(PDOException $e){
+                                            echo "失敗",$e->getMessage();
+                                            echo "行號",$e->getLine();
+                                        }
+                                    
+                                    ?>
+                                </li>
+                                <li>
+                                    <?php
+                                        $eva_msg="";
+                                        try{
+                                            $eva_sql = "select * from  eva where memNo=:memNo and snackNo=:snackNo";
+                                            $eva =$pdo->prepare($eva_sql);
+                                            $eva->bindValue(":memNo",$memNo);
+                                            $eva->bindValue(":snackNo",$snackNo);
+                                            $eva->execute();
+
+                                            $evaCount = $eva->rowCount();
+
+                                            if($evaCount>0){
+                                                echo '<button class="orderList_eva_done cart" type="button">已評價</button>';
+                                            }else{
+                                                echo '<button class="orderList_eva cart" type="button">未評價</button>';
+                                            }
+                                        } catch(PDOException $e){
+                                            echo "失敗",$e->getMessage();
+                                            echo "行號",$e->getLine();
+                                        }
+                                        
+                                    ?>
+                                </li>
+                            </ul>  
+    
+                  <!----------------------------------評價燈箱-------------------------  -->
+                            <div class="eva_lightBox"  name="snackNo<?php echo $order_listArr[$i]['snackNo'] ?>">
+                                    <span class="eva_lightBox_leave"><i class="fas fa-times"></i></span>
+                               <div class="eva_Boxing">     
+                                    <div class="evaContent boxing">
                                         <img src="<?php echo $order_listArr[$i]['snackPic'] ?>" alt="商品圖">
-                                    </td>
-                                    <td><?php echo $order_listArr[$i]['snackName'] ?></td>
-                                    <td><?php echo $order_listArr[$i]['snackQuan'] ?></td>
-                                    <td><?php echo $order_listArr[$i]['snackPrice'] ?></td>
-                                    <td><?php echo $order_listArr[$i]['snackQuan'] *$order_listArr[$i]['snackPrice']?></td>
-                                    <td>一般</td>
-                                    <td>
-                                        <button class="orderList_eva cart">未評價</button>
-                                    </td>
-                                </tr>
-                                <tr class="eva_lightBox_Box01 eva_lightBox" style="display: none;" name="snackNo
-                                <?php echo $order_listArr[$i]['snackNo'] ?>">
-                                            <td>
-                                            <span class="eva_lightBox_leave">x</span>
-                                                <div class="evaContent ">
-                                                    <img src="<?php echo $order_listArr[$i]['snackPic'] ?>" alt="商品圖">
-                                                </div>
-                                                <p><?php echo $order_listArr[$i]['snackName'] ?></p>
-
-                                            </td>
-                                            <td>
-                                                <ul class="eva_lightBox_stars">
-                                                    <li>
-                                                        <p>
-                                                            甜度：
-                                                            <ul class="eva_lightBox_swStars">
-                                                                <li>
-                                                                    1星 <input type="radio" name="swStar" value="1">
+                                        <p><?php echo $order_listArr[$i]['snackName'] ?></p>
+                                    </div>
+                                    <div class="eva_lightBox_Starts boxing">
+                                        <ul>
+                                            <li>
+                                                <p>
+                                                    甜度：
+                                                     <ul class="eva_lightBox_swStars">
+                                                         <li>
+                                                             1星 <input type="radio" name="swStar" value="1">
+                                                             </li>
+                                                        <li>
+                                                            2星 <input type="radio" name="swStar" value="2">
+                                                           </li>
+                                                        <li>
+                                                            3星 <input type="radio" name="swStar" value="3">
+                                                            </li>
+                                                        <li>
+                                                            4星 <input type="radio" name="swStar" value="4">
+                                                            </li>
+                                                        <li>
+                                                            5星 <input type="radio" name="swStar" value="5">
+                                                            </li>
+                                                         </ul>
+                                                 </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    辣度：
+                                                    <ul class="eva_lightBox_spStars">
+                                                            <li>
+                                                                1星 <input type="radio" name="spStar" value="1">
+                                                            </li>
+                                                            <li>
+                                                            2星 <input type="radio" name="spStar" value="2">
+                                                            </li>
+                                                            <li>
+                                                                3星 <input type="radio" name="spStar" value="3">
+                                                            </li>
+                                                            <li>
+                                                                4星 <input type="radio" name="spStar" value="4">
                                                                 </li>
-                                                                <li>
-                                                                    2星 <input type="radio" name="swStar" value="2">
-                                                                </li>
-                                                                <li>
-                                                                    3星 <input type="radio" name="swStar" value="3">
-                                                                </li>
-                                                                <li>
-                                                                    4星 <input type="radio" name="swStar" value="4">
-                                                                </li>
-                                                                <li>
-                                                                    5星 <input type="radio" name="swStar" value="5">
-                                                                </li>
+                                                            <li>
+                                                                5星 <input type="radio" name="spStar" value="5">
+                                                            </li>
                                                             </ul>
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <p>
-                                                            酸度：
-                                                            <ul class="eva_lightBox_suStars">
-                                                                <li>
-                                                                    1星 <input type="radio" name="suStar" value="1">
+                                                    </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    酸度：
+                                                        <ul class="eva_lightBox_suStars">
+                                                            <li>
+                                                                1星 <input type="radio" name="suStar" value="1">
                                                                 </li>
-                                                                <li>
-                                                                    2星 <input type="radio" name="suStar" value="2">
+                                                            <li>
+                                                                2星 <input type="radio" name="suStar" value="2">
                                                                 </li>
-                                                                <li>
-                                                                    3星 <input type="radio" name="suStar" value="3">
+                                                            <li>
+                                                                3星 <input type="radio" name="suStar" value="3">
                                                                 </li>
-                                                                <li>
-                                                                    4星 <input type="radio" name="suStar" value="4">
+                                                            <li>
+                                                                4星 <input type="radio" name="suStar" value="4">
                                                                 </li>
-                                                                <li>
-                                                                    5星 <input type="radio" name="suStar" value="5">
-                                                                </li>
-                                                            </ul>
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <p>
-                                                            辣度：
-                                                            <ul class="eva_lightBox_spStars">
-                                                                <li>
-                                                                    1星 <input type="radio" name="spStar" value="1">
-                                                                </li>
-                                                                <li>
-                                                                    2星 <input type="radio" name="spStar" value="2">
-                                                                </li>
-                                                                <li>
-                                                                    3星 <input type="radio" name="spStar" value="3">
-                                                                </li>
-                                                                <li>
-                                                                    4星 <input type="radio" name="spStar" value="4">
-                                                                </li>
-                                                                <li>
-                                                                    5星 <input type="radio" name="spStar" value="5">
-                                                                </li>
-                                                            </ul>
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <p>
-                                                            好評度：
-                                                            <ul class="eva_lightBox_gdStars">
-                                                                <li>
-                                                                    1星 <input type="radio" name="gdStar" value="1">
-                                                                </li>
-                                                                <li>
-                                                                    2星 <input type="radio" name="gdStar" value="2">
-                                                                </li>
-                                                                <li>
-                                                                    3星 <input type="radio" name="gdStar" value="3">
-                                                                </li>
-                                                                <li>
-                                                                    4星 <input type="radio" name="gdStar" value="4">
-                                                                </li>
-                                                                <li>
-                                                                    5星 <input type="radio" name="gdStar" value="5">
-                                                                </li>
-                                                            </ul>
-                                                        </p>
-                                                    </li>
-                                                </ul>
-
-                                            </td>
-                                            <td>
-                                                <p>留言分享</p>
-                                                <textarea name="textDiscuss" cols="50" rows="10"
+                                                            <li>
+                                                                5星 <input type="radio" name="suStar" value="5">
+                                                            </li>
+                                                        </ul>
+                                                    </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    好評度：
+                                                    <ul class="eva_lightBox_gdStars">
+                                                        <li>
+                                                            1星 <input type="radio" name="gdStar" value="1">
+                                                           </li>
+                                                        <li>
+                                                            2星 <input type="radio" name="gdStar" value="2">
+                                                            </li>
+                                                        <li>
+                                                            3星 <input type="radio" name="gdStar" value="3">
+                                                            </li>
+                                                        <li>
+                                                               4星 <input type="radio" name="gdStar" value="4">
+                                                             </li>
+                                                        <li>
+                                                            5星 <input type="radio" name="gdStar" value="5">
+                                                            </li>
+                                                        </ul>
+                                                    </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="eva_lightBox_msg boxing">
+                                          <p>留言分享</p>
+                                         <textarea name="textDiscuss" cols="30" rows="10"
                                                     class="eva_lightBox_textDics"></textarea>
-                                            </td>
-                                            <td>
-                                                <div class="evaContent evaSend">
-                                                    <input type='button' id="<?php echo $order_listArr[$i]['snackNo'] ?>" class="step sendEva" value="送出表單" >
-                                                </div>
-                                            </td>
-                                    </tr>
-                                
-                    <?php 
-                               }  
-                        ?>
-                       
-                            </table>
-                        </div>
+                                    </div>
+                                </div> 
+                                    <div class="eva_lightBox_send evaSend">
+                                        <input type='submit' id="<?php echo $order_listArr[$i]['snackNo'] ?>" class="step sendEva" value="送出評價" >
+                                    </div>
+
+                                </div>
+                        <?php 
+                                }
+                            ?>                     
+                       </div>
+                <!-- -------------------------------手機版html結束----------------------------- -->
+
+               
                     </div>
-
+                
                 </div>
+        <?php 
+                }  
+            }      
+         
+         ?>        
+        </div>
+           
 
-                <?php 
-                    }  
-                }
-            ?>
+        <!-- <------------------收藏品-------------------- -->
+        <div class="tabPanel " id="tab-3">
 
-
-
-            </div>
-            <!-- <------------------收藏品-------------------- -->
-            <div class="tabPanel " id="tab-3">
-
-                <div class="collect" id="getCollect">
-
-                </div>
-            </div>
-            <!------優惠券----->
-            <div class="tabPanel " id="tab-4">
-                <table>
-                    <tr>
-                        <th></th>
-                        <th>優惠券名目</th>
-                        <th>折扣金額</th>
-                        <th>使用期限</th>
-                    </tr>
-                </table>
-
-                <table id="coupon">
-
-
-                </table>
+            <div class="collect" id="getCollect">
 
             </div>
+        </div>
+        <!------優惠券----->
+        <div class="tabPanel " id="tab-4">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>優惠券名目</th>
+                    <th>折扣金額</th>
+                    <th>使用期限</th>
+                </tr>
+            </table>
+
+            <table id="coupon">
+
+
+            </table>
 
         </div>
 
+        </div>
     </section>
 
-
-
-
-
     <footer>
-
         <div id="floor">
             <img src="../images/nnnnn/floor.png" alt="floor">
             <p id="copy">Copyright©2019 Snack Master</p>
         </div>
-
     </footer>
-
-
-
 
 </body>
 
@@ -869,6 +842,46 @@ function tabClick(e) {
             break;
     }
 }
+
+
+
+//評價表單送出
+function addBtnEva(){
+
+$('.sendEva').click(function(){
+    var snackNo=$(this).attr('id');
+    
+    var evaCtx=$(`div[name=snackNo${snackNo}] textarea`).val();
+    var sweetStar=$(`div[name=snackNo${snackNo}] input[name=swStar]:checked`).val();
+    var sourStar=$(`div[name=snackNo${snackNo}] input[name=suStar]:checked`).val();
+    var spicyStar=$(`div[name=snackNo${snackNo}] input[name=spStar]:checked`).val();
+    var goodStar=$(`div[name=snackNo${snackNo}] input[name=gdStar]:checked`).val();
+
+    var data_info=`snackNo=${snackNo}&evaCtx=${evaCtx}&goodStar=${goodStar}&sourStar=${sourStar}&sweetStar=${sweetStar}&spicyStar=${spicyStar}`;
+    var xhr= new XMLHttpRequest();
+    xhr.open("Post", "sendEva.php", true);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.send(data_info);
+    xhr.onload=function(){
+        alertBox("感謝您提供的意見，加100分");
+        var tarBtn=$(`div[name=snackNo${snackNo}]`).prev("ul").find("button");
+        // console.log(tarBtn);
+        tarBtn.text("已評價");
+        tarBtn.attr("class","orderList_eva_done cart");
+        $(`div[name=snackNo${snackNo}]`).remove();
+
+    }
+    console.log(data_info);
+});
+
+}
+
+window.addEventListener('load',addBtnEva,false);
+
+
+
+
+
 
 //收藏清單
 function getCollection() {
@@ -972,4 +985,3 @@ window.addEventListener('load', doFirst, false);
 </script>
 
 </html>
-    <script src="../js/member.js" defer></script>
