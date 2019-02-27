@@ -532,16 +532,18 @@ try {
     //$arr_row[49] 代表 客製箱 (sql中第50個)
 ?>
   <div class="step-content-foot">
-        <button type="button" class="step none"  id="btn1">上一步</button>
-        <button type="button" class="step"  id="btn2">下一步</button>
+        <button type="button" class="step none" name="prev" id="btn1">上一步</button>
+        <button type="button" class="step" name="next"  id="btn2">下一步</button>
         <!-- <button type="button" class="step"  id="btn2" disabled="true">下一步</button> -->
-        <button type="button" class="active out step cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="../images/blair/customized.png" data-cusCard="../images/customized/card.png" data-cusSound="test" >加入購物車</button>
+        <button type="button" class="active none step cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="../images/blair/customized.png" data-cusCard="../images/customized/card.png" data-cusSound="test" >加入購物車</button>
   </div>
 <script>
-var steps = $(".step-content-body"), i = 0;
+var steps = $(".step-content-body");
+
+var i = 0;
 
 $("#btn2").click(function(){
-  
+    var instance = $(this);
   if(i < steps.length) {
     console.log("btn2 - "+i); steps.eq(i).removeClass('active').addClass('done').next().addClass('active')
     i++;
@@ -550,10 +552,18 @@ $("#btn2").click(function(){
     $("#btn1").removeClass('none');
   }
 
-//   if( i+1< steps.length) {
-//     $('button[name="finish"]').removeClass('none');
-//   }
+  if( i+2<steps.length) {
+    $('button[name="finish"]').removeClass('none');
+    i++;
+    
+console.log(i)
+  }
 
+  if (i == (steps.length - 1)) {
+      instance.addClass('none');
+      instance.siblings('button[name="finish"]').removeClass('none');
+    }
+console.log(i)
 });
 
 
@@ -565,6 +575,19 @@ $("#btn1").click(function(){
     i--;
     
   }
+
+  if(i == 1){
+    $("#btn2").removeClass('none');
+  }
+
+
+  if(i == 0){
+    $(this).addClass('none');
+  }
+
+ $('button[name="finish"]').addClass('none');
+
+    console.log(i)
 });
 </script>
 
@@ -609,7 +632,7 @@ $("#btn1").click(function(){
     </div>
 </footer>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src="../js/customizedstep.js"></script>
+  <!-- <script src="../js/customizedstep.js"></script> -->
   <script src="../js/header.js"></script>
    <!-- Draggable -->
   
