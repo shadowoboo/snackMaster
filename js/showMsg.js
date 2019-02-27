@@ -2,7 +2,7 @@
 function repBtnAdd(){
     $('.report').click(function(e){
         $('.report').attr('disable',true);
-        // console.log($(this));
+        // console.log($(this).attr('repno'));
         if($('#btnloglout').text()=='登出'){
             if(confirm("確定要檢舉這則言論嗎?")){
                 // console.log($(this));
@@ -16,12 +16,12 @@ function repBtnAdd(){
                 xhr.onload=function(){
                     if(xhr.responseText=='already'){
 
-                        alert('您已經檢舉過這則評價了。')
+                        alertBox('您已經檢舉過這則評價了。')
                     }else if(xhr.responseText=='already2'){
 
-                        alert('您已經檢舉過這則留言了。')
+                        alertBox('您已經檢舉過這則留言了。')
                     }else{
-                        alert('感謝您的檢舉，將由管理員進行審核');
+                        alertBox('感謝您的檢舉，將由管理員進行審核');
                         // console.log(xhr.responseText);
                     }
                     $('.report').attr('disable',false);  
@@ -31,13 +31,11 @@ function repBtnAdd(){
                 $('.report').attr('disable',false);  
             }
         }else{
-            alert('登入會員後才能進行檢舉');
-            showLightBox();  
+            alertBox('登入會員後才能進行檢舉');
+            $('#sure').click(showLightBox) ;    
             $('.report').attr('disable',false);          
         }
     });
-
-
 }
 function pageBtnAdd(){
     snackNo=$('#item').attr('snackNo');
@@ -73,6 +71,9 @@ function pageBtnAdd(){
                 // setPagination(rsp.pages);
                 $('#cmtDiv').html(rsp.cmtArr);
                 showStar();
+                $('.sendMsg').off('click');
+                $('.like').off('click');
+                $('.report').off('click');
                 msgBtnAdd();
                 sendMsg();
                 likeBtnAdd();
@@ -83,9 +84,9 @@ function pageBtnAdd(){
 
         }else{
             if(page==0){
-                alert('這就是盡頭了');
+                alertBox('這就是盡頭了');
             }else{
-                alert('沒有下一頁了!');
+                alertBox('沒有下一頁了!');
             }
         }
         
@@ -109,7 +110,7 @@ $('.like').click(function(){
         xhr.send(data_info);
         xhr.onload=function(){
             if(xhr.responseText=="liked"){
-                alert('已經說過讚');
+                alertBox('已經說過讚');
             }else{
                 likeBtn.html(`<i class="far fa-thumbs-up"></i>${likeTime+1}`);
             }
@@ -117,8 +118,8 @@ $('.like').click(function(){
         // $(this).html(`<i class="far fa-thumbs-up"></i>${likeTime+1}`);
 
     }else{
-        alert('登入會員後才能按讚');
-        showLightBox();    
+        alertBox('登入會員後才能按讚');
+        $('#sure').click(showLightBox) ;  
     }
 
 
@@ -130,6 +131,7 @@ function sendMsg(){
     $('.sendMsg').click(function(e){
         //檢查登入狀態
         // $('.sendMsg').off('click');
+        $('.sendMsg').attr('disable',true);
         if($('#btnloglout').text()=='登出'){
         //登入true->將留言內容送入資料庫並重撈一次全部留言    
         
@@ -143,8 +145,10 @@ function sendMsg(){
             xhr2.onload=function(){
             rsp = xhr2.responseText;
             if(rsp==2){
-                alert('請勿留下空白訊息');
+                alertBox('請勿留下空白訊息');
+                $('.sendMsg').attr('disable',false);
                 return false;
+                
             }else{
                 var xhr =new XMLHttpRequest();
                 xhr.open("Post", "getMsg.php", true);
@@ -172,8 +176,10 @@ function sendMsg(){
                     $('#msgBox'+evaNo).css('height','auto').html(msgBoxHTML);
                     $('#show'+evaNo).html('<i class="fas fa-comment"></i>隱藏留言');
                     $('#ctx'+evaNo).val('');
+                    $('.report').off('click');
                     repBtnAdd();
                     // $('.sendMsg').on('click');
+                    $('.sendMsg').attr('disable',false);
             }
             // console.log('留言成功');
             }
@@ -181,8 +187,9 @@ function sendMsg(){
 
         }else{
         //登入false->把留言內容寫入secction後 等到確定登入了再送資料庫並重撈。    
-            alert('登入會員後才能進行留言');
-            showLightBox();
+            alertBox('登入會員後才能進行留言');
+            $('#sure').click(showLightBox) ;  
+            $('.report').attr('disable',false);
         }
         
         
@@ -231,6 +238,8 @@ function msgBtnAdd(){
 
                 };
                 $('#msgBox'+evaNo).css('height','auto').html(msgBoxHTML);
+                
+                $('.report').off('click');
                 repBtnAdd();
             }
 
@@ -254,24 +263,6 @@ function showStar(){
     })
 }
 
-function shareBtn(){
-
-   $('.share').click (function () {
-       alert("sharing");
-        FB.ui({
-        app_id: '你的appid',
-        method: 'feed',
-        link: 'http://140.115.236.71/demo-projects/CD105/cd105g2/page/showItem.php?snackNo=2',
-        // picture: 'http://87.87.87.87/talk/images/cover.jpg',
-        caption: '大零食家',
-        description: '什麼都好好吃'
-        },function (response) {
-                        console.log(response);
-                        });
-        
-        
-        });
-}
 
 function firstGet(){
     snackNo=$('#item').attr('snackNo');
@@ -297,6 +288,7 @@ function firstGet(){
         pageBtnAdd();
         repBtnAdd();
         // shareBtn();
+
         
     }
 
