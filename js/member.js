@@ -33,6 +33,7 @@ $(document).ready(function () {
   });
 
 });
+//-----------會員資料編輯--------------------
 function modInfon1(){
   document.getElementById("memId").readOnly = false;
   }
