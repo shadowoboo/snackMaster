@@ -504,7 +504,7 @@ try {
         var xhr = new XMLHttpRequest();
         xhr.onload = function(){
             if( xhr.responseText == "error"){
-            alert("錯誤");
+            alertBox("錯誤");
             }else{
             // alert(`xhr.responseText: ${xhr.responseText}`);
             }
@@ -2069,7 +2069,7 @@ $( "#cardSureBtn" ).click(function() {
     $(function () {
         $("#soundAdd").on("click",addSound);
         function addSound(e){
-            alert('音效已加入卡片囉~');
+            alertBox('音效已加入卡片囉~');
             //選取目標聲音的路徑
             let src=$("#soundAdd").closest(".content").children(".container").children("div:visible").find("source").attr("src");
             console.log(src);
