@@ -93,7 +93,7 @@
 </head>
 
 <body>
-    <header>
+<header>
         <h1>大零食家</h1>
         <div class="cloud">
             <div class="doc doc--bg2">
@@ -119,14 +119,26 @@
                         <div id="cros">
                             <span class="leave"><i class="fas fa-times"></i></span>
                         </div>
+                        <ul class="list">
+                            <li id="gorankBoard"><a href="rankBoard.php">零食排行榜</a></li>
+                            <li id="gocustomized"><a href="customized.php">客製零食箱</a> </li>
+                            <!-- 在手機上要關掉這個li的logo -->
+                            <li><a href="homePage.php"><img src="../images/tina/LOGO1.png" alt="大零食家"></a></li>
+                            <li id="store"> 零食商店街
+                                <ul id="Submenu" class="subMenu">
+                                    <li id="snBox"><a href="preOrder.php">預購零食箱</a></li>
+                                    <li><a href="shopping.php">零食列表</a></li>
+                                </ul>
+                            </li>
+                            <li id="goGsell"><a href="gsell.php">尋找販賣機</a> </li>
+                        </ul>
                     </div>
                 </div>
                 <ul class="login">
                     <li><a href="?loglout=true"><span id="btnloglout">&nbsp</span></a></li>
                     <!-- <li><span id="btnloglout">&nbsp</span></li> -->
                     <li><i class="fas fa-user-circle" id="memLogin"></i></li>
-                    <li id="goCartShow"><a href="cartShow.php"><i class="fas fa-shopping-cart" id="shopCart"></i></a>
-                    </li>
+                    <li id="goCartShow"><a href="cartShow.php"><i class="fas fa-shopping-cart" id="shopCart"></i></a></li>
                 </ul>
             </nav>
             <div class="seachRegion" id="search_appear">
@@ -158,11 +170,16 @@
                             <option value="spicy">辣</option>
                         </select>
                     </div>
-                    <div id="close">
-                        <span class="close"><i class="fas fa-times"></i></span>
+                    <div class="inputbar">
+                        <input type="text" id="searchName" placeholder="想找什麼零食呢？">
+                        <i class="fas fa-search" id="searchClick"></i>
                     </div>
                 </div>
+                <div id="close">
+                    <span class="close"><i class="fas fa-times"></i></span>
+                </div>
             </div>
+        </div>
     </header>
     <!-- //-------------------------------------------------------//
 -----------------------       這是燈箱        ------------------ -->
@@ -252,6 +269,7 @@
             </div>
         </div>
     </div>
+
 
     <div class="title">
         <h2>會員專區</h2>
@@ -376,8 +394,7 @@
                 <tr>
                     <td>
                         <div class="modify">
-          
-                            <button class="subscribe" id="btnmodify">確認修改</button>
+                            <button class="subscribe" id="btnmodify" >確認修改</button>
                         </div>
                     </td>
                 </tr>

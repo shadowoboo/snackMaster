@@ -1,20 +1,3 @@
-
-function $id(id) {
-  return document.getElementById(id);
-}
-
-function headChange() {
-  var file = $id('upFile').files[0];
-  var readFile = new FileReader();
-  readFile.readAsDataURL(file);
-  readFile.addEventListener('load', function () {
-    var bigHead = $id('headPic');
-    bigHead.src = readFile.result;
-    bigHead.style.maxWidth = '200px';
-    bigHead.style.maxHeight = '300px';
-  });
-}
-
 $(document).ready(function () {
   // console.log(123);
   //展開訂單明細
@@ -33,22 +16,8 @@ $(document).ready(function () {
   });
 
 });
-//-----------會員資料編輯--------------------
-function modInfon1(){
-  document.getElementById("memId").readOnly = false;
-  }
-function modInfon2(){
-  document.getElementById("memPsw").readOnly = false;
-  }
-function modInfon3(){
-    document.getElementById("memName").readOnly = false;
-   } 
-  function modInfon4(){
-    document.getElementById("memPhone").readOnly = false;
-    } 
-  function modInfon5(){
-      document.getElementById("email").readOnly = false;
-     }   
+
+
  //========================評價燈箱=========================== 
 function showBox(){
 
@@ -83,16 +52,50 @@ function closeBox(){
 
 }
 
-window.addEventListener("load",closeBox,false);
+
 //========================評價燈箱結束=========================== 
 
+
+function $id(id) {
+  return document.getElementById(id);
+}
+
+function headChange() {
+  var file = $id('upFile').files[0];
+  var readFile = new FileReader();
+  readFile.readAsDataURL(file);
+  readFile.addEventListener('load', function () {
+    var bigHead = $id('headPic');
+    bigHead.src = readFile.result;
+    bigHead.style.maxWidth = '200px';
+    bigHead.style.maxHeight = '300px';
+  });
+}
+
+//-----------會員資料編輯--------------------
+
+function modInfon1(){
+  document.getElementById("memId").readOnly = false;
+  }
+function modInfon2(){
+  document.getElementById("memPsw").readOnly = false;
+  }
+function modInfon3(){
+    document.getElementById("memName").readOnly = false;
+   } 
+  function modInfon4(){
+    document.getElementById("memPhone").readOnly = false;
+    } 
+  function modInfon5(){
+      document.getElementById("email").readOnly = false;
+     } 
+  
+  
 
   function doFirst() {
     // console.log("aa");
     $id('upFile').onchange = headChange;
-    // $id('infoChange').addEventListener('click', changeInfo);
     
-
   }
   window.addEventListener('load', doFirst);
 
