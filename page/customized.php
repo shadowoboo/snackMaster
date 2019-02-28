@@ -907,15 +907,6 @@ $( "#cardSureBtn" ).click(function() {
         music01.currentTime = 0; 
       }
       
-      var stopMusicLeft = document.getElementById("stopLeft");
-      stopMusicLeft.addEventListener("click",removeSM01 );
-      function removeSM01(){
-        snackmaster.classList.remove("showDisplay");
-        eatMax.classList.remove("showDisplay");
-        loveuu.classList.remove("showDisplay");
-        btp.classList.remove("showDisplay");
-      }
-
 
 
 //leftBtn 左邊按鈕事件
@@ -931,16 +922,51 @@ $( "#cardSureBtn" ).click(function() {
         music01.currentTime = 0;  
         music04.pause(); 
         music01.currentTime = 0; 
-      }
-      var stopMusicRight = document.getElementById("stopRight");
-      stopMusicRight.addEventListener("click",removeSM01 );
-      function removeSM01(){
+
         snackmaster.classList.remove("showDisplay");
         eatMax.classList.remove("showDisplay");
         loveuu.classList.remove("showDisplay");
         btp.classList.remove("showDisplay");
       }
 
+
+
+      var stopMusicL = document.getElementById("stopLeft");
+      stopMusicL.addEventListener("click",stopThis );
+      function stopThis(e){
+          console.log("123")
+        music01.pause();
+        music01.currentTime = 0; 
+        music02.pause(); 
+        music01.currentTime = 0; 
+        music03.pause();
+        music01.currentTime = 0;  
+        music04.pause(); 
+        music01.currentTime = 0; 
+
+        snackmaster.classList.remove("showDisplay");
+        eatMax.classList.remove("showDisplay");
+        loveuu.classList.remove("showDisplay");
+        btp.classList.remove("showDisplay");
+      }
+
+      var stopMusicL = document.getElementById("soundAdd");
+      stopMusicL.addEventListener("click",stopThis );
+      function stopThis(e){
+          console.log("123")
+        music01.pause();
+        music01.currentTime = 0; 
+        music02.pause(); 
+        music01.currentTime = 0; 
+        music03.pause();
+        music01.currentTime = 0;  
+        music04.pause(); 
+        music01.currentTime = 0;
+        snackmaster.classList.remove("showDisplay");
+        eatMax.classList.remove("showDisplay");
+        loveuu.classList.remove("showDisplay");
+        btp.classList.remove("showDisplay"); 
+      }
 </script>
 <script>
     var currentIndex = 0,
