@@ -16,6 +16,10 @@ require_once("connectcd105g2.php");
   $sendEva -> bindParam( ":spicyStar", $_REQUEST["spicyStar"] );
   $sendEva -> execute();
 
+$point_sql = "update member set memPoint = memPoint + 100 where memNo =:memNo";
+$point = $pdo->prepare( $point_sql );
+$point -> bindParam( ":memNo", $_SESSION["memNo"]);
+$point -> execute();
   
 
 }catch(PDOException $e){
