@@ -10,7 +10,7 @@
         $favorite->execute();
 
         if( $favorite->rowCount() ==0 ){
-            echo "您目前沒有任何收藏品唷!";
+            echo "<center id='coll'>您目前沒有任何收藏品唷!</center>";
         }else{
             $html='';
             while($favoriteRow = $favorite->fetch(PDO::FETCH_ASSOC)){
@@ -22,7 +22,7 @@
                     <img class='itemImg' src='{$favoriteRow['snackPic']}' alt='image'>
                     <h4 class='itemName'>[{$favoriteRow['nation']}]{$favoriteRow['snackName']}</h4>
                     <div class='sellPrice'>
-                        <p>價格<span>{$favoriteRow['snackPrice']}</span></p>
+                        <p>$<span>{$favoriteRow['snackPrice']}</span></p>
 
                     </div>
                     <div class='citemBtns'>

@@ -37,7 +37,7 @@
 		$to = "../images/member/{$_FILES['upFile']['name']}";
 		copy($from, $to);        //新增修改後的資料
         
-        echo "OK";
+        // echo "OK";
         $_SESSION["memPic"]= '../images/member/'.$_FILES['upFile']["name"];
 		break;
 	    case UPLOAD_ERR_INI_SIZE:

@@ -92,6 +92,7 @@ audio{
     border-color: #FF8F00;
   }
 
+
   .step-content{
     transform: translateY(17%);
     .step-content-foot {
@@ -103,6 +104,27 @@ audio{
                 color: #fff;
             }
         }
+        .undo{
+            position: relative;
+            background-color:rgb(204, 204, 204);
+            color:rgb(170, 170, 170);
+            cursor: no-drop ;
+            &:hover{
+                &:after{
+                    content: '請按"編輯完成"';
+                    position: absolute;
+                    bottom: -2px;
+                    left: -27px;
+                    right: 0px;
+                    margin: auto;
+                    padding: 8px;
+                    width: 165px;
+                    background-color: #fff;
+                    border-radius: 5px;
+                    color: #000;
+                }            
+            }
+        }
       }
   }
 
@@ -110,10 +132,26 @@ audio{
   .step-content-foot button.none{
     display: none;
 }
+
+.stepC {
+    width: 130px;
+    height: 45px;
+    color: #fff;
+    background-color: #076baf;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 0px;
+    font-family: g2Font;
+    text-align: center;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+
   
-  .step-content .step-content-foot button.out {
-    display: none;
-  }
+//   .step-content .step-content-foot button.out {
+//     display: none;
+//   }
   
   .step-content .step-content-foot button.disable {
     background-color: #ECEFF1;

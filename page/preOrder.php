@@ -27,10 +27,12 @@
     <script src="../js/alert.js"></script>
     <script src="../js/preOrder.js"></script>
     <script src="../js/search.js"></script>
+    <script src="../js/showStar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/showStar.js"></script>
     <script src="../js/findingIp.js"></script>
+    <script src="../js/scratch.js"></script>
+
 </head>
 <body> 
     <?php

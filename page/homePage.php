@@ -35,7 +35,7 @@
     <script src="../js/addHeart.js"></script>
     <script src="../js/addCart.js"></script>
     <script src="../js/alert.js"></script>
-        <script src="../js/scratch.js"></script>
+    <script src="../js/scratch.js"></script>
     <link rel="stylesheet" href="../css/animate.min.css">
     <link rel="stylesheet" href="../css/boxModel.css">
     <link rel="stylesheet" href="../css/sale.css">

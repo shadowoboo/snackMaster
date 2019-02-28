@@ -1,9 +1,6 @@
 // @import "reset.scss";
 @import "common.scss";
 
-body{
-    background-color: #b8f1ed;
-}
 .fullPage{
     position: fixed;
     z-index: 900;
@@ -20,6 +17,9 @@ body{
         top: 180px;
         bottom: 0;
         margin: auto;
+        @media screen and (max-width:768px){
+            top: 30px;
+        }
         #bgGlow{
             position: absolute;
             top: -16%;
@@ -28,9 +28,9 @@ body{
             width: 220%;
             animation: rollGlow 33s infinite linear;
               @media screen and(max-width:767px) {
-                top: -18%;
-                left: -33%;
-                width: 170%;
+                top: -7%;
+                left: -44%;
+                width: 189%;
               }
           }
           @keyframes rollGlow {

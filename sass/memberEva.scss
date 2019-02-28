@@ -35,16 +35,40 @@ $p:22px;
     }
 }
 @include btn('cart1', 130px, 40px, #fff, $blue, transparent, 10px, 0px, #fff, $deepblue, 20px);
-
+@include btn('subscribe1', 70px, 35px, $gray, #fcda85, transparent, 10px, 0px, $gray, #fbc84a, 28px);
 body{
     background-color: #b8f1ed;
     
 }
+
 span{
     color:$blue;
 }
 input[type="number"]{
     text-align: left;
+}
+.title {
+    width: 260px;
+    margin: 120px auto 20px auto;
+    text-align: center;
+    background-image: url(../images/blair/title.png);
+    background-repeat: no-repeat;
+    h2{
+        line-height: 163px;
+        color: $blue;
+    }
+}
+header{
+    nav{
+        .login{
+            li:first-child{
+                #btnloglout{
+                    color: #737374;
+                }
+                
+            }
+        }
+    }
 }
 
 .memWrap{
@@ -138,13 +162,14 @@ input[type="number"]{
                     // padding: 1% ;
                     input{
                         color: #076baf;
-                        width: 125px;
+                        width: 140px;
                         background-color: transparent;
-                        font-family: g2Font;
+                        font-family: g2Med;
                         font-size: 16px;
+                        border-radius: 10px;
                         &:focus{
                             outline: 1px solid $tabColor;
-                            background-color: #f2f4f5;
+                            background-color: #e0f3fc;
                            
                             
                         }
@@ -156,9 +181,17 @@ input[type="number"]{
                         padding: 0 20px;
                     }
                     img{
-                        width: 5%; 
+                        width: 7%; 
                         vertical-align: unset;  
-                        cursor: pointer;               
+                        cursor: pointer;
+                        border: 1px double #076baf;
+                        box-shadow: 2px 2px 2px 1px #aaa;
+                        &:hover{
+                            box-shadow: inset 0 0 35px 5px rgba(161, 161, 161, 0.25), inset 0 2px 1px 1px rgba(255,255,255,0.9), inset 0 -2px 1px 0 rgba(150, 150, 150, 0.25);
+                            border: none;
+                        }
+                        
+                        
                     }
                 }
             }
@@ -201,6 +234,7 @@ input[type="number"]{
                 }
             }
             tr:last-child{
+
                 .modify{
                     text-align: center;
                 }
@@ -262,6 +296,7 @@ input[type="number"]{
 .wrapTabPanel{
     position: relative;
     width: 100%;
+    margin-top: 30px;
     // height: 100vh;
     .tabPanel{
         width: 92%;
@@ -370,15 +405,17 @@ input[type="number"]{
                         // padding-left: 2%;
                         color: $tabColor;
                         font-family: g2Font; 
+                        padding: 0 10px;
                         
                     }
                     
                     li{
-                        font-size: 18px;
+                        font-size: 16px;
                         line-height: 1.6;
                         color: $tabColor;
                         font-family: g2Med;
-                        padding-left: 2%;
+                        // padding-left: 2%;
+                        padding: 0 0 10px 8px;
                     }
                 } 
     
@@ -390,7 +427,7 @@ input[type="number"]{
                     height: 35px;
                     font-size: 20px;
                     line-height: 1.6;
-                    margin: 10px 0;
+                    margin: 12px 0;
     
                 }
             }
@@ -402,6 +439,10 @@ input[type="number"]{
     #tab-2{
         .order{
             width: 100%;
+            &:nth-child(odd){
+                background-color: antiquewhite;
+                border-radius: 10px;
+            }
     //-----------訂單基本資料-----------------        
             .orderList{
                 display: flex;
@@ -420,7 +461,7 @@ input[type="number"]{
                         td{
                             color: $tabColor;
                             font-size: 18px;
-                            font-family: g2Font;
+                            font-family: g2Med;
                             padding: 10px;
                         }
                     }
@@ -435,12 +476,14 @@ input[type="number"]{
                     line-height: 1.6;
                     color: $tabColor;
                     font-family: g2Font;
-                    padding: 10px; 
+                    padding: 20px; 
+                    margin-top: -35px;
                 }
             }
     //----------------訂單明細-------------------        
             .orderitem{
                 width: 100%;
+                margin-top: -10px;
                 p{
                     text-align: center;
                     font-size: 18px;
@@ -450,7 +493,7 @@ input[type="number"]{
                     
                 }
                 .line{
-                    width: 88%;
+                    width: 92%;
                     margin: auto;
                     height: 2px;
                     border-bottom: 2px solid $blue;
@@ -491,9 +534,9 @@ input[type="number"]{
                         justify-content: space-around;
                         align-items: center;
                          li{
-                            line-height: 1.6;
+                            line-height: 1.4;
                             text-align: center;
-                            padding: 10px;
+                            padding: 8px;
                             width: 25%;
                             font-size: 16px;
                             color: $tabColor;
@@ -560,7 +603,7 @@ input[type="number"]{
                               li{
                                   p{
                                     text-align: left;  
-                                    padding: 10px;
+                                    padding: 5px;
                                   }
                                   .eva_lightBox_swStars,.eva_lightBox_spStars,.eva_lightBox_suStars,.eva_lightBox_gdStars{
                                       font-size: 16px;
@@ -583,8 +626,9 @@ input[type="number"]{
                           }  
                         }
                         .eva_lightBox_textDics{
+                            display: block;
                             padding: 5px;
-                            margin-left: 12%;
+                           margin: auto;
                             resize: none;
                         }
                         .evaSend{
@@ -612,6 +656,7 @@ input[type="number"]{
  //=================== 手機版的明細和燈箱=======================                   
                 }
               }
+        
  
         }
     //-----------------收藏品---------------------
@@ -634,6 +679,7 @@ input[type="number"]{
                     text-align: center;
                     margin-top: 20px;
                     padding: 3px;
+                    margin-bottom: 20px;
                     
                     .country{
                         width: 40px;
@@ -649,7 +695,7 @@ input[type="number"]{
                         padding: 0 15px;
                     }
                     .sellPrice{
-                        width: 280px;
+                        width: 250px;
                         height: 50px;
                         p{
                             font-size: $p;
@@ -674,7 +720,7 @@ input[type="number"]{
     } 
     //---------------優惠券--------------------------    
     #tab-4{
-        width: 85%;
+        
         table{
             margin: auto;
             width: 100%;
@@ -687,7 +733,7 @@ input[type="number"]{
                     color: $tabColor;
                     font-family: g2Font;
                     font-size: 16px;
-                    border-bottom: 2px solid #076baf;
+                    // border-bottom: 2px solid #076baf;
                 }
             }
             
@@ -699,7 +745,7 @@ input[type="number"]{
                     width: 20%;
                     vertical-align: middle;
                     padding: 2%;
-                    font-family: g2Font;
+                    font-family: g2Med;
                     color: $tabColor;
                     font-size: 14px;
                     margin-right: 1%;
@@ -709,6 +755,7 @@ input[type="number"]{
                 }
             }
         }
+
     }    
 
  } 
@@ -716,14 +763,20 @@ input[type="number"]{
     
  
 } 
-
+#cou,#or,#coll{
+    font-family: g2Font;
+    color: #737374;
+    font-size: 26px;
+    line-height: 1.6;
+    padding: 20px;
+}
 //--------------------手機RWD-------------------------------
 
 @media screen and(max-width:768px){
     .memWrap{
         form{
             margin: auto ;
-            margin-top: 35%;
+            margin-top: 30px;
             .col-1{
                 width: 100%;
                 height: 100px;
@@ -817,9 +870,9 @@ input[type="number"]{
         
 
     }
-    footer{
-        display: none;
-    }
+    // footer{
+    //     display: block;
+    // }
     
     
     }
@@ -833,7 +886,7 @@ input[type="number"]{
         width: 100%;
         form{
             margin: auto;
-            margin-top: 15%;
+            margin-top: 30px;
             // height: 33vh;
             display: flex;
             flex-direction: row;
@@ -876,7 +929,7 @@ input[type="number"]{
                                 font-size: 18px;                                
                             }
                             img{
-                                width: 5%; 
+                                width: 8%; 
                                 vertical-align: unset;                 
                             }
                             }
@@ -970,15 +1023,16 @@ input[type="number"]{
                         display: flex;
                         flex-direction: row;
                         justify-content: space-evenly;
-                        padding: 20px 10px;
+                        padding: 20px 50px;
                         .col4{
                             width: 25%;
                             p{
-                                font-size: $p;
+                                font-size: 25px;
                             }
                             
                             li{
-                                font-size: 18px;
+                                font-size: 20px;
+                                font-family: g2Med;
                             }
                         }
                         
@@ -996,7 +1050,7 @@ input[type="number"]{
                         justify-content: space-around;
                        
                         table{
-                            width: 50%;
+                            width: 45%;
                             tr{
                               
                                 th{
@@ -1018,16 +1072,20 @@ input[type="number"]{
                         
                         p{
                             font-size: $p;
-                            padding: 20px; 
+                            padding: 70px; 
+                            margin-top: -88px;
                         }
                     }
                     .orderitem{
                         width: 100%;
+                        margin-top: -46px;
                         p{
                             font-size: $p;
                             
                         }
-                        
+                        .line{
+                            width: 95%;
+                        }
         //=======================桌機版的明細和燈箱==================
                         .orderLis_content{
                             // position: relative;
@@ -1084,6 +1142,7 @@ input[type="number"]{
                                   li:nth-child(6){
                                     display: block;
                                     }
+                                    
                                 }
                             .eva_lightBox{
                                 position: fixed;
@@ -1299,7 +1358,7 @@ input[type="number"]{
                         text-align: center;
                         th{
                             
-                            font-size: 28px;
+                            font-size: 22px;
                             
                         }
                     }
@@ -1325,21 +1384,21 @@ input[type="number"]{
 
 
         }
-        footer{
-            // bottom: unset;
-            #floor {
-                position: relative;
-                text-align: center;
-                #copy {
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    margin: auto;
-                    font-size: 1.2vw;
-                }
-            }
-        }  
+        // footer{
+        //     // bottom: unset;
+        //     #floor {
+        //         position: relative;
+        //         text-align: center;
+        //         #copy {
+        //             position: absolute;
+        //             bottom: 0;
+        //             left: 0;
+        //             right: 0;
+        //             margin: auto;
+        //             font-size: 1.2vw;
+        //         }
+        //     }
+        // }  
         
     
     
@@ -1366,9 +1425,22 @@ input[type="number"]{
 
 }
 
+// .footer{
+//     #floor {
+//         position: relative;
+//         text-align: center;
+//         #copy {
+//             position: absolute;
+//             bottom: 2px;
+//             @media screen and (min-width: 992px) {
+//                 bottom:0; 
+//             }
+//             left: 0;
+//             right: 0;
+//             margin: auto;
+//             font-size: 1.2vw;
+//             color: #575757;
+//         }
+//     }
+// }
 
-footer{
-    // position: absolute;
-    // bottom:0;
-    display: none;
-}
