@@ -134,7 +134,7 @@ function forCart(e){
         
         if (e.target.innerText == '加入購物車') {
             if (document.getElementById("btnloglout").innerHTML == "&nbsp;") {
-                alertBox('請先登入會員～');
+                alertBox('請先登入會員喔～');
                 document.getElementById('sure').addEventListener('click', function () {
                     showLightBox();
                 });

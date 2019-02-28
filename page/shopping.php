@@ -56,6 +56,7 @@
     <script src="../js/showStar.js"></script>
     <script src="../js/findingIp.js"></script>
     <script src="../js/addCart.js"></script>
+    <script src="../js/scratch.js"></script>
 </head>
 <body>
     <header>
