@@ -93,7 +93,7 @@
 </head>
 
 <body>
-    <header>
+<header>
         <h1>大零食家</h1>
         <div class="cloud">
             <div class="doc doc--bg2">
@@ -270,12 +270,14 @@
         </div>
     </div>
 
+
     <div class="title">
         <h2>會員專區</h2>
     </div>
 
     <section class="memWrap">
         <form action="memUpdate.php" method="post" enctype="multipart/form-data" id="memInfo">
+        
             <table class="col-12 col-1">
                 <tr>
                     <td>
@@ -321,7 +323,7 @@
                         <p >
                             帳號：
                             <input type="text" name="memId" value="<?php echo $memRow["memId"];?>" maxlength="15"
-                                id="memId" readonly>
+                                id="memId" readonly>   
                              <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon1()">
                         </p>
                     </td>
@@ -392,7 +394,7 @@
                 <tr>
                     <td>
                         <div class="modify">
-                            <button class="subscribe" id="btnmodify">確認修改</button>
+                            <button class="subscribe" id="btnmodify" >確認修改</button>
                         </div>
                     </td>
                 </tr>

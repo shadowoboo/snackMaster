@@ -2116,25 +2116,25 @@
 
 <!-- 刮刮樂遊戲動畫 -->
     <script>
-        function doFirst() {
-            setInterval(showGame, 10000);
-        }
-        function showGame() {
-            var random = (Math.floor(Math.random() * 10) + 1) * 1000;
-            randomTimer = setInterval(randomGame, random);
-        }
-        function randomGame() {
-            var game = document.getElementById('game');
-            game.classList.remove('fadeOut');
-            game.classList.add('fadeIn');
-            clearInterval(randomTimer);
-            catchTimer = setInterval(gameCountdown, 5000);
-        }
-        function gameCountdown() {
-            game.classList.add('fadeOut');
-            game.classList.remove('fadeIn');
-            clearInterval(catchTimer);
-        }
+        // function doFirst() {
+        //     setInterval(showGame, 10000);
+        // }
+        // function showGame() {
+        //     var random = (Math.floor(Math.random() * 10) + 1) * 1000;
+        //     randomTimer = setInterval(randomGame, random);
+        // }
+        // function randomGame() {
+        //     var game = document.getElementById('game');
+        //     game.classList.remove('fadeOut');
+        //     game.classList.add('fadeIn');
+        //     clearInterval(randomTimer);
+        //     catchTimer = setInterval(gameCountdown, 5000);
+        // }
+        // function gameCountdown() {
+        //     game.classList.add('fadeOut');
+        //     game.classList.remove('fadeIn');
+        //     clearInterval(catchTimer);
+        // }
 
         window.addEventListener('load', doFirst);
     </script>

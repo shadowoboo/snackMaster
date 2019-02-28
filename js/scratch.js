@@ -129,8 +129,10 @@ function scratchSetting(){
 
           // offsetX += canvas.offsetLeft;
           // offsetY += canvas.offsetTop;
-          mx = offsetX = e.offsetX;
-          my = offsetY = e.offsetY;
+      mx = offsetX = e.offsetX || (e.touches[0].pageX - canvas.offsetLeft);
+      my = offsetY = e.offsetY || (e.touches[0].pageY - canvas.offsetTop); 
+          console.log(`mx: ${mx} ----- my: ${my}`);
+          
   
       // mx = (e.pageX || e.touches[0].clientX) - offsetX;
       // my = (e.pageY || e.touches[0].clientY) - offsetY;

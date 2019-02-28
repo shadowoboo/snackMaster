@@ -504,7 +504,7 @@ try {
         var xhr = new XMLHttpRequest();
         xhr.onload = function(){
             if( xhr.responseText == "error"){
-            alert("錯誤");
+            alertBox("錯誤");
             }else{
             // alert(`xhr.responseText: ${xhr.responseText}`);
             }
@@ -532,64 +532,10 @@ try {
     //$arr_row[49] 代表 客製箱 (sql中第50個)
 ?>
   <div class="step-content-foot">
-        <button type="button" class="step none" name="prev" id="btn1">上一步</button>
-        <button type="button" class="step" name="next"  id="btn2">下一步</button>
-        <!-- <button type="button" class="step"  id="btn2" disabled="true">下一步</button> -->
+        <button type="button" class="stepC none" name="prev" id="btn1">上一步</button>
+        <button type="button" class="stepC undo"  id="btn2" disabled="true">下一步</button>
         <button type="button" class="active none step cart" name="finish"  id="<?php echo "{$arr_row[49]['snackNo']}|{$arr_row[49]['snackPrice']}|1" ?>" data-cusBox="../images/blair/customized.png" data-cusCard="../images/customized/card.png" data-cusSound="test" >加入購物車</button>
   </div>
-<script>
-var steps = $(".step-content-body");
-
-var i = 0;
-
-$("#btn2").click(function(){
-    var instance = $(this);
-  if(i < steps.length) {
-    console.log("btn2 - "+i); steps.eq(i).removeClass('active').addClass('done').next().addClass('active')
-    i++;
-  }
-  if(i+1 < steps.length) {
-    $("#btn1").removeClass('none');
-  }
-
-  if( i+2<steps.length) {
-    $('button[name="finish"]').removeClass('none');
-    i++;
-    
-console.log(i)
-  }
-
-  if (i == (steps.length - 1)) {
-      instance.addClass('none');
-      instance.siblings('button[name="finish"]').removeClass('none');
-    }
-console.log(i)
-});
-
-
-$("#btn1").click(function(){
-  
-  if(i <= steps.length && i > 0) {
-    
-    console.log("btn1 - "+i); steps.eq(i).removeClass('active').prev().addClass('active');
-    i--;
-    
-  }
-
-  if(i == 1){
-    $("#btn2").removeClass('none');
-  }
-
-
-  if(i == 0){
-    $(this).addClass('none');
-  }
-
- $('button[name="finish"]').addClass('none');
-
-    console.log(i)
-});
-</script>
 
   <div class="img1"></div>
   <div class="img2"></div>
@@ -646,15 +592,82 @@ $("#btn1").click(function(){
 <script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <!-- <script src="../js/addCart.js" defer></script> -->
 <script src="../js/cusAddCart.js" defer></script>
+<script>
+var steps = $(".step-content-body");
+
+var i = 0;
+
+$("#btn2").click(function(){
+    var instance = $(this);
+  if(i < steps.length) {
+    console.log("btn2 - "+i); steps.eq(i).removeClass('active').addClass('done').next().addClass('active')
+    i++;
+  }
+  if(i+1 < steps.length) {
+    $("#btn1").removeClass('none');
+  }
+
+  if( i+2<steps.length) {
+    $('button[name="finish"]').removeClass('none');
+    i++;
+    
+console.log(i)
+  }
+
+
+  if (i == (steps.length - 1)) {
+      instance.addClass('none');
+      instance.siblings('button[name="finish"]').removeClass('none');
+    }
+console.log(i)
+
+if(i == 1 && $("#cardSureBtn").hasClass("btnSelect")==false){
+    $("#btn2").addClass('undo').attr('disabled',true);
+}   
+
+});
+
+
+
+
+
+$("#btn1").click(function(){
+  
+  if(i <= steps.length && i > 0) {
+    
+    console.log("btn1 - "+i); steps.eq(i).removeClass('active').prev().addClass('active');
+    i--;
+    
+  }
+
+  if(i == 1){
+    $("#btn2").removeClass('none');
+  }
+
+
+  if(i == 0){
+    $(this).addClass('none');
+  }
+
+ $('button[name="finish"]').addClass('none');
+
+    console.log(i)
+
+    if(i == 0 && $("#boxSureBtn").hasClass("btnSelect")){
+        $("#btn2").removeClass('undo').attr('disabled',false);
+    }   
+});
+</script>
 
 <script>
 //前:50  後：49 上：48 左：51 右：52 
 $( "#boxSureBtn" ).click(function() {
     $(this).css({"background-color":"rgb(204, 204, 204)","color": "rgb(170, 170, 170)"});
-    // $('#btn2').attr('disabled', false);
+    $('#btn2').removeClass('undo').attr('disabled', false);
 });    
 $( "#cardSureBtn" ).click(function() {
     $(this).css({"background-color":"rgb(204, 204, 204)","color": "rgb(170, 170, 170)"});
+    $('#btn2').removeClass('undo').attr('disabled', false);
 });    
 
 
@@ -894,15 +907,6 @@ $( "#cardSureBtn" ).click(function() {
         music01.currentTime = 0; 
       }
       
-      var stopMusicLeft = document.getElementById("stopLeft");
-      stopMusicLeft.addEventListener("click",removeSM01 );
-      function removeSM01(){
-        snackmaster.classList.remove("showDisplay");
-        eatMax.classList.remove("showDisplay");
-        loveuu.classList.remove("showDisplay");
-        btp.classList.remove("showDisplay");
-      }
-
 
 
 //leftBtn 左邊按鈕事件
@@ -918,16 +922,51 @@ $( "#cardSureBtn" ).click(function() {
         music01.currentTime = 0;  
         music04.pause(); 
         music01.currentTime = 0; 
-      }
-      var stopMusicRight = document.getElementById("stopRight");
-      stopMusicRight.addEventListener("click",removeSM01 );
-      function removeSM01(){
+
         snackmaster.classList.remove("showDisplay");
         eatMax.classList.remove("showDisplay");
         loveuu.classList.remove("showDisplay");
         btp.classList.remove("showDisplay");
       }
 
+
+
+      var stopMusicL = document.getElementById("stopLeft");
+      stopMusicL.addEventListener("click",stopThis );
+      function stopThis(e){
+          console.log("123")
+        music01.pause();
+        music01.currentTime = 0; 
+        music02.pause(); 
+        music01.currentTime = 0; 
+        music03.pause();
+        music01.currentTime = 0;  
+        music04.pause(); 
+        music01.currentTime = 0; 
+
+        snackmaster.classList.remove("showDisplay");
+        eatMax.classList.remove("showDisplay");
+        loveuu.classList.remove("showDisplay");
+        btp.classList.remove("showDisplay");
+      }
+
+      var stopMusicL = document.getElementById("soundAdd");
+      stopMusicL.addEventListener("click",stopThis );
+      function stopThis(e){
+          console.log("123")
+        music01.pause();
+        music01.currentTime = 0; 
+        music02.pause(); 
+        music01.currentTime = 0; 
+        music03.pause();
+        music01.currentTime = 0;  
+        music04.pause(); 
+        music01.currentTime = 0;
+        snackmaster.classList.remove("showDisplay");
+        eatMax.classList.remove("showDisplay");
+        loveuu.classList.remove("showDisplay");
+        btp.classList.remove("showDisplay"); 
+      }
 </script>
 <script>
     var currentIndex = 0,
@@ -967,147 +1006,6 @@ $( "#cardSureBtn" ).click(function() {
     });
 </script>
 
-<script>
-//前:50  後：49 上：48 左：51 右：52 
-    
-    //   $("#cutImg").click(function() {
-    //   html2canvas($("#cover_front")[0]).then(function(canvas) {
-    //       var $div = $(".img1");
-    //       $div.empty();
-    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-    //       //-------------------
-    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
-    //         var formData = new FormData(document.getElementById("myForm"));
-            
-    //         var xhr = new XMLHttpRequest();
-    //         xhr.open('POST', 'canvas_load_save.php', true);
-            
-    //         xhr.onreadystatechange = function() {
-    //             if (xhr.readyState == 4) {
-    //                     if( xhr.status == 200 ){
-    //                     // alert('Succesfully uploaded');  
-    //                     }else{
-    //                     alert(xhr.status);
-    //                     }
-    //             }
-    //         };
-                
-    //         xhr.send(formData);  
-    //       //-------------------
-    //   });
-    // });
-
-    //   $("#cutImg").click(function() {
-    //   html2canvas($("#cover_down")[0]).then(function(canvas) {
-    //       var $div = $(".img2");
-    //       $div.empty();
-    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-    //       //-------------------
-    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
-    //         var formData = new FormData(document.getElementById("myForm"));
-            
-    //         var xhr = new XMLHttpRequest();
-    //         xhr.open('POST', 'canvas_load_save.php', true);
-            
-    //         xhr.onreadystatechange = function() {
-    //             if (xhr.readyState == 4) {
-    //                     if( xhr.status == 200 ){
-    //                     // alert('Succesfully uploaded');  
-    //                     }else{
-    //                     alert(xhr.status);
-    //                     }
-    //             }
-    //         };
-                
-    //         xhr.send(formData);  
-    //       //-------------------
-    //   });
-    // });
-
-    
-   
-    // $("#cutImg").click(function() {
-    //   html2canvas($("#cover_left")[0]).then(function(canvas) {
-    //       var $div = $(".img4");
-    //       $div.empty();
-    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-    //       //-------------------
-    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
-    //         var formData = new FormData(document.getElementById("myForm"));
-            
-    //         var xhr = new XMLHttpRequest();
-    //         xhr.open('POST', 'canvas_load_save.php', true);
-            
-    //         xhr.onreadystatechange = function() {
-    //             if (xhr.readyState == 4) {
-    //                     if( xhr.status == 200 ){
-    //                     // alert('Succesfully uploaded');  
-    //                     }else{
-    //                     alert(xhr.status);
-    //                     }
-    //             }
-    //         };
-                
-    //         xhr.send(formData);  
-    //       //-------------------
-    //   });
-    // });
-    
-    // $("#cutImg").click(function() {
-    //   html2canvas($("#cover_right")[0]).then(function(canvas) {
-    //       var $div = $(".img5");
-    //       $div.empty();
-    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-    //       //-------------------
-    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
-    //         var formData = new FormData(document.getElementById("myForm"));
-            
-    //         var xhr = new XMLHttpRequest();
-    //         xhr.open('POST', 'canvas_load_save.php', true);
-            
-    //         xhr.onreadystatechange = function() {
-    //             if (xhr.readyState == 4) {
-    //                     if( xhr.status == 200 ){
-    //                     // alert('Succesfully uploaded');  
-    //                     }else{
-    //                     alert(xhr.status);
-    //                     }
-    //             }
-    //         };
-                
-    //         xhr.send(formData);  
-    //       //-------------------
-    //   });
-    // });
-
-    
-    // $("#cutImg").click(function() {
-    //   html2canvas($("#section_7")[0]).then(function(canvas) {
-    //       var $div = $("img6");
-    //       $div.empty();
-    //       $("<img />", { src: canvas.toDataURL("image/png") }).appendTo($div);
-    //       //-------------------
-    //         document.getElementById('myImage').value = canvas.toDataURL("image/png");
-    //         var formData = new FormData(document.getElementById("myForm"));
-            
-    //         var xhr = new XMLHttpRequest();
-    //         xhr.open('POST', 'canvas_load_save.php', true);
-            
-    //         xhr.onreadystatechange = function() {
-    //             if (xhr.readyState == 4) {
-    //                     if( xhr.status == 200 ){
-    //                     // alert('Succesfully uploaded');  
-    //                     }else{
-    //                     alert(xhr.status);
-    //                     }
-    //             }
-    //         };
-                
-    //         xhr.send(formData);  
-    //       //-------------------
-    //   });
-    // });
-  </script>
 
   <script>
     const boxBases = document.querySelectorAll(".boxBase");
@@ -2197,7 +2095,7 @@ $( "#cardSureBtn" ).click(function() {
     $(function () {
         $("#soundAdd").on("click",addSound);
         function addSound(e){
-            alert('音效已加入卡片囉~');
+            alertBox('音效已加入卡片囉~');
             //選取目標聲音的路徑
             let src=$("#soundAdd").closest(".content").children(".container").children("div:visible").find("source").attr("src");
             console.log(src);
