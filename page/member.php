@@ -643,12 +643,17 @@
                                             $eva->execute();
 
                                             $evaCount = $eva->rowCount();
+                                            if($orderRow['orderStatus']=='運送中'){
+                                                echo '<button class="orderList_eva_done cart" type="button">運送中</button>';
 
-                                            if($evaCount>0){
-                                                echo '<button class="orderList_eva_done cart" type="button">已評價</button>';
                                             }else{
-                                                echo '<button class="orderList_eva cart" type="button">未評價</button>';
+                                                if($evaCount>0){
+                                                    echo '<button class="orderList_eva_done cart" type="button">已評價</button>';
+                                                }else{
+                                                    echo '<button class="orderList_eva cart" type="button">未評價</button>';
+                                                }
                                             }
+                                            
                                         } catch(PDOException $e){
                                             echo "失敗",$e->getMessage();
                                             echo "行號",$e->getLine();
