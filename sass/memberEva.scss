@@ -167,12 +167,10 @@ header{
                         font-family: g2Med;
                         font-size: 16px;
                         border-radius: 10px;
+                        border: 1px solid #737374;
                         &:focus{
-                            outline: 1px solid $tabColor;
                             background-color: #e0f3fc;
-                            border-radius: 10px;
-                           
-                            
+                            // border-radius: 10px;
                         }
                     }
                     
@@ -224,7 +222,11 @@ header{
                 }
                 .modify{
                     input{
-                        height: 45px;
+                        width: 130px;
+                        height: 35px;
+                        font-size: 20px;
+                        line-height: 1.6;
+                        margin: 12px 0;
                     }
                 }
             }
@@ -243,7 +245,7 @@ header{
             tr:last-child{
 
                 .modify{
-                    text-align: center;
+                    padding: 0 20px;
                 }
             }
            
@@ -354,14 +356,12 @@ header{
                     img{
                         width: 100%;
                     } 
-                    
-    
                 }
                 .colorBar{
-                    border: 1px solid #000;
+                    border: 1px solid $gray;
                     border-radius: 15px;
                     width: 90%;
-                    height: 60px;
+                    height: 40px;
                     margin: auto;
                     .nowPro{
                         width: 16%;
@@ -399,7 +399,6 @@ header{
             }
             
             .specify{
-                
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
@@ -444,11 +443,16 @@ header{
     }
     //----------------訂單管理--------------
     #tab-2{
+        background-color: transparent;
         .order{
             width: 100%;
             &:nth-child(odd){
-                background-color: antiquewhite;
-                border-radius: 10px;
+                background-color: lavenderblush;
+                border-radius: 24px;
+            }
+            &:nth-child(even){
+                background-color: #fff;
+                border-radius: 24px;
             }
     //-----------訂單基本資料-----------------        
             .orderList{
@@ -504,7 +508,6 @@ header{
                     margin: auto;
                     height: 2px;
                     border-bottom: 2px solid $blue;
-                    margin-bottom: 10px;
                 }
 //=======================手機版的明細和燈箱==================
                 .orderLis_content{
@@ -590,6 +593,9 @@ header{
                             font-size: 28px;
                             line-height: 1.6;
                             padding: 0 10px;
+                            i{
+                                cursor: pointer;
+                            }
                         }
                         .evaContent{
                             width: 100px;
@@ -659,7 +665,11 @@ header{
 
                 .orderLis_content.show {
                     display:block;
-                    } 
+                    padding-bottom: 20px;
+                    @media only screen and (max-width: 576px) {
+                        padding-bottom: 10px;
+                    }
+                } 
  //=================== 手機版的明細和燈箱=======================                   
                 }
               }
@@ -677,7 +687,7 @@ header{
             align-self: center;
                 
                 .item{
-                    background-color: rgb(228, 222, 222);
+                    background-color:#eee;
                     width: 280px;
                     height: 400px;
                     border-radius: 10px;
@@ -700,15 +710,16 @@ header{
                     }
                     .itemName{
                         padding: 0 15px;
+                        color: $gray;
+                        margin-top: 10px;
                     }
                     .sellPrice{
                         width: 250px;
-                        height: 50px;
+                        margin: 2px 0;
                         p{
                             font-size: $p;
                             line-height: 2;
                             color: $tabColor;
-                            margin-top: 10px;
                             span{
                                 font-size: $p;
                                 padding: 0 5px;
@@ -787,21 +798,17 @@ header{
             .col-1{
                 width: 100%;
                 height: 100px;
-                
                 tr{
                     width: 100%;
                     height: 80px;
                     td{
-                        
                         text-align: center;
                         padding-top: 1%;
                         p{
-        
                             input{
                                 width: 160px;
-                                
                             }
-        
+                        
                     }
                     div{
                         margin: auto;
@@ -809,38 +816,27 @@ header{
                          width: 230px;
                          // border: 2px dotted #076baf;
                          // border-radius: 50%;
-                          
                          img{
                              width: 200px; 
                              padding-top: 2%;
-                                                      
-                             }
-                     }
-                    
-                
+                        }
+                    }
                 }
-        
             }
-            
             .col-3{
                 tr:last-child{
                     text-align: center;
-                    
                 } 
             }
-
         }
-        
     }
     .itemTab2{
-        
         .tabContainer{
             #tab-1{
                 .description{
                     h4{
                         font-size: 25px;
                     }
-                    
                     .specify{
                         display: flex;
                         flex-direction: row;
@@ -883,9 +879,13 @@ header{
     
     
     }
-
-    
-}    
+}   
+.memWrap{
+    i{
+        margin-left: 6px;
+        cursor: pointer;
+    }
+} 
 //------------------桌機ＲＷＤ--------------------------
 
 @media screen and(min-width:992px){
@@ -1022,6 +1022,7 @@ header{
                 }
                 .description{
                     margin-top: 2%;
+                    padding-bottom: 20px;
                     h4{
                         font-size: 28px;
                     }
