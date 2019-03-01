@@ -66,7 +66,7 @@ function scratchSetting() {
     image = new Image(),
     brush = new Image();
 
-  image.src = "../images/game/itemB.svg";
+  image.src = "../images/game/itemB.png";
   image.onload = function () {
     ctx2.drawImage(image, 0, 0);
   };
@@ -138,7 +138,7 @@ function scratchSetting() {
   function handlePercentage(filledInPixels) {
     filledInPixels = filledInPixels || 0;
     // console.log(filledInPixels + "%");
-    if (filledInPixels > 75) {
+    if (filledInPixels > 60) {
       //範圍
       canvas.parentNode.removeChild(canvas);
       $('.scratchWrapIp img').addClass('rotate')
