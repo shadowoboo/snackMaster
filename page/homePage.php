@@ -937,7 +937,6 @@
                 <img class="itemImg" src="<?php echo $salesRow[0]['snackPic']?>" alt="商品圖">
                 <h4 class="itemName">[<?php echo $salesRow[0]['nation']?>]<?php echo $salesRow[0]['snackName']?></h4>
                 <div class="spread">
-                    <a href=""></a>
                     <p class="ogPrice">$<?php echo $salesRow[0]['snackPrice']?></p>
                     <p class="price">$<?php echo $salesRow[0]['salePrice']?></p>
                 </div>

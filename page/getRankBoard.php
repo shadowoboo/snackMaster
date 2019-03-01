@@ -1,19 +1,5 @@
 <?php
 // session_start();
-// class rsp{
-//     public $snackNo;
-//     public $snackPic;
-//     public $nation;
-//     public $snackName;
-//     public $rankHtml;
-//     public $snackPrice;
-//     public $Etimes;
-//     public $avgG;
-//     public $avgS;
-//     public $avgT;
-//     public $avgH;
-// }
-// $rsp =new rsp();
     $errMsg = "";
     try {
         require_once("connectcd105g2.php");
@@ -21,23 +7,27 @@
         switch($_REQUEST['rankGenre']){
             case 1:
             $rankGenre='綜合';
+            $sql = "SELECT * FROM `snack` ORDER by `goodStars`/`goodTimes` DESC LIMIT 6";
             break;
             case 2:
             $rankGenre='餅乾';
+            $sql = "SELECT * FROM `snack` WHERE `snackGenre`='餅乾' ORDER by `goodStars`/`goodTimes` DESC LIMIT 6";
             break;
             case 3:
             $rankGenre='糖果';
+            $sql = "SELECT * FROM `snack` WHERE `snackGenre`='糖果' ORDER by `goodStars`/`goodTimes` DESC LIMIT 6";
             break;
             case 4:
             $rankGenre='巧克力';
+            $sql = "SELECT * FROM `snack` WHERE `snackGenre`='巧克力' ORDER by `goodStars`/`goodTimes` DESC LIMIT 6";
             break;
             case 5:
             $rankGenre='洋芋片';
+            $sql = "SELECT * FROM `snack` WHERE `snackGenre`='洋芋片' ORDER by `goodStars`/`goodTimes` DESC LIMIT 6";
             break;
 
         }
 
-        $sql = "SELECT snackNo FROM `rank` WHERE `rankGenre` LIKE '{$rankGenre}' ORDER BY ranking limit 0,6";
         $feed=$pdo->query($sql);
         $rsp=$feed->fetchAll();
          echo json_encode($rsp) ;

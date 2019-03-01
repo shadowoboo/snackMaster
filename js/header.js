@@ -140,7 +140,7 @@ function closeSearch(e) {
 }
 
 function closeSearch(e) {
-    console.log(`remove`);
+    // console.log(`remove`);
     search_appear.classList.remove("down");
 }
 
@@ -412,7 +412,7 @@ $(function () {
         // }
         // var sJson = JSON.stringify(forgetPsw);
         var data = "memId=" + $id("forgetMemId").value + "&memEmail=" + $id("forgetpMemEmail").value;
-        console.log(data);
+        // console.log(data);
 
         $.ajax({
             type: "post",
@@ -460,7 +460,7 @@ function init3() {
     var xhr = new XMLHttpRequest();
 
     xhr.onload = function () {
-        console.log(`xhr.onlod now`);
+        // console.log(`xhr.onlod now`);
 
         // console.log(xhr.responseText);
         // var loginInfo = JSON.parse(xhr.responseText);
@@ -469,7 +469,7 @@ function init3() {
         if (xhr.responseText == "notyetLogin") {
             $id("memLogin").style.color = "#737374f";
             $id("btnloglout").innerHTML = "&nbsp";
-            console.log(xhr.responseText);
+            // console.log(xhr.responseText);
         } else {
             $id("memLogin").style.color = "#076baf"
             $id("btnloglout").innerHTML = "登出";
@@ -478,7 +478,7 @@ function init3() {
     }
     xhr.open("get", "alreadyLogin.php", true);
     xhr.send(null);
-    console.log(`init3`);
+    // console.log(`init3`);
 }
 window.addEventListener("load", init3);
 
