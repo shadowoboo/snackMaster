@@ -276,7 +276,7 @@
     </div>
 
     <section class="memWrap">
-        <form action="memUpdate.php" method="post" enctype="multipart/form-data" id="memInfo">
+        <form method="post" enctype="multipart/form-data" id="memInfo">
         
             <table class="col-12 col-1">
                 <tr>
@@ -394,7 +394,8 @@
                 <tr>
                     <td>
                         <div class="modify">
-                            <button class="subscribe" id="btnmodify" >確認修改</button>
+                            <!-- <button class="subscribe" id="btnmodify" >確認修改</button> -->
+                            <input type="button" class="subscribe" id="btnmodify" value="確認修改">
                         </div>
                     </td>
                 </tr>
@@ -767,7 +768,7 @@
                                         </ul>
                                     </div>
                                     <div class="eva_lightBox_msg boxing">
-                                        <p>留言分享</p>
+                                        <p>評價分享</p>
                                         <textarea name="textDiscuss" cols="30" rows="10"
                                             class="eva_lightBox_textDics"></textarea>
                                     </div>

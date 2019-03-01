@@ -44,7 +44,7 @@ function closeBox(){
      leavEva[i].addEventListener('click',function(e){
         let lightEvaBox = e.target.parentNode.parentNode;
         // console.log(e.target);
-        lightEvaBox.classList.toggle('appear');
+        lightEvaBox.classList.remove('appear');
 
      });
     
@@ -90,11 +90,26 @@ function modInfon3(){
       document.getElementById("email").readOnly = false;
      } 
   
-  
+     function sendModi() {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            if (xhr.status == 200) {  
+                alertBox("修改成功");
+            } else {
+                alertBox(xhr.status);
+            }
+        }
+        
+        xhr.open("Post", "memUpdate.php", true);
+        var myForm = new FormData( document.getElementById('memInfo'));
+        xhr.send( myForm ); 
+      
+      }
 
   function doFirst() {
     // console.log("aa");
     $id('upFile').onchange = headChange;
+    $id('btnmodify').addEventListener('click',sendModi);
     
   }
   window.addEventListener('load', doFirst);
