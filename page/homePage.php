@@ -1894,6 +1894,19 @@
                 var colorCode = window.getComputedStyle(e.target).getPropertyValue("background-color");
                 console.log(colorCode);
 
+                //調暗
+                var edit = colorCode.replace("rgb","").replace("(","").replace(")","");
+                var newArr=[];
+                var per=0.6; //趴數，越小越暗
+                edit=edit.split(", ");
+                edit.forEach(el => {
+                    el=parseInt(el*per);
+                    newArr.push(el);
+                });
+                colorCode=`rgb(${newArr[0]},${newArr[1]},${newArr[2]})`;
+                //-----------調暗結束
+
+
                 //將色碼設定給盒子
                 // var box = document.getElementsByClassName('ctBox')[0];
                 // box.style.backgroundColor = colorCode;
@@ -1907,6 +1920,7 @@
                 tar = tar.replace("btn", "suf");
                 console.log(tar);
                 let targetEl = document.getElementById(tar);
+                console.info(`colorCode: ${colorCode}`)
                 targetEl.style.backgroundColor = colorCode;
 
                 //為解決一開始選顏色會有error的狀況，在HTML預先加了btnSelect，但在案別的按鈕時就不能選顏色了！ 待解決
