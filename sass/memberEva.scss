@@ -35,7 +35,7 @@ $p:22px;
     }
 }
 @include btn('cart1', 130px, 40px, #fff, $blue, transparent, 10px, 0px, #fff, $deepblue, 20px);
-
+@include btn('subscribe1', 70px, 35px, $gray, #fcda85, transparent, 10px, 0px, $gray, #fbc84a, 28px);
 body{
     background-color: #b8f1ed;
     
@@ -169,7 +169,7 @@ header{
                         border-radius: 10px;
                         &:focus{
                             outline: 1px solid $tabColor;
-                            background-color: #f2f4f5;
+                            background-color: #e0f3fc;
                            
                             
                         }
@@ -181,9 +181,17 @@ header{
                         padding: 0 20px;
                     }
                     img{
-                        width: 5%; 
+                        width: 7%; 
                         vertical-align: unset;  
-                        cursor: pointer;               
+                        cursor: pointer;
+                        border: 1px double #076baf;
+                        box-shadow: 2px 2px 2px 1px #aaa;
+                        &:hover{
+                            box-shadow: inset 0 0 35px 5px rgba(161, 161, 161, 0.25), inset 0 2px 1px 1px rgba(255,255,255,0.9), inset 0 -2px 1px 0 rgba(150, 150, 150, 0.25);
+                            border: none;
+                        }
+                        
+                        
                     }
                 }
             }
@@ -226,6 +234,7 @@ header{
                 }
             }
             tr:last-child{
+
                 .modify{
                     text-align: center;
                 }
@@ -754,7 +763,7 @@ header{
     
  
 } 
-#cou,#or{
+#cou,#or,#coll{
     font-family: g2Font;
     color: #737374;
     font-size: 26px;
@@ -920,7 +929,7 @@ header{
                                 font-size: 18px;                                
                             }
                             img{
-                                width: 5%; 
+                                width: 8%; 
                                 vertical-align: unset;                 
                             }
                             }

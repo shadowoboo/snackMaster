@@ -15,6 +15,11 @@ function alertBox(msg){
     sureBtn.addEventListener('click', function (){
         document.getElementsByTagName('body')[0].removeChild(boxBody);    
     });
+    document.getElementById('alertBoxBody').addEventListener('click', function (e){
+        if(e.target.id == 'alertBoxBody'){
+            document.getElementsByTagName('body')[0].removeChild(boxBody);    
+        }
+    })
 }
 function confirmBox(msg, sureFunc){
     var boxBody = document.createElement('div');
@@ -40,6 +45,11 @@ function confirmBox(msg, sureFunc){
     }); 
     noBtn.addEventListener('click', function () {
         document.getElementsByTagName('body')[0].removeChild(boxBody);
+    })
+    document.getElementById('alertBoxBody').addEventListener('click', function (e) {
+        if (e.target.id == 'alertBoxBody') {
+            document.getElementsByTagName('body')[0].removeChild(boxBody);
+        }
     })
 }
 

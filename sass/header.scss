@@ -238,6 +238,7 @@ label.mail {
         text-align: center;
         .loginLeave {
             text-align: right;
+            // margin-top: 10px;
             span {
                 font-size: 28px;
                 margin-right: 12px;
@@ -276,6 +277,9 @@ label.mail {
                 }
             }
             @include btn('loginBoxBtn', 90px, 40px, #fff, $blue, transparent, 10px, 0px, #fff, $deepblue, 22px);
+            .loginBoxBtn{
+                margin-top: 14px;
+            }
         }
     }
     input{

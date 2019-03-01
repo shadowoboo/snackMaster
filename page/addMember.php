@@ -22,26 +22,11 @@
            $stmt-> bindValue(":email",$_REQUEST["email"]);
            $stmt-> execute();
            echo "註冊成功";
-           // $sql_insert = "insert into member (memId, memPsw, email) values (?, ?, ?) ";
-           // $stmt = $pdo->prepare($sql_insert);
-           // $stmt-> bindValue(":memId",$regInfo->memId);
-           // $stmt-> bindValue(":memPsw",$regInfo->memPsw);
-           // $stmt-> bindValue(":email",$regInfo->email);
-           // $stmt-> execute();
-           header("Location: member.php");
-
-           // echo json_encode($regInfo);
-
-        }
-
-    
+           $_SESSION["memNo"] = $pdo -> lastInsertId();
+           $_SESSION["memId"] = $_REQUEST["account"];
+        }    
 } catch(PDOException $e){
        echo "失敗",$e->getMessage();
        echo "行號",$e->getLine();
-
 }
-
-
-
-
 ?>

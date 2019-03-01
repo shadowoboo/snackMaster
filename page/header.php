@@ -1,24 +1,20 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<<<<<<< HEAD
-    <!-- <link rel="stylesheet" href="../css/cartShow.css"> -->
-=======
-    
->>>>>>> tina
+    <link rel="stylesheet" href="../css/cartShow.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/cartShow.css">
     <link rel="stylesheet" href="../css/header.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/header.js" defer></script>
     <title>Document</title>
-</head>
+</head> -->
 
-<body> 
+<!-- <body>  -->
     <header>
         <h1>大零食家</h1>
         <div class="cloud">
@@ -195,6 +191,5 @@
             </div>
         </div>
     </div>
-<!-- 
-</body>
-</html> -->
+
+

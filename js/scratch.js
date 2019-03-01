@@ -4,23 +4,31 @@
 
 
 function doFirst() {
-  setInterval(showGame, 10000);
+  gameTimer = 1;
+  showGame();
+  document.getElementsByClassName('gameScratch')[0].addEventListener('click', function (){
+    gameTimer = 0;   
+    var game = document.getElementById('game');
+    game.classList.remove('fadeOut');
+    game.classList.add('fadeIn'); 
+  })
 }
 function showGame() {
-  var random = (Math.floor(Math.random() * 10) + 1) * 1000;
-  randomTimer = setInterval(randomGame, random);
+  if( gameTimer == 1 ){
+    var random = (Math.floor(Math.random() * 20) + 1) * 1000;
+    setTimeout(randomGame, random);
+  }
 }
 function randomGame() {
   var game = document.getElementById('game');
   game.classList.remove('fadeOut');
   game.classList.add('fadeIn');
-  clearInterval(randomTimer);
-  catchTimer = setInterval(gameCountdown, 5000);
+  setTimeout(gameCountdown, 5000);
 }
 function gameCountdown() {
   game.classList.add('fadeOut');
   game.classList.remove('fadeIn');
-  clearInterval(catchTimer);
+  showGame();
 }
 
 
@@ -121,8 +129,10 @@ function scratchSetting(){
 
           // offsetX += canvas.offsetLeft;
           // offsetY += canvas.offsetTop;
-          mx = offsetX = e.offsetX;
-          my = offsetY = e.offsetY;
+      mx = offsetX = e.offsetX || (e.touches[0].pageX - canvas.offsetLeft);
+      my = offsetY = e.offsetY || (e.touches[0].pageY - canvas.offsetTop); 
+          console.log(`mx: ${mx} ----- my: ${my}`);
+          
   
       // mx = (e.pageX || e.touches[0].clientX) - offsetX;
       // my = (e.pageY || e.touches[0].clientY) - offsetY;
@@ -231,7 +241,7 @@ function scratchSetting(){
         ctx2.drawImage(brush, x, y);
       }
   
-      lastPoint = currentPoint;
+      lastPoint = currentPoint; 
       handlePercentage(getFilledInPixels(32));
     }
   
@@ -272,12 +282,17 @@ function scratchSetting(){
               </div>
           </section>`;
     $('body').append(chocoR);
-    doFirst();
     $('.gameScratch').click(function(){
       // alert('true');
       // e.preventDefault();
       $('body').append(scratch);
       scratchSetting();
-    });
 
+      document.getElementsByClassName('fullPage')[0].addEventListener('click', function (e) {
+        if (e.target.className == 'fullPage') {
+          document.getElementsByTagName('body')[0].removeChild(document.getElementsByClassName('fullPage')[0]);
+        }
+      })
+    });
   })
+  window.addEventListener('load', doFirst);
