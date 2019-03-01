@@ -260,21 +260,19 @@ function init(){
     if(isMobile()){
         var newTitleCtx = "零食<br>排行榜";
         $('#titleCatCtx').html(newTitleCtx);
-
+        console.log($('aside').offset().top);
         document.body.addEventListener('touchmove', function() {
           
-    
-            var minT =  $(window).height()*15/100;
-            var maxT =  $(window).height()*30/100;
-
+            
+            var minT = $('aside').offset().top*60/100;
+            var maxT = $('aside').offset().top*80/100;
             if($(window).scrollTop()>=minT && $(window).scrollTop()<=maxT ){
                 $('.itemDetail').css('overflowY','auto');
             }else{
                 $('.itemDetail').css('overflowY','hidden');
             }
 
-            }, true); 
-        
+        }, true); 
     }else{
         $('.itemDetail').css('overflowY','auto');
     }

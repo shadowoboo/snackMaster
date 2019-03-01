@@ -8,12 +8,11 @@ if($_REQUEST["msgText"]==''){
 }else{
   try{
     require_once("connectcd105g2.php");
-    $sql="SELECT `commentRight` FROM `member` WHERE `memNo`=:memNo";
-    $sendMsg = $pdo->prepare( $sql );
-    $sendMsg -> bindParam( ":memNo", $_SESSION["memNo"]);
-    $checkRight=$sendMsg -> execute();
-    echo $checkRight['commentRight'];
-    if($checkRight['commentRight']==1){
+    $sql="SELECT `commentRight` FROM `member` WHERE `memNo`={$_SESSION["memNo"]}";
+    $sendMsg = $pdo->query( $sql );
+    $sendRight= $sendMsg->fetchColumn();
+
+    if($sendRight==1){
       $sql="INSERT INTO `msg` (`msgNo`, `memNo`, `msgText`, `msgTime`, `evaNo`) 
             VALUES (NULL, :memNo, :msgText, CURRENT_TIMESTAMP, :evaNo)";
         $sendMsg = $pdo->prepare( $sql );
