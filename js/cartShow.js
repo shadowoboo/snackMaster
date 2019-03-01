@@ -462,25 +462,25 @@ $(document).ready(function () {
 
 
     //call ENG BTN
-    $(".title h2").click(function () {
-        $(".engBtnList").toggleClass("show");
-    })
-    $(".engBtn:not(#clearSession)").click(function (e) {
-        let tar = e.target.innerText;
-        // alertBox(tar);
-        $("." + tar).toggle();
-        $(".engBtnList").removeClass("show");
+    // $(".title h2").click(function () {
+    //     $(".engBtnList").toggleClass("show");
+    // })
+    // $(".engBtn:not(#clearSession)").click(function (e) {
+    //     let tar = e.target.innerText;
+    //     // alertBox(tar);
+    //     $("." + tar).toggle();
+    //     $(".engBtnList").removeClass("show");
 
-    })
-    $("#clearSession").click(function () {
-        $.ajax({
-            url: "clearSession_ENG.php",
-            success: function (response) {
-                console.log(response);
-            }
-        });
-        $(".engBtnList").removeClass("show");
-    })
+    // })
+    // $("#clearSession").click(function () {
+    //     $.ajax({
+    //         url: "clearSession_ENG.php",
+    //         success: function (response) {
+    //             console.log(response);
+    //         }
+    //     });
+    //     $(".engBtnList").removeClass("show");
+    // })
     //////ENG BTN ENDDD
 
 
