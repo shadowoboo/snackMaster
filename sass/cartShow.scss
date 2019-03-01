@@ -345,6 +345,19 @@ input,select{
                                 }
                             }
                         }
+                        &.snackType_normal,
+                        &.snackType_cus,
+                        &.snackType_plan{
+                            .prodInfo{
+                                .prodPrice{
+                                    .priceNow{
+                                        span{
+                                            color:$blue;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     &.prodCard_single {
                         background-color: rgba(255, 255, 255, 0.8);
