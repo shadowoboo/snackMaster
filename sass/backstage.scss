@@ -22,6 +22,10 @@ h1,h2,h3,h4,p,span{
             outline: none;
         }
     }
+    input, select{
+        border-radius: 10px;
+        border: 1px solid #ddd;
+    }
     #menu{
         width: 230px;
         height: 100%;
@@ -96,6 +100,7 @@ h1,h2,h3,h4,p,span{
                     border-radius: 10px;
                     color: $gray;
                     padding: 4px;
+                    border: 1px solid #ddd;
                 }
                 #searchClick{
                     font-size: 24px;
@@ -146,6 +151,10 @@ h1,h2,h3,h4,p,span{
             }
             #editTable input{
                 text-align: center;
+            }
+            textarea{
+                border: 1px solid #ddd;
+                border-radius: 10px;                
             }
             input[type=file]{
                 display: block;

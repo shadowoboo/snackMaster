@@ -69,7 +69,8 @@ try {
                 </select> 
             </form>
             <!-- <a href="#" class="search_search" id="searchIcon"> -->
-                <i class="fas fa-search search_search searchIcon"></i>
+                <!-- <i class="fas fa-search search_search searchIcon"></i> -->
+                <i class="fas fa-search-location search_search searchIcon"></i>
             <!-- </a> -->
         </div>
     </div>
@@ -109,7 +110,8 @@ try {
                     </select> 
                 </form>
                 <!-- <a href="#" class="search_search_desk searchIcon"> -->
-                <i class="fas fa-search search_search_desk searchIcon"></i>
+                <!-- <i class="fas fa-search search_search_desk searchIcon"></i> -->
+                <i class="fas fa-search-location search_search_desk searchIcon"></i>
                 <!-- </a> -->
                 </div>
             </div>
