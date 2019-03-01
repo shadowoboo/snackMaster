@@ -1,5 +1,6 @@
 @import 'reset';
 @import 'common';
+
 #gorankBoard a{
     color: $blue;
 }
@@ -802,7 +803,7 @@
                 align-items: center;
 
                 img {
-                    width: 60%;
+                    width: 55%;
                 }
 
                 .itemName {
