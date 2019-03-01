@@ -328,7 +328,7 @@ $(document).ready(function () {
                     var getterName = $("#getterName");
                     var getterPhone = $("#getterPhone");
                     var getterAddr = $("#getterAddr");
-                    if (getterName.val() == "" || getterPhone.val == "" || getterAddr == ""){
+                    if ((getterName.val() == "") || (getterPhone.val() == "") || (getterAddr.val() == "")){
                         alertBox("請確認資料是否完整")
                         break;
                     }
@@ -532,6 +532,8 @@ $(document).ready(function () {
             //內容切換到表格
             $(".cartContent_prod").removeClass("cartPageActive");
             $(".cartFormZone").addClass("cartPageActive");
+            //隱藏表頭
+            $(".cartTh").hide();
             //顯示 "上一步" 按鈕
             $(".btnBack").removeClass("btnBack_none");
             stepCount += 1;

@@ -44,9 +44,7 @@ body{
 span{
     color:$blue;
 }
-input[type="number"]{
-    text-align: left;
-}
+
 .title {
     width: 260px;
     margin: 120px auto 20px auto;
@@ -116,6 +114,7 @@ header{
                     font-size: $p;
                     padding: 10px; 
                     color: #076baf;
+                    cursor:pointer ;
                     img{
                         width: 5%;
                         vertical-align: middle;
@@ -160,6 +159,7 @@ header{
                     color: #076baf;
                     font-size: $p;
                     // padding: 1% ;
+                    
                     input{
                         color: #076baf;
                         width: 140px;
@@ -170,6 +170,7 @@ header{
                         &:focus{
                             outline: 1px solid $tabColor;
                             background-color: #e0f3fc;
+                            border-radius: 10px;
                            
                             
                         }
@@ -185,6 +186,7 @@ header{
                         vertical-align: unset;  
                         cursor: pointer;
                         border: 1px double #076baf;
+                        border-radius: 15px 1px;
                         box-shadow: 2px 2px 2px 1px #aaa;
                         &:hover{
                             box-shadow: inset 0 0 35px 5px rgba(161, 161, 161, 0.25), inset 0 2px 1px 1px rgba(255,255,255,0.9), inset 0 -2px 1px 0 rgba(150, 150, 150, 0.25);
@@ -218,6 +220,11 @@ header{
                     span{
                         font-size: 18px;
                         font-family: g2Font;
+                    }
+                }
+                .modify{
+                    input{
+                        height: 45px;
                     }
                 }
             }

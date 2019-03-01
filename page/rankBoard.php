@@ -6,28 +6,18 @@ session_start();
         require_once("connectcd105g2.php");
 
         //撈出綜合前三資料
-        $sql = "SELECT * FROM `snack`,`rank` WHERE `snack`.`snackNo`=`rank`.`snackNo` and `rank`.`rankGenre`='綜合' ORDER BY `ranking` limit 0,6";
+        // $sql = "SELECT * FROM `snack`,`rank` WHERE `snack`.`snackNo`=`rank`.`snackNo` and `rank`.`rankGenre`='綜合' ORDER BY `ranking` limit 0,6";
+        $sql="SELECT * FROM `snack` ORDER by `goodStars`/`goodTimes` DESC LIMIT 6";
         $feed=$pdo->query($sql);
         $snackAllRow=$feed->fetchAll();
         for($i=0;$i<3;$i++){
-            $sql ="SELECT 
-                COUNT(snackNo) as Etimes,
-                AVG(goodStar) as avgG,
-                AVG(sourStar) as avgS,
-                AVG(sweetStar) as avgT,
-                AVG(spicyStar) as avgH  
-                FROM eva WHERE snackNo={$snackAllRow[$i]['snackNo']}";
-            $feed=$pdo->query($sql);
-            $evaRow=$feed->fetch();
-            $Etimes[$i] =$evaRow['Etimes'];
-            $avgG[$i] =number_format($evaRow['avgG'],1);
-            $avgS[$i] =number_format($evaRow['avgS'],1);
-            $avgT[$i] =number_format($evaRow['avgT'],1);
-            $avgH[$i] =number_format($evaRow['avgH'],1);
+            $Etimes[$i] =$snackAllRow[$i]['goodTimes'];
+            $avgG[$i] =number_format($snackAllRow[$i]['goodStars']/$snackAllRow[$i]['goodTimes'],1);
+            $avgS[$i] =number_format($snackAllRow[$i]['sourStars']/$snackAllRow[$i]['goodTimes'],1);
+            $avgT[$i] =number_format($snackAllRow[$i]['sweetStars']/$snackAllRow[$i]['goodTimes'],1);
+            $avgH[$i] =number_format($snackAllRow[$i]['spicyStars']/$snackAllRow[$i]['goodTimes'],1);
         }
 
-        $sql="SELECT * FROM `rank` WHERE `snackNo`={$snackAllRow[0]['snackNo']}";
-        $Rankfeed=$pdo->query($sql);
         
 
     } catch (PDOException $e) {
@@ -180,7 +170,7 @@ session_start();
                     <img src="../images/rankBoard/ipGlow.png" alt="背景光" id="C">
                 </div>
 
-                <div class="switch sw_rk mNone" snackNo="<?php echo $snackAllRow[0]['snackNo']?>" id="sw_1">1</div>
+                <div class="switch sw_rk mNone catLoc" snackNo="<?php echo $snackAllRow[0]['snackNo']?>" id="sw_1">1</div>
                 <div class="switch sw_rk mNone" snackNo="<?php echo $snackAllRow[1]['snackNo']?>" id="sw_2">2</div>
                 <div class="switch sw_rk mNone" snackNo="<?php echo $snackAllRow[2]['snackNo']?>" id="sw_3">3</div>
                 <div class="switch sw_rk mNone" snackNo="<?php echo $snackAllRow[3]['snackNo']?>" id="sw_4">4</div>
@@ -199,19 +189,23 @@ session_start();
                             $i=1;
                             $month=Date("m")==1?12:Date("m")-1;
                             $year= Date("m")==1?Date("Y")-1:Date("Y");
-                            ;
-                                while($i<4){
-                                    if($rankRow=$Rankfeed->fetch()){
-                                        echo "<div class='rank' id='rank{$i}'>{$year}年{$month}月{$rankRow['rankGenre']}排行 第{$rankRow['ranking']}名</div>";   
-                                    }else{
-                                        if($i==1){
-                                            echo "<div class='rank'  id='rank0'>本商品目前尚未上榜</div>";
-                                        }else{
-                                        echo "<div class='rank notRank'  id='rank{$i}'>本商品目前尚未上榜</div>";
-                                        }
-                                    }
-                                    $i++;
-                                }
+                            
+                              
+                                echo "<div class='rank' id='rank1'>{$year}年{$month}月綜合排行 第1名</div>";  
+                                echo "<div class='rank' id='rank2'>{$year}年{$month}月{$snackAllRow[0]['snackGenre']}排行 第1名</div>";
+        
+                                // while($i<3){
+                                    // if($rankRow=$Rankfeed->fetch()){
+                                    //     echo "<div class='rank' id='rank{$i}'>{$year}年{$month}月{$rankRow['rankGenre']}排行 第{$rankRow['ranking']}名</div>";   
+                                    // }else{
+                                    //     if($i==1){
+                                    //         echo "<div class='rank'  id='rank0'>本商品目前尚未上榜</div>";
+                                    //     }else{
+                                    //     echo "<div class='rank notRank'  id='rank{$i}'>本商品目前尚未上榜</div>";
+                                    //     }
+                                    // }
+                                //     $i++;
+                                // }
                         ?>
                     </div>
                     <div id="pFlex">

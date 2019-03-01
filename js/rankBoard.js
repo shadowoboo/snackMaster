@@ -80,8 +80,9 @@ function allPanel(){
             e.preventDefault();
             moveR();
             $('.sw_class').removeClass('catLoc');
-            $('.m_rk').removeClass('catLoc');
+            $('.sw_rk').removeClass('catLoc');
             $('#m_rk1').addClass('catLoc');
+            $('#sw_1').addClass('catLoc');
             $(this).addClass('catLoc');
             $('.itemDetail').scrollTop(0);
 
@@ -156,7 +157,7 @@ function ringPanel() {
         $('.sw_rk').click(function (e) {
             e.preventDefault();
             moveR();
-            $('.m_rk').removeClass('catLoc');
+            $('.sw_rk').removeClass('catLoc');
             $(this).addClass('catLoc');
             $('.itemDetail').scrollTop(0);
             

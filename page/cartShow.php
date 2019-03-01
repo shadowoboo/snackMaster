@@ -212,7 +212,7 @@ if(isset($_SESSION["snackName"])==true){
         foreach ($_SESSION["snackName"][1] as $snackNo => $snackName) {
             if($snackNo!=50){ //箱子本身不要放在商品卡片迴圈
 ?>             
-                        <div class="prodCard prodCard_normal">
+                        <div class="prodCard prodCard_normal snackType_cus">
                             <input id="<?php echo $snackNo;?>" type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
                             <div class="prodImg">
                                 <img src="<?php echo $_SESSION["snackPic"][1][$snackNo]; ?>">
@@ -222,7 +222,7 @@ if(isset($_SESSION["snackName"])==true){
                                     <h5><?php echo $_SESSION["snackName"][1][$snackNo]; ?></h5>
                                 </div>
                                 <div class="prodPrice">
-                                    <div class="priceOrigin"><span><?php echo $_SESSION["snackPrice"][1][$snackNo]; ?></span></div>
+                                    <!-- <div class="priceOrigin"><span><?php //echo $_SESSION["snackPrice"][1][$snackNo]; ?></span></div> -->
                                     <div class="priceNow"><span><?php echo $_SESSION["snackPrice"][1][$snackNo]; ?></span></div>
                                 </div>
                             </div>
@@ -274,7 +274,7 @@ if(isset($_SESSION["snackName"])==true){
         foreach ($_SESSION["snackName"][3] as $snackNo => $snackName) {
             // if($cusType=="n" || $cusType=="c" ){
 ?>
-                    <div class="prodCard prodCard_normal prodCard_single">
+                    <div class="prodCard prodCard_normal prodCard_single snackType_plan">
                         <input type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
                         <div class="prodImg">
                             <img src="<?php echo  $_SESSION["snackPic"][3][$snackNo]?>">
@@ -284,7 +284,7 @@ if(isset($_SESSION["snackName"])==true){
                                 <h5><?php echo  $_SESSION["snackName"][3][$snackNo]?></h5>
                             </div>
                             <div class="prodPrice">
-                                <div class="priceOrigin"><span><?php echo  $_SESSION["snackPrice"][3][$snackNo]?></span></div>
+                                <!-- <div class="priceOrigin"><span><?php //echo  $_SESSION["snackPrice"][3][$snackNo]?></span></div> -->
                                 <div class="priceNow"><span><?php echo  $_SESSION["snackPrice"][3][$snackNo]?></span></div>
                             </div>
                             <div class="prodNote">
@@ -322,7 +322,7 @@ if(isset($_SESSION["snackName"])==true){
         foreach ($_SESSION["snackName"][0] as $snackNo => $snackName) {
             // if($cusType=="n" || $cusType=="c" ){
 ?>
-                    <div class="prodCard prodCard_normal prodCard_single">
+                    <div class="prodCard prodCard_normal prodCard_single snackType_normal">
                         <input type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
                         <div class="prodImg">
                             <img src="<?php echo  $_SESSION["snackPic"][0][$snackNo]?>">
@@ -332,7 +332,7 @@ if(isset($_SESSION["snackName"])==true){
                                 <h5><?php echo  $_SESSION["snackName"][0][$snackNo]?></h5>
                             </div>
                             <div class="prodPrice">
-                                <div class="priceOrigin"><span><?php echo  $_SESSION["snackPrice"][0][$snackNo]?></span></div>
+                                <!-- <div class="priceOrigin"><span><?php //echo  $_SESSION["snackPrice"][0][$snackNo]?></span></div> -->
                                 <div class="priceNow"><span><?php echo  $_SESSION["snackPrice"][0][$snackNo]?></span></div>
                             </div>
                         </div>
@@ -388,7 +388,7 @@ if(isset($_SESSION["snackName"])==true){
             //壞處: 依照迴圈數呼叫很多次，連線很多次(?)
 
 ?>
-                    <div class="prodCard prodCard_normal prodCard_single">
+                    <div class="prodCard prodCard_normal prodCard_single snackType_clean">
                         <input type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
                         <div class="prodImg">
                             <img src="<?php echo  $_SESSION["snackPic"][2][$snackNo]?>">

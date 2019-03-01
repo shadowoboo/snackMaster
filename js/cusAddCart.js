@@ -101,7 +101,7 @@ function cusAddCart(e){
                     console.log(`responseText: ${xhr.responseText}`);
 
                     //跳轉到購物車頁面(或是你想跳的其他頁面)
-                    document.location.replace("cartShow.php");
+                    document.location.replace("shopping.php");
                 } 
                 else {
                     alertBox(xhr.status);
