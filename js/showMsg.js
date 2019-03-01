@@ -22,7 +22,7 @@ function repBtnAdd(){
                         alertBox('您已經檢舉過這則留言了。')
                     }else{
                         alertBox('感謝您的檢舉，將由管理員進行審核');
-                        // console.log(xhr.responseText);
+                        console.log(xhr.responseText);
                     }
                     $('.report').attr('disable',false);  
                 }
@@ -103,10 +103,11 @@ $('.like').click(function(){
         //登入成功 讚數+1 並將已經登入寫進session
         var likeTime=parseInt($(this).text());
         var evaNo=$(this).attr('evaNo');
+        var memNo=$(this).attr('memNo');
         var xhr=new XMLHttpRequest();
         xhr.open('Post','updateLike.php',true);
         xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        var data_info=`evaNo=${evaNo}&liketime=${likeTime+1}`;
+        var data_info=`evaNo=${evaNo}&liketime=${likeTime+1}&memNo=${memNo}`;
         xhr.send(data_info);
         xhr.onload=function(){
             if(xhr.responseText=="liked"){
@@ -149,6 +150,11 @@ function sendMsg(){
                 $('.sendMsg').attr('disable',false);
                 return false;
                 
+            }else if(rsp==3){
+                alertBox('很抱歉 你目前已被禁言');
+                $('.sendMsg').attr('disable',false);
+                return false;
+
             }else{
                 var xhr =new XMLHttpRequest();
                 xhr.open("Post", "getMsg.php", true);
@@ -166,7 +172,7 @@ function sendMsg(){
                             </div>
                             <div class="msgCol">
                                 <div class="memId">
-                                    <p>${msgArr[i].memId}</p><button class="report">...</button>
+                                    <p>${msgArr[i].memId}</p><button class="report" to="msg" repNo="${msgArr[i].msgNo}">...</button>
                                 </div>
                                 <p class="msgCtx">${msgArr[i].msgText}</p>
                                 <p class="msgTime">留言時間:${msgArr[i].msgTime}</p>

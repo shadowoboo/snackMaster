@@ -51,6 +51,7 @@ function closeBox(){
   }
 
 }
+window.addEventListener('load',closeBox,false);
 
 
 //========================評價燈箱結束=========================== 
