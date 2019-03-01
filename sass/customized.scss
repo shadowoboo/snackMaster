@@ -121,7 +121,7 @@ audio{
                     width: 165px;
                     background-color: #fff;
                     border-radius: 5px;
-                    color: #000;
+                    color:#737374;
                 }            
             }
         }
@@ -566,6 +566,10 @@ display: none;
             display: flex;
             align-items: center;
             margin-top: 10px;
+        span{
+            color: #737374;
+            font-size: 18px;
+        }
         label{
             color: #fff;
             background-color: #076baf;
