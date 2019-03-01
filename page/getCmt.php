@@ -35,7 +35,7 @@ if($page==0){//第一次進來 要回傳第0~2的評價 以及要產生多少頁
         // <li class="page-item"><a href="#" class="page-link">03</a></li>
 
 
-        $sql="SELECT `evaNo`,`snackNo`,`evaCtx`,`evaDate`,`goodStar`,`memId`,`memPic`,`like` FROM `eva`,`member` WHERE eva.`snackNo`={$snackNo} AND eva.memNo=member.memNo ORDER BY eva.`evaDate` DESC limit 0,3";
+        $sql="SELECT `member`.`memNo`,`evaNo`,`snackNo`,`evaCtx`,`evaDate`,`goodStar`,`memId`,`memPic`,`like` FROM `eva`,`member` WHERE eva.`snackNo`={$snackNo} AND eva.memNo=member.memNo ORDER BY eva.`evaDate` DESC limit 0,3";
         $feed=$pdo->query($sql);
         $cmtsHTML='';
         while($cmt=$feed->fetch()){
@@ -54,7 +54,7 @@ if($page==0){//第一次進來 要回傳第0~2的評價 以及要產生多少頁
                 </p>
                 <p class="msgTime">留言時間:'.$cmt["evaDate"].'</p>
                 <div class="commentBtns">
-                    <button class="like" evaNo='.$cmt["evaNo"].'><i class="far fa-thumbs-up"></i>'.$cmt["like"].'</button>
+                    <button class="like" memNo='.$cmt["memNo"].' evaNo='.$cmt["evaNo"].'><i class="far fa-thumbs-up"></i>'.$cmt["like"].'</button>
   
                     <button class="btnMsg" id="show'.$cmt["evaNo"].'" evaNo='.$cmt["evaNo"].'><i class="fas fa-comment"></i>顯示留言</button>
                 </div>
@@ -76,7 +76,7 @@ if($page==0){//第一次進來 要回傳第0~2的評價 以及要產生多少頁
 
 }else{//之後進來要某頁的評價 就回傳某個開始之後的3筆資料回去
     $start=($page-1)*3;
-    $sql="SELECT `evaNo`,`snackNo`,`evaCtx`,`evaDate`,`goodStar`,`memId`,`memPic`,`like` FROM `eva`,`member` WHERE eva.`snackNo`={$snackNo} AND eva.memNo=member.memNo ORDER BY eva.`evaDate` DESC limit $start,3";
+    $sql="SELECT `member`.`memNo`,`evaNo`,`snackNo`,`evaCtx`,`evaDate`,`goodStar`,`memId`,`memPic`,`like` FROM `eva`,`member` WHERE eva.`snackNo`={$snackNo} AND eva.memNo=member.memNo ORDER BY eva.`evaDate` DESC limit $start,3";
     $feed=$pdo->query($sql);
     $cmtsHTML='';
     while($cmt=$feed->fetch()){
@@ -95,7 +95,7 @@ if($page==0){//第一次進來 要回傳第0~2的評價 以及要產生多少頁
         </p>
         <p class="msgTime">留言時間:'.$cmt["evaDate"].'</p>
         <div class="commentBtns">
-            <button class="like" evaNo='.$cmt["evaNo"].'><i class="far fa-thumbs-up"></i>'.$cmt["like"].'</button>
+            <button class="like" memNo='.$cmt["memNo"].' evaNo='.$cmt["evaNo"].'><i class="far fa-thumbs-up"></i>'.$cmt["like"].'</button>
             <button class="btnMsg" evaNo='.$cmt["evaNo"].'><i class="fas fa-comment"></i>顯示留言</button>
         </div>
 

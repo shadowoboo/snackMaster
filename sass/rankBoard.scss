@@ -145,18 +145,23 @@
             .sw_rk {
                 cursor: pointer;
                 overflow: visible;
+                z-index: 10;
+                transition: .5s;
                 &:hover {
-                    background-color: #076baf;
-                    color: #fff;
-                    box-shadow: 0 0 0 2px #076baf;
+                    // background-color: #076baf;
+                    // color: #fff;
+                    box-shadow: 0 0 0 5.4px #076baf;
                 }
             }
-
+            .catLoc{
+                color: #fff;
+            }
             #sw_ring {
                 left: 41.5%;
                 top: 0%;
                 transform: translateY(-50%) rotate(0deg);
                 box-shadow: 0 0 0 5.4px #076baf;
+                background-color: #076baf;
                 transform-origin: center 345%;
                 transition: .5s;
                 overflow: visible;
@@ -668,7 +673,7 @@
         }
         #roll_1{
             left: 15%;
-            animation: itemRun 5s linear infinite ;
+            animation: itemRun 10s linear infinite ;
             width: 300px;
             img{
                 opacity: .7;
@@ -676,11 +681,11 @@
         }
         #roll_2{
             left: 90%;
-            animation: itemRun 4s linear infinite ;
+            animation: itemRun 8s linear infinite ;
         }
         #roll_3 {
             left: 60%;
-            animation: itemRun 6s linear infinite alternate-reverse;
+            animation: itemRun 12s linear infinite alternate-reverse;
             width: 340px;
             img {
                 opacity: .7;
@@ -688,13 +693,13 @@
         }
         #roll_4 {
             left: 8%;
-            animation: itemRun 3s linear infinite reverse;
+            animation: itemRun 9s linear infinite reverse;
             width: 230px;
         }
 
         #roll_5 {
             left: 39%;
-            animation: itemRun 7s linear infinite alternate;
+            animation: itemRun 11s linear infinite alternate;
             width: 280px;
             img {
                 opacity: .3;
@@ -732,11 +737,11 @@
             }
             10%{
                 top: 10%;
-                opacity: 1;
+                opacity: .4;
             }
             90% {
                 top: 80%;
-                opacity: 1;
+                opacity: .4;
             }
             100% {
                 top: 90%;
@@ -769,7 +774,7 @@
             min-width: 200px;
             position: relative;
             width:23.3333333%;
-            animation: floating 1s infinite alternate linear;
+            animation: floating 2s infinite alternate linear;
             margin: 5%;
   
             &:hover {
@@ -804,6 +809,7 @@
                     width: 80%;
                     line-height: 1.6em;
                     margin-top: 10px;
+                    padding: 0 5px;
 
                 }
 
