@@ -951,8 +951,8 @@
                 <img class="itemImg" src="<?php echo $salesRow[1]['snackPic']?>" alt="">
                 <h4 class="itemName">[<?php echo $salesRow[1]['nation']?>]<?php echo $salesRow[1]['snackName']?></h4>
                 <div class="spread">
-                    <p class="ogPrice">$<?php echo $salesRow[0]['snackPrice']?></p>
-                    <p class="price">$<?php echo $salesRow[0]['salePrice']?></p>
+                    <p class="ogPrice">$<?php echo $salesRow[1]['snackPrice']?></p>
+                    <p class="price">$<?php echo $salesRow[1]['salePrice']?></p>
                 </div>
                 <div class="itemBtns">
                     <button class="cart" id="<?php echo "{$salesRow[1]['snackNo']}|{$salesRow[1]['salePrice']}|2|{$salesRow[1]['snackPrice']}|{$salesRow[1]['clearanceNo']}" ?>">加入購物車</button>
@@ -965,8 +965,8 @@
                 <img class="itemImg" src="<?php echo $salesRow[2]['snackPic']?>" alt="">
                 <h4 class="itemName">[<?php echo $salesRow[2]['nation']?>]<?php echo $salesRow[2]['snackName']?></h4>
                 <div class="spread">
-                    <p class="ogPrice">$<?php echo $salesRow[0]['snackPrice']?></p>
-                    <p class="price">$<?php echo $salesRow[0]['salePrice']?></p>
+                    <p class="ogPrice">$<?php echo $salesRow[2]['snackPrice']?></p>
+                    <p class="price">$<?php echo $salesRow[2]['salePrice']?></p>
                 </div>
                 <div class="itemBtns">
                     <button class="cart" id="<?php echo "{$salesRow[2]['snackNo']}|{$salesRow[2]['salePrice']}|2|{$salesRow[2]['snackPrice']}|{$salesRow[2]['clearanceNo']}" ?>">加入購物車</button>
