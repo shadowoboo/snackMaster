@@ -2291,9 +2291,11 @@
             cutQty = qty - 1;
             // if(cutQty==0){
                 // $(thisQty).text(0);
-                $(thisQty).text(cutQty);
-                $(this).css({backgroundColor:'#ccc',color:'#aaa'});
-                $(this).attr('disabled',true);
+                if($(this).parent("div").hasClass("itemBtns")){//即期品點擊後不給點第二次
+                    $(thisQty).text(cutQty);
+                    $(this).css({backgroundColor:'#ccc',color:'#aaa'});
+                    $(this).attr('disabled',true);
+                }
             // }else{
                 // fCutQty = sessionStorage['cutQty'];
                 // console.log(cutQty);//9 8 7....
