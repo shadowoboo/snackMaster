@@ -220,7 +220,7 @@
                                 <p>糖果</p>
                                 <div class="grow"></div>
                                 <div class="numInput">
-                                    <span class="numMinus">-</span><input id="candy" type="number" value="2" autocomplete="off"><span class="numPlus">+</span>
+                                    <span class="numMinus">-</span><input id="candy" type="number" value="2" autocomplete="off" readonly><span class="numPlus">+</span>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -229,7 +229,7 @@
                                 <p>餅乾</p>
                                 <div class="grow"></div>
                                 <div class="numInput">
-                                    <span class="numMinus">-</span><input id="cookie" type="number" value="1" autocomplete="off"><span class="numPlus">+</span>
+                                    <span class="numMinus">-</span><input id="cookie" type="number" value="1" autocomplete="off" readonly><span class="numPlus">+</span>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -237,7 +237,7 @@
                                 <p>巧克力</p>
                                 <div class="grow"></div>
                                 <div class="numInput">
-                                    <span class="numMinus">-</span><input id="chocolate" type="number" value="2" autocomplete="off"><span class="numPlus">+</span>
+                                    <span class="numMinus">-</span><input id="chocolate" type="number" value="2" autocomplete="off" readonly><span class="numPlus">+</span>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>

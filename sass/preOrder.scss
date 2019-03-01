@@ -641,6 +641,7 @@ header nav .menu #list_appear .list #store{
                             line-height: 36px;
                             padding-left: 0px;
                             height: unset;
+                            color: $gray;
                         }
                     }
                 }
@@ -723,6 +724,7 @@ header nav .menu #list_appear .list #store{
                     overflow: hidden;
                     display: inline-block;
                     vertical-align: bottom;
+                    border: 1px solid #ddd;
                 }
                 .star{
                     // width: 128px;

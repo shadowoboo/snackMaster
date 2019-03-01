@@ -859,12 +859,13 @@ function addBtnEva() {
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhr.send(data_info);
             xhr.onload = function() {
-                alertBox("感謝您提供的意見，加100分");
+                alertBox("感謝您提供的評價，會員積分加100分～");
                 var tarBtn = $(`div[name=snackNo${snackNo}]`).prev("ul").find("button");
                 // console.log(tarBtn);
                 tarBtn.text("已評價");
                 tarBtn.attr("class", "orderList_eva_done cart");
                 $(`div[name=snackNo${snackNo}]`).remove();
+                document.getElementById('memPoint').innerText = parseInt(document.getElementById('memPoint').innerText) + 100;
             }
         }
     });
