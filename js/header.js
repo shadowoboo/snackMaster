@@ -181,9 +181,6 @@ function showLightBox(e) {
     //     xhr.open("get", "ajaxLogout.php",true);
     //     xhr.send(null);
     //     }
-
-
-
 }
 //頁籤切換 登入＋註冊＋忘記密碼
 function changeway(e, tabchange) {
@@ -219,7 +216,7 @@ function sendForm() {
     xhr.onload = function () {
 
         if (xhr.responseText == 0) {
-            alert("帳密錯誤!!!");
+            alertBox("帳密錯誤!!!");
         }
         else {//登入成功顯示“登出”
             $id('btnloglout').innerHTML = "登出"
@@ -277,20 +274,20 @@ function SUForm() {
 
     // //帳號不得空白  
     if (account.value == "") {
-        alert("請填寫帳號");
+        alertBox("請填寫帳號");
         account.focus();
         return;
     }
     //帳號不能少於2碼
 
     if (account.value.length < 2) {
-        alert("帳號不得少於2碼");
+        alertBox("帳號不得少於2碼");
         account.focus();
         return;
     }
     //密碼不得空白
     if ($id('signUpMemPsw').value == "") {
-        alert("請填寫密碼");
+        alertBox("請填寫密碼");
         $id('signUpMemPsw').focus();
         return;
     }
@@ -298,12 +295,12 @@ function SUForm() {
 
 
     if (email.value == "") {
-        alert("請填寫Email");
+        alertBox("請填寫Email");
         email.focus();
         return;
     }
     if (!validateEmail(email.value)) {
-        alert("請填寫正確的Email格式!");
+        alertBox("請填寫正確的Email格式!");
         email.focus();
         return;
 
@@ -315,11 +312,11 @@ function checkPsw() {
     var pLen = $id("signUpMemPsw");
     for (var index = 0; index < pLen.length; index++) {
         if (pLen.charAt(index) == ' ' || pLen.charAt(index) == '\"') {
-            alert("密碼不可以含有空白或雙引號！");
+            alertBox("密碼不可以含有空白或雙引號！");
             return false;
         }
         if (pLen.value.length < 2) {
-            alert("密碼長度不得少於2碼");
+            alertBox("密碼長度不得少於2碼");
             return false;
         }
         return true;
@@ -339,11 +336,11 @@ function add_member() {
         if (xhr.status == 200) {
             //檢查帳號是否已註冊過   
             if (xhr.responseText == 1) {
-                alert("帳號已有人使用");
+                alertBox("帳號已有人使用");
             }
             else {
                 //註冊成功
-                alert('會員註冊成功!!');
+                alertBox('會員註冊成功!!');
                 //關閉燈箱，並將註冊表單上的資料清空
                 $id('lightBox-wrap').classList.remove('show');
                 $id('signUpMemId').value = "";
@@ -354,7 +351,7 @@ function add_member() {
             }
 
         } else {
-            alert(xhr.status);
+            alertBox(xhr.status);
         }
     }
     //php$_REQUEST代入以下變數
@@ -425,9 +422,9 @@ $(function () {
             data: data,
             success: function (response) {
                 if (response == 0) {
-                    alert("帳號不存在");
+                    alertBox("帳號不存在");
                 } else {
-                    alert("已寄出信件");
+                    alertBox("已寄出信件");
                     $id('lightBox-wrap').classList.remove('show');
 
                 }
@@ -449,6 +446,15 @@ function init3() {
     $id('btnSignUp').addEventListener('click', SUForm);//送出註冊按鈕
     // $id('forgetSend').addEventListener('click',FPForm);//寄送密碼按鈕
 
+    $id('lightBox-wrap').addEventListener('click', function (e){
+        if (e.target.id == 'lightBox-wrap'){
+            $id('lightBox-wrap').classList.remove('show');
+            $id('memLogin').style.color = '#737374';
+            //清除欄位資料
+            $id('loginMemId').value = "";
+            $id('loginMemPsw').value = "";
+        }
+    });
 
     // 檢查是否已登入
     var xhr = new XMLHttpRequest();
@@ -473,9 +479,6 @@ function init3() {
     xhr.open("get", "alreadyLogin.php", true);
     xhr.send(null);
     console.log(`init3`);
-
-
-
 }
 window.addEventListener("load", init3);
 

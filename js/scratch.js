@@ -4,23 +4,31 @@
 
 
 function doFirst() {
-  setInterval(showGame, 10000);
+  gameTimer = 1;
+  showGame();
+  document.getElementsByClassName('gameScratch')[0].addEventListener('click', function (){
+    gameTimer = 0;   
+    var game = document.getElementById('game');
+    game.classList.remove('fadeOut');
+    game.classList.add('fadeIn'); 
+  })
 }
 function showGame() {
-  var random = (Math.floor(Math.random() * 10) + 1) * 1000;
-  randomTimer = setInterval(randomGame, random);
+  if( gameTimer == 1 ){
+    var random = (Math.floor(Math.random() * 20) + 1) * 1000;
+    setTimeout(randomGame, random);
+  }
 }
 function randomGame() {
   var game = document.getElementById('game');
   game.classList.remove('fadeOut');
   game.classList.add('fadeIn');
-  clearInterval(randomTimer);
-  catchTimer = setInterval(gameCountdown, 5000);
+  setTimeout(gameCountdown, 5000);
 }
 function gameCountdown() {
   game.classList.add('fadeOut');
   game.classList.remove('fadeIn');
-  clearInterval(catchTimer);
+  showGame();
 }
 
 
@@ -193,7 +201,9 @@ function scratchSetting() {
           $('#endGame').click(byebye);
         }
       }
-
+  
+      lastPoint = currentPoint; 
+      handlePercentage(getFilledInPixels(32));
     }
   }
 
@@ -268,15 +278,18 @@ $(document).ready(function () {
                   <canvas class="gameGanvas " id="gameCanvas" width="370" height="600"></canvas>
               </div>
           </section>`;
-  $('body').append(chocoR);
-  doFirst();
-  $('.gameScratch').click(function () {
-    // alert('true');
-    // e.preventDefault();
-    $('body').append(scratch);
-    scratchSetting();
-  });
+    $('body').append(chocoR);
+    $('.gameScratch').click(function(){
+      // alert('true');
+      // e.preventDefault();
+      $('body').append(scratch);
+      scratchSetting();
 
-})
-
-window.addEventListener('load', doFirst);
+      document.getElementsByClassName('fullPage')[0].addEventListener('click', function (e) {
+        if (e.target.className == 'fullPage') {
+          document.getElementsByTagName('body')[0].removeChild(document.getElementsByClassName('fullPage')[0]);
+        }
+      })
+    });
+  })
+  window.addEventListener('load', doFirst);
