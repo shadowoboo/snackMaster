@@ -3,15 +3,15 @@ $(document).ready(function () {
   //展開訂單明細
   $('.orderList_btn').on('click', function () {
     // console.log(321);
-    if($(this).text() == "訂單明細v") {
+    if($(this).text() == "訂單明細 v") {
       // console.log('oop');
       $('.orderLis_content').removeClass('show');
       let tar = $(this).next().next(); //吃結構
       tar.addClass('show');
-      $(this).text("訂單明細^");
+      $(this).text("訂單明細 ^");
     } else {
       $('.orderLis_content').removeClass('show');
-      $(this).text("訂單明細v");
+      $(this).text("訂單明細 v");
     }
   });
 
@@ -20,7 +20,6 @@ $(document).ready(function () {
 
  //========================評價燈箱=========================== 
 function showBox(){
-
   var evaBox = document.querySelectorAll('button.orderList_eva');
     // console.log(evaBox.length);
     for (var i = 0; i < evaBox.length; i++) {
@@ -77,45 +76,66 @@ function headChange() {
 
 function modInfon1(){
   document.getElementById("memId").readOnly = false;
-  }
+  document.getElementById("memId").style.border = "2px solid #076baf";
+}
 function modInfon2(){
-  document.getElementById("memPsw").readOnly = false;
-  }
+  document.getElementById("password").readOnly = false;
+  document.getElementById("password").style.border = "2px solid #076baf";
+}
 function modInfon3(){
-    document.getElementById("memName").readOnly = false;
-   } 
-  function modInfon4(){
-    document.getElementById("memPhone").readOnly = false;
-    } 
-  function modInfon5(){
-      document.getElementById("email").readOnly = false;
-     } 
+  document.getElementById("memName").readOnly = false;
+  document.getElementById("memName").style.border = "2px solid #076baf";
+} 
+function modInfon4(){
+  document.getElementById("memPhone").readOnly = false;
+  document.getElementById("memPhone").style.border = "2px solid #076baf";
+} 
+function modInfon5(){
+  document.getElementById("email").readOnly = false;
+  document.getElementById("email").style.border = "2px solid #076baf";
+} 
   
-  
-
-  function doFirst() {
-    // console.log("aa");
-    $id('upFile').onchange = headChange;
-    
+function sendModi() {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    if (xhr.status == 200) {
+      alertBox("修改成功");
+      document.getElementById("memId").style.border = "1px solid #737374";
+      document.getElementById("password").style.border = "1px solid #737374";
+      document.getElementById("memName").style.border = "1px solid #737374";
+      document.getElementById("memPhone").style.border = "1px solid #737374";
+      document.getElementById("email").style.border = "1px solid #737374";
+    } else {
+      alertBox(xhr.status);
+    }
   }
-  window.addEventListener('load', doFirst);
+  xhr.open("Post", "memUpdate.php", true);
+  var myForm = new FormData(document.getElementById('memInfo'));
+  xhr.send(myForm);
+}  
+
+function doFirst() {
+  $id('upFile').onchange = headChange;
+  $id('btnmodify').addEventListener('click', sendModi);
+}
+window.addEventListener('load', doFirst);
 
   // -----------------------頁籤切換------------------------//
-  function changeTabs(evt, tabList) {
-    var i, tablinks, tabPanel;
-    tabPanel = document.getElementsByClassName("tabPanel");
-    for (i = 0; i < tabPanel.length; i++) {
-      tabPanel[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-
-    }
-    document.getElementById(tabList).style.display = "block";
-
-    evt.currentTarget.className += " active";
+function changeTabs(evt, tabList) {
+  var i, tablinks, tabPanel;
+  tabPanel = document.getElementsByClassName("tabPanel");
+  for (i = 0; i < tabPanel.length; i++) {
+    tabPanel[i].style.display = "none";
   }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+
+  }
+  document.getElementById(tabList).style.display = "block";
+
+  evt.currentTarget.className += " active";
+}
 
   // Get the element with id="defaultOpen" and click on it
   document.getElementById("defaultOpen").click();

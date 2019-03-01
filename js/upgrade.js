@@ -2,14 +2,14 @@ function upgrade(){
     var xhr = new XMLHttpRequest();
     xhr.onload = function () {
         if (xhr.status == 200) {
-            alert('會員等級已經提升～升等獎勵已送至優惠券匣');
+            alertBox('會員等級已經提升～升等獎勵已送至優惠券匣');
 
             document.getElementById('gradeName').innerText = xhr.responseText.split('|')[0];
             document.getElementById('headPic').src = xhr.responseText.split('|')[1];
             document.getElementsByClassName('goToCustom')[0].style.cursor = "no-drop";
             document.getElementsByClassName('goToCustom')[0].setAttribute("disabled", "true");;
         } else {
-            alert(xhr.status)
+            alertBox(xhr.status)
         }
     }
     xhr.open("Get", "upgrade.php", true);

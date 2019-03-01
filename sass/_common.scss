@@ -116,6 +116,9 @@ input, select{
                 background-color: $blue;
                 color: #fff;
             }
+            &:focus{
+                outline: none;
+            }
         }
 }
 .heart{
@@ -125,6 +128,8 @@ input, select{
 .trash{
     font-size: 22px;
     border: 2px solid $blue;
+    width: 50px;
+    height: 40px;
 }
 .numInput{
     width: 130px;
