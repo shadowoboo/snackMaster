@@ -124,8 +124,8 @@ function scratchSetting() {
 
     // offsetX += canvas.offsetLeft;
     // offsetY += canvas.offsetTop;
-    mx = offsetX = e.offsetX || (e.touches[0].pageX - canvas.offsetLeft);
-    my = offsetY = e.offsetY || (e.touches[0].pageY - canvas.offsetTop);
+    mx = offsetX = e.offsetX || (e.touches[0].clientX - canvas.offsetLeft);
+    my = offsetY = e.offsetY || (e.touches[0].clientY - canvas.offsetTop);
     console.log(`mx: ${mx} ----- my: ${my}`);
 
 
@@ -141,6 +141,7 @@ function scratchSetting() {
     if (filledInPixels > 60) {
       //範圍
       canvas.parentNode.removeChild(canvas);
+      isDrawing=false; //截斷。讓touchmove只觸發此函數一次
       $('.scratchWrapIp img').addClass('rotate')
       //1.刮完之後 ip會動
       //2.開始偵測是否登入
