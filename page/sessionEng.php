@@ -10,7 +10,8 @@
         echo "<h2 class='yap'>-- SESSION 有值 有亮 有多聞 ! --</h2>".$br;
     }
 ?>
-<button class="autoReload">Auto Reload</button>
+<!-- <button class="autoReload">Auto Reload</button> -->
+<button class="clearSession" id="clearSession">clear PHP session</button>
 <?php
     // echo print_r($_SESSION).$br;
     // while (list($key, $val) = each($_SESSION)) {
@@ -87,6 +88,17 @@
         window.location.reload();
     }
     setTimeout('myrefresh()',1000); //指定1秒刷新一次
+</script>
+<script>
+$("#clearSession").click(function () {
+        $.ajax({
+            url: "clearSession_ENG.php",
+            success: function (response) {
+                console.log(response);
+            }
+        });
+        $(".engBtnList").removeClass("show");
+    })
 </script>
 <style>
     .wrap{

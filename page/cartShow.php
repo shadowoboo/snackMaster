@@ -363,7 +363,7 @@ if(isset($_SESSION["snackName"])==true){
     //即期品喔即期品
         foreach ($_SESSION["snackName"][2] as $snackNo => $snackName) {
             $str=$_SESSION["note"][2][$snackNo];
-            $arr_str=explode("|",$str);
+            $arr_str=explode("|", $str);
             //分割出字串
             $priceOrigin=$arr_str[0];
 
@@ -378,6 +378,7 @@ if(isset($_SESSION["snackName"])==true){
                 $cl -> bindValue(":snackNo", $snackNo); //從foreach迴圈取得當前的snackNo
                 $cl -> execute();
                 $row = $cl-> fetch();
+                $rowCount= $cl -> rowCount(); //撈出資料是否存在
                 // print_r($row["quantity"]);
             } catch (PDOException $e) {
                 echo "失敗,原因:",$e -> getMessage();
@@ -386,10 +387,10 @@ if(isset($_SESSION["snackName"])==true){
             //也許重複呼叫資料庫不是好主意，一種感覺
             //好處: 方便對應到該商品，解決 snackNo 只存在陣列編號中的問題
             //壞處: 依照迴圈數呼叫很多次，連線很多次(?)
-
+            if ($rowCount>0) {
 ?>
                     <div class="prodCard prodCard_normal prodCard_single snackType_clean">
-                        <input type="hidden" name="snackNo" value="<?php echo $snackNo;?>">
+                        <input type="hidden" name="snackNo" value="<?php echo $snackNo; ?>">
                         <div class="prodImg">
                             <img src="<?php echo  $_SESSION["snackPic"][2][$snackNo]?>">
                         </div>
@@ -410,14 +411,32 @@ if(isset($_SESSION["snackName"])==true){
                             </div>
                             <div class="prodQty">
                                 <div class="numInput">
-                                    <span class="numMinus" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][2][$snackNo]?>" data-max="<?php echo $row["quantity"] ?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo;?>" type="number" value="1" readonly max="<?php echo $row["quantity"] ?>"><span
-                                        class="numPlus" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo;?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][2][$snackNo]?>" data-max="<?php echo $row["quantity"] ?>">+</span>
+                                    <span class="numMinus" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo; ?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][2][$snackNo]?>" data-max="<?php echo $row["quantity"] ?>">-</span><input class="snackQty" data-snackno="<?php echo $snackNo; ?>" type="number" value="1" readonly max="<?php echo $row["quantity"] ?>"><span
+                                        class="numPlus" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo; ?>" data-snackprice="<?php echo  $_SESSION["snackPrice"][2][$snackNo]?>" data-max="<?php echo $row["quantity"] ?>">+</span>
                                 </div>
                             </div>
-                            <button class="trash" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo;?>"><i class="far fa-trash-alt" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo;?>"></i></button>
+                            <button class="trash" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo; ?>"><i class="far fa-trash-alt" data-snacktype="<?php echo 2 ?>" data-snackno="<?php echo $snackNo; ?>"></i></button>
                         </div>
                     </div>
 <?php
+            }else{
+                //清除異常的即期品優惠
+                unset($_SESSION['snackName'][2]);
+                unset($_SESSION['snackPrice'][2]);
+                unset($_SESSION['note'][2]);
+                unset($_SESSION['snackQuan'][2]);
+                unset($_SESSION['snackPic'][2]);
+                //如果清完即期品後session就沒有其他商品，那把session標頭本身也清掉，避免cartProdCheck.php誤抓
+                if (count($_SESSION["snackQuan"])<1) {
+                    unset($_SESSION["snackName"]);
+                    unset($_SESSION["snackPrice"]);
+                    unset($_SESSION["note"]);
+                    unset($_SESSION["cusType"]);
+                    unset($_SESSION["snackQuan"]);
+                    unset($_SESSION["snackPic"]);
+                }
+                return;//跳出foreach
+            }
         }       
     }
 ?>

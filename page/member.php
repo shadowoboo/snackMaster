@@ -183,92 +183,92 @@
     </header>
     <!-- //-------------------------------------------------------//
 -----------------------       這是燈箱        ------------------ -->
-    <!-- //-------------------------------------------------------// -->
-    <div id="lightBox-wrap">
-        <div id="lightBox">
-            <div class="loginLeave">
-                <span id="lightBoxLeave"><i class="fas fa-times"></i></span>
-            </div>
-            <div class="loginTab-content">
-                <h3 id="open">登入</h3>
-                <!-----------------------------------登入表單------------------------------------  -->
-                <form id="Loginpage" class="tabContent">
-                    <table class="loginBox">
-                        <tr>
-                            <td>
-                                <label class="Box-name" for="loginMemId">帳號</label>
-                                <input type="text" name="loginMemId" id="loginMemId" autocomplete="off">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="Box-name" for="loginMemPsw">密碼</label>
-                                <input type="password" name="loginMemPsw" id="loginMemPsw">
-                                <p id="forgetPswLink" onclick="changeway(event,'forgetPsw')"> 忘記密碼?</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="button" id="btnLogin" value="登入" class="loginBoxBtn">
-                            </td>
-                        </tr>
-                    </table>
-                    <p id="signUpBtn" onclick="changeway(event,'signup')">註冊會員</p>
-                </form>
-                <!------------------------------------------------註冊表單------------------------------------------  -->
-                <form id="signup" class="tabContent">
-                    <table class="signUpBox">
-                        <tr>
-                            <td>
-                                <label class="Box-name" for="signUpMemId">帳號</label>
-                                <input type="text" name="signUpMemId" id="signUpMemId" autocomplete="off"
-                                    placeholder="英數字2~10碼">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="Box-name" for="signUpMemPsw">密碼</label>
-                                <input type="password" name="signUpMemPsw" id="signUpMemPsw" placeholder="英數字2~10碼">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="Box-name mail" for="signUpMemEmail">信箱</label>
-                                <input type="email" name="signUpMemEmail" id="signUpMemEmail" autocomplete="off">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="formBtn">
-                                <input type="button" id="btnSignUp" value="註冊" class="loginBoxBtn">
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-                <!-- ---------------------------------------忘記密碼 -->
-                <form id="forgetPsw" class="tabContent">
-                    <table class="forgetPswBox">
-                        <tr>
-                            <td>
-                                <label class="Box-name" for="forgetMemId">帳號</label>
-                                <input type="text" name="forgetMemId" id="forgetMemId" autocomplete="off">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="Box-name mail" for="forgetMemEmail">信箱</label>
-                                <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" autocomplete="off">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="formBtn">
-                                <input type="button" id="forgetSend" value="寄送" class="loginBoxBtn">
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
+<!-- //-------------------------------------------------------// -->
+<div id="lightBox-wrap">
+    <div id="lightBox">
+        <div class="loginLeave">
+            <span id="lightBoxLeave"><i class="fas fa-times"></i></span>
+        </div>
+        <div class="loginTab-content">
+            <h3 id="open">登入</h3>
+            <!-----------------------------------登入表單------------------------------------  -->
+            <form id="Loginpage" class="tabContent">
+                <table class="loginBox">
+                    <tr>
+                        <td>
+                            <label class="Box-name" for="loginMemId">帳號</label>
+                            <input type="text" name="loginMemId" id="loginMemId" autocomplete="off">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="Box-name" for="loginMemPsw">密碼</label>
+                            <input type="password" name="loginMemPsw" id="loginMemPsw">
+                            <p id="forgetPswLink" onclick="changeway(event,'forgetPsw')"> 忘記密碼?</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" id="btnLogin" value="登入" class="loginBoxBtn">
+                        </td>
+                    </tr>
+                </table>
+                <p id="signUpBtn" onclick="changeway(event,'signup')">註冊會員</p>
+            </form>
+            <!------------------------------------------------註冊表單------------------------------------------  -->
+            <form id="signup" class="tabContent">
+                <table class="signUpBox">
+                    <tr>
+                        <td>
+                            <label class="Box-name" for="signUpMemId">帳號</label>
+                            <input type="text" name="signUpMemId" id="signUpMemId" autocomplete="off"
+                                placeholder="英數字2~10碼">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="Box-name" for="signUpMemPsw">密碼</label>
+                            <input type="password" name="signUpMemPsw" id="signUpMemPsw" placeholder="英數字2~10碼">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="Box-name mail" for="signUpMemEmail">信箱</label>
+                            <input type="email" name="signUpMemEmail" id="signUpMemEmail" autocomplete="off">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formBtn">
+                            <input type="button" id="btnSignUp" value="註冊" class="loginBoxBtn">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <!-- ---------------------------------------忘記密碼 -->
+            <form id="forgetPsw" class="tabContent">
+                <table class="forgetPswBox">
+                    <tr>
+                        <td>
+                            <label class="Box-name" for="forgetMemId">帳號</label>
+                            <input type="text" name="forgetMemId" id="forgetMemId" autocomplete="off">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="Box-name mail" for="forgetMemEmail">信箱</label>
+                            <input type="email" name="forgetpMemEmail" id="forgetpMemEmail" autocomplete="off">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="formBtn">
+                            <input type="button" id="forgetSend" value="寄送" class="loginBoxBtn">
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </div>
+</div>
 
 
     <div class="title">
@@ -277,7 +277,6 @@
 
     <section class="memWrap">
         <form method="post" enctype="multipart/form-data" id="memInfo">
-        
             <table class="col-12 col-1">
                 <tr>
                     <td>
@@ -290,22 +289,15 @@
                                 }else {
                                     echo $memRow["memPic"];
                                 }
-
                              ?>">
                         </div>
-
                         <label class="memPic" for="upFile">
-                            <p>上傳大頭貼<img src="../images/tina/pen.png" alt="編輯"></p>
-
+                            <!-- <p>上傳大頭貼<img src="../images/tina/pen.png" alt="編輯"></p> -->
+                            <p>上傳大頭貼<i class="fas fa-pen"></i></p>
                             <input type="file" name="upFile" id="upFile">
-
                         </label>
-
-
-
                     </td>
                 </tr>
-
             </table>
             <table class="col-12 col-2">
                 <tr>
@@ -324,7 +316,7 @@
                             帳號：
                             <input type="text" name="memId" value="<?php echo $memRow["memId"];?>" maxlength="15"
                                 id="memId" readonly>   
-                             <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon1()">
+                            <i class="fas fa-pen" onclick="modInfon1()"></i>
                         </p>
                     </td>
                 </tr>
@@ -334,7 +326,7 @@
                             密碼：
                             <input type="password" name="memPsw" value="<?php echo $memRow["memPsw"];?>" maxlength="15"
                                 readonly id="password">
-                            <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon2()">
+                            <i class="fas fa-pen" onclick="modInfon2()"></i>
                         </p>
                     </td>
                 </tr>
@@ -344,7 +336,7 @@
                             姓名：
                             <input type="text" name="memName" value="<?php echo $memRow["memName"];?>" maxlength="12"
                                 readonly id="memName">
-                            <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon3()">
+                            <i class="fas fa-pen" onclick="modInfon3()"></i>
                         </p>
                     </td>
                 </tr>
@@ -354,7 +346,7 @@
                             電話：
                             <input type="text" name="phone" value="<?php echo $memRow["memPhone"];?>" maxlength="10"
                                 readonly id="memPhone">
-                            <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon4()">
+                            <i class="fas fa-pen" onclick="modInfon4()"></i>
                         </p>
                     </td>
                 </tr>
@@ -364,11 +356,10 @@
                             信箱：
                             <input type="email" name="email" value="<?php echo $memRow["email"];?>" maxlength="20"
                                 readonly id="email">
-                            <img src="../images/tina/pen.png" alt="編輯" onclick="modInfon5()">
+                            <i class="fas fa-pen" onclick="modInfon5()"></i>
                         </p>
                     </td>
                 </tr>
-
             </table>
             <table class="col-12 col-3">
                 <tr>
@@ -430,9 +421,9 @@
             <div class="tabPanel" id="tab-1">
                 <div class="levelInfor">
                     <div class="topLevel">
-                        <span>Level1</span>
+                        <!-- <span>Level1</span>
                         <span>Level3</span>
-                        <span>Level5</span>
+                        <span>Level5</span> -->
                         <!-- <span>12385分</span> -->
                     </div>
                     <div class="procBar">
@@ -449,10 +440,10 @@
 
                     </div>
                     <div class="bottumLevel">
-                        <span>Level0</span>
-                        <span>Level2</span>
-                        <span>Level4</span>
-                        <span>Level6</span>
+                        <span>積分：0</span>
+                        <!-- <span>Level2</span>
+                        <span>Level4</span> -->
+                        <span>積分：18000</span>
                     </div>
 
                 </div>
@@ -487,7 +478,7 @@
                             <p>如何獲得積分？</p>
                             <ul>
                                 <li>每完成一則評價獲得100積分</li>
-                                <li>每按讚1次獲得1積分</li>
+                                <li>每被按讚1次獲得1積分</li>
                             </ul>
 
                         </div>
@@ -574,7 +565,7 @@
                     </div>
                     <!-----------------訂單明細------------------------  -->
                     <div class="orderitem">
-                        <p class="orderList_btn">訂單明細v</p>
+                        <p class="orderList_btn">訂單明細 v</p>
                         <div class=line></div>
 
                         <!-- ------------------------手機版html-------------------------------------- -->
@@ -652,12 +643,17 @@
                                             $eva->execute();
 
                                             $evaCount = $eva->rowCount();
+                                            if($orderRow['orderStatus']=='運送中'){
+                                                echo '<button class="orderList_eva_done cart" type="button">運送中</button>';
 
-                                            if($evaCount>0){
-                                                echo '<button class="orderList_eva_done cart" type="button">已評價</button>';
                                             }else{
-                                                echo '<button class="orderList_eva cart" type="button">未評價</button>';
+                                                if($evaCount>0){
+                                                    echo '<button class="orderList_eva_done cart" type="button">已評價</button>';
+                                                }else{
+                                                    echo '<button class="orderList_eva cart" type="button">未評價</button>';
+                                                }
                                             }
+                                            
                                         } catch(PDOException $e){
                                             echo "失敗",$e->getMessage();
                                             echo "行號",$e->getLine();
@@ -838,7 +834,6 @@
 //判斷點擊哪一個 tab
 function tabClick(e) {
     var tab = e.target.parentNode.id;
-
     switch (tab) {
         case 'tab33':
             getCollection();
@@ -849,39 +844,38 @@ function tabClick(e) {
     }
 }
 
-
-
 //評價表單送出
 function addBtnEva() {
-
     $('.sendEva').click(function() {
         var snackNo = $(this).attr('id');
-
         var evaCtx = $(`div[name=snackNo${snackNo}] textarea`).val();
         var sweetStar = $(`div[name=snackNo${snackNo}] input[name=swStar]:checked`).val();
         var sourStar = $(`div[name=snackNo${snackNo}] input[name=suStar]:checked`).val();
         var spicyStar = $(`div[name=snackNo${snackNo}] input[name=spStar]:checked`).val();
         var goodStar = $(`div[name=snackNo${snackNo}] input[name=gdStar]:checked`).val();
-
-        var data_info =
-            `snackNo=${snackNo}&evaCtx=${evaCtx}&goodStar=${goodStar}&sourStar=${sourStar}&sweetStar=${sweetStar}&spicyStar=${spicyStar}`;
-        var xhr = new XMLHttpRequest();
-        xhr.open("Post", "sendEva.php", true);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send(data_info);
-        xhr.onload = function() {
-            alertBox("感謝您提供的意見，加100分");
-            var tarBtn = $(`div[name=snackNo${snackNo}]`).prev("ul").find("button");
-            // console.log(tarBtn);
-            tarBtn.text("已評價");
-            tarBtn.attr("class", "orderList_eva_done cart");
-            $(`div[name=snackNo${snackNo}]`).remove();
-
+        if($(`div[name=snackNo${snackNo}] input:checked`).length!=4){
+            alertBox("請至少填寫各項星等，才能送出評價");
         }
-        console.log(data_info);
+        else{
+            var data_info =
+                `snackNo=${snackNo}&evaCtx=${evaCtx}&goodStar=${goodStar}&sourStar=${sourStar}&sweetStar=${sweetStar}&spicyStar=${spicyStar}`;
+            var xhr = new XMLHttpRequest();
+            xhr.open("Post", "sendEva.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send(data_info);
+            xhr.onload = function() {
+                alertBox("感謝您提供的評價，會員積分加100分～");
+                var tarBtn = $(`div[name=snackNo${snackNo}]`).prev("ul").find("button");
+                // console.log(tarBtn);
+                tarBtn.text("已評價");
+                tarBtn.attr("class", "orderList_eva_done cart");
+                $(`div[name=snackNo${snackNo}]`).remove();
+                document.getElementById('memPoint').innerText = parseInt(document.getElementById('memPoint').innerText) + 100;
+            }
+        }
     });
-
 }
+
 
 window.addEventListener('load', addBtnEva, false);
 
@@ -913,7 +907,7 @@ function getCollection() {
                 carts[i].addEventListener('click', addCart);
             }
         } else {
-            alert(xhr.status);
+            alertBox(xhr.status);
         }
     }
 
@@ -930,17 +924,17 @@ function deletTrash(e) {
         e.stopPropagation();
         var snackNo = e.target.parentNode.id;
     }
-    if (window.confirm('確定要刪除收藏嗎？') == true) {
+    if(confirmBox('確定要刪除收藏嗎？') == true){
         var xhr = new XMLHttpRequest();
         xhr.onload = function() {
             if (xhr.status == 200) {
                 if (xhr.responseText != 'true') {
-                    alert(xhr.responseText);
+                    alertBox(xhr.responseText);
                 } else {
                     getCollection();
                 }
             } else {
-                alert(xhr.status);
+                alertBox(xhr.status);
             }
         }
         var url = 'removeHeart.php?snackNo=' + snackNo;

@@ -74,23 +74,23 @@ $(function () {
         var snackNo = e.target.dataset.snackno;
         var snackType = e.target.dataset.snacktype;
         var val=$(this).next().val();
-        console.log(`snackType: ${snackType}`);
+        // console.log(`snackType: ${snackType}`);
         
         // console.log(val);
         //因為直接取值會慢實際看到的value一次，故手動補正
         if (snackQuan == 1) {
             snackQuan = 1;
-            console.log(snackQuan);
+            // console.log(snackQuan);
         } else {
             snackQuan = parseInt(val) - 1;
-            console.log(snackQuan);
+            // console.log(snackQuan);
         }
         $.ajax({
             type: "get",
             url: "cartUpdate.php",
             data: "updateType=numMinus&snackNo=" + snackNo + "&snackQuan=" + snackQuan + "&snackType=" + snackType,
             success: function (response) {
-                console.log(`response:　${response}`);
+                // console.log(`response:　${response}`);
             }
         });
         //變更小計
@@ -112,23 +112,23 @@ $(function () {
         val = parseInt(val);
         var max = $(this).prev().attr("max");
         max = parseInt(max);
-        console.log(`val= ${val}`);
+        // console.log(`val= ${val}`);
         
-        console.log(`max= ${max}`);
+        // console.log(`max= ${max}`);
         
         // console.log(val);
         // qty = val+parseInt(1);
         if ((val + 1) <= max){
             snackQuan = parseInt(val) + 1;
-            console.log(snackQuan);
-            console.log(`snackType: ${snackType}`);
+            // console.log(snackQuan);
+            // console.log(`snackType: ${snackType}`);
             //改變session數量
             $.ajax({
                 type: "get",
                 url: "cartUpdate.php",
                 data: "updateType=numPlus&snackNo=" + snackNo + "&snackQuan=" + snackQuan + "&snackType=" + snackType,
                 success: function (response) {
-                    console.log(`response:　${response}`);
+                    // console.log(`response:　${response}`);
                 }
             });
             //變更小計
@@ -140,7 +140,7 @@ $(function () {
         }else{
             alertBox("已達庫存上限");
             val=max;
-            console.log(`val=max: ${val}`);
+            // console.log(`val=max: ${val}`);
             $(this).attr("disabled",true);
         }
         
@@ -160,7 +160,7 @@ $(function () {
             data: "updateType=cusDel",
             success: function (response) {
                 // console.log("done Clear cus session");
-                console.log(`response:　${response}`);
+                // console.log(`response:　${response}`);
             }
         });
     }
@@ -169,15 +169,15 @@ $(function () {
         //用 data-* 神秘西方力量取值 (我不想占用id之類的)
         var snackNo = e.target.dataset.snackno;
         var snackType = e.target.dataset.snacktype;
-        console.log(snackNo);
-        console.log(snackType);
+        // console.log(snackNo);
+        // console.log(snackType);
         
         $.ajax({
             type: "get",
             url: "cartUpdate.php",
             data: "updateType=normalDel&snackNo=" + snackNo + "&snackType=" + snackType,
             success: function (response) {
-                console.log(`response:　${response}`);
+                // console.log(`response:　${response}`);
             }
         });
     }
@@ -213,7 +213,7 @@ $(function () {
     }
     //優惠卷初始化
     function getCoupon() {
-        console.log("coupon gogo");
+        // console.log("coupon gogo");
 
         $.ajax({
             type: "post",
@@ -222,16 +222,16 @@ $(function () {
             success: function (response) {
                 if (response == "error") {
                     $("#couponItem").html("\<option value=\"未登入\"\>未登入\<\/option\>");
-                    console.log(`response="error"`);
+                    // console.log(`response="error"`);
 
                 } else if (response == "none") {
                     $("#couponItem").html("<option value=\"\"> </option>");
-                    console.log(`response="none"`);
+                    // console.log(`response="none"`);
 
                 } else {
                     $("#couponItem").html(response);
                     // console.log(`response="ok"`);
-                    console.log(response);
+                    // console.log(response);
                 }
             }
         });
@@ -239,7 +239,7 @@ $(function () {
     //撥放器初始化
     function audioInit(){
         var $au_player=$("#au_player");
-        console.log(`$au_player.attr("src"): ${$au_player.attr("src")}`);
+        // console.log(`$au_player.attr("src"): ${$au_player.attr("src")}`);
         //如果沒吃到 src 就改變樣式成 不給點 的樣子
         ////之前用js寫監聽，所以 addEventListener 在 function init(){} 控制
         if ($au_player.attr("src")=="test"){
@@ -272,15 +272,15 @@ $(document).ready(function () {
             //畫面淨空
             $(".cartContent").removeClass("cartPageActive");
             if (response != "prodExist") { //如果商品還沒加入購物車
-                console.log(`response!="prodExist"`);
-                console.log(`response: ${response}`);
+                // console.log(`response!="prodExist"`);
+                // console.log(`response: ${response}`);
                 //顯示 "未購物提示" 
                 $(".cartContent_none").addClass("cartPageActive");
                 //顯示 footer
                 $("footer").show();
                 //預設不顯示其他區塊，所以不再動作
             } else {
-                console.log(`response: ${response}`);
+                // console.log(`response: ${response}`);
                 //隱藏 "未購物提示" 
                 $(".cartContent_none").removeClass("cartPageActive");
                 //隱藏 footer
@@ -309,7 +309,7 @@ $(document).ready(function () {
                     //登入檢查，未登入則不給下一步
                     // console.log(CartStepLoginCheck(function (response){}));
                     CartStepLoginCheck(function (response) {
-                        console.log(`response: ${response}`);
+                        // console.log(`response: ${response}`);
                         if (response == "error") {
                             alertBox("請先登入會員喔~");
                             //跳出燈箱，請訪客登入
@@ -334,10 +334,10 @@ $(document).ready(function () {
                     }
                     //表單全部存起來
                     var getterData = $("#cartForm").serialize();
-                    console.log(`getterData before: ${getterData}`);
-                    console.log(`$("#boxPic").size() > 0: ${$("#boxPic").length > 0}`);
+                    // console.log(`getterData before: ${getterData}`);
+                    // console.log(`$("#boxPic").size() > 0: ${$("#boxPic").length > 0}`);
                     //取得總價(不想再php算)
-                    var orderTotal = $("#priceTotalContent").text(); console.log(`orderTotal: ${orderTotal}`);
+                    var orderTotal = $("#priceTotalContent").text(); //console.log(`orderTotal: ${orderTotal}`);
                     getterData += "&orderTotal=" + orderTotal;
                     //如果有優惠卷
                     if ($("option").length > 0) { //jq抓物件一定會回傳陣列，所以永遠都是true，要改用檢查陣列大小的方式
@@ -361,11 +361,11 @@ $(document).ready(function () {
                         getterData += "&audioFile=" + audioFile;
                     }
                     // var cardPic = $("#cardPic").attr("src");
-                    console.log(`boxPic before: ${boxPic}`);
-                    console.log(`cardPic before: ${cardPic}`);
+                    // console.log(`boxPic before: ${boxPic}`);
+                    // console.log(`cardPic before: ${cardPic}`);
                     // var audioFile = $("#au_player").attr("src");
-                    console.log(`audioFile before: ${audioFile}`);
-                    console.log(`getterData AFTER: ${getterData}`);
+                    // console.log(`audioFile before: ${audioFile}`);
+                    // console.log(`getterData AFTER: ${getterData}`);
                     // //防止被連點連續發送ajax請求
                     // var theThis=$(e.target);
                     // theThis.off("click");
@@ -375,11 +375,11 @@ $(document).ready(function () {
                         data: getterData,
                         success: function (response) {
                             if (response == "error") {
-                                console.log(response);
+                                // console.log(response);
                                 // alertBox(" 下單失敗 Q口Q ");
                             } else {
                                 // alertBox(response);
-                                console.log(response);
+                                // console.log(response);
                             }
                         }
                     });
@@ -423,7 +423,7 @@ $(document).ready(function () {
                     //隱藏上一步按鈕
                     $(this).addClass("btnBack_none");
                     stepCount -= 1;
-                    console.log(`stepCount: ${stepCount}`);
+                    // console.log(`stepCount: ${stepCount}`);
                     break;
                 case 3:
                     //送出訂單也沒有返回可用
@@ -462,25 +462,25 @@ $(document).ready(function () {
 
 
     //call ENG BTN
-    $(".title h2").click(function () {
-        $(".engBtnList").toggleClass("show");
-    })
-    $(".engBtn:not(#clearSession)").click(function (e) {
-        let tar = e.target.innerText;
-        // alertBox(tar);
-        $("." + tar).toggle();
-        $(".engBtnList").removeClass("show");
+    // $(".title h2").click(function () {
+    //     $(".engBtnList").toggleClass("show");
+    // })
+    // $(".engBtn:not(#clearSession)").click(function (e) {
+    //     let tar = e.target.innerText;
+    //     // alertBox(tar);
+    //     $("." + tar).toggle();
+    //     $(".engBtnList").removeClass("show");
 
-    })
-    $("#clearSession").click(function () {
-        $.ajax({
-            url: "clearSession_ENG.php",
-            success: function (response) {
-                console.log(response);
-            }
-        });
-        $(".engBtnList").removeClass("show");
-    })
+    // })
+    // $("#clearSession").click(function () {
+    //     $.ajax({
+    //         url: "clearSession_ENG.php",
+    //         success: function (response) {
+    //             console.log(response);
+    //         }
+    //     });
+    //     $(".engBtnList").removeClass("show");
+    // })
     //////ENG BTN ENDDD
 
 
@@ -521,11 +521,11 @@ $(document).ready(function () {
                 //隱藏表頭
                 $(".cartTh").hide();
                 //顯示 "上一步" 按鈕
-                console.log(`btnBack`);
+                // console.log(`btnBack`);
                 $(".btnBack").removeClass("btnBack_none");
                 //頁數+1
                 stepCount += 1;
-                console.log(`stepCount: ${stepCount}`);
+                // console.log(`stepCount: ${stepCount}`);
             })
         } else {
             // alertBox("下一步~");
@@ -537,7 +537,7 @@ $(document).ready(function () {
             //顯示 "上一步" 按鈕
             $(".btnBack").removeClass("btnBack_none");
             stepCount += 1;
-            console.log(`stepCount: ${stepCount}`);
+            // console.log(`stepCount: ${stepCount}`);
         }
     }
 
@@ -549,7 +549,7 @@ $(document).ready(function () {
             type: "get",
             url: "CartProdAdd_ENG.php",
             success: function (response) {
-                console.log(`response: ${response}`);
+                // console.log(`response: ${response}`);
             }
         });
     }
@@ -584,9 +584,11 @@ $(document).ready(function () {
 
 //撥放器-------------------------------開始
 function init() {
-    console.log($(window).width());
+    // console.log($(window).width());
     var au_player = document.getElementById("au_player");
-    au_playerSrc = au_player.getAttribute("src");
+    if(au_player){
+        au_playerSrc = au_player.getAttribute("src");
+    }
     if (au_player && au_playerSrc != "test" && au_playerSrc != "" ) {
         // 撥放/暫停
         $id("au_btn_play").addEventListener("click", auPlayAndPause);
@@ -705,7 +707,7 @@ function auVol(e) {
 
     barSize = parseInt(window.getComputedStyle($id("volBar")).width);
     var newVol = mouseX / barSize;
-    console.log(`newVol: ${newVol}`);
+    // console.log(`newVol: ${newVol}`);
     $id("au_player").volume = newVol;
 }
 
@@ -728,7 +730,7 @@ function auUpdateTimeAll(e) {
 
 //把正在撥放的時間更新到標籤裡
 function auUpdateTimeNow(e) {
-    console.log($id("au_player").currentTime);
+    // console.log($id("au_player").currentTime);
     $id("au_timeNow").innerText = formatTime($id("au_player").currentTime);
 }
 
@@ -750,7 +752,7 @@ function updateNum(e, num, type) {
     } else {
         var input = e.target.previousSibling;
     }
-    console.log(`commom input max= ${input.getAttribute("max")}`);
+    // console.log(`commom input max= ${input.getAttribute("max")}`);
     var val = parseInt(input.value);
     var max = parseInt(input.getAttribute("max"));
     //將input的value控制在1~99以內，根據按鈕類型做+1或-1

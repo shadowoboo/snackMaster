@@ -6,15 +6,15 @@
 function doFirst() {
   gameTimer = 1;
   showGame();
-  document.getElementsByClassName('gameScratch')[0].addEventListener('click', function (){
-    gameTimer = 0;   
+  document.getElementsByClassName('gameScratch')[0].addEventListener('click', function () {
+    gameTimer = 0;
     var game = document.getElementById('game');
     game.classList.remove('fadeOut');
-    game.classList.add('fadeIn'); 
+    game.classList.add('fadeIn');
   })
 }
 function showGame() {
-  if( gameTimer == 1 ){
+  if (gameTimer == 1) {
     var random = (Math.floor(Math.random() * 20) + 1) * 1000;
     setTimeout(randomGame, random);
   }
@@ -66,7 +66,7 @@ function scratchSetting() {
     image = new Image(),
     brush = new Image();
 
-  image.src = "../images/game/itemB.svg";
+  image.src = "../images/game/itemB.png";
   image.onload = function () {
     ctx2.drawImage(image, 0, 0);
   };
@@ -114,7 +114,22 @@ function scratchSetting() {
       offsetY = 0,
       mx,
       my;
+    // var offsetx=function(obj){
+    //   return obj.offsetLeft+(obj.offsetParent?this.offsetx(obj.offsetParent):0);
+    // }
+    // var offsety=function(obj){
+    //   return obj.offsetTop + (obj.offsetParent ? this.offsety(obj.offsetParent) : 0);      
+    // }
 
+    //以循環的方式不同offsetLeft才得到正確的邊界距離元素的距離
+    var getOffset = {
+      left: function (obj) {
+        return obj.offsetLeft + (obj.offsetParent ? this.left(obj.offsetParent) : 0);
+      },
+      top: function (obj) {
+        return obj.offsetTop + (obj.offsetParent ? this.top(obj.offsetParent) : 0);
+      }
+    };
     // if (canvas.offsetParent !== undefined) {
     //   do {
     //     offsetX += canvas.offsetLeft;
@@ -124,8 +139,16 @@ function scratchSetting() {
 
     // offsetX += canvas.offsetLeft;
     // offsetY += canvas.offsetTop;
-    mx = offsetX = e.offsetX || (e.touches[0].pageX - canvas.offsetLeft);
-    my = offsetY = e.offsetY || (e.touches[0].pageY - canvas.offsetTop);
+    
+    //ios系統定位需要補正，推測各家對js中 offsetLeft, offsetTop
+    //和css中 fixed 解釋不同
+    if (navigator.userAgent.match(/(iphone|ipad|ipod);?/i)) {
+      mx = offsetX = e.offsetX || (e.touches[0].clientX - getOffset.left(canvas));
+      my = offsetY = e.offsetY || (e.touches[0].clientY - getOffset.top(canvas));
+    } else {
+      mx = offsetX = e.offsetX || (e.touches[0].clientX - canvas.offsetLeft);
+      my = offsetY = e.offsetY || (e.touches[0].clientY - canvas.offsetTop);
+    }
     console.log(`mx: ${mx} ----- my: ${my}`);
 
 
@@ -138,9 +161,10 @@ function scratchSetting() {
   function handlePercentage(filledInPixels) {
     filledInPixels = filledInPixels || 0;
     // console.log(filledInPixels + "%");
-    if (filledInPixels > 75) {
+    if (filledInPixels > 60) {
       //範圍
       canvas.parentNode.removeChild(canvas);
+      isDrawing = false; //截斷。讓touchmove只觸發此函數一次
       $('.scratchWrapIp img').addClass('rotate')
       //1.刮完之後 ip會動
       //2.開始偵測是否登入
@@ -201,8 +225,8 @@ function scratchSetting() {
           $('#endGame').click(byebye);
         }
       }
-  
-      lastPoint = currentPoint; 
+
+      lastPoint = currentPoint;
       handlePercentage(getFilledInPixels(32));
     }
   }
@@ -278,18 +302,18 @@ $(document).ready(function () {
                   <canvas class="gameGanvas " id="gameCanvas" width="370" height="600"></canvas>
               </div>
           </section>`;
-    $('body').append(chocoR);
-    $('.gameScratch').click(function(){
-      // alert('true');
-      // e.preventDefault();
-      $('body').append(scratch);
-      scratchSetting();
+  $('body').append(chocoR);
+  $('.gameScratch').click(function () {
+    // alert('true');
+    // e.preventDefault();
+    $('body').append(scratch);
+    scratchSetting();
 
-      document.getElementsByClassName('fullPage')[0].addEventListener('click', function (e) {
-        if (e.target.className == 'fullPage') {
-          document.getElementsByTagName('body')[0].removeChild(document.getElementsByClassName('fullPage')[0]);
-        }
-      })
-    });
-  })
-  window.addEventListener('load', doFirst);
+    document.getElementsByClassName('fullPage')[0].addEventListener('click', function (e) {
+      if (e.target.className == 'fullPage') {
+        document.getElementsByTagName('body')[0].removeChild(document.getElementsByClassName('fullPage')[0]);
+      }
+    })
+  });
+})
+window.addEventListener('load', doFirst);

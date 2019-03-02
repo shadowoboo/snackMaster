@@ -45,7 +45,7 @@
         $coupon -> bindValue(":startDate", $startDate.' 00.00.00' );
         $endDate = date("Y-m-d", strtotime("+1 month"));
         $coupon -> bindValue(":endDate", $endDate.' 00.00.00' );
-        $coupon -> bindValue(":status", 1);
+        $coupon -> bindValue(":status", 0);
         $coupon -> execute();
 
         if(strpos($member['memPic'], '\Level\level') != false){

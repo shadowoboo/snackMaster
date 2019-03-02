@@ -210,7 +210,7 @@ input,select{
                                 @media screen and(min-width:768px) {
                                     // margin: auto;
                                     h5 {
-                                        font-size: 28px;
+                                        font-size: 24px;
                                     }
                                 }
                             }
@@ -598,9 +598,11 @@ input,select{
                         margin: 4px 12px;
                         border-radius: 10px;
                         // border: none;
+                        border: 1px solid #737374;
                         &:focus {
                             // outline: $blue 2px solid;
-                            box-shadow: $blue 0px 0px 0px 2px;
+                            // box-shadow: $blue 0px 0px 0px 2px;
+                            background-color: #e0f3fc;
                         }
                     }
                     .payType {
@@ -719,6 +721,8 @@ input,select{
                                 border: none;
                                 font-size: 0.65rem;
                                 color: $blue; // transform: translateY(-5px);
+                                padding: 2px;
+                                margin-left: 4px;
                                 // position: relative;
                                 // top: +50%;
                                 // margin:auto;

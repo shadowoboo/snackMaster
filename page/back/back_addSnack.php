@@ -64,12 +64,22 @@
                         <tr>
                             <td>種類</td>
                             <td>
-                                <select name="genre">
-                                    <option value="巧克力">巧克力</option>
-                                    <option value="糖果">糖果</option>
-                                    <option value="餅乾">餅乾</option>
-                                    <option value="洋芋片">洋芋片</option>
-                                </select>
+                                <label>
+                                    <input type="radio" name ="genre" value="巧克力">
+                                    巧克力
+                                </label>
+                                <label>
+                                    <input type="radio" name ="genre" value="糖果">
+                                    糖果
+                                </label>
+                                <label>
+                                    <input type="radio" name ="genre" value="餅乾">
+                                    餅乾
+                                </label>
+                                <label>
+                                    <input type="radio" name ="genre" value="洋芋片">
+                                    洋芋片
+                                </label>
                             </td>
                         </tr>
                         <tr>
