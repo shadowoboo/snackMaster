@@ -1596,7 +1596,28 @@ body {
             }
         }
     }
-    #saleSm {
+        #saleSm {
+                top: 22%;
+                width: 70px;
+                // animation: float 1s linear infinite alternate;
+                z-index: 100;
+                cursor: pointer;
+                box-shadow: 0 0 30px 2px #fff;
+                display: none;
+                p {
+                    position: absolute;
+                    top: 7px;
+                    left: 14px;
+                    color: #fff;
+                }
+
+            @media screen and (min-width:768px) {
+                display: none;
+            }
+        }
+
+
+    #saleLg {
         position: fixed;
         top: 15%;
         right: 1%;
@@ -1612,6 +1633,10 @@ body {
             left: 13px;
             color: #fff;
         }
+        @media screen and (max-width:768px) {
+            display: none;
+        }
+
     }
    
     .footer {

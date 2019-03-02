@@ -5,7 +5,7 @@
 	//判斷有無例外，沒有例外則執行try，有例外則執行catch
 	try{
         require_once("connectcd105g2.php");
-        // var_dump($snackRows);exit();
+        // var_dump($snackRws);exit();
 	}catch(PDOException $e){
 		echo "失敗,原因:",$e -> getMessage();
         echo "行號:",$e -> getLine();
@@ -1361,9 +1361,13 @@
             </div>
         </section>
 
-        <div id="saleSm" class="animated infinite swing">
+        <div id="saleLg" class="animated infinite swing">
             <img src="../images/index/itemR.png" alt="遊戲圖">
             <p>限時特賣！</p>
+        </div>
+        <div id="saleSm" class="animated infinite swing">
+            <img src="../images/index/itemR.png" alt="遊戲圖">
+            <p>特賣！</p>
         </div>
         <!-- <div id="game" class="gameScratch">
             <img src="../images/index/gameImgR.png" alt="遊戲圖">
