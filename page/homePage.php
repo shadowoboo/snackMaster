@@ -904,7 +904,7 @@
                 <div class="itemBtns">
                     <button class="cart" id="<?php echo "{$salesRow[0]['snackNo']}|{$salesRow[0]['salePrice']}|2|{$salesRow[0]['snackPrice']}|{$salesRow[0]['clearanceNo']}" ?>">加入購物車</button>
                 </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[0]['quantity']?></span>&nbsp;件</p>
+                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[0]['quantity']<0? 0:$salesRow[0]['quantity']; ?></span>&nbsp;件</p>
             </div>
             <div class="item fade" id="3.7|1|5|2">
                 <!-- <a href="showItem.html"></a> -->

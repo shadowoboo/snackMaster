@@ -41,7 +41,7 @@
 
     	//INSERT INTO `bookorder` (`orderNo`, `orderMemNo`, `orderTime`, `email`, `payStatus`) value (...........)
         $sql = "INSERT INTO snackorder (orderNo, memNo, planItemNo ,orderTime, orderStatus, payWay, orderTotal, orderName, `address`, phone, boxPic, cardPic, audioFile)
-                                values ( null, :memNo, null        ,now()   , '運送中'    ,:payWay, :orderTotal,:orderName, :addr   , :phone, :boxPic, :cardPic, :audioFile)";
+                                values ( null, :memNo, null        ,now()   , '已送達'    ,:payWay, :orderTotal,:orderName, :addr   , :phone, :boxPic, :cardPic, :audioFile)";
         $bookorder = $pdo->prepare( $sql );
         $bookorder->bindValue( ":memNo", $memNo);
         $bookorder->bindValue( ":payWay", $payWay);
