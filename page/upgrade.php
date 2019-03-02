@@ -49,7 +49,7 @@
         $coupon -> execute();
 
         if(strpos($member['memPic'], '\Level\level') != false){
-            $sql = "update member set memPic = :memPic";
+            $sql = "update member set memPic = :memPic where memNo = {$memNo}";
             $pic = $pdo -> prepare($sql);
             $memPic = "../images\Level\level{$grade}.png";
             $pic -> bindValue(":memPic", $memPic);

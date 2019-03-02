@@ -67,6 +67,9 @@
         exit("<div><center>$errMsg</center></div>");
     }
     $evaRow = $eva -> fetch();
+    $sql = "select * from member where memNo = {$evaRow['memNo']}";
+    $members = $pdo -> query($sql);
+    $member = $members -> fetch();
 ?>
                 <form action="back_dealEvaReportToDb.php">
                     <table id="editTable">
@@ -81,6 +84,14 @@
                         <tr>
                             <td>評價編號</td>
                             <td id="evaNo"><?php echo $evaRow['evaNo']?></td>
+                        </tr>
+                        <tr>
+                            <td>會員編號</td>
+                            <td><?php echo $member['memNo']?></td>
+                        </tr>
+                        <tr>
+                            <td>會員帳號</td>
+                            <td><?php echo $member['memId']?></td>
                         </tr>
                         <tr>
                             <td>評價內容</td>

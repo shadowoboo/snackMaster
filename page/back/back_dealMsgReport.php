@@ -67,6 +67,9 @@
         exit("<div><center>$errMsg</center></div>");
     }
     $msgRow = $msg -> fetch();
+    $sql = "select * from member where memNo = {$msgRow['memNo']}";
+    $members = $pdo -> query($sql);
+    $member = $members -> fetch();
 ?>
                 <form>
                     <table id="editTable">
@@ -81,6 +84,14 @@
                         <tr>
                             <td>留言編號</td>
                             <td id="msgNo"><?php echo $msgRow['msgNo']?></td>
+                        </tr>
+                        <tr>
+                            <td>會員編號</td>
+                            <td><?php echo $member['memNo'] ?></td>
+                        </tr>
+                        <tr>
+                            <td>會員帳號</td>
+                            <td><?php echo $member['memId'] ?></td>
                         </tr>
                         <tr>
                             <td>留言內容</td>

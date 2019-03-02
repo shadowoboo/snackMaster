@@ -89,8 +89,8 @@
                                     color
                                 </label>
                                 <label>
-                                    <input type="radio" name ="materialGenre" value="colorstyle" <?php echo $mateRow['materialGenre']=='colorstyle'? 'checked':'' ?>>
-                                    colorstyle
+                                    <input type="radio" name ="materialGenre" value="cardstyle" <?php echo $mateRow['materialGenre']=='cardstyle'? 'checked':'' ?>>
+                                    cardstyle
                                 </label>
                             </td>
                         </tr>

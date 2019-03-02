@@ -131,7 +131,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>販賣機年月</td>
+                            <td>零食箱年月</td>
                             <td>
                                 <input type="month" name="boxDate">
                             </td>
