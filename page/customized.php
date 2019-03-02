@@ -185,7 +185,7 @@ try {
     }
 ?>
                                      <div class="pic">
-                                        <img class="cusPic" id="image" style="width:53px;">
+                                        <img class="cusPic" id="image" style="width:53px;height:60px;">
                                     </div>
                                     <div class="upfile">
                                         <span>上傳圖片:</span>
