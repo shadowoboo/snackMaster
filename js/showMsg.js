@@ -7,7 +7,7 @@ function repBtnAdd(){
              repNo=$(this).attr('repno');
              to=$(this).attr('to');
 
-            confirmBox("確定要檢舉這則言論嗎?",sure,no);
+            confirmBox2("確定要檢舉這則言論嗎?",sure,no);
             function sure(){
                 var xhr=new XMLHttpRequest();
                 xhr.open("Post","sendRep.php",true);
