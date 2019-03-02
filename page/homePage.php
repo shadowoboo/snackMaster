@@ -5,7 +5,7 @@
 	//判斷有無例外，沒有例外則執行try，有例外則執行catch
 	try{
         require_once("connectcd105g2.php");
-        // var_dump($snackRows);exit();
+        // var_dump($snackRws);exit();
 	}catch(PDOException $e){
 		echo "失敗,原因:",$e -> getMessage();
         echo "行號:",$e -> getLine();
@@ -918,7 +918,7 @@
                 <div class="itemBtns">
                     <button class="cart" id="<?php echo "{$salesRow[1]['snackNo']}|{$salesRow[1]['salePrice']}|2|{$salesRow[1]['snackPrice']}|{$salesRow[1]['clearanceNo']}" ?>">加入購物車</button>
                 </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[1]['quantity']?></span>&nbsp;件</p>
+                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[1]['quantity']<0? 0:$salesRow[1]['quantity'];?></span>&nbsp;件</p>
             </div>
             <div class="item fade" id="3.7|1|5|2">
                 <!-- <a href="showItem.html"></a> -->
@@ -932,7 +932,7 @@
                 <div class="itemBtns">
                     <button class="cart" id="<?php echo "{$salesRow[2]['snackNo']}|{$salesRow[2]['salePrice']}|2|{$salesRow[2]['snackPrice']}|{$salesRow[2]['clearanceNo']}" ?>">加入購物車</button>
                 </div>
-                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[2]['quantity']?></span>&nbsp;件</p>
+                <p class="stock">商品數量剩餘&nbsp;<span class="stockQty"><?php echo $salesRow[2]['quantity']<0? 0:$salesRow[2]['quantity'];?></span>&nbsp;件</p>
             </div>
             <a id="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a id="next" onclick="plusSlides(1)">&#10095;</a>
@@ -1361,6 +1361,10 @@
             </div>
         </section>
 
+        <!-- <div id="saleLg" class="animated infinite swing">
+            <img src="../images/index/itemR.png" alt="遊戲圖">
+            <p>限時特賣！</p>
+        </div> -->
         <div id="saleSm" class="animated infinite swing">
             <img src="../images/index/itemR.png" alt="遊戲圖">
             <p>限時特賣！</p>

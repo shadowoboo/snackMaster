@@ -43,14 +43,13 @@ function closeBox(){
      leavEva[i].addEventListener('click',function(e){
         let lightEvaBox = e.target.parentNode.parentNode;
         // console.log(e.target);
-        lightEvaBox.classList.toggle('appear');
+        lightEvaBox.classList.remove('appear');
 
      });
     
   }
 
 }
-window.addEventListener('load',closeBox,false);
 
 
 //========================評價燈箱結束=========================== 

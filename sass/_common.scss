@@ -305,11 +305,19 @@ input[type=number]::-webkit-outer-spin-button {
     width: 190px;
     z-index: 999;
     cursor: pointer;
+      @media screen and (max-width:768px){
+        width: 130px;
+    }
     p {
         position: absolute;
         top: 22px;
         left: 35px;
         color: #737374;
+          @media screen and (max-width:768px){
+            font-size: 12px;
+            top: 12px;
+            left: 20px;
+        }
     }
 }
 .fadeIn {
