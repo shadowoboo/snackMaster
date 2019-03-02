@@ -473,19 +473,29 @@
                                                             甜度：
                                                             <ul class="eva_lightBox_swStars">
                                                                 <li>
-                                                                    1星 <input type="radio" name="swStar" value="1">
+                                                                    <label>
+                                                                        1星 <input type="radio" name="swStar" value="1" >
+                                                                    </label>
                                                                 </li>
                                                                 <li>
-                                                                    2星 <input type="radio" name="swStar" value="2">
+                                                                    <label>
+                                                                        2星 <input type="radio" name="swStar" value="2">
+                                                                    </label>
                                                                 </li>
                                                                 <li>
-                                                                    3星 <input type="radio" name="swStar" value="3">
+                                                                    <label>
+                                                                        3星 <input type="radio" name="swStar" value="3">
+                                                                    </label>
                                                                 </li>
                                                                 <li>
-                                                                    4星 <input type="radio" name="swStar" value="4">
+                                                                    <label>
+                                                                        4星 <input type="radio" name="swStar" value="4">
+                                                                    </label>
                                                                 </li>
                                                                 <li>
-                                                                    5星 <input type="radio" name="swStar" value="5">
+                                                                    <label>
+                                                                        5星 <input type="radio" name="swStar" value="5">
+                                                                    </label>
                                                                 </li>
                                                             </ul>
                                                         </p>

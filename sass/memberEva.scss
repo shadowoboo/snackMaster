@@ -74,13 +74,14 @@ header{
     height: auto;
     max-width: 1200px;
     margin: auto;
-    
-   
     form{
         width: 100%;
         // margin: 45% auto 10% auto;
         height: auto;
         padding: 45px;
+        @media only screen and (max-width: 375px) {
+            padding: 40px;
+        }
         background-color: #fff;
         border-radius: 10px;
         //---------大頭貼上傳------------
@@ -203,8 +204,9 @@ header{
     //----------- 成就等級------------
     .col-3{
         width: 100%;
-        text-align: center;
-        // height: 30px;
+        @media only screen and (max-width: 768px) {
+            text-align: center;
+        }
         tr{
             td{
                 padding: 2% 3%;
@@ -462,6 +464,9 @@ header{
                 justify-content: space-between;
                 text-align: left;
                 padding: 20px;
+                @media only screen and (max-width: 425px) {
+                    padding: 10px;
+                }
                 table{
                     tr{
                         line-height: 1.6;
@@ -469,6 +474,10 @@ header{
                             color: $tabColor;
                             font-size: 20px;
                             font-family: g2Font; 
+                            width: 150px;
+                            @media only screen and (max-width: 425px) {
+                                width: 112px;
+                            }
                         }
                         td{
                             color: $tabColor;
@@ -578,7 +587,7 @@ header{
                         position: absolute;
                         // top: 0;
                         bottom: 0;
-                        left: 0;
+                        left: -10px;
                         right: 0;
                         display: none;
                         border-radius: 10px;
@@ -593,7 +602,9 @@ header{
                             display: block;
                             font-size: 28px;
                             line-height: 1.6;
-                            padding: 0 10px;
+                            @media only screen and (max-width: 992px) {
+                                padding: 0 10px;
+                            }
                             i{
                                 cursor: pointer;
                             }
@@ -613,6 +624,7 @@ header{
                             }
                         }
                         .eva_lightBox_Starts{
+                            margin-left: 10px;
                           ul{
                               li{
                                   p{
@@ -622,21 +634,34 @@ header{
                                   .eva_lightBox_swStars,.eva_lightBox_spStars,.eva_lightBox_suStars,.eva_lightBox_gdStars{
                                       font-size: 16px;
                                       color: $tabColor;
-                                      font-family:g2Med; 
                                       display: flex;
                                       justify-content: space-around;
                                       align-items: center;
                                       padding: 5px;
                                       li{
-                                         text-align: center;
+                                        text-align: center;
                                         input{
-                                            width: 20px;
+                                            display: none;
                                         } 
-                                      }
-                                      
-
-                                  }
-                              }
+                                        span{
+                                            position: relative;
+                                            font-size: 20px;
+                                            font-family:g2Med; 
+                                        }
+                                        input[type=radio]:checked +span::after{
+                                            content: '';
+                                            width: 40px;
+                                            height: 32px;
+                                            position: absolute;
+                                            top: -40%;
+                                            left: -38%;
+                                            border: 2px solid $blue;
+                                            border-radius: 12px;
+                                            padding: 6px;
+                                        }
+                                    }
+                                }
+                            }
                           }  
                         }
                         .eva_lightBox_textDics{
@@ -1172,7 +1197,7 @@ header{
                                     display: block;
                                     font-size: 28px;
                                     line-height: 1.6;
-                                    padding: 0 15px;
+                                    // padding: 0 15px;
                                 }
                                 .eva_Boxing{
                                     display: flex;
@@ -1191,37 +1216,37 @@ header{
                                         }
                                     }
                                     .eva_lightBox_Starts{
+                                        margin-left: 10px;
                                       ul{
                                           li{
                                               p{
                                                 line-height: 1.6;
                                               }
                                               .eva_lightBox_swStars,.eva_lightBox_spStars,.eva_lightBox_suStars,.eva_lightBox_gdStars{
-                                                
                                                   padding: 10px;
                                                   li{
-                                                     text-align: center;
+                                                    text-align: center;
                                                     input{
-                                                        width: 20px;
+                                                        // width: 20px;
+                                                        display: none;
                                                     } 
+                                                    label{
+                                                        margin: 0 16px;
+                                                        font-size: 20px;
+                                                    }
                                                   }
-                                                  
-            
                                               }
                                           }
                                       }  
                                     }
                                     .eva_lightBox_msg{
-                                         width: 300px;
+                                         width: 230px;
                                          .eva_lightBox_textDics{
                                             margin-top: 20px;
-                                            
+                                            font-family: g2Med;
                                         }
                                     }
-                                    
                                 }
-                                
-                                
                                 .evaSend{
                                     text-align: center;
                                     .sendEva{
@@ -1231,20 +1256,13 @@ header{
                                         margin: 10px;
                                     }
                                 }
-        
-                                }
+                            }
                             .eva_lightBox.appear{
                                 width: 800px;
                                 margin: auto;
-                             }
-                            
+                                padding: 0 10px;
                             }
-        
-                        
-                
-        
-                    
-            
+                        }
                     }
             //-----------------收藏品---------------------
             
