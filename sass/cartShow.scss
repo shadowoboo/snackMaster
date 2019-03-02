@@ -612,6 +612,7 @@ input,select{
                         align-items: center;
                         margin: 0 4px;
                         .payTypeItem {
+                            cursor: pointer;
                             width: 80px;
                             margin-left: 20px;
                             text-align: center;
@@ -623,10 +624,14 @@ input,select{
                                 border-radius: 10px;
                             }
                             input {
+                                cursor: pointer;
                                 position: absolute;
                                 top: 0;
                                 left: 0;
                                 opacity: 0;
+                            }
+                            p{
+                                cursor: pointer;
                             }
                         }
                     }
@@ -713,7 +718,9 @@ input,select{
                             // width: 50px;
                             display: flex;
                             position: relative; // top: -50%;
+                            cursor: pointer;
                             #couponItem {
+                                cursor: pointer;
                                 font-family: g2Font;
                                 width: 100%;
                                 height: 100%;
@@ -729,6 +736,9 @@ input,select{
                                 // option{
                                 //     // vertical-align: middle;
                                 // }
+                                option{
+                                    cursor: pointer;
+                                }
                             }
                         }
                     }
