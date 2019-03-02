@@ -825,7 +825,7 @@
                                     </div>
                                     <div class="eva_lightBox_msg boxing">
                                         <p>評價分享</p>
-                                        <textarea name="textDiscuss" cols="30" rows="10"
+                                        <textarea name="textDiscuss" cols="24" rows="10"
                                             class="eva_lightBox_textDics"></textarea>
                                     </div>
                                 </div>
