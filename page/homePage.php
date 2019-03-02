@@ -1361,13 +1361,13 @@
             </div>
         </section>
 
-        <div id="saleLg" class="animated infinite swing">
+        <!-- <div id="saleLg" class="animated infinite swing">
             <img src="../images/index/itemR.png" alt="遊戲圖">
             <p>限時特賣！</p>
-        </div>
+        </div> -->
         <div id="saleSm" class="animated infinite swing">
             <img src="../images/index/itemR.png" alt="遊戲圖">
-            <p>特賣！</p>
+            <p>限時特賣！</p>
         </div>
         <!-- <div id="game" class="gameScratch">
             <img src="../images/index/gameImgR.png" alt="遊戲圖">

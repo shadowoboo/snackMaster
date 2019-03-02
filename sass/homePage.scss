@@ -7,6 +7,7 @@ body {
     width: 100%;
     height: 100%;
 }
+
 .index {
     width: 100%;
     height: 100%;
@@ -62,7 +63,6 @@ body {
                 margin: 30px 0;
                 height: 35px;
                 top: -3px;
-
             }
         }
         i {
@@ -70,7 +70,7 @@ body {
             vertical-align: middle;
             color: $gray;
             cursor: pointer;
-            &:hover{
+            &:hover {
                 transform: scale(1.1);
                 transition: 0.5s;
                 color: $blue;
@@ -362,8 +362,7 @@ body {
                     @media screen and (max-width: 768px) {
                         width: 2910px;
                         display: flex;
-                        margin: 40px auto;
-                        // padding: 0 10px;
+                        margin: 40px auto; // padding: 0 10px;
                         overflow: -webkit-paged-x;
                         .countryInfoSm {
                             margin: 10px 10px;
@@ -401,7 +400,7 @@ body {
                                 justify-content: space-around;
                                 align-items: center;
                                 .countryInfoPrice {
-                                    color:  $blue;
+                                    color: $blue;
                                 }
                             }
                         }
@@ -623,8 +622,7 @@ body {
                         .star {
                             width: 74.4%;
                             margin: auto;
-                            border-radius: 100px;
-                            // background: linear-gradient(to right, rgb(233, 125, 88) 85%, rgb(255, 255, 255)10%);
+                            border-radius: 100px; // background: linear-gradient(to right, rgb(233, 125, 88) 85%, rgb(255, 255, 255)10%);
                             img {
                                 width: 100%;
                                 height: 100%;
@@ -698,7 +696,7 @@ body {
         .LeaderboardSort {
             margin: 60px 0 30px;
             text-align: center;
-            .showColor{
+            .showColor {
                 background-color: $blue;
                 color: #fff;
             }
@@ -727,12 +725,12 @@ body {
                 display: none;
             }
         }
-        .goRankBtn{
+        .goRankBtn {
             width: 100%;
             margin: auto;
             text-align: center;
             max-width: 1200px;
-            @media screen and (max-width:768px) {
+            @media screen and (max-width: 768px) {
                 margin: 20px auto;
             }
         }
@@ -749,8 +747,7 @@ body {
         position: relative; // padding-bottom: 16%;
         @media screen and (max-width: 768px) {
             margin: 60px 0;
-            background-size: 2000px;
-            // background-position: bottom center;
+            background-size: 2000px; // background-position: bottom center;
         }
         .waveTop {
             position: absolute;
@@ -1118,43 +1115,55 @@ body {
                             margin: auto;
                             transform: rotateX(-20deg);
                             >:nth-child(1) {
-                                &:hover{
-                                    p{display: block;}
+                                &:hover {
+                                    p {
+                                        display: block;
+                                    }
                                 }
                                 transform: rotateY(0deg);
                                 animation: roSnack1 10s linear infinite;
                             }
                             >:nth-child(2) {
-                                &:hover{
-                                    p{display: block;}
+                                &:hover {
+                                    p {
+                                        display: block;
+                                    }
                                 }
                                 transform: rotateY(60deg);
                                 animation: roSnack2 10s linear infinite;
                             }
                             >:nth-child(3) {
-                                &:hover{
-                                    p{display: block;}
+                                &:hover {
+                                    p {
+                                        display: block;
+                                    }
                                 }
                                 transform: rotateY(120deg);
                                 animation: roSnack3 10s linear infinite;
                             }
                             >:nth-child(4) {
-                                &:hover{
-                                    p{display: block;}
+                                &:hover {
+                                    p {
+                                        display: block;
+                                    }
                                 }
                                 transform: rotateY(180deg);
                                 animation: roSnack4 10s linear infinite;
                             }
                             >:nth-child(5) {
-                                &:hover{
-                                    p{display: block;}
+                                &:hover {
+                                    p {
+                                        display: block;
+                                    }
                                 }
                                 transform: rotateY(240deg);
                                 animation: roSnack5 10s linear infinite;
                             }
                             >:nth-child(6) {
-                                &:hover{
-                                    p{display: block;}
+                                &:hover {
+                                    p {
+                                        display: block;
+                                    }
                                 }
                                 transform: rotateY(300deg);
                                 animation: roSnack6 10s linear infinite;
@@ -1168,7 +1177,7 @@ body {
                                 right: 0;
                                 bottom: 0;
                                 margin: auto;
-                                p{
+                                p {
                                     display: none;
                                     background-color: #fff;
                                     width: 210%;
@@ -1181,7 +1190,7 @@ body {
                                     text-align: center;
                                     padding: 5px 10px;
                                     color: #737374;
-                                    span{
+                                    span {
                                         color: $blue;
                                     }
                                     @media screen and(max-width:768px) {
@@ -1189,11 +1198,9 @@ body {
                                         width: 160%;
                                         font-size: 14px;
                                     }
-                                }
-                                // @media screen and(max-width:768px) {
+                                } // @media screen and(max-width:768px) {
                                 //     &:hover{unset};
                                 // }
-
                             }
                             @keyframes roSnack1 {
                                 0% {
@@ -1484,17 +1491,15 @@ body {
                     margin-bottom: 8%;
                 }
             }
-            .vmMainCount{
+            .vmMainCount {
                 display: flex;
                 justify-content: space-around;
                 padding-bottom: 10%;
                 align-items: center;
-                
-                .vmText{
+                .vmText {
                     letter-spacing: 2px;
                     color: $gray;
-                }
-                // .vmBtn{
+                } // .vmBtn{
                 //     // a{
                 //     //     display: block;
                 //     //     font-size: 85%;
@@ -1553,7 +1558,7 @@ body {
                         position: relative;
                         cursor: pointer;
                     }
-                    @media screen and (min-width:768px){
+                    @media screen and (min-width:768px) {
                         img:hover {
                             animation: shake 0.1s infinite alternate;
                         }
@@ -1596,33 +1601,11 @@ body {
             }
         }
     }
-        #saleSm {
-                top: 22%;
-                width: 70px;
-                // animation: float 1s linear infinite alternate;
-                z-index: 100;
-                cursor: pointer;
-                box-shadow: 0 0 30px 2px #fff;
-                display: none;
-                p {
-                    position: absolute;
-                    top: 7px;
-                    left: 14px;
-                    color: #fff;
-                }
-
-            @media screen and (min-width:768px) {
-                display: none;
-            }
-        }
-
-
-    #saleLg {
+    #saleSm {
         position: fixed;
         top: 15%;
         right: 1%;
-        width: 100px;
-        // animation: float 1s linear infinite alternate;
+        width: 100px; // animation: float 1s linear infinite alternate;
         z-index: 100;
         cursor: pointer;
         box-shadow: 0 0 30px 2px #fff;
@@ -1633,12 +1616,17 @@ body {
             left: 13px;
             color: #fff;
         }
-        @media screen and (max-width:768px) {
-            display: none;
+        @media screen and(max-width:768px) {
+            width: 80px;
+            top: 23%;
+            p{
+                top: 12px;
+                left: 8px;
+                width: 80px;
+                font-size: 14px;
+            }
         }
-
     }
-   
     .footer {
         #floor {
             position: relative;
@@ -1657,5 +1645,4 @@ body {
             }
         }
     }
-
 }
