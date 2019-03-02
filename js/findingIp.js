@@ -29,8 +29,6 @@
  $('#cancel').click(byebye);
 
  startButton.on("click", function (event) {
-  
-  clearInterval(interval);
    event.preventDefault();
    var kickInitialPosition = 0;
    //Show the character fist
