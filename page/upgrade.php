@@ -4,7 +4,7 @@
     
     $errMsg = "";
     try {
-        $memNo = $_SESSION['memNo'];
+        $memNo = $_SESSION['g2memNo'];
         require_once("connectcd105g2.php");
         $sql = "select * from member where memNo = {$memNo}";
         $members = $pdo -> query($sql);

@@ -8,7 +8,7 @@ if($_REQUEST["msgText"]==''){
 }else{
   try{
     require_once("connectcd105g2.php");
-    $sql="SELECT `commentRight` FROM `member` WHERE `memNo`={$_SESSION["memNo"]}";
+    $sql="SELECT `commentRight` FROM `member` WHERE `memNo`={$_SESSION["g2memNo"]}";
     $sendMsg = $pdo->query( $sql );
     $sendRight= $sendMsg->fetchColumn();
 
@@ -16,7 +16,7 @@ if($_REQUEST["msgText"]==''){
       $sql="INSERT INTO `msg` (`msgNo`, `memNo`, `msgText`, `msgTime`, `evaNo`) 
             VALUES (NULL, :memNo, :msgText, CURRENT_TIMESTAMP, :evaNo)";
         $sendMsg = $pdo->prepare( $sql );
-        $sendMsg -> bindParam( ":memNo", $_SESSION["memNo"]);
+        $sendMsg -> bindParam( ":memNo", $_SESSION["g2memNo"]);
         $sendMsg -> bindParam( ":msgText",$_REQUEST["msgText"] );
         $sendMsg -> bindParam( ":evaNo", $_REQUEST["evaNo"] );
         $sendMsg -> execute();

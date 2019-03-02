@@ -1,13 +1,13 @@
 <?php
     session_start();
-    if(isset($_SESSION["memNo"])){
+    if(isset($_SESSION["g2memNo"])){
             require_once("connectcd105g2.php");
             $errMsg = "";
             try {
                 //撈出 本登入會員 尚未使用 的優惠卷夾，依照到期日排列(先到期的排上面)
                 $sql = "SELECT * FROM `coupon` JOIN couponbox ON coupon.coupNo = couponbox.coupNo WHERE memNo = ? and `status`=0 ORDER BY endDate";
                 $coupon = $pdo->prepare( $sql ); //先編譯好
-                $coupon->bindValue(1, $_SESSION["memNo"]);
+                $coupon->bindValue(1, $_SESSION["g2memNo"]);
                 $coupon->execute();//執行之
             } catch (PDOException $e) {
                 $errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";

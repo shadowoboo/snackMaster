@@ -17,7 +17,8 @@
         $phone = $_REQUEST["getterPhone"];
         $address = $_REQUEST["getterAddr"];
         $payWay = $_REQUEST["getterPayType"];
-        $memNo= $_SESSION["memNo"]; // No 才是唯一
+        $memNo= $_SESSION["g2memNo"]; // No 才是唯一
+        //no也不是唯一的呢呵呵呵呵呵呵
         $orderTotal= $_REQUEST["orderTotal"];//總額
         //客製箱內的箱子圖 / 卡片圖 / 卡片聲音 依照有無來決定內容
         (isset($_REQUEST["boxPic"]))?$boxPic=$_REQUEST["boxPic"]:$boxPic=null;

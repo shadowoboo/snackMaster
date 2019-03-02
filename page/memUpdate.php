@@ -11,7 +11,7 @@
             $sql = "update member set memId=:memId, memPsw=:memPsw, memName=:memName, memPhone=:memPhone, email=:email, memPic=:memPic where memNo=:memNo";
         }
         $memUp = $pdo->prepare($sql);
-        $memUp ->bindValue(":memNo",$_SESSION["memNo"]);
+        $memUp ->bindValue(":memNo",$_SESSION["g2memNo"]);
         $memUp ->bindValue(":memId",$_POST["memId"]);
         $memUp ->bindValue(":memPsw",$_POST["memPsw"]);
         $memUp ->bindValue(":memName",$_POST["memName"]);
@@ -32,7 +32,7 @@
             copy($from, $to);        //新增修改後的資料
             
             // echo "OK";
-            $_SESSION["memPic"]= '../images/member/'.$_FILES['upFile']["name"];
+            $_SESSION["g2memPic"]= '../images/member/'.$_FILES['upFile']["name"];
             break;
             case UPLOAD_ERR_INI_SIZE:
             echo "上傳檔案太大,不得超過: ", ini_get("upload_max_filesize"), "<br>";

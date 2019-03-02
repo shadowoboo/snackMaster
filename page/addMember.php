@@ -22,8 +22,8 @@
            $stmt-> bindValue(":email",$_REQUEST["email"]);
            $stmt-> execute();
            echo "註冊成功";
-           $_SESSION["memNo"] = $pdo -> lastInsertId();
-           $_SESSION["memId"] = $_REQUEST["account"];
+           $_SESSION["g2memNo"] = $pdo -> lastInsertId();
+           $_SESSION["g2memId"] = $_REQUEST["account"];
         }    
 } catch(PDOException $e){
        echo "失敗",$e->getMessage();

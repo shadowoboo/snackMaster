@@ -1,7 +1,7 @@
 <?php
     session_start();
-    if(isset($_SESSION["memNo"])){
-        echo $_SESSION["memNo"];
+    if(isset($_SESSION["g2memNo"])){
+        echo $_SESSION["g2memNo"];
     }else{
         echo "error";
     }

@@ -8,13 +8,13 @@
         
         $sql = 'select snackNo from favorite where memNo = :memNo and snackNo = :snackNo';
         $check = $pdo -> prepare($sql);
-        $check -> bindValue(':memNo', $_SESSION['memNo']);
+        $check -> bindValue(':memNo', $_SESSION['g2memNo']);
         $check -> bindValue(':snackNo', $_REQUEST['snackNo']);
         $check -> execute();
         if( $check -> rowCount() == 0){
             $sql = "insert into favorite values(:memNo, :snackNo)";
             $hearts = $pdo -> prepare($sql); 
-            $hearts -> bindValue(':memNo', $_SESSION['memNo']);
+            $hearts -> bindValue(':memNo', $_SESSION['g2memNo']);
             $hearts -> bindValue(':snackNo', $_REQUEST['snackNo']);
             $hearts -> execute();
         }

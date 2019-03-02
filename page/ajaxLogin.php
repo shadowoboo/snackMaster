@@ -18,8 +18,8 @@ try{
   	$memRow = $member -> fetch(PDO::FETCH_ASSOC);
 
     //將登入者資料寫入session
-    $_SESSION["memNo"] = $memRow["memNo"];
-    $_SESSION["memId"] = $memRow["memId"];
+    $_SESSION["g2memNo"] = $memRow["memNo"];
+    $_SESSION["g2memId"] = $memRow["memId"];
     
 
     //送出登入者的姓名資料

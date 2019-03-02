@@ -30,8 +30,7 @@ try {
     <script src="../js/jquery-ui.min.js"></script>
     <script src="../js/search.js"></script>
     <script src="../js/scratch.js"></script>
-
-
+    <script src="../js/alert.js"></script>
 </head>
 
 <body>
