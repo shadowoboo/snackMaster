@@ -139,7 +139,8 @@ if(isset($_SESSION["snackName"])==true){
                         <div class="prodCard prodCard_normal prodCard_Cus prodCard_CusBox">
                             <div class="prodImg">
                                 <!-- <img src="../images/blair/item3.png"> -->
-                                <img src="<?php echo $_SESSION["cusBox"] ?>" id="boxPic">
+                                <!-- <img src="<?php //echo $_SESSION["cusBox"] ?>" id="boxPic"> -->
+                                <img src="<?php echo "../images/blair/customized.png" ?>" id="boxPic">
                             </div>
                             <div class="prodInfo">
                                 <div class="prodName">
