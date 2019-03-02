@@ -1,4 +1,6 @@
  function byebye() {
+$('.boxes').stop(true);
+  console.log('reset 成功');
    $('#findingIp').remove();
  }
 
@@ -10,6 +12,7 @@
 
  }
  function setting() {
+  $('.boxes').stop(true);
  var forReplay = $('#content').clone(true);
  var box1 = $("#box1"),
    box2 = $("#box2"),

@@ -3,11 +3,12 @@ function repBtnAdd(){
     $('.report').click(function(e){
         $('.report').attr('disable',true);
         // console.log($(this).attr('repno'));
-        if($('#btnloglout').text()=='登出'){
-            if(confirm("確定要檢舉這則言論嗎?")){
-                // console.log($(this));
-                var repNo=$(this).attr('repno');
-                var to=$(this).attr('to');
+        if($('#btnloglout').text()=='登出'){  
+             repNo=$(this).attr('repno');
+             to=$(this).attr('to');
+
+            confirmBox("確定要檢舉這則言論嗎?",sure,no);
+            function sure(){
                 var xhr=new XMLHttpRequest();
                 xhr.open("Post","sendRep.php",true);
                 xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -27,9 +28,12 @@ function repBtnAdd(){
                     $('.report').attr('disable',false);  
                 }
 
-            }else{
-                $('.report').attr('disable',false);  
             }
+            function no(){
+                $('.report').attr('disable',false);  
+                
+            }
+
         }else{
             alertBox('登入會員後才能進行檢舉');
             $('#sure').click(showLightBox) ;    

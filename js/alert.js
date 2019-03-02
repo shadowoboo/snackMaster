@@ -21,7 +21,7 @@ function alertBox(msg){
         }
     })
 }
-function confirmBox(msg, sureFunc){
+function confirmBox(msg, sureFunc,noFunc){
     var boxBody = document.createElement('div');
     boxBody.id = 'alertBoxBody';
     var box = document.createElement('div');
@@ -44,6 +44,7 @@ function confirmBox(msg, sureFunc){
         document.getElementsByTagName('body')[0].removeChild(boxBody);
     }); 
     noBtn.addEventListener('click', function () {
+        noFunc();
         document.getElementsByTagName('body')[0].removeChild(boxBody);
     })
     document.getElementById('alertBoxBody').addEventListener('click', function (e) {
