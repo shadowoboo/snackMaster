@@ -984,7 +984,7 @@ function deletTrash(e) {
         e.stopPropagation();
         var snackNo = e.target.parentNode.id;
     }
-    if(confirmBox('確定要刪除收藏嗎？') == true){
+    confirmBox('確定要刪除收藏嗎？', function (){
         var xhr = new XMLHttpRequest();
         xhr.onload = function() {
             if (xhr.status == 200) {
@@ -1000,7 +1000,7 @@ function deletTrash(e) {
         var url = 'removeHeart.php?snackNo=' + snackNo;
         xhr.open('get', url, true);
         xhr.send(null);
-    }
+    })
 }
 //優惠券
 function getCoupon() {
