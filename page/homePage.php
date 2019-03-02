@@ -873,7 +873,13 @@
                 </div>
             </div>
         </section>
-
+<?php
+    require_once("connectcd105g2.php");
+    $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo and (now() BETWEEN startTime and endTime) ORDER by c.clearanceNo desc limit 3";
+    $sales = $pdo->query( $sql );
+    if( $sales -> rowCount() != 0 ){
+        $salesRow = $sales->fetchAll();
+?>
         <div id="sale">
             <div id="closeSale">
                 <i class="fas fa-times"></i>
@@ -886,12 +892,6 @@
                     <span id='second'></span>
                 </div>
             </div>
-            <?php
-                require_once("connectcd105g2.php");
-                $sql = "SELECT * FROM clearanceitem c,clearance a,snack s WHERE c.snackNo = s.snackNo and c.clearanceNo = a.clearanceNo ORDER by c.clearanceNo desc limit 3";
-                $sales = $pdo->query( $sql );
-                $salesRow = $sales->fetchAll();
-            ?>
             <div class="item fade" id="3.7|1|5|2">
                 <!-- <a href="showItem.html"></a> -->
                 <img class="country" src="../images/blair/<?php echo $salesRow[0]['nation']?>.png" alt="國家圖">
@@ -937,8 +937,21 @@
             <a id="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a id="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
-
-
+<?php
+    }else{
+        $salesRow[0]["endTime"] = 0;
+?>
+        <div id="closeSale" style="display: none;">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="countdown" style="display: none;">
+            <span id='hour'></span>
+            <span id='minute'></span>
+            <span id='second'></span>
+        </div>
+<?php
+    }
+?>
         <section class="section_12" id="section_12">
             <?php
                 $sql = "select * from snack order by goodStars/goodTimes desc limit 3";
