@@ -1,6 +1,4 @@
  function byebye() {
-$('.boxes').stop(true);
-  console.log('reset 成功');
    $('#findingIp').remove();
  }
 
@@ -28,10 +26,11 @@ $('.boxes').stop(true);
  var ans = Math.floor(Math.random() * 3) + 1;
 
 
-
  $('#cancel').click(byebye);
- startButton.on("click", function (event) {
 
+ startButton.on("click", function (event) {
+  
+  clearInterval(interval);
    event.preventDefault();
    var kickInitialPosition = 0;
    //Show the character fist
@@ -124,9 +123,10 @@ $('.boxes').stop(true);
                for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
                return o;
              };
+             
 
-             var interval = setInterval(function () {
-
+             interval = setInterval(function () {
+              
                setMessage("<span class='sure' id='start_game' >看仔細囉...</span >");
 
 
@@ -429,20 +429,24 @@ if($(window).width()<768){
 }
 
 if($(window).width()<768){
-  if( $(document).attr('title')!='大零食家 每月排行'){
+  var pageTitle=($(document).attr('title'));
+  console.log(pageTitle);
+  if(pageTitle!='大零食家 每月排行'&& pageTitle!='大零食家 - 預購商品頁'&&pageTitle!='Home Page'){
     $('body').append(gamebox);
     $('.gameBox').click(function () {
       $('body').append(findingIp);
       setting();
+
     })
   }
+  console.log($(document).attr('title'));
 }else{
   $('body').append(gamebox);
   $('.gameBox').click(function () {
       $('body').append(findingIp);
       setting();
     });
-
+    console.log($(document).attr('title'));
 }
 
   
