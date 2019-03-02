@@ -825,12 +825,12 @@
         </div>
     </section>
 
-    <!-- <footer>
+    <footer>
         <div id="floor">
             <img src="../images/nnnnn/floor.png" alt="floor">
             <p id="copy">Copyright©2019 Snack Master</p>
         </div>
-    </footer> -->
+    </footer>
 
 </body>
 

@@ -80,7 +80,7 @@ header{
         width: 100%;
         // margin: 45% auto 10% auto;
         height: auto;
-        padding: 45px;
+        padding: 40px;
         background-color: #fff;
         border-radius: 10px;
         //---------大頭貼上傳------------
@@ -188,6 +188,7 @@ header{
                         border: 1px double #076baf;
                         border-radius: 15px 1px;
                         box-shadow: 2px 2px 2px 1px #aaa;
+                        
                         &:hover{
                             box-shadow: inset 0 0 35px 5px rgba(161, 161, 161, 0.25), inset 0 2px 1px 1px rgba(255,255,255,0.9), inset 0 -2px 1px 0 rgba(150, 150, 150, 0.25);
                             border: none;
@@ -464,6 +465,7 @@ header{
                             color: $tabColor;
                             font-size: 20px;
                             font-family: g2Font; 
+                            width: 150px;
                         }
                         td{
                             color: $tabColor;
@@ -1062,7 +1064,7 @@ header{
                               
                                 th{
                                     font-size: 22px;
-                                    width: 34%;
+                                    width: 150px;
                                     padding: 10px;
                                 }
                                 td{
@@ -1391,21 +1393,21 @@ header{
 
 
         }
-        // footer{
-        //     // bottom: unset;
-        //     #floor {
-        //         position: relative;
-        //         text-align: center;
-        //         #copy {
-        //             position: absolute;
-        //             bottom: 0;
-        //             left: 0;
-        //             right: 0;
-        //             margin: auto;
-        //             font-size: 1.2vw;
-        //         }
-        //     }
-        // }  
+        footer{
+            // bottom: unset;
+            #floor {
+                position: relative;
+                text-align: center;
+                #copy {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    font-size: 1.2vw;
+                }
+            }
+        }  
         
     
     
