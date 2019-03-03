@@ -23,7 +23,7 @@
             $sql = "select reportTimes from member where memNo = {$memberNo['memNo']}";
             $reportTimes = $pdo -> query($sql);
             $timesRow = $reportTimes -> fetch();
-            if( $timesRow['reportTimes'] > 3){
+            if( $timesRow['reportTimes'] >= 3){
                 $sql = "update member set commentRight = 0 where memNo = {$memberNo['memNo']}";
                 $pdo -> exec($sql);
             }
