@@ -2,16 +2,17 @@
     ob_start();
     session_start();
     //未登入直接跳轉到首頁
-    if( isset($_SESSION['g2memId']) == false ){
-        unset ($_SESSION["g2memId"]);
+    if( isset($_SESSION['memId']) == false ){
+        unset ($_SESSION["memId"]);
         header('location:homePage.php');
     }
     // 點擊登出，會員資料要清空
     // 跳轉回首頁
     if (isset($_REQUEST["btnloglout"]) && ($_REQUEST["btnloglout"]=="true")) {
         //登出資料要清空
-        unset ($_SESSION["g2memNo"]);
-        unset ($_SESSION["g2memId"]);
+        unset ($_SESSION["memNo"]);
+        unset ($_SESSION["memId"]);
+        unset ($_SESSION["memPsw"]);
         //跳轉回首頁
         header("Location: homePage.php");
       
@@ -22,7 +23,7 @@
         require_once('connectcd105g2.php');
         //會員基本資料
         //用No找到該筆會員資料
-        $memNo =$_SESSION["g2memNo"];
+        $memNo =$_SESSION["memNo"];
         //從會員裡的會員編號找出其他相關欄位
         $sql = "select * from member where memNo=:memNo";        
         $members = $pdo->prepare($sql);
@@ -282,9 +283,9 @@
                         <div>
                             <img id="headPic"
                                 src="../images/<?php 
-                                if(isset($_SESSION["g2memPic"])==true){
+                                if(isset($_SESSION["memPic"])==true){
                                     // echo "no picture";
-                                    echo $_SESSION["g2memPic"];
+                                    echo $_SESSION["memPic"];
                                 }else {
                                     echo $memRow["memPic"];
                                 }
@@ -492,7 +493,7 @@
                     </div>
                     <div class="btnn">
                         <?php 
-    $sql = "select grade, memPoint from member where memNo = {$_SESSION['g2memNo']}";
+    $sql = "select grade, memPoint from member where memNo = {$_SESSION['memNo']}";
     $members = $pdo -> query($sql);
     $member = $members -> fetch();
     if( $member['grade'] == 6 ){
