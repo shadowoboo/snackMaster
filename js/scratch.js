@@ -300,6 +300,9 @@ $(document).ready(function () {
                       <button class='step' id="endGame"> 確定 </button>
                   </div>
                   <canvas class="gameGanvas " id="gameCanvas" width="370" height="600"></canvas>
+                  <div id="closeScratch">
+                    <span><i class="fas fa-times"></i></span>
+                  </div>
               </div>
           </section>`;
   $('body').append(chocoR);
@@ -313,6 +316,9 @@ $(document).ready(function () {
       if (e.target.className == 'fullPage') {
         document.getElementsByTagName('body')[0].removeChild(document.getElementsByClassName('fullPage')[0]);
       }
+    })
+    document.getElementById('closeScratch').addEventListener('click', function (){
+      document.getElementsByTagName('body')[0].removeChild(document.getElementsByClassName('fullPage')[0]);      
     })
   });
 })
