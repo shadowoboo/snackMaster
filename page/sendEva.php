@@ -28,7 +28,7 @@ require_once("connectcd105g2.php");
   $snack -> bindValue( ":sourStars", $_REQUEST["sourStar"] );
   $snack -> bindValue( ":sweetStars", $_REQUEST["sweetStar"] );
   $snack -> bindValue( ":spicyStars", $_REQUEST["spicyStar"] );
-  $snack -> execute();`
+  $snack -> execute();
 
 }catch(PDOException $e){
   echo $e->getMessage();

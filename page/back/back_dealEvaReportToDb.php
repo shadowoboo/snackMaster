@@ -53,7 +53,7 @@
             }
 
             //刪除檢舉
-            $sql = "delete from evareport where evaRepNo = {$evaRepNo}";
+            $sql = "delete from evareport where evaNo = {$evaNo}";
             $pdo -> exec($sql);
 
             //刪除評價    

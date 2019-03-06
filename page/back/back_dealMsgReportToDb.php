@@ -9,8 +9,8 @@
     try {
         require_once("../connectcd105g2.php");
         if( $_REQUEST['status'] == 'sustain' ){
-            //刪除留言檢舉
-            $sql = "delete from msgreport where msgReportNo = {$_REQUEST['msgReportNo']}";
+            //刪除所有留言檢舉
+            $sql = "delete from msgreport where msgNo = {$_REQUEST['msgNo']}";
             $pdo -> exec($sql);
             
             //會員被檢舉次數+1
