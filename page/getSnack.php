@@ -30,19 +30,21 @@ $rsp =new rsp();
         $avgH =number_format($snackRow['spicyStars']/$snackRow['goodTimes'],1);
 
         //撈出排名資料
-        if(isset($_SESSION['allRank'])){
-            if(in_array($_REQUEST['snackNo'],$_SESSION['allRank'])){
+        // if(isset($_SESSION['allRank'])){
+        //     if(in_array($_REQUEST['snackNo'],$_SESSION['allRank'])){
 
-                $allRankName=array_search($_REQUEST['snackNo'],$_SESSION['allRank'])+1;
-                // echo 'line37'.$allRankName;
-            }else{
-                $allRankName=0;
-            }
-        }else{
-            $sql = "SELECT * FROM `snack` ORDER by `goodStars`/`goodTimes` DESC LIMIT 6";
+        //         $allRankName=array_search($_REQUEST['snackNo'],$_SESSION['allRank'])+1;
+        //         // echo 'line37'.$allRankName;
+        //     }else{
+        //         $allRankName=0;
+        //     }
+        // }else{
+            $sql = "SELECT * FROM `snack` ORDER by `goodStars`/`goodTimes` DESC,`goodTimes` DESC LIMIT 6";
             $allRank=$pdo->query($sql);
+            $i=0;
             while($feed=$allRank->fetchColumn()){
-                $_SESSION['allRank'][]=$feed;
+                $_SESSION['allRank'][$i]=$feed;
+                $i++;
             }
             if(in_array($_REQUEST['snackNo'],$_SESSION['allRank'])){
 
@@ -51,23 +53,25 @@ $rsp =new rsp();
             }else{
                 $allRankName=0;
             }
-        }
+        // }
 
-        if(isset($_SESSION[$snackRow['snackGenre']])){
-            //先看有沒有把資料存在Session
-            if(in_array($_REQUEST['snackNo'],$_SESSION[$snackRow['snackGenre']])){
-                //目前這個商品在前六名之中
-                //就等於他的
-                $catRankName=array_search($_REQUEST['snackNo'],$_SESSION[$snackRow['snackGenre']])+1;
-                // echo 'line62'.$catRankName;
-            }else{
-                $catRankName=0;
-            }
-        }else{
-            $sql = "SELECT * FROM `snack`  WHERE `snackGenre`='{$snackRow['snackGenre']}'  ORDER by `goodStars`/`goodTimes` DESC LIMIT 6";
+        // if(isset($_SESSION[$snackRow['snackGenre']])){
+        //     //先看有沒有把資料存在Session
+        //     if(in_array($_REQUEST['snackNo'],$_SESSION[$snackRow['snackGenre']])){
+        //         //目前這個商品在前六名之中
+        //         //就等於他的
+        //         $catRankName=array_search($_REQUEST['snackNo'],$_SESSION[$snackRow['snackGenre']])+1;
+        //         // echo 'line62'.$catRankName;
+        //     }else{
+        //         $catRankName=0;
+        //     }
+        // }else{
+            $sql = "SELECT * FROM `snack`  WHERE `snackGenre`='{$snackRow['snackGenre']}'  ORDER by `goodStars`/`goodTimes` DESC,`goodTimes` DESC LIMIT 6";
             $allRank=$pdo->query($sql);
+            $j=0;
             while($feed=$allRank->fetchColumn()){
-                $_SESSION[$snackRow['snackGenre']][]=$feed;
+                $_SESSION[$snackRow['snackGenre']][$j]=$feed;
+                $j++;
             }
             if(in_array($_REQUEST['snackNo'],$_SESSION[$snackRow['snackGenre']])){
                 $catRankName=array_search($_REQUEST['snackNo'],$_SESSION[$snackRow['snackGenre']])+1;
@@ -75,7 +79,7 @@ $rsp =new rsp();
             }else{
                 $catRankName=0;
             }
-        }        
+        // }        
 
         $rankHtml='';
         $month=Date("m")==1?12:Date("m")-1;
