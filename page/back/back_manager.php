@@ -53,6 +53,7 @@
                         <th width="100">編號</th>
                         <th width="100">姓名</th>
                         <th width="100">帳號</th>
+                        <th width="100">權限</th>
                     </tr>
                     <tr>
 <?php
@@ -72,6 +73,7 @@
                         <td><?php echo $magRow['managerNo']?></td>
                         <td><?php echo $magRow['managerName']?></td>
                         <td><?php echo $magRow['managerId']?></td>
+                        <td><?php echo $magRow['managerName']=='guest'? '唯讀':'一般' ?></td>
                     </tr>
 <?php
     }

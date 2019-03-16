@@ -37,6 +37,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
         crossorigin="anonymous">
     <title>大零食家 - 後端管理系統</title>
+<?php
+    if($_SESSION['managerName'] == 'guest'){
+        echo '<style>.backstage #contentWrap #content #subBtn{cursor: no-drop; color: #ddd}.backstage #contentWrap #content #subBtn:hover{color: #ddd;}</style>';
+    }
+?>
 </head>
 <body>
     <div class="backstage">
@@ -87,7 +92,7 @@
                             </td>
                             <td>
                                 <input type="hidden" name="memNo" value="<?php echo $memberRow['memNo']?>">
-                                <button type="submit" id="subBtn"><i class="fas fa-edit"></i></button>
+                                <button type="submit" id="subBtn"  <?php echo $_SESSION['managerName'] == 'guest'? 'disabled':'' ?>><i class="fas fa-edit"></i></button>
                             </td>
                         </form>
                     </tr>

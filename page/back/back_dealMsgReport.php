@@ -52,6 +52,11 @@
             font-size: 16px;
         }
     </style>
+<?php
+    if($_SESSION['managerName'] == 'guest'){
+        echo '<style>#sustain, #overrule{cursor: no-drop; background: #aaa; color: #ddd}</style>';
+    }
+?>
     <title>大零食家 - 後端管理系統</title>
 </head>
 <body>
@@ -102,8 +107,8 @@
                             <td><?php echo $msgRow['msgTime']?></td>
                         </tr>
                     </table>
-                    <input type="button" class="cart" id="sustain" value="檢舉成立">
-                    <input type="button" class="cart" id="overrule" value="檢舉不成立">
+                    <input type="button" class="cart" id="sustain" value="檢舉成立" <?php echo $_SESSION['managerName'] == 'guest'? 'disabled':'' ?>>
+                    <input type="button" class="cart" id="overrule" value="檢舉不成立" <?php echo $_SESSION['managerName'] == 'guest'? 'disabled':'' ?>>
                 </form>
             </div>
             <footer>

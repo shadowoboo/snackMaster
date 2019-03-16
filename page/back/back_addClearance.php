@@ -48,6 +48,11 @@
             font-size: 16px;
         }
     </style>
+<?php
+    if($_SESSION['managerName'] == 'guest'){
+        echo '<style>#submit{cursor: no-drop; background: #aaa; color: #ddd}</style>';
+    }
+?>
     <title>大零食家 - 後端管理系統</title>
 </head>
 <body>
@@ -144,7 +149,7 @@
                         </tr>
                     </table>
                     <!-- <button type="submit" class="cart" id="commit">新增專案</button>    -->
-                    <input type="button" class="cart" id="submit" value="新增專案">
+                    <input type="button" class="cart" id="submit" value="新增專案" <?php echo $_SESSION['managerName'] == 'guest'? 'disabled':'' ?>>
                     <input type="button" class="cart" id="cancel" value="放棄新增">
                 </form>
             </div>
